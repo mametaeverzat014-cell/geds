@@ -1,7 +1,7 @@
 import type { AdvisorResult, GraphSnapshot, Scenario, SimulationResult } from "./types";
 
-const API = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
-const WS = process.env.NEXT_PUBLIC_WS_URL || "ws://127.0.0.1:8000";
+const API = (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000").replace(/\/$/, "");
+const WS = (process.env.NEXT_PUBLIC_WS_URL || "ws://127.0.0.1:8000").replace(/\/$/, "");
 
 async function getJson<T>(path: string): Promise<T> {
   const res = await fetch(`${API}${path}`);
