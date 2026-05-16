@@ -231,28 +231,35 @@ class GrokPolicyAdvisor:
             "Respond with the JSON object only — no preamble, no markdown fences."
         )
 
-        body = {
+        body: dict = {
             "model": self.model,
             "messages": [
                 {"role": "system", "content": _system_prompt(lang)},
                 {"role": "user", "content": user_prompt},
             ],
             "temperature": 0.4,
-            "response_format": {"type": "json_object"},
         }
+        # json_object mode is supported by xAI but not all OpenAI-compatible providers
+        if "x.ai" in self.base_url:
+            body["response_format"] = {"type": "json_object"}
 
         t0 = time.perf_counter()
-        with httpx.Client(
-            base_url=self.base_url,
-            headers={
-                "Authorization": f"Bearer {self.api_key}",
-                "Content-Type": "application/json",
-            },
-            timeout=self.timeout,
-        ) as client:
-            resp = client.post("/chat/completions", json=body)
-            resp.raise_for_status()
-            data = resp.json()
+        try:
+            with httpx.Client(
+                base_url=self.base_url,
+                headers={
+                    "Authorization": f"Bearer {self.api_key}",
+                    "Content-Type": "application/json",
+                },
+                timeout=self.timeout,
+            ) as client:
+                resp = client.post("/chat/completions", json=body)
+                resp.raise_for_status()
+                data = resp.json()
+        except Exception:
+            stub = _stub_narrative(scenario_id, compact, lang=lang)
+            _store_cached(key, stub)
+            return _parse_response(stub, cached=False, latency_ms=0, model=f"{self.model}-stub")
         latency_ms = int((time.perf_counter() - t0) * 1000)
 
         content = data["choices"][0]["message"]["content"]
