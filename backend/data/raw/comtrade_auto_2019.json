@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "source": "UN Comtrade Public Preview API",
+    "endpoint": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
+    "fetch_date": "2026-05-13",
+    "period": "2019",
+    "cmd_codes": ["8703"],
+    "cmd_desc": "8703=Passenger motor vehicles (excl buses)",
+    "note": "Bilateral passenger car trade. Automotive dependency_weight computed as bilateral_import / total_sector_import."
+  },
+  "bilateral_imports": [
+    {"reporter": "USA", "reporterCode": 842, "partner": "DEU", "partnerCode": 276, "primaryValue": 18052903578},
+    {"reporter": "USA", "reporterCode": 842, "partner": "JPN", "partnerCode": 392, "primaryValue": 39931095073},
+    {"reporter": "USA", "reporterCode": 842, "partner": "KOR", "partnerCode": 410, "primaryValue": 16337646332},
+    {"reporter": "USA", "reporterCode": 842, "partner": "MEX", "partnerCode": 484, "primaryValue": 38058497222},
+    {"reporter": "CHN", "reporterCode": 156, "partner": "DEU", "partnerCode": 276, "primaryValue": 13856707785},
+    {"reporter": "CHN", "reporterCode": 156, "partner": "JPN", "partnerCode": 392, "primaryValue": 10988313386},
+    {"reporter": "CHN", "reporterCode": 156, "partner": "MEX", "partnerCode": 484, "primaryValue": 370031739},
+    {"reporter": "DEU", "reporterCode": 276, "partner": "JPN", "partnerCode": 392, "primaryValue": 2903464800},
+    {"reporter": "DEU", "reporterCode": 276, "partner": "KOR", "partnerCode": 410, "primaryValue": 1451855330},
+    {"reporter": "DEU", "reporterCode": 276, "partner": "MEX", "partnerCode": 484, "primaryValue": 4510180760},
+    {"reporter": "JPN", "reporterCode": 392, "partner": "DEU", "partnerCode": 276, "primaryValue": 5477998028},
+    {"reporter": "JPN", "reporterCode": 392, "partner": "MEX", "partnerCode": 484, "primaryValue": 289608179}
+  ],
+  "total_world_imports": [
+    {"reporter": "USA", "reporterCode": 842, "cmdCode": "8703", "primaryValue": 179515290493},
+    {"reporter": "DEU", "reporterCode": 276, "cmdCode": "8703", "primaryValue": 72512003837},
+    {"reporter": "JPN", "reporterCode": 392, "cmdCode": "8703", "primaryValue": 12135112236},
+    {"reporter": "KOR", "reporterCode": 410, "cmdCode": "8703", "primaryValue": 11111729336},
+    {"reporter": "MEX", "reporterCode": 484, "cmdCode": "8703", "primaryValue": 9867605374},
+    {"reporter": "CHN", "reporterCode": 156, "cmdCode": "8703", "primaryValue": 47200000000, "quality": "estimated", "note": "CHN total auto imports estimated from bilateral data + market share data; direct aggregate query returned null for CHN 2019"}
+  ]
+}

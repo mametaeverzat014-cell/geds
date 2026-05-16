@@ -1,0 +1,78 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+.turbo/
+*.tsbuildinfo
+.npm/
+.pnpm-store/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# ML artifacts
+ml/checkpoints/
+ml/runs/
+ml/wandb/
+ml/mlruns/
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.pkl
+*.joblib
+
+# Data
+data/raw/
+data/processed/
+data/replay/*.parquet
+data/replay/*.arrow
+*.csv
+!data/fixtures/*.csv
+
+# Simulation outputs
+simulations/results/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs
+*.log
+logs/
+
+# Docker
+*.pid
+
+# Notebooks (keep .ipynb in ml/notebooks; ignore checkpoints)
+.ipynb_checkpoints/
+
+# Local infra state
+infra/terraform/.terraform/
+infra/terraform/*.tfstate
+infra/terraform/*.tfstate.backup

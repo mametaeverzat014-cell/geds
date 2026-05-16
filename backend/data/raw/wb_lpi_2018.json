@@ -1,0 +1,31 @@
+{
+  "_meta": {
+    "source": "World Bank Logistics Performance Index",
+    "endpoint": "https://api.worldbank.org/v2/country/all/indicator/LP.LPI.OVRL.XQ",
+    "indicator": "LP.LPI.OVRL.XQ",
+    "indicator_desc": "Logistics performance index: Overall (1=low to 5=high)",
+    "fetch_date": "2026-05-13",
+    "period": "2018",
+    "note": "LPI is published every two years. 2018 edition used as closest pre-COVID baseline. Taiwan (TWN) excluded from World Bank dataset; estimated from OECD supply chain resilience literature (Miroudot 2020). Scale 1-5."
+  },
+  "records": [
+    {"iso3": "DEU", "country": "Germany", "value": 4.20, "quality": "real"},
+    {"iso3": "JPN", "country": "Japan", "value": 4.03, "quality": "real"},
+    {"iso3": "NLD", "country": "Netherlands", "value": 4.02, "quality": "real"},
+    {"iso3": "USA", "country": "United States", "value": 3.89, "quality": "real"},
+    {"iso3": "CHN", "country": "China", "value": 3.61, "quality": "real"},
+    {"iso3": "KOR", "country": "Korea, Rep.", "value": 3.61, "quality": "real"},
+    {"iso3": "THA", "country": "Thailand", "value": 3.41, "quality": "real"},
+    {"iso3": "VNM", "country": "Viet Nam", "value": 3.27, "quality": "real"},
+    {"iso3": "MYS", "country": "Malaysia", "value": 3.22, "quality": "real"},
+    {"iso3": "IND", "country": "India", "value": 3.18, "quality": "real"},
+    {"iso3": "MEX", "country": "Mexico", "value": 3.05, "quality": "real"},
+    {
+      "iso3": "TWN",
+      "country": "Taiwan",
+      "value": 3.55,
+      "quality": "estimated",
+      "note": "Estimated from OECD Trade in Value Added (TiVA) supply chain resilience score and academic secondary sources. World Bank does not publish LPI for Taiwan."
+    }
+  ]
+}

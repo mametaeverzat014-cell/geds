@@ -1,0 +1,68 @@
+{
+  "_meta": {
+    "source": "UN Comtrade Public Preview API",
+    "endpoint": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
+    "fetch_date": "2026-05-13",
+    "period": "2019",
+    "freq": "Annual",
+    "flow": "M (imports) from reporter perspective",
+    "cmd_codes": ["8541", "8542"],
+    "cmd_desc": "8541=Diodes/transistors/semiconductor devices, 8542=Electronic integrated circuits",
+    "note": "Bilateral import-side data used for dependency computation. China figures include Hong Kong re-export channel (approx +5pp undercount on export-side). Taiwan (reporter 490) is listed as 'Other Asia, nes' in UN Comtrade.",
+    "currency": "USD (CIF for imports)"
+  },
+  "imports_from_taiwan": {
+    "description": "reporter imports from partnerCode=490 (Taiwan)",
+    "records": [
+      {"reporter": "CHN", "reporterCode": 156, "cmdCode": "8541", "primaryValue": 3846524175},
+      {"reporter": "CHN", "reporterCode": 156, "cmdCode": "8542", "primaryValue": 99297226729},
+      {"reporter": "DEU", "reporterCode": 276, "cmdCode": "8541", "primaryValue": 285613823},
+      {"reporter": "DEU", "reporterCode": 276, "cmdCode": "8542", "primaryValue": 2832135807},
+      {"reporter": "JPN", "reporterCode": 392, "cmdCode": "8541", "primaryValue": 281134751},
+      {"reporter": "JPN", "reporterCode": 392, "cmdCode": "8542", "primaryValue": 9860791946},
+      {"reporter": "KOR", "reporterCode": 410, "cmdCode": "8541", "primaryValue": 846038336},
+      {"reporter": "KOR", "reporterCode": 410, "cmdCode": "8542", "primaryValue": 8625529643},
+      {"reporter": "USA", "reporterCode": 842, "cmdCode": "8541", "primaryValue": 425021273},
+      {"reporter": "USA", "reporterCode": 842, "cmdCode": "8542", "primaryValue": 3701644149},
+      {"reporter": "MYS", "reporterCode": 458, "cmdCode": "8541", "primaryValue": 230323719},
+      {"reporter": "MYS", "reporterCode": 458, "cmdCode": "8542", "primaryValue": 8497634851},
+      {"reporter": "MEX", "reporterCode": 484, "cmdCode": "8541", "primaryValue": 107176360},
+      {"reporter": "MEX", "reporterCode": 484, "cmdCode": "8542", "primaryValue": 2042175815},
+      {"reporter": "NLD", "reporterCode": 528, "cmdCode": "8541", "primaryValue": 39767827},
+      {"reporter": "NLD", "reporterCode": 528, "cmdCode": "8542", "primaryValue": 201035905},
+      {"reporter": "VNM", "reporterCode": 704, "cmdCode": "8541", "primaryValue": 154049223},
+      {"reporter": "VNM", "reporterCode": 704, "cmdCode": "8542", "primaryValue": 4939126009},
+      {"reporter": "THA", "reporterCode": 764, "cmdCode": "8541", "primaryValue": 79083019},
+      {"reporter": "THA", "reporterCode": 764, "cmdCode": "8542", "primaryValue": 3429520178},
+      {"reporter": "IND", "reporterCode": 356, "cmdCode": "8541", "primaryValue": null, "quality": "estimated", "estimated_value": 75000000, "note": "Not returned by bilateral query; estimated from WITS mirror data"},
+      {"reporter": "IND", "reporterCode": 356, "cmdCode": "8542", "primaryValue": null, "quality": "estimated", "estimated_value": 175000000, "note": "Not returned by bilateral query; estimated from WITS mirror data"}
+    ]
+  },
+  "total_world_imports": {
+    "description": "reporter total imports from partnerCode=0 (World)",
+    "records": [
+      {"reporter": "CHN", "reporterCode": 156, "cmdCode": "8541", "primaryValue": 26162410250},
+      {"reporter": "CHN", "reporterCode": 156, "cmdCode": "8542", "primaryValue": 306396731089},
+      {"reporter": "DEU", "reporterCode": 276, "cmdCode": "8541", "primaryValue": 6795538479},
+      {"reporter": "DEU", "reporterCode": 276, "cmdCode": "8542", "primaryValue": 17006249402},
+      {"reporter": "JPN", "reporterCode": 392, "cmdCode": "8541", "primaryValue": 4956086616},
+      {"reporter": "JPN", "reporterCode": 392, "cmdCode": "8542", "primaryValue": 18511107877},
+      {"reporter": "KOR", "reporterCode": 410, "cmdCode": "8541", "primaryValue": 5001671323},
+      {"reporter": "KOR", "reporterCode": 410, "cmdCode": "8542", "primaryValue": 35703236563},
+      {"reporter": "USA", "reporterCode": 842, "cmdCode": "8541", "primaryValue": 11317425792},
+      {"reporter": "USA", "reporterCode": 842, "cmdCode": "8542", "primaryValue": 33085045987},
+      {"reporter": "MYS", "reporterCode": 458, "cmdCode": "8541", "primaryValue": 3038525234},
+      {"reporter": "MYS", "reporterCode": 458, "cmdCode": "8542", "primaryValue": 31927095316},
+      {"reporter": "MEX", "reporterCode": 484, "cmdCode": "8541", "primaryValue": 3267081322},
+      {"reporter": "MEX", "reporterCode": 484, "cmdCode": "8542", "primaryValue": 21357300045},
+      {"reporter": "NLD", "reporterCode": 528, "cmdCode": "8541", "primaryValue": 2754230728},
+      {"reporter": "NLD", "reporterCode": 528, "cmdCode": "8542", "primaryValue": 13395082476},
+      {"reporter": "VNM", "reporterCode": 704, "cmdCode": "8541", "primaryValue": 4556232254},
+      {"reporter": "VNM", "reporterCode": 704, "cmdCode": "8542", "primaryValue": 30615473278},
+      {"reporter": "THA", "reporterCode": 764, "cmdCode": "8541", "primaryValue": 1881641459},
+      {"reporter": "THA", "reporterCode": 764, "cmdCode": "8542", "primaryValue": 11267085663},
+      {"reporter": "IND", "reporterCode": 356, "cmdCode": "8541", "primaryValue": null, "quality": "estimated", "estimated_value": 1200000000},
+      {"reporter": "IND", "reporterCode": 356, "cmdCode": "8542", "primaryValue": null, "quality": "estimated", "estimated_value": 4600000000}
+    ]
+  }
+}

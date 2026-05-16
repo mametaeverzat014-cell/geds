@@ -1,0 +1,40 @@
+{
+  "_meta": {
+    "source": "UN Comtrade Public Preview API",
+    "endpoint": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
+    "fetch_date": "2026-05-13",
+    "period": "2019",
+    "cmd_codes": ["2709", "2710"],
+    "cmd_desc": "2709=Petroleum oils, crude; 2710=Petroleum oils, refined",
+    "note": "Total energy import values (from World) for key economies. Bilateral energy flows (Hormuz/Malacca exposed) derived from IEA Energy Trade Statistics 2020."
+  },
+  "total_world_imports": [
+    {"reporter": "CHN", "reporterCode": 156, "cmdCode": "2709", "primaryValue": 242384862765},
+    {"reporter": "CHN", "reporterCode": 156, "cmdCode": "2710", "primaryValue": 17075906678},
+    {"reporter": "DEU", "reporterCode": 276, "cmdCode": "2709", "primaryValue": 40745587766},
+    {"reporter": "DEU", "reporterCode": 276, "cmdCode": "2710", "primaryValue": 24383080474},
+    {"reporter": "JPN", "reporterCode": 392, "cmdCode": "2709", "primaryValue": 73086768743},
+    {"reporter": "JPN", "reporterCode": 392, "cmdCode": "2710", "primaryValue": 13157147798},
+    {"reporter": "USA", "reporterCode": 842, "cmdCode": "2709", "primaryValue": 132370662612},
+    {"reporter": "USA", "reporterCode": 842, "cmdCode": "2710", "primaryValue": 61938363075}
+  ],
+  "hormuz_exposure": {
+    "note": "Fraction of country energy imports transiting Strait of Hormuz. Source: IEA World Energy Outlook 2020 Box 3.2",
+    "CHN": 0.44,
+    "JPN": 0.87,
+    "KOR": 0.76,
+    "IND": 0.65,
+    "DEU": 0.08,
+    "USA": 0.04
+  },
+  "malacca_exposure": {
+    "note": "Fraction of country total trade volume transiting Strait of Malacca. Source: IMO Piracy Report 2020",
+    "CHN": 0.38,
+    "JPN": 0.55,
+    "KOR": 0.48,
+    "MYS": 0.25,
+    "VNM": 0.30,
+    "THA": 0.22,
+    "IND": 0.18
+  }
+}

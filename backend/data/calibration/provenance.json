@@ -1,0 +1,66 @@
+{
+  "calibration_date": "2026-05-15T09:47:31.355397+00:00",
+  "study_name": "geds-cal-v1",
+  "n_trials": 100,
+  "n_completed_trials": 100,
+  "best_value": 1.741920813601518,
+  "best_params": {
+    "amplification_mu": 0.5008129249152151,
+    "bullwhip_factor": 1.4944409702051702,
+    "recovery_rate": 0.02494729881676297,
+    "inventory_scale": 0.8546478891373044,
+    "distress_base": 0.48042501286033285
+  },
+  "best_config": {
+    "propagation_decay": 0.85,
+    "rerouting_efficiency": 0.55,
+    "amplification_mu": 0.5008129249152151,
+    "amplification_eps": 0.06,
+    "recovery_rate": 0.02494729881676297,
+    "stochastic_sigma": 0.0,
+    "seed": null,
+    "seis_enabled": true,
+    "adaptive_rerouting": true,
+    "bullwhip_factor": 1.4944409702051702,
+    "r_output_floor": 0.3,
+    "inventory_scale": 0.8546478891373044,
+    "distress_base": 0.48042501286033285,
+    "distress_week_threshold": 6,
+    "sanity_max_loss_fraction": 0.15
+  },
+  "final_validation": {
+    "weighted_rmse": 0.24188892463778913,
+    "pass_rate_25pct": 0.0,
+    "mean_sanity_penalty": 6.37779274577769e-05,
+    "n_passed_25pct": 0,
+    "n_events": 8
+  },
+  "search_space": {
+    "amplification_mu": [
+      0.5,
+      4.0
+    ],
+    "bullwhip_factor": [
+      1.0,
+      1.5
+    ],
+    "recovery_rate": [
+      0.02,
+      0.2
+    ],
+    "inventory_scale": [
+      0.5,
+      1.5
+    ],
+    "distress_base": [
+      0.25,
+      0.55
+    ]
+  },
+  "objective_weights": {
+    "rmse": 1.0,
+    "pass": 2.0,
+    "sanity": 0.5
+  },
+  "target_pass_rate": 0.75
+}

@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html, body {
+    background-color: #07090C;
+    color: #E6EBF4;
+    font-family: "Manrope", ui-sans-serif, system-ui, sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+
+  ::selection {
+    background-color: rgba(124, 108, 251, 0.35);
+  }
+
+  /* Subtle grid background */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(26, 30, 38, 0.4) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 30, 38, 0.4) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.85), rgba(0,0,0,0.0) 75%);
+    z-index: 0;
+  }
+}
+
+@layer components {
+  .panel {
+    @apply bg-bg-elevated/80 backdrop-blur-md border border-border-subtle rounded-lg;
+  }
+  .num {
+    @apply font-mono tabular-nums;
+  }
+  .hairline {
+    @apply border-t border-border-subtle;
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50%      { opacity: 1.0; transform: scale(1.12); }
+}
+
+.pulse-soft {
+  animation: pulse-soft 1.8s ease-in-out infinite;
+}

@@ -1,0 +1,32 @@
+{
+  "executive_summary": "GEDS projects $550B in cumulative output loss for historical-suez-2021, with peak CSI 0.00 concentrated in DEU and the automotive sector.",
+  "cascade_mechanism": "The shock propagates outward from the original disrupted nodes via the trade-dependency graph. DEU is most exposed because of high import-penetration ratios in automotive, and SEIRS inventory buffers run out roughly 8-12 weeks after the initial disruption.",
+  "immediate_risks": [
+    "Inventory drawdowns at downstream manufacturers within 6 weeks.",
+    "Spot-price volatility in semiconductor and shipping markets.",
+    "Pressure on currency reserves in import-dependent emerging economies."
+  ],
+  "structural_vulnerabilities": [
+    "Concentration risk in single-country sourcing for advanced semiconductors.",
+    "Limited rerouting capacity around primary maritime chokepoints.",
+    "Inadequate strategic reserves for critical industrial inputs."
+  ],
+  "policy_recommendations": [
+    {
+      "action": "Activate emergency strategic-reserve drawdowns",
+      "target": "DEU",
+      "time_horizon_weeks": 2
+    },
+    {
+      "action": "Coordinate central-bank swap lines to absorb FX pressure",
+      "target": "BIS / Federal Reserve",
+      "time_horizon_weeks": 4
+    },
+    {
+      "action": "Fast-track domestic capacity for the most exposed sector",
+      "target": "automotive",
+      "time_horizon_weeks": 26
+    }
+  ],
+  "confidence": "low"
+}

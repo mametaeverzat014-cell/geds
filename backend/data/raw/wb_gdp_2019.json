@@ -1,0 +1,33 @@
+{
+  "_meta": {
+    "source": "World Bank Open Data API",
+    "endpoint": "https://api.worldbank.org/v2/country/{iso}/indicator/NY.GDP.MKTP.CD",
+    "indicator": "NY.GDP.MKTP.CD",
+    "indicator_desc": "GDP, current USD",
+    "fetch_date": "2026-05-13",
+    "period": "2019",
+    "note": "Taiwan (TWN) is not included in World Bank dataset due to political status. TWN value sourced from IMF World Economic Outlook Database April 2020, Table A. Converted at IMF-published annual average exchange rate. See taiwan_gdp_source field."
+  },
+  "records": [
+    {"iso3": "USA", "country": "United States", "value": 21380976119000, "quality": "real"},
+    {"iso3": "CHN", "country": "China", "value": 14560167101283, "quality": "real"},
+    {"iso3": "JPN", "country": "Japan", "value": 5117993853017, "quality": "real"},
+    {"iso3": "DEU", "country": "Germany", "value": 3959894794039, "quality": "real"},
+    {"iso3": "IND", "country": "India", "value": 2835606256558, "quality": "real"},
+    {"iso3": "KOR", "country": "Korea, Rep.", "value": 1751045752055, "quality": "real"},
+    {"iso3": "MEX", "country": "Mexico", "value": 1304106203902, "quality": "real"},
+    {"iso3": "NLD", "country": "Netherlands", "value": 928903005576, "quality": "real"},
+    {"iso3": "THA", "country": "Thailand", "value": 543976691794, "quality": "real"},
+    {"iso3": "MYS", "country": "Malaysia", "value": 365177721022, "quality": "real"},
+    {"iso3": "VNM", "country": "Viet Nam", "value": 334365270497, "quality": "real"},
+    {
+      "iso3": "TWN",
+      "country": "Taiwan",
+      "value": 611391000000,
+      "quality": "literature",
+      "source": "IMF World Economic Outlook Database, April 2020",
+      "source_url": "https://www.imf.org/external/pubs/ft/weo/2020/01/weodata/index.aspx",
+      "note": "IMF NGDPD for Taiwan Province of China (TWN), 2019, converted from TWD at 30.9 TWD/USD annual average"
+    }
+  ]
+}

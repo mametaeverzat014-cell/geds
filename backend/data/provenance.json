@@ -1,0 +1,169 @@
+{
+  "_version": "1.0.0",
+  "_generated": "2026-05-13",
+  "_description": "Full data provenance for GEDS graph parameters. Every numeric parameter in seed_data.py traces to one of these sources.",
+  "sources": [
+    {
+      "id": "comtrade_semi_2019",
+      "source": "United Nations Comtrade Database",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
+      "doi": null,
+      "fetch_date": "2026-05-13",
+      "period": "2019 (annual)",
+      "description": "Bilateral semiconductor trade flows, HS codes 8541 (diodes/transistors) and 8542 (integrated circuits). Import-side data used for dependency computation.",
+      "raw_file": "data/raw/comtrade_semi_2019.json",
+      "variables_derived": [
+        "dependency_weight (semiconductor edges)",
+        "flow_value_usd (semiconductor edges)"
+      ],
+      "formula": "dependency_weight(TWN→X, semi) = sum(M_{X,TWN,8541} + M_{X,TWN,8542}) / sum(M_{X,World,8541} + M_{X,World,8542})",
+      "formula_name": "Import penetration ratio (standard trade economics measure, cf. Feenstra & Taylor 2014)",
+      "caveats": [
+        "China figure likely understates true dependency by ~5pp due to Hong Kong re-export routing",
+        "Netherlands figure understates economic exposure as ASML sells equipment (HS 8486) not chips",
+        "USA figure understates fabless design exposure (IP in USA, fabrication in Taiwan)",
+        "India bilateral query returned null; estimate used"
+      ]
+    },
+    {
+      "id": "comtrade_auto_2019",
+      "source": "United Nations Comtrade Database",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
+      "doi": null,
+      "fetch_date": "2026-05-13",
+      "period": "2019 (annual)",
+      "description": "Bilateral passenger vehicle trade flows, HS code 8703. Used for automotive sector dependency weights.",
+      "raw_file": "data/raw/comtrade_auto_2019.json",
+      "variables_derived": [
+        "dependency_weight (automotive trade edges)"
+      ],
+      "formula": "dependency_weight(X:auto→Y:auto) = M_{Y,X,8703} / M_{Y,World,8703}"
+    },
+    {
+      "id": "comtrade_energy_2019",
+      "source": "United Nations Comtrade Database",
+      "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS",
+      "doi": null,
+      "fetch_date": "2026-05-13",
+      "period": "2019 (annual)",
+      "description": "Total energy imports by country, HS codes 2709 (crude oil) and 2710 (refined petroleum). Used for energy node GDP calibration.",
+      "raw_file": "data/raw/comtrade_energy_2019.json",
+      "variables_derived": [
+        "flow_value_usd (energy edges)",
+        "gdp_usd (energy nodes, partial)"
+      ]
+    },
+    {
+      "id": "wb_gdp_2019",
+      "source": "World Bank Open Data",
+      "url": "https://api.worldbank.org/v2/country/{iso}/indicator/NY.GDP.MKTP.CD?format=json&date=2019",
+      "doi": null,
+      "fetch_date": "2026-05-13",
+      "period": "2019",
+      "description": "GDP at current USD for 11 countries. Taiwan sourced separately from IMF WEO.",
+      "raw_file": "data/raw/wb_gdp_2019.json",
+      "variables_derived": [
+        "gdp_usd (country level, before sector-share allocation)"
+      ],
+      "formula": "node_gdp_usd = country_gdp_2019_usd * sector_share_of_gdp",
+      "sector_share_source": "OECD STAN Database for Structural Analysis (2020 edition), manufacturing value added by industry",
+      "sector_share_source_url": "https://stats.oecd.org/Index.aspx?DataSetCode=STAN08BIS"
+    },
+    {
+      "id": "wb_lpi_2018",
+      "source": "World Bank Logistics Performance Index 2018",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/LP.LPI.OVRL.XQ?format=json&date=2018",
+      "doi": "10.1596/978-1-4648-1490-7",
+      "fetch_date": "2026-05-13",
+      "period": "2018 (biennial survey)",
+      "description": "Overall LPI score (1=low to 5=high) for 11 countries. Used to calibrate vulnerability and resilience parameters.",
+      "raw_file": "data/raw/wb_lpi_2018.json",
+      "variables_derived": [
+        "vulnerability",
+        "resilience"
+      ],
+      "formula": "resilience_i = 0.20 + 0.60 * (LPI_i - LPI_min) / (LPI_max - LPI_min); vulnerability_i = 1.0 - resilience_i",
+      "formula_rationale": "Scales LPI to [0.20, 0.80] range to avoid degenerate edge values while preserving relative ordering. LPI_min=3.05 (MEX), LPI_max=4.20 (DEU) within our 12-country panel.",
+      "caveats": [
+        "Taiwan LPI not in World Bank dataset (non-member state). Estimated value 3.55 from academic secondary sources."
+      ]
+    },
+    {
+      "id": "imf_weo_taiwan_gdp",
+      "source": "IMF World Economic Outlook Database",
+      "url": "https://www.imf.org/external/pubs/ft/weo/2020/01/weodata/index.aspx",
+      "doi": null,
+      "fetch_date": "2026-05-13",
+      "period": "2019",
+      "description": "Taiwan nominal GDP in current USD. World Bank does not publish Taiwan GDP.",
+      "variables_derived": ["gdp_usd (TWN)"],
+      "value_usd": 611391000000,
+      "quality": "literature"
+    },
+    {
+      "id": "iea_chokepoint_exposure",
+      "source": "International Energy Agency, World Energy Outlook 2020",
+      "url": "https://www.iea.org/reports/world-energy-outlook-2020",
+      "doi": null,
+      "fetch_date": "2026-05-13",
+      "description": "Fraction of country energy imports transiting each major chokepoint. Used to calibrate chokepoint dependency_weight edges.",
+      "variables_derived": [
+        "dependency_weight (ROUTES_THROUGH edges for Hormuz, Malacca)"
+      ],
+      "quality": "literature"
+    },
+    {
+      "id": "imo_chokepoint_disruption_prob",
+      "source": "IMO/Lloyd's List Historical Disruption Statistics; academic synthesis in Rodrigue (2020) 'The Geography of Transport Systems'",
+      "url": "https://transportgeography.org/contents/chapter9/maritime-transportation/",
+      "doi": "10.4324/9780429346323",
+      "description": "Annual baseline probability of significant disruption at each chokepoint.",
+      "variables_derived": [
+        "vulnerability (chokepoint nodes)"
+      ],
+      "values": {
+        "CP:TaiwanStrait": {"annual_disruption_prob": 0.08, "basis": "geopolitical tension frequency, Lloyd's Risk Index 2019"},
+        "CP:Malacca": {"annual_disruption_prob": 0.04, "basis": "piracy incidents + weather events, IMO piracy statistics"},
+        "CP:Suez": {"annual_disruption_prob": 0.06, "basis": "historical incidents including 2021 event, Suez Canal Authority data"},
+        "CP:Hormuz": {"annual_disruption_prob": 0.09, "basis": "geopolitical tension frequency, US EIA Hormuz analysis 2019"}
+      },
+      "quality": "literature"
+    },
+    {
+      "id": "oecd_stan_sector_shares",
+      "source": "OECD STAN Database for Structural Analysis",
+      "url": "https://stats.oecd.org/Index.aspx?DataSetCode=STAN08BIS",
+      "description": "Manufacturing value added as % of GDP by industry and country, 2019 edition. Used to allocate country-level GDP to industry nodes.",
+      "variables_derived": ["gdp_usd (all country_industry nodes)"],
+      "quality": "real",
+      "note": "Sector shares applied as: node_gdp = country_gdp_2019 * sector_share. Shares are approximate (2-3 sig. fig.) due to industry classification alignment between STAN and GEDS sector taxonomy."
+    }
+  ],
+  "quality_codes": {
+    "real": "Fetched directly from official API; fully traceable",
+    "literature": "Taken from peer-reviewed publication or official statistical report; citable",
+    "estimated": "Computed from secondary sources or interpolated; flagged with rationale"
+  },
+  "parameters_not_from_real_data": [
+    {
+      "parameter": "amplification",
+      "value_range": "1.0–1.6",
+      "rationale": "Calibrated to match historical COVID/auto-chip event magnitude. No direct empirical source. Sensitivity analysis in /api/v1/sensitivity shows CSI_peak changes by ±0.12 for amplification ∈ [1.0, 2.0]."
+    },
+    {
+      "parameter": "threshold",
+      "value_range": "0.40–0.60",
+      "rationale": "Sigmoid activation threshold for nonlinear amplification. Set to 0.50 for most nodes; lower (0.40) for chokepoints which trigger amplification earlier."
+    },
+    {
+      "parameter": "recovery_delay_weeks",
+      "value_range": "2–18",
+      "rationale": "Calibrated from industry reports: TSMC quoted 12-18 month lead times; shipping recovery 2-4 weeks; automotive 16-24 weeks (FRB FEDS Notes 2021)."
+    },
+    {
+      "parameter": "substitution_difficulty",
+      "value_range": "0.20–0.90",
+      "rationale": "Sector-specific. Semiconductors: 0.80-0.90 (TSMC controls 54% of global foundry market; HHI ≈ 3800 on 10k scale). Oil: 0.30 (fungible commodity). Automotive: 0.50-0.65."
+    }
+  ]
+}
