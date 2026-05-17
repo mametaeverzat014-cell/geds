@@ -1,0 +1,74 @@
+{
+  "timestamp": "2026-05-16T19:58:25.957187+00:00",
+  "n_events": 8,
+  "rows": [
+    {
+      "variant": "full",
+      "description": "Full engine \u2014 all components enabled",
+      "mae_loss": 0.0248,
+      "rmse_loss": 0.0361,
+      "pearson_loss": 0.7196,
+      "spearman_loss": 0.8333,
+      "pass_rate_50pct": 0.125,
+      "mae_delta_vs_full": 0.0,
+      "pearson_delta_vs_full": 0.0
+    },
+    {
+      "variant": "no_seis",
+      "description": "SEIS state machine disabled (raw shock propagation)",
+      "mae_loss": 0.0248,
+      "rmse_loss": 0.0361,
+      "pearson_loss": 0.7196,
+      "spearman_loss": 0.8333,
+      "pass_rate_50pct": 0.125,
+      "mae_delta_vs_full": 0.0,
+      "pearson_delta_vs_full": 0.0
+    },
+    {
+      "variant": "no_bullwhip",
+      "description": "Bullwhip factor pinned at 1.0",
+      "mae_loss": 0.0336,
+      "rmse_loss": 0.0477,
+      "pearson_loss": 0.2814,
+      "spearman_loss": 0.8095,
+      "pass_rate_50pct": 0.125,
+      "mae_delta_vs_full": 0.0089,
+      "pearson_delta_vs_full": -0.4382
+    },
+    {
+      "variant": "no_adaptive_rerouting",
+      "description": "Chokepoint cost surcharge disabled",
+      "mae_loss": 0.0248,
+      "rmse_loss": 0.0361,
+      "pearson_loss": 0.7196,
+      "spearman_loss": 0.8333,
+      "pass_rate_50pct": 0.125,
+      "mae_delta_vs_full": 0.0,
+      "pearson_delta_vs_full": 0.0
+    },
+    {
+      "variant": "no_r_state_floor",
+      "description": "R-state output floor at 0 (no hysteresis)",
+      "mae_loss": 0.0284,
+      "rmse_loss": 0.044,
+      "pearson_loss": 0.289,
+      "spearman_loss": 0.7143,
+      "pass_rate_50pct": 0.125,
+      "mae_delta_vs_full": 0.0037,
+      "pearson_delta_vs_full": -0.4306
+    },
+    {
+      "variant": "naive_diffusion",
+      "description": "Pure linear-diffusion baseline (no SEIRS, no bullwhip)",
+      "mae_loss": 0.0152,
+      "rmse_loss": 0.0179,
+      "pearson_loss": 0.879,
+      "spearman_loss": 0.8571,
+      "pass_rate_50pct": 1.0,
+      "mae_delta_vs_full": -0.0095,
+      "pearson_delta_vs_full": 0.1594
+    }
+  ],
+  "best_variant": "naive_diffusion",
+  "worst_variant": "no_bullwhip"
+}

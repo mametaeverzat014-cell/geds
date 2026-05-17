@@ -232,11 +232,11 @@ export default function MetricsPanel() {
         </div>
       </div>
 
-      {/* trust footer */}
+      {/* trust footer — live validation badge in top-right shows current LOO-CV stats */}
       <div className="text-[10px] text-text-muted text-center leading-relaxed px-1">
         {lang === "en"
-          ? "Model validated against 8 historical events · r = +0.97"
-          : "Модель проверена на 8 исторических событиях · r = +0,97"}
+          ? "Validation: see live badge (top-right) · methodology: AUDIT.md"
+          : "Валидация: см. live-значок справа сверху · методика: AUDIT.md"}
       </div>
     </div>
   );

@@ -33,16 +33,16 @@ export default function FAQPanel() {
           </button>
         </div>
 
-        {/* trust strip */}
+        {/* trust strip — points users to the live, honest validation panel */}
         <div className="px-5 py-2.5 bg-accent-cyan/5 border-b border-border-subtle shrink-0">
           <div className="flex items-center gap-2 flex-wrap">
             <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent-cyan/15 text-accent-cyan border border-accent-cyan/30 font-semibold">
-              r = +0.97
+              LOO-CV
             </span>
             <span className="text-[10px] text-text-muted">
               {lang === "en"
-                ? "Validated against 8 historical supply-chain crises"
-                : "Проверено на 8 исторических кризисах цепочек поставок"}
+                ? "Live cross-validation in top-right badge · full report: /api/v1/cv-report"
+                : "Live-кросс-валидация в значке справа сверху · полный отчёт: /api/v1/cv-report"}
             </span>
           </div>
         </div>

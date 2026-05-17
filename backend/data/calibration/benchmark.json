@@ -1,0 +1,58 @@
+{
+  "timestamp": "2026-05-16T20:02:21.574395+00:00",
+  "n_events": 8,
+  "models": [
+    {
+      "model": "SEIRS-Bullwhip-Hysteresis (GEDS)",
+      "n_events": 8,
+      "mae": 0.0248,
+      "rmse": 0.0361,
+      "mape": 66.28,
+      "r_squared": 0.0451,
+      "pearson": 0.7196,
+      "spearman": 0.8333,
+      "bias": -0.0225,
+      "skill_score_vs_persistence": 0.0451
+    },
+    {
+      "model": "Leontief (input-output equilibrium)",
+      "n_events": 8,
+      "mae": 0.0301,
+      "rmse": 0.0478,
+      "mape": 74.48,
+      "r_squared": -0.6696,
+      "pearson": 0.0753,
+      "spearman": 0.6429,
+      "bias": -0.0301,
+      "skill_score_vs_persistence": -0.6696
+    },
+    {
+      "model": "Linear Diffusion (network)",
+      "n_events": 8,
+      "mae": 0.0152,
+      "rmse": 0.0179,
+      "mape": 90.5,
+      "r_squared": 0.7647,
+      "pearson": 0.879,
+      "spearman": 0.8571,
+      "bias": 0.0033,
+      "skill_score_vs_persistence": 0.7647
+    },
+    {
+      "model": "Naive Persistence (predict mean)",
+      "n_events": 8,
+      "mae": 0.0305,
+      "rmse": 0.037,
+      "mape": 192.19,
+      "r_squared": 0.0,
+      "pearson": 0.0,
+      "spearman": -0.5238,
+      "bias": 0.0,
+      "skill_score_vs_persistence": 0.0
+    }
+  ],
+  "winner_by_mae": "Linear Diffusion (network)",
+  "winner_by_rmse": "Linear Diffusion (network)",
+  "winner_by_r_squared": "Linear Diffusion (network)",
+  "winner_by_pearson": "Linear Diffusion (network)"
+}

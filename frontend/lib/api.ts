@@ -87,6 +87,27 @@ export interface NewsOverlayState {
   deltas: Record<string, { vuln_delta: number; d_eff_multiplier: number; confidence: number; source: string; event_type: string }>;
 }
 
+// ─── Validation / track record ─────────────────────────────────────────────
+
+export interface CVReport {
+  method: string;
+  n_events: number;
+  runtime_seconds: number;
+  pass_rate_25pct: number;
+  pass_rate_25pct_ci95_lo: number;
+  pass_rate_25pct_ci95_hi: number;
+  pass_rate_50pct: number;
+  pass_rate_50pct_ci95_lo: number;
+  pass_rate_50pct_ci95_hi: number;
+  mae_industry_loss: number;
+  mae_inflation: number;
+  mae_recovery_weeks: number;
+  pearson_loss: number;
+  spearman_loss: number;
+  rmse_normalized: number;
+  timestamp: string;
+}
+
 // ─── API client ────────────────────────────────────────────────────────────
 
 export const api = {
@@ -119,4 +140,15 @@ export const api = {
     postJson("/api/v1/news/apply", req),
   newsOverlay: (): Promise<NewsOverlayState> => getJson("/api/v1/news/overlay"),
   newsOverlayClear: (): Promise<{ cleared: boolean }> => deleteJson("/api/v1/news/overlay"),
+
+  // Validation / track record (used by the truthful badge)
+  cvReport: (): Promise<CVReport> => getJson("/api/v1/cv-report"),
+
+  // Data freshness (populated by GitHub Actions daily refresh)
+  lastRefresh: (): Promise<{
+    last_refresh_utc: string | null;
+    age_hours: number | null;
+    source: string;
+    workflow_run_url?: string | null;
+  }> => getJson("/api/v1/data/last-refresh"),
 };

@@ -1,0 +1,58 @@
+{
+  "timestamp": "2026-05-16T20:02:21.405305+00:00",
+  "method": "sobol_saltelli_scheme",
+  "n_base_samples": 128,
+  "n_engine_evals": 1536,
+  "runtime_seconds": 233.97,
+  "output_variable": "mean_industry_loss_MAE",
+  "output_mean": 0.032,
+  "output_std": 0.0052,
+  "sum_S1": 0.7689,
+  "parameters": [
+    {
+      "name": "amplification_mu",
+      "first_order_S1": 0.0029,
+      "first_order_S1_ci95": 0.0097,
+      "total_effect_ST": 0.0046,
+      "total_effect_ST_ci95": 0.0054,
+      "rank_by_total_effect": 4,
+      "interpretation": "negligible \u2014 parameter can be fixed without affecting model output"
+    },
+    {
+      "name": "bullwhip_factor",
+      "first_order_S1": -0.0023,
+      "first_order_S1_ci95": 0.0419,
+      "total_effect_ST": 0.039,
+      "total_effect_ST_ci95": 0.0424,
+      "rank_by_total_effect": 3,
+      "interpretation": "moderate independent + interaction effect"
+    },
+    {
+      "name": "recovery_rate",
+      "first_order_S1": 0.771,
+      "first_order_S1_ci95": 0.2477,
+      "total_effect_ST": 0.9131,
+      "total_effect_ST_ci95": 0.2645,
+      "rank_by_total_effect": 1,
+      "interpretation": "interacts strongly with other parameters"
+    },
+    {
+      "name": "inventory_scale",
+      "first_order_S1": -0.0027,
+      "first_order_S1_ci95": 0.1028,
+      "total_effect_ST": 0.2696,
+      "total_effect_ST_ci95": 0.1207,
+      "rank_by_total_effect": 2,
+      "interpretation": "interacts strongly with other parameters"
+    },
+    {
+      "name": "distress_base",
+      "first_order_S1": 0.0,
+      "first_order_S1_ci95": 0.0,
+      "total_effect_ST": 0.0,
+      "total_effect_ST_ci95": 0.0,
+      "rank_by_total_effect": 5,
+      "interpretation": "negligible \u2014 parameter can be fixed without affecting model output"
+    }
+  ]
+}

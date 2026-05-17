@@ -1,0 +1,56 @@
+{
+  "calibration_date": "2026-05-16T18:34:03.018030+00:00",
+  "method": "differential_evolution_multi_restart",
+  "n_restarts": 1,
+  "pop_size": 20,
+  "converged_fraction": 0.0,
+  "best_loss": 6.955965911242605,
+  "runtime_seconds": 40.5,
+  "parameters": [
+    {
+      "name": "amplification_mu",
+      "point": 3.5991421489711106,
+      "restart_std": 0.0,
+      "restart_p05": 3.5991421489711106,
+      "restart_p95": 3.5991421489711106,
+      "prior_low": 0.5,
+      "prior_high": 4.0
+    },
+    {
+      "name": "bullwhip_factor",
+      "point": 1.402179992330084,
+      "restart_std": 0.0,
+      "restart_p05": 1.402179992330084,
+      "restart_p95": 1.402179992330084,
+      "prior_low": 1.0,
+      "prior_high": 1.5
+    },
+    {
+      "name": "recovery_rate",
+      "point": 0.02022365698176526,
+      "restart_std": 0.0,
+      "restart_p05": 0.02022365698176526,
+      "restart_p95": 0.02022365698176526,
+      "prior_low": 0.02,
+      "prior_high": 0.2
+    },
+    {
+      "name": "inventory_scale",
+      "point": 1.2768555522019458,
+      "restart_std": 0.0,
+      "restart_p05": 1.2768555522019458,
+      "restart_p95": 1.2768555522019458,
+      "prior_low": 0.5,
+      "prior_high": 1.5
+    },
+    {
+      "name": "distress_base",
+      "point": 0.4955616240653137,
+      "restart_std": 0.0,
+      "restart_p05": 0.4955616240653137,
+      "restart_p95": 0.4955616240653137,
+      "prior_low": 0.25,
+      "prior_high": 0.55
+    }
+  ]
+}

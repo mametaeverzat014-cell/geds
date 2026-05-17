@@ -1,0 +1,8 @@
+{
+  "last_refresh_utc": "2026-05-17T06:51:28.956075+00:00",
+  "source": "manual-mvp-pull",
+  "n_edges_fetched": 414,
+  "n_api_calls": 96,
+  "fetch_duration_seconds": 272.2,
+  "workflow_run_url": null
+}

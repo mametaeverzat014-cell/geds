@@ -67,7 +67,7 @@ export default function Home() {
         </div>
         <div className="flex items-center gap-4 flex-wrap">
           <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">
-            {lang === "en" ? "Validated · r = +0.97 · 8 events" : "Подтверждено · r = +0,97 · 8 событий"}
+            {lang === "en" ? "Live LOO cross-validation · top-right badge" : "Live кросс-валидация · значок справа сверху"}
           </span>
           <span className="text-[10px] text-text-muted">
             {lang === "en"

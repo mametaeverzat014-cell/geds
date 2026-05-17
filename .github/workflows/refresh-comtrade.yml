@@ -1,0 +1,102 @@
+# GEDS daily Comtrade refresh — "living graph"
+#
+# Каждый день в 06:00 UTC:
+#   1. Запускает scripts/fetch_comtrade.py --geds-mvp
+#   2. Если comtrade_edges.csv изменился — коммитит и пушит
+#   3. Vercel + Render автоматически перезапускаются на пуш
+#
+# UN Comtrade обновляет данные ~раз в месяц, поэтому ежедневная проверка
+# нужна не чтобы тянуть свежие байты, а чтобы UI всегда видел актуальный
+# timestamp "обновлено X дней назад" и чтобы при выходе нового релиза
+# граф пересчитался автоматически.
+#
+# Manual trigger: actions tab → "Refresh Comtrade trade graph" → Run workflow
+
+name: Refresh Comtrade trade graph
+
+on:
+  schedule:
+    - cron: "0 6 * * *"           # 06:00 UTC daily
+  workflow_dispatch:               # ручной запуск из UI
+
+permissions:
+  contents: write                  # нужен для git push обратно в репо
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install dependencies
+        working-directory: backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install comtradeapicall
+
+      - name: Run Comtrade ETL (free tier, MVP scope)
+        working-directory: backend
+        env:
+          # If a paid subscription key is set as a GitHub repo secret, the
+          # fetcher will auto-detect it and use the premium endpoint
+          # (250k records/call instead of 500).  Without it, free tier.
+          COMTRADE_KEY: ${{ secrets.COMTRADE_KEY }}
+        run: |
+          python -m scripts.fetch_comtrade --geds-mvp --year 2019
+
+      - name: Stamp last-refresh timestamp
+        run: |
+          python -c "
+          import json, datetime, pathlib
+          p = pathlib.Path('backend/data/csv/last_refresh.json')
+          p.parent.mkdir(parents=True, exist_ok=True)
+          p.write_text(json.dumps({
+              'last_refresh_utc': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'source': 'github-actions-cron',
+              'workflow_run_id': '${{ github.run_id }}',
+              'workflow_run_url': 'https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}',
+          }, indent=2), encoding='utf-8')
+          print('wrote', p)
+          "
+
+      - name: Detect changes
+        id: diff
+        run: |
+          git add backend/data/csv/comtrade_edges.csv backend/data/csv/last_refresh.json
+          if git diff --staged --quiet -- backend/data/csv/comtrade_edges.csv; then
+            echo "edges_changed=false" >> $GITHUB_OUTPUT
+            echo "Edges CSV unchanged"
+          else
+            echo "edges_changed=true" >> $GITHUB_OUTPUT
+            echo "Edges CSV changed:"
+            git diff --staged --stat -- backend/data/csv/comtrade_edges.csv
+          fi
+
+      - name: Commit and push if data changed
+        if: steps.diff.outputs.edges_changed == 'true'
+        run: |
+          git config user.name "geds-bot"
+          git config user.email "geds-bot@users.noreply.github.com"
+          git commit -m "chore(data): daily Comtrade refresh $(date -u +%Y-%m-%d)"
+          git push
+
+      - name: Always commit timestamp (even if data unchanged)
+        if: steps.diff.outputs.edges_changed == 'false'
+        run: |
+          git config user.name "geds-bot"
+          git config user.email "geds-bot@users.noreply.github.com"
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(data): refresh timestamp $(date -u +%Y-%m-%d) [no data change]"
+            git push
+          else
+            echo "Nothing to commit"
+          fi
