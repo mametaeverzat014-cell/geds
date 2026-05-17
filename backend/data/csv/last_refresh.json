@@ -1,8 +1,6 @@
 {
-  "last_refresh_utc": "2026-05-17T06:51:28.956075+00:00",
-  "source": "manual-mvp-pull",
-  "n_edges_fetched": 414,
-  "n_api_calls": 96,
-  "fetch_duration_seconds": 272.2,
-  "workflow_run_url": null
+  "last_refresh_utc": "2026-05-17T07:03:51.257047+00:00",
+  "source": "github-actions-cron",
+  "workflow_run_id": "25984161682",
+  "workflow_run_url": "https://github.com/mametaeverzat014-cell/geds/actions/runs/25984161682"
 }
