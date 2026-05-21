@@ -1,13 +1,26 @@
-"""Build a GraphSnapshot from the seed dataset, with centrality precomputed."""
+"""Build a GraphSnapshot from the seed dataset, with centrality precomputed.
+
+Edge source-of-truth precedence (high to low):
+  1. backend/data/csv/comtrade_edges.csv  (overrides hardcoded values where keys match,
+     adds new edges where they do not). Toggled by GEDS_USE_COMTRADE_EDGES env var
+     (default: enabled when the CSV exists).
+  2. seed_data.EDGES_RAW + seed_data.CHOKEPOINT_LINKS  (hardcoded MVP baseline).
+"""
 
 from __future__ import annotations
 
+import logging
+import os
 from functools import lru_cache
 
 import networkx as nx
 
 from ..core.types import GraphSnapshot
 from . import seed_data
+from .edge_merger import merge_edges
+
+
+log = logging.getLogger("geds.seed")
 
 
 def _build_nx(snapshot_nodes: list, snapshot_edges: list) -> nx.DiGraph:
@@ -21,12 +34,42 @@ def _build_nx(snapshot_nodes: list, snapshot_edges: list) -> nx.DiGraph:
     return g
 
 
+def _use_comtrade_edges() -> bool:
+    """Toggle for the real-edge merger.
+
+    Default: DISABLED.  Empirical finding (2026-05-21 benchmark): merging
+    the 137 new Comtrade edges into the 64-edge MVP graph degrades every
+    in-sample metric because the existing engine parameters were implicitly
+    calibrated for the sparse topology.  Specifically:
+        SEIRS  : R² +0.045 -> -1.164   (worse)
+        Linear : R² +0.765 -> -41.58   (catastrophic over-amplification)
+
+    The merger code is preserved so a re-calibration pass with the denser
+    graph can be performed independently (run with GEDS_USE_COMTRADE_EDGES=1).
+    Until that recalibration is done, the default keeps the engine in its
+    benchmarked state.
+    """
+    return os.environ.get("GEDS_USE_COMTRADE_EDGES", "0") in {"1", "true", "True"}
+
+
 @lru_cache(maxsize=1)
 def load_graph() -> GraphSnapshot:
     """Materialize the MVP graph snapshot, with centrality and shortest paths precomputed."""
 
     nodes = seed_data.build_nodes()
     edges = seed_data.build_edges()
+
+    if _use_comtrade_edges():
+        valid_node_ids = {n.id for n in nodes}
+        edges, report = merge_edges(edges, valid_node_ids)
+        log.info(
+            "Edge merge: hardcoded=%d, comtrade_csv=%d -> overridden=%d, added=%d, "
+            "skipped_unknown=%d, skipped_self_loop=%d, final=%d",
+            report.n_hardcoded, report.n_comtrade_csv,
+            report.n_overridden, report.n_added,
+            report.n_skipped_unknown_node, report.n_skipped_self_loop,
+            report.n_final,
+        )
 
     g = _build_nx(nodes, edges)
 

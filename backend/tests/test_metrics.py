@@ -2,31 +2,33 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 import numpy as np
 
 from app.core.metrics import (
     compute_csi,
     compute_ecv,
     compute_ecv_geo,
-    country_risk_scores,
-    sector_fragility_scores,
 )
-from app.core.propagation import EngineState, PropagationEngine
+from app.core.propagation import PropagationEngine
 from app.core.scenarios import taiwan_semiconductor_shock
 
 
-def _zero_state(n: int) -> EngineState:
-    return EngineState(
-        week=0,
-        shock=np.zeros(n),
-        inflation_pressure=np.zeros(n),
-        output_loss=np.zeros(n),
-        shortage_prob=np.zeros(n),
-        unemployment_risk=np.zeros(n),
-        persistence=np.zeros(n),
-        affected_mask_prev=np.zeros(n, dtype=bool),
-        affected_first_week=np.full(n, -1, dtype=np.int32),
-    )
+@dataclass
+class _StubState:
+    """Minimal state for compute_csi(): only `.shock` is read by the function.
+
+    After the vectorized-engine refactor, BatchedEngineState requires 18 fields
+    and uses 2D (I, N) shock arrays. compute_csi() is the legacy single-iter
+    function and only reads `.shock` as 1D, so this stub is sufficient and
+    keeps the test focused on the metric, not on engine plumbing.
+    """
+    shock: np.ndarray
+
+
+def _zero_state(n: int) -> _StubState:
+    return _StubState(shock=np.zeros(n))
 
 
 def test_csi_is_zero_without_shock(graph):

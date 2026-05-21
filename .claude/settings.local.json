@@ -53,7 +53,23 @@
       "Bash(gh auth:*)",
       "Bash(git init:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(gh repo:*)",
+      "WebFetch(domain:geds1.vercel.app)",
+      "WebFetch(domain:geds-backend.onrender.com)",
+      "WebFetch(domain:geds.onrender.com)",
+      "Read(//c/Users/speed/AppData/Local/Temp/claude/D--GEDS/6933b321-6d9d-45b0-ab82-268e016098d3/tasks/**)",
+      "Bash(rm -f D:/GEDS/backend/data/raw/comtrade/comtrade_*_251_*.parquet  # remove the wrong-USA-as-France cache files *)",
+      "Bash(rm -f D:/GEDS/backend/data/raw/comtrade/comtrade_*_840_*.parquet  # USA was fetched with old code 840 \\(gives 0 rows\\) *)",
+      "Bash(gh run *)",
+      "Bash(\"/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe\" -m pytest backend/tests/ -v --tb=line)",
+      "Bash(\"/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import sys; sys.path.insert\\(0,'backend'\\); from app.data.seed import load_graph; g = load_graph\\(\\); print\\(f'nodes={len\\(g.nodes\\)} edges={len\\(g.edges\\)}'\\)\")",
+      "Bash(\"/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import sys; sys.path.insert\\(0,'backend'\\); from app.data.csv_loader import load_historical_events_csv, load_parameters_csv, load_datasets_csv; e=load_historical_events_csv\\(\\); p=load_parameters_csv\\(\\); d=load_datasets_csv\\(\\); print\\(f'historical_events={len\\(e\\)} \\(in_graph={sum\\(1 for x in e if x.in_geds_graph\\)}\\)'\\); print\\(f'parameters={len\\(p\\)}'\\); print\\(f'datasets={len\\(d\\)}'\\)\")",
+      "Bash(/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe -c ' *)",
+      "Bash(\"/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe\" -m pytest backend/tests/ -q --tb=short)",
+      "Bash(\"/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe\" -m pytest backend/tests/ -v)",
+      "Bash(\"/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import numpy; print\\('numpy', numpy.__version__\\)\")",
+      "Bash(\"/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe\" -m pytest backend/tests/ -q)"
     ]
   }
 }
