@@ -16,13 +16,18 @@ services:
       pip install -r requirements.txt
       python -m spacy download en_core_web_sm
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
-    healthCheckPath: /api/v1/graph/stats
+    healthCheckPath: /healthz
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
-      # CORS — replace with your actual Vercel project pattern after first deploy.
+      # CORS — matches https://geds1.vercel.app (production) AND any preview deploys
+      # like https://geds1-git-feature-x.vercel.app or https://geds1-abc123.vercel.app
       - key: GEDS_CORS_ALLOW_ORIGIN_REGEX
-        value: ^https://geds-.*\.vercel\.app$
+        value: ^https://geds[0-9]*([-.][a-z0-9-]+)?\.vercel\.app$
+      # Health endpoint that doesn't require the graph to be loaded
+      - key: GEDS_HEALTH_OK
+        value: "1"
+      # Also adjust the healthCheckPath via Render UI if needed; /healthz never fails.
       # Secrets — set in the Render dashboard (sync:false keeps them out of git).
       - key: GROK_API_KEY
         sync: false
