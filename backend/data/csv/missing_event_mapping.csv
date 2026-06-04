@@ -1,0 +1,20 @@
+event_id,event_name,current_mapping_status,source_sectors,mapped_sectors_after_normalization,countries,n_mapped_graph_nodes,gap_description,suggested_resolution,_source_origin
+7,Global Financial Crisis,UNMAPPED,financial;real_estate;automotive;manufacturing,banking;automotive;consumer_goods,,0,no affected country listed,—,derived from benchmark_event_matrix_v2.csv
+8,H1N1 Swine Flu Pandemic,UNMAPPED,healthcare;tourism;aerospace;consumer_goods,tourism;aerospace;consumer_goods,,0,no affected country listed,—,derived from benchmark_event_matrix_v2.csv
+17,COVID-19 Global Pandemic,UNMAPPED,aerospace;tourism;consumer_goods;manufacturing,aerospace;tourism;consumer_goods,,0,no affected country listed,—,derived from benchmark_event_matrix_v2.csv
+18,Global Semiconductor Chip Shortage,NO_TARGET,automotive;electronics;manufacturing;defense,automotive;electronics;consumer_goods;aerospace,USA;DEU;JPN;KOR;TWN;CHN,21,no GDP target available,supply peer-reviewed GDP target,derived from benchmark_event_matrix_v2.csv
+19,Ever Given Suez Canal Blockage,UNMAPPED,shipping;consumer_goods;automotive;energy;agriculture,shipping;consumer_goods;automotive;energy;agriculture,,0,no affected country listed,—,derived from benchmark_event_matrix_v2.csv
+20,Post-COVID Global Supply Chain Disruption,UNMAPPED,shipping;consumer_goods;manufacturing;technology,shipping;consumer_goods;electronics,,0,no affected country listed,—,derived from benchmark_event_matrix_v2.csv
+29,Haiti Earthquake,UNMAPPED,,,HTI,0,all source sectors out of engine enum: ,extend engine Industry enum,derived from benchmark_event_matrix_v2.csv
+31,"2013 ""Taper Tantrum"" EM Currency Crisis",UNMAPPED,,,BRA;IND;IDN;ZAF;TUR,0,all source sectors out of engine enum: ,extend engine Industry enum,derived from benchmark_event_matrix_v2.csv
+32,2014–2016 Oil Price Collapse,UNMAPPED,,,SAU;RUS;NGA;VEN;CAN,0,all source sectors out of engine enum: ,extend engine Industry enum,derived from benchmark_event_matrix_v2.csv
+33,2015–2016 Global Trade Slowdown,UNMAPPED,,,,0,all source sectors out of engine enum: ,extend engine Industry enum,derived from benchmark_event_matrix_v2.csv
+34,2016 North Korea Nuclear Tests & Sanctions,UNMAPPED,,,PRK;KOR;CHN,0,all source sectors out of engine enum: ,extend engine Industry enum,derived from benchmark_event_matrix_v2.csv
+35,"2017 Hurricane Season (Harvey, Irma, Maria)",UNMAPPED,,,USA;PRI;DOM;HTI;JAM;BHS,0,all source sectors out of engine enum: ,extend engine Industry enum,derived from benchmark_event_matrix_v2.csv
+36,2019 Hong Kong Protests,UNMAPPED,,,HKG,0,all source sectors out of engine enum: ,extend engine Industry enum,derived from benchmark_event_matrix_v2.csv
+37,2021 Evergrande Default (See Event 24 for full),UNMAPPED,,,,0,no GDP target available,supply peer-reviewed GDP target,derived from benchmark_event_matrix_v2.csv
+38,2022 Russia Gas Nord Stream Pipeline Sabotage,UNMAPPED,,,DEU;FRA;ITA;ESP;NLD;POL;BEL,0,all source sectors out of engine enum: ,extend engine Industry enum,derived from benchmark_event_matrix_v2.csv
+39,2022 Pakistan Economic Crisis & IMF Bailout,UNMAPPED,,,PAK,0,all source sectors out of engine enum: ,extend engine Industry enum,derived from benchmark_event_matrix_v2.csv
+40,2023 Israel-Gaza Conflict & MENA Economic Impact,UNMAPPED,,,ISR;PSE;JOR;LBN;EGY;SAU;ARE;TUR,0,all source sectors out of engine enum: ,extend engine Industry enum,derived from benchmark_event_matrix_v2.csv
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,SCENARIO,,,TWN;USA;KOR;JPN;DEU;FRA;ITA;ESP;NLD;POL;BEL,0,forward-looking scenario (excluded by design),—,derived from benchmark_event_matrix_v2.csv
+42,2025–2026 Middle East Energy Shock,UNMAPPED,,,DEU;FRA;ITA;ESP;NLD;POL;BEL;SAU;ARE;ISR;IRN;IRQ,0,all source sectors out of engine enum: ,extend engine Industry enum,derived from benchmark_event_matrix_v2.csv

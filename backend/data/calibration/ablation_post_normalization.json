@@ -1,0 +1,520 @@
+{
+  "timestamp": "2026-05-29T17:35:35.097700+00:00",
+  "graph": "OECD+WIOD spectrally normalised (\u03c1=1.0)",
+  "rho_before_normalisation": 0.7409245539724755,
+  "spectral_scale_applied": 1.3496650834939787,
+  "n_events": 21,
+  "calibration_source": "cmaes_best_params.json (spectral-normalised CMA-ES baseline)",
+  "best_params": {
+    "amplification_mu": 0.05409853538097736,
+    "amplification_eps": 0.10349366569025273,
+    "propagation_decay": 0.5002166866393076,
+    "recovery_rate": 0.2114675843535651,
+    "bullwhip_factor": 1.6099809178169142,
+    "inventory_scale": 1.1850170297346547,
+    "r_output_floor": 0.2549689600343445
+  },
+  "phase_1_ablation": {
+    "full_geds": {
+      "metrics": {
+        "mae": 0.1594,
+        "mae_ci95": [
+          0.07486,
+          0.24432
+        ],
+        "rmse": 0.26732,
+        "r_squared": -0.4843,
+        "r_squared_ci95": [
+          -0.9666,
+          -0.2145
+        ],
+        "pearson": 0.4557,
+        "pearson_ci95": [
+          -0.3963,
+          0.8096
+        ],
+        "n_events": 21
+      },
+      "config": {
+        "propagation_decay": 0.5002166866393076,
+        "rerouting_efficiency": 0.55,
+        "amplification_mu": 0.05409853538097736,
+        "amplification_eps": 0.10349366569025273,
+        "recovery_rate": 0.2114675843535651,
+        "stochastic_sigma": 0.0,
+        "seed": null,
+        "seis_enabled": true,
+        "adaptive_rerouting": true,
+        "bullwhip_factor": 1.6099809178169142,
+        "r_output_floor": 0.2549689600343445,
+        "inventory_scale": 1.1850170297346547,
+        "distress_base": 0.4,
+        "distress_week_threshold": 6,
+        "sanity_max_loss_fraction": 0.15
+      },
+      "elapsed_seconds": 9.1
+    },
+    "no_seirs": {
+      "metrics": {
+        "mae": 0.1594,
+        "mae_ci95": [
+          0.07486,
+          0.24432
+        ],
+        "rmse": 0.26732,
+        "r_squared": -0.4843,
+        "r_squared_ci95": [
+          -0.9666,
+          -0.2145
+        ],
+        "pearson": 0.4557,
+        "pearson_ci95": [
+          -0.3963,
+          0.8096
+        ],
+        "n_events": 21
+      },
+      "config": {
+        "propagation_decay": 0.5002166866393076,
+        "rerouting_efficiency": 0.55,
+        "amplification_mu": 0.05409853538097736,
+        "amplification_eps": 0.10349366569025273,
+        "recovery_rate": 0.2114675843535651,
+        "stochastic_sigma": 0.0,
+        "seed": null,
+        "seis_enabled": false,
+        "adaptive_rerouting": true,
+        "bullwhip_factor": 1.6099809178169142,
+        "r_output_floor": 0.2549689600343445,
+        "inventory_scale": 1.1850170297346547,
+        "distress_base": 0.4,
+        "distress_week_threshold": 6,
+        "sanity_max_loss_fraction": 0.15
+      },
+      "elapsed_seconds": 8.7
+    },
+    "no_bullwhip": {
+      "metrics": {
+        "mae": 0.1594,
+        "mae_ci95": [
+          0.07486,
+          0.24432
+        ],
+        "rmse": 0.26732,
+        "r_squared": -0.4843,
+        "r_squared_ci95": [
+          -0.9666,
+          -0.2145
+        ],
+        "pearson": 0.4557,
+        "pearson_ci95": [
+          -0.3963,
+          0.8096
+        ],
+        "n_events": 21
+      },
+      "config": {
+        "propagation_decay": 0.5002166866393076,
+        "rerouting_efficiency": 0.55,
+        "amplification_mu": 0.05409853538097736,
+        "amplification_eps": 0.10349366569025273,
+        "recovery_rate": 0.2114675843535651,
+        "stochastic_sigma": 0.0,
+        "seed": null,
+        "seis_enabled": true,
+        "adaptive_rerouting": true,
+        "bullwhip_factor": 1.0,
+        "r_output_floor": 0.2549689600343445,
+        "inventory_scale": 1.1850170297346547,
+        "distress_base": 0.4,
+        "distress_week_threshold": 6,
+        "sanity_max_loss_fraction": 0.15
+      },
+      "elapsed_seconds": 8.8
+    },
+    "no_hysteresis": {
+      "metrics": {
+        "mae": 0.1594,
+        "mae_ci95": [
+          0.07486,
+          0.24432
+        ],
+        "rmse": 0.26732,
+        "r_squared": -0.4843,
+        "r_squared_ci95": [
+          -0.9666,
+          -0.2145
+        ],
+        "pearson": 0.4557,
+        "pearson_ci95": [
+          -0.3963,
+          0.8096
+        ],
+        "n_events": 21
+      },
+      "config": {
+        "propagation_decay": 0.5002166866393076,
+        "rerouting_efficiency": 0.55,
+        "amplification_mu": 0.05409853538097736,
+        "amplification_eps": 0.10349366569025273,
+        "recovery_rate": 0.2114675843535651,
+        "stochastic_sigma": 0.0,
+        "seed": null,
+        "seis_enabled": true,
+        "adaptive_rerouting": true,
+        "bullwhip_factor": 1.6099809178169142,
+        "r_output_floor": 0.05,
+        "inventory_scale": 1.1850170297346547,
+        "distress_base": 0.4,
+        "distress_week_threshold": 26,
+        "sanity_max_loss_fraction": 0.15
+      },
+      "elapsed_seconds": 8.7
+    },
+    "no_network_amp": {
+      "metrics": {
+        "mae": 0.1594,
+        "mae_ci95": [
+          0.07486,
+          0.24432
+        ],
+        "rmse": 0.26732,
+        "r_squared": -0.4843,
+        "r_squared_ci95": [
+          -0.9666,
+          -0.2147
+        ],
+        "pearson": 0.4561,
+        "pearson_ci95": [
+          -0.3963,
+          0.8096
+        ],
+        "n_events": 21
+      },
+      "config": {
+        "propagation_decay": 0.5002166866393076,
+        "rerouting_efficiency": 0.55,
+        "amplification_mu": 0.0,
+        "amplification_eps": 0.10349366569025273,
+        "recovery_rate": 0.2114675843535651,
+        "stochastic_sigma": 0.0,
+        "seed": null,
+        "seis_enabled": true,
+        "adaptive_rerouting": true,
+        "bullwhip_factor": 1.6099809178169142,
+        "r_output_floor": 0.2549689600343445,
+        "inventory_scale": 1.1850170297346547,
+        "distress_base": 0.4,
+        "distress_week_threshold": 6,
+        "sanity_max_loss_fraction": 0.15
+      },
+      "elapsed_seconds": 8.7
+    },
+    "diffusion_only": {
+      "metrics": {
+        "mae": 0.1594,
+        "mae_ci95": [
+          0.07487,
+          0.24432
+        ],
+        "rmse": 0.26732,
+        "r_squared": -0.4844,
+        "r_squared_ci95": [
+          -0.9667,
+          -0.2147
+        ],
+        "pearson": 0.456,
+        "pearson_ci95": [
+          -0.3964,
+          0.8094
+        ],
+        "n_events": 21
+      },
+      "config": {
+        "propagation_decay": 0.5002166866393076,
+        "rerouting_efficiency": 0.55,
+        "amplification_mu": 0.0,
+        "amplification_eps": 0.10349366569025273,
+        "recovery_rate": 0.2114675843535651,
+        "stochastic_sigma": 0.0,
+        "seed": null,
+        "seis_enabled": false,
+        "adaptive_rerouting": true,
+        "bullwhip_factor": 1.0,
+        "r_output_floor": 0.05,
+        "inventory_scale": 1.1850170297346547,
+        "distress_base": 0.4,
+        "distress_week_threshold": 26,
+        "sanity_max_loss_fraction": 0.15
+      },
+      "elapsed_seconds": 8.6
+    },
+    "amplification_only": {
+      "metrics": {
+        "mae": 0.1594,
+        "mae_ci95": [
+          0.07486,
+          0.24432
+        ],
+        "rmse": 0.26732,
+        "r_squared": -0.4843,
+        "r_squared_ci95": [
+          -0.9666,
+          -0.2145
+        ],
+        "pearson": 0.4557,
+        "pearson_ci95": [
+          -0.3963,
+          0.8096
+        ],
+        "n_events": 21
+      },
+      "config": {
+        "propagation_decay": 0.5002166866393076,
+        "rerouting_efficiency": 0.55,
+        "amplification_mu": 0.05409853538097736,
+        "amplification_eps": 0.10349366569025273,
+        "recovery_rate": 0.2114675843535651,
+        "stochastic_sigma": 0.0,
+        "seed": null,
+        "seis_enabled": false,
+        "adaptive_rerouting": true,
+        "bullwhip_factor": 1.0,
+        "r_output_floor": 0.05,
+        "inventory_scale": 1.1850170297346547,
+        "distress_base": 0.4,
+        "distress_week_threshold": 26,
+        "sanity_max_loss_fraction": 0.15
+      },
+      "elapsed_seconds": 8.6
+    }
+  },
+  "per_event_predictions": {
+    "full_geds": [
+      0.003,
+      0.0002,
+      0.0072,
+      0.0077,
+      0.0023,
+      0.0044,
+      0.0003,
+      0.0003,
+      0.0032,
+      0.0006,
+      0.0093,
+      0.003,
+      0.0025,
+      0.0002,
+      0.001,
+      0.0021,
+      0.0369,
+      0.0013,
+      0.0394,
+      0.0042,
+      0.0045
+    ],
+    "no_seirs": [
+      0.003,
+      0.0002,
+      0.0072,
+      0.0077,
+      0.0023,
+      0.0044,
+      0.0003,
+      0.0003,
+      0.0032,
+      0.0006,
+      0.0093,
+      0.003,
+      0.0025,
+      0.0002,
+      0.001,
+      0.0021,
+      0.0369,
+      0.0013,
+      0.0394,
+      0.0042,
+      0.0045
+    ],
+    "no_bullwhip": [
+      0.003,
+      0.0002,
+      0.0072,
+      0.0077,
+      0.0023,
+      0.0044,
+      0.0003,
+      0.0003,
+      0.0032,
+      0.0006,
+      0.0093,
+      0.003,
+      0.0025,
+      0.0002,
+      0.001,
+      0.0021,
+      0.0369,
+      0.0013,
+      0.0394,
+      0.0042,
+      0.0045
+    ],
+    "no_hysteresis": [
+      0.003,
+      0.0002,
+      0.0072,
+      0.0077,
+      0.0023,
+      0.0044,
+      0.0003,
+      0.0003,
+      0.0032,
+      0.0006,
+      0.0093,
+      0.003,
+      0.0025,
+      0.0002,
+      0.001,
+      0.0021,
+      0.0369,
+      0.0013,
+      0.0394,
+      0.0042,
+      0.0045
+    ],
+    "no_network_amp": [
+      0.003,
+      0.0002,
+      0.0072,
+      0.0077,
+      0.0023,
+      0.0044,
+      0.0003,
+      0.0003,
+      0.0032,
+      0.0006,
+      0.0093,
+      0.003,
+      0.0025,
+      0.0002,
+      0.001,
+      0.0021,
+      0.0368,
+      0.0013,
+      0.0394,
+      0.0042,
+      0.0045
+    ],
+    "diffusion_only": [
+      0.003,
+      0.0002,
+      0.0072,
+      0.0077,
+      0.0022,
+      0.0044,
+      0.0003,
+      0.0003,
+      0.0032,
+      0.0006,
+      0.0093,
+      0.003,
+      0.0025,
+      0.0002,
+      0.001,
+      0.0021,
+      0.0368,
+      0.0013,
+      0.0394,
+      0.0042,
+      0.0045
+    ],
+    "amplification_only": [
+      0.003,
+      0.0002,
+      0.0072,
+      0.0077,
+      0.0023,
+      0.0044,
+      0.0003,
+      0.0003,
+      0.0032,
+      0.0006,
+      0.0093,
+      0.003,
+      0.0025,
+      0.0002,
+      0.001,
+      0.0021,
+      0.0369,
+      0.0013,
+      0.0394,
+      0.0042,
+      0.0045
+    ]
+  },
+  "per_event_observed": [
+    0.048,
+    0.11,
+    0.026,
+    0.005,
+    0.15,
+    0.031,
+    0.26,
+    0.5,
+    0.0035,
+    0.022,
+    0.069,
+    0.07,
+    0.026,
+    0.015,
+    0.007,
+    0.014,
+    0.275,
+    0.5,
+    0.73,
+    0.014,
+    0.6
+  ],
+  "phase_2_contributions": {
+    "no_seirs": {
+      "delta_mae": 0.0,
+      "delta_pearson": 0.0,
+      "delta_r_squared": 0.0,
+      "interpretation": "decorative (no measurable effect)"
+    },
+    "no_bullwhip": {
+      "delta_mae": 0.0,
+      "delta_pearson": 0.0,
+      "delta_r_squared": 0.0,
+      "interpretation": "decorative (no measurable effect)"
+    },
+    "no_hysteresis": {
+      "delta_mae": 0.0,
+      "delta_pearson": 0.0,
+      "delta_r_squared": 0.0,
+      "interpretation": "decorative (no measurable effect)"
+    },
+    "no_network_amp": {
+      "delta_mae": 0.0,
+      "delta_pearson": 0.0004,
+      "delta_r_squared": 0.0,
+      "interpretation": "decorative (no measurable effect)"
+    }
+  },
+  "phase_2_interactions": {
+    "diffusion_only_mae": 0.1594,
+    "amplification_only_mae": 0.1594,
+    "full_geds_mae": 0.1594,
+    "gain_from_amplification": 0.0,
+    "gain_from_seirs_bullwhip_hysteresis_over_amp_only": 0.0,
+    "gain_from_full_over_diffusion": 0.0
+  },
+  "preserved_files": [
+    "ablation.json",
+    "ablation_v2.json",
+    "ablation_oecd.json",
+    "ablation_wiod.json",
+    "benchmark*.json",
+    "calibration_v2.json"
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "_meta": {
+    "created": "2026-05-28",
+    "purpose": "Parameter bounds + priors for OECD-graph calibration",
+    "graph": "OECD ICIO 2022, 1128 nodes, 2440 edges",
+    "n_train_events": 16,
+    "n_val_events": 5,
+    "literature_anchors": "see docs/CALIBRATION_AUDIT.md for derivations",
+    "evidence_label_legend": {
+      "literature_backed": "central tendency taken from a peer-reviewed paper",
+      "heuristic": "no published prior; bounds set by engine validator",
+      "engine_safeguard": "not a scientific parameter; bounds set by stability checks"
+    }
+  },
+  "parameters": {
+    "amplification_mu": {
+      "engine_field": "amplification_mu",
+      "type": "float",
+      "low": 0.0,
+      "high": 4.0,
+      "prior": "uniform",
+      "init_center": 2.5,
+      "init_spread": 0.5,
+      "evidence_label": "literature_backed",
+      "citation": "Carvalho, Nirei, Saito, Tahbaz-Salehi (2021) QJE — 3-4x indirect/direct multiplier on Tohoku → μ in [2, 3] consistent with that range",
+      "doi": "10.1093/qje/qjab010",
+      "notes": "engine uses A_amp = amplification × (1 + μ × sigmoid((shock-threshold)/eps)). μ=2.5 puts max amplification at ~3.5x base"
+    },
+    "amplification_eps": {
+      "engine_field": "amplification_eps",
+      "type": "float",
+      "low": 0.01,
+      "high": 0.20,
+      "prior": "log_uniform",
+      "init_center": 0.06,
+      "init_spread": 0.03,
+      "evidence_label": "heuristic",
+      "citation": null,
+      "notes": "controls sigmoid sharpness; no published anchor"
+    },
+    "propagation_decay": {
+      "engine_field": "propagation_decay",
+      "type": "float",
+      "low": 0.50,
+      "high": 0.99,
+      "prior": "uniform",
+      "init_center": 0.85,
+      "init_spread": 0.05,
+      "evidence_label": "heuristic",
+      "citation": null,
+      "notes": "per-step decay of propagation impact; engine default 0.85"
+    },
+    "recovery_rate": {
+      "engine_field": "recovery_rate",
+      "type": "float",
+      "low": 0.01,
+      "high": 0.30,
+      "prior": "uniform",
+      "init_center": 0.07,
+      "init_spread": 0.02,
+      "evidence_label": "literature_backed",
+      "citation": "Cerra, Fatas, Saxena (2020) IMF WP — 1-2% permanent loss per recession implies slow recovery → ξ ≈ 0.02-0.10 weekly",
+      "doi": "10.5089/9781513537559.001",
+      "notes": "per-week recovery rate when no external forcing"
+    },
+    "distress_base": {
+      "engine_field": "distress_base",
+      "type": "float",
+      "low": 0.20,
+      "high": 0.60,
+      "prior": "uniform",
+      "init_center": 0.40,
+      "init_spread": 0.05,
+      "evidence_label": "heuristic",
+      "citation": null,
+      "notes": "base threshold for distress accumulation; engine default 0.40"
+    },
+    "bullwhip_factor": {
+      "engine_field": "bullwhip_factor",
+      "type": "float",
+      "low": 1.0,
+      "high": 2.0,
+      "prior": "uniform",
+      "init_center": 1.25,
+      "init_spread": 0.1,
+      "evidence_label": "literature_backed",
+      "citation": "Lee, Padmanabhan, Whang (1997) Mgmt Science — Var(orders)/Var(demand) >= 1 + 2αL + 2α²L² bounded ~1-2 for typical sectors",
+      "doi": "10.1287/mnsc.43.4.546",
+      "notes": "applied to inbound when SEIRS E-state active"
+    },
+    "inventory_scale": {
+      "engine_field": "inventory_scale",
+      "type": "float",
+      "low": 0.3,
+      "high": 2.0,
+      "prior": "uniform",
+      "init_center": 1.0,
+      "init_spread": 0.1,
+      "evidence_label": "literature_backed",
+      "citation": "per-sector inventory weeks from seis.py INDUSTRY_INVENTORY_WEEKS (IHS Markit / SEMI / Boeing); inventory_scale is a global multiplier",
+      "doi": null,
+      "notes": "scales per-node max_buffer; controls when E->I transition fires"
+    },
+    "r_output_floor": {
+      "engine_field": "r_output_floor",
+      "type": "float",
+      "low": 0.05,
+      "high": 0.40,
+      "prior": "uniform",
+      "init_center": 0.30,
+      "init_spread": 0.05,
+      "evidence_label": "literature_backed",
+      "citation": "Cerra et al. 2020 IMF WP — 1-2% permanent GDP loss implies hysteresis floor at low end of range; engine default 0.30 may be too high",
+      "doi": "10.5089/9781513537559.001",
+      "notes": "minimum output_loss after R-state activation (hysteresis lower bound)"
+    },
+    "sanity_max_loss_fraction": {
+      "engine_field": "sanity_max_loss_fraction",
+      "type": "float",
+      "low": 0.05,
+      "high": 0.30,
+      "prior": "uniform",
+      "init_center": 0.15,
+      "init_spread": 0.03,
+      "evidence_label": "engine_safeguard",
+      "citation": null,
+      "notes": "stability bound; not a scientific parameter but tuneable"
+    }
+  },
+  "metric_weights": {
+    "_meta": "composite objective for MCMC: w_mae * MAE + w_rmse * RMSE + w_pearson * (1 - |Pearson|). Lower is better.",
+    "w_mae": 1.0,
+    "w_rmse": 0.5,
+    "w_pearson": 0.5
+  },
+  "splits": {
+    "train_event_ids": [1, 3, 4, 6, 9, 11, 14, 16, 17, 18, 19, 21, 22, 24, 28, 30],
+    "val_event_ids": [23, 25, 26, 27, 33],
+    "_note": "Stratification: all non-scenario events sorted by event_id; first 16 to train, next 5 to val. Some event_ids may not appear in eligible if they fail OECD-graph remapping at runtime; in that case the actual split is the intersection."
+  }
+}

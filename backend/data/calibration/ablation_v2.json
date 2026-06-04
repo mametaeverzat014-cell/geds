@@ -1,0 +1,56 @@
+{
+  "baseline": {
+    "model": "ablation",
+    "n_events": 11,
+    "mae": 0.14685,
+    "mae_ci95": [
+      0.025,
+      0.2948
+    ],
+    "rmse": 0.27266,
+    "r_squared": -0.2151,
+    "pearson": 0.8287,
+    "mape_pct": 83.23,
+    "calibration_error": 0.00791,
+    "bias": -0.14519,
+    "skill_vs_persistence": -0.2151
+  },
+  "ablations": {
+    "no_seirs": {
+      "mae": 0.14685,
+      "rmse": 0.27266,
+      "r_squared": -0.2151,
+      "delta_mae": 0.0,
+      "delta_rmse": 0.0,
+      "delta_r_squared": 0.0,
+      "interpretation": "component hurts or neutral"
+    },
+    "no_bullwhip": {
+      "mae": 0.14685,
+      "rmse": 0.27266,
+      "r_squared": -0.2151,
+      "delta_mae": 0.0,
+      "delta_rmse": 0.0,
+      "delta_r_squared": 0.0,
+      "interpretation": "component hurts or neutral"
+    },
+    "no_hysteresis": {
+      "mae": 0.14685,
+      "rmse": 0.27266,
+      "r_squared": -0.2151,
+      "delta_mae": 0.0,
+      "delta_rmse": 0.0,
+      "delta_r_squared": 0.0,
+      "interpretation": "component hurts or neutral"
+    },
+    "no_network_amp": {
+      "mae": 0.14811,
+      "rmse": 0.27369,
+      "r_squared": -0.2243,
+      "delta_mae": 0.00126,
+      "delta_rmse": 0.00103,
+      "delta_r_squared": -0.0092,
+      "interpretation": "component helps"
+    }
+  }
+}

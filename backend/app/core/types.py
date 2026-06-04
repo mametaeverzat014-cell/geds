@@ -35,6 +35,22 @@ class Industry(str, Enum):
     SHIPPING = "shipping"
     ENERGY = "energy"
     CONSUMER_GOODS = "consumer_goods"
+    # Schema extension v2 — added 2026-05-26 to cover all 42 historical events.
+    # Each new value requires entries in:
+    #   - graph.INDUSTRY_COEFFICIENTS (pass_through, elasticity, labor)
+    #   - seis.INDUSTRY_INVENTORY_WEEKS (SEIRS buffer depth in weeks)
+    BANKING = "banking"
+    INSURANCE = "insurance"
+    CAPITAL_MARKETS = "capital_markets"
+    OIL = "oil"
+    GAS = "gas"
+    UTILITIES = "utilities"
+    AVIATION = "aviation"
+    PORTS = "ports"
+    TELECOMMUNICATIONS = "telecommunications"
+    AGRICULTURE = "agriculture"
+    TOURISM = "tourism"
+    GOVERNMENT = "government"
 
 
 class Node(BaseModel):

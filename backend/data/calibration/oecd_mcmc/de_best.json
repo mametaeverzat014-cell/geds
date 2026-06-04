@@ -1,0 +1,21 @@
+{
+  "method": "DE",
+  "maxiter": 15,
+  "popsize": 6,
+  "n_evals": 108,
+  "n_iter": 1,
+  "best_loss": 0.6490916233178142,
+  "best_params": {
+    "amplification_mu": 3.6087759443023284,
+    "amplification_eps": 0.016087781043944538,
+    "propagation_decay": 0.6913474666263669,
+    "recovery_rate": 0.24480643393725332,
+    "distress_base": 0.46820154235745526,
+    "bullwhip_factor": 1.9233630409582843,
+    "inventory_scale": 1.8072513337761889,
+    "r_output_floor": 0.056040056465944926,
+    "sanity_max_loss_fraction": 0.25235372957928304
+  },
+  "converged": true,
+  "elapsed_seconds": 985.3
+}

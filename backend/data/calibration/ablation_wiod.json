@@ -1,0 +1,32 @@
+{
+  "baseline": {
+    "mae": 0.16846666666666663,
+    "rmse": 0.2575504999024463
+  },
+  "ablations": {
+    "no_seirs": {
+      "mae": 0.16847,
+      "rmse": 0.25755,
+      "delta_mae": 0.0,
+      "delta_rmse": 0.0
+    },
+    "no_bullwhip": {
+      "mae": 0.16812,
+      "rmse": 0.25759,
+      "delta_mae": -0.00035,
+      "delta_rmse": 4e-05
+    },
+    "no_hysteresis": {
+      "mae": 0.16847,
+      "rmse": 0.25755,
+      "delta_mae": 0.0,
+      "delta_rmse": 0.0
+    },
+    "no_network_amp": {
+      "mae": 0.15422,
+      "rmse": 0.26555,
+      "delta_mae": -0.01424,
+      "delta_rmse": 0.008
+    }
+  }
+}

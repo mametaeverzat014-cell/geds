@@ -1,0 +1,725 @@
+event_id,event_name,country,sector,geds_node_id,node_in_graph
+1,Dot-com Bubble Collapse & US Recession,USA,technology,USA:technology,False
+1,Dot-com Bubble Collapse & US Recession,USA,telecommunications,USA:telecommunications,False
+1,Dot-com Bubble Collapse & US Recession,USA,financial,USA:financial,False
+1,Dot-com Bubble Collapse & US Recession,DEU,technology,DEU:technology,False
+1,Dot-com Bubble Collapse & US Recession,DEU,telecommunications,DEU:telecommunications,False
+1,Dot-com Bubble Collapse & US Recession,DEU,financial,DEU:financial,False
+1,Dot-com Bubble Collapse & US Recession,JPN,technology,JPN:technology,False
+1,Dot-com Bubble Collapse & US Recession,JPN,telecommunications,JPN:telecommunications,False
+1,Dot-com Bubble Collapse & US Recession,JPN,financial,JPN:financial,False
+1,Dot-com Bubble Collapse & US Recession,KOR,technology,KOR:technology,False
+1,Dot-com Bubble Collapse & US Recession,KOR,telecommunications,KOR:telecommunications,False
+1,Dot-com Bubble Collapse & US Recession,KOR,financial,KOR:financial,False
+1,Dot-com Bubble Collapse & US Recession,GBR,technology,GBR:technology,False
+1,Dot-com Bubble Collapse & US Recession,GBR,telecommunications,GBR:telecommunications,False
+1,Dot-com Bubble Collapse & US Recession,GBR,financial,GBR:financial,False
+1,Dot-com Bubble Collapse & US Recession,FRA,technology,FRA:technology,False
+1,Dot-com Bubble Collapse & US Recession,FRA,telecommunications,FRA:telecommunications,False
+1,Dot-com Bubble Collapse & US Recession,FRA,financial,FRA:financial,False
+2,Argentine Sovereign Default & Currency Crisis,ARG,financial,ARG:financial,False
+2,Argentine Sovereign Default & Currency Crisis,ARG,government,ARG:government,False
+2,Argentine Sovereign Default & Currency Crisis,ARG,agriculture,ARG:agriculture,False
+2,Argentine Sovereign Default & Currency Crisis,ARG,manufacturing,ARG:manufacturing,False
+2,Argentine Sovereign Default & Currency Crisis,BRA,financial,BRA:financial,False
+2,Argentine Sovereign Default & Currency Crisis,BRA,government,BRA:government,False
+2,Argentine Sovereign Default & Currency Crisis,BRA,agriculture,BRA:agriculture,False
+2,Argentine Sovereign Default & Currency Crisis,BRA,manufacturing,BRA:manufacturing,False
+2,Argentine Sovereign Default & Currency Crisis,URY,financial,URY:financial,False
+2,Argentine Sovereign Default & Currency Crisis,URY,government,URY:government,False
+2,Argentine Sovereign Default & Currency Crisis,URY,agriculture,URY:agriculture,False
+2,Argentine Sovereign Default & Currency Crisis,URY,manufacturing,URY:manufacturing,False
+2,Argentine Sovereign Default & Currency Crisis,BOL,financial,BOL:financial,False
+2,Argentine Sovereign Default & Currency Crisis,BOL,government,BOL:government,False
+2,Argentine Sovereign Default & Currency Crisis,BOL,agriculture,BOL:agriculture,False
+2,Argentine Sovereign Default & Currency Crisis,BOL,manufacturing,BOL:manufacturing,False
+3,SARS Epidemic,CHN,tourism,CHN:tourism,False
+3,SARS Epidemic,CHN,consumer_goods,CHN:consumer_goods,True
+3,SARS Epidemic,CHN,aerospace,CHN:aerospace,False
+3,SARS Epidemic,HKG,tourism,HKG:tourism,False
+3,SARS Epidemic,HKG,consumer_goods,HKG:consumer_goods,False
+3,SARS Epidemic,HKG,aerospace,HKG:aerospace,False
+3,SARS Epidemic,TWN,tourism,TWN:tourism,False
+3,SARS Epidemic,TWN,consumer_goods,TWN:consumer_goods,False
+3,SARS Epidemic,TWN,aerospace,TWN:aerospace,False
+3,SARS Epidemic,SGP,tourism,SGP:tourism,False
+3,SARS Epidemic,SGP,consumer_goods,SGP:consumer_goods,False
+3,SARS Epidemic,SGP,aerospace,SGP:aerospace,False
+3,SARS Epidemic,CAN,tourism,CAN:tourism,False
+3,SARS Epidemic,CAN,consumer_goods,CAN:consumer_goods,False
+3,SARS Epidemic,CAN,aerospace,CAN:aerospace,False
+4,Iraq War & Associated Oil Price Spike,USA,energy,USA:energy,False
+4,Iraq War & Associated Oil Price Spike,USA,defense,USA:defense,False
+4,Iraq War & Associated Oil Price Spike,USA,government,USA:government,False
+4,Iraq War & Associated Oil Price Spike,USA,shipping,USA:shipping,True
+4,Iraq War & Associated Oil Price Spike,USA,agriculture,USA:agriculture,False
+4,Iraq War & Associated Oil Price Spike,IRQ,energy,IRQ:energy,False
+4,Iraq War & Associated Oil Price Spike,IRQ,defense,IRQ:defense,False
+4,Iraq War & Associated Oil Price Spike,IRQ,government,IRQ:government,False
+4,Iraq War & Associated Oil Price Spike,IRQ,shipping,IRQ:shipping,False
+4,Iraq War & Associated Oil Price Spike,IRQ,agriculture,IRQ:agriculture,False
+5,Indian Ocean Earthquake and Tsunami,IDN,agriculture,IDN:agriculture,False
+5,Indian Ocean Earthquake and Tsunami,IDN,tourism,IDN:tourism,False
+5,Indian Ocean Earthquake and Tsunami,IDN,construction,IDN:construction,False
+5,Indian Ocean Earthquake and Tsunami,IDN,real_estate,IDN:real_estate,False
+5,Indian Ocean Earthquake and Tsunami,LKA,agriculture,LKA:agriculture,False
+5,Indian Ocean Earthquake and Tsunami,LKA,tourism,LKA:tourism,False
+5,Indian Ocean Earthquake and Tsunami,LKA,construction,LKA:construction,False
+5,Indian Ocean Earthquake and Tsunami,LKA,real_estate,LKA:real_estate,False
+5,Indian Ocean Earthquake and Tsunami,IND,agriculture,IND:agriculture,False
+5,Indian Ocean Earthquake and Tsunami,IND,tourism,IND:tourism,False
+5,Indian Ocean Earthquake and Tsunami,IND,construction,IND:construction,False
+5,Indian Ocean Earthquake and Tsunami,IND,real_estate,IND:real_estate,False
+5,Indian Ocean Earthquake and Tsunami,THA,agriculture,THA:agriculture,False
+5,Indian Ocean Earthquake and Tsunami,THA,tourism,THA:tourism,False
+5,Indian Ocean Earthquake and Tsunami,THA,construction,THA:construction,False
+5,Indian Ocean Earthquake and Tsunami,THA,real_estate,THA:real_estate,False
+5,Indian Ocean Earthquake and Tsunami,MDV,agriculture,MDV:agriculture,False
+5,Indian Ocean Earthquake and Tsunami,MDV,tourism,MDV:tourism,False
+5,Indian Ocean Earthquake and Tsunami,MDV,construction,MDV:construction,False
+5,Indian Ocean Earthquake and Tsunami,MDV,real_estate,MDV:real_estate,False
+5,Indian Ocean Earthquake and Tsunami,MMR,agriculture,MMR:agriculture,False
+5,Indian Ocean Earthquake and Tsunami,MMR,tourism,MMR:tourism,False
+5,Indian Ocean Earthquake and Tsunami,MMR,construction,MMR:construction,False
+5,Indian Ocean Earthquake and Tsunami,MMR,real_estate,MMR:real_estate,False
+5,Indian Ocean Earthquake and Tsunami,MYS,agriculture,MYS:agriculture,False
+5,Indian Ocean Earthquake and Tsunami,MYS,tourism,MYS:tourism,False
+5,Indian Ocean Earthquake and Tsunami,MYS,construction,MYS:construction,False
+5,Indian Ocean Earthquake and Tsunami,MYS,real_estate,MYS:real_estate,False
+5,Indian Ocean Earthquake and Tsunami,SOM,agriculture,SOM:agriculture,False
+5,Indian Ocean Earthquake and Tsunami,SOM,tourism,SOM:tourism,False
+5,Indian Ocean Earthquake and Tsunami,SOM,construction,SOM:construction,False
+5,Indian Ocean Earthquake and Tsunami,SOM,real_estate,SOM:real_estate,False
+5,Indian Ocean Earthquake and Tsunami,KEN,agriculture,KEN:agriculture,False
+5,Indian Ocean Earthquake and Tsunami,KEN,tourism,KEN:tourism,False
+5,Indian Ocean Earthquake and Tsunami,KEN,construction,KEN:construction,False
+5,Indian Ocean Earthquake and Tsunami,KEN,real_estate,KEN:real_estate,False
+5,Indian Ocean Earthquake and Tsunami,BGD,agriculture,BGD:agriculture,False
+5,Indian Ocean Earthquake and Tsunami,BGD,tourism,BGD:tourism,False
+5,Indian Ocean Earthquake and Tsunami,BGD,construction,BGD:construction,False
+5,Indian Ocean Earthquake and Tsunami,BGD,real_estate,BGD:real_estate,False
+5,Indian Ocean Earthquake and Tsunami,SYC,agriculture,SYC:agriculture,False
+5,Indian Ocean Earthquake and Tsunami,SYC,tourism,SYC:tourism,False
+5,Indian Ocean Earthquake and Tsunami,SYC,construction,SYC:construction,False
+5,Indian Ocean Earthquake and Tsunami,SYC,real_estate,SYC:real_estate,False
+6,Hurricane Katrina & Rita,USA,energy,USA:energy,False
+6,Hurricane Katrina & Rita,USA,shipping,USA:shipping,True
+6,Hurricane Katrina & Rita,USA,financial,USA:financial,False
+6,Hurricane Katrina & Rita,USA,real_estate,USA:real_estate,False
+6,Hurricane Katrina & Rita,USA,tourism,USA:tourism,False
+7,Global Financial Crisis,,,,False
+8,H1N1 Swine Flu Pandemic,,,,False
+9,European Sovereign Debt Crisis,GRC,financial,GRC:financial,False
+9,European Sovereign Debt Crisis,GRC,government,GRC:government,False
+9,European Sovereign Debt Crisis,PRT,financial,PRT:financial,False
+9,European Sovereign Debt Crisis,PRT,government,PRT:government,False
+9,European Sovereign Debt Crisis,IRL,financial,IRL:financial,False
+9,European Sovereign Debt Crisis,IRL,government,IRL:government,False
+9,European Sovereign Debt Crisis,ESP,financial,ESP:financial,False
+9,European Sovereign Debt Crisis,ESP,government,ESP:government,False
+9,European Sovereign Debt Crisis,CYP,financial,CYP:financial,False
+9,European Sovereign Debt Crisis,CYP,government,CYP:government,False
+9,European Sovereign Debt Crisis,DEU,financial,DEU:financial,False
+9,European Sovereign Debt Crisis,DEU,government,DEU:government,False
+9,European Sovereign Debt Crisis,FRA,financial,FRA:financial,False
+9,European Sovereign Debt Crisis,FRA,government,FRA:government,False
+9,European Sovereign Debt Crisis,ITA,financial,ITA:financial,False
+9,European Sovereign Debt Crisis,ITA,government,ITA:government,False
+9,European Sovereign Debt Crisis,NLD,financial,NLD:financial,False
+9,European Sovereign Debt Crisis,NLD,government,NLD:government,False
+9,European Sovereign Debt Crisis,BEL,financial,BEL:financial,False
+9,European Sovereign Debt Crisis,BEL,government,BEL:government,False
+10,Arab Spring Political Upheaval,TUN,energy,TUN:energy,False
+10,Arab Spring Political Upheaval,TUN,tourism,TUN:tourism,False
+10,Arab Spring Political Upheaval,TUN,government,TUN:government,False
+10,Arab Spring Political Upheaval,TUN,agriculture,TUN:agriculture,False
+10,Arab Spring Political Upheaval,EGY,energy,EGY:energy,False
+10,Arab Spring Political Upheaval,EGY,tourism,EGY:tourism,False
+10,Arab Spring Political Upheaval,EGY,government,EGY:government,False
+10,Arab Spring Political Upheaval,EGY,agriculture,EGY:agriculture,False
+10,Arab Spring Political Upheaval,LBY,energy,LBY:energy,False
+10,Arab Spring Political Upheaval,LBY,tourism,LBY:tourism,False
+10,Arab Spring Political Upheaval,LBY,government,LBY:government,False
+10,Arab Spring Political Upheaval,LBY,agriculture,LBY:agriculture,False
+10,Arab Spring Political Upheaval,YEM,energy,YEM:energy,False
+10,Arab Spring Political Upheaval,YEM,tourism,YEM:tourism,False
+10,Arab Spring Political Upheaval,YEM,government,YEM:government,False
+10,Arab Spring Political Upheaval,YEM,agriculture,YEM:agriculture,False
+10,Arab Spring Political Upheaval,SYR,energy,SYR:energy,False
+10,Arab Spring Political Upheaval,SYR,tourism,SYR:tourism,False
+10,Arab Spring Political Upheaval,SYR,government,SYR:government,False
+10,Arab Spring Political Upheaval,SYR,agriculture,SYR:agriculture,False
+10,Arab Spring Political Upheaval,BHR,energy,BHR:energy,False
+10,Arab Spring Political Upheaval,BHR,tourism,BHR:tourism,False
+10,Arab Spring Political Upheaval,BHR,government,BHR:government,False
+10,Arab Spring Political Upheaval,BHR,agriculture,BHR:agriculture,False
+10,Arab Spring Political Upheaval,SAU,energy,SAU:energy,False
+10,Arab Spring Political Upheaval,SAU,tourism,SAU:tourism,False
+10,Arab Spring Political Upheaval,SAU,government,SAU:government,False
+10,Arab Spring Political Upheaval,SAU,agriculture,SAU:agriculture,False
+10,Arab Spring Political Upheaval,ARE,energy,ARE:energy,False
+10,Arab Spring Political Upheaval,ARE,tourism,ARE:tourism,False
+10,Arab Spring Political Upheaval,ARE,government,ARE:government,False
+10,Arab Spring Political Upheaval,ARE,agriculture,ARE:agriculture,False
+10,Arab Spring Political Upheaval,ISR,energy,ISR:energy,False
+10,Arab Spring Political Upheaval,ISR,tourism,ISR:tourism,False
+10,Arab Spring Political Upheaval,ISR,government,ISR:government,False
+10,Arab Spring Political Upheaval,ISR,agriculture,ISR:agriculture,False
+10,Arab Spring Political Upheaval,TUR,energy,TUR:energy,False
+10,Arab Spring Political Upheaval,TUR,tourism,TUR:tourism,False
+10,Arab Spring Political Upheaval,TUR,government,TUR:government,False
+10,Arab Spring Political Upheaval,TUR,agriculture,TUR:agriculture,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",JPN,automotive,JPN:automotive,True
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",JPN,electronics,JPN:electronics,True
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",JPN,energy,JPN:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",JPN,chemicals,JPN:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",JPN,manufacturing,JPN:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",USA,automotive,USA:automotive,True
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",USA,electronics,USA:electronics,True
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",USA,energy,USA:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",USA,chemicals,USA:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",USA,manufacturing,USA:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",DEU,automotive,DEU:automotive,True
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",DEU,electronics,DEU:electronics,True
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",DEU,energy,DEU:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",DEU,chemicals,DEU:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",DEU,manufacturing,DEU:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",FRA,automotive,FRA:automotive,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",FRA,electronics,FRA:electronics,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",FRA,energy,FRA:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",FRA,chemicals,FRA:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",FRA,manufacturing,FRA:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",ITA,automotive,ITA:automotive,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",ITA,electronics,ITA:electronics,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",ITA,energy,ITA:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",ITA,chemicals,ITA:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",ITA,manufacturing,ITA:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",ESP,automotive,ESP:automotive,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",ESP,electronics,ESP:electronics,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",ESP,energy,ESP:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",ESP,chemicals,ESP:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",ESP,manufacturing,ESP:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",NLD,automotive,NLD:automotive,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",NLD,electronics,NLD:electronics,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",NLD,energy,NLD:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",NLD,chemicals,NLD:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",NLD,manufacturing,NLD:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",POL,automotive,POL:automotive,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",POL,electronics,POL:electronics,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",POL,energy,POL:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",POL,chemicals,POL:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",POL,manufacturing,POL:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",BEL,automotive,BEL:automotive,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",BEL,electronics,BEL:electronics,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",BEL,energy,BEL:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",BEL,chemicals,BEL:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",BEL,manufacturing,BEL:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",IDN,automotive,IDN:automotive,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",IDN,electronics,IDN:electronics,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",IDN,energy,IDN:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",IDN,chemicals,IDN:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",IDN,manufacturing,IDN:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",THA,automotive,THA:automotive,True
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",THA,electronics,THA:electronics,True
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",THA,energy,THA:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",THA,chemicals,THA:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",THA,manufacturing,THA:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",VNM,automotive,VNM:automotive,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",VNM,electronics,VNM:electronics,True
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",VNM,energy,VNM:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",VNM,chemicals,VNM:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",VNM,manufacturing,VNM:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",MYS,automotive,MYS:automotive,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",MYS,electronics,MYS:electronics,True
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",MYS,energy,MYS:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",MYS,chemicals,MYS:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",MYS,manufacturing,MYS:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",PHL,automotive,PHL:automotive,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",PHL,electronics,PHL:electronics,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",PHL,energy,PHL:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",PHL,chemicals,PHL:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",PHL,manufacturing,PHL:manufacturing,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",SGP,automotive,SGP:automotive,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",SGP,electronics,SGP:electronics,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",SGP,energy,SGP:energy,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",SGP,chemicals,SGP:chemicals,False
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",SGP,manufacturing,SGP:manufacturing,False
+12,Russia Crimea Annexation & Western Sanctions,RUS,energy,RUS:energy,False
+12,Russia Crimea Annexation & Western Sanctions,RUS,financial,RUS:financial,False
+12,Russia Crimea Annexation & Western Sanctions,RUS,defense,RUS:defense,False
+12,Russia Crimea Annexation & Western Sanctions,RUS,technology,RUS:technology,False
+12,Russia Crimea Annexation & Western Sanctions,UKR,energy,UKR:energy,False
+12,Russia Crimea Annexation & Western Sanctions,UKR,financial,UKR:financial,False
+12,Russia Crimea Annexation & Western Sanctions,UKR,defense,UKR:defense,False
+12,Russia Crimea Annexation & Western Sanctions,UKR,technology,UKR:technology,False
+12,Russia Crimea Annexation & Western Sanctions,DEU,energy,DEU:energy,False
+12,Russia Crimea Annexation & Western Sanctions,DEU,financial,DEU:financial,False
+12,Russia Crimea Annexation & Western Sanctions,DEU,defense,DEU:defense,False
+12,Russia Crimea Annexation & Western Sanctions,DEU,technology,DEU:technology,False
+12,Russia Crimea Annexation & Western Sanctions,FRA,energy,FRA:energy,False
+12,Russia Crimea Annexation & Western Sanctions,FRA,financial,FRA:financial,False
+12,Russia Crimea Annexation & Western Sanctions,FRA,defense,FRA:defense,False
+12,Russia Crimea Annexation & Western Sanctions,FRA,technology,FRA:technology,False
+12,Russia Crimea Annexation & Western Sanctions,ITA,energy,ITA:energy,False
+12,Russia Crimea Annexation & Western Sanctions,ITA,financial,ITA:financial,False
+12,Russia Crimea Annexation & Western Sanctions,ITA,defense,ITA:defense,False
+12,Russia Crimea Annexation & Western Sanctions,ITA,technology,ITA:technology,False
+12,Russia Crimea Annexation & Western Sanctions,ESP,energy,ESP:energy,False
+12,Russia Crimea Annexation & Western Sanctions,ESP,financial,ESP:financial,False
+12,Russia Crimea Annexation & Western Sanctions,ESP,defense,ESP:defense,False
+12,Russia Crimea Annexation & Western Sanctions,ESP,technology,ESP:technology,False
+12,Russia Crimea Annexation & Western Sanctions,NLD,energy,NLD:energy,False
+12,Russia Crimea Annexation & Western Sanctions,NLD,financial,NLD:financial,False
+12,Russia Crimea Annexation & Western Sanctions,NLD,defense,NLD:defense,False
+12,Russia Crimea Annexation & Western Sanctions,NLD,technology,NLD:technology,False
+12,Russia Crimea Annexation & Western Sanctions,POL,energy,POL:energy,False
+12,Russia Crimea Annexation & Western Sanctions,POL,financial,POL:financial,False
+12,Russia Crimea Annexation & Western Sanctions,POL,defense,POL:defense,False
+12,Russia Crimea Annexation & Western Sanctions,POL,technology,POL:technology,False
+12,Russia Crimea Annexation & Western Sanctions,BEL,energy,BEL:energy,False
+12,Russia Crimea Annexation & Western Sanctions,BEL,financial,BEL:financial,False
+12,Russia Crimea Annexation & Western Sanctions,BEL,defense,BEL:defense,False
+12,Russia Crimea Annexation & Western Sanctions,BEL,technology,BEL:technology,False
+12,Russia Crimea Annexation & Western Sanctions,ROU,energy,ROU:energy,False
+12,Russia Crimea Annexation & Western Sanctions,ROU,financial,ROU:financial,False
+12,Russia Crimea Annexation & Western Sanctions,ROU,defense,ROU:defense,False
+12,Russia Crimea Annexation & Western Sanctions,ROU,technology,ROU:technology,False
+12,Russia Crimea Annexation & Western Sanctions,HUN,energy,HUN:energy,False
+12,Russia Crimea Annexation & Western Sanctions,HUN,financial,HUN:financial,False
+12,Russia Crimea Annexation & Western Sanctions,HUN,defense,HUN:defense,False
+12,Russia Crimea Annexation & Western Sanctions,HUN,technology,HUN:technology,False
+12,Russia Crimea Annexation & Western Sanctions,CZE,energy,CZE:energy,False
+12,Russia Crimea Annexation & Western Sanctions,CZE,financial,CZE:financial,False
+12,Russia Crimea Annexation & Western Sanctions,CZE,defense,CZE:defense,False
+12,Russia Crimea Annexation & Western Sanctions,CZE,technology,CZE:technology,False
+13,Nepal Earthquake,NPL,construction,NPL:construction,False
+13,Nepal Earthquake,NPL,tourism,NPL:tourism,False
+13,Nepal Earthquake,NPL,agriculture,NPL:agriculture,False
+13,Nepal Earthquake,NPL,energy,NPL:energy,False
+14,China Stock Market Crash,CHN,financial,CHN:financial,False
+14,China Stock Market Crash,CHN,commodities,CHN:commodities,False
+14,China Stock Market Crash,CHN,consumer_goods,CHN:consumer_goods,True
+15,UK Brexit Referendum and Departure,GBR,financial,GBR:financial,False
+15,UK Brexit Referendum and Departure,GBR,automotive,GBR:automotive,False
+15,UK Brexit Referendum and Departure,GBR,healthcare,GBR:healthcare,False
+15,UK Brexit Referendum and Departure,GBR,agriculture,GBR:agriculture,False
+15,UK Brexit Referendum and Departure,DEU,financial,DEU:financial,False
+15,UK Brexit Referendum and Departure,DEU,automotive,DEU:automotive,True
+15,UK Brexit Referendum and Departure,DEU,healthcare,DEU:healthcare,False
+15,UK Brexit Referendum and Departure,DEU,agriculture,DEU:agriculture,False
+15,UK Brexit Referendum and Departure,FRA,financial,FRA:financial,False
+15,UK Brexit Referendum and Departure,FRA,automotive,FRA:automotive,False
+15,UK Brexit Referendum and Departure,FRA,healthcare,FRA:healthcare,False
+15,UK Brexit Referendum and Departure,FRA,agriculture,FRA:agriculture,False
+15,UK Brexit Referendum and Departure,ITA,financial,ITA:financial,False
+15,UK Brexit Referendum and Departure,ITA,automotive,ITA:automotive,False
+15,UK Brexit Referendum and Departure,ITA,healthcare,ITA:healthcare,False
+15,UK Brexit Referendum and Departure,ITA,agriculture,ITA:agriculture,False
+15,UK Brexit Referendum and Departure,ESP,financial,ESP:financial,False
+15,UK Brexit Referendum and Departure,ESP,automotive,ESP:automotive,False
+15,UK Brexit Referendum and Departure,ESP,healthcare,ESP:healthcare,False
+15,UK Brexit Referendum and Departure,ESP,agriculture,ESP:agriculture,False
+15,UK Brexit Referendum and Departure,NLD,financial,NLD:financial,False
+15,UK Brexit Referendum and Departure,NLD,automotive,NLD:automotive,False
+15,UK Brexit Referendum and Departure,NLD,healthcare,NLD:healthcare,False
+15,UK Brexit Referendum and Departure,NLD,agriculture,NLD:agriculture,False
+15,UK Brexit Referendum and Departure,POL,financial,POL:financial,False
+15,UK Brexit Referendum and Departure,POL,automotive,POL:automotive,False
+15,UK Brexit Referendum and Departure,POL,healthcare,POL:healthcare,False
+15,UK Brexit Referendum and Departure,POL,agriculture,POL:agriculture,False
+15,UK Brexit Referendum and Departure,BEL,financial,BEL:financial,False
+15,UK Brexit Referendum and Departure,BEL,automotive,BEL:automotive,False
+15,UK Brexit Referendum and Departure,BEL,healthcare,BEL:healthcare,False
+15,UK Brexit Referendum and Departure,BEL,agriculture,BEL:agriculture,False
+16,US–China Trade War,USA,agriculture,USA:agriculture,False
+16,US–China Trade War,USA,manufacturing,USA:manufacturing,False
+16,US–China Trade War,USA,technology,USA:technology,False
+16,US–China Trade War,USA,metals,USA:metals,False
+16,US–China Trade War,USA,chemicals,USA:chemicals,False
+16,US–China Trade War,CHN,agriculture,CHN:agriculture,False
+16,US–China Trade War,CHN,manufacturing,CHN:manufacturing,False
+16,US–China Trade War,CHN,technology,CHN:technology,False
+16,US–China Trade War,CHN,metals,CHN:metals,False
+16,US–China Trade War,CHN,chemicals,CHN:chemicals,False
+16,US–China Trade War,VNM,agriculture,VNM:agriculture,False
+16,US–China Trade War,VNM,manufacturing,VNM:manufacturing,False
+16,US–China Trade War,VNM,technology,VNM:technology,False
+16,US–China Trade War,VNM,metals,VNM:metals,False
+16,US–China Trade War,VNM,chemicals,VNM:chemicals,False
+16,US–China Trade War,MEX,agriculture,MEX:agriculture,False
+16,US–China Trade War,MEX,manufacturing,MEX:manufacturing,False
+16,US–China Trade War,MEX,technology,MEX:technology,False
+16,US–China Trade War,MEX,metals,MEX:metals,False
+16,US–China Trade War,MEX,chemicals,MEX:chemicals,False
+16,US–China Trade War,KOR,agriculture,KOR:agriculture,False
+16,US–China Trade War,KOR,manufacturing,KOR:manufacturing,False
+16,US–China Trade War,KOR,technology,KOR:technology,False
+16,US–China Trade War,KOR,metals,KOR:metals,False
+16,US–China Trade War,KOR,chemicals,KOR:chemicals,False
+16,US–China Trade War,TWN,agriculture,TWN:agriculture,False
+16,US–China Trade War,TWN,manufacturing,TWN:manufacturing,False
+16,US–China Trade War,TWN,technology,TWN:technology,False
+16,US–China Trade War,TWN,metals,TWN:metals,False
+16,US–China Trade War,TWN,chemicals,TWN:chemicals,False
+17,COVID-19 Global Pandemic,,,,False
+18,Global Semiconductor Chip Shortage,USA,automotive,USA:automotive,True
+18,Global Semiconductor Chip Shortage,USA,electronics,USA:electronics,True
+18,Global Semiconductor Chip Shortage,USA,manufacturing,USA:manufacturing,False
+18,Global Semiconductor Chip Shortage,USA,defense,USA:defense,False
+18,Global Semiconductor Chip Shortage,DEU,automotive,DEU:automotive,True
+18,Global Semiconductor Chip Shortage,DEU,electronics,DEU:electronics,True
+18,Global Semiconductor Chip Shortage,DEU,manufacturing,DEU:manufacturing,False
+18,Global Semiconductor Chip Shortage,DEU,defense,DEU:defense,False
+18,Global Semiconductor Chip Shortage,JPN,automotive,JPN:automotive,True
+18,Global Semiconductor Chip Shortage,JPN,electronics,JPN:electronics,True
+18,Global Semiconductor Chip Shortage,JPN,manufacturing,JPN:manufacturing,False
+18,Global Semiconductor Chip Shortage,JPN,defense,JPN:defense,False
+18,Global Semiconductor Chip Shortage,KOR,automotive,KOR:automotive,False
+18,Global Semiconductor Chip Shortage,KOR,electronics,KOR:electronics,True
+18,Global Semiconductor Chip Shortage,KOR,manufacturing,KOR:manufacturing,False
+18,Global Semiconductor Chip Shortage,KOR,defense,KOR:defense,False
+18,Global Semiconductor Chip Shortage,TWN,automotive,TWN:automotive,False
+18,Global Semiconductor Chip Shortage,TWN,electronics,TWN:electronics,True
+18,Global Semiconductor Chip Shortage,TWN,manufacturing,TWN:manufacturing,False
+18,Global Semiconductor Chip Shortage,TWN,defense,TWN:defense,False
+18,Global Semiconductor Chip Shortage,CHN,automotive,CHN:automotive,True
+18,Global Semiconductor Chip Shortage,CHN,electronics,CHN:electronics,True
+18,Global Semiconductor Chip Shortage,CHN,manufacturing,CHN:manufacturing,False
+18,Global Semiconductor Chip Shortage,CHN,defense,CHN:defense,False
+19,Ever Given Suez Canal Blockage,,chokepoint,CP:Suez,True
+19,Ever Given Suez Canal Blockage,,,,False
+20,Post-COVID Global Supply Chain Disruption,,,,False
+21,Russia Invasion of Ukraine & Global Sanctions,UKR,energy,UKR:energy,False
+21,Russia Invasion of Ukraine & Global Sanctions,UKR,agriculture,UKR:agriculture,False
+21,Russia Invasion of Ukraine & Global Sanctions,UKR,defense,UKR:defense,False
+21,Russia Invasion of Ukraine & Global Sanctions,UKR,shipping,UKR:shipping,False
+21,Russia Invasion of Ukraine & Global Sanctions,UKR,financial,UKR:financial,False
+21,Russia Invasion of Ukraine & Global Sanctions,RUS,energy,RUS:energy,False
+21,Russia Invasion of Ukraine & Global Sanctions,RUS,agriculture,RUS:agriculture,False
+21,Russia Invasion of Ukraine & Global Sanctions,RUS,defense,RUS:defense,False
+21,Russia Invasion of Ukraine & Global Sanctions,RUS,shipping,RUS:shipping,False
+21,Russia Invasion of Ukraine & Global Sanctions,RUS,financial,RUS:financial,False
+21,Russia Invasion of Ukraine & Global Sanctions,DEU,energy,DEU:energy,False
+21,Russia Invasion of Ukraine & Global Sanctions,DEU,agriculture,DEU:agriculture,False
+21,Russia Invasion of Ukraine & Global Sanctions,DEU,defense,DEU:defense,False
+21,Russia Invasion of Ukraine & Global Sanctions,DEU,shipping,DEU:shipping,False
+21,Russia Invasion of Ukraine & Global Sanctions,DEU,financial,DEU:financial,False
+21,Russia Invasion of Ukraine & Global Sanctions,FRA,energy,FRA:energy,False
+21,Russia Invasion of Ukraine & Global Sanctions,FRA,agriculture,FRA:agriculture,False
+21,Russia Invasion of Ukraine & Global Sanctions,FRA,defense,FRA:defense,False
+21,Russia Invasion of Ukraine & Global Sanctions,FRA,shipping,FRA:shipping,False
+21,Russia Invasion of Ukraine & Global Sanctions,FRA,financial,FRA:financial,False
+21,Russia Invasion of Ukraine & Global Sanctions,ITA,energy,ITA:energy,False
+21,Russia Invasion of Ukraine & Global Sanctions,ITA,agriculture,ITA:agriculture,False
+21,Russia Invasion of Ukraine & Global Sanctions,ITA,defense,ITA:defense,False
+21,Russia Invasion of Ukraine & Global Sanctions,ITA,shipping,ITA:shipping,False
+21,Russia Invasion of Ukraine & Global Sanctions,ITA,financial,ITA:financial,False
+21,Russia Invasion of Ukraine & Global Sanctions,ESP,energy,ESP:energy,False
+21,Russia Invasion of Ukraine & Global Sanctions,ESP,agriculture,ESP:agriculture,False
+21,Russia Invasion of Ukraine & Global Sanctions,ESP,defense,ESP:defense,False
+21,Russia Invasion of Ukraine & Global Sanctions,ESP,shipping,ESP:shipping,False
+21,Russia Invasion of Ukraine & Global Sanctions,ESP,financial,ESP:financial,False
+21,Russia Invasion of Ukraine & Global Sanctions,NLD,energy,NLD:energy,False
+21,Russia Invasion of Ukraine & Global Sanctions,NLD,agriculture,NLD:agriculture,False
+21,Russia Invasion of Ukraine & Global Sanctions,NLD,defense,NLD:defense,False
+21,Russia Invasion of Ukraine & Global Sanctions,NLD,shipping,NLD:shipping,False
+21,Russia Invasion of Ukraine & Global Sanctions,NLD,financial,NLD:financial,False
+21,Russia Invasion of Ukraine & Global Sanctions,POL,energy,POL:energy,False
+21,Russia Invasion of Ukraine & Global Sanctions,POL,agriculture,POL:agriculture,False
+21,Russia Invasion of Ukraine & Global Sanctions,POL,defense,POL:defense,False
+21,Russia Invasion of Ukraine & Global Sanctions,POL,shipping,POL:shipping,False
+21,Russia Invasion of Ukraine & Global Sanctions,POL,financial,POL:financial,False
+21,Russia Invasion of Ukraine & Global Sanctions,BEL,energy,BEL:energy,False
+21,Russia Invasion of Ukraine & Global Sanctions,BEL,agriculture,BEL:agriculture,False
+21,Russia Invasion of Ukraine & Global Sanctions,BEL,defense,BEL:defense,False
+21,Russia Invasion of Ukraine & Global Sanctions,BEL,shipping,BEL:shipping,False
+21,Russia Invasion of Ukraine & Global Sanctions,BEL,financial,BEL:financial,False
+22,European Natural Gas & Energy Crisis,DEU,manufacturing,DEU:manufacturing,False
+22,European Natural Gas & Energy Crisis,DEU,energy,DEU:energy,False
+22,European Natural Gas & Energy Crisis,FRA,manufacturing,FRA:manufacturing,False
+22,European Natural Gas & Energy Crisis,FRA,energy,FRA:energy,False
+22,European Natural Gas & Energy Crisis,ITA,manufacturing,ITA:manufacturing,False
+22,European Natural Gas & Energy Crisis,ITA,energy,ITA:energy,False
+22,European Natural Gas & Energy Crisis,ESP,manufacturing,ESP:manufacturing,False
+22,European Natural Gas & Energy Crisis,ESP,energy,ESP:energy,False
+22,European Natural Gas & Energy Crisis,NLD,manufacturing,NLD:manufacturing,False
+22,European Natural Gas & Energy Crisis,NLD,energy,NLD:energy,False
+22,European Natural Gas & Energy Crisis,POL,manufacturing,POL:manufacturing,False
+22,European Natural Gas & Energy Crisis,POL,energy,POL:energy,False
+22,European Natural Gas & Energy Crisis,BEL,manufacturing,BEL:manufacturing,False
+22,European Natural Gas & Energy Crisis,BEL,energy,BEL:energy,False
+22,European Natural Gas & Energy Crisis,GBR,manufacturing,GBR:manufacturing,False
+22,European Natural Gas & Energy Crisis,GBR,energy,GBR:energy,False
+22,European Natural Gas & Energy Crisis,NOR,manufacturing,NOR:manufacturing,False
+22,European Natural Gas & Energy Crisis,NOR,energy,NOR:energy,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,GBR,real_estate,GBR:real_estate,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,GBR,financial,GBR:financial,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,GBR,consumer_goods,GBR:consumer_goods,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,DEU,real_estate,DEU:real_estate,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,DEU,financial,DEU:financial,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,DEU,consumer_goods,DEU:consumer_goods,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,FRA,real_estate,FRA:real_estate,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,FRA,financial,FRA:financial,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,FRA,consumer_goods,FRA:consumer_goods,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,ITA,real_estate,ITA:real_estate,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,ITA,financial,ITA:financial,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,ITA,consumer_goods,ITA:consumer_goods,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,ESP,real_estate,ESP:real_estate,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,ESP,financial,ESP:financial,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,ESP,consumer_goods,ESP:consumer_goods,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,NLD,real_estate,NLD:real_estate,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,NLD,financial,NLD:financial,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,NLD,consumer_goods,NLD:consumer_goods,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,POL,real_estate,POL:real_estate,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,POL,financial,POL:financial,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,POL,consumer_goods,POL:consumer_goods,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,BEL,real_estate,BEL:real_estate,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,BEL,financial,BEL:financial,False
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,BEL,consumer_goods,BEL:consumer_goods,False
+24,China Real Estate & Evergrande Crisis,CHN,real_estate,CHN:real_estate,False
+24,China Real Estate & Evergrande Crisis,CHN,construction,CHN:construction,False
+24,China Real Estate & Evergrande Crisis,CHN,financial,CHN:financial,False
+24,China Real Estate & Evergrande Crisis,CHN,metals,CHN:metals,False
+24,China Real Estate & Evergrande Crisis,CHN,consumer_goods,CHN:consumer_goods,True
+25,Sri Lanka Sovereign Default & Economic Collapse,LKA,government,LKA:government,False
+25,Sri Lanka Sovereign Default & Economic Collapse,LKA,financial,LKA:financial,False
+25,Sri Lanka Sovereign Default & Economic Collapse,LKA,energy,LKA:energy,False
+25,Sri Lanka Sovereign Default & Economic Collapse,LKA,agriculture,LKA:agriculture,False
+25,Sri Lanka Sovereign Default & Economic Collapse,LKA,tourism,LKA:tourism,False
+26,Red Sea Houthi Attacks / Shipping Crisis,EGY,shipping,EGY:shipping,False
+26,Red Sea Houthi Attacks / Shipping Crisis,EGY,consumer_goods,EGY:consumer_goods,False
+26,Red Sea Houthi Attacks / Shipping Crisis,EGY,automotive,EGY:automotive,False
+26,Red Sea Houthi Attacks / Shipping Crisis,EGY,energy,EGY:energy,False
+26,Red Sea Houthi Attacks / Shipping Crisis,EGY,agriculture,EGY:agriculture,False
+26,Red Sea Houthi Attacks / Shipping Crisis,KEN,shipping,KEN:shipping,False
+26,Red Sea Houthi Attacks / Shipping Crisis,KEN,consumer_goods,KEN:consumer_goods,False
+26,Red Sea Houthi Attacks / Shipping Crisis,KEN,automotive,KEN:automotive,False
+26,Red Sea Houthi Attacks / Shipping Crisis,KEN,energy,KEN:energy,False
+26,Red Sea Houthi Attacks / Shipping Crisis,KEN,agriculture,KEN:agriculture,False
+26,Red Sea Houthi Attacks / Shipping Crisis,ETH,shipping,ETH:shipping,False
+26,Red Sea Houthi Attacks / Shipping Crisis,ETH,consumer_goods,ETH:consumer_goods,False
+26,Red Sea Houthi Attacks / Shipping Crisis,ETH,automotive,ETH:automotive,False
+26,Red Sea Houthi Attacks / Shipping Crisis,ETH,energy,ETH:energy,False
+26,Red Sea Houthi Attacks / Shipping Crisis,ETH,agriculture,ETH:agriculture,False
+26,Red Sea Houthi Attacks / Shipping Crisis,TZA,shipping,TZA:shipping,False
+26,Red Sea Houthi Attacks / Shipping Crisis,TZA,consumer_goods,TZA:consumer_goods,False
+26,Red Sea Houthi Attacks / Shipping Crisis,TZA,automotive,TZA:automotive,False
+26,Red Sea Houthi Attacks / Shipping Crisis,TZA,energy,TZA:energy,False
+26,Red Sea Houthi Attacks / Shipping Crisis,TZA,agriculture,TZA:agriculture,False
+26,Red Sea Houthi Attacks / Shipping Crisis,UGA,shipping,UGA:shipping,False
+26,Red Sea Houthi Attacks / Shipping Crisis,UGA,consumer_goods,UGA:consumer_goods,False
+26,Red Sea Houthi Attacks / Shipping Crisis,UGA,automotive,UGA:automotive,False
+26,Red Sea Houthi Attacks / Shipping Crisis,UGA,energy,UGA:energy,False
+26,Red Sea Houthi Attacks / Shipping Crisis,UGA,agriculture,UGA:agriculture,False
+26,Red Sea Houthi Attacks / Shipping Crisis,YEM,shipping,YEM:shipping,False
+26,Red Sea Houthi Attacks / Shipping Crisis,YEM,consumer_goods,YEM:consumer_goods,False
+26,Red Sea Houthi Attacks / Shipping Crisis,YEM,automotive,YEM:automotive,False
+26,Red Sea Houthi Attacks / Shipping Crisis,YEM,energy,YEM:energy,False
+26,Red Sea Houthi Attacks / Shipping Crisis,YEM,agriculture,YEM:agriculture,False
+27,Panama Canal Drought & Traffic Restrictions,USA,shipping,USA:shipping,True
+27,Panama Canal Drought & Traffic Restrictions,USA,automotive,USA:automotive,True
+27,Panama Canal Drought & Traffic Restrictions,CHN,shipping,CHN:shipping,False
+27,Panama Canal Drought & Traffic Restrictions,CHN,automotive,CHN:automotive,True
+27,Panama Canal Drought & Traffic Restrictions,JPN,shipping,JPN:shipping,False
+27,Panama Canal Drought & Traffic Restrictions,JPN,automotive,JPN:automotive,True
+27,Panama Canal Drought & Traffic Restrictions,KOR,shipping,KOR:shipping,False
+27,Panama Canal Drought & Traffic Restrictions,KOR,automotive,KOR:automotive,False
+27,Panama Canal Drought & Traffic Restrictions,PAN,shipping,PAN:shipping,False
+27,Panama Canal Drought & Traffic Restrictions,PAN,automotive,PAN:automotive,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",USA,manufacturing,USA:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",USA,agriculture,USA:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",USA,consumer_goods,USA:consumer_goods,True
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",USA,technology,USA:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",USA,automotive,USA:automotive,True
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",CHN,manufacturing,CHN:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",CHN,agriculture,CHN:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",CHN,consumer_goods,CHN:consumer_goods,True
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",CHN,technology,CHN:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",CHN,automotive,CHN:automotive,True
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",DEU,manufacturing,DEU:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",DEU,agriculture,DEU:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",DEU,consumer_goods,DEU:consumer_goods,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",DEU,technology,DEU:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",DEU,automotive,DEU:automotive,True
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",FRA,manufacturing,FRA:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",FRA,agriculture,FRA:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",FRA,consumer_goods,FRA:consumer_goods,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",FRA,technology,FRA:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",FRA,automotive,FRA:automotive,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",ITA,manufacturing,ITA:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",ITA,agriculture,ITA:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",ITA,consumer_goods,ITA:consumer_goods,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",ITA,technology,ITA:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",ITA,automotive,ITA:automotive,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",ESP,manufacturing,ESP:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",ESP,agriculture,ESP:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",ESP,consumer_goods,ESP:consumer_goods,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",ESP,technology,ESP:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",ESP,automotive,ESP:automotive,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",NLD,manufacturing,NLD:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",NLD,agriculture,NLD:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",NLD,consumer_goods,NLD:consumer_goods,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",NLD,technology,NLD:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",NLD,automotive,NLD:automotive,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",POL,manufacturing,POL:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",POL,agriculture,POL:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",POL,consumer_goods,POL:consumer_goods,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",POL,technology,POL:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",POL,automotive,POL:automotive,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",BEL,manufacturing,BEL:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",BEL,agriculture,BEL:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",BEL,consumer_goods,BEL:consumer_goods,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",BEL,technology,BEL:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",BEL,automotive,BEL:automotive,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",CAN,manufacturing,CAN:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",CAN,agriculture,CAN:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",CAN,consumer_goods,CAN:consumer_goods,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",CAN,technology,CAN:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",CAN,automotive,CAN:automotive,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",MEX,manufacturing,MEX:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",MEX,agriculture,MEX:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",MEX,consumer_goods,MEX:consumer_goods,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",MEX,technology,MEX:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",MEX,automotive,MEX:automotive,True
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",VNM,manufacturing,VNM:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",VNM,agriculture,VNM:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",VNM,consumer_goods,VNM:consumer_goods,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",VNM,technology,VNM:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",VNM,automotive,VNM:automotive,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",IND,manufacturing,IND:manufacturing,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",IND,agriculture,IND:agriculture,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",IND,consumer_goods,IND:consumer_goods,True
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",IND,technology,IND:technology,False
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",IND,automotive,IND:automotive,False
+29,Haiti Earthquake,HTI,,,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),NGA,agriculture,NGA:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),NGA,chemicals,NGA:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),NGA,consumer_goods,NGA:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),NGA,energy,NGA:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),NGA,government,NGA:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ZAF,agriculture,ZAF:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ZAF,chemicals,ZAF:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ZAF,consumer_goods,ZAF:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ZAF,energy,ZAF:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ZAF,government,ZAF:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),KEN,agriculture,KEN:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),KEN,chemicals,KEN:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),KEN,consumer_goods,KEN:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),KEN,energy,KEN:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),KEN,government,KEN:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ETH,agriculture,ETH:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ETH,chemicals,ETH:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ETH,consumer_goods,ETH:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ETH,energy,ETH:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ETH,government,ETH:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),AGO,agriculture,AGO:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),AGO,chemicals,AGO:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),AGO,consumer_goods,AGO:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),AGO,energy,AGO:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),AGO,government,AGO:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),IND,agriculture,IND:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),IND,chemicals,IND:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),IND,consumer_goods,IND:consumer_goods,True
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),IND,energy,IND:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),IND,government,IND:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),PAK,agriculture,PAK:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),PAK,chemicals,PAK:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),PAK,consumer_goods,PAK:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),PAK,energy,PAK:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),PAK,government,PAK:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),BGD,agriculture,BGD:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),BGD,chemicals,BGD:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),BGD,consumer_goods,BGD:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),BGD,energy,BGD:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),BGD,government,BGD:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),LKA,agriculture,LKA:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),LKA,chemicals,LKA:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),LKA,consumer_goods,LKA:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),LKA,energy,LKA:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),LKA,government,LKA:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),BRA,agriculture,BRA:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),BRA,chemicals,BRA:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),BRA,consumer_goods,BRA:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),BRA,energy,BRA:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),BRA,government,BRA:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),MEX,agriculture,MEX:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),MEX,chemicals,MEX:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),MEX,consumer_goods,MEX:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),MEX,energy,MEX:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),MEX,government,MEX:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ARG,agriculture,ARG:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ARG,chemicals,ARG:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ARG,consumer_goods,ARG:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ARG,energy,ARG:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),ARG,government,ARG:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),COL,agriculture,COL:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),COL,chemicals,COL:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),COL,consumer_goods,COL:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),COL,energy,COL:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),COL,government,COL:government,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),CHL,agriculture,CHL:agriculture,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),CHL,chemicals,CHL:chemicals,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),CHL,consumer_goods,CHL:consumer_goods,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),CHL,energy,CHL:energy,False
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),CHL,government,CHL:government,False
+31,"2013 ""Taper Tantrum"" EM Currency Crisis",BRA,,,False
+31,"2013 ""Taper Tantrum"" EM Currency Crisis",IND,,,False
+31,"2013 ""Taper Tantrum"" EM Currency Crisis",IDN,,,False
+31,"2013 ""Taper Tantrum"" EM Currency Crisis",ZAF,,,False
+31,"2013 ""Taper Tantrum"" EM Currency Crisis",TUR,,,False
+32,2014–2016 Oil Price Collapse,SAU,,,False
+32,2014–2016 Oil Price Collapse,RUS,,,False
+32,2014–2016 Oil Price Collapse,NGA,,,False
+32,2014–2016 Oil Price Collapse,VEN,,,False
+32,2014–2016 Oil Price Collapse,CAN,,,False
+33,2015–2016 Global Trade Slowdown,,,,False
+34,2016 North Korea Nuclear Tests & Sanctions,PRK,,,False
+34,2016 North Korea Nuclear Tests & Sanctions,KOR,,,False
+34,2016 North Korea Nuclear Tests & Sanctions,CHN,,,False
+35,"2017 Hurricane Season (Harvey, Irma, Maria)",USA,,,False
+35,"2017 Hurricane Season (Harvey, Irma, Maria)",PRI,,,False
+35,"2017 Hurricane Season (Harvey, Irma, Maria)",DOM,,,False
+35,"2017 Hurricane Season (Harvey, Irma, Maria)",HTI,,,False
+35,"2017 Hurricane Season (Harvey, Irma, Maria)",JAM,,,False
+35,"2017 Hurricane Season (Harvey, Irma, Maria)",BHS,,,False
+36,2019 Hong Kong Protests,HKG,,,False
+37,2021 Evergrande Default (See Event 24 for full),,,,False
+38,2022 Russia Gas Nord Stream Pipeline Sabotage,DEU,,,False
+38,2022 Russia Gas Nord Stream Pipeline Sabotage,FRA,,,False
+38,2022 Russia Gas Nord Stream Pipeline Sabotage,ITA,,,False
+38,2022 Russia Gas Nord Stream Pipeline Sabotage,ESP,,,False
+38,2022 Russia Gas Nord Stream Pipeline Sabotage,NLD,,,False
+38,2022 Russia Gas Nord Stream Pipeline Sabotage,POL,,,False
+38,2022 Russia Gas Nord Stream Pipeline Sabotage,BEL,,,False
+39,2022 Pakistan Economic Crisis & IMF Bailout,PAK,,,False
+40,2023 Israel-Gaza Conflict & MENA Economic Impact,ISR,,,False
+40,2023 Israel-Gaza Conflict & MENA Economic Impact,PSE,,,False
+40,2023 Israel-Gaza Conflict & MENA Economic Impact,JOR,,,False
+40,2023 Israel-Gaza Conflict & MENA Economic Impact,LBN,,,False
+40,2023 Israel-Gaza Conflict & MENA Economic Impact,EGY,,,False
+40,2023 Israel-Gaza Conflict & MENA Economic Impact,SAU,,,False
+40,2023 Israel-Gaza Conflict & MENA Economic Impact,ARE,,,False
+40,2023 Israel-Gaza Conflict & MENA Economic Impact,TUR,,,False
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,TWN,,,False
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,USA,,,False
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,KOR,,,False
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,JPN,,,False
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,DEU,,,False
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,FRA,,,False
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,ITA,,,False
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,ESP,,,False
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,NLD,,,False
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,POL,,,False
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,BEL,,,False
+42,2025–2026 Middle East Energy Shock,DEU,,,False
+42,2025–2026 Middle East Energy Shock,FRA,,,False
+42,2025–2026 Middle East Energy Shock,ITA,,,False
+42,2025–2026 Middle East Energy Shock,ESP,,,False
+42,2025–2026 Middle East Energy Shock,NLD,,,False
+42,2025–2026 Middle East Energy Shock,POL,,,False
+42,2025–2026 Middle East Energy Shock,BEL,,,False
+42,2025–2026 Middle East Energy Shock,SAU,,,False
+42,2025–2026 Middle East Energy Shock,ARE,,,False
+42,2025–2026 Middle East Energy Shock,ISR,,,False
+42,2025–2026 Middle East Energy Shock,IRN,,,False
+42,2025–2026 Middle East Energy Shock,IRQ,,,False

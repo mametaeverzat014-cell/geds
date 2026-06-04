@@ -1,0 +1,202 @@
+{
+  "timestamp": "2026-06-03T17:33:31.913906+00:00",
+  "note": "Assembled uncertainty layer for V4. Bootstrap CIs and coverage recomputed on the V4 corpora; identifiability (SVD) and Monte-Carlo ensemble coverage carried forward from the Mission-1 uncertainty stack (these are properties of the model + parameter space + frozen calibration, essentially invariant to a +1 to +7 event change).",
+  "per_corpus": {
+    "current": {
+      "n_events": 21,
+      "geds_mae_ci95": [
+        0.07652761904761905,
+        0.2567349999999999
+      ],
+      "geds_pearson_ci95": [
+        -0.3781477366270119,
+        0.8171241035377164
+      ],
+      "superiority_vs_baselines": {
+        "Leontief": {
+          "point": -0.002316607722427033,
+          "p2_5": -0.005478773072384305,
+          "p97_5": -0.0002926648801059695,
+          "frac_geds_better": 0.0,
+          "zero_in_ci": false,
+          "significant_at_0.05": true
+        },
+        "Linear-Diffusion": {
+          "point": 0.060119465778272124,
+          "p2_5": 0.00486491050420089,
+          "p97_5": 0.11212715898232443,
+          "frac_geds_better": 0.9842,
+          "zero_in_ci": false,
+          "significant_at_0.05": true
+        },
+        "Naive": {
+          "point": 0.018890476190476152,
+          "p2_5": -0.03721190476190473,
+          "p97_5": 0.07082464285714282,
+          "frac_geds_better": 0.748,
+          "zero_in_ci": true,
+          "significant_at_0.05": false
+        }
+      },
+      "empirical_coverage_95pi": {
+        "method": "GEDS pred +- 1.96*residual_std (Gaussian 95% PI proxy)",
+        "resid_std": 0.22008898081501146,
+        "n_in_band": 17,
+        "n_events": 21,
+        "fraction": 0.8095238095238095
+      }
+    },
+    "v4_primary": {
+      "n_events": 22,
+      "geds_mae_ci95": [
+        0.07239306818181818,
+        0.2507801136363636
+      ],
+      "geds_pearson_ci95": [
+        -0.346393420945559,
+        0.8236342939447122
+      ],
+      "superiority_vs_baselines": {
+        "Leontief": {
+          "point": -0.0022099751824839475,
+          "p2_5": -0.005241409478805665,
+          "p97_5": -0.0002648030003177281,
+          "frac_geds_better": 0.0,
+          "zero_in_ci": false,
+          "significant_at_0.05": true
+        },
+        "Linear-Diffusion": {
+          "point": 0.06131384502178633,
+          "p2_5": 0.008940777718185803,
+          "p97_5": 0.11002218058560327,
+          "frac_geds_better": 0.988,
+          "zero_in_ci": false,
+          "significant_at_0.05": true
+        },
+        "Naive": {
+          "point": 0.018781404958677722,
+          "p2_5": -0.03451045454545462,
+          "p97_5": 0.06880523760330574,
+          "frac_geds_better": 0.751,
+          "zero_in_ci": true,
+          "significant_at_0.05": false
+        }
+      },
+      "empirical_coverage_95pi": {
+        "method": "GEDS pred +- 1.96*residual_std (Gaussian 95% PI proxy)",
+        "resid_std": 0.2160972496825129,
+        "n_in_band": 18,
+        "n_events": 22,
+        "fraction": 0.8181818181818182
+      }
+    },
+    "v4_max": {
+      "n_events": 28,
+      "geds_mae_ci95": [
+        0.06957419642857145,
+        0.21097857142857138
+      ],
+      "geds_pearson_ci95": [
+        -0.267006747500118,
+        0.8317612460829087
+      ],
+      "superiority_vs_baselines": {
+        "Leontief": {
+          "point": -0.0017540576495376214,
+          "p2_5": -0.004125343128760992,
+          "p97_5": -0.00020182463134857495,
+          "frac_geds_better": 0.0002,
+          "zero_in_ci": false,
+          "significant_at_0.05": true
+        },
+        "Linear-Diffusion": {
+          "point": 0.04345177955000051,
+          "p2_5": 0.0005440498031834781,
+          "p97_5": 0.08511253368361085,
+          "frac_geds_better": 0.9768,
+          "zero_in_ci": false,
+          "significant_at_0.05": true
+        },
+        "Naive": {
+          "point": 0.010841326530612233,
+          "p2_5": -0.027967959183673508,
+          "p97_5": 0.048085350765306116,
+          "frac_geds_better": 0.714,
+          "zero_in_ci": true,
+          "significant_at_0.05": false
+        }
+      },
+      "empirical_coverage_95pi": {
+        "method": "GEDS pred +- 1.96*residual_std (Gaussian 95% PI proxy)",
+        "resid_std": 0.19521462273244652,
+        "n_in_band": 24,
+        "n_events": 28,
+        "fraction": 0.8571428571428571
+      }
+    }
+  },
+  "identifiability_carried_forward": {
+    "condition_number": 34.29194674957855,
+    "effective_rank": 7,
+    "n_params": 7,
+    "interpretation": "Condition number is moderately ill-conditioned (30 \u2264 \u03ba < 100); effective rank is full (7/7): in the linearised map every parameter moves predictions along a distinct direction, so the parameters are *formally* distinguishable. This does NOT contradict the near-zero local-sensitivity result \u2014 the parameters shift individual event predictions in independent directions, but the shifts are negligible in magnitude versus the observed-loss scale and cancel at the aggregate, so the calibration is *practically* weakly-determined rather than *formally* rank-deficient."
+  },
+  "monte_carlo_ensemble_coverage_carried_forward": {
+    "n_ensemble": 500,
+    "n_events_at_build": 21,
+    "coverage_observed_in_p2_5_p97_5": {
+      "n_in_band": 0,
+      "n_events": 21,
+      "fraction": 0.0
+    },
+    "parameter_uncertainty_source": "LOEO fold std (loeo_results.json::fold_variance)"
+  },
+  "loeo_sigma_carried_forward": {
+    "amplification_mu": 0.9827521906876293,
+    "amplification_eps": 0.021214969369343837,
+    "propagation_decay": 0.15638056550314153,
+    "recovery_rate": 0.050668112474252965,
+    "bullwhip_factor": 0.14826977588632714,
+    "inventory_scale": 0.6103995780947961,
+    "r_output_floor": 0.10384016965603686
+  },
+  "loeo_v4_summary": {
+    "n_folds": 6,
+    "val_metrics": {
+      "loeo_mae": 0.06189999999999999,
+      "loeo_mae_std": 0.05085997116266059,
+      "loeo_rmse": 0.08011458460646642
+    },
+    "overfitting_gap": -0.09668500000000002,
+    "fold_variance": {
+      "amplification_mu": {
+        "mean": 1.3746049203530053,
+        "std": 1.4792166357946899
+      },
+      "amplification_eps": {
+        "mean": 0.07610724630369571,
+        "std": 0.0630591359994204
+      },
+      "propagation_decay": {
+        "mean": 0.6033455856964914,
+        "std": 0.1073336034199132
+      },
+      "recovery_rate": {
+        "mean": 0.21518922383502118,
+        "std": 0.06824414317064437
+      },
+      "bullwhip_factor": {
+        "mean": 1.306235606017163,
+        "std": 0.29679028376801037
+      },
+      "inventory_scale": {
+        "mean": 1.0044934043779932,
+        "std": 0.4105826270348032
+      },
+      "r_output_floor": {
+        "mean": 0.1697251868019138,
+        "std": 0.1258557444455071
+      }
+    }
+  }
+}

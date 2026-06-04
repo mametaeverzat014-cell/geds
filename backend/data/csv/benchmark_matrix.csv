@@ -1,0 +1,11 @@
+model_id,model_name,prediction_accuracy,interpretability,scalability,robustness,runtime,data_requirements,research_support,expected_geds_value
+1,Leontief Input-Output (I-O),6,10,8,7,9,5,10,9
+2,Linear Network Diffusion,7,9,9,7,10,4,8,9
+3,Agent-Based Model (ABM),8,6,4,6,3,9,9,7
+4,Graph Neural Network (GNN / TGNN),8,3,6,5,4,9,7,6
+5,Dynamic Bayesian Network (DBN),,9,4,7,5,7,7,5
+6,Network Contagion Model (SIR-type / Gai-Kapadia),7,10,8,6,8,6,10,8
+7,Temporal Graph Model (TGN / TGAT),7,2,5,4,3,9,6,5
+8,XGBoost (Gradient-Boosted Trees),9,6,9,7,9,5,9,8
+9,Random Forest (RF),8,6,8,8,7,5,8,7
+10,Monte Carlo Simulation (MCS),8,7,4,9,3,6,10,9

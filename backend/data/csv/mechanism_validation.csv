@@ -1,0 +1,10 @@
+mechanism,label,evidence_strength,key_paper,geds_assumption_used,matches_evidence,confidence,_source_origin
+supply_chain_network_propagation,SUPPORTED,STRONG,Acemoglu 2012; Carvalho 2021; Barrot & Sauvagnat 2016,linear amplified propagation through D_eff matrix,true,5,publication_risk_report.md §6
+bullwhip_amplification,SUPPORTED,STRONG,"Lee, Padmanabhan, Whang 1997",1.25x inbound amplification on E-state nodes,partial — Lee formula not parameterized to GEDS sector lead times,4,publication_risk_report.md §6
+hysteresis_permanent_losses,SUPPORTED,STRONG,Cerra-Fatas-Saxena 2020 IMF WP; IMF WP/2021/170,R-state output floor 0.30 (70% production cap),partial — Cerra 1-2% permanent loss; GEDS 30% floor is much larger,4,publication_risk_report.md §6
+chokepoint_systemic_risk,SUPPORTED,STRONG,Verschuur et al. 2025 Nature Comms,chokepoint nodes with adaptive_rerouting surcharge,true (qualitative); GEDS does not currently use Verschuur loss magnitudes,5,publication_risk_report.md §6
+SEIRS_supply_chain_threshold,UNCERTAIN,MODERATE,DRPRESS 2024; Nature Sci Reports 2021,SEIRS state machine with EXPOSURE_TRIGGER=0.05,qualitative match; empirical calibration ABSENT,3,publication_risk_report.md §6
+financial_contagion_extreme_value,UNCERTAIN,MODERATE,ECB WP1666; IMF Ch.21,GEDS finance sector not parameterized from ECB/BIS data,false — parameters absent,2,publication_risk_report.md §6
+SEIRS_re_susceptibility_rate_xi,UNSUPPORTED,ABSENT,No empirical calibration found,Implicit ξ embedded in R→S transition after recovery_delay weeks,false — ξ is arbitrary,1,"publication_risk_report.md §3.1, §6"
+country_sector_heuristic_weights,UNSUPPORTED,ABSENT,OECD ICIO 2018 / WIOD 2016 publicly available but not yet ingested,Hardcoded SPECIALTY_PRESENCE map per country,"false — heuristic, not data-derived",1,"publication_risk_report.md §3.2, §6"
+healthcare_sector_propagation,UNCERTAIN,WEAK,Nature Sci Reports 2021 DOI:10.1038/s41598-021-94619-1,healthcare not in engine Industry enum (mapped to tourism for COVID),false — wrong proxy sector,2,publication_risk_report.md §3.4

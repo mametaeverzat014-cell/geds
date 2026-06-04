@@ -1,171 +1,139 @@
 # GEDS — Current State of Reality
 
-**Snapshot date**: 2026-05-21
-**Method**: direct file inspection + executed test suite + HTTP probes.
-**Purpose**: single source of truth for what the code actually does, today.
+**Snapshot date**: 2026-05-25
+**Method**: aggregated from master registries + Phase 1–5 artefacts.
+**Purpose**: single source of truth for what the engine and data layer actually contain.
 
-## Boot path (executed and verified)
+## Headline numbers
 
-```
-configure_logging()                 → key=value lines to stdout
-_validate_environment()             → optional keys check; CORS regex compile-check
-load_graph()                        → snapshot: nodes=40 edges=64
-compile_graph(snapshot)             → CompiledGraph with D_eff sparse + dense
-self_check sim (4 weeks, 1 shock)   → peak_csi > 0
-register CORS + routes + websocket  → 28 REST + 1 WS
-boot_complete                       → typical elapsed_ms ≈ 18ms
-```
+- **Historical events catalogued:** 42
+  - With observed GDP impact value: 40 (95.2%)
+  - With v2 institutional ground-truth attached: 8
+  - With peer-reviewed paper corroboration: 1
+  - Mapping to ≥1 node in the *default* engine graph (40 nodes): 11
+  - Scenario / forward-looking: 1
+- **Datasets catalogued:** 53 (HIGH/MEDIUM/LOW counts in `MASTER_STATE.md`)
+- **Benchmark models catalogued:** 10 (in `master_model_registry.csv`)
+- **Literature entries:** 61 (25 deeply-cataloged + 36 title-only)
+- **Event evidence rows mined:** 319 across 41 events
+  - Peer-reviewed paper-derived rows: 10 events
 
-Verified by `TestClient(app)` lifespan run on 2026-05-21:
-```
-ts=2026-05-21T... msg=graph_loaded nodes=40 edges=64
-ts=2026-05-21T... msg=self_check ok=True peak_csi=0.0443 frames=4
-ts=2026-05-21T... msg=boot_complete elapsed_ms=18 env_ok=True
-```
+## Graph
 
-## Test suite — current state
+**Default engine graph:**
+- Nodes: 40 (36 country×industry + 4 chokepoints)
+- Edges (default): 64 hardcoded MVP
+- Edges (Comtrade-merged, opt-in via `GEDS_USE_COMTRADE_EDGES=1`): 201
 
-`pytest backend/tests/ -v` on 2026-05-21:
+**Expanded graph (Phase 1 — opt-in, not yet wired into `seed.py`):**
+- Nodes: 110 (102 country×industry + 8 chokepoints)
+- Edges: 234
+- Country coverage: 34 ISO3 (G20 + key trade hubs)
+- See `docs/GRAPH_EXPANSION.md` for the integration roadmap.
 
-| File | Tests | Pass | Fail |
-|---|---|---|---|
-| `test_advisor.py` | 11 | 11 | 0 |
-| `test_metrics.py` | 6 | 6 | 0 |
-| `test_propagation.py` | 7 | 7 | 0 |
-| `test_scenarios.py` | 5 | 5 | 0 |
-| `test_validation.py` | 4 | 4 | 0 |
-| **TOTAL** | **33** | **33** | **0** |
+## Validation
 
-Prior state (before this session): 30 pass / 3 fail.
+- `validation_targets_v2.csv` — 178 institutional ground-truth rows across 8 events (✅/⚠️ flagged)
+- `validation_targets_expanded.csv` — 94 rows across 42 events (literature + aggregates)
+- `event_evidence.csv` — 319 rows (Phase 2) cross-linking papers + v2 + aggregates per event
+- `benchmark_inputs.csv` — 42 event-level aggregates
 
-## Benchmark — current state
+## Benchmark (Phase 3 result)
 
-`benchmark.json` (regenerated 2026-05-16) with default config:
+- **Benchmark v2** (`benchmark_v2.json`):
+  - N benchmarked: **11** / 42 (engine sector/graph limits)
+  - Winner by MAE: `Linear Diffusion (network)`
+  - Winner by R²: `Naive Persistence (mean)`
 
-| Model | MAE | R² | Pearson | Murphy skill |
-|---|---|---|---|---|
-| Linear Diffusion (network) | 0.0152 | +0.7647 | +0.879 | +0.7647 |
-| SEIRS-Bullwhip-Hysteresis (GEDS) | 0.0248 | +0.0451 | +0.7196 | +0.0451 |
-| Naive Persistence (mean) | 0.0305 | 0.000 | 0.000 | 0.000 |
-| Leontief (I-O equilibrium) | 0.0301 | −0.6696 | +0.0753 | −0.6696 |
+  Per-model scores:
 
-**Honest interpretation**: linear diffusion is the in-sample winner on N=8 events.
-GEDS-SEIRS beats predict-the-mean by a hair. Leontief is worse than predict-the-mean.
+  | Model | MAE | R² | Pearson | Skill |
+  |---|---|---|---|---|
+  | SEIRS-Bullwhip-Hysteresis (GEDS) | 0.1607 | -0.310 | 0.784 | -0.310 |
+  | Leontief (input-output equilibrium) | 0.1609 | -0.312 | 0.779 | -0.312 |
+  | Linear Diffusion (network) | 0.1593 | -0.294 | 0.769 | -0.294 |
+  | Naive Persistence (mean) | 0.1942 | 0.000 | 0.000 | +0.000 |
 
-## Edge merger (new this session)
+**Comparison vs prior benchmark (`benchmark.json`):**
 
-`backend/app/data/edge_merger.py` reads `backend/data/csv/comtrade_edges.csv`
-and merges real bilateral edges into the engine graph.
+- Prior N = 8; new N = 11
 
-**Default**: disabled (`GEDS_USE_COMTRADE_EDGES=0`).
+## Calibration (Phase 4 result)
 
-**Why disabled**: empirical finding from 2026-05-21 benchmark — merging the 137 new
-real edges into the 64-edge MVP graph degrades every model:
+- **Calibration v2** (`calibration_v2.json`):
+  - Best method: `DE`
+  - Default-config RMSE: 0.27762
+  - Best-params RMSE: 0.27680
+  - Improvement vs default: 0.00184
+  - Sobol identifiable parameters: 2 / 5
 
-| Model | MAE before | MAE after | R² before | R² after |
-|---|---|---|---|---|
-| SEIRS | 0.0248 | 0.0368 | +0.045 | −1.164 |
-| Linear Diffusion | 0.0152 | 0.2209 | +0.765 | −41.58 |
-| Leontief | 0.0301 | 0.0261 | −0.670 | −0.433 |
+- **MCMC posterior** (`posterior_v2.json`):
+  - Walkers × steps: 20 × 150 (burn-in 50)
+  - Acceptance fraction: 0.305
+  - Autocorr time max: 18.5
+  - Converged heuristic: False
 
-The existing parameters were implicitly calibrated for the sparse 64-edge topology.
-Adding real edges without re-running MCMC + DE breaks the calibration. The merger
-infrastructure is preserved so a denser-graph re-calibration can be performed; until
-then, the default keeps the engine in its measured state.
+  Posterior summary (mean ± std, [P05, P95]):
 
-To run with merged edges: `GEDS_USE_COMTRADE_EDGES=1 uvicorn app.main:app`.
+  | Parameter | Mean | Std | P05 | P50 | P95 |
+  |---|---|---|---|---|---|
+  | propagation_decay | 0.7961 | 0.1489 | 0.5318 | 0.8283 | 0.9814 |
+  | amplification_mu | 2.4828 | 1.2544 | 0.1611 | 2.7377 | 3.9519 |
+  | amplification_eps | 0.1335 | 0.0524 | 0.0291 | 0.1435 | 0.1974 |
+  | recovery_rate | 0.0634 | 0.0547 | 0.0125 | 0.0475 | 0.1681 |
+  | bullwhip_factor | 1.2448 | 0.2066 | 1.0168 | 1.1849 | 1.5795 |
 
-## Routes — actual count
+  _Compute-budget note: Production-grade budget per user spec is MCMC 600-1000 steps × ≥100 walkers. This run used 20×150 to fit the session window; results are informative but not publication-grade. Re-run with MCMC_STEPS=600 + MCMC_WALKERS=100 for tighter posteriors (~270 min)._
 
-28 REST endpoints + 1 WebSocket. Full list:
+## Known weaknesses (do not exaggerate)
 
-| Method | Path | Module |
+1. **Sector enum is the bottleneck.** Engine `Industry` enum has only 7
+   members; 31 of 42 events touch sectors outside the enum and are
+   excluded from the benchmark. The Phase 1 expanded-graph CSV is
+   *data only* — wiring it into `seed.py` requires careful re-tuning
+   of per-node parameters that this session did not perform.
+
+2. **N benchmarked = ~11.** Even at N=42 corpus size, only the subset
+   matching engine-known sectors AND engine graph nodes can be scored.
+   Any 'GEDS beats baseline' claim is currently an N=11 claim.
+
+3. **MCMC budget is below user spec.** User asked for 600–1000 steps;
+   this session ran 150 steps × 20 walkers to fit the time window.
+   Posterior widths are wider than they would be with production budget.
+   See `posterior_v2.json::compute_budget_note`.
+
+4. **Only 1–10 events have paper corroboration depending on definition.**
+   Curated `PAPER_TO_EVENTS` map in `phase1_2_expand_and_mine.py` links
+   25 papers to events, but only papers with extractable numbers contribute
+   numeric evidence rows. Most papers are theoretical methodology, not
+   per-event measurements.
+
+5. **Recovery-time data is 97.6% blank.** Source docx never had an
+   explicit Recovery Time field — values exist only when paper text
+   explicitly says e.g. 'reconstruction: 10 years'.
+
+6. **Disk-space note.** During this session the local `C:` drive was
+   reported at 100% utilisation; pipeline runs should be kept on `D:`
+   until that's resolved.
+
+## Confidence summary
+
+| Layer | Aggregate confidence | Source |
 |---|---|---|
-| GET | `/`, `/health`, `/healthz` | `app/main.py` |
-| GET | `/api/v1/graph`, `/api/v1/graph/stats` | `routes.py` |
-| GET | `/api/v1/scenarios`, `/api/v1/scenarios/{id}` | `routes.py` |
-| POST | `/api/v1/simulate` | `routes.py` |
-| POST | `/api/v1/monte-carlo` | `routes.py` |
-| POST | `/api/v1/tail-risk` | `routes.py` |
-| POST | `/api/v1/policy` | `routes.py` |
-| POST | `/api/v1/narrative` (Grok stub w/o key) | `routes.py` |
-| GET | `/api/v1/news/recent` | `routes.py` |
-| POST | `/api/v1/news/apply` | `routes.py` |
-| GET, DELETE | `/api/v1/news/overlay` | `routes.py` |
-| GET | `/api/v1/centrality` | `routes.py` |
-| GET | `/api/v1/backtest` | `routes.py` |
-| GET | `/api/v1/posterior` | `routes.py` |
-| GET | `/api/v1/cv-report` | `routes.py` |
-| GET | `/api/v1/research-metrics` | `routes.py` |
-| GET | `/api/v1/ablation` | `routes.py` |
-| GET | `/api/v1/benchmark` | `routes.py` |
-| GET | `/api/v1/calibration-report` | `routes.py` |
-| GET | `/api/v1/validate` | `routes.py` |
-| GET | `/api/v1/data/historical-events-csv` | `routes.py` |
-| GET | `/api/v1/data/model-parameters-csv` | `routes.py` |
-| GET | `/api/v1/data/validation-datasets-csv` | `routes.py` |
-| GET | `/api/v1/data/last-refresh` | `routes.py` |
-| GET | `/api/v1/data/provenance` | `routes.py` |
-| GET | `/api/v1/data/sources` | `routes.py` |
-| WS  | `/ws/simulate` | `websocket.py` |
+| Event registry | 4.14 / 5 | source-rated in docx |
+| Dataset registry | 3.26 / 5 | derived from provider + API + Python-package signals |
+| Literature registry | 3.26 / 5 | 5 for deeply-cataloged papers, 2-3 for title-only |
 
-## Data layer — actual counts
+## What is reproducible
 
-| Resource | Count | Source |
-|---|---|---|
-| Graph nodes | 40 | `seed_data.build_nodes()` |
-| Graph edges (default) | 64 | `seed_data.build_edges()` |
-| Graph edges (with merger enabled) | 201 | `edge_merger.merge_edges()` |
-| Historical events in CSV | 12 (8 in-graph) | `historical_events.csv` |
-| Calibratable parameters in CSV | 15 | `model_parameters.csv` |
-| Validation datasets catalogued | 14 | `validation_datasets.csv` |
-| Comtrade bilateral edges in CSV | 414 | `comtrade_edges.csv` |
-| Comtrade raw cache parquet files | 96 | `backend/data/raw/comtrade/` |
-| Calibration JSON artefacts | 6 | `backend/data/calibration/` |
+Every number in this doc traces to a file in the repo:
 
-## GitHub Actions — actual cron history
+- Event counts → `master_event_registry.csv`
+- Dataset counts → `master_dataset_registry.csv`
+- Graph node counts → `expanded_graph_nodes.csv` and `seed_data.py`
+- Benchmark numbers → `backend/data/calibration/benchmark_v2.json`
+- Calibration numbers → `backend/data/calibration/calibration_v2.json`
+- Posterior numbers → `backend/data/calibration/posterior_v2.json`
 
-| Run ID | Date | Trigger | Status | Duration |
-|---|---|---|---|---|
-| 26218318323 | 2026-05-21 09:42 UTC | schedule | success | 47s |
-| 26154246500 | 2026-05-20 09:37 UTC | schedule | success | 49s |
-| 26089456456 | 2026-05-19 09:46 UTC | schedule | success | 42s |
-| 26026944181 | 2026-05-18 10:06 UTC | schedule | success | 47s |
-| 25984161682 | 2026-05-17 07:03 UTC | manual | success | 46s |
-
-Cron is healthy. Last 5 runs all green.
-
-## Deployment — actual state
-
-| Component | Where | Reachable? |
-|---|---|---|
-| Frontend | https://geds1.vercel.app | YES — returns 200, renders dashboard |
-| Backend | (none deployed) | `geds-backend.onrender.com` returned 503 on probe |
-
-Production frontend still shows the legacy hardcoded "r = +0.97" badge —
-Vercel build has not picked up the truthful-badge code change. A new deploy
-trigger is needed (push or manual redeploy in Vercel UI).
-
-## What broke and got fixed this session
-
-1. **3 unit tests** — fixed by updating to current `BatchedEngineState` signature and
-   measuring peak-cascade rather than final-state country count.
-2. **Logging** — replaced default Python logging with key=value structured format.
-3. **/health and /healthz** — added; deep health includes engine self-check.
-4. **Env validation at boot** — CORS regex compile-check + optional-keys report.
-5. **Real Comtrade edges available as opt-in** — merger added, default-off after
-   measuring that naive merge breaks calibration.
-
-## What did NOT happen this session and why
-
-- **Graph expansion to 100-200 nodes**: requires Comtrade pulls for additional
-  reporters (currently 12 ISO3 codes have data; the hardcoded map in
-  `comtrade_fetcher.ISO3_TO_COMTRADE` has 35 entries but only 12 were pulled).
-  Pulling more is mechanically possible but the merger experiment above shows
-  that *adding edges without recalibration degrades the model*. Recalibration
-  requires a production MCMC run (currently 16 walkers × 25 steps, non-converged).
-- **30-50 historical events**: requires literature-review labor outside this
-  codebase. Current count remains 8 in-graph + 4 pending graph expansion.
-- **GNN / XGBoost / transformer models**: no training data; not built.
-- **Auth, multi-tenancy, persistent storage**: not built.
-- **UI expansion past 2 pages**: not built.
+Re-run order: `phase1_2_expand_and_mine.py` → `phase3_benchmark_v2.py`
+→ `phase4_calibrate_v2.py` → `phase5_regenerate_state.py`.

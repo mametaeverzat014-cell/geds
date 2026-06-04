@@ -1,0 +1,152 @@
+{
+  "timestamp": "2026-05-27T07:49:12.776914+00:00",
+  "source": "backend/data/csv/propagation_literature.csv",
+  "note": "Literature-derived priors. NOT used to overwrite calibrated engine values per user constraint 'Do not overwrite manually calibrated values'. The engine continues to use calibration_v2.json best_params. Use these priors only for: (a) bounding parameter ranges in future calibration runs, (b) sensitivity analysis sanity checks, (c) publication-defence sources.",
+  "priors_by_mechanism": {
+    "supply_chain_propagation": {
+      "n_papers": 1,
+      "papers": [
+        {
+          "paper_id": "Barrot-Sauvagnat-2016",
+          "doi": "10.1093/qje/qjw018",
+          "key_finding": "-5pp supplier sales; -2pp customer sales after disaster",
+          "evidence_confidence": "HIGH"
+        }
+      ],
+      "estimates": {
+        "recovery_duration_months": {
+          "values": [
+            6
+          ],
+          "mean": 6.0,
+          "min": 6.0,
+          "max": 6.0
+        }
+      }
+    },
+    "network_multiplier": {
+      "n_papers": 1,
+      "papers": [
+        {
+          "paper_id": "Carvalho-2021",
+          "doi": "10.1093/qje/qjab010",
+          "key_finding": "Indirect effects 3-4x direct damage (Tohoku)",
+          "evidence_confidence": "HIGH"
+        }
+      ],
+      "estimates": {
+        "propagation_multiplier": {
+          "values": [
+            3.5
+          ],
+          "mean": 3.5,
+          "min": 3.5,
+          "max": 3.5
+        },
+        "recovery_duration_months": {
+          "values": [
+            12
+          ],
+          "mean": 12.0,
+          "min": 12.0,
+          "max": 12.0
+        }
+      }
+    },
+    "input_complementarity": {
+      "n_papers": 1,
+      "papers": [
+        {
+          "paper_id": "Boehm-2019",
+          "doi": "10.1162/rest_a_00750",
+          "key_finding": "Elasticity \u2248 -1 in automotive/electronics (near-perfect complementarity)",
+          "evidence_confidence": "HIGH"
+        }
+      ],
+      "estimates": {}
+    },
+    "hysteresis": {
+      "n_papers": 2,
+      "papers": [
+        {
+          "paper_id": "Cerra-Fatas-Saxena-2020",
+          "doi": "10.5089/9781513537559.001",
+          "key_finding": "1-2% permanent GDP loss per recession",
+          "evidence_confidence": "HIGH"
+        },
+        {
+          "paper_id": "IMF-WP-24-039",
+          "doi": "",
+          "key_finding": "1.5% GDP below baseline at 5 years post-conflict",
+          "evidence_confidence": "HIGH"
+        }
+      ],
+      "estimates": {
+        "recovery_duration_months": {
+          "values": [
+            60,
+            60
+          ],
+          "mean": 60.0,
+          "min": 60.0,
+          "max": 60.0
+        }
+      }
+    },
+    "bullwhip": {
+      "n_papers": 1,
+      "papers": [
+        {
+          "paper_id": "Lee-Padmanabhan-Whang-1997",
+          "doi": "10.1287/mnsc.43.4.546",
+          "key_finding": "Var(orders)/Var(demand) >= 1 + 2\u03b1L + 2\u03b1\u00b2L\u00b2 (L=lead time, \u03b1=smoothing)",
+          "evidence_confidence": "HIGH"
+        }
+      ],
+      "estimates": {}
+    },
+    "chokepoint": {
+      "n_papers": 1,
+      "papers": [
+        {
+          "paper_id": "Verschuur-2025",
+          "doi": "10.1038/s41467-025-65403-w",
+          "key_finding": "$14B/year expected chokepoint losses globally",
+          "evidence_confidence": "HIGH"
+        }
+      ],
+      "estimates": {}
+    },
+    "SEIRS": {
+      "n_papers": 2,
+      "papers": [
+        {
+          "paper_id": "DRPRESS-2024",
+          "doi": "",
+          "key_finding": "Theoretical SEIR for supply chain; no empirical \u03be calibration",
+          "evidence_confidence": "MEDIUM"
+        },
+        {
+          "paper_id": "Nature-Sci-Reports-2021",
+          "doi": "10.1038/s41598-021-94619-1",
+          "key_finding": "Theoretical coupled model; parameters not calibrated to economic sectors",
+          "evidence_confidence": "MEDIUM"
+        }
+      ],
+      "estimates": {}
+    },
+    "nonlinear_threshold": {
+      "n_papers": 1,
+      "papers": [
+        {
+          "paper_id": "MIT-2025-Cascade",
+          "doi": "",
+          "key_finding": "Small shocks barely amplify; large shocks cause relationship dissolution",
+          "evidence_confidence": "MEDIUM"
+        }
+      ],
+      "estimates": {}
+    }
+  },
+  "current_engine_config": "loaded from backend/data/calibration/calibration_v2.json (unchanged)"
+}

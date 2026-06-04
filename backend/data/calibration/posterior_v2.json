@@ -1,0 +1,64 @@
+{
+  "calibration_date": "2026-05-25T00:38:20.695184+00:00",
+  "n_walkers": 20,
+  "n_steps": 150,
+  "n_burnin": 50,
+  "n_effective_samples": 2000,
+  "acceptance_fraction_mean": 0.30500000000000005,
+  "autocorr_time_max": 18.52998145621862,
+  "converged_heuristic": false,
+  "runtime_seconds": 410.9,
+  "parameters": [
+    {
+      "name": "propagation_decay",
+      "mean": 0.7961098003195975,
+      "std": 0.1489013875090216,
+      "p05": 0.5317857720533827,
+      "p50": 0.8283423136309973,
+      "p95": 0.981407968861811,
+      "prior_low": 0.5,
+      "prior_high": 0.99
+    },
+    {
+      "name": "amplification_mu",
+      "mean": 2.482818772272694,
+      "std": 1.2544013308617021,
+      "p05": 0.16106849669199957,
+      "p50": 2.737701584370632,
+      "p95": 3.9518717054856056,
+      "prior_low": 0.0,
+      "prior_high": 4.0
+    },
+    {
+      "name": "amplification_eps",
+      "mean": 0.1335262966698779,
+      "std": 0.05241163999825025,
+      "p05": 0.029121294817571673,
+      "p50": 0.14353784033930342,
+      "p95": 0.19739886183169855,
+      "prior_low": 0.01,
+      "prior_high": 0.2
+    },
+    {
+      "name": "recovery_rate",
+      "mean": 0.06338982163086679,
+      "std": 0.05472598084119128,
+      "p05": 0.01249125958926935,
+      "p50": 0.047483159488216437,
+      "p95": 0.16807139526019024,
+      "prior_low": 0.01,
+      "prior_high": 0.3
+    },
+    {
+      "name": "bullwhip_factor",
+      "mean": 1.2448203220418288,
+      "std": 0.20656581572891547,
+      "p05": 1.0168353244379715,
+      "p50": 1.1848558594338785,
+      "p95": 1.5795404188743298,
+      "prior_low": 1.0,
+      "prior_high": 2.0
+    }
+  ],
+  "compute_budget_note": "Production-grade budget per user spec is MCMC 600-1000 steps \u00d7 \u2265100 walkers. This run used 20\u00d7150 to fit the session window; results are informative but not publication-grade. Re-run with MCMC_STEPS=600 + MCMC_WALKERS=100 for tighter posteriors (~270 min)."
+}

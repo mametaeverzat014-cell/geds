@@ -52,6 +52,19 @@ E_BULLWHIP_FACTOR = 1.25        # +25% inbound dependency_weight for panic-buyin
 
 # ─────────────────────────── industry inventory defaults (weeks) ────────────
 # Sources: IHS Markit (auto), SEMI/IPC (semi), Boeing/Airbus annual reports (aerospace).
+# Extension v2 defaults are conservative midpoints from public sector references:
+#   - Banking/insurance/capital_markets: 0 (services, no physical inventory; absorb
+#     via capital adequacy ratios not stock — but SEIRS buffer = 0 means E→I
+#     fires the moment exposure begins, which matches financial-contagion speed).
+#   - Oil: 13w (~3-month strategic petroleum reserve target across OECD).
+#   - Gas: 2w (typical pipeline + LNG terminal storage in Europe pre-2022).
+#   - Utilities: 1w (grid + fuel-stockpile of typical generator fleet).
+#   - Aviation: 8w (parts/fuel/route-flex buffer; Boeing 787 supply chain notes).
+#   - Ports: 1w (container yard turnover).
+#   - Telecoms: 0 (services, instant transmission).
+#   - Agriculture: 26w (seasonal harvest cycle; FAO grain stocks-to-use ratio).
+#   - Tourism: 0 (perishable services, no inventory).
+#   - Government: 12w (typical fiscal-quarter response window).
 INDUSTRY_INVENTORY_WEEKS: dict[str, int] = {
     "semiconductors": 10,
     "electronics":     7,
@@ -60,6 +73,19 @@ INDUSTRY_INVENTORY_WEEKS: dict[str, int] = {
     "shipping":        0,
     "energy":          3,
     "consumer_goods":  5,
+    # extension v2
+    "banking":          0,
+    "insurance":        0,
+    "capital_markets":  0,
+    "oil":             13,
+    "gas":              2,
+    "utilities":        1,
+    "aviation":         8,
+    "ports":            1,
+    "telecommunications": 0,
+    "agriculture":     26,
+    "tourism":          0,
+    "government":      12,
 }
 
 

@@ -1,0 +1,231 @@
+{
+  "timestamp": "2026-05-26T18:44:57.642064+00:00",
+  "graph_version": "v2-expanded-19-sector",
+  "graph_nodes": 595,
+  "graph_edges": 2141,
+  "n_eligible": 23,
+  "models": [
+    {
+      "model": "SEIRS-Bullwhip-Hysteresis (GEDS)",
+      "n_events": 23,
+      "mae": 0.16418,
+      "rmse": 0.26657,
+      "r_squared": -0.5657,
+      "pearson": 0.5042,
+      "bias": -0.16402
+    },
+    {
+      "model": "Leontief",
+      "n_events": 23,
+      "mae": 0.16528,
+      "rmse": 0.2668,
+      "r_squared": -0.5684,
+      "pearson": 0.6548,
+      "bias": -0.16515
+    },
+    {
+      "model": "Linear Diffusion",
+      "n_events": 23,
+      "mae": 0.18065,
+      "rmse": 0.27371,
+      "r_squared": -0.6506,
+      "pearson": -0.1564,
+      "bias": -0.14331
+    },
+    {
+      "model": "Naive Persistence",
+      "n_events": 23,
+      "mae": 0.17481,
+      "rmse": 0.21304,
+      "r_squared": 0.0,
+      "pearson": 0.0,
+      "bias": 0.0
+    }
+  ],
+  "per_event": [
+    {
+      "event_id": 1,
+      "name": "Dot-com Bubble Collapse & US Recession",
+      "target": 0.048,
+      "seirs": 0.006,
+      "leontief": 0.004551642467721247,
+      "linear_diffusion": 0.2737912087912089
+    },
+    {
+      "event_id": 2,
+      "name": "Argentine Sovereign Default & Currency Crisis",
+      "target": 0.11,
+      "seirs": 0.0017,
+      "leontief": 0.00125296781792944,
+      "linear_diffusion": 0.005394990366088632
+    },
+    {
+      "event_id": 3,
+      "name": "SARS Epidemic",
+      "target": 0.026,
+      "seirs": 0.0015,
+      "leontief": 0.0014643545279383432,
+      "linear_diffusion": 0.0014643545279383432
+    },
+    {
+      "event_id": 4,
+      "name": "Iraq War & Associated Oil Price Spike",
+      "target": 0.005,
+      "seirs": 0.0025,
+      "leontief": 0.00249375,
+      "linear_diffusion": 0.00249375
+    },
+    {
+      "event_id": 5,
+      "name": "Indian Ocean Earthquake and Tsunami",
+      "target": 0.15,
+      "seirs": 0.0014,
+      "leontief": 0.001430635838150289,
+      "linear_diffusion": 0.001430635838150289
+    },
+    {
+      "event_id": 6,
+      "name": "Hurricane Katrina & Rita",
+      "target": 0.031,
+      "seirs": 0.0025,
+      "leontief": 0.00249375,
+      "linear_diffusion": 0.00249375
+    },
+    {
+      "event_id": 9,
+      "name": "European Sovereign Debt Crisis",
+      "target": 0.26,
+      "seirs": 0.0039,
+      "leontief": 0.002961560296924131,
+      "linear_diffusion": 0.005394990366088632
+    },
+    {
+      "event_id": 10,
+      "name": "Arab Spring Political Upheaval",
+      "target": 0.5,
+      "seirs": 0.0035,
+      "leontief": 0.003468208092485549,
+      "linear_diffusion": 0.003468208092485549
+    },
+    {
+      "event_id": 11,
+      "name": "T\u014dhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",
+      "target": 0.0035,
+      "seirs": 0.0053,
+      "leontief": 0.004933856355334061,
+      "linear_diffusion": 0.2071090047393365
+    },
+    {
+      "event_id": 12,
+      "name": "Russia Crimea Annexation & Western Sanctions",
+      "target": 0.022,
+      "seirs": 0.0013,
+      "leontief": 0.0013125,
+      "linear_diffusion": 0.0013125
+    },
+    {
+      "event_id": 13,
+      "name": "Nepal Earthquake",
+      "target": 0.33,
+      "seirs": 0.0013,
+      "leontief": 0.001074404513687024,
+      "linear_diffusion": 0.0015414258188824663
+    },
+    {
+      "event_id": 14,
+      "name": "China Stock Market Crash",
+      "target": 0.069,
+      "seirs": 0.0134,
+      "leontief": 0.003939097999910118,
+      "linear_diffusion": 0.01464354527938343
+    },
+    {
+      "event_id": 15,
+      "name": "UK Brexit Referendum and Departure",
+      "target": 0.07,
+      "seirs": 0.01,
+      "leontief": 0.004005954805872064,
+      "linear_diffusion": 0.01001926782273603
+    },
+    {
+      "event_id": 16,
+      "name": "US\u2013China Trade War",
+      "target": 0.026,
+      "seirs": 0.001,
+      "leontief": 0.0010067437379576109,
+      "linear_diffusion": 0.0010067437379576109
+    },
+    {
+      "event_id": 21,
+      "name": "Russia Invasion of Ukraine & Global Sanctions",
+      "target": 0.015,
+      "seirs": 0.0004,
+      "leontief": 0.00037090558766859346,
+      "linear_diffusion": 0.0003709055876685935
+    },
+    {
+      "event_id": 22,
+      "name": "European Natural Gas & Energy Crisis",
+      "target": 0.007,
+      "seirs": 0.0007,
+      "leontief": 0.0006647398843930637,
+      "linear_diffusion": 0.0006647398843930637
+    },
+    {
+      "event_id": 23,
+      "name": "Post-COVID Global Inflation Surge & Central Bank Tightening",
+      "target": 0.014,
+      "seirs": 0.01,
+      "leontief": 0.002861396289908618,
+      "linear_diffusion": 0.01001926782273603
+    },
+    {
+      "event_id": 24,
+      "name": "China Real Estate & Evergrande Crisis",
+      "target": 0.275,
+      "seirs": 0.0146,
+      "leontief": 0.01464354527938343,
+      "linear_diffusion": 0.01464354527938343
+    },
+    {
+      "event_id": 25,
+      "name": "Sri Lanka Sovereign Default & Economic Collapse",
+      "target": 0.087,
+      "seirs": 0.0002,
+      "leontief": 0.0001676300578034682,
+      "linear_diffusion": 0.0001676300578034682
+    },
+    {
+      "event_id": 26,
+      "name": "Red Sea Houthi Attacks / Shipping Crisis",
+      "target": 0.5,
+      "seirs": 0.0103,
+      "leontief": 0.010280373831775705,
+      "linear_diffusion": 0.010314534990925937
+    },
+    {
+      "event_id": 27,
+      "name": "Panama Canal Drought & Traffic Restrictions",
+      "target": 0.73,
+      "seirs": 0.0244,
+      "leontief": 0.0244158878504673,
+      "linear_diffusion": 0.0244970206034491
+    },
+    {
+      "event_id": 28,
+      "name": "Trump 2025 \"Liberation Day\" Tariffs & Trade War",
+      "target": 0.014,
+      "seirs": 0.0008,
+      "leontief": 0.0008420038535645473,
+      "linear_diffusion": 0.0008420038535645473
+    },
+    {
+      "event_id": 30,
+      "name": "Global Food & Energy Crisis (Post-COVID / Ukraine)",
+      "target": 0.6,
+      "seirs": 0.0033,
+      "leontief": 0.003338150289017341,
+      "linear_diffusion": 0.003338150289017341
+    }
+  ]
+}

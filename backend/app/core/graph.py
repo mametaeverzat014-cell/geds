@@ -24,7 +24,23 @@ INDUSTRY_COEFFICIENTS: dict[str | None, dict[str, float]] = {
     Industry.CONSUMER_GOODS.value: {"pass_through": 0.42, "elasticity": 0.46, "labor": 0.60},
     Industry.ENERGY.value:         {"pass_through": 0.55, "elasticity": 0.42, "labor": 0.30},
     Industry.SHIPPING.value:       {"pass_through": 0.32, "elasticity": 0.55, "labor": 0.50},
-    None:                          {"pass_through": 0.10, "elasticity": 0.20, "labor": 0.10},
+    # Extension v2 — coefficients derived from sector economic literature:
+    #   pass_through ≈ share of producer cost inflation that flows to consumer CPI
+    #   elasticity   ≈ output loss per unit input shock (Leontief equivalent)
+    #   labor        ≈ employment share / output share (BLS / Eurostat sector tables)
+    Industry.BANKING.value:            {"pass_through": 0.65, "elasticity": 0.80, "labor": 0.40},
+    Industry.INSURANCE.value:          {"pass_through": 0.55, "elasticity": 0.60, "labor": 0.45},
+    Industry.CAPITAL_MARKETS.value:    {"pass_through": 0.75, "elasticity": 0.85, "labor": 0.20},
+    Industry.OIL.value:                {"pass_through": 0.70, "elasticity": 0.45, "labor": 0.20},
+    Industry.GAS.value:                {"pass_through": 0.65, "elasticity": 0.50, "labor": 0.20},
+    Industry.UTILITIES.value:          {"pass_through": 0.50, "elasticity": 0.40, "labor": 0.40},
+    Industry.AVIATION.value:           {"pass_through": 0.35, "elasticity": 0.70, "labor": 0.55},
+    Industry.PORTS.value:              {"pass_through": 0.30, "elasticity": 0.65, "labor": 0.45},
+    Industry.TELECOMMUNICATIONS.value: {"pass_through": 0.20, "elasticity": 0.30, "labor": 0.30},
+    Industry.AGRICULTURE.value:        {"pass_through": 0.45, "elasticity": 0.55, "labor": 0.70},
+    Industry.TOURISM.value:            {"pass_through": 0.25, "elasticity": 0.80, "labor": 0.75},
+    Industry.GOVERNMENT.value:         {"pass_through": 0.15, "elasticity": 0.20, "labor": 0.55},
+    None:                              {"pass_through": 0.10, "elasticity": 0.20, "labor": 0.10},
 }
 
 

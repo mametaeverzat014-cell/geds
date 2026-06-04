@@ -1,0 +1,607 @@
+{
+  "timestamp": "2026-05-29T18:00:44.661211+00:00",
+  "method": "non-parametric event-level bootstrap",
+  "n_resamples": 5000,
+  "seed": 20260529,
+  "ci_levels": [
+    2.5,
+    50.0,
+    97.5
+  ],
+  "n_events": 21,
+  "source_benchmark": "benchmark_spectral_normalized.json",
+  "graph": "OECD+WIOD spectrally normalised (\u03c1=1.0)",
+  "per_model_ci": {
+    "GEDS-SEIRS": {
+      "mae": {
+        "point": 0.1593952380952381,
+        "boot_mean": 0.1595701485714286,
+        "boot_std": 0.046992114526361255,
+        "p2_5": 0.07667011904761904,
+        "p50": 0.15681190476190476,
+        "p97_5": 0.26314297619047605
+      },
+      "rmse": {
+        "point": 0.26731529359630024,
+        "boot_mean": 0.2612679274441874,
+        "boot_std": 0.05704770761113441,
+        "p2_5": 0.14561193563505592,
+        "p50": 0.2627475820480127,
+        "p97_5": 0.3726340742663997
+      },
+      "r_squared": {
+        "point": -0.4842870538429964,
+        "boot_mean": -0.5394805035738502,
+        "boot_std": 0.20975020199269662,
+        "p2_5": -1.0296256680714413,
+        "p50": -0.5102316069842908,
+        "p97_5": -0.21146054705612624
+      },
+      "pearson": {
+        "point": 0.4556956803427372,
+        "boot_mean": 0.37409293473695426,
+        "boot_std": 0.31283750196748816,
+        "p2_5": -0.37308601610269493,
+        "p50": 0.4514921261644902,
+        "p97_5": 0.8279946029944792
+      }
+    },
+    "Leontief": {
+      "mae": {
+        "point": 0.15707863037281106,
+        "boot_mean": 0.15722960194275637,
+        "boot_std": 0.046977430378599125,
+        "p2_5": 0.07441357805209695,
+        "p50": 0.15449405359658028,
+        "p97_5": 0.2607994046428868
+      },
+      "rmse": {
+        "point": 0.26576861711054645,
+        "boot_mean": 0.2595874104805955,
+        "boot_std": 0.057381269693135756,
+        "p2_5": 0.141757384658844,
+        "p50": 0.26139041937039437,
+        "p97_5": 0.3711131052947973
+      },
+      "r_squared": {
+        "point": -0.46716068294887414,
+        "boot_mean": -0.5176905964505797,
+        "boot_std": 0.21021453090207962,
+        "p2_5": -1.0122453323831142,
+        "p50": -0.4898321687601582,
+        "p97_5": -0.18740980780292377
+      },
+      "pearson": {
+        "point": 0.3381991370621665,
+        "boot_mean": 0.30894717668155547,
+        "boot_std": 0.27269047363844956,
+        "p2_5": -0.3332741733655384,
+        "p50": 0.35066987407298134,
+        "p97_5": 0.749782104009553
+      }
+    },
+    "Linear-Diffusion": {
+      "mae": {
+        "point": 0.21951470387351021,
+        "boot_mean": 0.2194405504623327,
+        "boot_std": 0.03511726568991962,
+        "p2_5": 0.15388969117365756,
+        "p50": 0.21789346754647732,
+        "p97_5": 0.29035209583518
+      },
+      "rmse": {
+        "point": 0.2720276206636154,
+        "boot_mean": 0.2691828216197614,
+        "boot_std": 0.03875628549918408,
+        "p2_5": 0.19180175275955297,
+        "p50": 0.26950255889371083,
+        "p97_5": 0.3438181742939658
+      },
+      "r_squared": {
+        "point": -0.5370793668436191,
+        "boot_mean": -0.7422160762574554,
+        "boot_std": 0.9073978781282311,
+        "p2_5": -1.8032890015753953,
+        "p50": -0.6320223226245262,
+        "p97_5": -0.13461630010107542
+      },
+      "pearson": {
+        "point": -0.2696846272138209,
+        "boot_mean": -0.27649845472841567,
+        "boot_std": 0.20537082444780885,
+        "p2_5": -0.6412205891041639,
+        "p50": -0.28031717130127,
+        "p97_5": 0.14315460671134023
+      }
+    },
+    "Naive-Mean": {
+      "mae": {
+        "point": 0.17828571428571424,
+        "boot_mean": 0.17840112857142856,
+        "boot_std": 0.028339504779193916,
+        "p2_5": 0.12902321428571425,
+        "p50": 0.17670238095238094,
+        "p97_5": 0.23928749999999996
+      },
+      "rmse": {
+        "point": 0.2194142635464227,
+        "boot_mean": 0.21613038921930502,
+        "boot_std": 0.03798486999805162,
+        "p2_5": 0.14383279084799966,
+        "p50": 0.21545774905740073,
+        "p97_5": 0.2931565674375595
+      },
+      "r_squared": {
+        "point": 0.0,
+        "boot_mean": -0.08533945897984424,
+        "boot_std": 0.425634245799571,
+        "p2_5": -0.4487614282795423,
+        "p50": -0.02293485839901055,
+        "p97_5": -4.3295186499287034e-05
+      },
+      "pearson": {
+        "point": 1.2047476363404895e-16,
+        "boot_mean": 4.490253969281989e-17,
+        "boot_std": 1.0367689867575587e-16,
+        "p2_5": -1.6722817350775718e-16,
+        "p50": 4.7297031358835797e-17,
+        "p97_5": 2.434240129225298e-16
+      }
+    },
+    "Zero-Predictor": {
+      "mae": {
+        "point": 0.16549999999999998,
+        "boot_mean": 0.16570660476190477,
+        "boot_std": 0.048014405643302664,
+        "p2_5": 0.08045178571428568,
+        "p50": 0.1625,
+        "p97_5": 0.2713874999999999
+      },
+      "rmse": {
+        "point": 0.27483243812843317,
+        "boot_mean": 0.2686006224413574,
+        "boot_std": 0.05888579873927985,
+        "p2_5": 0.1487198846881851,
+        "p50": 0.26975982479731264,
+        "p97_5": 0.3837047309507112
+      },
+      "r_squared": {
+        "point": -0.5689397573677419,
+        "boot_mean": -0.6256270677323477,
+        "boot_std": 0.21115501811335852,
+        "p2_5": -1.1326576201767715,
+        "p50": -0.5913795031459187,
+        "p97_5": -0.30794602558295325
+      },
+      "pearson": {
+        "point": NaN,
+        "boot_mean": NaN,
+        "boot_std": NaN,
+        "p2_5": NaN,
+        "p50": NaN,
+        "p97_5": NaN
+      }
+    }
+  },
+  "pairwise_paired_bootstrap": {
+    "GEDS-SEIRS__vs__Leontief": {
+      "delta_mae_b_minus_a": {
+        "point": -0.002316607722427033,
+        "boot_mean": -0.0023405466286722026,
+        "boot_std": 0.0014090188588446846,
+        "p2_5": -0.005648585893282897,
+        "p50": -0.00218245419481132,
+        "p97_5": -0.0002914783124049596,
+        "frac_b_better": 0.9998
+      },
+      "delta_pearson_b_minus_a": {
+        "point": -0.11749654328057074,
+        "boot_mean": -0.06514575805539881,
+        "boot_std": 0.06689646330797365,
+        "p2_5": -0.16665460068333293,
+        "p50": -0.07299837520360586,
+        "p97_5": 0.059675267755176196
+      }
+    },
+    "GEDS-SEIRS__vs__Linear-Diffusion": {
+      "delta_mae_b_minus_a": {
+        "point": 0.060119465778272124,
+        "boot_mean": 0.05987040189090418,
+        "boot_std": 0.027156457008515444,
+        "p2_5": 0.005040277016887249,
+        "p50": 0.060504889402931236,
+        "p97_5": 0.11198961929297162,
+        "frac_b_better": 0.0162
+      },
+      "delta_pearson_b_minus_a": {
+        "point": -0.7253803075565581,
+        "boot_mean": -0.6505913894653699,
+        "boot_std": 0.19328212280777535,
+        "p2_5": -0.9566381226316284,
+        "p50": -0.6712969987276136,
+        "p97_5": -0.1935754766412538
+      }
+    },
+    "GEDS-SEIRS__vs__Naive-Mean": {
+      "delta_mae_b_minus_a": {
+        "point": 0.018890476190476152,
+        "boot_mean": 0.01883097999999999,
+        "boot_std": 0.027975070518116093,
+        "p2_5": -0.03805285714285711,
+        "p50": 0.019914285714285725,
+        "p97_5": 0.0720691666666666,
+        "frac_b_better": 0.2524
+      },
+      "delta_pearson_b_minus_a": {
+        "point": -0.4556956803427371,
+        "boot_mean": -0.3740929347369542,
+        "boot_std": 0.31283750196748816,
+        "p2_5": -0.8279946029944792,
+        "p50": -0.45149212616449014,
+        "p97_5": 0.3730860161026948
+      }
+    },
+    "GEDS-SEIRS__vs__Zero-Predictor": {
+      "delta_mae_b_minus_a": {
+        "point": 0.006104761904761891,
+        "boot_mean": 0.006136456190476185,
+        "boot_std": 0.0023300990223834813,
+        "p2_5": 0.002276190476190473,
+        "p50": 0.0059404761904761905,
+        "p97_5": 0.011172023809523757,
+        "frac_b_better": 0.0
+      },
+      "delta_pearson_b_minus_a": {
+        "point": NaN,
+        "boot_mean": NaN,
+        "boot_std": NaN,
+        "p2_5": NaN,
+        "p50": NaN,
+        "p97_5": NaN
+      }
+    },
+    "Leontief__vs__Linear-Diffusion": {
+      "delta_mae_b_minus_a": {
+        "point": 0.06243607350069916,
+        "boot_mean": 0.06221094851957639,
+        "boot_std": 0.026771373829358475,
+        "p2_5": 0.008572654903257803,
+        "p50": 0.06293117129939502,
+        "p97_5": 0.11364023715130855,
+        "frac_b_better": 0.012
+      },
+      "delta_pearson_b_minus_a": {
+        "point": -0.6078837642759873,
+        "boot_mean": -0.5854456314099711,
+        "boot_std": 0.16530031569187528,
+        "p2_5": -0.8997027896523748,
+        "p50": -0.5821968042063943,
+        "p97_5": -0.2370693164723747
+      }
+    },
+    "Leontief__vs__Naive-Mean": {
+      "delta_mae_b_minus_a": {
+        "point": 0.021207083912903185,
+        "boot_mean": 0.021171526628672194,
+        "boot_std": 0.02772818941473695,
+        "p2_5": -0.034712756319090855,
+        "p50": 0.02220687681750974,
+        "p97_5": 0.07410002688354574,
+        "frac_b_better": 0.2232
+      },
+      "delta_pearson_b_minus_a": {
+        "point": -0.33819913706216637,
+        "boot_mean": -0.30894717668155536,
+        "boot_std": 0.27269047363844956,
+        "p2_5": -0.7497821040095531,
+        "p50": -0.3506698740729812,
+        "p97_5": 0.3332741733655378
+      }
+    },
+    "Linear-Diffusion__vs__Naive-Mean": {
+      "delta_mae_b_minus_a": {
+        "point": -0.04122898958779597,
+        "boot_mean": -0.04103942189090419,
+        "boot_std": 0.019902684089671687,
+        "p2_5": -0.07997638900960394,
+        "p50": -0.041389834493955516,
+        "p97_5": -0.0015347074339726364,
+        "frac_b_better": 0.9804
+      },
+      "delta_pearson_b_minus_a": {
+        "point": 0.269684627213821,
+        "boot_mean": 0.2764984547284157,
+        "boot_std": 0.20537082444780885,
+        "p2_5": -0.14315460671134048,
+        "p50": 0.28031717130127,
+        "p97_5": 0.6412205891041641
+      }
+    }
+  },
+  "per_event_predictions": [
+    {
+      "event_id": 1,
+      "name": "Dot-com Bubble Collapse & US Recession",
+      "observed": 0.048,
+      "geds_pred": 0.003,
+      "geds_err_abs": 0.045,
+      "leontief_pred": 0.0031395821564522463,
+      "leontief_err_abs": 0.04486041784354775,
+      "linear_pred": 0.25191060011719507,
+      "linear_err_abs": 0.20391060011719508,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.11749999999999998
+    },
+    {
+      "event_id": 2,
+      "name": "Argentine Sovereign Default & Currency Crisis",
+      "observed": 0.11,
+      "geds_pred": 0.0002,
+      "geds_err_abs": 0.1098,
+      "leontief_pred": 0.00024973018100835624,
+      "leontief_err_abs": 0.10975026981899165,
+      "linear_pred": 0.0002497301810083562,
+      "linear_err_abs": 0.10975026981899165,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.05549999999999998
+    },
+    {
+      "event_id": 3,
+      "name": "SARS Epidemic",
+      "observed": 0.026,
+      "geds_pred": 0.0072,
+      "geds_err_abs": 0.018799999999999997,
+      "leontief_pred": 0.013878023062801328,
+      "leontief_err_abs": 0.01212197693719867,
+      "linear_pred": 0.31458816918037935,
+      "linear_err_abs": 0.28858816918037933,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.13949999999999999
+    },
+    {
+      "event_id": 4,
+      "name": "Iraq War & Associated Oil Price Spike",
+      "observed": 0.005,
+      "geds_pred": 0.0077,
+      "geds_err_abs": 0.0027,
+      "leontief_pred": 0.008460663862820227,
+      "leontief_err_abs": 0.003460663862820227,
+      "linear_pred": 0.1465739600180533,
+      "linear_err_abs": 0.1415739600180533,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.16049999999999998
+    },
+    {
+      "event_id": 5,
+      "name": "Indian Ocean Earthquake and Tsunami",
+      "observed": 0.15,
+      "geds_pred": 0.0023,
+      "geds_err_abs": 0.1477,
+      "leontief_pred": 0.002530333472438339,
+      "leontief_err_abs": 0.14746966652756166,
+      "linear_pred": 0.12211733099412249,
+      "linear_err_abs": 0.027882669005877506,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.015499999999999986
+    },
+    {
+      "event_id": 6,
+      "name": "Hurricane Katrina & Rita",
+      "observed": 0.031,
+      "geds_pred": 0.0044,
+      "geds_err_abs": 0.0266,
+      "leontief_pred": 0.004591272750478125,
+      "leontief_err_abs": 0.026408727249521875,
+      "linear_pred": 0.17562747011231636,
+      "linear_err_abs": 0.14462747011231636,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.13449999999999998
+    },
+    {
+      "event_id": 9,
+      "name": "European Sovereign Debt Crisis",
+      "observed": 0.26,
+      "geds_pred": 0.0003,
+      "geds_err_abs": 0.2597,
+      "leontief_pred": 0.00028535210692323296,
+      "leontief_err_abs": 0.2597146478930768,
+      "linear_pred": 0.00028535210692323296,
+      "linear_err_abs": 0.2597146478930768,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.09450000000000003
+    },
+    {
+      "event_id": 10,
+      "name": "Arab Spring Political Upheaval",
+      "observed": 0.5,
+      "geds_pred": 0.0003,
+      "geds_err_abs": 0.4997,
+      "leontief_pred": 0.0002937027947404046,
+      "leontief_err_abs": 0.4997062972052596,
+      "linear_pred": 0.0002937027947404046,
+      "linear_err_abs": 0.4997062972052596,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.3345
+    },
+    {
+      "event_id": 11,
+      "name": "T\u014dhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",
+      "observed": 0.0035,
+      "geds_pred": 0.0032,
+      "geds_err_abs": 0.0002999999999999999,
+      "leontief_pred": 0.003414729048323821,
+      "leontief_err_abs": 8.527095167617897e-05,
+      "linear_pred": 0.10464295434098196,
+      "linear_err_abs": 0.10114295434098196,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.16199999999999998
+    },
+    {
+      "event_id": 12,
+      "name": "Russia Crimea Annexation & Western Sanctions",
+      "observed": 0.022,
+      "geds_pred": 0.0006,
+      "geds_err_abs": 0.0214,
+      "leontief_pred": 0.0005705622212787968,
+      "leontief_err_abs": 0.0214294377787212,
+      "linear_pred": 0.07468080196610798,
+      "linear_err_abs": 0.05268080196610798,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.1435
+    },
+    {
+      "event_id": 14,
+      "name": "China Stock Market Crash",
+      "observed": 0.069,
+      "geds_pred": 0.0093,
+      "geds_err_abs": 0.0597,
+      "leontief_pred": 0.017681186422347964,
+      "leontief_err_abs": 0.05131881357765204,
+      "linear_pred": 0.3148389638943336,
+      "linear_err_abs": 0.24583896389433357,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.09649999999999997
+    },
+    {
+      "event_id": 15,
+      "name": "UK Brexit Referendum and Departure",
+      "observed": 0.07,
+      "geds_pred": 0.003,
+      "geds_err_abs": 0.067,
+      "leontief_pred": 0.0036916224293102955,
+      "leontief_err_abs": 0.0663083775706897,
+      "linear_pred": 0.27516355405448184,
+      "linear_err_abs": 0.20516355405448183,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.09549999999999997
+    },
+    {
+      "event_id": 16,
+      "name": "US\u2013China Trade War",
+      "observed": 0.026,
+      "geds_pred": 0.0025,
+      "geds_err_abs": 0.0235,
+      "leontief_pred": 0.002643185847159918,
+      "leontief_err_abs": 0.02335681415284008,
+      "linear_pred": 0.18755826089374023,
+      "linear_err_abs": 0.16155826089374023,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.13949999999999999
+    },
+    {
+      "event_id": 21,
+      "name": "Russia Invasion of Ukraine & Global Sanctions",
+      "observed": 0.015,
+      "geds_pred": 0.0002,
+      "geds_err_abs": 0.014799999999999999,
+      "leontief_pred": 0.00017317150468166607,
+      "leontief_err_abs": 0.014826828495318333,
+      "linear_pred": 0.0016136652788128491,
+      "linear_err_abs": 0.01338633472118715,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.15049999999999997
+    },
+    {
+      "event_id": 22,
+      "name": "European Natural Gas & Energy Crisis",
+      "observed": 0.007,
+      "geds_pred": 0.001,
+      "geds_err_abs": 0.006,
+      "leontief_pred": 0.0010621136544007232,
+      "leontief_err_abs": 0.0059378863455992765,
+      "linear_pred": 0.13516725611334343,
+      "linear_err_abs": 0.12816725611334343,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.15849999999999997
+    },
+    {
+      "event_id": 23,
+      "name": "Post-COVID Global Inflation Surge & Central Bank Tightening",
+      "observed": 0.014,
+      "geds_pred": 0.0021,
+      "geds_err_abs": 0.0119,
+      "leontief_pred": 0.002636873163793068,
+      "leontief_err_abs": 0.011363126836206931,
+      "linear_pred": 0.2658161128356579,
+      "linear_err_abs": 0.2518161128356579,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.15149999999999997
+    },
+    {
+      "event_id": 24,
+      "name": "China Real Estate & Evergrande Crisis",
+      "observed": 0.275,
+      "geds_pred": 0.0369,
+      "geds_err_abs": 0.23810000000000003,
+      "leontief_pred": 0.06596238710777277,
+      "leontief_err_abs": 0.20903761289222725,
+      "linear_pred": 0.32520240802991673,
+      "linear_err_abs": 0.05020240802991671,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.10950000000000004
+    },
+    {
+      "event_id": 26,
+      "name": "Red Sea Houthi Attacks / Shipping Crisis",
+      "observed": 0.5,
+      "geds_pred": 0.0013,
+      "geds_err_abs": 0.4987,
+      "leontief_pred": 0.0013354978940923674,
+      "leontief_err_abs": 0.4986645021059076,
+      "linear_pred": 0.0013355756194910536,
+      "linear_err_abs": 0.49866442438050895,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.3345
+    },
+    {
+      "event_id": 27,
+      "name": "Panama Canal Drought & Traffic Restrictions",
+      "observed": 0.73,
+      "geds_pred": 0.0394,
+      "geds_err_abs": 0.6906,
+      "leontief_pred": 0.041321454754303114,
+      "leontief_err_abs": 0.6886785452456968,
+      "linear_pred": 0.2184928561602544,
+      "linear_err_abs": 0.5115071438397456,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.5645
+    },
+    {
+      "event_id": 28,
+      "name": "Trump 2025 \"Liberation Day\" Tariffs & Trade War",
+      "observed": 0.014,
+      "geds_pred": 0.0042,
+      "geds_err_abs": 0.0098,
+      "leontief_pred": 0.005107567623194274,
+      "leontief_err_abs": 0.008892432376805726,
+      "linear_pred": 0.1854209517054323,
+      "linear_err_abs": 0.17142095170543228,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.15149999999999997
+    },
+    {
+      "event_id": 30,
+      "name": "Global Food & Energy Crisis (Post-COVID / Ukraine)",
+      "observed": 0.6,
+      "geds_pred": 0.0045,
+      "geds_err_abs": 0.5955,
+      "leontief_pred": 0.004741077838286897,
+      "leontief_err_abs": 0.595258922161713,
+      "linear_pred": 0.057494468782873016,
+      "linear_err_abs": 0.542505531217127,
+      "naive_pred": 0.16549999999999998,
+      "naive_err_abs": 0.4345
+    }
+  ],
+  "interpretation": {
+    "frac_b_better_meaning": "fraction of resamples in which model 'b' has strictly lower MAE than model 'a'",
+    "ci_overlap_check": "if 0 falls inside the 95% CI of delta_mae_b_minus_a then the difference is not significant at \u03b1=0.05"
+  },
+  "preserved_files": [
+    "benchmark_spectral_normalized.json",
+    "benchmark_oecd.json",
+    "benchmark_wiod.json",
+    "benchmark_v3.json",
+    "ablation_post_normalization.json"
+  ]
+}

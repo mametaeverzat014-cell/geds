@@ -1,0 +1,96 @@
+{
+  "calibration_date": "2026-05-25T00:38:20.695184+00:00",
+  "n_benchmark_events": 11,
+  "default_config_rmse": 0.2776190751895318,
+  "winner": "DE",
+  "best_params": {
+    "propagation_decay": 0.9890986444141316,
+    "amplification_mu": 3.9941650267701454,
+    "amplification_eps": 0.19996098944271445,
+    "recovery_rate": 0.010108959224208736,
+    "bullwhip_factor": 1.1252532884436197
+  },
+  "improvement_vs_default": 0.00184,
+  "optuna": {
+    "method": "Optuna (TPE sampler)",
+    "n_trials": 100,
+    "best_loss_rmse": 0.2768000476221714,
+    "best_params": {
+      "propagation_decay": 0.8100931053131932,
+      "amplification_mu": 2.752160766438438,
+      "amplification_eps": 0.1933843306652851,
+      "recovery_rate": 0.0103841932556938,
+      "bullwhip_factor": 1.5843444950133911
+    },
+    "runtime_seconds": 27.9
+  },
+  "differential_evolution": {
+    "method": "scipy.optimize.differential_evolution",
+    "n_iterations": 46,
+    "n_function_evaluations": 3531,
+    "best_loss_rmse": 0.27577805634900754,
+    "best_params": {
+      "propagation_decay": 0.9890986444141316,
+      "amplification_mu": 3.9941650267701454,
+      "amplification_eps": 0.19996098944271445,
+      "recovery_rate": 0.010108959224208736,
+      "bullwhip_factor": 1.1252532884436197
+    },
+    "converged": true,
+    "runtime_seconds": 958.0
+  },
+  "sobol_sensitivity": {
+    "method": "SALib Sobol (first-order + total)",
+    "n_samples_saltelli": 448,
+    "indices": [
+      {
+        "parameter": "propagation_decay",
+        "S1": 0.14118186964011178,
+        "S1_conf": 0.16922638113805652,
+        "ST": 0.1765736631060428,
+        "ST_conf": 0.06718373839700881,
+        "identifiable": true
+      },
+      {
+        "parameter": "amplification_mu",
+        "S1": 0.009242146541979425,
+        "S1_conf": 0.023679681362226413,
+        "ST": 0.0047519008855453895,
+        "ST_conf": 0.0036325886700535725,
+        "identifiable": false
+      },
+      {
+        "parameter": "amplification_eps",
+        "S1": -0.008260910686833104,
+        "S1_conf": 0.030013431160428226,
+        "ST": 0.006417013231164224,
+        "ST_conf": 0.004459816785857327,
+        "identifiable": false
+      },
+      {
+        "parameter": "recovery_rate",
+        "S1": 0.908270169920099,
+        "S1_conf": 0.2883020310856155,
+        "ST": 0.8670909049922233,
+        "ST_conf": 0.27437618153270427,
+        "identifiable": true
+      },
+      {
+        "parameter": "bullwhip_factor",
+        "S1": 0.0,
+        "S1_conf": 0.0,
+        "ST": 0.0,
+        "ST_conf": 0.0,
+        "identifiable": false
+      }
+    ],
+    "identifiable_count": 2,
+    "runtime_seconds": 105.1
+  },
+  "compute_budget_note": "Engine backtest \u2248 24ms; full-session budget. Production calibration should rerun with: Optuna 500 trials, DE pop=30 maxiter=500, Sobol N=256. Each ~10\u00d7 longer.",
+  "does_not_overwrite": [
+    "benchmark.json",
+    "provenance.json",
+    "posterior.json"
+  ]
+}

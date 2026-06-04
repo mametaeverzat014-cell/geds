@@ -1,0 +1,546 @@
+{
+  "timestamp": "2026-05-30T16:53:16.518751+00:00",
+  "graph": "OECD+WIOD spectrally normalised (\u03c1=1.0)",
+  "n_ensemble": 500,
+  "n_events": 21,
+  "seed": 20260529,
+  "parameter_uncertainty_source": "LOEO fold std (loeo_results.json::fold_variance)",
+  "percentiles_reported": [
+    2.5,
+    5.0,
+    10.0,
+    25.0,
+    50.0,
+    75.0,
+    90.0,
+    95.0,
+    97.5
+  ],
+  "calibrated_mean_params": {
+    "amplification_mu": 0.05409853538097736,
+    "amplification_eps": 0.10349366569025273,
+    "propagation_decay": 0.5002166866393076,
+    "recovery_rate": 0.2114675843535651,
+    "bullwhip_factor": 1.6099809178169142,
+    "inventory_scale": 1.1850170297346547,
+    "r_output_floor": 0.2549689600343445
+  },
+  "loeo_sigma": {
+    "amplification_mu": 0.9827521906876293,
+    "amplification_eps": 0.021214969369343837,
+    "propagation_decay": 0.15638056550314153,
+    "recovery_rate": 0.050668112474252965,
+    "bullwhip_factor": 0.14826977588632714,
+    "inventory_scale": 0.6103995780947961,
+    "r_output_floor": 0.10384016965603686
+  },
+  "per_event_statistics": [
+    {
+      "event_id": 1,
+      "name": "Dot-com Bubble Collapse & US Recession",
+      "observed": 0.048,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.0030233999999999994,
+        "std": 4.8501958723334e-05,
+        "min": 0.003,
+        "max": 0.0035,
+        "p2_5": 0.003,
+        "p5": 0.003,
+        "p10": 0.003,
+        "p25": 0.003,
+        "p50": 0.003,
+        "p75": 0.003,
+        "p90": 0.0031,
+        "p95": 0.0031,
+        "p97_5": 0.0031
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 2,
+      "name": "Argentine Sovereign Default & Currency Crisis",
+      "observed": 0.11,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.00020000000000000006,
+        "std": 5.421010862427522e-20,
+        "min": 0.0002,
+        "max": 0.0002,
+        "p2_5": 0.0002,
+        "p5": 0.0002,
+        "p10": 0.0002,
+        "p25": 0.0002,
+        "p50": 0.0002,
+        "p75": 0.0002,
+        "p90": 0.0002,
+        "p95": 0.0002,
+        "p97_5": 0.0002
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 3,
+      "name": "SARS Epidemic",
+      "observed": 0.026,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.00753,
+        "std": 0.0024296707595886317,
+        "min": 0.0072,
+        "max": 0.0617,
+        "p2_5": 0.0073,
+        "p5": 0.0073,
+        "p10": 0.0073,
+        "p25": 0.0073,
+        "p50": 0.0074,
+        "p75": 0.0075,
+        "p90": 0.0076,
+        "p95": 0.0077,
+        "p97_5": 0.0078
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 4,
+      "name": "Iraq War & Associated Oil Price Spike",
+      "observed": 0.005,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.007699999999999999,
+        "std": 8.673617379884035e-19,
+        "min": 0.0077,
+        "max": 0.0077,
+        "p2_5": 0.0077,
+        "p5": 0.0077,
+        "p10": 0.0077,
+        "p25": 0.0077,
+        "p50": 0.0077,
+        "p75": 0.0077,
+        "p90": 0.0077,
+        "p95": 0.0077,
+        "p97_5": 0.0077
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 5,
+      "name": "Indian Ocean Earthquake and Tsunami",
+      "observed": 0.15,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.0023209999999999997,
+        "std": 7.835177087979569e-05,
+        "min": 0.0022,
+        "max": 0.0037,
+        "p2_5": 0.0023,
+        "p5": 0.0023,
+        "p10": 0.0023,
+        "p25": 0.0023,
+        "p50": 0.0023,
+        "p75": 0.0023,
+        "p90": 0.0024,
+        "p95": 0.0024,
+        "p97_5": 0.0024
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 6,
+      "name": "Hurricane Katrina & Rita",
+      "observed": 0.031,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.004459199999999999,
+        "std": 0.00010869848205011866,
+        "min": 0.0044,
+        "max": 0.0065,
+        "p2_5": 0.0044,
+        "p5": 0.0044,
+        "p10": 0.0044,
+        "p25": 0.0044,
+        "p50": 0.0045,
+        "p75": 0.0045,
+        "p90": 0.0045,
+        "p95": 0.0045,
+        "p97_5": 0.0046
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 9,
+      "name": "European Sovereign Debt Crisis",
+      "observed": 0.26,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.0003,
+        "std": 0.0,
+        "min": 0.0003,
+        "max": 0.0003,
+        "p2_5": 0.0003,
+        "p5": 0.0003,
+        "p10": 0.0003,
+        "p25": 0.0003,
+        "p50": 0.0003,
+        "p75": 0.0003,
+        "p90": 0.0003,
+        "p95": 0.0003,
+        "p97_5": 0.0003
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 10,
+      "name": "Arab Spring Political Upheaval",
+      "observed": 0.5,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.0003,
+        "std": 0.0,
+        "min": 0.0003,
+        "max": 0.0003,
+        "p2_5": 0.0003,
+        "p5": 0.0003,
+        "p10": 0.0003,
+        "p25": 0.0003,
+        "p50": 0.0003,
+        "p75": 0.0003,
+        "p90": 0.0003,
+        "p95": 0.0003,
+        "p97_5": 0.0003
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 11,
+      "name": "T\u014dhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",
+      "observed": 0.0035,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.0032414000000000006,
+        "std": 4.965923881816949e-05,
+        "min": 0.0032,
+        "max": 0.0034,
+        "p2_5": 0.0032,
+        "p5": 0.0032,
+        "p10": 0.0032,
+        "p25": 0.0032,
+        "p50": 0.0032,
+        "p75": 0.0033,
+        "p90": 0.0033,
+        "p95": 0.0033,
+        "p97_5": 0.0033
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 12,
+      "name": "Russia Crimea Annexation & Western Sanctions",
+      "observed": 0.022,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.0006,
+        "std": 0.0,
+        "min": 0.0006,
+        "max": 0.0006,
+        "p2_5": 0.0006,
+        "p5": 0.0006,
+        "p10": 0.0006,
+        "p25": 0.0006,
+        "p50": 0.0006,
+        "p75": 0.0006,
+        "p90": 0.0006,
+        "p95": 0.0006,
+        "p97_5": 0.0006
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 14,
+      "name": "China Stock Market Crash",
+      "observed": 0.069,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.0097008,
+        "std": 0.002001769057608794,
+        "min": 0.0093,
+        "max": 0.0541,
+        "p2_5": 0.0093,
+        "p5": 0.0094,
+        "p10": 0.0094,
+        "p25": 0.0094,
+        "p50": 0.0095,
+        "p75": 0.0097,
+        "p90": 0.0099,
+        "p95": 0.0101,
+        "p97_5": 0.0102
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 15,
+      "name": "UK Brexit Referendum and Departure",
+      "observed": 0.07,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.003344,
+        "std": 0.0010352313751041354,
+        "min": 0.0029,
+        "max": 0.0255,
+        "p2_5": 0.003,
+        "p5": 0.003,
+        "p10": 0.003,
+        "p25": 0.0031,
+        "p50": 0.0032,
+        "p75": 0.0034,
+        "p90": 0.0037,
+        "p95": 0.0039,
+        "p97_5": 0.0041
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 16,
+      "name": "US\u2013China Trade War",
+      "observed": 0.026,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.0025012000000000003,
+        "std": 1.088852607105294e-05,
+        "min": 0.0025,
+        "max": 0.0026,
+        "p2_5": 0.0025,
+        "p5": 0.0025,
+        "p10": 0.0025,
+        "p25": 0.0025,
+        "p50": 0.0025,
+        "p75": 0.0025,
+        "p90": 0.0025,
+        "p95": 0.0025,
+        "p97_5": 0.0025
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 21,
+      "name": "Russia Invasion of Ukraine & Global Sanctions",
+      "observed": 0.015,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.00020000000000000006,
+        "std": 5.421010862427522e-20,
+        "min": 0.0002,
+        "max": 0.0002,
+        "p2_5": 0.0002,
+        "p5": 0.0002,
+        "p10": 0.0002,
+        "p25": 0.0002,
+        "p50": 0.0002,
+        "p75": 0.0002,
+        "p90": 0.0002,
+        "p95": 0.0002,
+        "p97_5": 0.0002
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 22,
+      "name": "European Natural Gas & Energy Crisis",
+      "observed": 0.007,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.0010012000000000003,
+        "std": 7.898455545231616e-05,
+        "min": 0.0009,
+        "max": 0.0027,
+        "p2_5": 0.0009,
+        "p5": 0.001,
+        "p10": 0.001,
+        "p25": 0.001,
+        "p50": 0.001,
+        "p75": 0.001,
+        "p90": 0.001,
+        "p95": 0.001,
+        "p97_5": 0.001
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 23,
+      "name": "Post-COVID Global Inflation Surge & Central Bank Tightening",
+      "observed": 0.014,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.0022958,
+        "std": 0.0008237489666154369,
+        "min": 0.0021,
+        "max": 0.0204,
+        "p2_5": 0.0021,
+        "p5": 0.0021,
+        "p10": 0.0021,
+        "p25": 0.0022,
+        "p50": 0.0022,
+        "p75": 0.0023,
+        "p90": 0.0025,
+        "p95": 0.0025049999999999955,
+        "p97_5": 0.0026524999999999977
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 24,
+      "name": "China Real Estate & Evergrande Crisis",
+      "observed": 0.275,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.041119,
+        "std": 0.005673832831516981,
+        "min": 0.0368,
+        "max": 0.0642,
+        "p2_5": 0.0370475,
+        "p5": 0.0372,
+        "p10": 0.0374,
+        "p25": 0.0379,
+        "p50": 0.0388,
+        "p75": 0.0411,
+        "p90": 0.0498,
+        "p95": 0.055105,
+        "p97_5": 0.0585525
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 26,
+      "name": "Red Sea Houthi Attacks / Shipping Crisis",
+      "observed": 0.5,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.0012999999999999995,
+        "std": 4.336808689942018e-19,
+        "min": 0.0013,
+        "max": 0.0013,
+        "p2_5": 0.0013,
+        "p5": 0.0013,
+        "p10": 0.0013,
+        "p25": 0.0013,
+        "p50": 0.0013,
+        "p75": 0.0013,
+        "p90": 0.0013,
+        "p95": 0.0013,
+        "p97_5": 0.0013
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 27,
+      "name": "Panama Canal Drought & Traffic Restrictions",
+      "observed": 0.73,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.03946679999999999,
+        "std": 8.79645383094817e-05,
+        "min": 0.0394,
+        "max": 0.04,
+        "p2_5": 0.0394,
+        "p5": 0.0394,
+        "p10": 0.0394,
+        "p25": 0.0394,
+        "p50": 0.0394,
+        "p75": 0.0395,
+        "p90": 0.0396,
+        "p95": 0.0396,
+        "p97_5": 0.0397
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 28,
+      "name": "Trump 2025 \"Liberation Day\" Tariffs & Trade War",
+      "observed": 0.014,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.0042784,
+        "std": 0.0003964510562478047,
+        "min": 0.0042,
+        "max": 0.013,
+        "p2_5": 0.0042,
+        "p5": 0.0042,
+        "p10": 0.0042,
+        "p25": 0.0042,
+        "p50": 0.0043,
+        "p75": 0.0043,
+        "p90": 0.004310000000000002,
+        "p95": 0.0044,
+        "p97_5": 0.0044
+      },
+      "observed_in_p2_5_p97_5_band": false
+    },
+    {
+      "event_id": 30,
+      "name": "Global Food & Energy Crisis (Post-COVID / Ukraine)",
+      "observed": 0.6,
+      "stats": {
+        "n_finite": 500,
+        "mean": 0.004500199999999999,
+        "std": 4.467661580737747e-06,
+        "min": 0.0045,
+        "max": 0.0046,
+        "p2_5": 0.0045,
+        "p5": 0.0045,
+        "p10": 0.0045,
+        "p25": 0.0045,
+        "p50": 0.0045,
+        "p75": 0.0045,
+        "p90": 0.0045,
+        "p95": 0.0045,
+        "p97_5": 0.0045
+      },
+      "observed_in_p2_5_p97_5_band": false
+    }
+  ],
+  "ensemble_metric_distribution": {
+    "mae": {
+      "n": 500,
+      "mean": 0.15912790476190475,
+      "std": 0.00035201488063784183,
+      "p2_5": 0.15826166666666666,
+      "p50": 0.1592595238095238,
+      "p97_5": 0.15938095238095235
+    },
+    "rmse": {
+      "n": 500,
+      "mean": 0.2671224196737595,
+      "std": 0.0002440043279663095,
+      "p2_5": 0.2664022188873357,
+      "p50": 0.2672227646596852,
+      "p97_5": 0.2673081988125577
+    },
+    "r_squared": {
+      "n": 500,
+      "mean": -0.48214717109382355,
+      "std": 0.0027050606249827934,
+      "p2_5": -0.48420826636135716,
+      "p50": -0.483259684765998,
+      "p97_5": -0.47416454853881584
+    },
+    "pearson": {
+      "n": 500,
+      "mean": 0.438000039945188,
+      "std": 0.02584662086388157,
+      "p2_5": 0.3791589632458146,
+      "p50": 0.447342193974148,
+      "p97_5": 0.45477560792649885
+    }
+  },
+  "coverage_observed_in_p2_5_p97_5": {
+    "n_in_band": 0,
+    "n_events": 21,
+    "fraction": 0.0
+  },
+  "preserved_files": [
+    "benchmark_spectral_normalized.json",
+    "bootstrap_results.json",
+    "ablation_post_normalization.json"
+  ],
+  "_metadata_observed_patched": "observed values backfilled from ensemble_predictions.observed_per_event (MC computation already used these)"
+}

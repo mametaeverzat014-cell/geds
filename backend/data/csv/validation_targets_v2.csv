@@ -1,0 +1,179 @@
+event_num,event_name,field,metric,value,confidence_flag,source
+1,COVID-19 Pandemic (2020–2022),GDP Change,"Global real GDP growth, 2020",−3.0% (IMF 2022 outturn),5_official_outturn,PMC/IMF
+1,COVID-19 Pandemic (2020–2022),GDP Change,"IMF WEO forecast, June 2020",−4.9% (projected at time; final outturn softer),2_unflagged,IMF WEO Update Jun 2020
+1,COVID-19 Pandemic (2020–2022),GDP Change,"World Bank forecast, Jun 2020",−5.2% (market exchange rate weights),2_unflagged,World Bank Jun 2020
+1,COVID-19 Pandemic (2020–2022),GDP Change,"Advanced economies, 2020","−7% (projected, World Bank)",2_unflagged,World Bank Jun 2020
+1,COVID-19 Pandemic (2020–2022),GDP Change,"China, 2020",+2.3% (only major economy positive),5_official_outturn,IMF
+1,COVID-19 Pandemic (2020–2022),Export/Import Change,"World merchandise trade volume, 2020",−5.3% (WTO final outturn),5_official_outturn,WEF / WTO
+1,COVID-19 Pandemic (2020–2022),Export/Import Change,"WTO forecast range, Apr 2020",−13% to −32% (scenario range),2_unflagged,WTO Apr 2020
+1,COVID-19 Pandemic (2020–2022),Export/Import Change,"Global goods and services trade, 2020",−9.2% (UN/WTO October 2020 estimate),2_unflagged,UN News
+1,COVID-19 Pandemic (2020–2022),Export/Import Change,Fuels & mining products trade,−38% (most affected category),2_unflagged,UN News
+1,COVID-19 Pandemic (2020–2022),Export/Import Change,Agricultural trade,−5%,2_unflagged,UN News
+1,COVID-19 Pandemic (2020–2022),Export/Import Change,Manufactured goods trade,−19%,2_unflagged,UN News
+1,COVID-19 Pandemic (2020–2022),Supply Chain Delay,"Average shipping delays, Dec 2021",>1.5 days vs pre-pandemic baseline (+25%),5_official_outturn,IMF WP/22/59
+1,COVID-19 Pandemic (2020–2022),Supply Chain Delay,Equivalent tariff cost of port congestion,0.9%–3.1% ad valorem tariff equivalent,2_unflagged,IMF WP/22/59
+1,COVID-19 Pandemic (2020–2022),Supply Chain Delay,"Container shipping blank sailings, H1 2020",">1,000 voyages cancelled in first 6 months",2_unflagged,USITC
+1,COVID-19 Pandemic (2020–2022),Supply Chain Delay,"US imports from Asia, Dec 2020 vs Dec 2019",+30% (demand surge causing congestion),2_unflagged,USITC
+1,COVID-19 Pandemic (2020–2022),Supply Chain Delay,"Maritime trade volume, 2020",−3.8%,2_unflagged,PMC
+1,COVID-19 Pandemic (2020–2022),Inflation Change,"Global inflation, 2021",4.7%,2_unflagged,IMF WEO Oct 2022
+1,COVID-19 Pandemic (2020–2022),Inflation Change,"Global inflation, 2022",8.8% (peak),5_official_outturn,IMF WEO Oct 2022
+1,COVID-19 Pandemic (2020–2022),Inflation Change,"EU energy inflation, Jan 2022",+27% y/y (highest since HICP introduced 1997),5_official_outturn,Eurostat
+1,COVID-19 Pandemic (2020–2022),Inflation Change,"US CPI used cars, May 2021",+29.7% y/y (chip-shortage amplification),5_official_outturn,Cleveland Fed
+1,COVID-19 Pandemic (2020–2022),Stock Market Impact,"S&P 500 peak-to-trough, Feb 19 – Mar 23, 2020",−34%,5_official_outturn,CNBC; Everhart Advisors
+1,COVID-19 Pandemic (2020–2022),Stock Market Impact,"Single worst day: Mar 16, 2020",S&P 500 −12%; Dow −12.9%,5_official_outturn,CNBC
+1,COVID-19 Pandemic (2020–2022),Recovery Time,S&P 500 recovery to prior high,"~8 months (new high: Aug 18, 2020)",5_official_outturn,Everhart Advisors; IG Wealth
+1,COVID-19 Pandemic (2020–2022),Recovery Time,Supply chain normalization,Mid-2023 (automotive chips); port congestion normal by late 2022,2_unflagged,NBER; USITC
+1,COVID-19 Pandemic (2020–2022),Recovery Time,Global trade above pre-COVID level,Merchandise trade exceeded pre-COVID level by +15% by end-2021,5_official_outturn,UNCTAD
+1,COVID-19 Pandemic (2020–2022),Affected Industries,—,"Pharmaceuticals, automotive, electronics, retail, hospitality, aviation, apparel, food processing",2_unflagged,USITC; PMC
+1,COVID-19 Pandemic (2020–2022),Affected Countries,—,All 190 IMF member countries; EU −6.4%; US −3.4%; China +2.3%,2_unflagged,IMF; World Bank
+2,Russia-Ukraine War (Feb 2022–present),GDP Change,"Ukraine real GDP, 2022 (World Bank projection, Apr 2022)",−45.1%,5_official_outturn,World Bank Apr 2022
+2,Russia-Ukraine War (Feb 2022–present),GDP Change,Ukraine: output vs pre-war level (2024),Still 25% below pre-war levels,5_official_outturn,IMF Ukraine Staff Report 2024
+2,Russia-Ukraine War (Feb 2022–present),GDP Change,Ukraine reconstruction cost estimate,$486 billion (230% of pre-war GDP),2_unflagged,IMF 2024
+2,Russia-Ukraine War (Feb 2022–present),GDP Change,"Russia real GDP, 2022 (Rosstat confirmed outturn)",−2.1%,5_official_outturn,Rosstat / Al Jazeera; Bruegel
+2,Russia-Ukraine War (Feb 2022–present),GDP Change,"Russia GDP, 2021",+5.6% (prior year baseline),2_unflagged,Al Jazeera
+2,Russia-Ukraine War (Feb 2022–present),GDP Change,"Russia GDP, Q2 2022 (worst quarter)",−4.5% y/y,2_unflagged,Bruegel
+2,Russia-Ukraine War (Feb 2022–present),GDP Change,"EU GDP, 2022 (Eurostat actual)",+3.5% (resilient despite war),5_official_outturn,Statista/Eurostat
+2,Russia-Ukraine War (Feb 2022–present),GDP Change,"EU GDP, 2023",+0.4% (slowed),2_unflagged,Statista/Eurostat
+2,Russia-Ukraine War (Feb 2022–present),GDP Change,"ECA region (Europe & Central Asia), World Bank forecast",−4.1% (2022),2_unflagged,World Bank
+2,Russia-Ukraine War (Feb 2022–present),Export/Import Change,"Russia gas exports to EU, 2022",Reduced by 86 bcm (−60%),5_official_outturn,Bruegel
+2,Russia-Ukraine War (Feb 2022–present),Export/Import Change,"Russia annual inflation, Apr 2022 (peak)",17.8% (highest in two decades),5_official_outturn,Al Jazeera; Bruegel
+2,Russia-Ukraine War (Feb 2022–present),Export/Import Change,"Russia annual inflation, Jan 2023",~12%,2_unflagged,Bruegel
+2,Russia-Ukraine War (Feb 2022–present),Supply Chain Delay,"EU gas demand reduction, 2022",>10% (managed response),5_official_outturn,Bruegel
+2,Russia-Ukraine War (Feb 2022–present),Supply Chain Delay,"EU LNG imports increase, 2022",Nearly doubled,2_unflagged,Bruegel
+2,Russia-Ukraine War (Feb 2022–present),Inflation Change,"Euro area HICP, October 2022 (peak)",10.6%,5_official_outturn,Eurostat / SUERF
+2,Russia-Ukraine War (Feb 2022–present),Inflation Change,"Euro area HICP, December 2022",9.2%,5_official_outturn,Eurostat
+2,Russia-Ukraine War (Feb 2022–present),Inflation Change,"EU energy price component, Aug 2022 vs year earlier",+400% (gas and electricity),2_unflagged,SUERF
+2,Russia-Ukraine War (Feb 2022–present),Inflation Change,"Energy contribution to headline inflation, Q4 2022",~60% of total,2_unflagged,SUERF
+2,Russia-Ukraine War (Feb 2022–present),Inflation Change,"Eurozone inflation, Feb 2022","5.8% (pre-peak, energy-led)",2_unflagged,Al Jazeera
+2,Russia-Ukraine War (Feb 2022–present),Inflation Change,"Eurozone energy inflation, Feb 2022",+31.7% y/y,2_unflagged,Al Jazeera
+2,Russia-Ukraine War (Feb 2022–present),Inflation Change,"EU energy inflation, Jan 2022",+27% (highest ever recorded),5_official_outturn,Eurostat
+2,Russia-Ukraine War (Feb 2022–present),Inflation Change,"Global inflation forecast, 2022",8.8%,2_unflagged,IMF WEO Oct 2022
+2,Russia-Ukraine War (Feb 2022–present),Stock Market Impact,"Russian RTS index, Feb 24, 2022 (invasion day)",−39%,5_official_outturn,Wikipedia
+2,Russia-Ukraine War (Feb 2022–present),Stock Market Impact,Moscow Exchange trading halt,~4 weeks,5_official_outturn,Wikipedia
+2,Russia-Ukraine War (Feb 2022–present),Recovery Time,Russian GDP to near pre-war level,2023–2024 (stagnating by early 2026),2_unflagged,Bruegel; Guardian
+2,Russia-Ukraine War (Feb 2022–present),Recovery Time,Euro area inflation below 3%,Late 2023,2_unflagged,Eurostat
+2,Russia-Ukraine War (Feb 2022–present),Recovery Time,Ukraine: ongoing,Reconstruction estimate $486B over a decade,2_unflagged,IMF
+2,Russia-Ukraine War (Feb 2022–present),Affected Industries,—,"Grain/agriculture, natural gas, oil, steel, fertilizers, defense, shipping (Black Sea), chemicals, nuclear power",2_unflagged,Bruegel; World Bank
+2,Russia-Ukraine War (Feb 2022–present),Affected Countries,—,"Ukraine, Russia (primary); EU-27 (energy); 36+ countries importing >50% wheat from Russia/Ukraine; global (food/energy inflation)",2_unflagged,World Bank; SUERF
+3,2008–2009 Global Financial Crisis,GDP Change,"World GDP growth, 2009",Deeply negative across advanced economies; annualized GDP −6%+ (Q4 2008–Q1 2009),5_official_outturn,IMF AR 2009
+3,2008–2009 Global Financial Crisis,GDP Change,"US real GDP, peak-to-trough (Q4 2007–Q2 2009)",−4.3%,5_official_outturn,Federal Reserve History
+3,2008–2009 Global Financial Crisis,GDP Change,US household net worth decline,$69T → $55T (−$14 trillion),5_official_outturn,Federal Reserve History
+3,2008–2009 Global Financial Crisis,GDP Change,"Annualized world GDP, Q4 2008",−6%+,5_official_outturn,Bank of England / IMF
+3,2008–2009 Global Financial Crisis,Export/Import Change,"World trade volume, Q3 2008–Q2 2009",−15% y/y for two consecutive quarters,5_official_outturn,CEPR/VoxEU
+3,2008–2009 Global Financial Crisis,Export/Import Change,Pace of trade collapse vs Great Depression,Steeper: 9 months to reach same depth as 24 months in 1930s,5_official_outturn,CEPR/VoxEU
+3,2008–2009 Global Financial Crisis,Export/Import Change,All 104 WTO-tracked nations,All experienced drops in both imports and exports,5_official_outturn,CEPR/VoxEU
+3,2008–2009 Global Financial Crisis,Export/Import Change,OECD members' real trade: 7 largest month-on-month drops,All occurred Nov 2008 onwards,2_unflagged,CEPR/VoxEU
+3,2008–2009 Global Financial Crisis,Supply Chain Delay,Cause,Demand-side and trade credit collapse (not physical bottleneck),2_unflagged,IMF WP 2010
+3,2008–2009 Global Financial Crisis,Inflation Change,"US CPI, July 2009",−2.1% y/y (deflation risk),5_official_outturn,Federal Reserve History
+3,2008–2009 Global Financial Crisis,Inflation Change,Oil price collapse,$147/bbl (Jul 2008) → $32/bbl (Dec 2008),5_official_outturn,Federal Reserve History
+3,2008–2009 Global Financial Crisis,Stock Market Impact,"S&P 500, peak-to-trough (Oct 2007–Mar 9, 2009)",−~50–57%,5_official_outturn,Wikipedia bear market; LinkedIn
+3,2008–2009 Global Financial Crisis,Stock Market Impact,"S&P 500 annual return, 2008",−37%,5_official_outturn,Facebook/SM data
+3,2008–2009 Global Financial Crisis,Stock Market Impact,Worst single-day volatility cluster (Sep–Oct 2008),20 days with −1%+ moves; 5 days with −5%+ moves,2_unflagged,Wealth of Common Sense
+3,2008–2009 Global Financial Crisis,Recovery Time,NBER recession duration,"Dec 2007 – Jun 2009 (18 months, longest post-WWII)",5_official_outturn,Federal Reserve History
+3,2008–2009 Global Financial Crisis,Recovery Time,US unemployment peak,10.0% (Oct 2009),5_official_outturn,Federal Reserve History
+3,2008–2009 Global Financial Crisis,Recovery Time,S&P 500 recovery to prior high,~6 years (2013),5_official_outturn,IG Wealth
+3,2008–2009 Global Financial Crisis,Recovery Time,Global trade recovery,Below pre-crisis trend in banking-crisis countries for years post-crisis,2_unflagged,IMF Ch.4
+3,2008–2009 Global Financial Crisis,Affected Industries,—,"Banking, housing, mortgage securities, automotive, insurance, construction, durable manufacturing",2_unflagged,Federal Reserve History
+3,2008–2009 Global Financial Crisis,Affected Countries,—,"US (epicenter); EU banking crisis; UK, Japan; Emerging Europe; all 104 WTO-tracked nations",2_unflagged,CEPR; IMF
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",GDP Change,Annual trade growth impact,−0.2 pp to −0.4 pp per week of closure (Allianz),3_partial_evidence,Allianz Research
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",GDP Change,Macro GDP impact,Not separately quantifiable at global GDP level due to 6-day duration ❌,2_unflagged,—
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Export/Import Change,Share of global trade through Suez Canal,~13%,5_official_outturn,Allianz; Wikipedia
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Export/Import Change,Goods disrupted per day (Lloyd's List),$9 billion/day,5_official_outturn,Lloyd's List via India Today; Wikipedia
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Export/Import Change,Goods disrupted per hour,$400 million/hour,5_official_outturn,Wikipedia
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Export/Import Change,Total 6-day trade delayed (estimate),~$54 billion,5_official_outturn,India Today
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Export/Import Change,Westbound daily value,~$5.1 billion,2_unflagged,Allianz
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Export/Import Change,Eastbound daily value,~$4.5 billion,2_unflagged,Allianz
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Export/Import Change,Egypt SCA daily transit fee revenue lost,~$15 million/day,5_official_outturn,Wikipedia
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Export/Import Change,India trade exposed,~$200 billion in annual exports/imports affected,2_unflagged,Scribd retrospective
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Supply Chain Delay,Maersk capacity loss (fleet-level),20–30% over multiple weeks,5_official_outturn,Allianz
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Supply Chain Delay,Rerouting via Cape of Good Hope adds,~7–10 extra days per voyage,2_unflagged,Project44
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Supply Chain Delay,Port backlogs post-refloat,Persisted several weeks,5_official_outturn,Project44
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Supply Chain Delay,"Prior supply chain cost (combined disruptions, excl. Ever Given)",−1.4 pp real trade growth (~$230B direct impact),2_unflagged,Allianz
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Inflation Change,Isolated inflation impact,Not separately measurable; contributed to broader 2021 supply chain inflation,3_partial_evidence,Allianz
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Stock Market Impact,Macro market impact,No measurable S&P macro effect; shipping/tanker equities spiked,3_partial_evidence,—
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Recovery Time,Canal reopened,"March 29, 2021 (6 days)",5_official_outturn,Wikipedia
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Recovery Time,Port congestion clearance,Several weeks post-refloat,5_official_outturn,Project44
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Affected Industries,—,"Container shipping, oil/LNG tankers, automotive, consumer goods, electronics, agribulk, textiles",2_unflagged,Allianz; Scribd
+4,"Suez Canal Blockage — Ever Given (Mar 23–29, 2021)",Affected Countries,—,"Global (Europe ↔ Asia corridor); Egypt; Netherlands, Germany, China, Japan (major corridor users); India ($200B exposure)",2_unflagged,Allianz; Scribd
+5,Global Semiconductor Chip Shortage (2020–2023),GDP Change,"Global auto industry revenue lost, 2021 (AlixPartners Sep 2021 forecast)",$210 billion,5_official_outturn,AlixPartners Sep 2021
+5,Global Semiconductor Chip Shortage (2020–2023),GDP Change,"Global auto industry revenue lost, 2021 (AlixPartners May 2021 forecast)",$110 billion (revised up from $61B in Jan),5_official_outturn,AlixPartners May 2021
+5,Global Semiconductor Chip Shortage (2020–2023),Export/Import Change,"Global vehicle production lost, 2021 (AlixPartners Sep 2021)",7.7 million units,5_official_outturn,AlixPartners
+5,Global Semiconductor Chip Shortage (2020–2023),Export/Import Change,"Global vehicle production lost, 2021 (S&P Mobility, YTD Q3)",7.4 million units (+−10 pp growth impact),5_official_outturn,S&P Global Mobility
+5,Global Semiconductor Chip Shortage (2020–2023),Export/Import Change,"Vehicles removed from production, 2021 (Statista)",>11 million units,5_official_outturn,Statista
+5,Global Semiconductor Chip Shortage (2020–2023),Export/Import Change,"Global car sales, 2021 vs 2019",Down >12%,5_official_outturn,Statista
+5,Global Semiconductor Chip Shortage (2020–2023),Export/Import Change,"Global auto industry revenue loss, 2021 (Statista)",~$210 million [Note: Statista figure; AlixPartners cites $210 billion],5_official_outturn,Statista
+5,Global Semiconductor Chip Shortage (2020–2023),Export/Import Change,Additional 2022 production losses,~3 million units,5_official_outturn,S&P Global Mobility
+5,Global Semiconductor Chip Shortage (2020–2023),Supply Chain Delay,"Automotive semiconductor lead times, 2021",52+ weeks (vs ~12 weeks normal),5_official_outturn,Cleveland Fed
+5,Global Semiconductor Chip Shortage (2020–2023),Supply Chain Delay,"Ford alone: units of planned production lost, 2021",1.1 million units,5_official_outturn,AlixPartners
+5,Global Semiconductor Chip Shortage (2020–2023),Supply Chain Delay,Ford parked unfinished vehicles,">20,000 vehicles waiting for chips",2_unflagged,AlixPartners
+5,Global Semiconductor Chip Shortage (2020–2023),Inflation Change,"US CPI used vehicles, May 2021 (12-month change)",+29.7%,5_official_outturn,Cleveland Fed
+5,Global Semiconductor Chip Shortage (2020–2023),Inflation Change,"New vehicle inventory, Feb 2020 vs May 2021",3.6M units → 1.5M units (−58%),5_official_outturn,Cleveland Fed
+5,Global Semiconductor Chip Shortage (2020–2023),Stock Market Impact,Automotive OEM stocks,"Declined (Ford, GM cut earnings by $2.5B and $2B respectively)",5_official_outturn,Business Insider
+5,Global Semiconductor Chip Shortage (2020–2023),Stock Market Impact,Semiconductor sector (SOXX),Surged on demand-supply imbalance,2_unflagged,AlixPartners
+5,Global Semiconductor Chip Shortage (2020–2023),Recovery Time,Automotive shortage resolution,Largely resolved mid-2023,5_official_outturn,S&P Global Mobility
+5,Global Semiconductor Chip Shortage (2020–2023),Recovery Time,H1 2023 global lost production,"~524,000 units (vs millions/quarter in 2021)",5_official_outturn,S&P Global Mobility
+5,Global Semiconductor Chip Shortage (2020–2023),Affected Industries,—,"Automotive (most severe), consumer electronics, industrial, aerospace, medical devices, telecoms",2_unflagged,AlixPartners; Frost & Sullivan
+5,Global Semiconductor Chip Shortage (2020–2023),Affected Countries,—,"Global; production concentrated in Taiwan (TSMC ~54% foundry share), South Korea, Netherlands (ASML); demand shock in US, EU, Japan automakers",2_unflagged,AlixPartners; GlobalX
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",GDP Change,Japan full-year 2011 GDP growth,−0.7%,5_official_outturn,IMF Article IV 2011
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",GDP Change,"Japan GDP forecast, 2012 (recovery)",+2.9%,5_official_outturn,IMF Article IV 2011
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",GDP Change,Direct physical damage (Cabinet Office),"¥16.9 trillion (~$210 billion, ~4% of GDP)",5_official_outturn,World Bank
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",GDP Change,Initial government damage range,¥16–¥25 trillion,2_unflagged,World Bank
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Export/Import Change,Japanese exports expected change (CEPR),−0.5% to −1.6% relative to baseline,5_official_outturn,CEPR/VoxEU
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Export/Import Change,Japanese imports expected change,+0.4% to +1.3% (higher energy imports),2_unflagged,CEPR/VoxEU
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Export/Import Change,Kobe 1995 historical analog,Japanese exports rebounded to 85% of pre-quake within a year,2_unflagged,World Bank
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Supply Chain Delay,Global electronics/auto supply chains,Disrupted due to Japan's quasi-monopoly in specialty components and ICs,5_official_outturn,World Bank; IMF
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Supply Chain Delay,Supply chain restoration,"""Faster than expected"" (World Bank assessment)",5_official_outturn,World Bank; IMF
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Inflation Change,Japan CPI impact,Minor; deflationary environment pre-existing; energy import costs rose,3_partial_evidence,BIS
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Stock Market Impact,"Tokyo stock market, first 2 trading days",−~20%,5_official_outturn,BIS Quarterly Review May 2011
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Stock Market Impact,"Nikkei 225, Monday Mar 14",−6.2% (first full trading day),2_unflagged,CNN Money
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Stock Market Impact,"Nikkei 225, Tuesday Mar 15","−10.6% (plunged to 8,605); biggest two-day drop in 40 years",5_official_outturn,BBC
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Stock Market Impact,Japanese sovereign CDS spreads,Jumped +30 basis points,5_official_outturn,BIS
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Stock Market Impact,"DAX (Germany), Mar 15",−3.2% (tech/auto supply chain fears),2_unflagged,BBC
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Recovery Time,Japan GDP Q3 2011 rebound,+1.7% q/q (reconstruction surge),5_official_outturn,World Bank
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Recovery Time,World Bank assessment,"Growth resumed ""after mid-2011""",5_official_outturn,World Bank
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Recovery Time,Fukushima decommission,Ongoing (decades-long process),2_unflagged,—
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Affected Industries,—,"Electronics (semiconductors, displays), automotive, steel, chemicals, nuclear, fisheries, agriculture",2_unflagged,CEPR; World Bank
+6,"Japan Great East Earthquake + Fukushima (Mar 11, 2011)",Affected Countries,—,"Japan (primary); US, EU, Asian partners (supply chain customers); global electronics and auto sectors",2_unflagged,BIS; World Bank
+7,US-China Trade War (2018–2020),GDP Change,US GDP impact (direct),<0.25% of GDP,5_official_outturn,IMF Blog May 2019
+7,US-China Trade War (2018–2020),GDP Change,China GDP impact (direct),<0.3% of GDP,5_official_outturn,IMF Blog May 2019
+7,US-China Trade War (2018–2020),GDP Change,US output gain if 2018/19 measures undone,+4% over 3 years (Bayesian SVAR),5_official_outturn,IMF WP 2024
+7,US-China Trade War (2018–2020),GDP Change,Welfare losses US and China (general equilibrium),Comparable to proportional gains from WTO accession or Uruguay Round,5_official_outturn,ScienceDirect
+7,US-China Trade War (2018–2020),Export/Import Change,"China exports to US (tariffed goods, general equilibrium)",−52.3% under full tariff regime,5_official_outturn,ScienceDirect
+7,US-China Trade War (2018–2020),Export/Import Change,China imports from US (general equilibrium),−49.3% under full tariff regime,5_official_outturn,ScienceDirect
+7,US-China Trade War (2018–2020),Export/Import Change,US average tariff on Chinese goods: 2018 → 2020,3% → 21%,5_official_outturn,IMF Blog; PIIE
+7,US-China Trade War (2018–2020),Export/Import Change,"China's share of US goods imports, trend",Declined significantly from 2018 peak (Fed Reserve data),5_official_outturn,Federal Reserve
+7,US-China Trade War (2018–2020),Export/Import Change,"Global trade effect (NBER, trade diversion)",+3% overall (diversion to third countries),5_official_outturn,NBER
+7,US-China Trade War (2018–2020),Supply Chain Delay,Front-loading before tariff implementation,Visible in all three tariff lists,5_official_outturn,IMF Blog
+7,US-China Trade War (2018–2020),Supply Chain Delay,Supply chain rerouting,"Vietnam, Mexico emerged as trade diversion beneficiaries",5_official_outturn,NBER
+7,US-China Trade War (2018–2020),Inflation Change,US consumer prices: tariff pass-through,"Full pass-through to US consumers (Cavallo, Gopinath, Neiman evidence)",5_official_outturn,IMF Blog
+7,US-China Trade War (2018–2020),Inflation Change,Import elasticity (general equilibrium),−0.8,5_official_outturn,IMF WP 2024
+7,US-China Trade War (2018–2020),Stock Market Impact,"S&P 500, December 2018",−20% (bear market; partially trade-war related),3_partial_evidence,IMF WEO Apr 2019
+7,US-China Trade War (2018–2020),Stock Market Impact,"China Shanghai Composite, 2018",−25% over the year,3_partial_evidence,IMF WEO Apr 2019
+7,US-China Trade War (2018–2020),Recovery Time,Phase 1 deal signed,January 2020,2_unflagged,PIIE
+7,US-China Trade War (2018–2020),Recovery Time,Tariff regime as of 2026,Still in place; PIIE: US avg tariffs on China now 47.5%,5_official_outturn,PIIE
+7,US-China Trade War (2018–2020),Affected Industries,—,"Agriculture (soybeans), steel, aluminum, electronics, machinery, automotive, chemicals",2_unflagged,IMF
+7,US-China Trade War (2018–2020),Affected Countries,—,"US, China (primary); Vietnam, Mexico, Taiwan (diversion beneficiaries); NAFTA, Emerging Asia, Europe (slowdown affected)",2_unflagged,NBER; Federal Reserve
+8,European Energy Crisis (2021–2023),GDP Change,"EU real GDP, 2022",+3.5% (resilient despite crisis),5_official_outturn,Eurostat / Statista
+8,European Energy Crisis (2021–2023),GDP Change,"EU real GDP, 2023",+0.4%,5_official_outturn,Statista
+8,European Energy Crisis (2021–2023),GDP Change,Euro area potential output decline by 2026,−0.8% vs no-shock counterfactual,5_official_outturn,CEPR/VoxEU
+8,European Energy Crisis (2021–2023),GDP Change,Euro area energy efficiency gain,~3% more efficient vs counterfactual (silver lining),5_official_outturn,CEPR/VoxEU
+8,European Energy Crisis (2021–2023),Export/Import Change,"Euro area current account, 2022",−0.8% of GDP (deficit; fell −3.6 pp from +2.8% surplus in 2021),5_official_outturn,ECB
+8,European Energy Crisis (2021–2023),Export/Import Change,"Russia gas exports to EU, 2022",Reduced 86 bcm (−60%),5_official_outturn,Bruegel
+8,European Energy Crisis (2021–2023),Export/Import Change,"EU LNG imports, 2022",Nearly doubled,5_official_outturn,Bruegel
+8,European Energy Crisis (2021–2023),Supply Chain Delay,"EU gas demand reduction, 2022",>10%,5_official_outturn,Bruegel
+8,European Energy Crisis (2021–2023),Supply Chain Delay,"EU electricity demand reduction, 2022",~5%,5_official_outturn,Bruegel
+8,European Energy Crisis (2021–2023),Supply Chain Delay,Energy-intensive production capacity impact,"Aluminum, chemicals, fertilizers, glass reduced capacity (specific % varies by firm)",5_official_outturn,Bank of Finland
+8,European Energy Crisis (2021–2023),Inflation Change,"Euro area HICP peak, Oct 2022",10.6% (historical record),5_official_outturn,SUERF/Eurostat
+8,European Energy Crisis (2021–2023),Inflation Change,"Euro area HICP, Dec 2022",9.2%,5_official_outturn,Eurostat
+8,European Energy Crisis (2021–2023),Inflation Change,Euro area core inflation peak,5.7% (Mar 2023),2_unflagged,SUERF
+8,European Energy Crisis (2021–2023),Inflation Change,Energy component contribution to Q4 2022 inflation,~60% of headline,5_official_outturn,SUERF
+8,European Energy Crisis (2021–2023),Inflation Change,"EU energy inflation, Jan 2022",+27% y/y,5_official_outturn,Eurostat
+8,European Energy Crisis (2021–2023),Inflation Change,"European natural gas prices, summer 2022",>10× early 2021 levels,5_official_outturn,CEPR
+8,European Energy Crisis (2021–2023),Inflation Change,"European natural gas prices, 2025",~2× historical average (still elevated),2_unflagged,CEPR
+8,European Energy Crisis (2021–2023),Inflation Change,"Eurozone energy inflation, Feb 2022",+31.7% y/y,2_unflagged,Al Jazeera
+8,European Energy Crisis (2021–2023),Stock Market Impact,European energy sector,Surged; industrial sector declined  (no isolated macro figure),3_partial_evidence,—
+8,European Energy Crisis (2021–2023),Recovery Time,Euro area inflation below 3%,Late 2023,5_official_outturn,Eurostat
+8,European Energy Crisis (2021–2023),Recovery Time,"EU gas consumption, 2023 vs peak crisis",−7.2% further (demand permanently reduced),2_unflagged,Eurostat
+8,European Energy Crisis (2021–2023),Recovery Time,EU gross available energy trend,−4.1% (2023 vs 2022); −11.9% vs 2013,5_official_outturn,Eurostat
+8,European Energy Crisis (2021–2023),Affected Industries,—,"Natural gas, electricity generation, chemicals, aluminum, fertilizers, paper, ceramics, automotive",2_unflagged,Bank of Finland; CEPR
+8,European Energy Crisis (2021–2023),Affected Countries,—,"EU-27; Germany, Italy, Austria (most gas-dependent); Central/Eastern Europe; global LNG market",2_unflagged,SUERF; Bruegel

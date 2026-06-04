@@ -1,0 +1,43 @@
+event_id,event_name,gdp_target,trade_target,inflation_target,market_target,duration_target,confidence,has_peer_review,has_uncertainty_band,mapping_status
+1,Dot-com Bubble Collapse & US Recession,0.04800,0.01000,,0.77000,30,4.00,false,false,UNCERTAIN
+2,Argentine Sovereign Default & Currency Crisis,0.11000,0.40000,0.41000,0.75000,48,5.00,false,false,UNCERTAIN
+3,SARS Epidemic,0.02600,0.50000,,0.18000,8,4.00,false,false,OK
+4,Iraq War & Associated Oil Price Spike,-0.00500,,0.00750,,1,3.00,false,false,OK
+5,Indian Ocean Earthquake and Tsunami,0.15000,,,,120,5.00,false,false,UNCERTAIN
+6,Hurricane Katrina & Rita,0.03100,,0.30000,,18,5.00,false,false,OK
+7,Global Financial Crisis,-0.00300,-0.15000,-0.00400,0.57000,18,3.67,true,true,UNCERTAIN
+8,H1N1 Swine Flu Pandemic,-0.00500,0.30000,,0.15000,16,3.00,false,false,UNCERTAIN
+9,European Sovereign Debt Crisis,-0.26000,,,0.55000,60,5.00,false,false,UNCERTAIN
+10,Arab Spring Political Upheaval,0.50000,,,0.20000,,3.00,false,false,UNCERTAIN
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",-0.00350,-0.00350,,0.20000,12,5.00,true,true,OK
+12,Russia Crimea Annexation & Western Sanctions,-0.02200,0.25000,0.50000,0.50000,,4.00,false,false,UNCERTAIN
+13,Nepal Earthquake,0.33000,0.09000,,0.15000,60,5.00,false,false,UNCERTAIN
+14,China Stock Market Crash,0.06900,0.30000,,0.30000,8,4.00,false,false,OK
+15,UK Brexit Referendum and Departure,0.07000,0.15000,0.12500,0.10000,48,5.00,false,false,OK
+16,US–China Trade War,0.02600,0.14000,0.00400,0.20000,,5.00,false,false,UNCERTAIN
+17,COVID-19 Global Pandemic,-0.03000,-0.05300,,0.34000,24,4.50,true,false,UNCERTAIN
+18,Global Semiconductor Chip Shortage,,,0.00700,,30,4.00,true,false,UNCERTAIN
+19,Ever Given Suez Canal Blockage,-0.00200,-0.01450,,,0,5.00,true,true,UNCERTAIN
+20,Post-COVID Global Supply Chain Disruption,0.00200,0.37000,0.02500,5.50000,24,5.00,false,false,UNCERTAIN
+21,Russia Invasion of Ukraine & Global Sanctions,-0.01500,0.34000,0.10000,0.45000,60,3.50,true,false,OK
+22,European Natural Gas & Energy Crisis,-0.00700,-0.03500,0.10600,,36,3.50,true,true,UNCERTAIN
+23,Post-COVID Global Inflation Surge & Central Bank Tightening,0.01400,,0.09100,0.00500,18,5.00,false,false,UNCERTAIN
+24,China Real Estate & Evergrande Crisis,0.27500,,,0.99000,,4.00,false,false,OK
+25,Sri Lanka Sovereign Default & Economic Collapse,0.08700,0.12000,0.70000,0.80000,,5.00,false,false,UNCERTAIN
+26,Red Sea Houthi Attacks / Shipping Crisis,0.50000,0.57500,,,24,5.00,false,false,UNCERTAIN
+27,Panama Canal Drought & Traffic Restrictions,0.73000,0.32000,,,18,4.00,false,false,OK
+28,"Trump 2025 ""Liberation Day"" Tariffs & Trade War",-0.01400,0.30000,0.90000,0.15000,,4.00,false,false,OK
+29,Haiti Earthquake,1.20000,,,,120,5.00,false,false,UNCERTAIN
+30,Global Food & Energy Crisis (Post-COVID / Ukraine),0.60000,,0.23000,,18,4.00,false,false,OK
+31,"2013 ""Taper Tantrum"" EM Currency Crisis",0.15000,,,,,3.00,false,false,UNCERTAIN
+32,2014–2016 Oil Price Collapse,-0.03700,0.50000,,,,4.00,false,false,UNCERTAIN
+33,2015–2016 Global Trade Slowdown,0.02600,,,,,4.00,false,false,UNCERTAIN
+34,2016 North Korea Nuclear Tests & Sanctions,-0.04100,,,,,2.00,false,false,UNCERTAIN
+35,"2017 Hurricane Season (Harvey, Irma, Maria)",-0.14000,,,,,4.00,false,false,UNCERTAIN
+36,2019 Hong Kong Protests,-0.02900,,,,,4.00,false,false,UNCERTAIN
+37,2021 Evergrande Default (See Event 24 for full),,,,,,,false,false,UNCERTAIN
+38,2022 Russia Gas Nord Stream Pipeline Sabotage,0.01500,,,,,4.00,false,false,UNCERTAIN
+39,2022 Pakistan Economic Crisis & IMF Bailout,0.00200,,,,,4.00,false,false,UNCERTAIN
+40,2023 Israel-Gaza Conflict & MENA Economic Impact,0.01200,,,,,3.00,false,false,UNCERTAIN
+41,2024–2025 Taiwan Strait Tensions & Semiconductor Risk,-0.02800,,,,,3.00,false,false,SCENARIO
+42,2025–2026 Middle East Energy Shock,0.03000,,,,,3.00,false,false,UNCERTAIN

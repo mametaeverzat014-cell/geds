@@ -1,0 +1,45 @@
+{
+  "baseline": {
+    "model": "ablation",
+    "n_events": 21,
+    "mae": 0.15297,
+    "mae_ci95": [
+      0.06884,
+      0.23767
+    ],
+    "rmse": 0.26126,
+    "r_squared": -0.4178,
+    "pearson": 0.3042,
+    "bias": -0.1496
+  },
+  "ablations": {
+    "no_seirs": {
+      "mae": 0.15297,
+      "rmse": 0.26126,
+      "r_squared": -0.4178,
+      "delta_mae": 0.0,
+      "delta_rmse": 0.0
+    },
+    "no_bullwhip": {
+      "mae": 0.153,
+      "rmse": 0.26132,
+      "r_squared": -0.4185,
+      "delta_mae": 3e-05,
+      "delta_rmse": 6e-05
+    },
+    "no_hysteresis": {
+      "mae": 0.15297,
+      "rmse": 0.26126,
+      "r_squared": -0.4178,
+      "delta_mae": 0.0,
+      "delta_rmse": 0.0
+    },
+    "no_network_amp": {
+      "mae": 0.15889,
+      "rmse": 0.26724,
+      "r_squared": -0.4835,
+      "delta_mae": 0.00592,
+      "delta_rmse": 0.00598
+    }
+  }
+}

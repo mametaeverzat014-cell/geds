@@ -1,0 +1,8 @@
+event_id,event_name,target_gdp_loss,target_trade_loss,target_inflation_change,target_market_loss,uncertainty_band_lower,uncertainty_band_upper,target_duration_months,source_paper
+7,Global Financial Crisis,-0.3,-15,,,-0.5,-0.1,,P-CEPR-Baldwin-2009;P-IMF-WEFS-2014-Ch7
+11,"Tōhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",-0.35,-0.35,,,-1.6,-0.35,12,P-Carvalho-QJE;P-Inoue-Todo-2016
+17,COVID-19 Global Pandemic,-3,-5.3,,,,,24,P-EAP-2023
+18,Global Semiconductor Chip Shortage,,,0.7,,,,,P-IMF-WP-22-061-Shipping
+19,Ever Given Suez Canal Blockage,,-1.45,,,-0.6,-2.3,0,P-Hummels-Schaur-AER-2013
+21,Russia Invasion of Ukraine & Global Sanctions,-1.5,,,,,,60,P-IMF-WP-24-039
+22,European Natural Gas & Energy Crisis,-0.7,-3.5,,,-4,-3,36,P-IMF-WP-24-027-EnergyResilience

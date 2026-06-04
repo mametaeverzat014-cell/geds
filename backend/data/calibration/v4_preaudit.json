@@ -1,0 +1,2627 @@
+[
+  {
+    "idx": 1,
+    "event_name": "1990 Iraqi Invasion of Kuwait Oil Price Shock",
+    "year": "1990",
+    "category": "energy-shock",
+    "confidence": "High",
+    "iso3": [
+      "IRQ",
+      "KWT"
+    ],
+    "regions": [
+      "Global oil market",
+      "OECD",
+      "industrial countries"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "energy",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Macroeconomy"
+    ],
+    "gdp_pct_snippets": [
+      "GNP by 0.25 percent",
+      "GDP during occupation was only 10–20 percent",
+      "0.5 percent in 1990 and reduced industrial-country GNP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.elibrary.imf.org/view/journals/022/0052/004/article-A007-en.xml"
+  },
+  {
+    "idx": 2,
+    "event_name": "1992 European Exchange Rate Mechanism (Black Wednesday) Crisis",
+    "year": "1992",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "DEU",
+      "ESP",
+      "FRA",
+      "GBR",
+      "ITA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.bankofengland.co.uk/about/history"
+  },
+  {
+    "idx": 3,
+    "event_name": "1995 Kobe Earthquake (Great Hanshin Earthquake)",
+    "year": "1995",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "JPN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Kobe",
+      "Osaka Prefecture",
+      "Tokushima Prefecture)"
+    ],
+    "sectors_mapped": [
+      "aerospace",
+      "consumer_goods",
+      "electronics",
+      "shipping",
+      "tourism",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.mlit.go.jp/english/white-paper/unyu-whitepaper/1995/1995010101.html"
+  },
+  {
+    "idx": 4,
+    "event_name": "1999 Turkey Izmit (Kocaeli) Earthquake",
+    "year": "1999",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "TUR"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "banking",
+      "consumer_goods",
+      "energy",
+      "shipping",
+      "telecommunications",
+      "tourism",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Business premises",
+      "Education",
+      "Enterprise sector",
+      "Municipal infrastructure",
+      "Schools",
+      "State-owned enterprises"
+    ],
+    "gdp_pct_snippets": [
+      "3 percent of GDP",
+      "5 percent drop in GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2000/06/economic-effects-of-the-1999-turkish-earthquakes_g17a140f/233456804045.pdf"
+  },
+  {
+    "idx": 5,
+    "event_name": "1997 Asian Financial Crisis",
+    "year": "1997",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "IDN",
+      "KOR",
+      "MYS",
+      "PHL",
+      "THA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Trade"
+    ],
+    "gdp_pct_snippets": [
+      "GDP growth fell from 4.5%",
+      "11% of their pre-crisis GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://thedocs.worldbank.org/en/doc/4aa0b654ecdbaf8302d5901aaada3fbf-0350012021/related/Global-Economic-Prospects-1998-99.pdf"
+  },
+  {
+    "idx": 6,
+    "event_name": "2000–2001 California Electricity Crisis",
+    "year": "2000",
+    "category": "energy-shock",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "California"
+    ],
+    "sectors_mapped": [
+      "consumer_goods",
+      "energy",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Commercial",
+      "Residential",
+      "Small Business"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://oag.ca.gov/cfs/energy"
+  },
+  {
+    "idx": 7,
+    "event_name": "1994 Mexican Peso Crisis (Tequila Crisis)",
+    "year": "1994",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "MEX"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "government"
+    ],
+    "unmapped_sector_tokens": [
+      "Consumer Spending",
+      "Labor Market"
+    ],
+    "gdp_pct_snippets": [
+      "GDP in 1994 and fell to 0.3%",
+      "GDP in 1995, while the World Bank projected GDP to decline by 4.8%",
+      "7.7% of GDP",
+      "0.3% of GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.imf.org/external/pubs/ft/history/2012/pdf/c10.pdf"
+  },
+  {
+    "idx": 8,
+    "event_name": "2001 September 11 Attacks Aviation and Insurance Shock",
+    "year": "2001",
+    "category": "transportation",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [
+      "global aviation and insurance markets"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "aerospace",
+      "banking",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.iata.org/contentassets/49a331cdfb85447cac12894e01aabb5c/fact-sheet-iata-9-11.pdf"
+  },
+  {
+    "idx": 9,
+    "event_name": "1998 Russian Financial Crisis and Ruble Default",
+    "year": "1998",
+    "category": "financial-crisis",
+    "confidence": "Low",
+    "iso3": [
+      "RUS"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "government"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='russia crimea annexation & western sanctions'",
+    "source_url": "https://www.stlouisfed.org/from-the-president/remarks/2026/productivity-growth-and-monetary-policy-iceland"
+  },
+  {
+    "idx": 10,
+    "event_name": "Dot-com bubble burst",
+    "year": "2000",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "electronics",
+      "telecommunications"
+    ],
+    "unmapped_sector_tokens": [
+      "Internet Services"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "LIKELY_DUP::v3='dot-com bubble collapse & us recession'",
+    "source_url": "https://www.elibrary.imf.org/view/journals/001/2013/045/article-A001-en.xml"
+  },
+  {
+    "idx": 11,
+    "event_name": "2003 SARS outbreak",
+    "year": "2002",
+    "category": "pandemic",
+    "confidence": "High",
+    "iso3": [
+      "CHN",
+      "SGP",
+      "TWN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Hong Kong SAR"
+    ],
+    "sectors_mapped": [
+      "aerospace",
+      "consumer_goods",
+      "electronics",
+      "shipping",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [
+      "Restaurants"
+    ],
+    "gdp_pct_snippets": [
+      "GDP contracting by over 5%",
+      "GDP for 2003 as a whole; Hong Kong’s GDP fell 10.5%",
+      "GDP loss was 1.1%",
+      "0.5% of GDP",
+      "7.9%, and the estimated full-year GDP",
+      "-0.7% GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='sars epidemic'",
+    "source_url": "https://documents1.worldbank.org/curated/en/101511468028867410/pdf/wps4466.pdf"
+  },
+  {
+    "idx": 12,
+    "event_name": "2003 Northeast Blackout",
+    "year": "2003",
+    "category": "energy-shock",
+    "confidence": "High",
+    "iso3": [
+      "CAN",
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "consumer_goods",
+      "shipping",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Commercial Services"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.energy.gov/oe/electricity-101"
+  },
+  {
+    "idx": 13,
+    "event_name": "2002 West Coast port lockout (ILWU-PMA)",
+    "year": "2002",
+    "category": "port-closure",
+    "confidence": "High",
+    "iso3": [],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Oregon)",
+      "United States (West Coast ports: California",
+      "Washington"
+    ],
+    "sectors_mapped": [
+      "agriculture",
+      "consumer_goods",
+      "electronics",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Trade"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.sfu.ca/~pvhall/pdfs/pvhall_edq_2004.PDF"
+  },
+  {
+    "idx": 14,
+    "event_name": "2006 Russia-Ukraine Gas Dispute Supply Cutoff",
+    "year": "2006",
+    "category": "energy-shock",
+    "confidence": "High",
+    "iso3": [
+      "DEU",
+      "FRA",
+      "HUN",
+      "ITA",
+      "POL",
+      "ROU",
+      "UKR"
+    ],
+    "regions": [
+      "European Union"
+    ],
+    "unmapped_country_tokens": [
+      "Austria",
+      "Slovakia"
+    ],
+    "sectors_mapped": [
+      "consumer_goods",
+      "energy",
+      "shipping",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Heating"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "LIKELY_DUP::v3='russia crimea annexation & western sanctions'",
+    "source_url": "https://www.imf.org/en/news/articles/2015/09/28/04/53/pn075"
+  },
+  {
+    "idx": 15,
+    "event_name": "2009 Eurozone Sovereign Debt Crisis (Greece) Onset",
+    "year": "2009",
+    "category": "financial-crisis",
+    "confidence": "Medium",
+    "iso3": [
+      "GRC"
+    ],
+    "regions": [
+      "Euro area"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "government"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [
+      "GDP ratio of 20.5 percent"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='european sovereign debt crisis'",
+    "source_url": "https://www.imf.org/en/news/articles/2026/05/14/cf-how-tax-administration-supported-greeces-economic-recovery"
+  },
+  {
+    "idx": 16,
+    "event_name": "2001 Argentine economic crisis and sovereign default",
+    "year": "2001",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "ARG"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "government"
+    ],
+    "unmapped_sector_tokens": [
+      "Consumer Spending",
+      "Labor Market"
+    ],
+    "gdp_pct_snippets": [
+      "GDP declined by over 4%"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='argentine sovereign default & currency crisis'",
+    "source_url": "https://www.imf.org/external/np/fin/tad/extarr2.aspx?memberKey1=30&date1key=2001-12-31"
+  },
+  {
+    "idx": 17,
+    "event_name": "2007 U.S. subprime mortgage crisis onset",
+    "year": "2007",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "electronics",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Residential Mortgage Lending"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://fraser.stlouisfed.org/timeline/financial-crisis"
+  },
+  {
+    "idx": 18,
+    "event_name": "2008 Global Financial Crisis (Lehman Brothers Collapse)",
+    "year": "2008",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "DEU",
+      "FRA",
+      "GBR",
+      "HUN",
+      "ISL",
+      "JPN",
+      "USA"
+    ],
+    "regions": [
+      "emerging market and developing economies",
+      "many Eastern European countries"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "electronics"
+    ],
+    "unmapped_sector_tokens": [
+      "Global trade",
+      "Interbank funding"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "LIKELY_DUP::v3='global financial crisis'",
+    "source_url": "https://www.imf.org/external/pubs/ft/fandd/2008/12/collyns.htm"
+  },
+  {
+    "idx": 19,
+    "event_name": "1999 Taiwan Chi-Chi Earthquake Semiconductor Disruption",
+    "year": "1999",
+    "category": "natural-disaster",
+    "confidence": "Low",
+    "iso3": [
+      "TWN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "consumer_goods",
+      "electronics"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "LIKELY_DUP::v3='global semiconductor chip shortage'",
+    "source_url": "https://www.britannica.com/event/Taiwan-earthquake-of-1999"
+  },
+  {
+    "idx": 20,
+    "event_name": "2010 Deepwater Horizon Oil Spill",
+    "year": "2010",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [
+      "Gulf of Mexico (Louisiana"
+    ],
+    "unmapped_country_tokens": [
+      "Alabama",
+      "Florida)",
+      "Mississippi"
+    ],
+    "sectors_mapped": [
+      "agriculture",
+      "consumer_goods",
+      "electronics",
+      "energy",
+      "government",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [
+      "Fisheries"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://response.restoration.noaa.gov/deepwater-horizon-oil-spill-case-study"
+  },
+  {
+    "idx": 21,
+    "event_name": "2004 Indian Ocean Tsunami (Boxing Day Tsunami)",
+    "year": "2004",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "BGD",
+      "IDN",
+      "IND",
+      "KEN",
+      "LKA",
+      "MDV",
+      "MMR",
+      "MYS",
+      "SOM",
+      "SYC",
+      "THA",
+      "TZA"
+    ],
+    "regions": [
+      "Reunion"
+    ],
+    "unmapped_country_tokens": [
+      "Mauritius"
+    ],
+    "sectors_mapped": [
+      "agriculture",
+      "banking",
+      "shipping",
+      "tourism",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Communications",
+      "Education",
+      "Environment",
+      "Fisheries",
+      "Health",
+      "Public administration",
+      "Roads"
+    ],
+    "gdp_pct_snippets": [
+      "GDP), output losses at US$330 million (1.5%",
+      "2.2% of GDP",
+      "97% of Aceh’s GDP",
+      "4.5% of GDP",
+      "1.5% of GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='indian ocean earthquake and tsunami'",
+    "source_url": "https://documents1.worldbank.org/curated/en/732201468773057989/txt/313800IND0damage1assessment01public1.txt"
+  },
+  {
+    "idx": 22,
+    "event_name": "2005 Hurricane Katrina Gulf Coast Energy and Refining Disruption",
+    "year": "2005",
+    "category": "energy-shock",
+    "confidence": "High",
+    "iso3": [],
+    "regions": [
+      "United States (Gulf Coast: Louisiana"
+    ],
+    "unmapped_country_tokens": [
+      "Alabama",
+      "Mississippi",
+      "Texas)"
+    ],
+    "sectors_mapped": [
+      "electronics",
+      "energy",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Petroleum Refining"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "LIKELY_DUP::v3='hurricane katrina & rita'",
+    "source_url": "https://www.energy.gov/hgeo/opr/history-spr-releases"
+  },
+  {
+    "idx": 23,
+    "event_name": "2011 Fukushima nuclear disaster supply chain disruption",
+    "year": "2011",
+    "category": "supply-chain",
+    "confidence": "Medium",
+    "iso3": [
+      "JPN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "automotive",
+      "consumer_goods",
+      "electronics",
+      "energy"
+    ],
+    "unmapped_sector_tokens": [
+      "Machinery"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "LIKELY_DUP::v3='tōhoku earthquake, tsunami & fukushima nuclear crisis'",
+    "source_url": "https://www.everycrsreport.com/reports/R41831.html"
+  },
+  {
+    "idx": 24,
+    "event_name": "2011 Thailand floods",
+    "year": "2011",
+    "category": "supply-chain",
+    "confidence": "High",
+    "iso3": [
+      "THA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "automotive",
+      "consumer_goods",
+      "electronics",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Hard Disk Drives"
+    ],
+    "gdp_pct_snippets": [
+      "12.6% of GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://documents1.worldbank.org/curated/en/099062723120515431/pdf/P179738001112b0950889d0dcc60289c10e.pdf"
+  },
+  {
+    "idx": 25,
+    "event_name": "2014 Russia Annexation of Crimea Sanctions",
+    "year": "2014",
+    "category": "geopolitical",
+    "confidence": "High",
+    "iso3": [
+      "RUS",
+      "UKR",
+      "USA"
+    ],
+    "regions": [
+      "European Union"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "banking",
+      "energy",
+      "shipping",
+      "telecommunications",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [
+      "Infrastructure",
+      "Trade"
+    ],
+    "gdp_pct_snippets": [
+      "GDP by 1 to 1.5 percent"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='russia crimea annexation & western sanctions'",
+    "source_url": "https://openknowledge.worldbank.org/entities/publication/1f9d0f8b-1e6d-50d3-8c59-74364f498661"
+  },
+  {
+    "idx": 26,
+    "event_name": "2014-2016 Oil Price Collapse",
+    "year": "2014",
+    "category": "energy-shock",
+    "confidence": "Medium",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [
+      "Global"
+    ],
+    "unmapped_country_tokens": [
+      "oil-exporting economies"
+    ],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "energy",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='2014–2016 oil price collapse'",
+    "source_url": "https://openknowledge.worldbank.org/entities/person/18b25906-9cb0-519d-95a9-8bfd4c5a3666"
+  },
+  {
+    "idx": 27,
+    "event_name": "2011 Tōhoku earthquake and tsunami",
+    "year": "2011",
+    "category": "natural-disaster",
+    "confidence": "Low",
+    "iso3": [
+      "JPN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "automotive",
+      "consumer_goods",
+      "electronics",
+      "energy",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='tōhoku earthquake, tsunami & fukushima nuclear crisis'",
+    "source_url": "https://openknowledge.worldbank.org/entities/publication/3eaf9e51-8f55-4906-87d4-a60f85256daf"
+  },
+  {
+    "idx": 28,
+    "event_name": "2010 Eyjafjallajökull Iceland volcanic ash aviation shutdown",
+    "year": "2010",
+    "category": "transportation",
+    "confidence": "Low",
+    "iso3": [
+      "BEL",
+      "DEU",
+      "ESP",
+      "FRA",
+      "GBR",
+      "IRL",
+      "ISL",
+      "NLD",
+      "NOR"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Denmark",
+      "Finland",
+      "Sweden"
+    ],
+    "sectors_mapped": [
+      "aerospace",
+      "shipping",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [
+      "Trade"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://transport.ec.europa.eu/transport-modes/air_en"
+  },
+  {
+    "idx": 29,
+    "event_name": "2013 United States federal government shutdown",
+    "year": "2013",
+    "category": "geopolitical",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "government",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [
+      "Consumer spending",
+      "Federal workforce",
+      "Public administration"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.cbo.gov/publication/44762"
+  },
+  {
+    "idx": 30,
+    "event_name": "2012 Hurricane Sandy (Superstorm Sandy)",
+    "year": "2012",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "JAM",
+      "PRI"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Connecticut",
+      "Cuba",
+      "Delaware",
+      "Maryland",
+      "New Jersey",
+      "Pennsylvania",
+      "United States: Northeast (New York",
+      "Virginia)"
+    ],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "electronics",
+      "energy",
+      "shipping",
+      "tourism",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.nature.com/articles/s41467-021-22838-1"
+  },
+  {
+    "idx": 31,
+    "event_name": "2011 Libyan civil war oil supply disruption",
+    "year": "2011",
+    "category": "energy-shock",
+    "confidence": "Low",
+    "iso3": [
+      "LBY"
+    ],
+    "regions": [
+      "global oil markets"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "electronics",
+      "energy"
+    ],
+    "unmapped_sector_tokens": [
+      "Trade"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.eia.gov/international/data/country/LBY/petroleum-and-other-liquids/production"
+  },
+  {
+    "idx": 32,
+    "event_name": "2015 Tianjin Port explosions",
+    "year": "2015",
+    "category": "port-closure",
+    "confidence": "High",
+    "iso3": [
+      "CHN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Tianjin Municipality"
+    ],
+    "sectors_mapped": [
+      "automotive",
+      "banking",
+      "consumer_goods",
+      "electronics",
+      "shipping",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "http://www.xinhuanet.com/english/2016-11/09/c_135817728.htm"
+  },
+  {
+    "idx": 33,
+    "event_name": "2015 Volkswagen Dieselgate emissions scandal",
+    "year": "2015",
+    "category": "transportation",
+    "confidence": "High",
+    "iso3": [
+      "DEU",
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "automotive"
+    ],
+    "unmapped_sector_tokens": [
+      "Emissions controls",
+      "Environmental compliance"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.epa.gov/vw/learn-about-volkswagen-violations"
+  },
+  {
+    "idx": 34,
+    "event_name": "Hurricane Harvey Texas petrochemical disruption",
+    "year": "2017",
+    "category": "natural-disaster",
+    "confidence": "Medium",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Texas"
+    ],
+    "sectors_mapped": [
+      "consumer_goods",
+      "electronics",
+      "energy",
+      "shipping",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://coast.noaa.gov/states/fast-facts/hurricane-costs.html"
+  },
+  {
+    "idx": 35,
+    "event_name": "2016 Brexit Referendum Market Shock",
+    "year": "2016",
+    "category": "geopolitical",
+    "confidence": "Low",
+    "iso3": [
+      "CAN",
+      "GBR",
+      "USA",
+      "ZAF"
+    ],
+    "regions": [
+      "Euro area"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "electronics"
+    ],
+    "unmapped_sector_tokens": [
+      "Investment funds"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "LIKELY_DUP::v3='uk brexit referendum and departure'",
+    "source_url": "https://www.ecb.europa.eu/pub/research/publications/html/index.en.html"
+  },
+  {
+    "idx": 36,
+    "event_name": "2017 Hurricane Maria Puerto Rico",
+    "year": "2017",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "PRI"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "consumer_goods",
+      "shipping",
+      "telecommunications",
+      "tourism",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Commerce",
+      "Public Services"
+    ],
+    "gdp_pct_snippets": [
+      "60 percent of Puerto Rico’s GDP",
+      "226.3 percent of GDP",
+      "60 percent of GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.imf.org/en/blogs/articles/2020/02/19/blog-finding-solid-footing-for-the-global-economy"
+  },
+  {
+    "idx": 37,
+    "event_name": "2016 Hanjin Shipping bankruptcy",
+    "year": "2016",
+    "category": "supply-chain",
+    "confidence": "Medium",
+    "iso3": [
+      "CHN",
+      "JPN",
+      "KOR",
+      "USA"
+    ],
+    "regions": [
+      "European Union"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "consumer_goods",
+      "electronics",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Port Operations"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.wsj.com/articles/billions-in-cargo-remains-stranded-at-sea-1473285117"
+  },
+  {
+    "idx": 38,
+    "event_name": "2015 China stock market crash",
+    "year": "2015",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "CHN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "electronics"
+    ],
+    "unmapped_sector_tokens": [
+      "Household Wealth"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='china stock market crash'",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7513187/"
+  },
+  {
+    "idx": 39,
+    "event_name": "2017 WannaCry and NotPetya cyberattacks (Maersk)",
+    "year": "2017",
+    "category": "cyberattack",
+    "confidence": "Medium",
+    "iso3": [
+      "DEU",
+      "GBR",
+      "UKR",
+      "USA"
+    ],
+    "regions": [
+      "global shipping network"
+    ],
+    "unmapped_country_tokens": [
+      "Denmark"
+    ],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "electronics",
+      "shipping",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [
+      "Trade"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.nao.org.uk/reports/investigation-wannacry-cyber-attack-and-the-nhs/"
+  },
+  {
+    "idx": 40,
+    "event_name": "2014–2016 West Africa Ebola outbreak",
+    "year": "2014",
+    "category": "pandemic",
+    "confidence": "High",
+    "iso3": [],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Guinea",
+      "Liberia",
+      "Sierra Leone"
+    ],
+    "sectors_mapped": [
+      "agriculture",
+      "shipping",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [
+      "Services",
+      "Trade"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.worldbank.org/en/news/press-release/2015/04/17/ebola-world-bank-group-provides-new-financing-to-help-guinea-liberia-sierra-leone-recover-from-ebola-emergency"
+  },
+  {
+    "idx": 41,
+    "event_name": "2018 U.S.-China trade war tariffs",
+    "year": "2018",
+    "category": "trade",
+    "confidence": "Medium",
+    "iso3": [
+      "CHN",
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "automotive",
+      "consumer_goods",
+      "electronics"
+    ],
+    "unmapped_sector_tokens": [
+      "Machinery"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='us–china trade war'",
+    "source_url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions"
+  },
+  {
+    "idx": 42,
+    "event_name": "2020 Beirut Port Explosion",
+    "year": "2020",
+    "category": "port-closure",
+    "confidence": "High",
+    "iso3": [
+      "LBN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Beirut"
+    ],
+    "sectors_mapped": [
+      "consumer_goods",
+      "electronics",
+      "shipping",
+      "tourism",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Public Infrastructure",
+      "Services"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.worldbank.org/ext/en/country/lebanon"
+  },
+  {
+    "idx": 43,
+    "event_name": "2019 U.S.-China trade war escalation",
+    "year": "2019",
+    "category": "trade",
+    "confidence": "Low",
+    "iso3": [
+      "CHN",
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "consumer_goods",
+      "electronics",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='us–china trade war'",
+    "source_url": "https://ustr.gov/issue-areas/enforcement/section-301-investigations/tariff-actions/2019-section-301-tariffs-china"
+  },
+  {
+    "idx": 44,
+    "event_name": "2019 Saudi Aramco Abqaiq Drone Attack Oil Disruption",
+    "year": "2019",
+    "category": "energy-shock",
+    "confidence": "Medium",
+    "iso3": [
+      "SAU"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "energy"
+    ],
+    "unmapped_sector_tokens": [
+      "Petroleum refining"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.reuters.com/article/us-saudi-aramco-attacks-idUSKBN1WJ0N3"
+  },
+  {
+    "idx": 45,
+    "event_name": "2020 Oil Price Crash and Negative WTI",
+    "year": "2020",
+    "category": "energy-shock",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [
+      "global oil markets"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "energy",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Mining"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.eia.gov/dnav/pet/hist/RWTCD.htm"
+  },
+  {
+    "idx": 46,
+    "event_name": "2018 Turkish currency and debt crisis",
+    "year": "2018",
+    "category": "financial-crisis",
+    "confidence": "Low",
+    "iso3": [],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Türkiye"
+    ],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "government",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/eurofxref-graph-try.en.html"
+  },
+  {
+    "idx": 47,
+    "event_name": "2021 Colonial Pipeline ransomware attack",
+    "year": "2021",
+    "category": "cyberattack",
+    "confidence": "Medium",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "consumer_goods",
+      "energy",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.reuters.com/business/energy/colonial-pipeline-ramps-up-us-seeks-emerge-fuel-crunch-2021-05-14/"
+  },
+  {
+    "idx": 48,
+    "event_name": "Boeing 737 MAX Grounding",
+    "year": "2019",
+    "category": "transportation",
+    "confidence": "Medium",
+    "iso3": [
+      "CHN",
+      "USA"
+    ],
+    "regions": [
+      "Europe",
+      "global"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "aerospace",
+      "consumer_goods"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.boeing.com/resources/boeingdotcom/company/general_info/pdf/boeing_annual_report_2019.pdf"
+  },
+  {
+    "idx": 49,
+    "event_name": "COVID-19 Pandemic Global Lockdowns",
+    "year": "2020",
+    "category": "pandemic",
+    "confidence": "High",
+    "iso3": [],
+    "regions": [
+      "Global"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "electronics",
+      "shipping",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [
+      "Labor Markets",
+      "Supply Chains"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='covid-19 global pandemic'",
+    "source_url": "https://www.imf.org/en/Publications/WEO/Issues/2020/06/24/WEOUpdateJune2020"
+  },
+  {
+    "idx": 50,
+    "event_name": "2021 Suez Canal Ever Given blockage",
+    "year": "2021",
+    "category": "supply-chain",
+    "confidence": "High",
+    "iso3": [
+      "EGY",
+      "IND",
+      "USA"
+    ],
+    "regions": [
+      "East Asia",
+      "Europe",
+      "Middle East",
+      "global maritime trade routes connecting Asia"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "consumer_goods",
+      "electronics",
+      "energy",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Trade"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "LIKELY_DUP::v3='ever given suez canal blockage'",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11253719/"
+  },
+  {
+    "idx": 51,
+    "event_name": "2021 Global Energy Crisis (Natural Gas Price Surge)",
+    "year": "2021",
+    "category": "energy-shock",
+    "confidence": "Medium",
+    "iso3": [
+      "DEU",
+      "ESP",
+      "GBR",
+      "ITA",
+      "NLD"
+    ],
+    "regions": [
+      "European Union"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "consumer_goods",
+      "energy",
+      "shipping",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Fertilizers",
+      "Households"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='european natural gas & energy crisis'",
+    "source_url": "https://economy-finance.ec.europa.eu/document/download/3360898c-cd40-46c0-b170-7adfcb993add_en?filename=ip341_en.pdf"
+  },
+  {
+    "idx": 52,
+    "event_name": "2022 China Zero-COVID Shanghai Lockdown",
+    "year": "2022",
+    "category": "pandemic",
+    "confidence": "High",
+    "iso3": [
+      "CHN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Jiangsu",
+      "Shanghai",
+      "Zhejiang"
+    ],
+    "sectors_mapped": [
+      "automotive",
+      "banking",
+      "consumer_goods",
+      "electronics",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Trade"
+    ],
+    "gdp_pct_snippets": [
+      "GDP growth by around 0.8 percent",
+      "0.2 percentage point GDP",
+      "-17.2% y/y in April; and cargo transport growth"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='covid-19 global pandemic'",
+    "source_url": "https://thedocs.worldbank.org/en/doc/9b7191d416b0dbfd7d36f1a935464ea0-0070012022/original/CEU-June-2022-EN.pdf"
+  },
+  {
+    "idx": 53,
+    "event_name": "2022 European Energy Crisis (Gas Supply Cutoff)",
+    "year": "2022",
+    "category": "energy-shock",
+    "confidence": "High",
+    "iso3": [],
+    "regions": [
+      "Euro area",
+      "European Union"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "energy",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Households"
+    ],
+    "gdp_pct_snippets": [
+      "GDP in 2022, with 64%",
+      "1.2% of GDP",
+      "2.1% of EU GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='european natural gas & energy crisis'",
+    "source_url": "https://www.ecb.europa.eu/press/blog/date/2026/html/ecb.blog20260603~3015f38292.en.html"
+  },
+  {
+    "idx": 54,
+    "event_name": "2022 Russian invasion of Ukraine and sanctions",
+    "year": "2022",
+    "category": "geopolitical",
+    "confidence": "High",
+    "iso3": [
+      "RUS",
+      "UKR"
+    ],
+    "regions": [
+      "Eastern Europe",
+      "European Union"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "banking",
+      "electronics",
+      "energy",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Trade"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "LIKELY_DUP::v3='russia crimea annexation & western sanctions'",
+    "source_url": "https://ec.europa.eu/commission/presscorner/api/files/attachment/881067/Factsheet_EU_Sanctions_against_Russia_following_the_invasion_of_Ukraine.pdf"
+  },
+  {
+    "idx": 55,
+    "event_name": "2021 Global Semiconductor Chip Shortage",
+    "year": "2021",
+    "category": "semiconductor",
+    "confidence": "High",
+    "iso3": [
+      "DEU",
+      "JPN",
+      "KOR",
+      "TWN",
+      "USA"
+    ],
+    "regions": [
+      "European Union",
+      "Global"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "automotive",
+      "electronics"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "LIKELY_DUP::v3='global semiconductor chip shortage'",
+    "source_url": "https://www.alixpartners.com/newsroom/press-release-shortages-related-to-semiconductors-to-cost-the-auto-industry-210-billion-in-revenues-this-year-says-new-alixpartners-forecast/"
+  },
+  {
+    "idx": 56,
+    "event_name": "2022 Nord Stream pipeline sabotage",
+    "year": "2022",
+    "category": "energy-shock",
+    "confidence": "Medium",
+    "iso3": [
+      "DEU"
+    ],
+    "regions": [
+      "European Union"
+    ],
+    "unmapped_country_tokens": [
+      "Denmark",
+      "Sweden"
+    ],
+    "sectors_mapped": [
+      "consumer_goods",
+      "electronics",
+      "energy",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [
+      "GDP may be around 0.2%",
+      "0.7%, and by end-2022 euro area real GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='2022 russia gas nord stream pipeline sabotage'",
+    "source_url": "https://economy-finance.ec.europa.eu/economic-forecast-and-surveys/economic-forecasts/spring-2026-economic-forecast-slowdown-growth-energy-shock-drives-inflation/eu-energy-markets-evolving-gas-electricity-price-linkages-more-volatile-system_en"
+  },
+  {
+    "idx": 57,
+    "event_name": "2021 Texas Winter Storm Uri Power Crisis",
+    "year": "2021",
+    "category": "energy-shock",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Texas"
+    ],
+    "sectors_mapped": [
+      "agriculture",
+      "energy",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Petroleum and Coal Products"
+    ],
+    "gdp_pct_snippets": [
+      "GDP loss: oil and gas extraction 18%"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://sciencecouncil.noaa.gov/noaa-by-the-numbers/winter-weather/"
+  },
+  {
+    "idx": 58,
+    "event_name": "2022 UK gilt market crisis (mini-budget)",
+    "year": "2022",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "GBR"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "electronics",
+      "government"
+    ],
+    "unmapped_sector_tokens": [
+      "Pensions"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.bankofengland.co.uk/quarterly-bulletin/2023/2023/financial-stability-buy-sell-tools-a-gilt-market-case-study"
+  },
+  {
+    "idx": 59,
+    "event_name": "2021 China Evergrande Debt Crisis",
+    "year": "2021",
+    "category": "financial-crisis",
+    "confidence": "Medium",
+    "iso3": [
+      "CHN",
+      "HKG"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Bond Markets",
+      "Property Development"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "LIKELY_DUP::v3='china real estate & evergrande crisis'",
+    "source_url": "https://www.bloomberg.com/news/articles/2021-09-01/evergrande-s-falling-debt-masks-dues-swelling-over-300-billion"
+  },
+  {
+    "idx": 60,
+    "event_name": "2023 Panama Canal drought shipping restrictions",
+    "year": "2023",
+    "category": "transportation",
+    "confidence": "High",
+    "iso3": [
+      "PAN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "electronics",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Trade"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='panama canal drought & traffic restrictions'",
+    "source_url": "https://pancanal.com/agua/"
+  },
+  {
+    "idx": 61,
+    "event_name": "2023 Turkey–Syria earthquakes",
+    "year": "2023",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "SYR"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Türkiye"
+    ],
+    "sectors_mapped": [
+      "agriculture",
+      "consumer_goods",
+      "shipping",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Infrastructure",
+      "Trade"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.worldbank.org/ext/en/country/turkey"
+  },
+  {
+    "idx": 62,
+    "event_name": "Silicon Valley Bank collapse",
+    "year": "2023",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "electronics"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.imf.org/-/media/files/publications/wp/2026/english/wpiea2026094-source-pdf.pdf"
+  },
+  {
+    "idx": 63,
+    "event_name": "2023 Credit Suisse Collapse and UBS Takeover",
+    "year": "2023",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "CHE"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [
+      "20% of Swiss GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.imf.org/-/media/files/publications/wp/2026/english/wpiea2026094-source-pdf.pdf"
+  },
+  {
+    "idx": 64,
+    "event_name": "2024 Baltimore Key Bridge Collapse Port Closure",
+    "year": "2024",
+    "category": "port-closure",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Baltimore",
+      "Maryland"
+    ],
+    "sectors_mapped": [
+      "electronics",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Longshore labor",
+      "Port Operations",
+      "Trucking"
+    ],
+    "gdp_pct_snippets": [
+      "13% of Maryland’s GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://governor.maryland.gov/news/press-releases/governor-moore-commemorates-two-year-anniversary-francis-scott-key-bridge-collapse"
+  },
+  {
+    "idx": 65,
+    "event_name": "2024 Noto Peninsula Earthquake",
+    "year": "2024",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "JPN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Ishikawa Prefecture",
+      "Noto Peninsula"
+    ],
+    "sectors_mapped": [
+      "agriculture",
+      "consumer_goods",
+      "shipping",
+      "tourism",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Fisheries"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://english.kyodonews.net/articles/-/45382"
+  },
+  {
+    "idx": 66,
+    "event_name": "2022 Global Food Price Crisis (Grain Export Disruption)",
+    "year": "2022",
+    "category": "trade",
+    "confidence": "High",
+    "iso3": [
+      "RUS",
+      "UKR"
+    ],
+    "regions": [
+      "Middle East and North Africa",
+      "Sub-Saharan Africa",
+      "global food-importing countries"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "electronics",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Fertilizer",
+      "Trade"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='global food & energy crisis (post-covid / ukraine)'",
+    "source_url": "https://www.fao.org/worldfoodsituation/foodpricesindex/en/"
+  },
+  {
+    "idx": 67,
+    "event_name": "2024 Hualien earthquake",
+    "year": "2024",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "TWN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "electronics",
+      "shipping",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.motc.gov.tw/ch/app/news_list/view?module=news&id=14&serno=0de5e5d1-8a27-4024-9cf9-d54949094966"
+  },
+  {
+    "idx": 68,
+    "event_name": "2023 US Debt Ceiling Standoff",
+    "year": "2023",
+    "category": "financial-crisis",
+    "confidence": "Low",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "electronics"
+    ],
+    "unmapped_sector_tokens": [
+      "Public Administration"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.congress.gov/bill/118th-congress/house-bill/3746/text"
+  },
+  {
+    "idx": 69,
+    "event_name": "2025 U.S. Reciprocal Tariff Policy",
+    "year": "2025",
+    "category": "trade",
+    "confidence": "Low",
+    "iso3": [
+      "CAN",
+      "CHN",
+      "JPN",
+      "KOR",
+      "MEX",
+      "TWN",
+      "USA"
+    ],
+    "regions": [
+      "European Union"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "automotive",
+      "consumer_goods",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='trump 2025 \"liberation day\" tariffs & trade war'",
+    "source_url": "https://ustr.gov/about/policy-offices/press-office/press-releases/2026/may/ambassador-jamieson-greer-trade-theory-must-catch-tariffs-industrial-policy-and-costs-globalization"
+  },
+  {
+    "idx": 70,
+    "event_name": "1996 Mad Cow Disease (BSE) UK Beef Crisis",
+    "year": "1996",
+    "category": "trade",
+    "confidence": "Low",
+    "iso3": [
+      "GBR"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Beef Cattle",
+      "Trade"
+    ],
+    "gdp_pct_snippets": [
+      "GDP growth was 2.4%"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.gov.uk/government/publications/multi-annual-national-control-plan-mancp/multi-annual-national-control-plan-for-great-britain-2026-to-2030"
+  },
+  {
+    "idx": 71,
+    "event_name": "Sri Lanka economic crisis and sovereign debt default",
+    "year": "2022",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "LKA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "banking",
+      "consumer_goods",
+      "energy",
+      "government",
+      "shipping",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='sri lanka sovereign default & economic collapse'",
+    "source_url": "https://thedocs.worldbank.org/en/doc/c05c262a4523099a8023c174b0beccbe-0340012023/original/Case-Study-Sri-Lanka-interest-rate-fixings.pdf"
+  },
+  {
+    "idx": 72,
+    "event_name": "1991 Soviet Union Dissolution Economic Collapse",
+    "year": "1991",
+    "category": "geopolitical",
+    "confidence": "High",
+    "iso3": [
+      "RUS",
+      "UKR"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Armenia",
+      "Azerbaijan",
+      "Belarus",
+      "Estonia",
+      "Georgia",
+      "Kazakhstan",
+      "Kyrgyz Republic",
+      "Latvia",
+      "Lithuania",
+      "Moldova",
+      "Tajikistan",
+      "Turkmenistan",
+      "Uzbekistan"
+    ],
+    "sectors_mapped": [
+      "agriculture",
+      "banking",
+      "energy",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Industry",
+      "Trade"
+    ],
+    "gdp_pct_snippets": [
+      "GDP declines of -46.7%",
+      "10% in 1991, then real GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.elibrary.imf.org/display/book/9781557755186/ch02.xml"
+  },
+  {
+    "idx": 73,
+    "event_name": "1993 World Trade Center bombing",
+    "year": "1993",
+    "category": "geopolitical",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "New York",
+      "New York City"
+    ],
+    "sectors_mapped": [
+      "banking",
+      "government",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://legistar.council.nyc.gov/LegislationDetail.aspx?ID=439696&GUID=F877FD80-1027-42A0-8352-8CB5CCD16D90&Options=&Search="
+  },
+  {
+    "idx": 74,
+    "event_name": "2024 CrowdStrike Global IT Outage",
+    "year": "2024",
+    "category": "cyberattack",
+    "confidence": "High",
+    "iso3": [
+      "AUS",
+      "CAN",
+      "GBR",
+      "USA"
+    ],
+    "regions": [
+      "European Union",
+      "Global"
+    ],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "aerospace",
+      "banking",
+      "consumer_goods",
+      "electronics",
+      "shipping",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [
+      "Media"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.parametrixinsurance.com/reports-white-papers/crowdstrikes-impact-on-the-fortune-500"
+  },
+  {
+    "idx": 75,
+    "event_name": "Hurricane Rita",
+    "year": "2005",
+    "category": "energy-shock",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Louisiana",
+      "Texas"
+    ],
+    "sectors_mapped": [
+      "energy",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Petroleum Refining"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.nhc.noaa.gov/data/tcr/AL182005_Rita.pdf"
+  },
+  {
+    "idx": 76,
+    "event_name": "2008 Wenchuan earthquake",
+    "year": "2008",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "CHN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Sichuan Province"
+    ],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "government",
+      "shipping",
+      "tourism",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Education",
+      "Industry"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.britannica.com/event/Sichuan-earthquake-of-2008"
+  },
+  {
+    "idx": 77,
+    "event_name": "2011 United States debt-ceiling crisis and Standard & Poor's downgrade",
+    "year": "2011",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "electronics",
+      "government"
+    ],
+    "unmapped_sector_tokens": [
+      "Mortgage Lending"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://home.treasury.gov/system/files/276/POTENTIAL-MACROECONOMIC-IMPACT-OF-DEBT-CEILING-BRINKMANSHIP.pdf"
+  },
+  {
+    "idx": 78,
+    "event_name": "2010 Greece First Bailout Sovereign Debt Crisis",
+    "year": "2010",
+    "category": "financial-crisis",
+    "confidence": "High",
+    "iso3": [
+      "GRC"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "government"
+    ],
+    "unmapped_sector_tokens": [
+      "Consumer Spending",
+      "Labor Market"
+    ],
+    "gdp_pct_snippets": [
+      "GDP and unemployment surged by 16 percent",
+      "GDP in 2008 and 15%",
+      "GDP in 2009, with public debt at 128%",
+      "10% of GDP",
+      "15% of GDP",
+      "128% of GDP"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='european sovereign debt crisis'",
+    "source_url": "https://www.imf.org/external/np/fin/tad/extarr2.aspx?memberKey1=360&date1key=2022-05-31"
+  },
+  {
+    "idx": 79,
+    "event_name": "2024 Red Sea Houthi Shipping Attacks",
+    "year": "2023",
+    "category": "supply-chain",
+    "confidence": "Medium",
+    "iso3": [
+      "EGY",
+      "ISR",
+      "JOR",
+      "SAU",
+      "YEM"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Djibouti",
+      "Eritrea"
+    ],
+    "sectors_mapped": [
+      "banking",
+      "electronics",
+      "energy",
+      "shipping"
+    ],
+    "unmapped_sector_tokens": [
+      "Trade"
+    ],
+    "gdp_pct_snippets": [
+      "GDP growth there to ease to 5.9 percent"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='red sea houthi attacks / shipping crisis'",
+    "source_url": "https://www.maersk.com/stay-ahead"
+  },
+  {
+    "idx": 80,
+    "event_name": "2012 U.S. Midwest drought (corn and soybean crop shock)",
+    "year": "2012",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "energy"
+    ],
+    "unmapped_sector_tokens": [
+      "Dairy",
+      "Livestock"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.bea.gov/help/faq/1012"
+  },
+  {
+    "idx": 81,
+    "event_name": "2019 California PG&E Public Safety Power Shutoffs",
+    "year": "2019",
+    "category": "energy-shock",
+    "confidence": "Low",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "California"
+    ],
+    "sectors_mapped": [
+      "consumer_goods",
+      "electronics",
+      "shipping",
+      "telecommunications",
+      "tourism",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.cpuc.ca.gov/psps/"
+  },
+  {
+    "idx": 82,
+    "event_name": "2014 Ukraine Conflict Donbas Economic Disruption",
+    "year": "2014",
+    "category": "geopolitical",
+    "confidence": "High",
+    "iso3": [
+      "UKR"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Donetsk Oblast",
+      "Luhansk Oblast"
+    ],
+    "sectors_mapped": [
+      "agriculture",
+      "banking",
+      "consumer_goods",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "External trade",
+      "Industrial production"
+    ],
+    "gdp_pct_snippets": [
+      "GDP in 2012, 23%",
+      "GDP in the East would decline 15–20%"
+    ],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='russia invasion of ukraine & global sanctions'",
+    "source_url": "https://www.imf.org/external/pubs/ft/scr/2014/cr14263.pdf"
+  },
+  {
+    "idx": 83,
+    "event_name": "2023 Maui wildfires",
+    "year": "2023",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Hawaii",
+      "Lahaina",
+      "Maui County"
+    ],
+    "sectors_mapped": [
+      "shipping",
+      "tourism",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Public Administration",
+      "Small Business"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.fema.gov/disaster/4724"
+  },
+  {
+    "idx": 84,
+    "event_name": "2018 Camp Fire",
+    "year": "2018",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "California"
+    ],
+    "sectors_mapped": [
+      "banking",
+      "consumer_goods",
+      "government",
+      "tourism",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.fire.ca.gov/incidents/2018/11/8/camp-fire/"
+  },
+  {
+    "idx": 85,
+    "event_name": "Hurricane Helene and Hurricane Milton (U.S. Southeast, 2024)",
+    "year": "2024",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "USA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Florida",
+      "Georgia",
+      "North Carolina",
+      "South Carolina",
+      "Tennessee",
+      "Virginia"
+    ],
+    "sectors_mapped": [
+      "agriculture",
+      "banking",
+      "consumer_goods",
+      "government",
+      "shipping",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [
+      "Infrastructure",
+      "Small Business"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://coast.noaa.gov/states/fast-facts/hurricane-costs.html"
+  },
+  {
+    "idx": 86,
+    "event_name": "2013 Cyprus Banking Crisis and Bail-in",
+    "year": "2013",
+    "category": "financial-crisis",
+    "confidence": "Low",
+    "iso3": [
+      "CYP"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "electronics",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.imf.org/en/publications/wp/issues/2026/05/14/systemic-banking-crises-database-1970-2025-576036"
+  },
+  {
+    "idx": 87,
+    "event_name": "2002 Argentine peso devaluation and corralito crisis",
+    "year": "2001",
+    "category": "financial-crisis",
+    "confidence": "Low",
+    "iso3": [
+      "ARG"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "banking",
+      "electronics"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "LIKELY_DUP::v3='argentine sovereign default & currency crisis'",
+    "source_url": "https://www.imf.org/external/np/fin/tad/extarr2.aspx?memberKey1=30&date1key=2000-03-31"
+  },
+  {
+    "idx": 88,
+    "event_name": "2021 Brazil drought energy and crop crisis",
+    "year": "2021",
+    "category": "natural-disaster",
+    "confidence": "Low",
+    "iso3": [
+      "BRA"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [],
+    "sectors_mapped": [
+      "agriculture",
+      "electronics",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.worldbank.org/ext/en/topic/water"
+  },
+  {
+    "idx": 89,
+    "event_name": "2020 Australia Black Summer Bushfires",
+    "year": "2019",
+    "category": "natural-disaster",
+    "confidence": "Medium",
+    "iso3": [
+      "AUS"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "New South Wales",
+      "Queensland",
+      "South Australia",
+      "Tasmania",
+      "Victoria",
+      "Western Australia"
+    ],
+    "sectors_mapped": [
+      "agriculture",
+      "banking",
+      "tourism"
+    ],
+    "unmapped_sector_tokens": [
+      "Forestry",
+      "Transport"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": true,
+    "money_or_physical_only": false,
+    "dup": "",
+    "source_url": "https://www.nema.gov.au/our-work/disaster-recovery/2019-20-black-summer-bushfires"
+  },
+  {
+    "idx": 90,
+    "event_name": "2016 Fort McMurray Wildfire (Horse River wildfire)",
+    "year": "2016",
+    "category": "natural-disaster",
+    "confidence": "High",
+    "iso3": [
+      "CAN"
+    ],
+    "regions": [],
+    "unmapped_country_tokens": [
+      "Alberta",
+      "Regional Municipality of Wood Buffalo"
+    ],
+    "sectors_mapped": [
+      "banking",
+      "energy",
+      "shipping",
+      "utilities"
+    ],
+    "unmapped_sector_tokens": [
+      "Mining"
+    ],
+    "gdp_pct_snippets": [],
+    "has_gdp_keyword": false,
+    "money_or_physical_only": true,
+    "dup": "",
+    "source_url": "https://www.canada.ca/en/public-safety-canada/news/2026/05/breakdown-of-disaster-financial-assistance-arrangements-payments-for-the-2016-fort-mcmurray-wildfires.html"
+  }
+]

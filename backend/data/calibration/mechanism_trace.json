@@ -1,0 +1,259 @@
+{
+  "timestamp": "2026-05-26T18:22:14.821586+00:00",
+  "n_events": 11,
+  "config": {
+    "propagation_decay": 0.9890986444141316,
+    "rerouting_efficiency": 0.55,
+    "amplification_mu": 3.9941650267701454,
+    "amplification_eps": 0.19996098944271445,
+    "recovery_rate": 0.010108959224208736,
+    "stochastic_sigma": 0.0,
+    "seed": null,
+    "seis_enabled": true,
+    "adaptive_rerouting": true,
+    "bullwhip_factor": 1.1252532884436197,
+    "r_output_floor": 0.3,
+    "inventory_scale": 1.0,
+    "distress_base": 0.4,
+    "distress_week_threshold": 6,
+    "sanity_max_loss_fraction": 0.15
+  },
+  "aggregate": {
+    "state_weeks": {
+      "0": 22829,
+      "1": 4,
+      "2": 47,
+      "3": 0
+    },
+    "transitions": {
+      "S->E": 1,
+      "E->I": 1
+    },
+    "nodes_ever_in_E": [
+      7
+    ],
+    "nodes_ever_in_I": [
+      7
+    ],
+    "nodes_ever_in_R": [],
+    "bullwhip_active_cells": 4,
+    "bullwhip_max_value": 1.1252532884436197,
+    "bullwhip_total_amplification_effect": 0.5010131537744789,
+    "output_floor_active_cells": 0,
+    "output_floor_max_value": 0.0,
+    "outbound_mask_range": [
+      0.1,
+      1.0
+    ],
+    "outbound_mask_mean_diff_from_1": 0.00015734265734265734,
+    "amp_kicker_max": 0.8519958584429672,
+    "amp_kicker_mean": 0.08875082087052519,
+    "amp_kicker_p95": 0.20209521674220088,
+    "amp_kicker_active_fraction": 0.005594405594405596,
+    "amp_kicker_calls": 572,
+    "seis_calls": 572
+  },
+  "per_event": [
+    {
+      "event_id": 3,
+      "name": "SARS Epidemic",
+      "state_weeks": {
+        "0": 2080,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "transitions": {},
+      "n_nodes_ever_in_E": 0,
+      "n_nodes_ever_in_I": 0,
+      "n_nodes_ever_in_R": 0,
+      "bullwhip_active_cells": 0,
+      "output_floor_active_cells": 0,
+      "predicted_loss": 0.0105,
+      "observed_loss": 0.026
+    },
+    {
+      "event_id": 4,
+      "name": "Iraq War & Associated Oil Price Spike",
+      "state_weeks": {
+        "0": 2080,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "transitions": {},
+      "n_nodes_ever_in_E": 0,
+      "n_nodes_ever_in_I": 0,
+      "n_nodes_ever_in_R": 0,
+      "bullwhip_active_cells": 0,
+      "output_floor_active_cells": 0,
+      "predicted_loss": 0.0071,
+      "observed_loss": 0.005
+    },
+    {
+      "event_id": 6,
+      "name": "Hurricane Katrina & Rita",
+      "state_weeks": {
+        "0": 2080,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "transitions": {},
+      "n_nodes_ever_in_E": 0,
+      "n_nodes_ever_in_I": 0,
+      "n_nodes_ever_in_R": 0,
+      "bullwhip_active_cells": 0,
+      "output_floor_active_cells": 0,
+      "predicted_loss": 0.0071,
+      "observed_loss": 0.031
+    },
+    {
+      "event_id": 11,
+      "name": "T\u014dhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",
+      "state_weeks": {
+        "0": 2080,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "transitions": {},
+      "n_nodes_ever_in_E": 0,
+      "n_nodes_ever_in_I": 0,
+      "n_nodes_ever_in_R": 0,
+      "bullwhip_active_cells": 0,
+      "output_floor_active_cells": 0,
+      "predicted_loss": 0.0105,
+      "observed_loss": 0.009
+    },
+    {
+      "event_id": 14,
+      "name": "China Stock Market Crash",
+      "state_weeks": {
+        "0": 2080,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "transitions": {},
+      "n_nodes_ever_in_E": 0,
+      "n_nodes_ever_in_I": 0,
+      "n_nodes_ever_in_R": 0,
+      "bullwhip_active_cells": 0,
+      "output_floor_active_cells": 0,
+      "predicted_loss": 0.0145,
+      "observed_loss": 0.069
+    },
+    {
+      "event_id": 15,
+      "name": "UK Brexit Referendum and Departure",
+      "state_weeks": {
+        "0": 2080,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "transitions": {},
+      "n_nodes_ever_in_E": 0,
+      "n_nodes_ever_in_I": 0,
+      "n_nodes_ever_in_R": 0,
+      "bullwhip_active_cells": 0,
+      "output_floor_active_cells": 0,
+      "predicted_loss": 0.027,
+      "observed_loss": 0.07
+    },
+    {
+      "event_id": 21,
+      "name": "Russia Invasion of Ukraine & Global Sanctions",
+      "state_weeks": {
+        "0": 2080,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "transitions": {},
+      "n_nodes_ever_in_E": 0,
+      "n_nodes_ever_in_I": 0,
+      "n_nodes_ever_in_R": 0,
+      "bullwhip_active_cells": 0,
+      "output_floor_active_cells": 0,
+      "predicted_loss": 0.0021,
+      "observed_loss": 0.14
+    },
+    {
+      "event_id": 24,
+      "name": "China Real Estate & Evergrande Crisis",
+      "state_weeks": {
+        "0": 2080,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "transitions": {},
+      "n_nodes_ever_in_E": 0,
+      "n_nodes_ever_in_I": 0,
+      "n_nodes_ever_in_R": 0,
+      "bullwhip_active_cells": 0,
+      "output_floor_active_cells": 0,
+      "predicted_loss": 0.0576,
+      "observed_loss": 0.275
+    },
+    {
+      "event_id": 27,
+      "name": "Panama Canal Drought & Traffic Restrictions",
+      "state_weeks": {
+        "0": 2029,
+        "1": 4,
+        "2": 47,
+        "3": 0
+      },
+      "transitions": {
+        "S->E": 1,
+        "E->I": 1
+      },
+      "n_nodes_ever_in_E": 1,
+      "n_nodes_ever_in_I": 1,
+      "n_nodes_ever_in_R": 0,
+      "bullwhip_active_cells": 4,
+      "output_floor_active_cells": 0,
+      "predicted_loss": 0.0638,
+      "observed_loss": 0.73
+    },
+    {
+      "event_id": 28,
+      "name": "Trump 2025 \"Liberation Day\" Tariffs & Trade War",
+      "state_weeks": {
+        "0": 2080,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "transitions": {},
+      "n_nodes_ever_in_E": 0,
+      "n_nodes_ever_in_I": 0,
+      "n_nodes_ever_in_R": 0,
+      "bullwhip_active_cells": 0,
+      "output_floor_active_cells": 0,
+      "predicted_loss": 0.0076,
+      "observed_loss": 0.014
+    },
+    {
+      "event_id": 30,
+      "name": "Global Food & Energy Crisis (Post-COVID / Ukraine)",
+      "state_weeks": {
+        "0": 2080,
+        "1": 0,
+        "2": 0,
+        "3": 0
+      },
+      "transitions": {},
+      "n_nodes_ever_in_E": 0,
+      "n_nodes_ever_in_I": 0,
+      "n_nodes_ever_in_R": 0,
+      "bullwhip_active_cells": 0,
+      "output_floor_active_cells": 0,
+      "predicted_loss": 0.0336,
+      "observed_loss": 0.6
+    }
+  ]
+}

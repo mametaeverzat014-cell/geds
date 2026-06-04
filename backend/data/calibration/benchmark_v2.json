@@ -1,0 +1,195 @@
+{
+  "timestamp": "2026-05-26T18:10:34.178715+00:00",
+  "n_events_corpus": 42,
+  "n_events_eligible": 11,
+  "n_excluded_no_target": 2,
+  "n_excluded_no_mapping": 29,
+  "engine_config": {
+    "propagation_decay": 0.9890986444141316,
+    "rerouting_efficiency": 0.55,
+    "amplification_mu": 3.9941650267701454,
+    "amplification_eps": 0.19996098944271445,
+    "recovery_rate": 0.010108959224208736,
+    "stochastic_sigma": 0.0,
+    "seed": null,
+    "seis_enabled": true,
+    "adaptive_rerouting": true,
+    "bullwhip_factor": 1.1252532884436197,
+    "r_output_floor": 0.3,
+    "inventory_scale": 1.0,
+    "distress_base": 0.4,
+    "distress_week_threshold": 6,
+    "sanity_max_loss_fraction": 0.15
+  },
+  "engine_graph_nodes": 40,
+  "models": [
+    {
+      "model": "SEIRS-Bullwhip-Hysteresis (GEDS)",
+      "n_events": 11,
+      "mae": 0.14685,
+      "mae_ci95": [
+        0.025,
+        0.2948
+      ],
+      "rmse": 0.27266,
+      "r_squared": -0.2151,
+      "pearson": 0.8287,
+      "mape_pct": 83.23,
+      "calibration_error": 0.00791,
+      "bias": -0.14519,
+      "skill_vs_persistence": -0.2151
+    },
+    {
+      "model": "Leontief",
+      "n_events": 11,
+      "mae": 0.14903,
+      "mae_ci95": [
+        0.02765,
+        0.29892
+      ],
+      "rmse": 0.2747,
+      "r_squared": -0.2334,
+      "pearson": 0.8014,
+      "mape_pct": 68.2,
+      "calibration_error": 0.00786,
+      "bias": -0.14864,
+      "skill_vs_persistence": -0.2334
+    },
+    {
+      "model": "Linear Diffusion",
+      "n_events": 11,
+      "mae": 0.14786,
+      "mae_ci95": [
+        0.02611,
+        0.29624
+      ],
+      "rmse": 0.27288,
+      "r_squared": -0.2171,
+      "pearson": 0.7908,
+      "mape_pct": 74.08,
+      "calibration_error": 0.00821,
+      "bias": -0.14673,
+      "skill_vs_persistence": -0.2171
+    },
+    {
+      "model": "Naive Persistence",
+      "n_events": 11,
+      "mae": 0.20065,
+      "mae_ci95": [
+        0.1287,
+        0.29424
+      ],
+      "rmse": 0.24735,
+      "r_squared": 0.0,
+      "pearson": NaN,
+      "mape_pct": 1043.42,
+      "calibration_error": 0.0,
+      "bias": -0.0,
+      "skill_vs_persistence": 0.0
+    }
+  ],
+  "winner_by_mae": "SEIRS-Bullwhip-Hysteresis (GEDS)",
+  "winner_by_r_squared": "SEIRS-Bullwhip-Hysteresis (GEDS)",
+  "per_event": [
+    {
+      "event_id": 3,
+      "name": "SARS Epidemic",
+      "target": 0.026,
+      "seirs": 0.0105,
+      "leontief": 0.010475446390107473,
+      "linear_diffusion": 0.009525027102923588,
+      "has_peer_review": "false"
+    },
+    {
+      "event_id": 4,
+      "name": "Iraq War & Associated Oil Price Spike",
+      "target": 0.005,
+      "seirs": 0.0071,
+      "leontief": 0.007084349205186922,
+      "linear_diffusion": 0.008740547544627227,
+      "has_peer_review": "false"
+    },
+    {
+      "event_id": 6,
+      "name": "Hurricane Katrina & Rita",
+      "target": 0.031,
+      "seirs": 0.0071,
+      "leontief": 0.007084349205186922,
+      "linear_diffusion": 0.008740547544627227,
+      "has_peer_review": "false"
+    },
+    {
+      "event_id": 11,
+      "name": "T\u014dhoku Earthquake, Tsunami & Fukushima Nuclear Crisis",
+      "target": 0.0035,
+      "seirs": 0.0105,
+      "leontief": 0.003554788550734463,
+      "linear_diffusion": 0.005957396641140315,
+      "has_peer_review": "true"
+    },
+    {
+      "event_id": 14,
+      "name": "China Stock Market Crash",
+      "target": 0.069,
+      "seirs": 0.0145,
+      "leontief": 0.014456116018348314,
+      "linear_diffusion": 0.013144537402034553,
+      "has_peer_review": "false"
+    },
+    {
+      "event_id": 15,
+      "name": "UK Brexit Referendum and Departure",
+      "target": 0.07,
+      "seirs": 0.027,
+      "leontief": 0.004822531136754241,
+      "linear_diffusion": 0.016094628177546564,
+      "has_peer_review": "false"
+    },
+    {
+      "event_id": 21,
+      "name": "Russia Invasion of Ukraine & Global Sanctions",
+      "target": 0.015,
+      "seirs": 0.0021,
+      "leontief": 0.0020999342981148157,
+      "linear_diffusion": 0.003190109761903232,
+      "has_peer_review": "true"
+    },
+    {
+      "event_id": 24,
+      "name": "China Real Estate & Evergrande Crisis",
+      "target": 0.275,
+      "seirs": 0.0576,
+      "leontief": 0.05761495514559111,
+      "linear_diffusion": 0.05238764906607973,
+      "has_peer_review": "false"
+    },
+    {
+      "event_id": 27,
+      "name": "Panama Canal Drought & Traffic Restrictions",
+      "target": 0.73,
+      "seirs": 0.0638,
+      "leontief": 0.06375914284668231,
+      "linear_diffusion": 0.07866492790164503,
+      "has_peer_review": "false"
+    },
+    {
+      "event_id": 28,
+      "name": "Trump 2025 \"Liberation Day\" Tariffs & Trade War",
+      "target": 0.014,
+      "seirs": 0.0076,
+      "leontief": 0.007588572144452313,
+      "linear_diffusion": 0.009683492394275588,
+      "has_peer_review": "false"
+    },
+    {
+      "event_id": 30,
+      "name": "Global Food & Energy Crisis (Post-COVID / Ukraine)",
+      "target": 0.6,
+      "seirs": 0.0336,
+      "leontief": 0.024939912448727303,
+      "linear_diffusion": 0.018352358252222294,
+      "has_peer_review": "false"
+    }
+  ],
+  "elapsed_seconds": 0.4
+}

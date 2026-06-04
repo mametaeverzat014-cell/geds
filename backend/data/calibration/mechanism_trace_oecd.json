@@ -1,0 +1,22 @@
+{
+  "timestamp": "2026-05-27T21:05:58.903426+00:00",
+  "graph_nodes": 1128,
+  "n_events_run": 21,
+  "state_weeks": {
+    "0": 1228972,
+    "1": 911,
+    "2": 1871,
+    "3": 22
+  },
+  "transitions": {
+    "S->E": 130,
+    "E->I": 89,
+    "R->I": 1
+  },
+  "n_nodes_ever_E": 95,
+  "n_nodes_ever_I": 70,
+  "n_nodes_ever_R": 1,
+  "bullwhip_active_cells": 911,
+  "floor_active_cells": 22,
+  "seis_calls": 1092
+}

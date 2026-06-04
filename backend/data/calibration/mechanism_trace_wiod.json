@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-05-29T17:06:05.242798+00:00",
+  "graph_nodes": 1204,
+  "n_events_run": 21,
+  "state_weeks": {
+    "0": 1282791,
+    "1": 7755,
+    "2": 23957,
+    "3": 265
+  },
+  "transitions": {
+    "S->E": 1189,
+    "E->I": 761,
+    "R->I": 15
+  },
+  "n_nodes_ever_E": 190,
+  "n_nodes_ever_I": 188,
+  "n_nodes_ever_R": 9,
+  "bullwhip_active_cells": 7755,
+  "floor_active_cells": 265,
+  "seis_calls": 1092,
+  "amp_kicker_mean": 0.1939,
+  "amp_kicker_max": 0.9695,
+  "amp_kicker_calls": 1092
+}

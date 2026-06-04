@@ -1,0 +1,32 @@
+{
+  "timestamp": "2026-05-29T17:14:00.246167+00:00",
+  "per_graph": {
+    "heuristic": {
+      "n_nodes": 595,
+      "n_edges": 2141,
+      "rho_before": 0.9547478198654762,
+      "density": 0.006047595508791752,
+      "R0_proxy_pre_norm_mu_4": 3.8189912794619048,
+      "scale_applied": 1.047396997608122,
+      "rho_after": 1.0
+    },
+    "OECD-only": {
+      "n_nodes": 1128,
+      "n_edges": 2440,
+      "rho_before": 0.3287115207393018,
+      "density": 0.0019176600774608924,
+      "R0_proxy_pre_norm_mu_4": 1.3148460829572073,
+      "scale_applied": 3.042181173787003,
+      "rho_after": 1.0
+    },
+    "OECD+WIOD": {
+      "n_nodes": 1204,
+      "n_edges": 3025,
+      "rho_before": 0.7409245539724755,
+      "density": 0.0020867595280405294,
+      "R0_proxy_pre_norm_mu_4": 2.963698215889902,
+      "scale_applied": 1.3496650834939787,
+      "rho_after": 1.0
+    }
+  }
+}

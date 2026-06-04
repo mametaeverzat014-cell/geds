@@ -1,0 +1,164 @@
+{
+  "timestamp": "2026-05-29T17:25:24.165643+00:00",
+  "n_folds_attempted": 5,
+  "n_folds_succeeded": 5,
+  "n_folds_failed": 0,
+  "elapsed_seconds": 149.7,
+  "train_mae_mean": 0.064742,
+  "val_metrics": {
+    "loeo_mae": 0.06462,
+    "loeo_mae_std": 0.055352268246206496,
+    "loeo_rmse": 0.08508594478525816,
+    "loeo_r2": -1.475794074195666,
+    "loeo_pearson": -0.8072012416806479
+  },
+  "overfitting_gap": -0.00012199999999999711,
+  "fold_variance": {
+    "amplification_mu": {
+      "mean": 1.3985300343992288,
+      "std": 0.9827521906876293
+    },
+    "amplification_eps": {
+      "mean": 0.04543206905637,
+      "std": 0.021214969369343837
+    },
+    "propagation_decay": {
+      "mean": 0.7281730350320725,
+      "std": 0.15638056550314153
+    },
+    "recovery_rate": {
+      "mean": 0.18343247021549997,
+      "std": 0.050668112474252965
+    },
+    "bullwhip_factor": {
+      "mean": 1.1629441028830536,
+      "std": 0.14826977588632714
+    },
+    "inventory_scale": {
+      "mean": 1.2844882411012197,
+      "std": 0.6103995780947961
+    },
+    "r_output_floor": {
+      "mean": 0.2785370473826552,
+      "std": 0.10384016965603686
+    }
+  },
+  "successful_folds": [
+    {
+      "fold": 0,
+      "status": "ok",
+      "heldout_event_id": 1,
+      "heldout_event_name": "Dot-com Bubble Collapse & US Recession",
+      "train_n": 4,
+      "train_mae": 0.06973,
+      "test_pred": 0.003,
+      "test_obs": 0.048,
+      "test_err_abs": 0.045,
+      "best_params": {
+        "amplification_mu": 2.7569633868957664,
+        "amplification_eps": 0.05522800275481476,
+        "propagation_decay": 0.5083117675196677,
+        "recovery_rate": 0.13155483010595212,
+        "bullwhip_factor": 1.0172067979264925,
+        "inventory_scale": 1.1631377268760468,
+        "r_output_floor": 0.29684362206528864
+      },
+      "best_loss_on_train": 0.17259289381542986,
+      "n_evals": 16,
+      "elapsed_seconds": 29.5
+    },
+    {
+      "fold": 1,
+      "status": "ok",
+      "heldout_event_id": 2,
+      "heldout_event_name": "Argentine Sovereign Default & Currency Crisis",
+      "train_n": 4,
+      "train_mae": 0.05343,
+      "test_pred": 0.0002,
+      "test_obs": 0.11,
+      "test_err_abs": 0.1098,
+      "best_params": {
+        "amplification_mu": 0.4501016118507002,
+        "amplification_eps": 0.038638942910568554,
+        "propagation_decay": 0.7698704868031709,
+        "recovery_rate": 0.16889397517569413,
+        "bullwhip_factor": 1.2992018708259423,
+        "inventory_scale": 1.8787635354650774,
+        "r_output_floor": 0.37742666634818395
+      },
+      "best_loss_on_train": 0.18203387244856614,
+      "n_evals": 16,
+      "elapsed_seconds": 32.5
+    },
+    {
+      "fold": 2,
+      "status": "ok",
+      "heldout_event_id": 3,
+      "heldout_event_name": "SARS Epidemic",
+      "train_n": 4,
+      "train_mae": 0.07628,
+      "test_pred": 0.008,
+      "test_obs": 0.026,
+      "test_err_abs": 0.018,
+      "best_params": {
+        "amplification_mu": 0.10946427937049,
+        "amplification_eps": 0.07807998295650988,
+        "propagation_decay": 0.9863418764267948,
+        "recovery_rate": 0.18074009079209674,
+        "bullwhip_factor": 1.3817779721138865,
+        "inventory_scale": 1.9907439409613037,
+        "r_output_floor": 0.08809915135487704
+      },
+      "best_loss_on_train": 0.22551645309798046,
+      "n_evals": 16,
+      "elapsed_seconds": 29.2
+    },
+    {
+      "fold": 3,
+      "status": "ok",
+      "heldout_event_id": 4,
+      "heldout_event_name": "Iraq War & Associated Oil Price Spike",
+      "train_n": 4,
+      "train_mae": 0.08027,
+      "test_pred": 0.0077,
+      "test_obs": 0.005,
+      "test_err_abs": 0.0027,
+      "best_params": {
+        "amplification_mu": 1.7037339645353748,
+        "amplification_eps": 0.04187020184964208,
+        "propagation_decay": 0.7224137636338002,
+        "recovery_rate": 0.27938049113864155,
+        "bullwhip_factor": 1.0457927575520822,
+        "inventory_scale": 1.0828533697382554,
+        "r_output_floor": 0.2659092893129352
+      },
+      "best_loss_on_train": 0.26579289587576205,
+      "n_evals": 16,
+      "elapsed_seconds": 29.3
+    },
+    {
+      "fold": 4,
+      "status": "ok",
+      "heldout_event_id": 5,
+      "heldout_event_name": "Indian Ocean Earthquake and Tsunami",
+      "train_n": 4,
+      "train_mae": 0.044,
+      "test_pred": 0.0024,
+      "test_obs": 0.15,
+      "test_err_abs": 0.1476,
+      "best_params": {
+        "amplification_mu": 1.9723869293438119,
+        "amplification_eps": 0.013343214810314736,
+        "propagation_decay": 0.6539272807769292,
+        "recovery_rate": 0.1565929638651153,
+        "bullwhip_factor": 1.0707411159968643,
+        "inventory_scale": 0.30694263246541514,
+        "r_output_floor": 0.3644065078319912
+      },
+      "best_loss_on_train": 0.09785685225597672,
+      "n_evals": 16,
+      "elapsed_seconds": 29.1
+    }
+  ],
+  "failed_folds": []
+}

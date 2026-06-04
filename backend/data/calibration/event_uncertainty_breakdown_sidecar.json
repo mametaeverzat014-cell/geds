@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-06-03T16:10:43.619086+00:00",
+  "graphs_used": {
+    "heuristic": {
+      "n_nodes": 0,
+      "rho_before": 0.9547478198654762,
+      "scale": 1.047396997608122
+    },
+    "OECD-only": {
+      "n_nodes": 0,
+      "rho_before": 0.3287115207393018,
+      "scale": 3.042181173787003
+    },
+    "OECD+WIOD": {
+      "n_nodes": 0,
+      "rho_before": 0.7409245539724755,
+      "scale": 1.3496650834939787
+    }
+  },
+  "calibrated_params": {
+    "amplification_mu": 0.05409853538097736,
+    "amplification_eps": 0.10349366569025273,
+    "propagation_decay": 0.5002166866393076,
+    "recovery_rate": 0.2114675843535651,
+    "bullwhip_factor": 1.6099809178169142,
+    "inventory_scale": 1.1850170297346547,
+    "r_output_floor": 0.2549689600343445
+  },
+  "loeo_n_fold_params": 5,
+  "ensemble_available": true,
+  "n_events_main": 21,
+  "preserved_files": [
+    "benchmark_spectral_normalized.json",
+    "bootstrap_results.json",
+    "ensemble_predictions.json",
+    "ensemble_statistics.json",
+    "ablation_post_normalization.json"
+  ]
+}

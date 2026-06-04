@@ -1,0 +1,320 @@
+event_id,paper_id,metric,value,units,confidence,source
+11,P2,gdp_change,-0.47,pp,5,"papers_catalog.csv id=2: Carvalho, Nirei, Saito, Tahbaz-Salehi (2021); ctx='Earthquake caused -0.47 pp Japan GDP; shocks propagated '"
+7,P3,qualitative_corroboration,,,4,"papers_catalog.csv id=3: Acemoglu, Ozdaglar, Tahbaz-Salehi (2015)"
+7,P4,qualitative_corroboration,,,4,"papers_catalog.csv id=4: Haldane, May (2011)"
+17,P5,qualitative_corroboration,,,4,"papers_catalog.csv id=5: Eichenbaum, Rebelo, Trabandt (2021)"
+8,P5,qualitative_corroboration,,,4,"papers_catalog.csv id=5: Eichenbaum, Rebelo, Trabandt (2021)"
+3,P5,qualitative_corroboration,,,4,"papers_catalog.csv id=5: Eichenbaum, Rebelo, Trabandt (2021)"
+7,P6,qualitative_corroboration,,,4,"papers_catalog.csv id=6: Allen, Gale (2000)"
+7,P7,qualitative_corroboration,,,4,"papers_catalog.csv id=7: Battiston, Delli Gatti, Gallegati, Greenwald, Stiglitz (2012)"
+7,P8,qualitative_corroboration,,,4,"papers_catalog.csv id=8: Elliott, Golub, Jackson (2014)"
+11,P14,gdp_change,10.6,percent,5,"papers_catalog.csv id=14: Inoue, Todo (2019); ctx='Indirect production loss from supply-chain propagation (10.6% GDP for Nankai scenario) vast'"
+11,P14,gdp_change,0.5,percent,5,"papers_catalog.csv id=14: Inoue, Todo (2019); ctx='0.6% GDP for Nankai scenario) vastly exceeds direct damage (0.5%); scale-free networks amplify'"
+5,P14,gdp_change,10.6,percent,5,"papers_catalog.csv id=14: Inoue, Todo (2019); ctx='Indirect production loss from supply-chain propagation (10.6% GDP for Nankai scenario) vast'"
+5,P14,gdp_change,0.5,percent,5,"papers_catalog.csv id=14: Inoue, Todo (2019); ctx='0.6% GDP for Nankai scenario) vastly exceeds direct damage (0.5%); scale-free networks amplify'"
+11,P15,qualitative_corroboration,,,4,"papers_catalog.csv id=15: Otto, Willner, Wenz, Frieler, Levermann (2017)"
+5,P15,qualitative_corroboration,,,4,"papers_catalog.csv id=15: Otto, Willner, Wenz, Frieler, Levermann (2017)"
+6,P15,qualitative_corroboration,,,4,"papers_catalog.csv id=15: Otto, Willner, Wenz, Frieler, Levermann (2017)"
+11,P16,other,2.0,pp,5,"papers_catalog.csv id=16: Barrot, Sauvagnat (2016); ctx='Supplier disaster reduces customer sales by ~2 pp; effect scales with input spe'"
+11,P17,qualitative_corroboration,,,4,"papers_catalog.csv id=17: Boehm, Flaaen, Pandalai-Nayar (2019)"
+7,P19,other,90.0,percent,5,"papers_catalog.csv id=19: Coquidé, Lages, Shepelyansky (2020); ctx='ff phase transition: below threshold κc, crisis is global (~90% country bankruptcies); above,'"
+7,P19,other,10.0,percent,5,"papers_catalog.csv id=19: Coquidé, Lages, Shepelyansky (2020); ctx=' is global (~90% country bankruptcies); above, confined to <10%; Western economies (Old Conti'"
+14,P19,other,90.0,percent,5,"papers_catalog.csv id=19: Coquidé, Lages, Shepelyansky (2020); ctx='ff phase transition: below threshold κc, crisis is global (~90% country bankruptcies); above,'"
+14,P19,other,10.0,percent,5,"papers_catalog.csv id=19: Coquidé, Lages, Shepelyansky (2020); ctx=' is global (~90% country bankruptcies); above, confined to <10%; Western economies (Old Conti'"
+17,P20,qualitative_corroboration,,,4,papers_catalog.csv id=20: (Oberfield et al. / PNAS 2022) (2022)
+7,P24,qualitative_corroboration,,,4,"papers_catalog.csv id=24: Gai, Kapadia (2010)"
+21,P25,supply_chain,17.04,percent,5,"papers_catalog.csv id=25: (Shi et al., King's College London) (2024); ctx='Textile sector suffered highest cascading losses (17.04% ± 0.72%); food-processing: 16'"
+21,P25,supply_chain,0.72,percent,5,"papers_catalog.csv id=25: (Shi et al., King's College London) (2024); ctx='Textile sector suffered highest cascading losses (17.04% ± 0.72%); food-processing: 16.85% ± 0'"
+21,P25,supply_chain,16.85,percent,5,"papers_catalog.csv id=25: (Shi et al., King's College London) (2024); ctx=' highest cascading losses (17.04% ± 0.72%); food-processing: 16.85% ± 0.5%; dual propagation chai'"
+21,P25,supply_chain,0.5,percent,5,"papers_catalog.csv id=25: (Shi et al., King's College London) (2024); ctx='cascading losses (17.04% ± 0.72%); food-processing: 16.85% ± 0.5%; dual propagation chains: gra'"
+30,P25,supply_chain,17.04,percent,5,"papers_catalog.csv id=25: (Shi et al., King's College London) (2024); ctx='Textile sector suffered highest cascading losses (17.04% ± 0.72%); food-processing: 16'"
+30,P25,supply_chain,0.72,percent,5,"papers_catalog.csv id=25: (Shi et al., King's College London) (2024); ctx='Textile sector suffered highest cascading losses (17.04% ± 0.72%); food-processing: 16.85% ± 0'"
+30,P25,supply_chain,16.85,percent,5,"papers_catalog.csv id=25: (Shi et al., King's College London) (2024); ctx=' highest cascading losses (17.04% ± 0.72%); food-processing: 16.85% ± 0.5%; dual propagation chai'"
+30,P25,supply_chain,0.5,percent,5,"papers_catalog.csv id=25: (Shi et al., King's College London) (2024); ctx='cascading losses (17.04% ± 0.72%); food-processing: 16.85% ± 0.5%; dual propagation chains: gra'"
+17,V2-Ev1,gdp_change,-3.0,percent,5,"validation_targets_v2.csv: PMC/IMF (Global real GDP growth, 2020)"
+17,V2-Ev1,gdp_change,-4.9,percent,2,"validation_targets_v2.csv: IMF WEO Update Jun 2020 (IMF WEO forecast, June 2020)"
+17,V2-Ev1,gdp_change,-5.2,percent,2,"validation_targets_v2.csv: World Bank Jun 2020 (World Bank forecast, Jun 2020)"
+17,V2-Ev1,gdp_change,-7.0,percent,2,"validation_targets_v2.csv: World Bank Jun 2020 (Advanced economies, 2020)"
+17,V2-Ev1,gdp_change,2.3,percent,5,"validation_targets_v2.csv: IMF (China, 2020)"
+17,V2-Ev1,trade_change,-5.3,percent,5,"validation_targets_v2.csv: WEF / WTO (World merchandise trade volume, 2020)"
+17,V2-Ev1,trade_change,-13.0,percent,2,"validation_targets_v2.csv: WTO Apr 2020 (WTO forecast range, Apr 2020)"
+17,V2-Ev1,trade_change,-32.0,percent,2,"validation_targets_v2.csv: WTO Apr 2020 (WTO forecast range, Apr 2020)"
+17,V2-Ev1,trade_change,-9.2,percent,2,"validation_targets_v2.csv: UN News (Global goods and services trade, 2020)"
+17,V2-Ev1,trade_change,-38.0,percent,2,validation_targets_v2.csv: UN News (Fuels & mining products trade)
+17,V2-Ev1,trade_change,-5.0,percent,2,validation_targets_v2.csv: UN News (Agricultural trade)
+17,V2-Ev1,trade_change,-19.0,percent,2,validation_targets_v2.csv: UN News (Manufactured goods trade)
+17,V2-Ev1,supply_chain,25.0,percent,5,"validation_targets_v2.csv: IMF WP/22/59 (Average shipping delays, Dec 2021)"
+17,V2-Ev1,supply_chain,0.9,percent,2,validation_targets_v2.csv: IMF WP/22/59 (Equivalent tariff cost of port congestion)
+17,V2-Ev1,supply_chain,-3.1,percent,2,validation_targets_v2.csv: IMF WP/22/59 (Equivalent tariff cost of port congestion)
+17,V2-Ev1,supply_chain,,qualitative,2,"validation_targets_v2.csv: USITC (Container shipping blank sailings, H1 2020); value='>1,000 voyages cancelled in first 6 months'"
+17,V2-Ev1,supply_chain,30.0,percent,2,"validation_targets_v2.csv: USITC (US imports from Asia, Dec 2020 vs Dec 2019)"
+17,V2-Ev1,supply_chain,-3.8,percent,2,"validation_targets_v2.csv: PMC (Maritime trade volume, 2020)"
+17,V2-Ev1,inflation,4.7,percent,2,"validation_targets_v2.csv: IMF WEO Oct 2022 (Global inflation, 2021)"
+17,V2-Ev1,inflation,8.8,percent,5,"validation_targets_v2.csv: IMF WEO Oct 2022 (Global inflation, 2022)"
+17,V2-Ev1,inflation,27.0,percent,5,"validation_targets_v2.csv: Eurostat (EU energy inflation, Jan 2022)"
+17,V2-Ev1,inflation,29.7,percent,5,"validation_targets_v2.csv: Cleveland Fed (US CPI used cars, May 2021)"
+17,V2-Ev1,market_change,-34.0,percent,5,"validation_targets_v2.csv: CNBC; Everhart Advisors (S&P 500 peak-to-trough, Feb 19 – Mar 23, 2020)"
+17,V2-Ev1,market_change,-12.0,percent,5,"validation_targets_v2.csv: CNBC (Single worst day: Mar 16, 2020)"
+17,V2-Ev1,market_change,-12.9,percent,5,"validation_targets_v2.csv: CNBC (Single worst day: Mar 16, 2020)"
+17,V2-Ev1,recovery,,qualitative,5,"validation_targets_v2.csv: Everhart Advisors; IG Wealth (S&P 500 recovery to prior high); value='~8 months (new high: Aug 18, 2020)'"
+17,V2-Ev1,recovery,,qualitative,2,validation_targets_v2.csv: NBER; USITC (Supply chain normalization); value='Mid-2023 (automotive chips); port congestion normal by late 2022'
+17,V2-Ev1,recovery,15.0,percent,5,validation_targets_v2.csv: UNCTAD (Global trade above pre-COVID level)
+17,V2-Ev1,other,,qualitative,2,"validation_targets_v2.csv: USITC; PMC (—); value='Pharmaceuticals, automotive, electronics, retail, hospitality, aviation, apparel'"
+17,V2-Ev1,other,-6.4,percent,2,validation_targets_v2.csv: IMF; World Bank (—)
+17,V2-Ev1,other,-3.4,percent,2,validation_targets_v2.csv: IMF; World Bank (—)
+17,V2-Ev1,other,2.3,percent,2,validation_targets_v2.csv: IMF; World Bank (—)
+21,V2-Ev2,gdp_change,-45.1,percent,5,"validation_targets_v2.csv: World Bank Apr 2022 (Ukraine real GDP, 2022 (World Bank projection, Apr 2022))"
+21,V2-Ev2,gdp_change,25.0,percent,5,validation_targets_v2.csv: IMF Ukraine Staff Report 2024 (Ukraine: output vs pre-war level (2024))
+21,V2-Ev2,gdp_change,230.0,percent,2,validation_targets_v2.csv: IMF 2024 (Ukraine reconstruction cost estimate)
+21,V2-Ev2,gdp_change,-2.1,percent,5,"validation_targets_v2.csv: Rosstat / Al Jazeera; Bruegel (Russia real GDP, 2022 (Rosstat confirmed outturn))"
+21,V2-Ev2,gdp_change,5.6,percent,2,"validation_targets_v2.csv: Al Jazeera (Russia GDP, 2021)"
+21,V2-Ev2,gdp_change,-4.5,percent,2,"validation_targets_v2.csv: Bruegel (Russia GDP, Q2 2022 (worst quarter))"
+21,V2-Ev2,gdp_change,3.5,percent,5,"validation_targets_v2.csv: Statista/Eurostat (EU GDP, 2022 (Eurostat actual))"
+21,V2-Ev2,gdp_change,0.4,percent,2,"validation_targets_v2.csv: Statista/Eurostat (EU GDP, 2023)"
+21,V2-Ev2,gdp_change,-4.1,percent,2,"validation_targets_v2.csv: World Bank (ECA region (Europe & Central Asia), World Bank forecast)"
+21,V2-Ev2,trade_change,-60.0,percent,5,"validation_targets_v2.csv: Bruegel (Russia gas exports to EU, 2022)"
+21,V2-Ev2,trade_change,17.8,percent,5,"validation_targets_v2.csv: Al Jazeera; Bruegel (Russia annual inflation, Apr 2022 (peak))"
+21,V2-Ev2,trade_change,12.0,percent,2,"validation_targets_v2.csv: Bruegel (Russia annual inflation, Jan 2023)"
+21,V2-Ev2,supply_chain,10.0,percent,5,"validation_targets_v2.csv: Bruegel (EU gas demand reduction, 2022)"
+21,V2-Ev2,supply_chain,,qualitative,2,"validation_targets_v2.csv: Bruegel (EU LNG imports increase, 2022); value='Nearly doubled'"
+21,V2-Ev2,inflation,10.6,percent,5,"validation_targets_v2.csv: Eurostat / SUERF (Euro area HICP, October 2022 (peak))"
+21,V2-Ev2,inflation,9.2,percent,5,"validation_targets_v2.csv: Eurostat (Euro area HICP, December 2022)"
+21,V2-Ev2,inflation,400.0,percent,2,"validation_targets_v2.csv: SUERF (EU energy price component, Aug 2022 vs year earlier)"
+21,V2-Ev2,inflation,60.0,percent,2,"validation_targets_v2.csv: SUERF (Energy contribution to headline inflation, Q4 2022)"
+21,V2-Ev2,inflation,5.8,percent,2,"validation_targets_v2.csv: Al Jazeera (Eurozone inflation, Feb 2022)"
+21,V2-Ev2,inflation,31.7,percent,2,"validation_targets_v2.csv: Al Jazeera (Eurozone energy inflation, Feb 2022)"
+21,V2-Ev2,inflation,27.0,percent,5,"validation_targets_v2.csv: Eurostat (EU energy inflation, Jan 2022)"
+21,V2-Ev2,inflation,8.8,percent,2,"validation_targets_v2.csv: IMF WEO Oct 2022 (Global inflation forecast, 2022)"
+21,V2-Ev2,market_change,-39.0,percent,5,"validation_targets_v2.csv: Wikipedia (Russian RTS index, Feb 24, 2022 (invasion day))"
+21,V2-Ev2,market_change,,qualitative,5,validation_targets_v2.csv: Wikipedia (Moscow Exchange trading halt); value='~4 weeks'
+21,V2-Ev2,recovery,,qualitative,2,validation_targets_v2.csv: Bruegel; Guardian (Russian GDP to near pre-war level); value='2023–2024 (stagnating by early 2026)'
+21,V2-Ev2,recovery,,qualitative,2,validation_targets_v2.csv: Eurostat (Euro area inflation below 3%); value='Late 2023'
+21,V2-Ev2,recovery,,qualitative,2,validation_targets_v2.csv: IMF (Ukraine: ongoing); value='Reconstruction estimate $486B over a decade'
+21,V2-Ev2,other,,qualitative,2,"validation_targets_v2.csv: Bruegel; World Bank (—); value='Grain/agriculture, natural gas, oil, steel, fertilizers, defense, shipping (Blac'"
+21,V2-Ev2,other,50.0,percent,2,validation_targets_v2.csv: World Bank; SUERF (—)
+7,V2-Ev3,gdp_change,-6.0,percent,5,"validation_targets_v2.csv: IMF AR 2009 (World GDP growth, 2009)"
+7,V2-Ev3,gdp_change,-4.3,percent,5,"validation_targets_v2.csv: Federal Reserve History (US real GDP, peak-to-trough (Q4 2007–Q2 2009))"
+7,V2-Ev3,gdp_change,,qualitative,5,validation_targets_v2.csv: Federal Reserve History (US household net worth decline); value='$69T → $55T (−$14 trillion)'
+7,V2-Ev3,gdp_change,-6.0,percent,5,"validation_targets_v2.csv: Bank of England / IMF (Annualized world GDP, Q4 2008)"
+7,V2-Ev3,trade_change,-15.0,percent,5,"validation_targets_v2.csv: CEPR/VoxEU (World trade volume, Q3 2008–Q2 2009)"
+7,V2-Ev3,trade_change,,qualitative,5,validation_targets_v2.csv: CEPR/VoxEU (Pace of trade collapse vs Great Depression); value='Steeper: 9 months to reach same depth as 24 months in 1930s'
+7,V2-Ev3,trade_change,,qualitative,5,validation_targets_v2.csv: CEPR/VoxEU (All 104 WTO-tracked nations); value='All experienced drops in both imports and exports'
+7,V2-Ev3,trade_change,,qualitative,2,validation_targets_v2.csv: CEPR/VoxEU (OECD members' real trade: 7 largest month-on-month drops); value='All occurred Nov 2008 onwards'
+7,V2-Ev3,supply_chain,,qualitative,2,validation_targets_v2.csv: IMF WP 2010 (Cause); value='Demand-side and trade credit collapse (not physical bottleneck)'
+7,V2-Ev3,inflation,-2.1,percent,5,"validation_targets_v2.csv: Federal Reserve History (US CPI, July 2009)"
+7,V2-Ev3,inflation,,qualitative,5,validation_targets_v2.csv: Federal Reserve History (Oil price collapse); value='$147/bbl (Jul 2008) → $32/bbl (Dec 2008)'
+7,V2-Ev3,market_change,-57.0,percent,5,"validation_targets_v2.csv: Wikipedia bear market; LinkedIn (S&P 500, peak-to-trough (Oct 2007–Mar 9, 2009))"
+7,V2-Ev3,market_change,-37.0,percent,5,"validation_targets_v2.csv: Facebook/SM data (S&P 500 annual return, 2008)"
+7,V2-Ev3,market_change,-1.0,percent,2,validation_targets_v2.csv: Wealth of Common Sense (Worst single-day volatility cluster (Sep–Oct 2008))
+7,V2-Ev3,market_change,-5.0,percent,2,validation_targets_v2.csv: Wealth of Common Sense (Worst single-day volatility cluster (Sep–Oct 2008))
+7,V2-Ev3,recovery,,qualitative,5,"validation_targets_v2.csv: Federal Reserve History (NBER recession duration); value='Dec 2007 – Jun 2009 (18 months, longest post-WWII)'"
+7,V2-Ev3,recovery,10.0,percent,5,validation_targets_v2.csv: Federal Reserve History (US unemployment peak)
+7,V2-Ev3,recovery,,qualitative,5,validation_targets_v2.csv: IG Wealth (S&P 500 recovery to prior high); value='~6 years (2013)'
+7,V2-Ev3,recovery,,qualitative,2,validation_targets_v2.csv: IMF Ch.4 (Global trade recovery); value='Below pre-crisis trend in banking-crisis countries for years post-crisis'
+7,V2-Ev3,other,,qualitative,2,"validation_targets_v2.csv: Federal Reserve History (—); value='Banking, housing, mortgage securities, automotive, insurance, construction, dura'"
+7,V2-Ev3,other,,qualitative,2,"validation_targets_v2.csv: CEPR; IMF (—); value='US (epicenter); EU banking crisis; UK, Japan; Emerging Europe; all 104 WTO-track'"
+19,V2-Ev4,gdp_change,-0.2,pp,3,validation_targets_v2.csv: Allianz Research (Annual trade growth impact)
+19,V2-Ev4,gdp_change,-0.4,pp,3,validation_targets_v2.csv: Allianz Research (Annual trade growth impact)
+19,V2-Ev4,gdp_change,,qualitative,2,validation_targets_v2.csv: — (Macro GDP impact); value='Not separately quantifiable at global GDP level due to 6-day duration ❌'
+19,V2-Ev4,trade_change,13.0,percent,5,validation_targets_v2.csv: Allianz; Wikipedia (Share of global trade through Suez Canal)
+19,V2-Ev4,trade_change,,qualitative,5,validation_targets_v2.csv: Lloyd's List via India Today; Wikipedia (Goods disrupted per day (Lloyd's List)); value='$9 billion/day'
+19,V2-Ev4,trade_change,,qualitative,5,validation_targets_v2.csv: Wikipedia (Goods disrupted per hour); value='$400 million/hour'
+19,V2-Ev4,trade_change,,qualitative,5,validation_targets_v2.csv: India Today (Total 6-day trade delayed (estimate)); value='~$54 billion'
+19,V2-Ev4,trade_change,,qualitative,2,validation_targets_v2.csv: Allianz (Westbound daily value); value='~$5.1 billion'
+19,V2-Ev4,trade_change,,qualitative,2,validation_targets_v2.csv: Allianz (Eastbound daily value); value='~$4.5 billion'
+19,V2-Ev4,trade_change,,qualitative,5,validation_targets_v2.csv: Wikipedia (Egypt SCA daily transit fee revenue lost); value='~$15 million/day'
+19,V2-Ev4,trade_change,,qualitative,2,validation_targets_v2.csv: Scribd retrospective (India trade exposed); value='~$200 billion in annual exports/imports affected'
+19,V2-Ev4,supply_chain,-30.0,percent,5,validation_targets_v2.csv: Allianz (Maersk capacity loss (fleet-level))
+19,V2-Ev4,supply_chain,,qualitative,2,validation_targets_v2.csv: Project44 (Rerouting via Cape of Good Hope adds); value='~7–10 extra days per voyage'
+19,V2-Ev4,supply_chain,,qualitative,5,validation_targets_v2.csv: Project44 (Port backlogs post-refloat); value='Persisted several weeks'
+19,V2-Ev4,supply_chain,-1.4,pp,2,"validation_targets_v2.csv: Allianz (Prior supply chain cost (combined disruptions, excl. Ever Given))"
+19,V2-Ev4,inflation,,qualitative,3,validation_targets_v2.csv: Allianz (Isolated inflation impact); value='Not separately measurable; contributed to broader 2021 supply chain inflation'
+19,V2-Ev4,market_change,,qualitative,3,validation_targets_v2.csv: — (Macro market impact); value='No measurable S&P macro effect; shipping/tanker equities spiked'
+19,V2-Ev4,recovery,,qualitative,5,"validation_targets_v2.csv: Wikipedia (Canal reopened); value='March 29, 2021 (6 days)'"
+19,V2-Ev4,recovery,,qualitative,5,validation_targets_v2.csv: Project44 (Port congestion clearance); value='Several weeks post-refloat'
+19,V2-Ev4,other,,qualitative,2,"validation_targets_v2.csv: Allianz; Scribd (—); value='Container shipping, oil/LNG tankers, automotive, consumer goods, electronics, ag'"
+19,V2-Ev4,other,,qualitative,2,"validation_targets_v2.csv: Allianz; Scribd (—); value='Global (Europe ↔ Asia corridor); Egypt; Netherlands, Germany, China, Japan (majo'"
+18,V2-Ev5,gdp_change,,qualitative,5,"validation_targets_v2.csv: AlixPartners Sep 2021 (Global auto industry revenue lost, 2021 (AlixPartners Sep 2021 forecast)); value='$210 billion'"
+18,V2-Ev5,gdp_change,,qualitative,5,"validation_targets_v2.csv: AlixPartners May 2021 (Global auto industry revenue lost, 2021 (AlixPartners May 2021 forecast)); value='$110 billion (revised up from $61B in Jan)'"
+18,V2-Ev5,trade_change,,qualitative,5,"validation_targets_v2.csv: AlixPartners (Global vehicle production lost, 2021 (AlixPartners Sep 2021)); value='7.7 million units'"
+18,V2-Ev5,trade_change,-10.0,pp,5,"validation_targets_v2.csv: S&P Global Mobility (Global vehicle production lost, 2021 (S&P Mobility, YTD Q3))"
+18,V2-Ev5,trade_change,,qualitative,5,"validation_targets_v2.csv: Statista (Vehicles removed from production, 2021 (Statista)); value='>11 million units'"
+18,V2-Ev5,trade_change,12.0,percent,5,"validation_targets_v2.csv: Statista (Global car sales, 2021 vs 2019)"
+18,V2-Ev5,trade_change,,qualitative,5,"validation_targets_v2.csv: Statista (Global auto industry revenue loss, 2021 (Statista)); value='~$210 million [Note: Statista figure; AlixPartners cites $210 billion]'"
+18,V2-Ev5,trade_change,,qualitative,5,validation_targets_v2.csv: S&P Global Mobility (Additional 2022 production losses); value='~3 million units'
+18,V2-Ev5,supply_chain,,qualitative,5,"validation_targets_v2.csv: Cleveland Fed (Automotive semiconductor lead times, 2021); value='52+ weeks (vs ~12 weeks normal)'"
+18,V2-Ev5,supply_chain,,qualitative,5,"validation_targets_v2.csv: AlixPartners (Ford alone: units of planned production lost, 2021); value='1.1 million units'"
+18,V2-Ev5,supply_chain,,qualitative,2,"validation_targets_v2.csv: AlixPartners (Ford parked unfinished vehicles); value='>20,000 vehicles waiting for chips'"
+18,V2-Ev5,inflation,29.7,percent,5,"validation_targets_v2.csv: Cleveland Fed (US CPI used vehicles, May 2021 (12-month change))"
+18,V2-Ev5,inflation,-58.0,percent,5,"validation_targets_v2.csv: Cleveland Fed (New vehicle inventory, Feb 2020 vs May 2021)"
+18,V2-Ev5,market_change,,qualitative,5,"validation_targets_v2.csv: Business Insider (Automotive OEM stocks); value='Declined (Ford, GM cut earnings by $2.5B and $2B respectively)'"
+18,V2-Ev5,market_change,,qualitative,2,validation_targets_v2.csv: AlixPartners (Semiconductor sector (SOXX)); value='Surged on demand-supply imbalance'
+18,V2-Ev5,recovery,,qualitative,5,validation_targets_v2.csv: S&P Global Mobility (Automotive shortage resolution); value='Largely resolved mid-2023'
+18,V2-Ev5,recovery,,qualitative,5,"validation_targets_v2.csv: S&P Global Mobility (H1 2023 global lost production); value='~524,000 units (vs millions/quarter in 2021)'"
+18,V2-Ev5,other,,qualitative,2,"validation_targets_v2.csv: AlixPartners; Frost & Sullivan (—); value='Automotive (most severe), consumer electronics, industrial, aerospace, medical d'"
+18,V2-Ev5,other,54.0,percent,2,validation_targets_v2.csv: AlixPartners; GlobalX (—)
+11,V2-Ev6,gdp_change,-0.7,percent,5,validation_targets_v2.csv: IMF Article IV 2011 (Japan full-year 2011 GDP growth)
+11,V2-Ev6,gdp_change,2.9,percent,5,"validation_targets_v2.csv: IMF Article IV 2011 (Japan GDP forecast, 2012 (recovery))"
+11,V2-Ev6,gdp_change,4.0,percent,5,validation_targets_v2.csv: World Bank (Direct physical damage (Cabinet Office))
+11,V2-Ev6,gdp_change,,qualitative,2,validation_targets_v2.csv: World Bank (Initial government damage range); value='¥16–¥25 trillion'
+11,V2-Ev6,trade_change,-0.5,percent,5,validation_targets_v2.csv: CEPR/VoxEU (Japanese exports expected change (CEPR))
+11,V2-Ev6,trade_change,-1.6,percent,5,validation_targets_v2.csv: CEPR/VoxEU (Japanese exports expected change (CEPR))
+11,V2-Ev6,trade_change,0.4,percent,2,validation_targets_v2.csv: CEPR/VoxEU (Japanese imports expected change)
+11,V2-Ev6,trade_change,1.3,percent,2,validation_targets_v2.csv: CEPR/VoxEU (Japanese imports expected change)
+11,V2-Ev6,trade_change,85.0,percent,2,validation_targets_v2.csv: World Bank (Kobe 1995 historical analog)
+11,V2-Ev6,supply_chain,,qualitative,5,validation_targets_v2.csv: World Bank; IMF (Global electronics/auto supply chains); value='Disrupted due to Japan's quasi-monopoly in specialty components and ICs'
+11,V2-Ev6,supply_chain,,qualitative,5,"validation_targets_v2.csv: World Bank; IMF (Supply chain restoration); value='""Faster than expected"" (World Bank assessment)'"
+11,V2-Ev6,inflation,,qualitative,3,validation_targets_v2.csv: BIS (Japan CPI impact); value='Minor; deflationary environment pre-existing; energy import costs rose'
+11,V2-Ev6,market_change,20.0,percent,5,"validation_targets_v2.csv: BIS Quarterly Review May 2011 (Tokyo stock market, first 2 trading days)"
+11,V2-Ev6,market_change,-6.2,percent,2,"validation_targets_v2.csv: CNN Money (Nikkei 225, Monday Mar 14)"
+11,V2-Ev6,market_change,-10.6,percent,5,"validation_targets_v2.csv: BBC (Nikkei 225, Tuesday Mar 15)"
+11,V2-Ev6,market_change,,qualitative,5,validation_targets_v2.csv: BIS (Japanese sovereign CDS spreads); value='Jumped +30 basis points'
+11,V2-Ev6,market_change,-3.2,percent,2,"validation_targets_v2.csv: BBC (DAX (Germany), Mar 15)"
+11,V2-Ev6,recovery,1.7,percent,5,validation_targets_v2.csv: World Bank (Japan GDP Q3 2011 rebound)
+11,V2-Ev6,recovery,,qualitative,5,"validation_targets_v2.csv: World Bank (World Bank assessment); value='Growth resumed ""after mid-2011""'"
+11,V2-Ev6,recovery,,qualitative,2,validation_targets_v2.csv: — (Fukushima decommission); value='Ongoing (decades-long process)'
+11,V2-Ev6,other,,qualitative,2,"validation_targets_v2.csv: CEPR; World Bank (—); value='Electronics (semiconductors, displays), automotive, steel, chemicals, nuclear, f'"
+11,V2-Ev6,other,,qualitative,2,"validation_targets_v2.csv: BIS; World Bank (—); value='Japan (primary); US, EU, Asian partners (supply chain customers); global electro'"
+16,V2-Ev7,gdp_change,0.25,percent,5,validation_targets_v2.csv: IMF Blog May 2019 (US GDP impact (direct))
+16,V2-Ev7,gdp_change,0.3,percent,5,validation_targets_v2.csv: IMF Blog May 2019 (China GDP impact (direct))
+16,V2-Ev7,gdp_change,4.0,percent,5,validation_targets_v2.csv: IMF WP 2024 (US output gain if 2018/19 measures undone)
+16,V2-Ev7,gdp_change,,qualitative,5,validation_targets_v2.csv: ScienceDirect (Welfare losses US and China (general equilibrium)); value='Comparable to proportional gains from WTO accession or Uruguay Round'
+16,V2-Ev7,trade_change,-52.3,percent,5,"validation_targets_v2.csv: ScienceDirect (China exports to US (tariffed goods, general equilibrium))"
+16,V2-Ev7,trade_change,-49.3,percent,5,validation_targets_v2.csv: ScienceDirect (China imports from US (general equilibrium))
+16,V2-Ev7,trade_change,3.0,percent,5,validation_targets_v2.csv: IMF Blog; PIIE (US average tariff on Chinese goods: 2018 → 2020)
+16,V2-Ev7,trade_change,21.0,percent,5,validation_targets_v2.csv: IMF Blog; PIIE (US average tariff on Chinese goods: 2018 → 2020)
+16,V2-Ev7,trade_change,,qualitative,5,"validation_targets_v2.csv: Federal Reserve (China's share of US goods imports, trend); value='Declined significantly from 2018 peak (Fed Reserve data)'"
+16,V2-Ev7,trade_change,3.0,percent,5,"validation_targets_v2.csv: NBER (Global trade effect (NBER, trade diversion))"
+16,V2-Ev7,supply_chain,,qualitative,5,validation_targets_v2.csv: IMF Blog (Front-loading before tariff implementation); value='Visible in all three tariff lists'
+16,V2-Ev7,supply_chain,,qualitative,5,"validation_targets_v2.csv: NBER (Supply chain rerouting); value='Vietnam, Mexico emerged as trade diversion beneficiaries'"
+16,V2-Ev7,inflation,,qualitative,5,"validation_targets_v2.csv: IMF Blog (US consumer prices: tariff pass-through); value='Full pass-through to US consumers (Cavallo, Gopinath, Neiman evidence)'"
+16,V2-Ev7,inflation,,qualitative,5,validation_targets_v2.csv: IMF WP 2024 (Import elasticity (general equilibrium)); value='−0.8'
+16,V2-Ev7,market_change,-20.0,percent,3,"validation_targets_v2.csv: IMF WEO Apr 2019 (S&P 500, December 2018)"
+16,V2-Ev7,market_change,-25.0,percent,3,"validation_targets_v2.csv: IMF WEO Apr 2019 (China Shanghai Composite, 2018)"
+16,V2-Ev7,recovery,,qualitative,2,validation_targets_v2.csv: PIIE (Phase 1 deal signed); value='January 2020'
+16,V2-Ev7,recovery,47.5,percent,5,validation_targets_v2.csv: PIIE (Tariff regime as of 2026)
+16,V2-Ev7,other,,qualitative,2,"validation_targets_v2.csv: IMF (—); value='Agriculture (soybeans), steel, aluminum, electronics, machinery, automotive, che'"
+16,V2-Ev7,other,,qualitative,2,"validation_targets_v2.csv: NBER; Federal Reserve (—); value='US, China (primary); Vietnam, Mexico, Taiwan (diversion beneficiaries); NAFTA, E'"
+22,V2-Ev8,gdp_change,3.5,percent,5,"validation_targets_v2.csv: Eurostat / Statista (EU real GDP, 2022)"
+22,V2-Ev8,gdp_change,0.4,percent,5,"validation_targets_v2.csv: Statista (EU real GDP, 2023)"
+22,V2-Ev8,gdp_change,-0.8,percent,5,validation_targets_v2.csv: CEPR/VoxEU (Euro area potential output decline by 2026)
+22,V2-Ev8,gdp_change,3.0,percent,5,validation_targets_v2.csv: CEPR/VoxEU (Euro area energy efficiency gain)
+22,V2-Ev8,trade_change,-0.8,percent,5,"validation_targets_v2.csv: ECB (Euro area current account, 2022)"
+22,V2-Ev8,trade_change,-3.6,pp,5,"validation_targets_v2.csv: ECB (Euro area current account, 2022)"
+22,V2-Ev8,trade_change,2.8,percent,5,"validation_targets_v2.csv: ECB (Euro area current account, 2022)"
+22,V2-Ev8,trade_change,-60.0,percent,5,"validation_targets_v2.csv: Bruegel (Russia gas exports to EU, 2022)"
+22,V2-Ev8,trade_change,,qualitative,5,"validation_targets_v2.csv: Bruegel (EU LNG imports, 2022); value='Nearly doubled'"
+22,V2-Ev8,supply_chain,10.0,percent,5,"validation_targets_v2.csv: Bruegel (EU gas demand reduction, 2022)"
+22,V2-Ev8,supply_chain,5.0,percent,5,"validation_targets_v2.csv: Bruegel (EU electricity demand reduction, 2022)"
+22,V2-Ev8,supply_chain,,qualitative,5,"validation_targets_v2.csv: Bank of Finland (Energy-intensive production capacity impact); value='Aluminum, chemicals, fertilizers, glass reduced capacity (specific % varies by f'"
+22,V2-Ev8,inflation,10.6,percent,5,"validation_targets_v2.csv: SUERF/Eurostat (Euro area HICP peak, Oct 2022)"
+22,V2-Ev8,inflation,9.2,percent,5,"validation_targets_v2.csv: Eurostat (Euro area HICP, Dec 2022)"
+22,V2-Ev8,inflation,5.7,percent,2,validation_targets_v2.csv: SUERF (Euro area core inflation peak)
+22,V2-Ev8,inflation,60.0,percent,5,validation_targets_v2.csv: SUERF (Energy component contribution to Q4 2022 inflation)
+22,V2-Ev8,inflation,27.0,percent,5,"validation_targets_v2.csv: Eurostat (EU energy inflation, Jan 2022)"
+22,V2-Ev8,inflation,,qualitative,5,"validation_targets_v2.csv: CEPR (European natural gas prices, summer 2022); value='>10× early 2021 levels'"
+22,V2-Ev8,inflation,,qualitative,2,"validation_targets_v2.csv: CEPR (European natural gas prices, 2025); value='~2× historical average (still elevated)'"
+22,V2-Ev8,inflation,31.7,percent,2,"validation_targets_v2.csv: Al Jazeera (Eurozone energy inflation, Feb 2022)"
+22,V2-Ev8,market_change,,qualitative,3,validation_targets_v2.csv: — (European energy sector); value='Surged; industrial sector declined  (no isolated macro figure)'
+22,V2-Ev8,recovery,,qualitative,5,validation_targets_v2.csv: Eurostat (Euro area inflation below 3%); value='Late 2023'
+22,V2-Ev8,recovery,-7.2,percent,2,"validation_targets_v2.csv: Eurostat (EU gas consumption, 2023 vs peak crisis)"
+22,V2-Ev8,recovery,-4.1,percent,5,validation_targets_v2.csv: Eurostat (EU gross available energy trend)
+22,V2-Ev8,recovery,-11.9,percent,5,validation_targets_v2.csv: Eurostat (EU gross available energy trend)
+22,V2-Ev8,other,,qualitative,2,"validation_targets_v2.csv: Bank of Finland; CEPR (—); value='Natural gas, electricity generation, chemicals, aluminum, fertilizers, paper, ce'"
+22,V2-Ev8,other,,qualitative,2,"validation_targets_v2.csv: SUERF; Bruegel (—); value='EU-27; Germany, Italy, Austria (most gas-dependent); Central/Eastern Europe; glo'"
+1,E-aggregate,gdp_change,4.8,percent,4,master_event_registry.csv event_id=1: Goldman Sachs Historical Moments; S&P Global Market Intelligence (2025)[^1]; EBSCO Research Starters[^3]; NBER
+1,E-aggregate,trade_change,1.0,percent,4,master_event_registry.csv event_id=1: Goldman Sachs Historical Moments; S&P Global Market Intelligence (2025)[^1]; EBSCO Research Starters[^3]; NBER
+1,E-aggregate,market_change,77.0,percent,4,master_event_registry.csv event_id=1: Goldman Sachs Historical Moments; S&P Global Market Intelligence (2025)[^1]; EBSCO Research Starters[^3]; NBER
+2,E-aggregate,gdp_change,11.0,percent,5,"master_event_registry.csv event_id=2: IMF eLibrary: ""Lessons from the Crisis in Argentina""[^4]; World Bank: Restoring Economic Growth in Argentina[^6]; CEPR[^"
+2,E-aggregate,trade_change,40.0,percent,5,"master_event_registry.csv event_id=2: IMF eLibrary: ""Lessons from the Crisis in Argentina""[^4]; World Bank: Restoring Economic Growth in Argentina[^6]; CEPR[^"
+2,E-aggregate,inflation,41.0,percent,5,"master_event_registry.csv event_id=2: IMF eLibrary: ""Lessons from the Crisis in Argentina""[^4]; World Bank: Restoring Economic Growth in Argentina[^6]; CEPR[^"
+2,E-aggregate,market_change,75.0,percent,5,"master_event_registry.csv event_id=2: IMF eLibrary: ""Lessons from the Crisis in Argentina""[^4]; World Bank: Restoring Economic Growth in Argentina[^6]; CEPR[^"
+3,E-aggregate,gdp_change,2.6,percent,4,master_event_registry.csv event_id=3: Australian Treasury Economic Roundup[^7]; NIH National Library of Medicine[8][9]; ADB Working Paper EWP-591[^10]
+3,E-aggregate,trade_change,50.0,percent,4,master_event_registry.csv event_id=3: Australian Treasury Economic Roundup[^7]; NIH National Library of Medicine[8][9]; ADB Working Paper EWP-591[^10]
+3,E-aggregate,market_change,18.0,percent,4,master_event_registry.csv event_id=3: Australian Treasury Economic Roundup[^7]; NIH National Library of Medicine[8][9]; ADB Working Paper EWP-591[^10]
+4,E-aggregate,gdp_change,-0.5,percent,3,master_event_registry.csv event_id=4: JEC Senate: Iraq Economic Costs Report[^11]; NBER Working Paper W12054[^12]; Real Instituto Elcano[^13]
+4,E-aggregate,inflation,0.75,percent,3,master_event_registry.csv event_id=4: JEC Senate: Iraq Economic Costs Report[^11]; NBER Working Paper W12054[^12]; Real Instituto Elcano[^13]
+5,E-aggregate,gdp_change,15.0,percent,5,master_event_registry.csv event_id=5: IMF/World Bank Joint Preliminary Assessment[^14]; World Bank GFDRR[^15]; Asian Development Bank[^16]; ScienceDirect (Ace
+6,E-aggregate,gdp_change,3.1,percent,5,master_event_registry.csv event_id=6: CBO: Macroeconomic and Budgetary Effects of Hurricanes Katrina and Rita[20][21]; US Economic Report of the President 200
+6,E-aggregate,inflation,30.0,percent,5,master_event_registry.csv event_id=6: CBO: Macroeconomic and Budgetary Effects of Hurricanes Katrina and Rita[20][21]; US Economic Report of the President 200
+7,E-aggregate,gdp_change,-1.3,percent,5,master_event_registry.csv event_id=7: IMF World Economic Outlook April 2009[^22]; IMF eLibrary: Global Financial Crisis[^24]; UK Government DfID: Effects on d
+7,E-aggregate,trade_change,12.0,percent,5,master_event_registry.csv event_id=7: IMF World Economic Outlook April 2009[^22]; IMF eLibrary: Global Financial Crisis[^24]; UK Government DfID: Effects on d
+7,E-aggregate,inflation,-0.4,percent,5,master_event_registry.csv event_id=7: IMF World Economic Outlook April 2009[^22]; IMF eLibrary: Global Financial Crisis[^24]; UK Government DfID: Effects on d
+7,E-aggregate,market_change,57.0,percent,5,master_event_registry.csv event_id=7: IMF World Economic Outlook April 2009[^22]; IMF eLibrary: Global Financial Crisis[^24]; UK Government DfID: Effects on d
+8,E-aggregate,gdp_change,-0.5,percent,3,master_event_registry.csv event_id=8: World Bank H1N1 Fast-Track Response[^29]; NIH PMC: Macroeconomic impact of pandemic influenza[^28]; HTJ Tax economic ana
+8,E-aggregate,trade_change,30.0,percent,3,master_event_registry.csv event_id=8: World Bank H1N1 Fast-Track Response[^29]; NIH PMC: Macroeconomic impact of pandemic influenza[^28]; HTJ Tax economic ana
+8,E-aggregate,market_change,15.0,percent,3,master_event_registry.csv event_id=8: World Bank H1N1 Fast-Track Response[^29]; NIH PMC: Macroeconomic impact of pandemic influenza[^28]; HTJ Tax economic ana
+9,E-aggregate,gdp_change,-26.0,percent,5,master_event_registry.csv event_id=9: IMF Greece Country Report[^31]; IMF Survey: Greece Reforms[^30]; Wikipedia Euro area crisis[^32]
+9,E-aggregate,market_change,55.0,percent,5,master_event_registry.csv event_id=9: IMF Greece Country Report[^31]; IMF Survey: Greece Reforms[^30]; Wikipedia Euro area crisis[^32]
+10,E-aggregate,gdp_change,50.0,percent,3,master_event_registry.csv event_id=10: Business Insider: Arab Spring costs MENA[^33]; World Bank Global Economic Prospects June 2011[^34]; Atlantic Council: Ec
+10,E-aggregate,market_change,20.0,percent,3,master_event_registry.csv event_id=10: Business Insider: Arab Spring costs MENA[^33]; World Bank Global Economic Prospects June 2011[^34]; Atlantic Council: Ec
+11,E-aggregate,gdp_change,-0.9,percent,5,master_event_registry.csv event_id=11: BIS Quarterly Review May 2011[^36]; IIOA/WIOD Conference Paper[^37]; ScienceDirect: Economic impact of supply chain disr
+11,E-aggregate,market_change,20.0,percent,5,master_event_registry.csv event_id=11: BIS Quarterly Review May 2011[^36]; IIOA/WIOD Conference Paper[^37]; ScienceDirect: Economic impact of supply chain disr
+12,E-aggregate,gdp_change,-2.2,percent,4,master_event_registry.csv event_id=12: NATO Review: Sanctions after Crimea[^41]; DIW Berlin: Sanctions against Russia 2014[^42]; Journal of Indo-Pacific Affair
+12,E-aggregate,trade_change,25.0,percent,4,master_event_registry.csv event_id=12: NATO Review: Sanctions after Crimea[^41]; DIW Berlin: Sanctions against Russia 2014[^42]; Journal of Indo-Pacific Affair
+12,E-aggregate,inflation,50.0,percent,4,master_event_registry.csv event_id=12: NATO Review: Sanctions after Crimea[^41]; DIW Berlin: Sanctions against Russia 2014[^42]; Journal of Indo-Pacific Affair
+12,E-aggregate,market_change,50.0,percent,4,master_event_registry.csv event_id=12: NATO Review: Sanctions after Crimea[^41]; DIW Berlin: Sanctions against Russia 2014[^42]; Journal of Indo-Pacific Affair
+13,E-aggregate,gdp_change,33.0,percent,5,master_event_registry.csv event_id=13: World Bank Press Release June 2015[^45]; World Bank Nepal Development Update Jan 2016[^47]; ADB Initial Analysis[^46]
+13,E-aggregate,trade_change,9.0,percent,5,master_event_registry.csv event_id=13: World Bank Press Release June 2015[^45]; World Bank Nepal Development Update Jan 2016[^47]; ADB Initial Analysis[^46]
+13,E-aggregate,market_change,15.0,percent,5,master_event_registry.csv event_id=13: World Bank Press Release June 2015[^45]; World Bank Nepal Development Update Jan 2016[^47]; ADB Initial Analysis[^46]
+14,E-aggregate,gdp_change,6.9,percent,4,master_event_registry.csv event_id=14: Investopedia: China's 2015 Crisis[^48]; Wikipedia: 2015–2016 Chinese Stock Market Turbulence[^50]; RIETI: Impact on Chin
+14,E-aggregate,trade_change,30.0,percent,4,master_event_registry.csv event_id=14: Investopedia: China's 2015 Crisis[^48]; Wikipedia: 2015–2016 Chinese Stock Market Turbulence[^50]; RIETI: Impact on Chin
+14,E-aggregate,market_change,30.0,percent,4,master_event_registry.csv event_id=14: Investopedia: China's 2015 Crisis[^48]; Wikipedia: 2015–2016 Chinese Stock Market Turbulence[^50]; RIETI: Impact on Chin
+15,E-aggregate,gdp_change,7.0,percent,5,master_event_registry.csv event_id=15: NBER Working Paper (Bloom et al. 2025)[^54]; CEPR VoxEU: Brexit's Slow-Burn Hit[^53]; Federal Reserve: Real Effects of U
+15,E-aggregate,trade_change,15.0,percent,5,master_event_registry.csv event_id=15: NBER Working Paper (Bloom et al. 2025)[^54]; CEPR VoxEU: Brexit's Slow-Burn Hit[^53]; Federal Reserve: Real Effects of U
+15,E-aggregate,inflation,12.5,percent,5,master_event_registry.csv event_id=15: NBER Working Paper (Bloom et al. 2025)[^54]; CEPR VoxEU: Brexit's Slow-Burn Hit[^53]; Federal Reserve: Real Effects of U
+15,E-aggregate,market_change,10.0,percent,5,master_event_registry.csv event_id=15: NBER Working Paper (Bloom et al. 2025)[^54]; CEPR VoxEU: Brexit's Slow-Burn Hit[^53]; Federal Reserve: Real Effects of U
+16,E-aggregate,gdp_change,2.6,percent,5,master_event_registry.csv event_id=16: CEPR VoxEU: Bystander Effect[^57]; World Bank: Global Reallocations from US-China Trade War[^61]; NBER: Economic Impacts
+16,E-aggregate,trade_change,14.0,percent,5,master_event_registry.csv event_id=16: CEPR VoxEU: Bystander Effect[^57]; World Bank: Global Reallocations from US-China Trade War[^61]; NBER: Economic Impacts
+16,E-aggregate,inflation,0.4,percent,5,master_event_registry.csv event_id=16: CEPR VoxEU: Bystander Effect[^57]; World Bank: Global Reallocations from US-China Trade War[^61]; NBER: Economic Impacts
+16,E-aggregate,market_change,20.0,percent,5,master_event_registry.csv event_id=16: CEPR VoxEU: Bystander Effect[^57]; World Bank: Global Reallocations from US-China Trade War[^61]; NBER: Economic Impacts
+17,E-aggregate,gdp_change,-3.0,percent,5,master_event_registry.csv event_id=17: IMF WEO April 2020[^62]; World Bank Global Economic Outlook June 2020[^63]; World Bank WDR 2022[^68]; IMF Annual Report 
+17,E-aggregate,trade_change,5.3,percent,5,master_event_registry.csv event_id=17: IMF WEO April 2020[^62]; World Bank Global Economic Outlook June 2020[^63]; World Bank WDR 2022[^68]; IMF Annual Report 
+17,E-aggregate,market_change,34.0,percent,5,master_event_registry.csv event_id=17: IMF WEO April 2020[^62]; World Bank Global Economic Outlook June 2020[^63]; World Bank WDR 2022[^68]; IMF Annual Report 
+18,E-aggregate,inflation,30.0,percent,5,master_event_registry.csv event_id=18: S&P Global Mobility[^69]; CFR Education[^70]; Cleveland Fed Economic Commentary[^72]; ECGVA (European Vehicle Manufactur
+19,E-aggregate,gdp_change,-0.2,percent,5,master_event_registry.csv event_id=19: ScienceDirect: Costs of Maritime Supply Chain Disruptions[^75]; Port Economics Management Platform[^77]; Allianz Economi
+19,E-aggregate,trade_change,13.0,percent,5,master_event_registry.csv event_id=19: ScienceDirect: Costs of Maritime Supply Chain Disruptions[^75]; Port Economics Management Platform[^77]; Allianz Economi
+20,E-aggregate,gdp_change,0.2,percent,5,master_event_registry.csv event_id=20: NBER Working Paper 32098[^66]; CEPR: Supply Chain Pressures & Inflation[^79]; IMF WEO January 2022[^78]; Federal Reserve
+20,E-aggregate,trade_change,37.0,percent,5,master_event_registry.csv event_id=20: NBER Working Paper 32098[^66]; CEPR: Supply Chain Pressures & Inflation[^79]; IMF WEO January 2022[^78]; Federal Reserve
+20,E-aggregate,inflation,2.5,percent,5,master_event_registry.csv event_id=20: NBER Working Paper 32098[^66]; CEPR: Supply Chain Pressures & Inflation[^79]; IMF WEO January 2022[^78]; Federal Reserve
+20,E-aggregate,market_change,550.0,percent,5,master_event_registry.csv event_id=20: NBER Working Paper 32098[^66]; CEPR: Supply Chain Pressures & Inflation[^79]; IMF WEO January 2022[^78]; Federal Reserve
+21,E-aggregate,gdp_change,14.0,percent,5,master_event_registry.csv event_id=21: Nature Scientific Reports (cascading socio-economic impacts)[^81]; OECD: Assessing Impact of Russia's War[^82]; OECD-FAO
+21,E-aggregate,trade_change,34.0,percent,5,master_event_registry.csv event_id=21: Nature Scientific Reports (cascading socio-economic impacts)[^81]; OECD: Assessing Impact of Russia's War[^82]; OECD-FAO
+21,E-aggregate,inflation,10.0,percent,5,master_event_registry.csv event_id=21: Nature Scientific Reports (cascading socio-economic impacts)[^81]; OECD: Assessing Impact of Russia's War[^82]; OECD-FAO
+21,E-aggregate,market_change,45.0,percent,5,master_event_registry.csv event_id=21: Nature Scientific Reports (cascading socio-economic impacts)[^81]; OECD: Assessing Impact of Russia's War[^82]; OECD-FAO
+22,E-aggregate,gdp_change,3.0,percent,5,master_event_registry.csv event_id=22: CEPR: European Energy Crisis[^85]; Ecologic Institute[^89]; IMF Working Paper: Surging Energy Prices[^87]; European Comm
+22,E-aggregate,trade_change,10.0,percent,5,master_event_registry.csv event_id=22: CEPR: European Energy Crisis[^85]; Ecologic Institute[^89]; IMF Working Paper: Surging Energy Prices[^87]; European Comm
+22,E-aggregate,inflation,10.6,percent,5,master_event_registry.csv event_id=22: CEPR: European Energy Crisis[^85]; Ecologic Institute[^89]; IMF Working Paper: Surging Energy Prices[^87]; European Comm
+23,E-aggregate,gdp_change,1.4,percent,5,master_event_registry.csv event_id=23: NBER: Post-Pandemic Global Inflation[^97]; CEPR VoxEU: Monetary Policy Responses[^98]; Brookings: COVID Inflation Supply
+23,E-aggregate,inflation,9.1,percent,5,master_event_registry.csv event_id=23: NBER: Post-Pandemic Global Inflation[^97]; CEPR VoxEU: Monetary Policy Responses[^98]; Brookings: COVID Inflation Supply
+23,E-aggregate,market_change,0.5,percent,5,master_event_registry.csv event_id=23: NBER: Post-Pandemic Global Inflation[^97]; CEPR VoxEU: Monetary Policy Responses[^98]; Brookings: COVID Inflation Supply
+24,E-aggregate,gdp_change,27.5,percent,4,master_event_registry.csv event_id=24: CFR: Does Evergrande's Collapse Threaten China's Economy?[^101]; BBC News[^104]; HedgePoint Global[^103]; CNBC (Evergran
+24,E-aggregate,market_change,99.0,percent,4,master_event_registry.csv event_id=24: CFR: Does Evergrande's Collapse Threaten China's Economy?[^101]; BBC News[^104]; HedgePoint Global[^103]; CNBC (Evergran
+25,E-aggregate,gdp_change,8.7,percent,5,master_event_registry.csv event_id=25: IMF eLibrary: Sri Lanka's Sovereign Debt Restructuring[^106]; ScienceDirect[^107]; APF Canada[^108]; Bretton Woods Proje
+25,E-aggregate,trade_change,12.0,percent,5,master_event_registry.csv event_id=25: IMF eLibrary: Sri Lanka's Sovereign Debt Restructuring[^106]; ScienceDirect[^107]; APF Canada[^108]; Bretton Woods Proje
+25,E-aggregate,inflation,70.0,percent,5,master_event_registry.csv event_id=25: IMF eLibrary: Sri Lanka's Sovereign Debt Restructuring[^106]; ScienceDirect[^107]; APF Canada[^108]; Bretton Woods Proje
+25,E-aggregate,market_change,80.0,percent,5,master_event_registry.csv event_id=25: IMF eLibrary: Sri Lanka's Sovereign Debt Restructuring[^106]; ScienceDirect[^107]; APF Canada[^108]; Bretton Woods Proje
+26,E-aggregate,gdp_change,50.0,percent,5,master_event_registry.csv event_id=26: IMF Blog: Red Sea Attacks Disrupt Global Trade[^112]; European Parliament EPRS Brief[^114]; Atlas Institute[^111]; The G
+26,E-aggregate,trade_change,57.5,percent,5,master_event_registry.csv event_id=26: IMF Blog: Red Sea Attacks Disrupt Global Trade[^112]; European Parliament EPRS Brief[^114]; Atlas Institute[^111]; The G
+27,E-aggregate,gdp_change,73.0,percent,4,master_event_registry.csv event_id=27: IMF Blog: Red Sea Attacks (dual disruption)[^112]; CBC News[^117]; CTV News[^115]; SpendEdge[^118]; CNBC (long-term drou
+27,E-aggregate,trade_change,32.0,percent,4,master_event_registry.csv event_id=27: IMF Blog: Red Sea Attacks (dual disruption)[^112]; CBC News[^117]; CTV News[^115]; SpendEdge[^118]; CNBC (long-term drou
+28,E-aggregate,gdp_change,-1.4,percent,4,master_event_registry.csv event_id=28: Reuters/Brookings[^60]; CEPR VoxEU[^94]; BBC News[^120]; OECD Economic Outlook 2025[^119]; SSRN: Global Economic Effects
+28,E-aggregate,trade_change,30.0,percent,4,master_event_registry.csv event_id=28: Reuters/Brookings[^60]; CEPR VoxEU[^94]; BBC News[^120]; OECD Economic Outlook 2025[^119]; SSRN: Global Economic Effects
+28,E-aggregate,inflation,90.0,percent,4,master_event_registry.csv event_id=28: Reuters/Brookings[^60]; CEPR VoxEU[^94]; BBC News[^120]; OECD Economic Outlook 2025[^119]; SSRN: Global Economic Effects
+28,E-aggregate,market_change,15.0,percent,4,master_event_registry.csv event_id=28: Reuters/Brookings[^60]; CEPR VoxEU[^94]; BBC News[^120]; OECD Economic Outlook 2025[^119]; SSRN: Global Economic Effects
+29,E-aggregate,gdp_change,120.0,percent,5,master_event_registry.csv event_id=29: World Bank GFDRR PDNA[^123]; World Bank Press Release[^125]; GlobalEdge/IMF data[^122]; HELDA Helsinki thesis (synthetic
+29,E-aggregate,recovery,120.0,months,5,master_event_registry.csv event_id=29: World Bank GFDRR PDNA[^123]; World Bank Press Release[^125]; GlobalEdge/IMF data[^122]; HELDA Helsinki thesis (synthetic
+30,E-aggregate,gdp_change,60.0,percent,4,master_event_registry.csv event_id=30: World Bank Global Economic Prospects June 2025[^127]; Nature (Russia-Ukraine cascading impacts)[^81]; FAO Food Price Ind
+30,E-aggregate,inflation,23.0,percent,4,master_event_registry.csv event_id=30: World Bank Global Economic Prospects June 2025[^127]; Nature (Russia-Ukraine cascading impacts)[^81]; FAO Food Price Ind
+31,E-aggregate,gdp_change,15.0,percent,3,master_event_registry.csv event_id=31: Federal Reserve[^128]
+32,E-aggregate,gdp_change,-3.7,percent,4,master_event_registry.csv event_id=32: IMF WEO; World Bank Global Economic Prospects
+32,E-aggregate,trade_change,50.0,percent,4,master_event_registry.csv event_id=32: IMF WEO; World Bank Global Economic Prospects
+33,E-aggregate,gdp_change,2.6,percent,4,master_event_registry.csv event_id=33: WTO; IMF WEO 2016
+34,E-aggregate,gdp_change,-4.1,percent,2,master_event_registry.csv event_id=34: UN Panel of Experts Reports; RAND Corporation
+35,E-aggregate,gdp_change,-14.0,percent,4,master_event_registry.csv event_id=35: CBO; FEMA PDNA; World Bank Caribbean assessment
+36,E-aggregate,gdp_change,-2.9,percent,4,master_event_registry.csv event_id=36: Hong Kong Census and Statistics Department; IMF Article IV 2019
+38,E-aggregate,gdp_change,1.5,percent,4,master_event_registry.csv event_id=38: European Commission; Bruegel Energy Tracker[^86]
+39,E-aggregate,gdp_change,0.2,percent,4,master_event_registry.csv event_id=39: IMF Pakistan Country Report; World Bank Pakistan Update
+40,E-aggregate,gdp_change,1.2,percent,3,master_event_registry.csv event_id=40: IMF WEO 2024; European Parliament EPRS[^114]
+41,E-aggregate,gdp_change,-2.8,percent,3,master_event_registry.csv event_id=41: Efficio Consulting[129][130]; ScienceDirect[^131]; Hilltoponline 2026[^132]
+42,E-aggregate,gdp_change,3.0,percent,3,master_event_registry.csv event_id=42: ECB Speech May 2026[^133]; European Commission Germany Forecast[^92]

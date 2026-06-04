@@ -1,0 +1,54 @@
+dataset_id,priority,reason
+1,HIGH,Free public API + documented Python/R package.
+2,MEDIUM,Flat-file download only; needs scheduled fetch + diff.
+3,HIGH,Public API documented; treat as free until provider says otherwise.
+4,HIGH,Free public API (no key); REST callable directly.
+5,MEDIUM,Flat-file download only; needs scheduled fetch + diff.
+6,HIGH,Public API documented; treat as free until provider says otherwise.
+7,MEDIUM,Flat-file download only; needs scheduled fetch + diff.
+8,HIGH,Public API documented; treat as free until provider says otherwise.
+9,HIGH,Free public API (no key); REST callable directly.
+10,HIGH,Free public API (no key); REST callable directly.
+11,HIGH,Public API documented; treat as free until provider says otherwise.
+12,MEDIUM,API availability unclear; assume scripted fetch needed.
+13,HIGH,Public API documented; treat as free until provider says otherwise.
+14,MEDIUM,Flat-file download only; needs scheduled fetch + diff.
+15,MEDIUM,API availability unclear; assume scripted fetch needed.
+16,HIGH,Public API documented; treat as free until provider says otherwise.
+17,HIGH,Public API documented; treat as free until provider says otherwise.
+18,MEDIUM,Flat-file download only; needs scheduled fetch + diff.
+19,HIGH,Public API documented; treat as free until provider says otherwise.
+20,HIGH,Public API documented; treat as free until provider says otherwise.
+21,HIGH,Free public API (no key); REST callable directly.
+22,HIGH,Public API documented; treat as free until provider says otherwise.
+23,HIGH,Public API documented; treat as free until provider says otherwise.
+24,MEDIUM,Flat-file download only; needs scheduled fetch + diff.
+25,LOW,Paywalled or members-only — direct GEDS ingestion blocked.
+26,LOW,Paywalled or members-only — direct GEDS ingestion blocked.
+27,MEDIUM,API availability unclear; assume scripted fetch needed.
+28,MEDIUM,Flat-file download only; needs scheduled fetch + diff.
+29,HIGH,Public API documented; treat as free until provider says otherwise.
+30,HIGH,Free public API (no key); REST callable directly.
+33,MEDIUM,Flat-file download only; needs scheduled fetch + diff.
+34,HIGH,Free public API + documented Python/R package.
+35,HIGH,Public API documented; treat as free until provider says otherwise.
+37,HIGH,Public API documented; treat as free until provider says otherwise.
+38,HIGH,Public API documented; treat as free until provider says otherwise.
+39,HIGH,Public API documented; treat as free until provider says otherwise.
+40,HIGH,Public API documented; treat as free until provider says otherwise.
+41,HIGH,Public API documented; treat as free until provider says otherwise.
+42,MEDIUM,Flat-file download only; needs scheduled fetch + diff.
+43,HIGH,Free public API + documented Python/R package.
+44,HIGH,Public API documented; treat as free until provider says otherwise.
+47,HIGH,Public API documented; treat as free until provider says otherwise.
+48,HIGH,Public API documented; treat as free until provider says otherwise.
+49,HIGH,Public API documented; treat as free until provider says otherwise.
+50,HIGH,Public API documented; treat as free until provider says otherwise.
+51,MEDIUM,API availability unclear; assume scripted fetch needed.
+52,HIGH,Free public API (no key); REST callable directly.
+53,MEDIUM,API availability unclear; assume scripted fetch needed.
+55,MEDIUM,API availability unclear; assume scripted fetch needed.
+56,HIGH,Public API documented; treat as free until provider says otherwise.
+57,HIGH,Public API documented; treat as free until provider says otherwise.
+62,HIGH,Public API documented; treat as free until provider says otherwise.
+63,MEDIUM,Flat-file download only; needs scheduled fetch + diff.

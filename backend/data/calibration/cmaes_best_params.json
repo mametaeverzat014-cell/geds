@@ -1,0 +1,77 @@
+{
+  "tag": "baseline",
+  "method": "CMA-ES",
+  "maxiter": 8,
+  "popsize": 6,
+  "n_evals": 48,
+  "best_loss": 0.5652050447220196,
+  "best_params": {
+    "amplification_mu": 0.05409853538097736,
+    "amplification_eps": 0.10349366569025273,
+    "propagation_decay": 0.5002166866393076,
+    "recovery_rate": 0.2114675843535651,
+    "bullwhip_factor": 1.6099809178169142,
+    "inventory_scale": 1.1850170297346547,
+    "r_output_floor": 0.2549689600343445
+  },
+  "history": [
+    {
+      "iter": 1,
+      "best_in_iter": 0.5721324784109156,
+      "mean_in_iter": 0.6576348912845543,
+      "sigma": 0.2993576161678324,
+      "elapsed_seconds": 74.8
+    },
+    {
+      "iter": 2,
+      "best_in_iter": 0.5718348170814711,
+      "mean_in_iter": 0.6345996806775126,
+      "sigma": 0.30441765473727417,
+      "elapsed_seconds": 146.8
+    },
+    {
+      "iter": 3,
+      "best_in_iter": 0.5740721388723151,
+      "mean_in_iter": 0.5901152179200465,
+      "sigma": 0.3026923346598709,
+      "elapsed_seconds": 215.4
+    },
+    {
+      "iter": 4,
+      "best_in_iter": 0.571047857993059,
+      "mean_in_iter": 0.5857132579451151,
+      "sigma": 0.2781724671986504,
+      "elapsed_seconds": 284.9
+    },
+    {
+      "iter": 5,
+      "best_in_iter": 0.5656957926199646,
+      "mean_in_iter": 0.6070482445459122,
+      "sigma": 0.28915112540135735,
+      "elapsed_seconds": 352.9
+    },
+    {
+      "iter": 6,
+      "best_in_iter": 0.569987323814024,
+      "mean_in_iter": 0.5973996792187696,
+      "sigma": 0.2933004968325964,
+      "elapsed_seconds": 417.9
+    },
+    {
+      "iter": 7,
+      "best_in_iter": 0.5652050447220196,
+      "mean_in_iter": 0.57311152070908,
+      "sigma": 0.2849317838116525,
+      "elapsed_seconds": 471.6
+    },
+    {
+      "iter": 8,
+      "best_in_iter": 0.5652654056755191,
+      "mean_in_iter": 0.5755654345974184,
+      "sigma": 0.2541446896208653,
+      "elapsed_seconds": 525.4
+    }
+  ],
+  "elapsed_seconds": 525.4,
+  "stop_reason": "{'maxiter': 8}"
+}

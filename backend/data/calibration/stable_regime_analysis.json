@@ -1,0 +1,174 @@
+{
+  "pre_normalised": {
+    "heuristic": {
+      "target_node": "TWN:semiconductors",
+      "max_shock_distribution": {
+        "mean": 0.001176470588235294,
+        "p50": 0.0,
+        "p90": 0.0,
+        "p99": 0.0,
+        "max": 0.7
+      },
+      "saturation_rate_above_0.5": 0.0016806722689075631,
+      "affected_rate_above_0.1": 0.0016806722689075631,
+      "high_shock_per_frame": {
+        "mean": 0.3076923076923077,
+        "max": 1,
+        "peak_frame": 0
+      },
+      "propagation_depth": {
+        "max_hops_reached": 0,
+        "mean_hops_to_affected": 0.0,
+        "n_affected_nodes": 1
+      },
+      "summary": {
+        "peak_csi": 0.0,
+        "peak_ecv": 0.0017,
+        "affected_country_count": 0,
+        "total_loss_usd": 52600570726.56
+      }
+    },
+    "OECD-only": {
+      "target_node": "USA:aerospace",
+      "max_shock_distribution": {
+        "mean": 0.0010218393155917215,
+        "p50": 0.0,
+        "p90": 4.582854446438197e-05,
+        "p99": 0.004704299034302671,
+        "max": 0.7003044264816096
+      },
+      "saturation_rate_above_0.5": 0.0008865248226950354,
+      "affected_rate_above_0.1": 0.0017730496453900709,
+      "high_shock_per_frame": {
+        "mean": 0.3076923076923077,
+        "max": 1,
+        "peak_frame": 0
+      },
+      "propagation_depth": {
+        "max_hops_reached": 1,
+        "mean_hops_to_affected": 0.5,
+        "n_affected_nodes": 2
+      },
+      "summary": {
+        "peak_csi": 0.0,
+        "peak_ecv": 0.0009,
+        "affected_country_count": 0,
+        "total_loss_usd": 2746345746992.38
+      }
+    },
+    "OECD+WIOD": {
+      "target_node": "USA:aerospace",
+      "max_shock_distribution": {
+        "mean": 0.0010739499109610861,
+        "p50": 0.0,
+        "p90": 0.00023967625895209094,
+        "p99": 0.006084272342923809,
+        "max": 0.7008046400873207
+      },
+      "saturation_rate_above_0.5": 0.0008305647840531562,
+      "affected_rate_above_0.1": 0.0016611295681063123,
+      "high_shock_per_frame": {
+        "mean": 0.3076923076923077,
+        "max": 1,
+        "peak_frame": 0
+      },
+      "propagation_depth": {
+        "max_hops_reached": 1,
+        "mean_hops_to_affected": 0.5,
+        "n_affected_nodes": 2
+      },
+      "summary": {
+        "peak_csi": 0.0,
+        "peak_ecv": 0.0008,
+        "affected_country_count": 0,
+        "total_loss_usd": 3525947540470.12
+      }
+    }
+  },
+  "normalised": {
+    "heuristic": {
+      "target_node": "TWN:semiconductors",
+      "max_shock_distribution": {
+        "mean": 0.001176470588235294,
+        "p50": 0.0,
+        "p90": 0.0,
+        "p99": 0.0,
+        "max": 0.7
+      },
+      "saturation_rate_above_0.5": 0.0016806722689075631,
+      "affected_rate_above_0.1": 0.0016806722689075631,
+      "high_shock_per_frame": {
+        "mean": 0.3076923076923077,
+        "max": 1,
+        "peak_frame": 0
+      },
+      "propagation_depth": {
+        "max_hops_reached": 0,
+        "mean_hops_to_affected": 0.0,
+        "n_affected_nodes": 1
+      },
+      "summary": {
+        "peak_csi": 0.0,
+        "peak_ecv": 0.0017,
+        "affected_country_count": 0,
+        "total_loss_usd": 52600570726.56
+      }
+    },
+    "OECD-only": {
+      "target_node": "USA:aerospace",
+      "max_shock_distribution": {
+        "mean": 0.005114699519645699,
+        "p50": 0.0,
+        "p90": 0.00883201972799453,
+        "p99": 0.06088132999422133,
+        "max": 0.7032007428439961
+      },
+      "saturation_rate_above_0.5": 0.0017730496453900709,
+      "affected_rate_above_0.1": 0.0070921985815602835,
+      "high_shock_per_frame": {
+        "mean": 0.5192307692307693,
+        "max": 2,
+        "peak_frame": 14
+      },
+      "propagation_depth": {
+        "max_hops_reached": 2,
+        "mean_hops_to_affected": 1.0,
+        "n_affected_nodes": 8
+      },
+      "summary": {
+        "peak_csi": 0.0002,
+        "peak_ecv": 0.0018,
+        "affected_country_count": 3,
+        "total_loss_usd": 9870303227223.29
+      }
+    },
+    "OECD+WIOD": {
+      "target_node": "USA:aerospace",
+      "max_shock_distribution": {
+        "mean": 0.0017584525215717931,
+        "p50": 0.0,
+        "p90": 0.0013506955598154113,
+        "p99": 0.022528675941490738,
+        "max": 0.701549521551461
+      },
+      "saturation_rate_above_0.5": 0.0008305647840531562,
+      "affected_rate_above_0.1": 0.0024916943521594683,
+      "high_shock_per_frame": {
+        "mean": 0.3076923076923077,
+        "max": 1,
+        "peak_frame": 0
+      },
+      "propagation_depth": {
+        "max_hops_reached": 1,
+        "mean_hops_to_affected": 0.67,
+        "n_affected_nodes": 3
+      },
+      "summary": {
+        "peak_csi": 0.0001,
+        "peak_ecv": 0.0008,
+        "affected_country_count": 0,
+        "total_loss_usd": 5783069240415.69
+      }
+    }
+  }
+}
