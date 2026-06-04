@@ -1,0 +1,235 @@
+source,target,edge_type,industry,dependency_weight,flow_value_usd,substitution_difficulty,rerouting_capability,resilience_coefficient,recovery_delay_weeks,evidence_source
+CHN:electronics,JPN:electronics,trade,electronics,0.7477,33917878580.3,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8517&y
+CHN:electronics,TWN:electronics,trade,electronics,0.7391,7267792626.61,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8517&y
+CHN:electronics,THA:electronics,trade,electronics,0.6064,7196828659.58,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8517&y
+CHN:electronics,VNM:electronics,trade,electronics,0.5552,10639606820.33,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=VNM&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=VNM&p=all&px=HS&cc=8517&y
+CHN:electronics,MEX:electronics,trade,electronics,0.5452,14492365680.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8517&y
+CHN:electronics,USA:electronics,trade,electronics,0.5411,117377305036.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8517&y
+CHN:electronics,KOR:electronics,trade,electronics,0.5336,11305692226.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8517&y
+USA:automotive,MEX:automotive,trade,automotive,0.486,19011552540.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8704&y
+CHN:electronics,DEU:electronics,trade,electronics,0.4826,25794905234.91,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8517&y
+CHN:electronics,MYS:electronics,trade,electronics,0.4786,3456279018.93,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8517&y
+CHN:electronics,IND:electronics,trade,electronics,0.4344,9688881484.38,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8517&y
+MYS:semiconductors,USA:semiconductors,trade,semiconductors,0.422,18736376250.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8542&y
+CHN:semiconductors,KOR:semiconductors,trade,semiconductors,0.409,16646898353.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8542&y
+DEU:automotive,KOR:automotive,trade,automotive,0.3842,5888002012.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8704&y
+KOR:electronics,VNM:electronics,trade,electronics,0.382,6095151235.51,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=VNM&p=all&px=HS&cc=8517&y=2019
+JPN:automotive,THA:automotive,trade,automotive,0.3753,3198340530.56,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8704&y
+CHN:automotive,JPN:automotive,trade,automotive,0.3707,3014538201.78,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8708&y=2019
+CHN:electronics,CHN:electronics,trade,electronics,0.3535,26149528951.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8517&y
+BRA:automotive,IND:automotive,trade,automotive,0.3447,22258735.45,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8704&y=2019
+MEX:automotive,USA:automotive,trade,automotive,0.3192,90077348859.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8704&y
+DEU:automotive,CHN:automotive,trade,automotive,0.3061,22474260405.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8704&y
+DEU:automotive,JPN:automotive,trade,automotive,0.2969,6152524194.02,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8704&y
+CHN:automotive,KOR:automotive,trade,automotive,0.2882,1214310031.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8704&y=2019;https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8708&y
+VNM:electronics,KOR:electronics,trade,electronics,0.2851,6039964077.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8517&y
+VNM:electronics,CHN:electronics,trade,electronics,0.2754,11742585932.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8517&y=2019
+CHN:semiconductors,TWN:semiconductors,trade,semiconductors,0.2667,14969696258.41,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8542&y
+DEU:electronics,CHN:electronics,trade,electronics,0.2649,208239378.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8528&y=2019
+MYS:semiconductors,NLD:semiconductors,trade,semiconductors,0.2623,4236276433.34,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=NLD&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=NLD&p=all&px=HS&cc=8542&y
+JPN:automotive,CHN:automotive,trade,automotive,0.2457,17764303725.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8708&y
+KOR:automotive,IND:automotive,trade,automotive,0.2115,886116892.13,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8708&y=2019
+MEX:electronics,USA:electronics,trade,electronics,0.2071,44921891431.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8517&y
+KOR:semiconductors,CHN:semiconductors,trade,semiconductors,0.1956,65035604256.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8542&y
+CHN:semiconductors,JPN:semiconductors,trade,semiconductors,0.188,4412095549.06,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8542&y
+CAN:automotive,USA:automotive,trade,automotive,0.1806,50982291107.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8704&y
+CHN:automotive,IND:automotive,trade,automotive,0.1786,760066762.59,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8704&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8708&y
+JPN:automotive,USA:automotive,trade,automotive,0.1709,48233494010.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8704&y
+MYS:electronics,VNM:electronics,trade,electronics,0.1696,544081851.17,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=VNM&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=VNM&p=all&px=HS&cc=8528&y
+HKG:electronics,IND:electronics,trade,electronics,0.1669,3722141469.27,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8517&y
+VNM:electronics,IND:electronics,trade,electronics,0.166,2577202805.98,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8517&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8528&y
+CHN:semiconductors,MYS:semiconductors,trade,semiconductors,0.1563,5466564055.08,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8542&y
+GBR:automotive,IND:automotive,trade,automotive,0.1506,43102316.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8704&y
+VNM:electronics,THA:electronics,trade,electronics,0.1479,1157713171.82,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8517&y=2019;https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8528&y
+DEU:automotive,IND:automotive,trade,automotive,0.1475,650880802.39,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8708&y
+SGP:semiconductors,MYS:semiconductors,trade,semiconductors,0.1442,5043690485.35,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8542&y
+USA:semiconductors,MYS:semiconductors,trade,semiconductors,0.1437,5025043174.21,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8542&y
+USA:automotive,CHN:automotive,trade,automotive,0.1429,10494652128.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8704&y
+KOR:semiconductors,TWN:semiconductors,trade,semiconductors,0.1425,7661717832.51,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8542&y=2019
+CHN:semiconductors,CHN:semiconductors,trade,semiconductors,0.14,46568922087.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8542&y
+USA:automotive,KOR:automotive,trade,automotive,0.1383,2119663739.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8704&y
+CHN:automotive,USA:automotive,trade,automotive,0.1378,9592845098.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8708&y=2019
+VNM:electronics,USA:electronics,trade,electronics,0.1362,13881032981.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8517&y=2019
+JPN:semiconductors,TWN:semiconductors,trade,semiconductors,0.1313,7372817578.42,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8542&y
+THA:electronics,CHN:electronics,trade,electronics,0.131,9583533257.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8517&y
+USA:semiconductors,JPN:semiconductors,trade,semiconductors,0.13,2406207638.37,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8542&y=2019
+THA:automotive,JPN:automotive,trade,automotive,0.1293,1109646820.41,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8704&y=2019;https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8708&y
+JPN:automotive,KOR:automotive,trade,automotive,0.1267,1942159123.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8704&y
+IND:automotive,MEX:automotive,trade,automotive,0.124,1223996374.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8703&y=2019
+IRL:semiconductors,NLD:semiconductors,trade,semiconductors,0.1229,1646653261.03,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=NLD&p=all&px=HS&cc=8542&y=2019
+USA:electronics,MEX:electronics,trade,electronics,0.1227,3260695591.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8517&y
+CHN:automotive,THA:automotive,trade,automotive,0.1209,1030523710.01,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8704&y
+HKG:electronics,MYS:electronics,trade,electronics,0.1196,814191272.13,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8517&y
+GBR:automotive,JPN:automotive,trade,automotive,0.1077,1355095558.76,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8704&y
+ESP:automotive,DEU:automotive,trade,automotive,0.1029,12392134001.76,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8704&y
+THA:electronics,THA:electronics,trade,electronics,0.1024,1116828182.33,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8517&y
+MYS:semiconductors,CHN:semiconductors,trade,semiconductors,0.1008,33518676285.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8542&y
+KOR:semiconductors,NLD:semiconductors,trade,semiconductors,0.1,275404984.37,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=NLD&p=all&px=HS&cc=8541&y=2019
+JPN:automotive,IND:automotive,trade,automotive,0.0993,416271514.79,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8708&y=2019
+VNM:electronics,DEU:electronics,trade,electronics,0.0973,2239339608.35,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8517&y=2019
+CHN:semiconductors,NLD:semiconductors,trade,semiconductors,0.097,1566551442.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=NLD&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=NLD&p=all&px=HS&cc=8542&y
+DEU:automotive,USA:automotive,trade,automotive,0.09,22423016680.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8708&y
+CHN:automotive,MEX:automotive,trade,automotive,0.0893,3307313675.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8708&y
+USA:automotive,DEU:automotive,trade,automotive,0.0878,6365533088.91,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8703&y=2019
+SGP:electronics,IND:electronics,trade,electronics,0.087,1940554072.23,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8517&y
+JPN:semiconductors,KOR:semiconductors,trade,semiconductors,0.0868,3531272430.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8542&y
+JPN:semiconductors,MYS:semiconductors,trade,semiconductors,0.0868,3034138020.44,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8542&y
+JPN:automotive,MEX:automotive,trade,automotive,0.0864,3379324026.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8704&y
+KOR:electronics,CHN:electronics,trade,electronics,0.0856,6334315131.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8517&y
+THA:electronics,MEX:electronics,trade,electronics,0.0854,2270298988.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8517&y
+KOR:automotive,USA:automotive,trade,automotive,0.084,20924395634.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8708&y
+SGP:electronics,MYS:electronics,trade,electronics,0.0839,571278229.79,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8517&y
+FRA:automotive,DEU:automotive,trade,automotive,0.0831,10000392065.76,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8704&y
+USA:semiconductors,KOR:semiconductors,trade,semiconductors,0.0827,3364509432.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8542&y
+MYS:semiconductors,TWN:semiconductors,trade,semiconductors,0.0822,4614210939.25,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8542&y
+DEU:automotive,MEX:automotive,trade,automotive,0.082,3207937945.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8704&y
+GBR:automotive,CHN:automotive,trade,automotive,0.0816,3839039045.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8703&y=2019
+THA:automotive,IND:automotive,trade,automotive,0.0807,343382568.47,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8704&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8708&y
+DEU:automotive,THA:automotive,trade,automotive,0.0804,685171233.84,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8704&y
+USA:automotive,JPN:automotive,trade,automotive,0.0802,1660791937.71,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8704&y
+VNM:electronics,TWN:electronics,trade,electronics,0.0794,453581256.69,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8517&y=2019
+THA:electronics,MYS:electronics,trade,electronics,0.0771,556640893.9,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8517&y
+USA:automotive,THA:automotive,trade,automotive,0.0764,651460560.48,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8704&y
+PHL:electronics,MEX:electronics,trade,electronics,0.076,769796742.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8471&y=2019
+KOR:automotive,JPN:automotive,trade,automotive,0.0754,613373503.81,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8708&y=2019
+MYS:electronics,THA:electronics,trade,electronics,0.0736,873553202.73,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8517&y
+USA:semiconductors,TWN:semiconductors,trade,semiconductors,0.0731,4101259522.78,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8542&y
+GBR:automotive,KOR:automotive,trade,automotive,0.072,799944221.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8703&y=2019
+THA:electronics,TWN:electronics,trade,electronics,0.0715,251412575.65,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8471&y=2019
+KOR:electronics,MEX:electronics,trade,electronics,0.0713,722859392.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8471&y=2019
+KOR:semiconductors,USA:semiconductors,trade,semiconductors,0.0701,3110426767.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8542&y
+KOR:automotive,CHN:automotive,trade,automotive,0.0678,1710795017.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8708&y=2019
+SGP:semiconductors,NLD:semiconductors,trade,semiconductors,0.0675,903680612.52,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=NLD&p=all&px=HS&cc=8542&y=2019
+MEX:automotive,KOR:automotive,trade,automotive,0.0664,256926181.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8708&y=2019
+VNM:electronics,MYS:electronics,trade,electronics,0.066,476558906.17,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8517&y
+USA:electronics,KOR:electronics,trade,electronics,0.0659,549471037.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8528&y
+USA:automotive,IND:automotive,trade,automotive,0.0645,288807436.13,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8704&y
+JPN:electronics,TWN:electronics,trade,electronics,0.064,38708337.48,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8528&y=2019
+ITA:automotive,JPN:automotive,trade,automotive,0.0636,771619642.68,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8703&y=2019
+JPN:semiconductors,CHN:semiconductors,trade,semiconductors,0.0631,20984654141.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8542&y
+PHL:electronics,CHN:electronics,trade,electronics,0.0628,1967251667.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8528&y
+SGP:semiconductors,TWN:semiconductors,trade,semiconductors,0.0624,3353156946.74,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8542&y=2019
+MEX:automotive,DEU:automotive,trade,automotive,0.0622,4510180759.51,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8703&y=2019
+SGP:electronics,KOR:electronics,trade,electronics,0.0621,416222060.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8471&y=2019
+POL:automotive,DEU:automotive,trade,automotive,0.0614,7392755144.36,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8704&y
+VNM:electronics,JPN:electronics,trade,electronics,0.0612,1484729186.11,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8517&y=2019
+ZAF:automotive,DEU:automotive,trade,automotive,0.0608,4867662238.7,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8704&y
+KOR:semiconductors,JPN:semiconductors,trade,semiconductors,0.0603,1415482755.3,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8542&y
+MYS:electronics,CHN:electronics,trade,electronics,0.0598,1871857007.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8528&y
+JPN:electronics,DEU:electronics,trade,electronics,0.0583,348407336.62,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8528&y=2019
+CHN:semiconductors,USA:semiconductors,trade,semiconductors,0.0573,2542962571.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8542&y
+MYS:semiconductors,JPN:semiconductors,trade,semiconductors,0.0555,1303272072.18,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8542&y
+VNM:electronics,MEX:electronics,trade,electronics,0.0555,757079632.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8517&y=2019
+GBR:automotive,USA:automotive,trade,automotive,0.0551,9899719708.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8703&y=2019
+JPN:semiconductors,NLD:semiconductors,trade,semiconductors,0.0543,149548009.69,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=NLD&p=all&px=HS&cc=8541&y=2019
+BRA:automotive,MEX:automotive,trade,automotive,0.0543,648625606.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8704&y
+THA:electronics,JPN:electronics,trade,electronics,0.0541,2455170934.33,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8517&y
+THA:automotive,MEX:automotive,trade,automotive,0.0535,639584741.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8704&y
+GBR:automotive,THA:automotive,trade,automotive,0.0532,83140180.04,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8703&y=2019
+SGP:electronics,VNM:electronics,trade,electronics,0.0523,106482386.67,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=VNM&p=all&px=HS&cc=8471&y=2019
+ITA:automotive,DEU:automotive,trade,automotive,0.0513,6179742527.31,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8704&y
+KOR:semiconductors,MYS:semiconductors,trade,semiconductors,0.0504,1762416587.82,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8542&y
+ARG:automotive,MEX:automotive,trade,automotive,0.0495,103414896.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8704&y=2019
+ESP:automotive,IND:automotive,trade,automotive,0.0481,10660829.96,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8703&y=2019
+JPN:semiconductors,USA:semiconductors,trade,semiconductors,0.048,2132175931.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8542&y
+KOR:automotive,MEX:automotive,trade,automotive,0.048,1777472409.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8708&y
+USA:electronics,MYS:electronics,trade,electronics,0.0463,314990626.84,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8517&y
+MYS:electronics,MEX:electronics,trade,electronics,0.0456,1082919712.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8517&y
+USA:electronics,CHN:electronics,trade,electronics,0.0452,35501035.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8528&y=2019
+THA:electronics,VNM:electronics,trade,electronics,0.0445,90533443.43,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=VNM&p=all&px=HS&cc=8471&y=2019
+MYS:semiconductors,KOR:semiconductors,trade,semiconductors,0.0441,1796858829.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8542&y
+USA:semiconductors,CHN:semiconductors,trade,semiconductors,0.0435,14451819583.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8542&y
+SGP:semiconductors,KOR:semiconductors,trade,semiconductors,0.0429,1533056843.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8542&y=2019
+CAN:automotive,MEX:automotive,trade,automotive,0.0418,1547870866.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8708&y
+KOR:electronics,USA:electronics,trade,electronics,0.0416,4234487188.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8517&y=2019
+USA:electronics,IND:electronics,trade,electronics,0.0416,844447400.15,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8517&y
+FRA:automotive,KOR:automotive,trade,automotive,0.0413,173913298.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8704&y=2019;https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8708&y
+THA:electronics,IND:electronics,trade,electronics,0.0409,359166043.6,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8528&y
+MEX:automotive,CHN:automotive,trade,automotive,0.0407,1027895429.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8708&y=2019
+GBR:automotive,DEU:automotive,trade,automotive,0.0398,4488306571.82,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8708&y
+SGP:electronics,TWN:electronics,trade,electronics,0.0397,139729715.8,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8471&y=2019
+THA:automotive,THA:automotive,trade,automotive,0.0397,72063796.73,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8704&y
+KOR:electronics,JPN:electronics,trade,electronics,0.0386,146623142.62,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8528&y=2019
+USA:electronics,JPN:electronics,trade,electronics,0.0384,1740865404.09,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8517&y
+ZAF:automotive,JPN:automotive,trade,automotive,0.0378,458250255.07,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8703&y=2019
+CHN:automotive,DEU:automotive,trade,automotive,0.0374,1504736990.56,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8708&y=2019
+JPN:electronics,CHN:electronics,trade,electronics,0.0349,1514928861.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8517&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8528&y
+SGP:electronics,JPN:electronics,trade,electronics,0.0348,601530981.25,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8471&y=2019
+ZAF:automotive,MEX:automotive,trade,automotive,0.0342,71394702.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8704&y=2019
+THA:electronics,USA:electronics,trade,electronics,0.0339,7352028570.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8517&y
+MEX:electronics,CHN:electronics,trade,electronics,0.0333,26211749.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8528&y=2019
+JPN:automotive,DEU:automotive,trade,automotive,0.0333,3756099524.1,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8708&y
+MEX:automotive,JPN:automotive,trade,automotive,0.0327,661989423.62,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8708&y
+SGP:semiconductors,JPN:semiconductors,trade,semiconductors,0.0322,596529700.29,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8542&y=2019
+JPN:electronics,VNM:electronics,trade,electronics,0.0318,37347742.42,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=VNM&p=all&px=HS&cc=8528&y=2019
+IND:automotive,THA:automotive,trade,automotive,0.0313,218133219.34,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8704&y=2019;https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8708&y
+MYS:electronics,JPN:electronics,trade,electronics,0.0301,843942350.16,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8517&y=2019;https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8528&y
+USA:electronics,DEU:electronics,trade,electronics,0.0297,1589641738.24,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8517&y
+FRA:automotive,JPN:automotive,trade,automotive,0.0295,358185930.54,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8703&y=2019
+JPN:electronics,THA:electronics,trade,electronics,0.0294,230311142.74,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8517&y=2019;https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8528&y
+PHL:electronics,JPN:electronics,trade,electronics,0.0289,109835378.79,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8528&y=2019
+THA:electronics,KOR:electronics,trade,electronics,0.0289,193714079.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8471&y=2019
+USA:electronics,TWN:electronics,trade,electronics,0.0276,255012939.06,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8517&y
+MYS:electronics,USA:electronics,trade,electronics,0.0272,2775970639.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8517&y=2019
+USA:electronics,VNM:electronics,trade,electronics,0.0265,53827700.8,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=VNM&p=all&px=HS&cc=8471&y=2019
+MYS:electronics,IND:electronics,trade,electronics,0.0265,232817056.04,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8528&y
+PHL:electronics,TWN:electronics,trade,electronics,0.0262,92219012.43,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8471&y=2019
+USA:semiconductors,NLD:semiconductors,trade,semiconductors,0.026,347786753.51,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=NLD&p=all&px=HS&cc=8542&y=2019
+THA:electronics,DEU:electronics,trade,electronics,0.0257,629516373.5,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8471&y=2019
+MEX:automotive,IND:automotive,trade,automotive,0.0257,107688372.99,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8708&y=2019
+IRL:semiconductors,JPN:semiconductors,trade,semiconductors,0.0256,474405590.51,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=JPN&p=all&px=HS&cc=8542&y=2019
+TUR:automotive,DEU:automotive,trade,automotive,0.0256,1223722534.78,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8704&y=2019;https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8708&y
+IRL:semiconductors,USA:semiconductors,trade,semiconductors,0.0255,842092316.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8542&y=2019
+PHL:electronics,DEU:electronics,trade,electronics,0.0254,151479720.79,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8528&y=2019
+MYS:electronics,TWN:electronics,trade,electronics,0.0251,103300400.53,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=TWN&p=all&px=HS&cc=8528&y
+IND:automotive,KOR:automotive,trade,automotive,0.0248,95713692.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8708&y=2019
+SGP:electronics,THA:electronics,trade,electronics,0.0248,100288079.26,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8471&y=2019
+MEX:electronics,IND:electronics,trade,electronics,0.0248,335047342.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8517&y=2019
+ESP:automotive,MEX:automotive,trade,automotive,0.0245,242166286.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MEX&p=all&px=HS&cc=8703&y=2019
+USA:electronics,THA:electronics,trade,electronics,0.0238,96208168.34,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8471&y=2019
+FRA:automotive,CHN:automotive,trade,automotive,0.0235,592603980.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8708&y=2019
+ITA:automotive,KOR:automotive,trade,automotive,0.0229,254357882.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8703&y=2019
+SGP:semiconductors,CHN:semiconductors,trade,semiconductors,0.0227,7538402708.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8541&y=2019;https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8542&y
+KOR:electronics,IND:electronics,trade,electronics,0.0227,45597633.93,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8528&y=2019
+PHL:electronics,MYS:electronics,trade,electronics,0.0225,9245620.59,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8528&y=2019
+MEX:automotive,THA:automotive,trade,automotive,0.0225,150709386.98,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8708&y=2019
+ITA:automotive,IND:automotive,trade,automotive,0.0223,98501740.61,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8703&y=2019;https://comtrade.un.org/data/?r=IND&p=all&px=HS&cc=8708&y
+ITA:automotive,THA:automotive,trade,automotive,0.0219,34194493.95,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=THA&p=all&px=HS&cc=8703&y=2019
+IRL:semiconductors,MYS:semiconductors,trade,semiconductors,0.0217,691449372.14,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=MYS&p=all&px=HS&cc=8542&y=2019
+SGP:semiconductors,USA:semiconductors,trade,semiconductors,0.0216,244377737.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=USA&p=all&px=HS&cc=8541&y=2019
+MEX:electronics,KOR:electronics,trade,electronics,0.0209,140223781.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8471&y=2019
+SGP:electronics,CHN:electronics,trade,electronics,0.0208,636673481.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=CHN&p=all&px=HS&cc=8471&y=2019
+KOR:electronics,DEU:electronics,trade,electronics,0.0207,630816699.02,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8471&y=2019;https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8528&y
+ZAF:automotive,KOR:automotive,trade,automotive,0.0205,227425369.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8703&y=2019
+THA:automotive,KOR:automotive,trade,automotive,0.0201,77573561.0,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=KOR&p=all&px=HS&cc=8708&y=2019
+KOR:automotive,DEU:automotive,trade,automotive,0.02,1451855329.75,0.6,0.3,0.2,8.0,comtrade_edges.csv https://comtrade.un.org/data/?r=DEU&p=all&px=HS&cc=8703&y=2019
+CP:TaiwanStrait,TWN:semiconductors,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:TaiwanStrait,TWN:electronics,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:TaiwanStrait,TWN:shipping,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:TaiwanStrait,CHN:electronics,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:TaiwanStrait,KOR:semiconductors,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:TaiwanStrait,JPN:electronics,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Malacca,SGP:shipping,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Malacca,MYS:shipping,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Malacca,CHN:shipping,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Malacca,JPN:shipping,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Malacca,KOR:shipping,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Malacca,VNM:shipping,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Suez,DEU:automotive,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Suez,NLD:shipping,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Suez,ITA:consumer_goods,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Suez,FRA:consumer_goods,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Suez,CHN:consumer_goods,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Hormuz,SAU:energy,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Hormuz,ARE:energy,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Hormuz,USA:energy,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Hormuz,CHN:energy,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Hormuz,IND:energy,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Panama,USA:shipping,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Panama,CHN:shipping,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:RedSea,NLD:shipping,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:RedSea,ITA:consumer_goods,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:RedSea,DEU:automotive,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Bosphorus,RUS:energy,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Bab-el-Mandeb,SAU:energy,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps
+CP:Bab-el-Mandeb,ARE:energy,chokepoint,shipping,0.7,0,0.85,0.15,0.15,4.0,manual: docx chokepoint route maps

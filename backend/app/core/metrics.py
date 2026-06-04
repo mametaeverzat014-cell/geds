@@ -350,3 +350,168 @@ def compute_ecv_batch(
     """Vectorized count-ECV per iteration.  Returns shape (I,)."""
     new_affected = (affected_now & ~affected_prev).sum(axis=1)
     return new_affected / max(1, affected_now.shape[1])
+
+
+# ───────────────────────── ranking-aware evaluation metrics ──────────────────
+#
+# Standard, citable rank/retrieval metrics for benchmark evaluation. These are
+# textbook definitions (NOT novel contributions): Spearman (1904), Kendall
+# tau-b (1945), NDCG (Järvelin & Kekäläinen 2002), Precision@k and Jaccard
+# overlap (standard IR). They complement the error metrics (MAE/RMSE/R²) by
+# scoring whether a model ranks events in the correct order — the relevant
+# question when absolute magnitudes are noisy but relative severity matters.
+#
+# Convention throughout: `pred` and `obs` are 1-D array-likes of equal length;
+# higher value = more severe / higher rank. All functions return float("nan")
+# for degenerate inputs (n < 2, zero variance, empty top-k) rather than raising.
+
+
+def _pearson_corr(a: np.ndarray, b: np.ndarray) -> float:
+    """Pearson correlation with NaN on degenerate input. Local copy so this
+    module has no dependency on benchmark.py."""
+    a = np.asarray(a, dtype=np.float64)
+    b = np.asarray(b, dtype=np.float64)
+    if a.size < 2 or np.std(a) == 0.0 or np.std(b) == 0.0:
+        return float("nan")
+    a = a - a.mean()
+    b = b - b.mean()
+    denom = float(np.sqrt((a @ a) * (b @ b)))
+    return float((a @ b) / denom) if denom > 0 else float("nan")
+
+
+def _average_ranks(x: np.ndarray) -> np.ndarray:
+    """Fractional (tie-averaged) ranks, 0-indexed. Tied values share the mean
+    of the positions they span — the correct convention for Spearman/tau-b."""
+    x = np.asarray(x, dtype=np.float64)
+    n = x.size
+    order = np.argsort(x, kind="mergesort")
+    sx = x[order]
+    ranks_sorted = np.empty(n, dtype=np.float64)
+    i = 0
+    while i < n:
+        j = i
+        while j + 1 < n and sx[j + 1] == sx[i]:
+            j += 1
+        ranks_sorted[i : j + 1] = (i + j) / 2.0
+        i = j + 1
+    ranks = np.empty(n, dtype=np.float64)
+    ranks[order] = ranks_sorted
+    return ranks
+
+
+def _tie_pairs(x: np.ndarray) -> int:
+    """Number of tied pairs Σ t(t-1)/2 over equal-value groups."""
+    _, counts = np.unique(np.asarray(x), return_counts=True)
+    return int(np.sum(counts * (counts - 1) // 2))
+
+
+def spearman_rho(pred, obs) -> float:
+    """Spearman rank correlation ρ ∈ [-1, 1], tie-corrected via average ranks.
+
+    Equivalent to the Pearson correlation of the fractional ranks. Returns NaN
+    if fewer than 2 points or either ranking has zero variance (all tied).
+    """
+    pred = np.asarray(pred, dtype=np.float64)
+    obs = np.asarray(obs, dtype=np.float64)
+    if pred.size != obs.size:
+        raise ValueError("pred and obs must have equal length")
+    if pred.size < 2:
+        return float("nan")
+    return _pearson_corr(_average_ranks(pred), _average_ranks(obs))
+
+
+def kendall_tau(pred, obs) -> float:
+    """Kendall's tau-b ∈ [-1, 1], the tie-adjusted rank-correlation coefficient.
+
+        tau_b = (C - D) / sqrt((n0 - n1) * (n0 - n2))
+
+    where C/D are concordant/discordant pairs, n0 = n(n-1)/2, and n1/n2 are the
+    tied-pair counts in pred/obs respectively. Matches scipy.stats.kendalltau
+    (variant 'b'). Returns NaN for n < 2 or a zero denominator.
+    """
+    pred = np.asarray(pred, dtype=np.float64)
+    obs = np.asarray(obs, dtype=np.float64)
+    if pred.size != obs.size:
+        raise ValueError("pred and obs must have equal length")
+    n = pred.size
+    if n < 2:
+        return float("nan")
+    concordant = 0
+    discordant = 0
+    for i in range(n):
+        da = pred[i] - pred[i + 1 :]
+        db = obs[i] - obs[i + 1 :]
+        prod = da * db
+        concordant += int(np.count_nonzero(prod > 0))
+        discordant += int(np.count_nonzero(prod < 0))
+    n0 = n * (n - 1) // 2
+    n1 = _tie_pairs(pred)
+    n2 = _tie_pairs(obs)
+    denom = float(np.sqrt((n0 - n1) * (n0 - n2)))
+    return float((concordant - discordant) / denom) if denom > 0 else float("nan")
+
+
+def ndcg_at_k(pred, obs, k: int) -> float:
+    """Normalized Discounted Cumulative Gain at rank k, in [0, 1].
+
+    Items are ranked by `pred`; the gain accrued at each position is the
+    corresponding `obs` value, discounted by 1/log2(position+1). Normalized by
+    the ideal DCG (ranking by `obs`). Relevance/gains (`obs`) must be
+    non-negative — true for output-loss fractions. Returns NaN if k <= 0,
+    inputs are empty, or the ideal DCG is 0 (all gains zero).
+    """
+    pred = np.asarray(pred, dtype=np.float64)
+    obs = np.asarray(obs, dtype=np.float64)
+    if pred.size != obs.size:
+        raise ValueError("pred and obs must have equal length")
+    n = pred.size
+    if n == 0 or k <= 0:
+        return float("nan")
+    if np.any(obs < 0):
+        raise ValueError("ndcg_at_k requires non-negative obs (gains)")
+    k = min(k, n)
+    discounts = 1.0 / np.log2(np.arange(2, k + 2))
+    pred_order = np.argsort(-pred, kind="mergesort")[:k]
+    dcg = float(np.sum(obs[pred_order] * discounts))
+    ideal_order = np.argsort(-obs, kind="mergesort")[:k]
+    idcg = float(np.sum(obs[ideal_order] * discounts))
+    return dcg / idcg if idcg > 0 else float("nan")
+
+
+def precision_at_k(pred, obs, k: int) -> float:
+    """Precision@k: fraction of the top-k predicted items that are also among
+    the top-k items by observed severity, in [0, 1].
+
+    Returns NaN if k <= 0 or inputs are empty. k is clamped to n.
+    """
+    pred = np.asarray(pred, dtype=np.float64)
+    obs = np.asarray(obs, dtype=np.float64)
+    if pred.size != obs.size:
+        raise ValueError("pred and obs must have equal length")
+    n = pred.size
+    if n == 0 or k <= 0:
+        return float("nan")
+    k = min(k, n)
+    top_pred = set(np.argsort(-pred, kind="mergesort")[:k].tolist())
+    top_obs = set(np.argsort(-obs, kind="mergesort")[:k].tolist())
+    return len(top_pred & top_obs) / k
+
+
+def top_k_overlap(pred, obs, k: int) -> float:
+    """Jaccard overlap of the top-k predicted and top-k observed sets, in
+    [0, 1]: |A ∩ B| / |A ∪ B|.
+
+    Returns NaN if k <= 0 or inputs are empty. k is clamped to n.
+    """
+    pred = np.asarray(pred, dtype=np.float64)
+    obs = np.asarray(obs, dtype=np.float64)
+    if pred.size != obs.size:
+        raise ValueError("pred and obs must have equal length")
+    n = pred.size
+    if n == 0 or k <= 0:
+        return float("nan")
+    k = min(k, n)
+    top_pred = set(np.argsort(-pred, kind="mergesort")[:k].tolist())
+    top_obs = set(np.argsort(-obs, kind="mergesort")[:k].tolist())
+    union = top_pred | top_obs
+    return len(top_pred & top_obs) / len(union) if union else float("nan")

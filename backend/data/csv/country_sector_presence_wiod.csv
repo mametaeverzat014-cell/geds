@@ -1,0 +1,818 @@
+country_iso3,sector,value_added_share,employment_share,confidence,presence_status,evidence_source,note,year_used
+AUS,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+AUS,automotive,0.002334,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,electronics,0.004629,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,aerospace,0.002639,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,shipping,0.023053,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+AUS,consumer_goods,0.152433,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,banking,0.064378,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,insurance,0.012236,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,capital_markets,0.016207,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,oil,0.075207,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+AUS,utilities,0.026309,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,aviation,0.004585,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,ports,0.019922,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,telecommunications,0.047827,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,agriculture,0.025018,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,tourism,0.026700,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUS,government,0.107868,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+AUT,automotive,0.013189,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,electronics,0.025318,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,aerospace,0.003008,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,shipping,0.028861,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+AUT,consumer_goods,0.263701,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,banking,0.032017,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,insurance,0.010112,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,capital_markets,0.003924,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,oil,0.005120,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+AUT,utilities,0.027330,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,aviation,0.001611,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,ports,0.020944,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,telecommunications,0.037762,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,agriculture,0.014025,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,tourism,0.051583,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+AUT,government,0.105898,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+BEL,automotive,0.007938,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,electronics,0.007169,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,aerospace,0.002170,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,shipping,0.020546,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+BEL,consumer_goods,0.242070,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,banking,0.040047,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,insurance,0.011724,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,capital_markets,0.009972,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,oil,0.003322,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+BEL,utilities,0.026465,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,aviation,0.001155,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,ports,0.026824,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,telecommunications,0.047284,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,agriculture,0.007026,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,tourism,0.018864,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BEL,government,0.150547,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+BGR,automotive,0.005006,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,electronics,0.011049,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,aerospace,0.001644,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,shipping,0.039741,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+BGR,consumer_goods,0.266142,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,banking,0.057924,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,insurance,0.010572,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,capital_markets,0.003684,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,oil,0.022082,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+BGR,utilities,0.048951,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,aviation,0.002822,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,ports,0.016276,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,telecommunications,0.058979,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,agriculture,0.052649,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,tourism,0.023465,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BGR,government,0.112696,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+BRA,automotive,0.012769,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,electronics,0.007568,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,aerospace,0.002474,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,shipping,0.029622,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+BRA,consumer_goods,0.229512,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,banking,0.065402,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,insurance,0.000000,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,capital_markets,0.000000,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,oil,0.031800,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+BRA,utilities,0.018899,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,aviation,0.001828,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,ports,0.012749,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,telecommunications,0.034317,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,agriculture,0.052244,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,tourism,0.023480,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+BRA,government,0.160450,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+CAN,automotive,0.008429,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,electronics,0.007683,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,aerospace,0.005386,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,shipping,0.025055,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+CAN,consumer_goods,0.189249,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,banking,0.037927,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,insurance,0.015845,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,capital_markets,0.000000,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,oil,0.089155,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+CAN,utilities,0.024328,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,aviation,0.003487,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,ports,0.007660,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,telecommunications,0.045889,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,agriculture,0.018096,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,tourism,0.020575,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CAN,government,0.143751,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+CHE,automotive,0.001233,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,electronics,0.048017,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,aerospace,0.003226,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,shipping,0.024221,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+CHE,consumer_goods,0.281985,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,banking,0.055619,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,insurance,0.042869,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,capital_markets,0.000000,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,oil,0.002021,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+CHE,utilities,0.016111,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,aviation,0.003472,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,ports,0.008070,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,telecommunications,0.045662,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,agriculture,0.007516,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,tourism,0.017685,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHE,government,0.113435,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+CHN,automotive,0.022063,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,electronics,0.041600,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,aerospace,0.007926,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,shipping,0.035622,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+CHN,consumer_goods,0.311181,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,banking,0.056078,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,insurance,0.004587,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,capital_markets,0.000000,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,oil,0.065639,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+CHN,utilities,0.022820,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,aviation,0.002286,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,ports,0.006262,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,telecommunications,0.028045,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,agriculture,0.095235,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,tourism,0.019449,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CHN,government,0.073751,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+CYP,automotive,0.000154,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,electronics,0.000682,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,aerospace,0.000037,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,shipping,0.041066,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+CYP,consumer_goods,0.197075,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,banking,0.078197,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,insurance,0.005678,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,capital_markets,0.009849,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,oil,0.001076,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+CYP,utilities,0.029005,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,aviation,0.000389,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,ports,0.024451,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,telecommunications,0.049942,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,agriculture,0.023304,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,tourism,0.065636,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CYP,government,0.164250,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+CZE,automotive,0.048974,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,electronics,0.036885,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,aerospace,0.005453,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,shipping,0.030343,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+CZE,consumer_goods,0.275905,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,banking,0.034782,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,insurance,0.006703,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,capital_markets,0.003564,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,oil,0.009846,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+CZE,utilities,0.049752,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,aviation,0.000819,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,ports,0.021988,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,telecommunications,0.053109,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,agriculture,0.027044,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,tourism,0.019535,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+CZE,government,0.105325,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+DEU,automotive,0.040265,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,electronics,0.029580,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,aerospace,0.005130,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,shipping,0.021511,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+DEU,consumer_goods,0.242563,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,banking,0.025369,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,insurance,0.009944,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,capital_markets,0.005709,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,oil,0.003630,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+DEU,utilities,0.029201,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,aviation,0.002459,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,ports,0.017827,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,telecommunications,0.053895,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,agriculture,0.006825,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,tourism,0.015011,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DEU,government,0.106899,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+DNK,automotive,0.001122,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,electronics,0.013306,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,aerospace,0.000643,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,shipping,0.037622,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+DNK,consumer_goods,0.240316,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,banking,0.047639,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,insurance,0.010263,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,capital_markets,0.006453,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,oil,0.025740,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+DNK,utilities,0.021751,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,aviation,0.002780,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,ports,0.014418,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,telecommunications,0.049705,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,agriculture,0.015786,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,tourism,0.014968,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+DNK,government,0.121407,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+ESP,automotive,0.009122,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,electronics,0.007820,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,aerospace,0.006278,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,shipping,0.025462,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+ESP,consumer_goods,0.229631,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,banking,0.028186,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,insurance,0.008815,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,capital_markets,0.004467,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,oil,0.004389,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+ESP,utilities,0.034767,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,aviation,0.002968,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,ports,0.018966,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,telecommunications,0.045181,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,agriculture,0.025206,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,tourism,0.069102,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ESP,government,0.125178,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+EST,automotive,0.005344,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,electronics,0.021202,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,aerospace,0.001133,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,shipping,0.036761,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+EST,consumer_goods,0.245484,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,banking,0.029748,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,insurance,0.004472,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,capital_markets,0.003693,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,oil,0.022491,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+EST,utilities,0.043395,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,aviation,0.000782,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,ports,0.046905,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,telecommunications,0.055801,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,agriculture,0.034447,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,tourism,0.018066,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+EST,government,0.113355,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+FIN,automotive,0.002320,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,electronics,0.033149,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,aerospace,0.002705,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,shipping,0.029996,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+FIN,consumer_goods,0.223342,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,banking,0.016521,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,insurance,0.009061,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,capital_markets,0.004109,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,oil,0.005501,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+FIN,utilities,0.032220,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,aviation,0.003237,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,ports,0.012564,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,telecommunications,0.060094,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,agriculture,0.028361,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,tourism,0.015972,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FIN,government,0.120930,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+FRA,automotive,0.005149,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,electronics,0.008735,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,aerospace,0.006922,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,shipping,0.021658,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+FRA,consumer_goods,0.193171,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,banking,0.029483,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,insurance,0.007139,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,capital_markets,0.008300,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,oil,0.001739,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+FRA,utilities,0.024504,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,aviation,0.004009,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,ports,0.016810,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,telecommunications,0.052983,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,agriculture,0.016752,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,tourism,0.027310,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+FRA,government,0.137211,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+GBR,automotive,0.007172,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,electronics,0.010203,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,aerospace,0.005959,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,shipping,0.022770,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+GBR,consumer_goods,0.188629,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,banking,0.043761,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,insurance,0.025210,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,capital_markets,0.012743,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,oil,0.017381,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+GBR,utilities,0.025366,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,aviation,0.004873,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,ports,0.011432,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,telecommunications,0.068091,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,agriculture,0.006824,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,tourism,0.029082,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GBR,government,0.113306,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+GRC,automotive,0.000464,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,electronics,0.003167,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,aerospace,0.000912,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,shipping,0.053070,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+GRC,consumer_goods,0.187818,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,banking,0.035507,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,insurance,0.005532,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,capital_markets,0.004469,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,oil,0.013538,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+GRC,utilities,0.031037,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,aviation,0.005148,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,ports,0.011599,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,telecommunications,0.034967,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,agriculture,0.038381,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,tourism,0.067681,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+GRC,government,0.161788,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+HRV,automotive,0.000997,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,electronics,0.010494,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,aerospace,0.004121,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,shipping,0.024686,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+HRV,consumer_goods,0.244576,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,banking,0.051681,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,insurance,0.008867,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,capital_markets,0.006304,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,oil,0.027782,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+HRV,utilities,0.039313,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,aviation,0.001065,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,ports,0.014364,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,telecommunications,0.050231,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,agriculture,0.043298,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,tourism,0.051647,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HRV,government,0.104954,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+HUN,automotive,0.044102,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,electronics,0.028820,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,aerospace,0.002014,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,shipping,0.032113,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+HUN,consumer_goods,0.251738,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,banking,0.028000,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,insurance,0.003032,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,capital_markets,0.005803,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,oil,0.012535,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+HUN,utilities,0.030776,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,aviation,0.003237,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,ports,0.022524,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,telecommunications,0.057363,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,agriculture,0.044643,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,tourism,0.016687,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+HUN,government,0.130340,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+IDN,automotive,0.018986,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,electronics,0.011376,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,aerospace,0.001145,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,shipping,0.027112,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+IDN,consumer_goods,0.289821,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,banking,0.031168,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,insurance,0.008477,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,capital_markets,0.000000,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,oil,0.133170,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+IDN,utilities,0.011891,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,aviation,0.010560,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,ports,0.007654,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,telecommunications,0.035857,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,agriculture,0.136829,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,tourism,0.031164,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IDN,government,0.072478,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+IND,automotive,0.008638,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,electronics,0.007825,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,aerospace,0.003027,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,shipping,0.056412,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+IND,consumer_goods,0.291071,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,banking,0.046772,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,insurance,0.010649,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,capital_markets,0.000000,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,oil,0.027712,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+IND,utilities,0.015978,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,aviation,0.001591,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,ports,0.004492,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,telecommunications,0.049328,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,agriculture,0.160648,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,tourism,0.014477,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IND,government,0.112444,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+IRL,automotive,0.001126,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,electronics,0.018216,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,aerospace,0.000012,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,shipping,0.012827,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+IRL,consumer_goods,0.270350,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,banking,0.057600,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,insurance,0.021492,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,capital_markets,0.009925,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,oil,0.003383,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+IRL,utilities,0.026929,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,aviation,0.015261,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,ports,0.008942,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,telecommunications,0.121369,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,agriculture,0.015644,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,tourism,0.024167,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+IRL,government,0.092092,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+ITA,automotive,0.007161,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,electronics,0.012507,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,aerospace,0.003915,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,shipping,0.032771,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+ITA,consumer_goods,0.240645,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,banking,0.039940,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,insurance,0.006374,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,capital_markets,0.012363,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,oil,0.004826,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+ITA,utilities,0.027071,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,aviation,0.000411,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,ports,0.018974,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,telecommunications,0.039416,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,agriculture,0.021771,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,tourism,0.036080,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ITA,government,0.111736,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+JPN,automotive,0.020543,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,electronics,0.029528,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,aerospace,0.005710,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,shipping,0.032641,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+JPN,consumer_goods,0.254917,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,banking,0.033676,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,insurance,0.013005,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,capital_markets,0.000000,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,oil,0.014092,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+JPN,utilities,0.017780,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,aviation,0.003325,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,ports,0.007463,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,telecommunications,0.050638,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,agriculture,0.013584,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,tourism,0.030238,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+JPN,government,0.118972,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+KOR,automotive,0.028323,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,electronics,0.085189,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,aerospace,0.020387,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,shipping,0.021434,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+KOR,consumer_goods,0.248530,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,banking,0.038479,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,insurance,0.010318,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,capital_markets,0.006995,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,oil,0.008669,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+KOR,utilities,0.028144,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,aviation,0.003823,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,ports,0.010385,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,telecommunications,0.039873,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,agriculture,0.023415,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,tourism,0.025986,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+KOR,government,0.127428,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+LTU,automotive,0.002656,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,electronics,0.007519,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,aerospace,0.003166,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,shipping,0.079597,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+LTU,consumer_goods,0.353898,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,banking,0.015248,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,insurance,0.003557,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,capital_markets,0.001133,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,oil,0.013037,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+LTU,utilities,0.033856,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,aviation,0.000796,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,ports,0.041807,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,telecommunications,0.034770,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,agriculture,0.034417,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,tourism,0.013876,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LTU,government,0.105153,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+LUX,automotive,0.000828,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,electronics,0.002683,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,aerospace,0.000261,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,shipping,0.023077,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+LUX,consumer_goods,0.158964,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,banking,0.147845,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,insurance,0.021481,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,capital_markets,0.086260,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,oil,0.000677,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+LUX,utilities,0.011042,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,aviation,0.000510,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,ports,0.014872,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,telecommunications,0.076995,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,agriculture,0.002931,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,tourism,0.019290,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LUX,government,0.101038,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+LVA,automotive,0.002356,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,electronics,0.007594,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,aerospace,0.001257,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,shipping,0.046118,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+LVA,consumer_goods,0.250416,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,banking,0.036564,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,insurance,0.003638,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,capital_markets,0.004367,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,oil,0.004992,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+LVA,utilities,0.038791,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,aviation,0.003109,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,ports,0.048074,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,telecommunications,0.050296,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,agriculture,0.032662,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,tourism,0.016894,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+LVA,government,0.122652,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+MEX,automotive,0.029787,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,electronics,0.012495,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,aerospace,0.002259,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,shipping,0.056256,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+MEX,consumer_goods,0.293502,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,banking,0.029725,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,insurance,0.002398,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,capital_markets,0.002797,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,oil,0.078829,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+MEX,utilities,0.020394,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,aviation,0.002128,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,ports,0.005593,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,telecommunications,0.023475,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,agriculture,0.032994,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,tourism,0.022412,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MEX,government,0.086972,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+MLT,automotive,0.004093,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,electronics,0.006190,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,aerospace,0.002561,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,shipping,0.021870,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+MLT,consumer_goods,0.190229,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,banking,0.047504,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,insurance,0.010023,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,capital_markets,0.009614,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,oil,0.001075,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+MLT,utilities,0.014583,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,aviation,0.005130,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,ports,0.032411,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,telecommunications,0.089996,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,agriculture,0.014050,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,tourism,0.051744,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+MLT,government,0.121883,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+NLD,automotive,0.003171,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,electronics,0.009714,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,aerospace,0.002799,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,shipping,0.024639,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+NLD,consumer_goods,0.238034,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,banking,0.058315,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,insurance,0.013291,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,capital_markets,0.006654,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,oil,0.030101,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+NLD,utilities,0.017836,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,aviation,0.004111,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,ports,0.016976,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,telecommunications,0.051083,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,agriculture,0.018341,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,tourism,0.017591,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NLD,government,0.126618,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+NOR,automotive,0.000941,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,electronics,0.006910,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,aerospace,0.007920,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,shipping,0.038805,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+NOR,consumer_goods,0.130618,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,banking,0.039242,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,insurance,0.009302,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,capital_markets,0.002775,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,oil,0.224999,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+NOR,utilities,0.026334,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,aviation,0.002640,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,ports,0.009851,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,telecommunications,0.041681,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,agriculture,0.016757,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,tourism,0.013003,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+NOR,government,0.108729,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+POL,automotive,0.015789,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,electronics,0.013090,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,aerospace,0.004303,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,shipping,0.035327,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+POL,consumer_goods,0.342473,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,banking,0.032225,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,insurance,0.004753,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,capital_markets,0.004424,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,oil,0.028572,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+POL,utilities,0.044460,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,aviation,0.000660,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,ports,0.019101,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,telecommunications,0.042440,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,agriculture,0.030069,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,tourism,0.012716,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+POL,government,0.105515,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+PRT,automotive,0.007825,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,electronics,0.006650,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,aerospace,0.000895,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,shipping,0.019929,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+PRT,consumer_goods,0.263768,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,banking,0.035202,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,insurance,0.012076,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,capital_markets,0.005020,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,oil,0.005197,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+PRT,utilities,0.034085,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,aviation,0.006767,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,ports,0.018898,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,telecommunications,0.036798,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,agriculture,0.023258,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,tourism,0.050966,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+PRT,government,0.141284,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+ROU,automotive,0.016140,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,electronics,0.019231,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,aerospace,0.005661,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,shipping,0.055577,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+ROU,consumer_goods,0.247941,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,banking,0.027134,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,insurance,0.002979,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,capital_markets,0.008375,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,oil,0.027406,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+ROU,utilities,0.046749,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,aviation,0.001666,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,ports,0.012548,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,telecommunications,0.060761,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,agriculture,0.053318,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,tourism,0.017522,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+ROU,government,0.087167,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+RUS,automotive,0.008361,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,electronics,0.007836,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,aerospace,0.000000,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,shipping,0.044235,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+RUS,consumer_goods,0.291023,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,banking,0.047754,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,insurance,0.000000,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,capital_markets,0.000000,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,oil,0.140412,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+RUS,utilities,0.026437,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,aviation,0.002698,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,ports,0.017993,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,telecommunications,0.018811,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,agriculture,0.031139,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,tourism,0.008866,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+RUS,government,0.095804,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+SVK,automotive,0.038375,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,electronics,0.019866,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,aerospace,0.001579,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,shipping,0.035485,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+SVK,consumer_goods,0.284847,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,banking,0.030812,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,insurance,0.004385,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,capital_markets,0.006660,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,oil,0.007460,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+SVK,utilities,0.038746,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,aviation,0.000591,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,ports,0.027787,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,telecommunications,0.047946,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,agriculture,0.043982,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,tourism,0.015105,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVK,government,0.100016,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+SVN,automotive,0.018439,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,electronics,0.028894,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,aerospace,0.000698,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,shipping,0.032841,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+SVN,consumer_goods,0.301246,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,banking,0.026263,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,insurance,0.011442,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,capital_markets,0.002535,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,oil,0.004018,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+SVN,utilities,0.038817,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,aviation,0.001046,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,ports,0.020880,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,telecommunications,0.047752,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,agriculture,0.024163,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,tourism,0.022481,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SVN,government,0.115398,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+SWE,automotive,0.016406,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,electronics,0.029044,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,aerospace,0.005798,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,shipping,0.025742,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+SWE,consumer_goods,0.218687,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,banking,0.032705,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,insurance,0.010743,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,capital_markets,0.002535,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,oil,0.007709,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+SWE,utilities,0.030807,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,aviation,0.002382,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,ports,0.026301,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,telecommunications,0.056293,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,agriculture,0.013785,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,tourism,0.017456,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+SWE,government,0.105815,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+TUR,automotive,0.007506,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,electronics,0.008234,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,aerospace,0.001807,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,shipping,0.108371,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+TUR,consumer_goods,0.291396,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,banking,0.031344,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,insurance,0.001714,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,capital_markets,0.001026,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,oil,0.019914,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+TUR,utilities,0.025587,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,aviation,0.004640,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,ports,0.021219,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,telecommunications,0.021218,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,agriculture,0.080135,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,tourism,0.028867,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TUR,government,0.089419,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+TWN,automotive,0.008460,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,electronics,0.158903,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,aerospace,0.005734,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,shipping,0.014378,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+TWN,consumer_goods,0.294730,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,banking,0.043619,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,insurance,0.017535,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,capital_markets,0.006668,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,oil,0.009830,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+TWN,utilities,0.022027,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,aviation,0.004076,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,ports,0.008661,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,telecommunications,0.032535,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,agriculture,0.018702,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,tourism,0.025214,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+TWN,government,0.113819,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,semiconductors,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+USA,automotive,0.008084,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,electronics,0.018544,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,aerospace,0.007248,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,shipping,0.014885,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,energy,,,,MISSING_NO_DATA,WIOD_2014,Country in WIOD but no VA for this GEDS sector,2014
+USA,consumer_goods,0.200463,,4,DATA_PRESENT,WIOD_2014,Aggregated from 17 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,banking,0.028130,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,insurance,0.028285,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,capital_markets,0.014076,,5,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,oil,0.035965,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,gas,,,,MISSING_WIOD_HAS_NO_SOURCE,WIOD_DOES_NOT_SEPARATE_THIS_SECTOR,C26 bundles semis; B+D35 bundles gas with oil/utilities,2014
+USA,utilities,0.018666,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,aviation,0.004845,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,ports,0.006113,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,telecommunications,0.065227,,4,DATA_PRESENT,WIOD_2014,Aggregated from 5 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,agriculture,0.012417,,4,DATA_PRESENT,WIOD_2014,Aggregated from 3 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,tourism,0.028129,,4,DATA_PRESENT,WIOD_2014,Aggregated from 1 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
+USA,government,0.142228,,4,DATA_PRESENT,WIOD_2014,Aggregated from 2 NACE Rev.2 codes; employment_share NULL — SEA files not in repo,2014
