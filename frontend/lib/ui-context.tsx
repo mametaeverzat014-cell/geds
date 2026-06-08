@@ -218,10 +218,10 @@ export const T = {
     weeksToEffect: "нед. до эффекта",
     methodologyTitle: "Методология и источники данных",
     methodologyText:
-      "Рекомендации генерируются системой на основе доказательств симуляции: пороги пиковых шоков, рейтинги сетевой центральности, вероятности дефицита поставок. Все параметры модели основаны на данных ООН Comtrade 2019, ВБ LPI 2018 и ОЭСР STAN. Модель проверена на 8 исторических кризисах цепочек поставок: корреляция Пирсона r = +0,97 и RMSE в пределах ±25% от наблюдаемых потерь производства и времени восстановления.",
+      "Рекомендации генерируются системой правил на основе данных симуляции: пороги пиковых шоков, рейтинги сетевой центральности и вероятности дефицита поставок. Все параметры модели взяты из ООН Comtrade 2019, ВБ LPI 2018 и долей секторов ОЭСР STAN. Текущая корреляция и доля попаданий на данных вне выборки показаны вживую в значке справа сверху — полный отчёт о LOO-кросс-валидации с бутстреп-доверительными интервалами доступен по /api/v1/cv-report.",
     sourcesLabel: "Первичные источники",
     confidenceLabel: "Достоверность модели",
-    confidenceValue: "Высокая — r = +0,97 по 8 историческим событиям",
+    confidenceValue: "См. live-значок валидации (справа сверху) и /api/v1/cv-report",
     actWithin: "Действовать в течение",
 
     critical: "Критический",
@@ -353,7 +353,7 @@ export const FAQ: Record<Lang, FAQSection[]> = {
       items: [
         {
           q: "How accurate are the predictions?",
-          a: "Current out-of-sample validation: see the live badge in the top-right of the dashboard. The model uses leave-one-event-out cross-validation with bootstrap 95% confidence intervals on the historical replay suite (n=8 in the MVP graph; expanding to n=30+ for publication). Pass rates at the strict ±25% tolerance are reported transparently — see /api/v1/cv-report for the full report. No model is perfect; treat results as order-of-magnitude projections best used for relative comparisons.",
+          a: "Look at the live badge in the top-right and the full Validation page — every number there is computed live, never hardcoded. GEDS is tested with leave-one-event-out cross-validation (each historical event is predicted by a model that never saw it), with bootstrap 95% confidence intervals, currently on n=8 events. Be clear-eyed about what it is and isn't good at. Its strength is RANKING: it reliably orders which shocks are more severe (rank correlation is high). Its weakness is ABSOLUTE PRECISION: the share of predictions landing within ±25% of the observed magnitude is low, and recovery-time estimates are not yet calibrated. So use GEDS for relative comparison and direction, not exact point forecasts. We publish the unflattering numbers on purpose — honest, reproducible validation is the entire point. Full report: /api/v1/cv-report.",
         },
         {
           q: "Where does the data come from?",
@@ -436,7 +436,7 @@ export const FAQ: Record<Lang, FAQSection[]> = {
       items: [
         {
           q: "Насколько точны предсказания?",
-          a: "Модель достигает корреляции r = +0,97 по Пирсону с наблюдаемыми результатами на 8 исторических событиях. RMSE укладывается в ±25% от наблюдаемых значений потерь производства и времени восстановления. Ни одна модель не идеальна — рассматривайте результаты как оценки порядка величины.",
+          a: "Смотрите live-значок справа сверху и полную страницу «Валидация» — каждое число там вычисляется вживую, ничего не захардкожено. GEDS проверяется кросс-валидацией с исключением одного события (каждое историческое событие предсказывает модель, которая его не видела), с бутстреп-доверительными интервалами 95%, сейчас на n=8 событиях. Важно честно понимать сильные и слабые стороны. Сильная сторона — РАНЖИРОВАНИЕ: модель надёжно упорядочивает события по серьёзности (ранговая корреляция высокая). Слабая сторона — АБСОЛЮТНАЯ ТОЧНОСТЬ: доля прогнозов в пределах ±25% от наблюдаемой величины низкая, а время восстановления пока не откалибровано. Поэтому используйте GEDS для относительного сравнения и направления, а не для точных точечных прогнозов. Мы намеренно публикуем и неудобные цифры — честная воспроизводимая валидация и есть весь смысл. Полный отчёт: /api/v1/cv-report.",
         },
         {
           q: "Откуда берутся данные?",

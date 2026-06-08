@@ -7,6 +7,7 @@ import FAQPanel from "@/components/FAQPanel";
 import MetricsPanel from "@/components/MetricsPanel";
 import NarrativePanel from "@/components/NarrativePanel";
 import NewsSignalsPanel from "@/components/NewsSignalsPanel";
+import OnboardingGuide from "@/components/OnboardingGuide";
 import PolicyAdvisorPanel from "@/components/PolicyAdvisorPanel";
 import PropagationMap from "@/components/PropagationMap";
 import ScenarioBuilder from "@/components/ScenarioBuilder";
@@ -32,6 +33,7 @@ export default function Home() {
       <FAQPanel />
       <StatusRibbon />
       <ConnectionBanner />
+      <OnboardingGuide />
 
       <div className="grid grid-cols-12 gap-4">
         {/* ── left column ── */}
