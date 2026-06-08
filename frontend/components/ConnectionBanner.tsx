@@ -14,6 +14,10 @@ import { useUI } from "@/lib/ui-context";
  * /mock data. This component polls the liveness probe (`/healthz`) every 10s,
  * drives `backendStatus` in the store (which also colours the ribbon dot), and
  * shows a dismissible banner the moment the backend cannot be reached.
+ *
+ * Reachability = the host returns *any* HTTP response. A non-2xx (e.g. a stale
+ * deploy that 404s on `/healthz`) still counts as online, so the banner only
+ * fires on a true network failure — never on a reachable-but-imperfect backend.
  */
 export default function ConnectionBanner() {
   const status = useSimStore((s) => s.backendStatus);
@@ -26,13 +30,21 @@ export default function ConnectionBanner() {
     const ping = () =>
       api
         .healthz()
-        .then(() => {
-          if (alive) setStatus("online");
-        })
-        .catch(() => {
-          if (alive) {
+        .then((reachable) => {
+          if (!alive) return;
+          if (reachable) {
+            setStatus("online");
+          } else {
             setStatus("offline");
             setDismissed(false); // re-surface on a fresh outage
+          }
+        })
+        .catch(() => {
+          // healthz() resolves to a boolean and never rejects, but stay
+          // defensive: treat anything unexpected as offline (conservative).
+          if (alive) {
+            setStatus("offline");
+            setDismissed(false);
           }
         });
     ping();

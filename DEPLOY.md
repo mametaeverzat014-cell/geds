@@ -30,11 +30,11 @@ gh repo create geds --public --source=. --remote=origin --push
 
 ## 2. Deploy the backend to Render
 
-### Option A — Blueprint (one-click, uses `backend/render.yaml`)
+### Option A — Blueprint (one-click, uses `render.yaml` at the repo root)
 
 1. https://render.com → sign in with GitHub
 2. **New** → **Blueprint** → pick your `geds` repo
-3. Render detects `backend/render.yaml` automatically and creates the service
+3. Render detects the root `render.yaml` automatically and creates the service
 4. In the new service's **Environment** tab, set:
    - `GROK_API_KEY` = your xAI key
    - `NEWSAPI_KEY` = your NewsAPI key
@@ -61,7 +61,7 @@ gh repo create geds --public --source=. --remote=origin --push
 ### Verify backend is up
 
 ```bash
-curl https://geds-backend-xxxx.onrender.com/api/v1/graph/stats
+curl https://geds-backend-xxxx.onrender.com/healthz
 ```
 
 First call may take ~30 s if the free instance is asleep.

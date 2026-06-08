@@ -124,7 +124,25 @@ export const api = {
   wsStreamUrl: () => `${WS}/ws/simulate`,
 
   // Liveness probe — root-level (/healthz), not under /api/v1.
-  healthz: (): Promise<{ status: string }> => getJson("/healthz"),
+  //
+  // Returns true if the backend HOST is reachable — i.e. it answered with *any*
+  // HTTP status. We deliberately do NOT require 2xx: a stale deploy that 404s on
+  // /healthz, or a 500, still proves the server is up and the data endpoints may
+  // work. Only a network-level failure (connection refused, DNS, CORS block, or
+  // timeout) — where fetch() itself rejects — counts as offline, so the banner
+  // can't false-fire against a reachable-but-imperfect backend.
+  healthz: async (): Promise<boolean> => {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 8000);
+    try {
+      await fetch(`${API}/healthz`, { signal: ctrl.signal });
+      return true; // any HTTP response means the host is reachable
+    } catch {
+      return false; // network error / timeout → genuinely unreachable
+    } finally {
+      clearTimeout(timer);
+    }
+  },
 
   // Grok narrative
   narrative: (req: {
