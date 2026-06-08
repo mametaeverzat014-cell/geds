@@ -47,6 +47,7 @@ from ..services.news import (
     apply_overlay_to_graph,
     live_keys_present,
     overlay_from_events,
+    overlay_to_shocks,
     parse_headline,
     run_pipeline,
     stub_headlines,
@@ -137,8 +138,23 @@ def simulate(payload: SimulationRequest, req: Request) -> SimulationResult:
     base_graph = _graph(req)
     overlay = getattr(req.app.state, "news_overlay", None)
     graph = apply_overlay_to_graph(base_graph, overlay) if overlay else base_graph
+    scenario = _with_overlay_shocks(scenario, overlay)
     engine = PropagationEngine(graph, scenario.config)
     return engine.run(scenario)
+
+
+def _with_overlay_shocks(scenario: Scenario, overlay) -> Scenario:
+    """Merge active-news disruptions into the scenario as extra active shocks.
+
+    Returns a copy (never mutates the registry's cached Scenario). The engine
+    takes the per-node max over shocks, so a news shock that overlaps a scenario
+    shock can only strengthen it, never double-count.
+    """
+    extra = overlay_to_shocks(overlay) if overlay else []
+    if not extra:
+        return scenario
+    extra_specs = [ShockSpec(**d) for d in extra]
+    return scenario.model_copy(update={"shocks": list(scenario.shocks) + extra_specs})
 
 
 def _resolve_scenario(payload: SimulationRequest) -> Scenario:
@@ -280,6 +296,7 @@ def narrative(payload: NarrativeRequest, req: Request) -> dict:
     base_graph = _graph(req)
     overlay = getattr(req.app.state, "news_overlay", None)
     graph = apply_overlay_to_graph(base_graph, overlay) if overlay else base_graph
+    scenario = _with_overlay_shocks(scenario, overlay)
 
     engine = PropagationEngine(graph, scenario.config)
     result = engine.run(scenario)

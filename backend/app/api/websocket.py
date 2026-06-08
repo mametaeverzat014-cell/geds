@@ -16,7 +16,7 @@ from ..core import scenarios as scenario_registry
 from ..core.graph import CompiledGraph
 from ..core.propagation import PropagationEngine
 from ..core.types import Scenario, ShockSpec
-from ..services.news import apply_overlay_to_graph
+from ..services.news import apply_overlay_to_graph, overlay_to_shocks
 
 router = APIRouter()
 
@@ -45,6 +45,15 @@ async def simulate_stream(ws: WebSocket) -> None:
     base_graph: CompiledGraph = ws.app.state.compiled_graph
     overlay = getattr(ws.app.state, "news_overlay", None)
     g: CompiledGraph = apply_overlay_to_graph(base_graph, overlay) if overlay else base_graph
+
+    # Inject active-news disruptions as real shocks on the matched nodes, so the
+    # streamed forecast (this is the path the Run button uses) reflects them.
+    extra_shocks = overlay_to_shocks(overlay) if overlay else []
+    if extra_shocks:
+        scenario = scenario.model_copy(
+            update={"shocks": list(scenario.shocks) + [ShockSpec(**d) for d in extra_shocks]}
+        )
+
     engine = PropagationEngine(g, scenario.config)
 
     overlay_active = bool(overlay and overlay.is_active())

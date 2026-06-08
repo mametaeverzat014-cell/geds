@@ -96,6 +96,19 @@ EVENT_IMPACT_RULES: dict[str, dict[str, float]] = {
     "logistics": {"vuln_delta": +0.10, "d_eff_multiplier": 0.85, "decay_weeks": 6},
 }
 
+# Direct "disruption-in-progress" shock magnitude per event type, BEFORE scaling
+# by match confidence. A live event is injected into the forecast as an active
+# external shock on its node (see overlay_to_shocks) — this is what actually
+# moves the forecast, rather than only nudging graph parameters.
+EVENT_SHOCK_MAGNITUDE: dict[str, float] = {
+    "conflict":  0.55,
+    "disaster":  0.50,
+    "logistics": 0.40,
+    "policy":    0.30,
+    "strike":    0.25,
+    "unknown":   0.0,
+}
+
 
 # Country name → ISO3 (extend as graph grows)
 COUNTRY_TO_ISO3: dict[str, str] = {
@@ -501,11 +514,17 @@ def overlay_from_events(
 
 
 def apply_overlay_to_graph(graph, overlay: NewsOverlay):
-    """Return a shallow copy of `graph` with overlay deltas applied.
+    """Return a shallow copy of `graph` with overlay *vulnerability* deltas applied.
 
-    - vulnerability[i] += vuln_delta   (clipped to [0.05, 0.99])
-    - D_eff row i      *= d_eff_multiplier  (lower → less import dependence)
-    - D_eff_dense kept in sync
+    A node named in an active overlay is made more vulnerable — it amplifies any
+    shock it receives (vulnerability[i] += vuln_delta, clipped to [0.05, 0.99]).
+
+    We deliberately do NOT modify D_eff. In this engine D_eff is the propagation
+    conduit (inbound = Σ_j D_eff[i,j]·shock[j]), so lowering it would make a
+    "disrupted" node receive *less* shock — making it safer, the opposite of
+    intent, and cancelling the vulnerability bump. The disruption itself is
+    injected as an active external shock instead (see overlay_to_shocks), which
+    is both more realistic and what actually moves the forecast.
 
     `graph` is the engine's CompiledGraph — we keep this dynamic typing rather
     than import the class to avoid a cycle (news is a service, graph is core).
@@ -513,7 +532,6 @@ def apply_overlay_to_graph(graph, overlay: NewsOverlay):
     import copy
     try:
         import numpy as np
-        from scipy import sparse
     except ImportError:
         return graph
 
@@ -522,7 +540,6 @@ def apply_overlay_to_graph(graph, overlay: NewsOverlay):
 
     new = copy.copy(graph)
     new.vulnerability = graph.vulnerability.copy()
-    D = graph.D_eff.toarray().copy()    # small (40×40); cheap enough
 
     for node_id, d in overlay.deltas.items():
         idx = graph.index.get(node_id)
@@ -531,13 +548,41 @@ def apply_overlay_to_graph(graph, overlay: NewsOverlay):
         new.vulnerability[idx] = float(np.clip(
             graph.vulnerability[idx] + d["vuln_delta"], 0.05, 0.99
         ))
-        # d_eff_multiplier < 1.0 means trade is harder/less reliable (route degraded);
-        # > 1.0 means stockpiling. Apply to incoming row (target = idx).
-        D[idx, :] *= float(d["d_eff_multiplier"])
 
-    new.D_eff = sparse.csr_matrix(D, dtype=np.float64)
-    new.D_eff_dense = D
     return new
+
+
+def overlay_to_shocks(overlay) -> list[dict]:
+    """Convert an active overlay into active external shocks for the forecast.
+
+    A live disruption ("Suez blocked", "TSMC halts shipments") is modelled as an
+    ongoing shock on the matched node for the remainder of its decay window —
+    this is what makes the news genuinely change the forecast, not just nudge a
+    parameter. Magnitude = event-type severity × match confidence.
+
+    Returns plain ShockSpec-shaped dicts so this (core-free) module needn't
+    import ShockSpec; callers build ShockSpec(**d) and merge into the scenario.
+    """
+    if not overlay or not getattr(overlay, "deltas", None) or not overlay.is_active():
+        return []
+    shocks: list[dict] = []
+    for node_id, d in overlay.deltas.items():
+        etype = d.get("event_type", "unknown")
+        base = EVENT_SHOCK_MAGNITUDE.get(etype, 0.0)
+        if base <= 0.0:
+            continue
+        conf = float(d.get("confidence", 0.5))
+        magnitude = round(min(0.85, max(0.05, base * conf)), 3)
+        duration = int(EVENT_IMPACT_RULES.get(etype, {}).get("decay_weeks", 8))
+        shocks.append({
+            "target_node_id": node_id,
+            "magnitude": magnitude,
+            "start_week": 0,
+            "duration_weeks": max(1, duration),
+            "decay_curve": "exp",
+            "note": f"news:{etype}",
+        })
+    return shocks
 
 
 __all__ = [
@@ -545,6 +590,6 @@ __all__ = [
     "NodeMatcher",
     "fetch_all", "parse_headline", "run_pipeline", "stub_headlines", "live_keys_present",
     "classify_event_type", "extract_entities",
-    "overlay_from_events", "apply_overlay_to_graph",
-    "EVENT_KEYWORDS", "EVENT_IMPACT_RULES",
+    "overlay_from_events", "apply_overlay_to_graph", "overlay_to_shocks",
+    "EVENT_KEYWORDS", "EVENT_IMPACT_RULES", "EVENT_SHOCK_MAGNITUDE",
 ]
