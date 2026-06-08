@@ -45,6 +45,7 @@ from ..services.grok import GrokPolicyAdvisor
 from ..services.news import (
     NodeMatcher,
     apply_overlay_to_graph,
+    live_keys_present,
     overlay_from_events,
     parse_headline,
     run_pipeline,
@@ -327,11 +328,17 @@ def news_recent(
     node_ids = [n.id for n in snap.nodes]
     node_names = [n.name for n in snap.nodes]
 
-    if use_stub:
+    # Honest live/demo selection: only run the real pipeline when a provider key
+    # exists; otherwise fall back to clearly-labelled stub data instead of an
+    # empty panel. `mode` tells the frontend which it got.
+    want_stub = use_stub or not live_keys_present()
+    if want_stub:
         matcher = NodeMatcher(node_ids, node_names)
         parsed = [parse_headline(h, matcher) for h in stub_headlines(lang=lang)]
+        mode = "stub"
     else:
         parsed = run_pipeline(node_ids=node_ids, node_names=node_names, hours_back=hours_back)
+        mode = "live"
 
     for ev in parsed:
         try:
@@ -342,6 +349,7 @@ def news_recent(
     return {
         "n_events": len(parsed),
         "lang": lang,
+        "mode": mode,
         "events": [
             {
                 "headline": {
@@ -393,13 +401,16 @@ def news_apply(payload: NewsOverlayApplyRequest, req: Request) -> dict:
     node_ids = [n.id for n in snap.nodes]
     node_names = [n.name for n in snap.nodes]
 
-    if payload.use_stub:
+    want_stub = payload.use_stub or not live_keys_present()
+    if want_stub:
         matcher = NodeMatcher(node_ids, node_names)
         parsed = [parse_headline(h, matcher) for h in stub_headlines(lang=payload.lang)]
+        mode = "stub"
     else:
         parsed = run_pipeline(
             node_ids=node_ids, node_names=node_names, hours_back=payload.hours_back,
         )
+        mode = "live"
 
     overlay = overlay_from_events(
         parsed,
@@ -413,6 +424,7 @@ def news_apply(payload: NewsOverlayApplyRequest, req: Request) -> dict:
         "active_until": overlay.active_until,
         "n_nodes_affected": len(overlay.deltas),
         "deltas": overlay.deltas,
+        "mode": mode,
     }
 
 

@@ -79,6 +79,8 @@ export interface NewsEvent {
 export interface NewsRecentResponse {
   n_events: number;
   lang: "en" | "ru";
+  /** "live" = fetched from NewsAPI/GNews; "stub" = labelled demo data (no API key). */
+  mode: "live" | "stub";
   events: NewsEvent[];
 }
 
@@ -160,7 +162,7 @@ export const api = {
     decay_hours?: number;
     confidence_floor?: number;
     lang?: "en" | "ru";
-  }): Promise<{ applied_at: string; active_until: string; n_nodes_affected: number; deltas: Record<string, unknown> }> =>
+  }): Promise<{ applied_at: string; active_until: string; n_nodes_affected: number; deltas: Record<string, unknown>; mode: "live" | "stub" }> =>
     postJson("/api/v1/news/apply", req),
   newsOverlay: (): Promise<NewsOverlayState> => getJson("/api/v1/news/overlay"),
   newsOverlayClear: (): Promise<{ cleared: boolean }> => deleteJson("/api/v1/news/overlay"),

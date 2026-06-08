@@ -16,6 +16,7 @@ from ..core import scenarios as scenario_registry
 from ..core.graph import CompiledGraph
 from ..core.propagation import PropagationEngine
 from ..core.types import Scenario, ShockSpec
+from ..services.news import apply_overlay_to_graph
 
 router = APIRouter()
 
@@ -37,15 +38,24 @@ async def simulate_stream(ws: WebSocket) -> None:
         await ws.close()
         return
 
-    g: CompiledGraph = ws.app.state.compiled_graph
+    # Apply the live-news overlay (set via POST /news/apply) so a current
+    # "Suez blockage in progress" / "war footing" actually changes the streamed
+    # forecast — the WS path is what the Run button uses, so without this the
+    # overlay would silently do nothing here.
+    base_graph: CompiledGraph = ws.app.state.compiled_graph
+    overlay = getattr(ws.app.state, "news_overlay", None)
+    g: CompiledGraph = apply_overlay_to_graph(base_graph, overlay) if overlay else base_graph
     engine = PropagationEngine(g, scenario.config)
 
+    overlay_active = bool(overlay and overlay.is_active())
     await ws.send_json(
         {
             "event": "start",
             "scenario": scenario.model_dump(mode="json"),
             "graph_version": g.snapshot.version,
             "node_count": g.n,
+            "overlay_active": overlay_active,
+            "overlay_node_count": len(overlay.deltas) if overlay_active else 0,
         }
     )
 

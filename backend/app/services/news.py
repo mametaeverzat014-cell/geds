@@ -298,6 +298,15 @@ class NodeMatcher:
 # ─────────────────────────── high-level pipeline ────────────────────────────
 
 
+def live_keys_present() -> bool:
+    """True if at least one live-news provider API key is configured.
+
+    Used by the API to decide whether `use_stub=false` can actually fetch real
+    headlines, or must transparently fall back to labelled demo data.
+    """
+    return bool(os.environ.get("NEWSAPI_KEY") or os.environ.get("GNEWS_KEY"))
+
+
 def fetch_all(query: str | None = None, hours_back: int = 24) -> list[NewsHeadline]:
     """Pull from every configured provider; dedup by URL."""
     query = query or (
@@ -534,7 +543,7 @@ def apply_overlay_to_graph(graph, overlay: NewsOverlay):
 __all__ = [
     "NewsHeadline", "ParameterDelta", "ParsedEvent", "NewsOverlay",
     "NodeMatcher",
-    "fetch_all", "parse_headline", "run_pipeline", "stub_headlines",
+    "fetch_all", "parse_headline", "run_pipeline", "stub_headlines", "live_keys_present",
     "classify_event_type", "extract_entities",
     "overlay_from_events", "apply_overlay_to_graph",
     "EVENT_KEYWORDS", "EVENT_IMPACT_RULES",

@@ -21,16 +21,18 @@ export default function NewsSignalsPanel() {
   const [loading, setLoading] = useState(false);
   const [applying, setApplying] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [mode, setMode] = useState<"live" | "stub" | null>(null);
 
   async function refresh() {
     setLoading(true);
     setError(null);
     try {
       const [news, ov] = await Promise.all([
-        api.newsRecent(lang, /*use_stub=*/ true),
+        api.newsRecent(lang, /*use_stub=*/ false),
         api.newsOverlay(),
       ]);
       setEvents(news.events);
+      setMode(news.mode);
       setOverlay(ov);
     } catch (e) {
       setError(e instanceof Error ? e.message : String(e));
@@ -42,7 +44,7 @@ export default function NewsSignalsPanel() {
   async function apply() {
     setApplying(true);
     try {
-      await api.newsApply({ use_stub: true, lang });
+      await api.newsApply({ use_stub: false, lang });
       const ov = await api.newsOverlay();
       setOverlay(ov);
     } catch (e) {
@@ -93,6 +95,26 @@ export default function NewsSignalsPanel() {
           <p className="text-[10px] text-text-muted leading-relaxed mt-0.5">
             {t("newsSubtitle")}
           </p>
+          {mode && (
+            <div className="mt-1">
+              <span
+                className={`text-[9px] px-1.5 py-0.5 rounded-full border font-semibold ${
+                  mode === "live"
+                    ? "text-accent-cyan border-accent-cyan/40 bg-accent-cyan/10"
+                    : "text-sev-4 border-sev-4/40 bg-sev-4/10"
+                }`}
+              >
+                {mode === "live" ? t("newsLiveMode") : t("newsStubMode")}
+              </span>
+              {mode === "stub" && (
+                <p className="text-[9px] text-text-muted leading-relaxed mt-1">
+                  {lang === "en"
+                    ? "Showing demo headlines. Set NEWSAPI_KEY (or GNEWS_KEY) in the backend environment for live news."
+                    : "Показаны демо-заголовки. Задайте NEWSAPI_KEY (или GNEWS_KEY) в окружении backend для реальных новостей."}
+                </p>
+              )}
+            </div>
+          )}
         </div>
         <button
           onClick={refresh}
