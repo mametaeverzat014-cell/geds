@@ -11,6 +11,7 @@ export default function StatusRibbon() {
   const running = useSimStore((s) => s.running);
   const frames  = useSimStore((s) => s.frames);
   const error   = useSimStore((s) => s.error);
+  const backendStatus = useSimStore((s) => s.backendStatus);
   const { t, lang, toggleLang, toggleFaq } = useUI();
 
   // Truthful validation badge — fetched live, not hardcoded.
@@ -86,10 +87,28 @@ export default function StatusRibbon() {
 
           {/* graph/simulation status */}
           <div className="text-right text-xs text-text-secondary num space-y-0.5">
-            <div>
-              {graph
-                ? `${graph.nodes.length} ${t("nodes")} · ${graph.edges.length} ${t("edges")}`
-                : t("loadingGraph")}
+            <div className="flex items-center justify-end gap-1.5">
+              <span
+                title={
+                  backendStatus === "online"
+                    ? "Backend connected"
+                    : backendStatus === "offline"
+                    ? "Backend unreachable"
+                    : "Connecting to backend…"
+                }
+                className={`h-1.5 w-1.5 rounded-full ${
+                  backendStatus === "online"
+                    ? "bg-accent-cyan"
+                    : backendStatus === "offline"
+                    ? "bg-sev-5 animate-pulse"
+                    : "bg-text-muted animate-pulse"
+                }`}
+              />
+              <span>
+                {graph
+                  ? `${graph.nodes.length} ${t("nodes")} · ${graph.edges.length} ${t("edges")}`
+                  : t("loadingGraph")}
+              </span>
             </div>
             <div>
               {running

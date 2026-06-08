@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 
-import { api, type CVReport } from "@/lib/api";
+import ConnectionBanner from "@/components/ConnectionBanner";
+import { api, API_BASE, type CVReport } from "@/lib/api";
 import { useUI } from "@/lib/ui-context";
 
 interface Posterior {
@@ -108,14 +109,13 @@ export default function ValidationPage() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const API = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
     Promise.allSettled([
       api.cvReport().then(setCv),
-      fetch(`${API}/api/v1/posterior`).then(r => r.ok ? r.json() : null).then(setPosterior),
-      fetch(`${API}/api/v1/research-metrics`).then(r => r.ok ? r.json() : null).then(setResearch),
-      fetch(`${API}/api/v1/calibration-report`).then(r => r.ok ? r.json() : null).then(setCalibration),
-      fetch(`${API}/api/v1/ablation`).then(r => r.ok ? r.json() : null).then(setAblation),
-      fetch(`${API}/api/v1/benchmark`).then(r => r.ok ? r.json() : null).then(setBench),
+      fetch(`${API_BASE}/api/v1/posterior`).then(r => r.ok ? r.json() : null).then(setPosterior),
+      fetch(`${API_BASE}/api/v1/research-metrics`).then(r => r.ok ? r.json() : null).then(setResearch),
+      fetch(`${API_BASE}/api/v1/calibration-report`).then(r => r.ok ? r.json() : null).then(setCalibration),
+      fetch(`${API_BASE}/api/v1/ablation`).then(r => r.ok ? r.json() : null).then(setAblation),
+      fetch(`${API_BASE}/api/v1/benchmark`).then(r => r.ok ? r.json() : null).then(setBench),
     ]).catch((e) => setError(String(e)));
   }, []);
 
@@ -137,6 +137,8 @@ export default function ValidationPage() {
           )}
         </p>
       </div>
+
+      <ConnectionBanner />
 
       {error && <div className="text-xs text-sev-5">{error}</div>}
 

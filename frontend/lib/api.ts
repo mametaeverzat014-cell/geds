@@ -3,6 +3,9 @@ import type { AdvisorResult, GraphSnapshot, Scenario, SimulationResult } from ".
 const API = (process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000").replace(/\/$/, "");
 const WS = (process.env.NEXT_PUBLIC_WS_URL || "ws://127.0.0.1:8000").replace(/\/$/, "");
 
+/** Single source of truth for the backend base URL — import this, don't re-derive it. */
+export const API_BASE = API;
+
 async function getJson<T>(path: string): Promise<T> {
   const res = await fetch(`${API}${path}`);
   if (!res.ok) throw new Error(`GET ${path} → ${res.status}`);
@@ -119,6 +122,9 @@ export const api = {
   policy: (req: { scenario_id?: string; custom?: unknown }): Promise<AdvisorResult> =>
     postJson("/api/v1/policy", req),
   wsStreamUrl: () => `${WS}/ws/simulate`,
+
+  // Liveness probe — root-level (/healthz), not under /api/v1.
+  healthz: (): Promise<{ status: string }> => getJson("/healthz"),
 
   // Grok narrative
   narrative: (req: {

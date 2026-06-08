@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 
+import ConnectionBanner from "@/components/ConnectionBanner";
 import FAQPanel from "@/components/FAQPanel";
 import MetricsPanel from "@/components/MetricsPanel";
 import NarrativePanel from "@/components/NarrativePanel";
@@ -30,6 +31,7 @@ export default function Home() {
     <main className="max-w-[1600px] mx-auto px-6 py-6 space-y-4">
       <FAQPanel />
       <StatusRibbon />
+      <ConnectionBanner />
 
       <div className="grid grid-cols-12 gap-4">
         {/* ── left column ── */}

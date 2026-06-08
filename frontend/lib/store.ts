@@ -8,6 +8,7 @@ import type {
 } from "./types";
 
 export type OverlayMode = "shock" | "inflation" | "output_loss" | "unemployment";
+export type BackendStatus = "checking" | "online" | "offline";
 
 interface SimState {
   graph: GraphSnapshot | null;
@@ -23,6 +24,9 @@ interface SimState {
   currentWeek: number;
   summary: SimulationSummary | null;
   error: string | null;
+
+  // connectivity (drives the offline banner + status dot)
+  backendStatus: BackendStatus;
 
   // auto-play
   autoPlay: boolean;
@@ -50,6 +54,7 @@ interface SimState {
   setOverlayMode: (m: OverlayMode) => void;
   setAdvisor: (a: AdvisorResult | null) => void;
   setAdvisorLoading: (v: boolean) => void;
+  setBackendStatus: (s: BackendStatus) => void;
 }
 
 export const useSimStore = create<SimState>((set) => ({
@@ -73,6 +78,8 @@ export const useSimStore = create<SimState>((set) => ({
 
   advisor: null,
   advisorLoading: false,
+
+  backendStatus: "checking",
 
   setGraph: (g) => set({ graph: g }),
   setScenarios: (s) => set({ scenarios: s }),
@@ -102,4 +109,5 @@ export const useSimStore = create<SimState>((set) => ({
   setOverlayMode: (m) => set({ overlayMode: m }),
   setAdvisor: (a) => set({ advisor: a }),
   setAdvisorLoading: (v) => set({ advisorLoading: v }),
+  setBackendStatus: (s) => set({ backendStatus: s }),
 }));
