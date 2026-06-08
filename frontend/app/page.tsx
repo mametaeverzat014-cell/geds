@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 
 import ConnectionBanner from "@/components/ConnectionBanner";
+import CrisisRadarPanel from "@/components/CrisisRadarPanel";
 import FAQPanel from "@/components/FAQPanel";
 import MetricsPanel from "@/components/MetricsPanel";
 import NarrativePanel from "@/components/NarrativePanel";
@@ -61,6 +62,9 @@ export default function Home() {
 
       {/* ── full-width policy advisor ── */}
       <PolicyAdvisorPanel />
+
+      {/* ── full-width Claude crisis radar ── */}
+      <CrisisRadarPanel />
 
       <footer className="pt-6 border-t border-border-subtle text-xs text-text-muted leading-relaxed space-y-2">
         <div>

@@ -11,6 +11,7 @@ networkx>=3.4
 msgpack>=1.1
 orjson>=3.10
 httpx>=0.27          # used at runtime by Grok client and news fetchers
+anthropic>=0.69      # Claude crisis-radar advisor (panel degrades to a stub without ANTHROPIC_API_KEY)
 
 # scientific rigor upgrade
 optuna>=3.6          # Bayesian calibration (point estimate / DE)

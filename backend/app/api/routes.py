@@ -40,6 +40,7 @@ from ..data.csv_loader import (
     load_datasets_csv, load_historical_events_csv,
     load_parameters_csv, out_of_graph_events,
 )
+from ..services.claude_advisor import ClaudeCrisisAdvisor
 from ..services.event_logger import log_event
 from ..services.grok import GrokPolicyAdvisor
 from ..services.news import (
@@ -538,6 +539,69 @@ def research_metrics(req: Request) -> dict:
         "economic_resilience_tensor_summary": ert_summary(g),
         "shock_absorption_capacity_summary": sac_summary(g),
         "statistical_evaluation": [asdict(e) for e in evaluations],
+    }
+
+
+class CrisisRadarRequest(BaseModel):
+    force_refresh: bool = False
+
+
+@router.post("/crisis-radar", tags=["narrative"])
+def crisis_radar(payload: CrisisRadarRequest, req: Request) -> dict:
+    """Claude-powered bilingual "what could go wrong" analysis, grounded in GEDS signals.
+
+    Gathers GEDS's own risk signals — most-fragile nodes (low shock-absorption
+    capacity), top cascading-criticality nodes, and the active live-news overlay —
+    and asks Claude to narrate plausible danger scenarios in EN + RU. Claude
+    invents no numbers; quantitative magnitudes come from the engine, not from
+    this analysis. Falls back to a labelled stub when ANTHROPIC_API_KEY is unset.
+    """
+    g = _graph(req)
+
+    sac = sac_summary(g)
+    ccs_vec = cascading_criticality_score(g)
+    top_ccs = sorted(
+        ((g.node_ids[i], float(ccs_vec[i])) for i in range(g.n)),
+        key=lambda x: x[1], reverse=True,
+    )[:6]
+    sfi = systemic_fragility_index(g)
+
+    overlay = getattr(req.app.state, "news_overlay", None)
+    active_news: list[dict] = []
+    if overlay is not None and overlay.is_active():
+        for node_id, d in overlay.deltas.items():
+            active_news.append({
+                "node_id": node_id,
+                "event_type": d.get("event_type"),
+                "source": (d.get("source") or "")[:160],
+            })
+
+    signals = {
+        "systemic_fragility_index": round(float(sfi), 4),
+        "most_fragile_nodes": (sac.get("most_fragile_nodes") or [])[:6],
+        "top_cascading_criticality_nodes": [
+            {"node_id": nid, "ccs": round(s, 4)} for nid, s in top_ccs
+        ],
+        "active_news_disruptions": active_news,
+        "all_nodes": list(g.node_ids),
+    }
+
+    advisor = ClaudeCrisisAdvisor()
+    result = advisor.analyze(signals, force_refresh=payload.force_refresh)
+
+    return {
+        "overview_en": result.overview_en,
+        "overview_ru": result.overview_ru,
+        "scenarios": result.scenarios,
+        "disclaimer_en": result.disclaimer_en,
+        "disclaimer_ru": result.disclaimer_ru,
+        "model": result.model,
+        "cached": result.cached,
+        "latency_ms": result.latency_ms,
+        "mode": result.mode,
+        "configured": advisor.is_configured(),
+        "n_signals": result.n_signals,
+        "active_news_count": len(active_news),
     }
 
 

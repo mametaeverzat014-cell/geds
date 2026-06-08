@@ -113,6 +113,31 @@ export interface CVReport {
   timestamp: string;
 }
 
+// ─── Crisis radar (Claude) ───────────────────────────────────────────────────
+
+export interface CrisisScenario {
+  title_en: string; title_ru: string;
+  trigger_en: string; trigger_ru: string;
+  mechanism_en: string; mechanism_ru: string;
+  watch_en: string; watch_ru: string;
+  basis: string;
+  severity: "low" | "medium" | "high";
+}
+
+export interface CrisisRadarResult {
+  overview_en: string; overview_ru: string;
+  scenarios: CrisisScenario[];
+  disclaimer_en: string; disclaimer_ru: string;
+  model: string;
+  cached: boolean;
+  latency_ms: number;
+  /** "live" = real Claude call; "stub" = no ANTHROPIC_API_KEY (labelled demo). */
+  mode: "live" | "stub";
+  configured: boolean;
+  n_signals: number;
+  active_news_count: number;
+}
+
 // ─── API client ────────────────────────────────────────────────────────────
 
 export const api = {
@@ -153,6 +178,10 @@ export const api = {
     lang?: "en" | "ru";
     force_refresh?: boolean;
   }): Promise<GrokNarrative> => postJson("/api/v1/narrative", req),
+
+  // Crisis radar — Claude-analyzed danger scenarios (bilingual), grounded in GEDS signals
+  crisisRadar: (req: { force_refresh?: boolean } = {}): Promise<CrisisRadarResult> =>
+    postJson("/api/v1/crisis-radar", req),
 
   // News pipeline
   newsRecent: (lang: "en" | "ru" = "en", use_stub = false): Promise<NewsRecentResponse> =>
