@@ -205,6 +205,17 @@ behind `master`.
 > its build/branch settings live *there* — not in `render.yaml`. The root
 > `render.yaml` only drives services created via **Blueprint**.
 
+**First, read the deploy log — don't assume it's a branch/config issue.**
+If the log shows the new commit building fine but the service then crashes at
+startup with `ModuleNotFoundError: No module named '<x>'` followed by
+`Exited with status 1`, a dependency is missing from `backend/requirements.txt`.
+Render then keeps the last *working* (old) deploy live, which from the outside
+looks identical to a "stale branch." That was the real cause here — `emcee` is a
+re-raising boot import (`core/mcmc.py` → `routes.py`) that was missing from
+requirements (fixed in `2200353`). Fix: add the package to `requirements.txt`,
+push, redeploy. Only if the log shows the *wrong commit/branch* is it actually
+the auto-deploy wiring (step B).
+
 ### A. Force a fresh redeploy from the current `master`
 
 1. https://render.com → your **geds-backend** service
