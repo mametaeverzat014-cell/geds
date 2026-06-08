@@ -188,3 +188,82 @@ npm run dev
 ```
 
 The frontend defaults to `http://127.0.0.1:8000` when `NEXT_PUBLIC_API_URL` is unset.
+
+---
+
+## Troubleshooting: backend serving a stale deploy
+
+**Symptom.** The Vercel frontend loads and panels show real data, but the
+"Backend unreachable" banner flashes (or did, before the probe fix), and
+`curl https://geds-backend-p4tx.onrender.com/healthz` returns `404` instead of
+`{"status":"ok"}`. That means the live Render instance is running an **old
+commit** that predates the `/healthz` route — the host is up, but the code is
+behind `master`.
+
+> The live backend host is **`geds-backend-p4tx.onrender.com`**. The `-p4tx`
+> suffix means the service was created **manually** in the Render dashboard, so
+> its build/branch settings live *there* — not in `render.yaml`. The root
+> `render.yaml` only drives services created via **Blueprint**.
+
+### A. Force a fresh redeploy from the current `master`
+
+1. https://render.com → your **geds-backend** service
+2. **Manual Deploy** (top-right) → **Clear build cache & deploy**
+3. Watch the log. The first line should read
+   `Checking out commit <hash> in branch master`. Confirm the branch is
+   **master** and the commit matches `git rev-parse origin/master` locally.
+4. Wait for `Build successful 🎉` → `Deploying...` → a line containing
+   `Uvicorn running on http://0.0.0.0:10000`, then the status badge flips to
+   **Live**.
+
+### B. Make auto-deploy actually track `master`
+
+If step A showed the wrong branch/commit, the service isn't wired to `master`.
+Fix it once so every push redeploys automatically:
+
+- **Settings → Build & Deploy**
+  - **Branch**: `master`
+  - **Auto-Deploy**: **On**
+  - **Root Directory**: `backend`
+  - **Build Command**:
+    ```
+    pip install --upgrade pip && pip install -r requirements.txt && python -m spacy download en_core_web_sm
+    ```
+  - **Start Command**:
+    ```
+    uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    ```
+  - **Health Check Path**: `/healthz`
+- **Settings → Environment** — confirm these exist:
+  - `GEDS_CORS_ALLOW_ORIGIN_REGEX` = `^https://geds[0-9]*([-.][a-z0-9-]+)?\.vercel\.app$`
+    (matches `geds1.vercel.app` **and** preview deploys like `geds1-git-…vercel.app`)
+  - `PYTHON_VERSION` = `3.11.9`
+  - `GROK_API_KEY`, `NEWSAPI_KEY`, `GNEWS_KEY` (your secrets)
+  - `GEDS_HEALTH_OK` = `1` (optional; forces the `/health` deep-check to report OK)
+
+Saving any env-var change triggers an automatic redeploy.
+
+### C. Verify the deploy is healthy
+
+```bash
+# 1. Liveness — must be {"status":"ok"} now, not 404
+curl https://geds-backend-p4tx.onrender.com/healthz
+
+# 2. Real data — must be HTTP 200 with the node/edge graph
+curl -o /dev/null -w "%{http_code}\n" https://geds-backend-p4tx.onrender.com/api/v1/graph
+
+# 3. Meta — the current build's "/" lists health, benchmark, cv_report endpoints
+curl https://geds-backend-p4tx.onrender.com/
+```
+
+Then open https://geds1.vercel.app — the ribbon dot should be cyan and the
+"Backend unreachable" banner should never appear.
+
+### D. Kill the cold-start delay (free tier sleeps after ~15 min idle)
+
+The free instance spins down when idle, so the first hit waits ~30–50 s. Pick one:
+
+- **Render Starter ($7/mo)** — always-on, no cold start. Best for a live demo
+  with judges hitting it.
+- **Free keep-warm** — a free uptime monitor (UptimeRobot, cron-job.org) hitting
+  `https://geds-backend-p4tx.onrender.com/healthz` every 10 minutes keeps it awake.
