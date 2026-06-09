@@ -69,7 +69,10 @@
       "Bash(\"/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe\" -m pytest backend/tests/ -q --tb=short)",
       "Bash(\"/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe\" -m pytest backend/tests/ -v)",
       "Bash(\"/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe\" -c \"import numpy; print\\('numpy', numpy.__version__\\)\")",
-      "Bash(\"/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe\" -m pytest backend/tests/ -q)"
+      "Bash(\"/c/Users/speed/AppData/Local/Programs/Python/Python311/python.exe\" -m pytest backend/tests/ -q)",
+      "mcp__Vercel__list_teams",
+      "mcp__Vercel__list_projects",
+      "mcp__Vercel__list_deployments"
     ]
   }
 }
