@@ -102,3 +102,4 @@ backend/data/raw/
 # read by the runtime app (it loads the small registry/evidence CSVs). Keep out.
 backend/data/csv/oecd_icio_edges.csv
 backend/data/csv/wiod_edges.csv
+.vercel/
