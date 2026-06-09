@@ -114,9 +114,8 @@ backend/app/core/
 backend/scripts/
 ├── mcmc_calibrate.py    Production MCMC runner
 ├── calibrate.py         Optuna calibration (legacy, batch 0)
-├── _smoke.py            Batch 1 reproducer
-├── _smoke2.py           Batch 2 reproducer
-└── _smoke3.py           Batch 3 reproducer
+└── (batch smoke reproducers `_smoke*.py` removed in Batch 4 — superseded
+     by `tests/` + `python -m app.core.benchmark --check`)
 
 frontend/app/
 ├── page.tsx             Main simulation dashboard (truthful badges now)
@@ -140,3 +139,41 @@ docs/
 ├── AUDIT.md             Full scientific audit + all 3 batches of findings
 └── PROGRESS.md          This file
 ```
+
+---
+
+## Batch 4 — event-set expansion N=8 → N=21 (2026-06-09)
+
+Single highest-leverage fix from `AUDIT.md` ("adding more historical events
+would change this"). Same authoring convention as the original 8: shock
+magnitudes describe source-side capacity offline from contemporaneous public
+reporting; never derived from the observed targets. The new set deliberately
+includes two near-miss events (Japan–Korea export controls 2019, Taiwan
+drought 2021) so the benchmark also penalises false positives.
+
+| Change | Where | Key result |
+|---|---|---|
+| +13 historical events (Thailand floods 2011 … Red Sea 2023) | `app/data/seed_data.py` | Benchmark now N=21 |
+| SEIRS state-machine unit tests (15 tests: all transitions, modifiers, rerouting) | `tests/test_seis.py` | Previously zero coverage of the novel layer |
+| Golden snapshot + winner lock updated to N=21 | `tests/test_reproducibility.py` | Explicit, reviewed numeric change |
+| Dead scripts removed (`_smoke*.py`, `phase5_regenerate_state.py`) | `backend/scripts/` | Per SCIENTIFIC_STATUS.md disposition |
+| Stale n=8 claims fixed (FAQ EN/RU, API docstrings) | `frontend/lib/ui-context.tsx`, `app/api/routes.py` | UI text matches live numbers |
+
+### The honest headline (N=21, default config)
+
+| Model | MAE | RMSE | Pearson | Spearman | R² |
+|---|---|---|---|---|---|
+| Linear Diffusion | **0.0130** | **0.0169** | **0.822** | **0.598** | **0.600** |
+| Naive Persistence | 0.0168 | 0.0268 | 0.000 | 0.000 | 0.000 |
+| Leontief I-O | 0.0180 | 0.0321 | -0.072 | 0.215 | -0.444 |
+| GEDS SEIRS | 0.0216 | 0.0379 | 0.140 | 0.361 | -1.009 |
+
+**The N=8 rank-correlation result (Spearman 0.83) did not survive the
+expansion — it drops to 0.36 on N=21, i.e. it was largely a small-sample
+artifact.** Naive persistence now beats GEDS on MAE. Linear diffusion's
+signal, by contrast, holds up (Pearson 0.82). This is exactly why the
+expansion was the right experiment: it falsified a result that looked
+publication-ready at N=8. Next step is recalibration of the five engine
+parameters against the expanded set (they were tuned in the N=8 era) and,
+if that fails to close the gap, treating linear diffusion as the production
+propagation kernel with SEIRS kept as a research layer.

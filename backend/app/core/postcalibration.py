@@ -2,10 +2,15 @@
 
 Background
 ----------
-The audit found:
+The audit (on the original N=8 event set) found:
     Pearson(pred, obs)   = 0.72
     Spearman(pred, obs)  = 0.83
     pass rate ±25%       = 0/8
+
+(On the expanded N=21 set those correlations dropped sharply -- see
+reports/benchmark/summary.md -- so monotone post-calibration helps less:
+isotonic regression preserves rank order, and can only help to the extent
+the ranks are right.)
 
 The Spearman correlation > Pearson tells us the model is **rank-correct**
 but **magnitude-wrong**: when the engine says event A is worse than event B,

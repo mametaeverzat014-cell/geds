@@ -461,6 +461,300 @@ HISTORICAL_EVENTS: list[dict] = [
                  "(Infineon, STMicro, NXP Penang plants). COVID MCO lockdowns Aug 2021. "
                  "McKinsey estimated 500K–1M vehicles affected.",
     },
+
+    # ── Expansion batch (2026-06) — events 9–21 ────────────────────────────
+    # Added to address the N=8 sample-size limitation (AUDIT.md): with 8 events
+    # the calibrated parameters are not identifiable and significance tests are
+    # underpowered. Same authoring convention as events 1–8: shock magnitudes
+    # describe the SOURCE-side capacity offline (from public reporting at the
+    # time of the event), never derived from the observed targets. Observed
+    # magnitudes are point estimates from the cited public sources.
+    # The set deliberately includes "near-miss" events (japan-korea-export-
+    # controls, taiwan-drought) where a feared disruption did NOT cascade, so
+    # the benchmark also penalises false positives.
+    {
+        "slug": "thailand-floods-2011",
+        "name": "Thailand floods — auto & HDD supply (Oct 2011 – Jan 2012)",
+        "shocks": [
+            {"target_node_id": _n("THA", Industry.AUTOMOTIVE),  "magnitude": 0.65,
+             "start_week": 0, "duration_weeks": 10, "decay_curve": "exp"},
+            {"target_node_id": _n("THA", Industry.ELECTRONICS), "magnitude": 0.45,
+             "start_week": 0, "duration_weeks": 12, "decay_curve": "exp"},
+        ],
+        "horizon_weeks": 28,
+        "observed": {
+            "auto_production_loss_pct":  0.025,
+            "us_inflation_contribution": 0.001,
+            "expected_recovery_weeks":   24.0,
+            "most_impacted_industry":    Industry.AUTOMOTIVE.value,
+        },
+        "sources": ["World Bank Thai Flood 2011 Rapid Assessment",
+                    "IHS Automotive production tracking Q4 2011",
+                    "Toyota/Honda Q4 FY2011 production releases"],
+        "notes": "Chao Phraya basin floods submerged 7 industrial estates. Thai auto "
+                 "assembly fell ~60–80% in Nov 2011; ~25% of global HDD capacity offline. "
+                 "Toyota+Honda lost ~290K units incl. overseas knock-on.",
+    },
+    {
+        "slug": "kumamoto-earthquake-2016",
+        "name": "Kumamoto earthquakes — Kyushu supply base (Apr 2016)",
+        "shocks": [
+            {"target_node_id": _n("JPN", Industry.SEMICONDUCTORS), "magnitude": 0.20,
+             "start_week": 0, "duration_weeks": 6, "decay_curve": "exp"},
+            {"target_node_id": _n("JPN", Industry.AUTOMOTIVE),     "magnitude": 0.30,
+             "start_week": 0, "duration_weeks": 4, "decay_curve": "exp"},
+        ],
+        "horizon_weeks": 16,
+        "observed": {
+            "auto_production_loss_pct":  0.006,
+            "us_inflation_contribution": 0.0005,
+            "expected_recovery_weeks":   8.0,
+            "most_impacted_industry":    Industry.AUTOMOTIVE.value,
+        },
+        "sources": ["Toyota production suspension notices Apr 2016",
+                    "Sony Kumamoto Technology Center recovery updates 2016",
+                    "JAMA monthly production statistics 2016"],
+        "notes": "M7.0 quake hit Aisin and Renesas/Sony plants in Kyushu. Toyota halted "
+                 "most domestic lines ~1–2 weeks (JIT parts shortage). Sony image-sensor "
+                 "fab down ~3 months but with buffer stock; global effect modest.",
+    },
+    {
+        "slug": "renesas-naka-fire-2021",
+        "name": "Renesas Naka fab fire — auto MCU supply (Mar 2021)",
+        "shocks": [
+            {"target_node_id": _n("JPN", Industry.SEMICONDUCTORS), "magnitude": 0.28,
+             "start_week": 0, "duration_weeks": 13, "decay_curve": "linear"},
+        ],
+        "horizon_weeks": 26,
+        "observed": {
+            "auto_production_loss_pct":  0.016,
+            "us_inflation_contribution": 0.001,
+            "expected_recovery_weeks":   17.0,
+            "most_impacted_industry":    Industry.AUTOMOTIVE.value,
+        },
+        "sources": ["Renesas Electronics press releases Mar–Jun 2021",
+                    "IHS Markit auto production impact note Apr 2021"],
+        "notes": "Fire in the N3 300mm line (~30% of Renesas auto MCU output). Shipments "
+                 "back to pre-fire levels in ~100 days. IHS attributed ~1.4M vehicles of "
+                 "Q2 2021 loss to the fire on top of the baseline chip shortage.",
+    },
+    {
+        "slug": "japan-korea-export-controls-2019",
+        "name": "Japan–Korea export controls on chip materials (Jul 2019)",
+        "shocks": [
+            {"target_node_id": _n("KOR", Industry.SEMICONDUCTORS), "magnitude": 0.06,
+             "start_week": 0, "duration_weeks": 12, "decay_curve": "step"},
+        ],
+        "horizon_weeks": 24,
+        "observed": {
+            "auto_production_loss_pct":  0.002,
+            "us_inflation_contribution": 0.0,
+            "expected_recovery_weeks":   6.0,
+            "most_impacted_industry":    Industry.ELECTRONICS.value,
+        },
+        "sources": ["METI export licensing notices Jul 2019",
+                    "Samsung/SK Hynix Q3 2019 earnings calls",
+                    "Bank of Korea Economic Bulletin Q4 2019"],
+        "notes": "NEAR-MISS validator. Japan restricted photoresist/HF/fluorinated "
+                 "polyimide exports to Korea. Feared DRAM/NAND disruption did not "
+                 "materialise — inventories + expedited licensing kept fabs running.",
+    },
+    {
+        "slug": "vietnam-covid-lockdown-2021",
+        "name": "Vietnam COVID lockdowns — electronics & apparel (Jul–Oct 2021)",
+        "shocks": [
+            {"target_node_id": _n("VNM", Industry.ELECTRONICS),    "magnitude": 0.30,
+             "start_week": 0, "duration_weeks": 10, "decay_curve": "step"},
+            {"target_node_id": _n("VNM", Industry.CONSUMER_GOODS), "magnitude": 0.45,
+             "start_week": 0, "duration_weeks": 12, "decay_curve": "step"},
+        ],
+        "horizon_weeks": 24,
+        "observed": {
+            "auto_production_loss_pct":  0.012,
+            "us_inflation_contribution": 0.001,
+            "expected_recovery_weeks":   16.0,
+            "most_impacted_industry":    Industry.CONSUMER_GOODS.value,
+        },
+        "sources": ["Nike FY2022 Q1 earnings call (Sep 2021)",
+                    "Vietnam GSO industrial production index Aug–Sep 2021",
+                    "Samsung Vietnam operations statements 2021"],
+        "notes": "Directive-16 lockdowns in HCMC/Binh Duong. Nike: ~50% of footwear "
+                 "capacity offline for ~10 weeks. Samsung phone output curtailed. "
+                 "Vietnam IIP fell ~7% y/y in Sep 2021.",
+    },
+    {
+        "slug": "shanghai-lockdown-2022",
+        "name": "Shanghai zero-COVID lockdown (Apr–May 2022)",
+        "shocks": [
+            {"target_node_id": _n("CHN", Industry.AUTOMOTIVE),  "magnitude": 0.45,
+             "start_week": 0, "duration_weeks": 8, "decay_curve": "exp"},
+            {"target_node_id": _n("CHN", Industry.ELECTRONICS), "magnitude": 0.25,
+             "start_week": 0, "duration_weeks": 8, "decay_curve": "exp"},
+            {"target_node_id": _n("CHN", Industry.SHIPPING),    "magnitude": 0.20,
+             "start_week": 0, "duration_weeks": 9, "decay_curve": "step"},
+        ],
+        "horizon_weeks": 24,
+        "observed": {
+            "auto_production_loss_pct":  0.018,
+            "us_inflation_contribution": 0.002,
+            "expected_recovery_weeks":   12.0,
+            "most_impacted_industry":    Industry.AUTOMOTIVE.value,
+        },
+        "sources": ["CAAM production statistics Apr–May 2022",
+                    "CPCA retail/wholesale data Apr 2022",
+                    "Drewry port congestion tracker Q2 2022"],
+        "notes": "SAIC and Tesla Shanghai halted; China auto output -41% y/y in April. "
+                 "Port of Shanghai operated under closed-loop with deep trucking "
+                 "shortages; recovery was fast once the city reopened (Jun 2022).",
+    },
+    {
+        "slug": "ukraine-war-harness-2022",
+        "name": "Ukraine war — wire-harness shortage hits EU autos (Mar 2022)",
+        "shocks": [
+            {"target_node_id": _n("DEU", Industry.AUTOMOTIVE), "magnitude": 0.16,
+             "start_week": 0, "duration_weeks": 10, "decay_curve": "exp"},
+        ],
+        "horizon_weeks": 28,
+        "observed": {
+            "auto_production_loss_pct":  0.012,
+            "us_inflation_contribution": 0.002,
+            "expected_recovery_weeks":   20.0,
+            "most_impacted_industry":    Industry.AUTOMOTIVE.value,
+        },
+        "sources": ["ACEA EU production data H1 2022",
+                    "S&P Global Mobility forecast cut Mar 2022 (−2.6M units)",
+                    "VW/BMW production suspension notices Mar 2022"],
+        "notes": "Leoni/Fujikura harness plants in western Ukraine stopped; VW Zwickau "
+                 "and BMW lines halted within 2 weeks (JIT). Suppliers dual-sourced to "
+                 "Romania/Tunisia/Mexico within ~2 months.",
+    },
+    {
+        "slug": "china-power-crunch-2021",
+        "name": "China dual-control power rationing (Sep–Oct 2021)",
+        "shocks": [
+            {"target_node_id": _n("CHN", Industry.ELECTRONICS),    "magnitude": 0.12,
+             "start_week": 0, "duration_weeks": 6, "decay_curve": "step"},
+            {"target_node_id": _n("CHN", Industry.CONSUMER_GOODS), "magnitude": 0.10,
+             "start_week": 0, "duration_weeks": 6, "decay_curve": "step"},
+        ],
+        "horizon_weeks": 16,
+        "observed": {
+            "auto_production_loss_pct":  0.005,
+            "us_inflation_contribution": 0.001,
+            "expected_recovery_weeks":   8.0,
+            "most_impacted_industry":    Industry.CONSUMER_GOODS.value,
+        },
+        "sources": ["NBS China industrial production Sep 2021",
+                    "Goldman Sachs China note Sep 2021 (~44% of industry affected)",
+                    "provincial Jiangsu/Guangdong rationing orders Sep 2021"],
+        "notes": "Energy-intensity targets + coal price spike forced 2–3-day factory "
+                 "weeks across Jiangsu, Zhejiang, Guangdong. Short, broad, shallow "
+                 "shock; mostly recovered by Nov 2021.",
+    },
+    {
+        "slug": "yantian-port-closure-2021",
+        "name": "Yantian port COVID closure (May–Jun 2021)",
+        "shocks": [
+            {"target_node_id": _n("CHN", Industry.SHIPPING), "magnitude": 0.35,
+             "start_week": 0, "duration_weeks": 4, "decay_curve": "step"},
+        ],
+        "horizon_weeks": 12,
+        "observed": {
+            "auto_production_loss_pct":  0.006,
+            "us_inflation_contribution": 0.0005,
+            "expected_recovery_weeks":   6.0,
+            "most_impacted_industry":    Industry.SHIPPING.value,
+        },
+        "sources": ["Maersk customer advisories Jun 2021",
+                    "Drewry container capacity analysis Jun 2021"],
+        "notes": "Yantian (≈10% of China container exports) ran at ~30% capacity for "
+                 "~3.5 weeks; carriers omitted calls. Backlog cleared in ~6 weeks but "
+                 "added to the 2021 container-rate spiral.",
+    },
+    {
+        "slug": "us-west-coast-ports-2021",
+        "name": "US West Coast port congestion (Aug 2021 – Feb 2022)",
+        "shocks": [
+            {"target_node_id": _n("USA", Industry.SHIPPING), "magnitude": 0.30,
+             "start_week": 0, "duration_weeks": 20, "decay_curve": "linear"},
+        ],
+        "horizon_weeks": 36,
+        "observed": {
+            "auto_production_loss_pct":  0.008,
+            "us_inflation_contribution": 0.004,
+            "expected_recovery_weeks":   28.0,
+            "most_impacted_industry":    Industry.CONSUMER_GOODS.value,
+        },
+        "sources": ["Marine Exchange of Southern California queue data 2021–22",
+                    "NY Fed Global Supply Chain Pressure Index 2021–22",
+                    "BLS CPI goods decomposition 2021"],
+        "notes": "LA/Long Beach anchor queue peaked >100 ships (Jan 2022). Slow-moving "
+                 "congestion shock: goods availability + freight costs fed into US "
+                 "goods inflation more than into production loss.",
+    },
+    {
+        "slug": "red-sea-crisis-2023",
+        "name": "Red Sea attacks — Suez diversions (Dec 2023 – 2024)",
+        "shocks": [
+            {"target_node_id": "CP:Suez", "magnitude": 0.55,
+             "start_week": 0, "duration_weeks": 26, "decay_curve": "step"},
+        ],
+        "horizon_weeks": 40,
+        "observed": {
+            "auto_production_loss_pct":  0.010,
+            "us_inflation_contribution": 0.001,
+            "expected_recovery_weeks":   40.0,
+            "most_impacted_industry":    Industry.SHIPPING.value,
+        },
+        "sources": ["IMF PortWatch Suez transit data 2024",
+                    "UNCTAD Red Sea shipping note Feb 2024",
+                    "Tesla Berlin / Volvo Gent suspension notices Jan 2024"],
+        "notes": "Suez transits fell ~50–66%; Cape routing added ~10–14 days. Unlike "
+                 "the 2021 blockage this was a long partial closure — rerouting worked, "
+                 "so production impact stayed small relative to the headline severity.",
+    },
+    {
+        "slug": "taiwan-drought-2021",
+        "name": "Taiwan drought — fab water risk (Feb–Jun 2021)",
+        "shocks": [
+            {"target_node_id": _n("TWN", Industry.SEMICONDUCTORS), "magnitude": 0.04,
+             "start_week": 0, "duration_weeks": 16, "decay_curve": "step"},
+        ],
+        "horizon_weeks": 28,
+        "observed": {
+            "auto_production_loss_pct":  0.002,
+            "us_inflation_contribution": 0.0,
+            "expected_recovery_weeks":   6.0,
+            "most_impacted_industry":    Industry.SEMICONDUCTORS.value,
+        },
+        "sources": ["TSMC Q1–Q2 2021 earnings calls (water trucking costs)",
+                    "Taiwan Water Resources Agency reservoir data 2021"],
+        "notes": "NEAR-MISS validator. Worst drought in 56 years; reservoirs <5%. "
+                 "Fabs trucked water and cut municipal allocation — no reported wafer "
+                 "output loss. Tests that small persistent stress doesn't cascade.",
+    },
+    {
+        "slug": "india-covid-wave-2021",
+        "name": "India COVID second wave — auto shutdowns (Apr–Jun 2021)",
+        "shocks": [
+            {"target_node_id": _n("IND", Industry.AUTOMOTIVE),     "magnitude": 0.35,
+             "start_week": 0, "duration_weeks": 6, "decay_curve": "exp"},
+            {"target_node_id": _n("IND", Industry.CONSUMER_GOODS), "magnitude": 0.15,
+             "start_week": 0, "duration_weeks": 6, "decay_curve": "exp"},
+        ],
+        "horizon_weeks": 16,
+        "observed": {
+            "auto_production_loss_pct":  0.004,
+            "us_inflation_contribution": 0.0005,
+            "expected_recovery_weeks":   10.0,
+            "most_impacted_industry":    Industry.AUTOMOTIVE.value,
+        },
+        "sources": ["SIAM monthly production statistics Apr–Jun 2021",
+                    "Maruti Suzuki plant maintenance advancement notice May 2021"],
+        "notes": "Delta-wave lockdowns + industrial oxygen diverted to hospitals. "
+                 "Indian auto output roughly halved for ~6 weeks; India ≈5% of global "
+                 "production and weakly coupled, so the global cascade stayed small.",
+    },
 ]
 
 

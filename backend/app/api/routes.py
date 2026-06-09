@@ -644,7 +644,7 @@ def benchmark() -> dict:
 def historical_events_csv_endpoint() -> dict:
     """Return historical_events.csv contents as JSON.
 
-    Includes BOTH in-graph (8 events backtestable now) and out-of-graph
+    Includes BOTH in-graph (21 events backtestable now) and out-of-graph
     events (9/11, SARS, 2008, Russia-Ukraine — preserved for future
     graph-expansion validation).
     """

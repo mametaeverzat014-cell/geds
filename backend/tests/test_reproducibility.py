@@ -20,15 +20,22 @@ from app.core.benchmark import (
     scored_payload,
 )
 
-# Frozen expected scores (clean N=8 hand-authored event set). Captured
-# 2026-06-04 from the deterministic harness. MAE is the headline metric; the
-# GEDS Spearman value locks the tie-corrected rank correlation; persistence
-# NDCG is None because a constant predictor has no ranking.
+# Frozen expected scores (clean N=21 hand-authored event set). Captured
+# 2026-06-09 after the event-set expansion 8 → 21 (seed_data.HISTORICAL_EVENTS
+# expansion batch). MAE is the headline metric; the GEDS Spearman value locks
+# the tie-corrected rank correlation; persistence NDCG is None because a
+# constant predictor has no ranking.
+#
+# Honest note on the expansion: on the old N=8 set GEDS scored Spearman 0.83;
+# on N=21 it drops to 0.36 — the strong rank correlation was a small-sample
+# artifact. Naive persistence now beats GEDS on MAE. This is locked here
+# deliberately: any future improvement must show up as an explicit, reviewed
+# change to these numbers.
 GOLDEN = {
-    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0248, "rmse": 0.0361, "spearman": 0.8264},
-    "Leontief (input-output equilibrium)": {"mae": 0.0301, "rmse": 0.0478},
-    "Linear Diffusion (network)": {"mae": 0.0152, "rmse": 0.0179, "spearman": 0.8503},
-    "Naive Persistence (predict mean)": {"mae": 0.0305, "rmse": 0.0370},
+    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0216, "rmse": 0.0379, "spearman": 0.3611},
+    "Leontief (input-output equilibrium)": {"mae": 0.0180, "rmse": 0.0321},
+    "Linear Diffusion (network)": {"mae": 0.0130, "rmse": 0.0169, "spearman": 0.5978},
+    "Naive Persistence (predict mean)": {"mae": 0.0168, "rmse": 0.0268},
 }
 
 
@@ -65,10 +72,12 @@ def test_persistence_has_no_ranking_metrics():
 
 
 def test_winner_is_linear_diffusion():
-    # Honest baseline result on the clean set: the simple network-diffusion
-    # baseline wins every metric; GEDS does not beat it. This is locked so a
-    # future "win" cannot appear without a deliberate, reviewed change.
+    # Honest baseline result on the clean set (N=21): the simple network-
+    # diffusion baseline wins every metric; GEDS does not beat it. This is
+    # locked so a future "win" cannot appear without a deliberate, reviewed
+    # change.
     report = run_benchmark()
     assert report.winner_by_mae == "Linear Diffusion (network)"
     assert report.winner_by_rmse == "Linear Diffusion (network)"
     assert report.winner_by_pearson == "Linear Diffusion (network)"
+    assert report.winner_by_spearman == "Linear Diffusion (network)"
