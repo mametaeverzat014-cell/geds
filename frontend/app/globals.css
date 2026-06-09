@@ -31,11 +31,53 @@
     mask-image: radial-gradient(ellipse at center, rgba(0,0,0,0.85), rgba(0,0,0,0.0) 75%);
     z-index: 0;
   }
+
+  /* Slim, theme-matched scrollbars */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2A3140 transparent;
+  }
+  *::-webkit-scrollbar { width: 8px; height: 8px; }
+  *::-webkit-scrollbar-track { background: transparent; }
+  *::-webkit-scrollbar-thumb {
+    background: #2A3140;
+    border-radius: 8px;
+    border: 2px solid #07090C;
+  }
+  *::-webkit-scrollbar-thumb:hover { background: #3A4358; }
+
+  /* Visible keyboard focus without ugly default outlines */
+  :focus-visible {
+    outline: 2px solid rgba(77, 208, 225, 0.6);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
 @layer components {
   .panel {
-    @apply bg-bg-elevated/80 backdrop-blur-md border border-border-subtle rounded-lg;
+    @apply bg-bg-elevated/80 backdrop-blur-md border border-border-subtle rounded-xl;
+    position: relative;
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+      0 8px 24px -12px rgba(0, 0, 0, 0.55);
+    transition: border-color 200ms ease, box-shadow 250ms ease, transform 250ms ease;
+  }
+  .panel:hover {
+    border-color: #2A3140;
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.06) inset,
+      0 14px 36px -14px rgba(0, 0, 0, 0.65),
+      0 0 0 1px rgba(77, 208, 225, 0.05);
+  }
+  /* hairline gradient ridge along the panel top */
+  .panel::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 10%; right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(77, 208, 225, 0.22), rgba(124, 108, 251, 0.22), transparent);
+    pointer-events: none;
   }
   .num {
     @apply font-mono tabular-nums;
@@ -43,6 +85,109 @@
   .hairline {
     @apply border-t border-border-subtle;
   }
+  /* Gradient display title (GEDS wordmark) */
+  .title-gradient {
+    background: linear-gradient(92deg, #4DD0E1 0%, #7C9DFB 55%, #7C6CFB 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  /* Consistent pill buttons for header / controls */
+  .btn-pill {
+    @apply text-xs px-3 py-1.5 rounded-full border border-border-strong text-text-secondary font-medium;
+    background: rgba(14, 17, 22, 0.6);
+    backdrop-filter: blur(8px);
+    transition: color 160ms ease, border-color 160ms ease, box-shadow 200ms ease, background 200ms ease;
+  }
+  .btn-pill:hover {
+    @apply text-text-primary;
+    border-color: rgba(77, 208, 225, 0.5);
+    box-shadow: 0 0 16px -6px rgba(77, 208, 225, 0.45);
+    background: rgba(77, 208, 225, 0.07);
+  }
+}
+
+/* ── ambient aurora backdrop (pure CSS, sits under everything) ─────────── */
+
+.aurora {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.aurora::before,
+.aurora::after {
+  content: "";
+  position: absolute;
+  width: 60vw;
+  height: 60vw;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.13;
+  will-change: transform;
+}
+.aurora::before {
+  background: radial-gradient(circle at center, #4DD0E1 0%, transparent 60%);
+  top: -25vw;
+  right: -15vw;
+  animation: aurora-drift-a 26s ease-in-out infinite alternate;
+}
+.aurora::after {
+  background: radial-gradient(circle at center, #7C6CFB 0%, transparent 60%);
+  bottom: -30vw;
+  left: -18vw;
+  animation: aurora-drift-b 32s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-drift-a {
+  from { transform: translate3d(0, 0, 0) scale(1); }
+  to   { transform: translate3d(-6vw, 5vh, 0) scale(1.15); }
+}
+@keyframes aurora-drift-b {
+  from { transform: translate3d(0, 0, 0) scale(1.05); }
+  to   { transform: translate3d(5vw, -4vh, 0) scale(0.95); }
+}
+
+/* ── hero header backdrop ───────────────────────────────────────────────── */
+
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 0 0 24px 24px;
+  overflow: hidden;
+}
+.hero-backdrop img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  opacity: 0.5;
+  /* fade hard toward the left + bottom so header text stays readable */
+  mask-image: linear-gradient(105deg, transparent 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.95) 100%);
+  -webkit-mask-image: linear-gradient(105deg, transparent 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0.95) 100%);
+}
+.hero-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 30%, #07090C 100%);
+}
+
+/* ── entrance animation (subtle; respects reduced motion) ──────────────── */
+
+.fade-up {
+  animation: fade-up 480ms cubic-bezier(0.22, 0.8, 0.32, 1) both;
+}
+.fade-up-1 { animation-delay: 60ms; }
+.fade-up-2 { animation-delay: 120ms; }
+.fade-up-3 { animation-delay: 180ms; }
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes pulse-soft {
@@ -52,4 +197,33 @@
 
 .pulse-soft {
   animation: pulse-soft 1.8s ease-in-out infinite;
+}
+
+/* traveling light pulses along the hero network arcs */
+.hero-arc {
+  stroke-dasharray: 6 94;
+  stroke-dashoffset: 100;
+  animation: arc-pulse 7s linear infinite;
+}
+@keyframes arc-pulse {
+  to { stroke-dashoffset: 0; }
+}
+
+/* shimmer for loading placeholders */
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0.03) 25%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora::before, .aurora::after,
+  .fade-up, .pulse-soft, .shimmer, .hero-arc {
+    animation: none !important;
+  }
+  .fade-up { opacity: 1; transform: none; }
 }

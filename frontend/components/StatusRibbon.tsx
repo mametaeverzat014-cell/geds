@@ -46,41 +46,34 @@ export default function StatusRibbon() {
   }
 
   return (
-    <div className="space-y-2 border-b border-border-subtle pb-4 mb-2">
+    <div className="space-y-3 border-b border-border-subtle pb-5 mb-2">
       <div className="flex items-start justify-between gap-4">
         {/* left: title + tagline */}
         <div className="min-w-0">
-          <h1 className="text-2xl font-extrabold tracking-tight flex items-baseline gap-3 flex-wrap">
-            <span className="text-accent-cyan">{t("appTitle")}</span>
-            <span className="text-text-secondary font-semibold text-sm uppercase tracking-[0.2em]">
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight flex items-baseline gap-3 flex-wrap">
+            <span className="title-gradient drop-shadow-[0_0_24px_rgba(77,208,225,0.25)]">
+              {t("appTitle")}
+            </span>
+            <span className="text-text-secondary font-semibold text-xs md:text-sm uppercase tracking-[0.25em]">
               {t("appSubtitle")}
             </span>
           </h1>
-          <p className="text-xs text-text-muted mt-1 max-w-2xl leading-relaxed">
+          <p className="text-xs md:text-[13px] text-text-secondary/80 mt-2 max-w-2xl leading-relaxed">
             {t("appTagline")}
           </p>
         </div>
 
         {/* right: controls + status */}
-        <div className="flex flex-col items-end gap-1.5 shrink-0">
+        <div className="flex flex-col items-end gap-2 shrink-0">
           {/* action buttons */}
           <div className="flex items-center gap-2">
-            <a
-              href="/validation"
-              className="text-xs px-3 py-1 rounded border border-border-strong text-text-secondary hover:text-text-primary hover:border-accent-cyan/50 transition font-medium"
-            >
+            <a href="/validation" className="btn-pill">
               {lang === "en" ? "Validation →" : "Валидация →"}
             </a>
-            <button
-              onClick={toggleFaq}
-              className="text-xs px-3 py-1 rounded border border-border-strong text-text-secondary hover:text-text-primary hover:border-accent-cyan/50 transition font-medium"
-            >
+            <button onClick={toggleFaq} className="btn-pill">
               {t("faqBtn")}
             </button>
-            <button
-              onClick={toggleLang}
-              className="text-xs px-3 py-1 rounded border border-border-strong text-text-secondary hover:text-text-primary hover:border-accent-violet/50 transition font-medium"
-            >
+            <button onClick={toggleLang} className="btn-pill">
               {t("langBtn")}
             </button>
           </div>

@@ -125,7 +125,7 @@ export default function ValidationPage() {
     <main className="max-w-[1600px] mx-auto px-6 py-6 space-y-4">
       <div className="border-b border-border-subtle pb-3">
         <h1 className="text-2xl font-extrabold tracking-tight">
-          <span className="text-accent-cyan">GEDS</span>
+          <a href="/" className="title-gradient hover:opacity-80 transition">GEDS</a>
           <span className="text-text-secondary font-semibold text-sm uppercase tracking-[0.2em] ml-3">
             {tr("Validation Mode", "Режим валидации")}
           </span>

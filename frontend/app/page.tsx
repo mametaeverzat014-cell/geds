@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 
 import ConnectionBanner from "@/components/ConnectionBanner";
+import HeroNetwork from "@/components/HeroNetwork";
 import CrisisRadarPanel from "@/components/CrisisRadarPanel";
 import FAQPanel from "@/components/FAQPanel";
 import MetricsPanel from "@/components/MetricsPanel";
@@ -30,15 +31,23 @@ export default function Home() {
   }, [setGraph, setScenarios]);
 
   return (
-    <main className="max-w-[1600px] mx-auto px-6 py-6 space-y-4">
+    <main className="max-w-[1600px] mx-auto px-6 pb-6 space-y-4">
       <FAQPanel />
-      <StatusRibbon />
+
+      {/* ── hero header with ambient network backdrop ── */}
+      <header className="relative -mx-6 px-6 pt-6 mb-2">
+        <HeroNetwork />
+        <div className="relative z-10">
+          <StatusRibbon />
+        </div>
+      </header>
+
       <ConnectionBanner />
       <OnboardingGuide />
 
       <div className="grid grid-cols-12 gap-4">
         {/* ── left column ── */}
-        <div className="col-span-3 space-y-3">
+        <div className="col-span-3 space-y-3 fade-up fade-up-1">
           <ScenarioControls />
           <ScenarioInfo />
           <ScenarioBuilder />
@@ -46,7 +55,7 @@ export default function Home() {
         </div>
 
         {/* ── centre column ── */}
-        <div className="col-span-6 space-y-3">
+        <div className="col-span-6 space-y-3 fade-up fade-up-2">
           <div className="panel p-2 overflow-hidden">
             <PropagationMap />
           </div>
@@ -54,7 +63,7 @@ export default function Home() {
         </div>
 
         {/* ── right column ── */}
-        <div className="col-span-3 space-y-3">
+        <div className="col-span-3 space-y-3 fade-up fade-up-3">
           <MetricsPanel />
           <NarrativePanel />
         </div>

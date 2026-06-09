@@ -20,6 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-screen relative">
+        <div className="aurora" aria-hidden="true" />
         <UIProvider>
           <div className="relative z-10">{children}</div>
         </UIProvider>
