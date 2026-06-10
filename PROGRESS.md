@@ -177,3 +177,21 @@ publication-ready at N=8. Next step is recalibration of the five engine
 parameters against the expanded set (they were tuned in the N=8 era) and,
 if that fails to close the gap, treating linear diffusion as the production
 propagation kernel with SEIRS kept as a research layer.
+
+### Batch 4 addendum — DE recalibration on N=21 (2026-06-09, same day)
+
+Full 3-restart DE run on the expanded set (46 min): in-sample benchmark fit
+improves to MAE 0.0108 / Pearson +0.85 / R² +0.67 — nominally **beating
+linear diffusion (0.0130 / +0.82 / +0.60) for the first time**. Two honest
+caveats before celebrating: (1) that is an in-sample comparison against a
+parameter-free baseline, and (2) **4 of 5 parameters converged onto their
+prior bounds** (`bullwhip_factor` = 2.0 exactly, `recovery_rate` = 0.01
+exactly, `amplification_mu` ≈ 8.0, `inventory_scale` ≈ 2.0) — the optimizer
+wants to leave the box, which is the classic signature of structural
+misspecification rather than a well-identified optimum.
+
+Verdict pending: `scripts/loo_de_validation.py` runs leave-one-out CV with
+per-fold DE re-calibration (the fair, fully out-of-sample comparison) and
+writes `data/calibration/loo_de_result.json`. If the out-of-sample MAE still
+beats linear diffusion, the recalibration is real; if not, the in-sample win
+was overfitting and the honest headline stays "the baseline wins".
