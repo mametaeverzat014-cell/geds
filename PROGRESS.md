@@ -257,3 +257,25 @@ on MAE/RMSE/R² and ties Pearson; the baseline keeps Spearman (rank order)
 steps, flagged as such) shows 4 of 5 parameters now carry data signal vs 2
 in the May audit; `bullwhip_factor` remains non-identifiable and is the
 next candidate for removal via ablation.
+
+---
+
+## Batch 6 — external-data validation layer: IMF PortWatch + NY Fed GSCPI (2026-06-11)
+
+Two independent datasets (user-supplied downloads, committed under
+`backend/data/raw/external/`) the model was never calibrated on.
+
+| Check | Result |
+|---|---|
+| Ever Given spec (0.90, 2w) vs measured daily Suez transit deficit | **CONFIRMED** — measured peak 0.96; weekly bins smear to 0.63; catch-up surge −0.30 after clearing (a real phenomenon the engine does not yet model) |
+| Red Sea spec magnitude (0.55) vs measured | **CONFIRMED** — weekly peak 0.549; mean 0.44 over the window |
+| Red Sea spec duration | **CORRECTED 26 → 40 weeks** — measured deficit stayed >0.28 for 57+ weeks and is still elevated in June 2026 |
+| Capacity-factor rerouting premise | **MEASURED SUPPORT** — 111% of lost Suez transits reappear at Cape of Good Hope, weekly correlation 0.805 |
+| GSCPI: predicted peak CSI vs measured pressure rise per event | Spearman **0.70** on 9 non-overlapping events (0.45 on all 21 — the 2021 cluster shares one global spike; caveat recorded in artifact) |
+
+New permanent assets: `app/core/portwatch.py` (+6 tests pinned to measured
+facts in the raw file — they double as data-integrity checks),
+`scripts/portwatch_validation.py`, `scripts/gscpi_validation.py`, endpoints
+`/portwatch-validation` + `/gscpi-validation`, and an "External data
+cross-checks" panel on the validation page. ICIO ReadMe received — full
+2023-edition tables still needed for the graph expansion (next batch).

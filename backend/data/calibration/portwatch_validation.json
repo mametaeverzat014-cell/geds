@@ -1,0 +1,44 @@
+{
+  "source": "IMF PortWatch daily chokepoint transits (portwatch.imf.org)",
+  "raw_file": "backend/data/raw/external/portwatch_daily_chokepoints.csv",
+  "reproduce_command": "python -m scripts.portwatch_validation",
+  "event_checks": [
+    {
+      "slug": "suez-canal-2021",
+      "chokepoint": "Suez Canal",
+      "event_start": "2021-03-23",
+      "spec_magnitude": 0.9,
+      "spec_duration_weeks": 2,
+      "observed_peak_weekly_deficit": 0.635,
+      "observed_peak_daily_deficit": 0.963,
+      "observed_mean_deficit_over_spec_window": 0.174,
+      "observed_weeks_above_half_spec": 1,
+      "catchup_surge_min_deficit": -0.297,
+      "magnitude_verdict": "CONFIRMED (spec 0.90 vs measured 0.96)",
+      "duration_verdict": "deficit stayed > 0.45 for 1 weeks (spec window 2w)"
+    },
+    {
+      "slug": "red-sea-crisis-2023",
+      "chokepoint": "Suez Canal",
+      "event_start": "2023-12-15",
+      "spec_magnitude": 0.55,
+      "spec_duration_weeks": 40,
+      "observed_peak_weekly_deficit": 0.549,
+      "observed_peak_daily_deficit": 0.764,
+      "observed_mean_deficit_over_spec_window": 0.436,
+      "observed_weeks_above_half_spec": 57,
+      "catchup_surge_min_deficit": -0.034,
+      "magnitude_verdict": "CONFIRMED (spec 0.55 vs measured 0.44)",
+      "duration_verdict": "deficit stayed > 0.28 for 57 weeks (spec window 40w, still elevated at end of data)"
+    }
+  ],
+  "rerouting_cross_check": {
+    "window_weeks": 26,
+    "suez_mean_weekly_deficit": 0.404,
+    "cape_mean_weekly_gain": 0.664,
+    "weekly_correlation_suez_lost_vs_cape_gained": 0.805,
+    "fraction_of_lost_suez_transits_reappearing_at_cape": 1.112,
+    "interpretation": "Traffic shifts route rather than disappearing \u2014 supports modelling carrier output loss as traffic_share \u00d7 (cost\u22121)/cost rather than the full traffic share (see CHOKEPOINT_LINKS in seed_data.py)."
+  },
+  "timestamp": "2026-06-11T13:03:54.666818+00:00"
+}

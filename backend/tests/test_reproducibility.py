@@ -32,11 +32,15 @@ from app.core.benchmark import (
 # deliberately: any future improvement must show up as an explicit, reviewed
 # change to these numbers.
 GOLDEN = {
-    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0192, "rmse": 0.0362, "spearman": 0.4212},
+    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0191, "rmse": 0.0362, "spearman": 0.4212},
     "Leontief (input-output equilibrium)": {"mae": 0.0154, "rmse": 0.0301},
-    "Linear Diffusion (network)": {"mae": 0.0111, "rmse": 0.0140, "spearman": 0.8105},
+    "Linear Diffusion (network)": {"mae": 0.0112, "rmse": 0.0141, "spearman": 0.8001},
     "Naive Persistence (predict mean)": {"mae": 0.0168, "rmse": 0.0268},
 }
+# 2026-06-11: red-sea-crisis-2023 shock duration corrected 26 → 40 weeks
+# based on MEASURED IMF PortWatch transit deficits (elevated 57+ weeks);
+# see data/calibration/portwatch_validation.json. Tiny numeric drift in
+# this snapshot comes from that single data-driven correction.
 # 2026-06-10 graph-connectivity repair (same commit as these numbers):
 # MYS:semiconductors gained its missing outbound edges, chokepoints gained
 # carrier links with capacity-factor weights, Yantian event magnitude fixed

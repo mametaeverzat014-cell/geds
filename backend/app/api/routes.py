@@ -641,6 +641,29 @@ def loo_de_report() -> dict:
     return payload
 
 
+def _serve_calibration_artifact(filename: str, regenerate_hint: str) -> dict:
+    path = Path(__file__).parent.parent.parent / "data" / "calibration" / filename
+    if not path.exists():
+        raise HTTPException(status_code=404, detail=f"{filename} not generated yet — run: {regenerate_hint}")
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+@router.get("/portwatch-validation", tags=["validation"])
+def portwatch_validation() -> dict:
+    """Chokepoint shock specs vs MEASURED IMF PortWatch transit deficits,
+    plus the Cape-of-Good-Hope rerouting cross-check."""
+    return _serve_calibration_artifact(
+        "portwatch_validation.json", "python -m scripts.portwatch_validation")
+
+
+@router.get("/gscpi-validation", tags=["validation"])
+def gscpi_validation() -> dict:
+    """Predicted global severity vs the NY Fed GSCPI — an independent index
+    the model was never calibrated on."""
+    return _serve_calibration_artifact(
+        "gscpi_validation.json", "python -m scripts.gscpi_validation")
+
+
 @router.get("/benchmark", tags=["validation"])
 def benchmark() -> dict:
     """Unified model leaderboard: SEIRS vs Leontief vs Diffusion vs naive."""
