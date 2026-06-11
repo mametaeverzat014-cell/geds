@@ -237,3 +237,23 @@ the repair helps every model equally, which is the signature of a genuine
 graph fix rather than model-specific tuning. All four worst logistics misses
 now land in the right range. Out-of-sample LOO-DE and MCMC posterior were
 re-run on the repaired graph (artifacts in `data/calibration/`).
+
+### Batch 5 verdict — out-of-sample after the graph repair (2026-06-11)
+
+21-fold LOO-DE on the repaired graph, fully out-of-sample, vs the same-graph
+parameter-free baseline:
+
+| | MAE | RMSE | Pearson | Spearman | R² |
+|---|---|---|---|---|---|
+| GEDS LOO-recalibrated (Batch 4 graph) | 0.0115 | 0.0165 | 0.787 | 0.490 | 0.619 |
+| **GEDS LOO-recalibrated (repaired graph)** | **0.0082** | **0.0112** | **0.910** | 0.617 | **0.825** |
+| Linear diffusion (repaired graph) | 0.0111 | 0.0140 | 0.905 | **0.811** | 0.725 |
+
+The connectivity repair moved every GEDS out-of-sample metric sharply:
+MAE −29%, Pearson 0.79 → 0.91, R² 0.62 → 0.83. No event predicts zero any
+more and no event misses by 10×. Out-of-sample, GEDS now beats the baseline
+on MAE/RMSE/R² and ties Pearson; the baseline keeps Spearman (rank order)
+— the remaining honest gap. MCMC on the repaired graph (unconverged at 350
+steps, flagged as such) shows 4 of 5 parameters now carry data signal vs 2
+in the May audit; `bullwhip_factor` remains non-identifiable and is the
+next candidate for removal via ablation.
