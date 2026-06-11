@@ -168,16 +168,29 @@ export default function PropagationMap() {
             ];
             const d = `M ${originProj[0]} ${originProj[1]} Q ${mid[0]} ${mid[1]} ${target[0]} ${target[1]}`;
             return (
-              <path
-                key={`arc-${n.id}`}
-                d={d}
-                fill="none"
-                stroke={severityColor(intensity)}
-                strokeOpacity={0.35 + 0.55 * intensity}
-                strokeWidth={0.8 + 2.4 * intensity}
-                strokeLinecap="round"
-                filter="url(#glow)"
-              />
+              <g key={`arc-${n.id}`}>
+                <path
+                  d={d}
+                  fill="none"
+                  stroke={severityColor(intensity)}
+                  strokeOpacity={0.35 + 0.55 * intensity}
+                  strokeWidth={0.8 + 2.4 * intensity}
+                  strokeLinecap="round"
+                  filter="url(#glow)"
+                />
+                {/* traveling pulse: the shock visibly flows along the route */}
+                <path
+                  d={d}
+                  fill="none"
+                  stroke="#FFFFFF"
+                  strokeOpacity={0.25 + 0.6 * intensity}
+                  strokeWidth={1.2 + 1.6 * intensity}
+                  strokeLinecap="round"
+                  pathLength={100}
+                  className="map-arc-pulse"
+                  style={{ animationDelay: `${(n.id.charCodeAt(0) * 7 + n.id.length * 13) % 26 / 10}s` }}
+                />
+              </g>
             );
           })}
 
@@ -191,6 +204,7 @@ export default function PropagationMap() {
           const intensity = nf ? nf.shock : 0;
           return (
             <g key={n.id} transform={`translate(${p[0]}, ${p[1]})`}>
+              <title>{`${n.name} (chokepoint)\nshock: ${(intensity * 100).toFixed(0)}%`}</title>
               <polygon
                 points="0,-7 6,0 0,7 -6,0"
                 fill="none"
@@ -223,6 +237,11 @@ export default function PropagationMap() {
           const color = severityColor(value);
           return (
             <g key={n.id} transform={`translate(${p[0]}, ${p[1]})`}>
+              <title>
+                {nf
+                  ? `${n.name}\nshock: ${(nf.shock * 100).toFixed(0)}% · output loss: ${(nf.output_loss * 100).toFixed(0)}%\ninflation: ${(nf.inflation_pressure * 100).toFixed(1)}% · unemployment risk: ${(nf.unemployment_risk * 100).toFixed(0)}%`
+                  : n.name}
+              </title>
               {value > 0.15 && (
                 <circle
                   r={r + 4 + 10 * value}

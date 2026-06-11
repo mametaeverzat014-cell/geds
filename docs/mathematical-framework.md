@@ -306,8 +306,70 @@ These three properties make the simulator a *contraction mapping* away from the 
 ## 12. Limitations (honest)
 
 - **No endogenous policy response.** Real central banks respond. Real governments impose price caps and export bans. We don't model these endogenously; they enter as user-specified scenarios.
-- **Calibration is on a small N.** Major crises in the training set: ~5–8. Statistical power is limited. Confidence intervals on coefficient estimates are wide; we report them in the model card.
+- **Calibration is on a small N.** Major crises in the validation set: 21 (expanded 2026-06 from the original 8). Statistical power is limited. Confidence intervals on coefficient estimates are wide; we report them in the model card.
 - **Time aggregation hides intra-week dynamics.** A week is the smallest unit. Same-week panic buying is not modeled.
 - **Firm-level heterogeneity is collapsed.** Country-sector aggregates hide firm-level resilience differences. The firm-level layer (planned, year 2+) addresses this.
 
 We are explicit about these. The platform is a *decision support tool*, not an oracle.
+
+---
+
+## 13. SEIRS hysteresis layer — implemented formalism
+
+(Added 2026-06: this section formalizes what `app/core/seis.py` actually
+implements, closing the gap flagged in AUDIT.md. Constants live in
+`seis.py` / `EngineConfig`; tests in `tests/test_seis.py` lock every rule.)
+
+Each node `i` carries a discrete state `σ_i(t) ∈ {S, E, I, R}` updated once
+per week **after** the propagation step, from the freshly computed inbound
+pressure `p_i(t) = (D_eff s(t))_i` and post-update shock `s_i(t)`:
+
+```
+S → E   iff  p_i(t) > τ_E            and  s_i(t) < 0.15        (τ_E = 0.05)
+E → I   iff  b_i(t) ≥ B_i            or   s_i(t) ≥ 0.70
+I → R   iff  s_i(t) < τ_R            and  no active external shock  (τ_R = 0.05)
+R → I   iff  s_i(t) ≥ 0.50                                     (re-entry)
+R → S   iff  r_i(t) ≥ Δ_i            and  s_i(t) < τ_R
+```
+
+where `b_i(t)` counts consecutive weeks in E (the **inventory buffer**,
+incremented on the entry week, so a node survives exactly `B_i` weeks in E);
+`B_i = round(inventory_weeks_i · κ)` with per-industry `inventory_weeks`
+(semis 10, aerospace 13, shipping 0, …) and global calibratable scale `κ`
+(`inventory_scale`); `r_i(t)` counts weeks in R against the node's recovery
+delay `Δ_i`.
+
+The state feeds back into propagation through three modifier vectors,
+refreshed each week:
+
+```
+outbound mask    m_i = 0.10 if σ_i = E   (buffer absorbs 90% of outbound signal)
+                       0.85 if σ_i = R   (mostly recovered supply)
+                       1.0  otherwise
+bullwhip         w_i = β    if σ_i = E   (panic-buying amplifies inbound; β = bullwhip_factor)
+                       1.0  otherwise
+output floor     f_i = φ_R  if σ_i = R   (hysteresis: production capped, loss ≥ φ_R = r_output_floor)
+                       0    otherwise
+```
+
+so the effective propagation reads `D_eff' = diag(w) · D_eff · diag(m)` and
+`output_loss_i = max(s_i · e_i · (1 − R_i), f_i)`.
+
+**Chokepoint rerouting surcharge.** When a chokepoint node `c` exceeds the
+rerouting trigger `τ_C = 0.30`, every dependent node `j ∈ targets(c)` has its
+incoming impact multiplied by
+
+```
+1 + (cost_c − 1) · max(0, (s_c − τ_C) / (1 − τ_C))
+```
+
+where `cost_c` is the literature-sourced reroute cost multiplier (Suez 1.35,
+Hormuz 2.0, …). At full blockage the multiplier equals `cost_c` exactly.
+
+**Status of this layer (honest).** On the N=21 benchmark with default
+parameters the SEIRS layer does not beat a linear-diffusion baseline; after
+DE re-calibration it wins on out-of-sample error metrics (MAE/RMSE/R², LOO
+verdict in `data/calibration/loo_de_result.json`) while the baseline keeps
+the edge on rank correlation. Four of five calibrated parameters sit at
+their prior bounds — the layer is structurally useful but its parameterization
+remains under-identified; see PROGRESS.md Batch 4.
