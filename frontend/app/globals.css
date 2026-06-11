@@ -209,6 +209,13 @@
   to { stroke-dashoffset: 0; }
 }
 
+/* faster pulses along live cascade arcs on the propagation map */
+.map-arc-pulse {
+  stroke-dasharray: 10 90;
+  stroke-dashoffset: 100;
+  animation: arc-pulse 2.6s linear infinite;
+}
+
 /* shimmer for loading placeholders */
 @keyframes shimmer {
   from { background-position: -200% 0; }
@@ -222,7 +229,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .aurora::before, .aurora::after,
-  .fade-up, .pulse-soft, .shimmer, .hero-arc {
+  .fade-up, .pulse-soft, .shimmer, .hero-arc, .map-arc-pulse {
     animation: none !important;
   }
   .fade-up { opacity: 1; transform: none; }

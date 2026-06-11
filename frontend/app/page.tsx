@@ -2,20 +2,25 @@
 
 import { useEffect } from "react";
 
+import dynamic from "next/dynamic";
+
 import ConnectionBanner from "@/components/ConnectionBanner";
 import HeroNetwork from "@/components/HeroNetwork";
-import CrisisRadarPanel from "@/components/CrisisRadarPanel";
 import FAQPanel from "@/components/FAQPanel";
 import MetricsPanel from "@/components/MetricsPanel";
 import NarrativePanel from "@/components/NarrativePanel";
 import NewsSignalsPanel from "@/components/NewsSignalsPanel";
 import OnboardingGuide from "@/components/OnboardingGuide";
-import PolicyAdvisorPanel from "@/components/PolicyAdvisorPanel";
 import PropagationMap from "@/components/PropagationMap";
 import ScenarioBuilder from "@/components/ScenarioBuilder";
 import ScenarioControls from "@/components/ScenarioControls";
 import StatusRibbon from "@/components/StatusRibbon";
 import TimelineBar from "@/components/TimelineBar";
+
+// Below-the-fold panels: split out of the first-load bundle.
+const panelFallback = () => <div className="panel h-24 shimmer" aria-hidden="true" />;
+const PolicyAdvisorPanel = dynamic(() => import("@/components/PolicyAdvisorPanel"), { loading: panelFallback });
+const CrisisRadarPanel = dynamic(() => import("@/components/CrisisRadarPanel"), { loading: panelFallback });
 import { api } from "@/lib/api";
 import { useSimStore } from "@/lib/store";
 import { useUI } from "@/lib/ui-context";
