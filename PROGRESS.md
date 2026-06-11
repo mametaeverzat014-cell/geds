@@ -216,3 +216,24 @@ events (Yantian 0.057 pred vs 0.006 obs; Red Sea / Suez / Malaysia predicted
 nodes, which is the next structural target. Parameter-at-bounds caveat from
 the in-sample run still applies and still argues for widening/regrounding the
 priors before adopting these values as engine defaults.
+
+---
+
+## Batch 5 — graph-connectivity repair (2026-06-10)
+
+LOO Batch-4 verdict located the worst misses in logistics events. Root-cause
+diagnosis found two structural holes and one event-authoring error — all
+three fixed at the data layer, engine untouched:
+
+| Defect | Symptom | Fix |
+|---|---|---|
+| `MYS:semiconductors` had zero outbound edges (a sink) | Malaysia-2021 predicted exactly 0 | 3 packaging→automotive edges, weights from SIA/McKinsey ATP share × auto exposure |
+| Shipping nodes had zero inbound edges | Suez/Red-Sea predicted exactly 0 shipping impact | Chokepoint→carrier links; weight = traffic_share × (cost−1)/cost from the existing literature reroute-cost multipliers — **no new free parameters** |
+| Yantian magnitude 0.35 was facility-level, not node-level | 9.5× over-prediction | 0.07 = 10% of CHN container exports × 70% throughput loss (convention fix, arithmetic in-place) |
+
+Result (default params, N=21): GEDS MAE 0.0216 → **0.0192**, Spearman 0.36 →
+**0.42**; linear diffusion ALSO improved 0.0130 → **0.0111** (Pearson 0.91) —
+the repair helps every model equally, which is the signature of a genuine
+graph fix rather than model-specific tuning. All four worst logistics misses
+now land in the right range. Out-of-sample LOO-DE and MCMC posterior were
+re-run on the repaired graph (artifacts in `data/calibration/`).

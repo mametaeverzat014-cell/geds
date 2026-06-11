@@ -32,11 +32,17 @@ from app.core.benchmark import (
 # deliberately: any future improvement must show up as an explicit, reviewed
 # change to these numbers.
 GOLDEN = {
-    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0216, "rmse": 0.0379, "spearman": 0.3611},
-    "Leontief (input-output equilibrium)": {"mae": 0.0180, "rmse": 0.0321},
-    "Linear Diffusion (network)": {"mae": 0.0130, "rmse": 0.0169, "spearman": 0.5978},
+    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0192, "rmse": 0.0362, "spearman": 0.4212},
+    "Leontief (input-output equilibrium)": {"mae": 0.0154, "rmse": 0.0301},
+    "Linear Diffusion (network)": {"mae": 0.0111, "rmse": 0.0140, "spearman": 0.8105},
     "Naive Persistence (predict mean)": {"mae": 0.0168, "rmse": 0.0268},
 }
+# 2026-06-10 graph-connectivity repair (same commit as these numbers):
+# MYS:semiconductors gained its missing outbound edges, chokepoints gained
+# carrier links with capacity-factor weights, Yantian event magnitude fixed
+# to node-level convention. The repair improved EVERY model (linear diffusion
+# MAE 0.0130 → 0.0111, GEDS 0.0216 → 0.0192) — evidence it is a genuine
+# structural fix rather than GEDS-specific tuning.
 
 
 def test_benchmark_config_is_pinned():
