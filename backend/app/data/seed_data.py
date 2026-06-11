@@ -753,8 +753,14 @@ HISTORICAL_EVENTS: list[dict] = [
         "slug": "red-sea-crisis-2023",
         "name": "Red Sea attacks — Suez diversions (Dec 2023 – 2024)",
         "shocks": [
+            # Magnitude AND duration are PortWatch-verified (2026-06): daily
+            # Suez transit deficit peaked at 0.76, weekly at 0.55, and stayed
+            # above 0.28 for 57+ weeks (still elevated at end of data) — so
+            # the shock runs step-wise through the full study horizon rather
+            # than the 26 weeks originally assumed. See
+            # data/calibration/portwatch_validation.json.
             {"target_node_id": "CP:Suez", "magnitude": 0.55,
-             "start_week": 0, "duration_weeks": 26, "decay_curve": "step"},
+             "start_week": 0, "duration_weeks": 40, "decay_curve": "step"},
         ],
         "horizon_weeks": 40,
         "observed": {

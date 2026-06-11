@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-11T03:03:12.383481+00:00",
+  "timestamp": "2026-06-11T13:06:58.527415+00:00",
   "n_events": 21,
   "ndcg_k": 5,
   "config": {
@@ -23,16 +23,16 @@
     {
       "model": "SEIRS-Bullwhip-Hysteresis (GEDS)",
       "n_events": 21,
-      "mae": 0.0192,
+      "mae": 0.0191,
       "rmse": 0.0362,
-      "mape": 116.85,
-      "r_squared": -0.8328,
-      "pearson": 0.1663,
+      "mape": 116.52,
+      "r_squared": -0.8326,
+      "pearson": 0.166,
       "spearman": 0.4212,
       "kendall": 0.2954,
       "ndcg_at_k": 0.5824,
-      "bias": -0.0019,
-      "skill_score_vs_persistence": -0.8328
+      "bias": -0.0018,
+      "skill_score_vs_persistence": -0.8326
     },
     {
       "model": "Leontief (input-output equilibrium)",
@@ -51,16 +51,16 @@
     {
       "model": "Linear Diffusion (network)",
       "n_events": 21,
-      "mae": 0.0111,
-      "rmse": 0.014,
-      "mape": 111.07,
-      "r_squared": 0.7246,
-      "pearson": 0.9053,
-      "spearman": 0.8105,
-      "kendall": 0.6635,
+      "mae": 0.0112,
+      "rmse": 0.0141,
+      "mape": 111.98,
+      "r_squared": 0.7221,
+      "pearson": 0.9051,
+      "spearman": 0.8001,
+      "kendall": 0.6538,
       "ndcg_at_k": 0.9704,
-      "bias": 0.008,
-      "skill_score_vs_persistence": 0.7246
+      "bias": 0.0081,
+      "skill_score_vs_persistence": 0.7221
     },
     {
       "model": "Naive Persistence (predict mean)",

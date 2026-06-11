@@ -93,6 +93,35 @@ interface LooDeReport {
   reproduce_command: string;
 }
 
+interface PortwatchReport {
+  timestamp: string;
+  source: string;
+  event_checks: Array<{
+    slug: string;
+    chokepoint: string;
+    spec_magnitude: number;
+    observed_peak_daily_deficit: number;
+    observed_peak_weekly_deficit: number;
+    magnitude_verdict: string;
+    duration_verdict: string;
+  }>;
+  rerouting_cross_check: {
+    weekly_correlation_suez_lost_vs_cape_gained: number;
+    fraction_of_lost_suez_transits_reappearing_at_cape: number;
+    interpretation: string;
+  };
+}
+
+interface GscpiReport {
+  timestamp: string;
+  source: string;
+  caveat: string;
+  n_events: number;
+  spearman_all_events: number;
+  spearman_non_overlapping: number;
+  n_non_overlapping: number;
+}
+
 interface BenchmarkReport {
   timestamp: string;
   n_events: number;
@@ -123,6 +152,8 @@ export default function ValidationPage() {
   const [ablation, setAblation] = useState<AblationReport | null>(null);
   const [bench, setBench] = useState<BenchmarkReport | null>(null);
   const [looDe, setLooDe] = useState<LooDeReport | null>(null);
+  const [portwatch, setPortwatch] = useState<PortwatchReport | null>(null);
+  const [gscpi, setGscpi] = useState<GscpiReport | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -134,6 +165,8 @@ export default function ValidationPage() {
       fetch(`${API_BASE}/api/v1/ablation`).then(r => r.ok ? r.json() : null).then(setAblation),
       fetch(`${API_BASE}/api/v1/benchmark`).then(r => r.ok ? r.json() : null).then(setBench),
       fetch(`${API_BASE}/api/v1/loo-de-report`).then(r => r.ok ? r.json() : null).then(setLooDe),
+      fetch(`${API_BASE}/api/v1/portwatch-validation`).then(r => r.ok ? r.json() : null).then(setPortwatch),
+      fetch(`${API_BASE}/api/v1/gscpi-validation`).then(r => r.ok ? r.json() : null).then(setGscpi),
     ]).catch((e) => setError(String(e)));
   }, []);
 
@@ -526,6 +559,57 @@ export default function ValidationPage() {
             </div>
           </>
         ) : <div className="text-xs text-text-muted">{tr("Loading…", "Загрузка…")}</div>}
+      </div>
+
+      {/* External data cross-checks */}
+      <div className="panel p-4 space-y-3">
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
+          {tr("External data cross-checks — IMF PortWatch & NY Fed GSCPI", "Перекрёстные проверки на внешних данных — IMF PortWatch и NY Fed GSCPI")}
+        </h2>
+        <p className="text-xs text-text-secondary leading-relaxed max-w-4xl">
+          {tr(
+            "Two datasets the model was never calibrated on. PortWatch counts every vessel transiting maritime chokepoints daily — so our chokepoint shock assumptions can be checked against measured traffic, not narrative. GSCPI is the NY Fed's monthly index of global supply-chain pressure — if our predicted severity is real, it should rank-correlate with the measured pressure rise during each event.",
+            "Два набора данных, на которых модель никогда не калибровалась. PortWatch ежедневно считает суда, проходящие морские чокпоинты — наши предположения о шоках проверяются по измеренному трафику, а не по нарративу. GSCPI — месячный индекс давления на глобальные цепочки поставок от ФРБ Нью-Йорка: если наша предсказанная серьёзность реальна, она должна ранжироваться вместе с измеренным ростом давления.",
+          )}
+        </p>
+        {portwatch ? (
+          <div className="space-y-2">
+            {portwatch.event_checks.map((c) => (
+              <div key={c.slug} className="text-xs flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
+                <span className="text-text-primary font-semibold">{c.slug}</span>
+                <span className={`num ${c.magnitude_verdict.startsWith("CONFIRMED") ? "text-accent-cyan" : "text-sev-4"}`}>
+                  {c.magnitude_verdict}
+                </span>
+                <span className="text-text-muted">{c.duration_verdict}</span>
+              </div>
+            ))}
+            <div className="text-xs pt-1 border-t border-border-subtle/50">
+              <span className="text-text-primary font-semibold">
+                {tr("Rerouting natural experiment (Red Sea): ", "Натуральный эксперимент перенаправления (Красное море): ")}
+              </span>
+              <span className="text-text-secondary">
+                {tr(
+                  `${(portwatch.rerouting_cross_check.fraction_of_lost_suez_transits_reappearing_at_cape * 100).toFixed(0)}% of lost Suez transits reappear at the Cape of Good Hope (weekly correlation ${portwatch.rerouting_cross_check.weekly_correlation_suez_lost_vs_cape_gained.toFixed(2)}) — measured support for the capacity-factor edge weights.`,
+                  `${(portwatch.rerouting_cross_check.fraction_of_lost_suez_transits_reappearing_at_cape * 100).toFixed(0)}% потерянных транзитов Суэца появляются у мыса Доброй Надежды (недельная корреляция ${portwatch.rerouting_cross_check.weekly_correlation_suez_lost_vs_cape_gained.toFixed(2)}) — измеренное подтверждение capacity-фактора в весах рёбер.`,
+                )}
+              </span>
+            </div>
+          </div>
+        ) : <div className="text-xs text-text-muted">{tr("PortWatch: loading…", "PortWatch: загрузка…")}</div>}
+        {gscpi ? (
+          <div className="text-xs pt-1 border-t border-border-subtle/50 space-y-1">
+            <div>
+              <span className="text-text-primary font-semibold">GSCPI: </span>
+              <span className="text-text-secondary">
+                {tr(
+                  `predicted severity vs measured pressure rise — Spearman ρ = ${gscpi.spearman_non_overlapping.toFixed(2)} on ${gscpi.n_non_overlapping} non-overlapping events (${gscpi.spearman_all_events.toFixed(2)} on all ${gscpi.n_events}).`,
+                  `предсказанная серьёзность против измеренного роста давления — Спирмен ρ = ${gscpi.spearman_non_overlapping.toFixed(2)} на ${gscpi.n_non_overlapping} неперекрывающихся событиях (${gscpi.spearman_all_events.toFixed(2)} на всех ${gscpi.n_events}).`,
+                )}
+              </span>
+            </div>
+            <div className="text-[10px] text-text-muted">{gscpi.caveat}</div>
+          </div>
+        ) : <div className="text-xs text-text-muted">{tr("GSCPI: loading…", "GSCPI: загрузка…")}</div>}
       </div>
 
       {/* Ablation */}
