@@ -1,22 +1,22 @@
 # GEDS Benchmark Leaderboard
 
-- Generated: 2026-06-11T13:06:58.527415+00:00
-- Events: 21  |  NDCG cutoff: k=5
+- Generated: 2026-06-11T17:49:50.966583+00:00
+- Events: 26  |  NDCG cutoff: k=5
 - Pinned config: seed=0, stochastic_sigma=0.0
 
 Error metrics: lower MAE/RMSE is better. Ranking metrics (Pearson/Spearman/Kendall/NDCG): higher is better. Skill = Murphy skill vs naive persistence (>0 beats the mean).
 
 | Model | N | MAE | RMSE | R² | Pearson | Spearman | Kendall | NDCG@5 | Skill |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| SEIRS-Bullwhip-Hysteresis (GEDS) | 21 | 0.0191 | 0.0362 | -0.8326 | 0.1660 | 0.4212 | 0.2954 | 0.5824 | -0.8326 |
-| Leontief (input-output equilibrium) | 21 | 0.0154 | 0.0301 | -0.2642 | 0.0064 | 0.2741 | 0.1501 | 0.2708 | -0.2642 |
-| Linear Diffusion (network) | 21 | 0.0112 | 0.0141 | 0.7221 | 0.9051 | 0.8001 | 0.6538 | 0.9704 | 0.7221 |
-| Naive Persistence (predict mean) | 21 | 0.0168 | 0.0268 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | — | 0.0000 |
+| SEIRS-Bullwhip-Hysteresis (GEDS) | 26 | 0.0220 | 0.0446 | -2.2294 | 0.0712 | 0.4161 | 0.3007 | 0.4249 | -2.2294 |
+| Leontief (input-output equilibrium) | 26 | 0.0144 | 0.0279 | -0.2597 | -0.0236 | 0.2600 | 0.1454 | 0.2237 | -0.2597 |
+| Linear Diffusion (network) | 26 | 0.0147 | 0.0288 | -0.3420 | 0.5647 | 0.7071 | 0.5689 | 0.6826 | -0.3420 |
+| Naive Persistence (predict mean) | 26 | 0.0148 | 0.0248 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | — | 0.0000 |
 
 ## Winners
 
-- Lowest MAE: **Linear Diffusion (network)**
-- Lowest RMSE: **Linear Diffusion (network)**
-- Highest R²: **Linear Diffusion (network)**
+- Lowest MAE: **Leontief (input-output equilibrium)**
+- Lowest RMSE: **Naive Persistence (predict mean)**
+- Highest R²: **Naive Persistence (predict mean)**
 - Highest Pearson: **Linear Diffusion (network)**
 - Highest Spearman: **Linear Diffusion (network)**

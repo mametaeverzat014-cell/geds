@@ -279,3 +279,33 @@ facts in the raw file — they double as data-integrity checks),
 `/portwatch-validation` + `/gscpi-validation`, and an "External data
 cross-checks" panel on the validation page. ICIO ReadMe received — full
 2023-edition tables still needed for the graph expansion (next batch).
+
+---
+
+## Batch 7 — researched event expansion N=21 → 26 + out-of-graph registry (2026-06-11)
+
+Eleven structured literature dossiers (committed with full citations under
+`backend/data/raw/external/perplexity_events/`) processed into:
+
+**Five new in-graph events** — Chi-Chi 1999 (TWN semi, near-miss), Hurricane
+Harvey 2017 (US petrochem→consumer, partial near-miss), US West Coast ports
+2015 (slowdown), Korea trucker strikes 2022 (near-miss), Panama Canal drought
+2023–24 (new `CP:Panama` node + capacity-factor links). Panama's spec was
+corrected DOWN by measurement: press transit counts implied 0.45, IMF
+PortWatch measures a 0.28 mean weekly deficit → spec 0.30, now CONFIRMED
+alongside Suez-2021 (0.90 vs 0.96) and Red Sea (0.55 vs 0.44).
+
+**Six out-of-graph near-misses** added to `data/csv/historical_events.csv`
+(SARS 2003, Kobe 1995, Eyjafjallajökull 2010, UK fuel 2021, Germany floods
+2021, China Ga/Ge controls 2023) — a documented false-positive library with
+absorption mechanisms cited; unmappable onto the current 12×6 graph.
+
+**The honest headline got harder — by design.** The N=26 set is adversarial
+(10+ near-misses). Default-param winners split: Leontief takes MAE (chronic
+under-prediction becomes an asset on near-misses), naive persistence takes
+RMSE/R², linear diffusion keeps the correlations; GEDS default trails. GSCPI
+clean-subset Spearman fell 0.70 → 0.31 — the default-param engine
+over-predicts near-misses, which is exactly the absorption-mechanism gap
+(inventories, priority restoration, modal substitution) the dossiers
+document. Next target: make the SEIRS buffer layer earn its keep on the
+near-miss subset. Out-of-sample LOO-DE re-run pending.

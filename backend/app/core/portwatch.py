@@ -91,6 +91,8 @@ CHOKEPOINT_EVENTS = [
      "event_start": "2021-03-23", "spec_magnitude": 0.90, "spec_duration_weeks": 2},
     {"slug": "red-sea-crisis-2023", "chokepoint": "Suez Canal",
      "event_start": "2023-12-15", "spec_magnitude": 0.55, "spec_duration_weeks": 40},
+    {"slug": "panama-canal-drought-2023", "chokepoint": "Panama Canal",
+     "event_start": "2023-11-01", "spec_magnitude": 0.30, "spec_duration_weeks": 30},
 ]
 
 

@@ -32,12 +32,14 @@ from app.core.benchmark import (
 # deliberately: any future improvement must show up as an explicit, reviewed
 # change to these numbers.
 GOLDEN = {
-    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0191, "rmse": 0.0362, "spearman": 0.4212},
-    "Leontief (input-output equilibrium)": {"mae": 0.0154, "rmse": 0.0301},
-    "Linear Diffusion (network)": {"mae": 0.0112, "rmse": 0.0141, "spearman": 0.8001},
-    "Naive Persistence (predict mean)": {"mae": 0.0168, "rmse": 0.0268},
+    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0220, "rmse": 0.0446, "spearman": 0.4161},
+    "Leontief (input-output equilibrium)": {"mae": 0.0144, "rmse": 0.0279},
+    "Linear Diffusion (network)": {"mae": 0.0147, "rmse": 0.0288, "spearman": 0.7071},
+    "Naive Persistence (predict mean)": {"mae": 0.0148, "rmse": 0.0248},
 }
-# 2026-06-11: red-sea-crisis-2023 shock duration corrected 26 → 40 weeks
+# 2026-06-11 (b): N=21 → 26 — five researched events added (Chi-Chi 1999,
+# Harvey 2017, WC ports 2015, Korea truckers 2022, Panama drought 2023 with
+# the new CP:Panama node); red-sea duration corrected 26 → 40 weeks
 # based on MEASURED IMF PortWatch transit deficits (elevated 57+ weeks);
 # see data/calibration/portwatch_validation.json. Tiny numeric drift in
 # this snapshot comes from that single data-driven correction.
@@ -81,13 +83,16 @@ def test_persistence_has_no_ranking_metrics():
     assert persistence.ndcg_at_k is None
 
 
-def test_winner_is_linear_diffusion():
-    # Honest baseline result on the clean set (N=21): the simple network-
-    # diffusion baseline wins every metric; GEDS does not beat it. This is
-    # locked so a future "win" cannot appear without a deliberate, reviewed
-    # change.
+def test_winner_split_on_adversarial_set():
+    # Honest result on the N=26 set (10+ researched near-miss events): with
+    # default parameters NO model convincingly beats predicting the mean.
+    # Leontief's chronic under-prediction becomes an asset on near-misses and
+    # takes MAE; naive persistence takes RMSE/R²; linear diffusion keeps both
+    # correlation metrics. GEDS (default params) trails on error. Locked so
+    # any future "win" must arrive as an explicit, reviewed change. The
+    # out-of-sample recalibrated story lives in loo_de_result.json.
     report = run_benchmark()
-    assert report.winner_by_mae == "Linear Diffusion (network)"
-    assert report.winner_by_rmse == "Linear Diffusion (network)"
+    assert report.winner_by_mae == "Leontief (input-output equilibrium)"
+    assert report.winner_by_rmse == "Naive Persistence (predict mean)"
     assert report.winner_by_pearson == "Linear Diffusion (network)"
     assert report.winner_by_spearman == "Linear Diffusion (network)"
