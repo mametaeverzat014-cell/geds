@@ -309,3 +309,25 @@ over-predicts near-misses, which is exactly the absorption-mechanism gap
 (inventories, priority restoration, modal substitution) the dossiers
 document. Next target: make the SEIRS buffer layer earn its keep on the
 near-miss subset. Out-of-sample LOO-DE re-run pending.
+
+### Batch 8 attempt — inventory-absorption mechanism (2026-06-11): NEGATIVE result, kept out of the engine
+
+Hypothesis from the Batch-7 dossiers: near-miss over-prediction should be
+fixed by making the E-state buffer absorb damage (a node with stock consumes
+inventory instead of taking propagated impact, incl. first-strike
+interception for sudden upstream outages). Implemented three escalating
+variants; all were REVERTED because the benchmark refused to move
+(0.0220 → 0.0250 → 0.0257 MAE — worse each time).
+
+The trace explains why, and it is the real finding: **downstream absorption
+cannot rescue a near-miss while the upstream source never heals.** Chi-Chi's
+prediction is dominated by the source node still carrying ~70% of its shock
+at week 12, because shock decay is a single global `recovery_rate` (7%/week
+default; the DE calibrator pushes it to 1%/week to fit long crises) — while
+the real TSMC restored ~90% of output in 8 days. One global recovery
+constant cannot represent both "TSMC heals in days" and "COVID drags for a
+year". **Next mechanism target, with evidence: per-node/per-event recovery
+dynamics** (e.g., couple shock decay to the node's existing
+`recovery_delay_weeks` instead of one global rate). The negative experiment
+is preserved here deliberately — it converts the audit's old "recovery
+miscalibrated" note into a mechanistic diagnosis.
