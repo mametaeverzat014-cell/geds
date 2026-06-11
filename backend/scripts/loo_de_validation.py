@@ -1,0 +1,120 @@
+"""Leave-one-out cross-validation with per-fold DE re-calibration.
+
+The honest answer to "does the recalibrated SEIRS engine beat the linear-
+diffusion baseline, or is the in-sample win an artifact of fitting?":
+
+    for each event i in HISTORICAL_EVENTS:
+        calibrate the 5 engine parameters on the other N-1 events (reduced DE)
+        predict the held-out event with the fold-calibrated config
+    pool the N out-of-sample predictions and score them exactly like the
+    benchmark scores the (parameter-free) linear-diffusion baseline.
+
+Linear diffusion has no fitted parameters, so its benchmark scores ARE
+out-of-sample; GEDS must be scored this way for the comparison to be fair.
+
+Run:  python -m scripts.loo_de_validation          (~30 min, writes JSON)
+Output: data/calibration/loo_de_result.json
+"""
+
+from __future__ import annotations
+
+import json
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+
+import numpy as np
+from scipy.optimize import differential_evolution
+
+from app.core.backtest import backtest_event
+from app.core.benchmark import _score
+from app.core.graph import compile_graph
+from app.core.mcmc import PARAM_BOUNDS, PARAM_NAMES
+from app.core.types import EngineConfig
+from app.data.seed import load_graph
+from app.data.seed_data import HISTORICAL_EVENTS
+
+# Reduced DE settings: enough to converge near the full-run optimum (the
+# 3-restart production run found a sharp basin), cheap enough for 21 folds.
+DE_MAXITER = 12
+DE_POPSIZE = 4          # per dimension → population 20
+DE_SEED = 42
+
+OBJ_WEIGHTS = {"loss": 0.5, "infl": 0.3, "recovery": 0.2}
+OBJ_SIGMA = {"loss": 0.05, "infl": 0.01, "recovery": 0.20}
+
+OUT_PATH = Path(__file__).resolve().parents[1] / "data" / "calibration" / "loo_de_result.json"
+
+
+def _config(theta: np.ndarray) -> EngineConfig:
+    kw = dict(zip(PARAM_NAMES, (float(x) for x in theta), strict=True))
+    return EngineConfig(seed=0, stochastic_sigma=0.0, **kw)
+
+
+def _objective(theta: np.ndarray, graph, events: list[dict]) -> float:
+    config = _config(theta)
+    total = 0.0
+    for event in events:
+        try:
+            r = backtest_event(event, graph, config)
+        except Exception:
+            return 1e12
+        errs = {
+            "loss":     r.industry_loss_predicted - r.industry_loss_observed,
+            "infl":     r.inflation_predicted - r.inflation_observed,
+            "recovery": (r.recovery_predicted - r.recovery_observed) / 52.0,
+        }
+        for k, e in errs.items():
+            total += 0.5 * OBJ_WEIGHTS[k] * (e / OBJ_SIGMA[k]) ** 2
+    return float(total)
+
+
+def main() -> None:
+    graph = compile_graph(load_graph())
+    bounds = [PARAM_BOUNDS[n] for n in PARAM_NAMES]
+
+    preds, obs, folds = [], [], []
+    t0 = time.perf_counter()
+    for i, held_out in enumerate(HISTORICAL_EVENTS):
+        train = [e for j, e in enumerate(HISTORICAL_EVENTS) if j != i]
+        res = differential_evolution(
+            _objective, bounds, args=(graph, train),
+            strategy="best1bin", maxiter=DE_MAXITER, popsize=DE_POPSIZE,
+            tol=1e-3, mutation=(0.5, 1.0), recombination=0.7,
+            seed=DE_SEED, updating="deferred", workers=1, polish=False, init="sobol",
+        )
+        r = backtest_event(held_out, graph, _config(res.x))
+        preds.append(r.industry_loss_predicted)
+        obs.append(r.industry_loss_observed)
+        folds.append({
+            "slug": held_out["slug"],
+            "loss_predicted": r.industry_loss_predicted,
+            "loss_observed": r.industry_loss_observed,
+            "fold_params": dict(zip(PARAM_NAMES, [round(float(x), 4) for x in res.x], strict=True)),
+            "fold_train_loss": round(float(res.fun), 3),
+        })
+        print(f"[{i+1:2d}/{len(HISTORICAL_EVENTS)}] {held_out['slug']}: "
+              f"pred={r.industry_loss_predicted:.4f} obs={r.industry_loss_observed:.4f}",
+              flush=True)
+
+    score = _score("GEDS SEIRS (LOO-DE, out-of-sample)", np.array(preds), np.array(obs))
+    payload = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "n_folds": len(folds),
+        "de_settings": {"maxiter": DE_MAXITER, "popsize_per_dim": DE_POPSIZE, "seed": DE_SEED},
+        "runtime_seconds": round(time.perf_counter() - t0, 1),
+        "out_of_sample_score": {
+            "mae": score.mae, "rmse": score.rmse, "r_squared": score.r_squared,
+            "pearson": score.pearson, "spearman": score.spearman,
+        },
+        "folds": folds,
+    }
+    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    OUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    print(f"\nOut-of-sample: MAE={score.mae:.4f} RMSE={score.rmse:.4f} "
+          f"Pearson={score.pearson:+.3f} Spearman={score.spearman:+.3f} R2={score.r_squared:+.3f}")
+    print(f"Wrote {OUT_PATH}")
+
+
+if __name__ == "__main__":
+    main()

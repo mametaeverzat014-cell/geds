@@ -1,56 +1,58 @@
 {
-  "calibration_date": "2026-05-16T18:34:03.018030+00:00",
+  "calibration_date": "2026-06-09T20:59:21.805242+00:00",
   "method": "differential_evolution_multi_restart",
-  "n_restarts": 1,
-  "pop_size": 20,
-  "converged_fraction": 0.0,
-  "best_loss": 6.955965911242605,
-  "runtime_seconds": 40.5,
+  "n_restarts": 3,
+  "pop_size": 40,
+  "converged_fraction": 0.3333333333333333,
+  "best_loss": 10.579406763313612,
+  "runtime_seconds": 2784.88,
   "parameters": [
     {
       "name": "amplification_mu",
-      "point": 3.5991421489711106,
-      "restart_std": 0.0,
-      "restart_p05": 3.5991421489711106,
-      "restart_p95": 3.5991421489711106,
-      "prior_low": 0.5,
-      "prior_high": 4.0
+      "point": 7.922159287420181,
+      "restart_std": 0.03374804284256521,
+      "restart_p05": 7.929016671526686,
+      "restart_p95": 7.995856985794622,
+      "prior_low": 0.1,
+      "prior_high": 8.0
     },
     {
       "name": "bullwhip_factor",
-      "point": 1.402179992330084,
-      "restart_std": 0.0,
-      "restart_p05": 1.402179992330084,
-      "restart_p95": 1.402179992330084,
+      "point": 1.9999739741510534,
+      "restart_std": 0.007830322070627447,
+      "restart_p05": 1.981875525798378,
+      "restart_p95": 1.9991102610351061,
       "prior_low": 1.0,
-      "prior_high": 1.5
+      "prior_high": 2.0
     },
     {
       "name": "recovery_rate",
-      "point": 0.02022365698176526,
-      "restart_std": 0.0,
-      "restart_p05": 0.02022365698176526,
-      "restart_p95": 0.02022365698176526,
-      "prior_low": 0.02,
-      "prior_high": 0.2
+      "point": 0.010030077631311168,
+      "restart_std": 3.197144694815635e-05,
+      "restart_p05": 0.010023192089242081,
+      "restart_p95": 0.010087382404248054,
+      "prior_low": 0.01,
+      "prior_high": 0.3
     },
     {
       "name": "inventory_scale",
-      "point": 1.2768555522019458,
-      "restart_std": 0.0,
-      "restart_p05": 1.2768555522019458,
-      "restart_p95": 1.2768555522019458,
-      "prior_low": 0.5,
-      "prior_high": 1.5
+      "point": 1.954809125263285,
+      "restart_std": 0.017961338377676946,
+      "restart_p05": 1.931949345689426,
+      "restart_p95": 1.9713789699135407,
+      "prior_low": 0.3,
+      "prior_high": 2.0
     },
     {
       "name": "distress_base",
-      "point": 0.4955616240653137,
-      "restart_std": 0.0,
-      "restart_p05": 0.4955616240653137,
-      "restart_p95": 0.4955616240653137,
-      "prior_low": 0.25,
-      "prior_high": 0.55
+      "point": 0.3786608376878469,
+      "restart_std": 0.10384844260157013,
+      "restart_p05": 0.2744710745325899,
+      "restart_p95": 0.5031101967622461,
+      "prior_low": 0.2,
+      "prior_high": 0.7
     }
-  ]
+  ],
+  "n_events": 21,
+  "note": "Recalibration on the expanded N=21 event set (2026-06-09). In-sample fit improves markedly (benchmark MAE 0.0216 -> 0.0108, beating linear diffusion's 0.0130), BUT 4 of 5 parameters converged onto their prior bounds (amplification_mu ~8.0, bullwhip_factor =2.0, recovery_rate =0.01, inventory_scale ~2.0) - a structural-misspecification signal. Treat the in-sample win as provisional until the out-of-sample LOO-DE validation (scripts/loo_de_validation.py -> loo_de_result.json) confirms it."
 }
