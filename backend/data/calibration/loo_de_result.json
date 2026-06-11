@@ -1,17 +1,17 @@
 {
-  "timestamp": "2026-06-11T03:46:51.061726+00:00",
+  "timestamp": "2026-06-11T14:18:32.844914+00:00",
   "n_folds": 21,
   "de_settings": {
     "maxiter": 12,
     "popsize_per_dim": 4,
     "seed": 42
   },
-  "runtime_seconds": 2608.1,
+  "runtime_seconds": 4279.5,
   "out_of_sample_score": {
-    "mae": 0.0082,
+    "mae": 0.0083,
     "rmse": 0.0112,
-    "r_squared": 0.825,
-    "pearson": 0.91,
+    "r_squared": 0.8243,
+    "pearson": 0.9097,
     "spearman": 0.6172
   },
   "folds": [
@@ -26,7 +26,7 @@
         "inventory_scale": 1.9021,
         "distress_base": 0.2153
       },
-      "fold_train_loss": 9.306
+      "fold_train_loss": 9.308
     },
     {
       "slug": "suez-canal-2021",
@@ -39,7 +39,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 10.294
+      "fold_train_loss": 10.295
     },
     {
       "slug": "auto-chip-shortage-2021",
@@ -52,7 +52,7 @@
         "inventory_scale": 1.1157,
         "distress_base": 0.4671
       },
-      "fold_train_loss": 9.842
+      "fold_train_loss": 9.843
     },
     {
       "slug": "japan-triple-disaster-2011",
@@ -65,7 +65,7 @@
         "inventory_scale": 1.6018,
         "distress_base": 0.6147
       },
-      "fold_train_loss": 10.182
+      "fold_train_loss": 10.183
     },
     {
       "slug": "us-china-tariffs-2019",
@@ -78,7 +78,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 7.905
+      "fold_train_loss": 7.907
     },
     {
       "slug": "texas-winter-storm-2021",
@@ -91,7 +91,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 10.209
+      "fold_train_loss": 10.21
     },
     {
       "slug": "eu-energy-crisis-2021",
@@ -104,7 +104,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 8.865
+      "fold_train_loss": 8.867
     },
     {
       "slug": "malaysia-semiconductor-2021",
@@ -117,7 +117,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 10.204
+      "fold_train_loss": 10.206
     },
     {
       "slug": "thailand-floods-2011",
@@ -130,7 +130,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 9.797
+      "fold_train_loss": 9.799
     },
     {
       "slug": "kumamoto-earthquake-2016",
@@ -143,7 +143,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 10.272
+      "fold_train_loss": 10.274
     },
     {
       "slug": "renesas-naka-fire-2021",
@@ -156,7 +156,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 10.063
+      "fold_train_loss": 10.065
     },
     {
       "slug": "japan-korea-export-controls-2019",
@@ -169,7 +169,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 10.311
+      "fold_train_loss": 10.312
     },
     {
       "slug": "vietnam-covid-lockdown-2021",
@@ -182,7 +182,7 @@
         "inventory_scale": 1.6349,
         "distress_base": 0.5406
       },
-      "fold_train_loss": 10.175
+      "fold_train_loss": 10.177
     },
     {
       "slug": "shanghai-lockdown-2022",
@@ -195,7 +195,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 10.201
+      "fold_train_loss": 10.203
     },
     {
       "slug": "ukraine-war-harness-2022",
@@ -208,7 +208,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 9.975
+      "fold_train_loss": 9.976
     },
     {
       "slug": "china-power-crunch-2021",
@@ -221,7 +221,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 10.267
+      "fold_train_loss": 10.269
     },
     {
       "slug": "yantian-port-closure-2021",
@@ -234,7 +234,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 10.308
+      "fold_train_loss": 10.31
     },
     {
       "slug": "us-west-coast-ports-2021",
@@ -247,11 +247,11 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 9.618
+      "fold_train_loss": 9.619
     },
     {
       "slug": "red-sea-crisis-2023",
-      "loss_predicted": 0.0191,
+      "loss_predicted": 0.0197,
       "loss_observed": 0.01,
       "fold_params": {
         "amplification_mu": 7.757,
@@ -273,7 +273,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 10.312
+      "fold_train_loss": 10.314
     },
     {
       "slug": "india-covid-wave-2021",
@@ -286,7 +286,7 @@
         "inventory_scale": 1.7447,
         "distress_base": 0.4402
       },
-      "fold_train_loss": 10.249
+      "fold_train_loss": 10.251
     }
   ]
 }
