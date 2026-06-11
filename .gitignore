@@ -103,3 +103,6 @@ backend/data/raw/
 backend/data/csv/oecd_icio_edges.csv
 backend/data/csv/wiod_edges.csv
 .vercel/
+
+# runtime cache written by /api/v1/cv-report on each request
+backend/data/calibration/cv_report.json
