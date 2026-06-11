@@ -45,9 +45,9 @@ export default function Home() {
       <ConnectionBanner />
       <OnboardingGuide />
 
-      <div className="grid grid-cols-12 gap-4">
-        {/* ── left column ── */}
-        <div className="col-span-3 space-y-3 fade-up fade-up-1">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+        {/* ── left column (scenario input — first on mobile too) ── */}
+        <div className="lg:col-span-3 space-y-3 fade-up fade-up-1">
           <ScenarioControls />
           <ScenarioInfo />
           <ScenarioBuilder />
@@ -55,7 +55,7 @@ export default function Home() {
         </div>
 
         {/* ── centre column ── */}
-        <div className="col-span-6 space-y-3 fade-up fade-up-2">
+        <div className="lg:col-span-6 space-y-3 fade-up fade-up-2">
           <div className="panel p-2 overflow-hidden">
             <PropagationMap />
           </div>
@@ -63,7 +63,7 @@ export default function Home() {
         </div>
 
         {/* ── right column ── */}
-        <div className="col-span-3 space-y-3 fade-up fade-up-3">
+        <div className="lg:col-span-3 space-y-3 fade-up fade-up-3">
           <MetricsPanel />
           <NarrativePanel />
         </div>

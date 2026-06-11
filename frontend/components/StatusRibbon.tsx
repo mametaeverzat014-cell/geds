@@ -47,7 +47,7 @@ export default function StatusRibbon() {
 
   return (
     <div className="space-y-3 border-b border-border-subtle pb-5 mb-2">
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
         {/* left: title + tagline */}
         <div className="min-w-0">
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight flex items-baseline gap-3 flex-wrap">
@@ -64,7 +64,7 @@ export default function StatusRibbon() {
         </div>
 
         {/* right: controls + status */}
-        <div className="flex flex-col items-end gap-2 shrink-0">
+        <div className="flex flex-col items-start sm:items-end gap-2 shrink-0">
           {/* action buttons */}
           <div className="flex items-center gap-2">
             <a href="/validation" className="btn-pill">

@@ -77,6 +77,22 @@ interface AblationReport {
   }>;
 }
 
+interface LooDeReport {
+  timestamp: string;
+  n_folds: number;
+  de_settings: { maxiter: number; popsize_per_dim: number; seed: number };
+  runtime_seconds: number;
+  out_of_sample_score: {
+    mae: number; rmse: number; r_squared: number; pearson: number; spearman: number;
+  };
+  folds: Array<{
+    slug: string;
+    loss_predicted: number;
+    loss_observed: number;
+  }>;
+  reproduce_command: string;
+}
+
 interface BenchmarkReport {
   timestamp: string;
   n_events: number;
@@ -106,6 +122,7 @@ export default function ValidationPage() {
   const [calibration, setCalibration] = useState<CalibrationReport | null>(null);
   const [ablation, setAblation] = useState<AblationReport | null>(null);
   const [bench, setBench] = useState<BenchmarkReport | null>(null);
+  const [looDe, setLooDe] = useState<LooDeReport | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -116,6 +133,7 @@ export default function ValidationPage() {
       fetch(`${API_BASE}/api/v1/calibration-report`).then(r => r.ok ? r.json() : null).then(setCalibration),
       fetch(`${API_BASE}/api/v1/ablation`).then(r => r.ok ? r.json() : null).then(setAblation),
       fetch(`${API_BASE}/api/v1/benchmark`).then(r => r.ok ? r.json() : null).then(setBench),
+      fetch(`${API_BASE}/api/v1/loo-de-report`).then(r => r.ok ? r.json() : null).then(setLooDe),
     ]).catch((e) => setError(String(e)));
   }, []);
 
@@ -454,6 +472,57 @@ export default function ValidationPage() {
               {tr("Winner (MAE):", "Победитель (MAE):")} <span className="text-accent-cyan font-bold">{bench.winner_by_mae}</span>
               &nbsp;·&nbsp;
               {tr("Skill > 0 means the model beats predicting the mean.", "Skill > 0 — модель побеждает наивный бейзлайн.")}
+            </div>
+          </>
+        ) : <div className="text-xs text-text-muted">{tr("Loading…", "Загрузка…")}</div>}
+      </div>
+
+      {/* Out-of-sample LOO-DE verdict */}
+      <div className="panel p-4 space-y-2">
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
+          {tr("Out-of-sample verdict — recalibrated engine", "Out-of-sample вердикт — перекалиброванный движок")}
+        </h2>
+        <p className="text-xs text-text-secondary leading-relaxed max-w-4xl">
+          {tr(
+            "The strictest test we run. For each of the historical events, the engine's 5 parameters are re-fitted from scratch on the other events only (differential evolution), then the held-out event is predicted by a model that has never seen it. The pooled score below therefore cannot be inflated by overfitting — it is directly comparable to the parameter-free linear-diffusion baseline in the leaderboard above. Where the recalibrated engine wins, the win is real; where the baseline still leads (rank correlation), we say so.",
+            "Самый строгий наш тест. Для каждого исторического события 5 параметров движка заново подбираются только на остальных событиях (дифференциальная эволюция), после чего отложенное событие предсказывает модель, которая его никогда не видела. Итоговую оценку ниже невозможно завысить переобучением — она напрямую сопоставима с безпараметрическим бейзлайном (линейная диффузия) из лидерборда выше. Где перекалиброванный движок выигрывает — выигрыш настоящий; где бейзлайн всё ещё впереди (ранговая корреляция) — мы говорим об этом прямо.",
+          )}
+        </p>
+        {looDe ? (
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-5 gap-3 text-xs pt-1">
+              {([
+                ["MAE", looDe.out_of_sample_score.mae.toFixed(4), bench ? looDe.out_of_sample_score.mae < Math.min(...bench.models.filter(m => m.model.includes("Diffusion")).map(m => m.mae)) : false],
+                ["RMSE", looDe.out_of_sample_score.rmse.toFixed(4), false],
+                ["R²", `${looDe.out_of_sample_score.r_squared >= 0 ? "+" : ""}${looDe.out_of_sample_score.r_squared.toFixed(3)}`, false],
+                ["Pearson", `${looDe.out_of_sample_score.pearson >= 0 ? "+" : ""}${looDe.out_of_sample_score.pearson.toFixed(3)}`, false],
+                ["Spearman", `${looDe.out_of_sample_score.spearman >= 0 ? "+" : ""}${looDe.out_of_sample_score.spearman.toFixed(3)}`, false],
+              ] as Array<[string, string, boolean]>).map(([label, value, star]) => (
+                <div key={label}>
+                  <div className="text-text-muted uppercase tracking-wider text-[10px]">{label}</div>
+                  <div className={`num ${star ? "text-accent-cyan font-bold" : "text-text-primary"}`}>{star && "★ "}{value}</div>
+                </div>
+              ))}
+            </div>
+            <details className="pt-1">
+              <summary className="text-[11px] text-text-muted cursor-pointer hover:text-text-secondary transition">
+                {tr(`Per-event predictions (${looDe.n_folds} held-out folds)`, `Прогнозы по событиям (${looDe.n_folds} отложенных фолдов)`)}
+              </summary>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-1 pt-2 text-[11px]">
+                {looDe.folds.map((f) => (
+                  <div key={f.slug} className="flex justify-between gap-2">
+                    <span className="text-text-secondary truncate">{f.slug}</span>
+                    <span className="num text-text-muted shrink-0">
+                      {f.loss_predicted.toFixed(3)} <span className="text-text-muted/50">vs</span> {f.loss_observed.toFixed(3)}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </details>
+            <div className="text-[10px] text-text-muted pt-1">
+              {tr("Computed", "Вычислено")} {new Date(looDe.timestamp).toLocaleString()} ·{" "}
+              {tr("runtime", "время")} {(looDe.runtime_seconds / 60).toFixed(0)} {tr("min", "мин")} ·{" "}
+              {tr("reproduce:", "воспроизвести:")} <span className="num text-text-secondary">{looDe.reproduce_command}</span>
             </div>
           </>
         ) : <div className="text-xs text-text-muted">{tr("Loading…", "Загрузка…")}</div>}
