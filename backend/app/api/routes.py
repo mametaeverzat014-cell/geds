@@ -620,6 +620,27 @@ def ablation() -> dict:
     }
 
 
+@router.get("/loo-de-report", tags=["validation"])
+def loo_de_report() -> dict:
+    """Out-of-sample LOO-DE verdict: per-fold DE re-calibration, pooled score.
+
+    Serves the artifact written by ``python -m scripts.loo_de_validation``
+    (a ~30 min run, so it is precomputed rather than recomputed per request).
+    The payload carries its own provenance — timestamp, DE settings, runtime
+    and every per-fold prediction — so the UI can show exactly where the
+    numbers come from and how to reproduce them.
+    """
+    path = Path(__file__).parent.parent.parent / "data" / "calibration" / "loo_de_result.json"
+    if not path.exists():
+        raise HTTPException(
+            status_code=404,
+            detail="loo_de_result.json not generated yet — run: python -m scripts.loo_de_validation",
+        )
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    payload["reproduce_command"] = "python -m scripts.loo_de_validation"
+    return payload
+
+
 @router.get("/benchmark", tags=["validation"])
 def benchmark() -> dict:
     """Unified model leaderboard: SEIRS vs Leontief vs Diffusion vs naive."""
