@@ -1,6 +1,6 @@
 # GEDS Benchmark Leaderboard
 
-- Generated: 2026-06-09T20:15:10.794676+00:00
+- Generated: 2026-06-11T03:03:12.383481+00:00
 - Events: 21  |  NDCG cutoff: k=5
 - Pinned config: seed=0, stochastic_sigma=0.0
 
@@ -8,9 +8,9 @@ Error metrics: lower MAE/RMSE is better. Ranking metrics (Pearson/Spearman/Kenda
 
 | Model | N | MAE | RMSE | R² | Pearson | Spearman | Kendall | NDCG@5 | Skill |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| SEIRS-Bullwhip-Hysteresis (GEDS) | 21 | 0.0216 | 0.0379 | -1.0085 | 0.1396 | 0.3611 | 0.2634 | 0.4408 | -1.0085 |
-| Leontief (input-output equilibrium) | 21 | 0.0180 | 0.0321 | -0.4436 | -0.0718 | 0.2151 | 0.1268 | 0.2286 | -0.4436 |
-| Linear Diffusion (network) | 21 | 0.0130 | 0.0169 | 0.5999 | 0.8222 | 0.5978 | 0.4586 | 0.9363 | 0.5999 |
+| SEIRS-Bullwhip-Hysteresis (GEDS) | 21 | 0.0192 | 0.0362 | -0.8328 | 0.1663 | 0.4212 | 0.2954 | 0.5824 | -0.8328 |
+| Leontief (input-output equilibrium) | 21 | 0.0154 | 0.0301 | -0.2642 | 0.0064 | 0.2741 | 0.1501 | 0.2708 | -0.2642 |
+| Linear Diffusion (network) | 21 | 0.0111 | 0.0140 | 0.7246 | 0.9053 | 0.8105 | 0.6635 | 0.9704 | 0.7246 |
 | Naive Persistence (predict mean) | 21 | 0.0168 | 0.0268 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | — | 0.0000 |
 
 ## Winners

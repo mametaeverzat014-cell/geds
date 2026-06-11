@@ -249,6 +249,21 @@ EDGES_RAW: list[tuple[str, str, float, float, float, float, float, float]] = [
     (_n("USA", Industry.AUTOMOTIVE),     _n("USA", Industry.CONSUMER_GOODS), 0.10, 0.40, 0.55, 0.30,  6, 10.0),
     (_n("DEU", Industry.AUTOMOTIVE),     _n("DEU", Industry.ELECTRONICS),    0.12, 0.40, 0.55, 0.30,  6,  4.0),
     (_n("CHN", Industry.ELECTRONICS),    _n("CHN", Industry.CONSUMER_GOODS), 0.18, 0.45, 0.50, 0.28,  6, 22.0),
+
+    # ── MYS semiconductor packaging/assembly → automotive (added 2026-06) ──
+    # Structural fix: MYS:semiconductors previously had ZERO outbound edges
+    # (a sink), so the Malaysia-2021 lockdown event could not cascade at all
+    # (LOO predicted exactly 0 vs observed 1.2% global auto loss).
+    # Malaysia hosts ~13% of global semiconductor assembly/test (SIA 2021;
+    # McKinsey 2021) with heavy auto-MCU packaging (Infineon Melaka, NXP and
+    # STMicro Penang/Muar). dependency_weight = global ATP share (0.13) ×
+    # auto sector_exposure_factor (0.55) ≈ 0.07, allocated conservatively
+    # across the three largest auto producers; substitution is high because
+    # assembly/test requalification takes months (same convention as TWN
+    # semi edges above).
+    (_n("MYS", Industry.SEMICONDUCTORS), _n("USA", Industry.AUTOMOTIVE),     0.06, 0.85, 0.18, 0.18, 12,  0.8),
+    (_n("MYS", Industry.SEMICONDUCTORS), _n("DEU", Industry.AUTOMOTIVE),     0.06, 0.85, 0.18, 0.18, 12,  0.6),
+    (_n("MYS", Industry.SEMICONDUCTORS), _n("JPN", Industry.AUTOMOTIVE),     0.05, 0.85, 0.18, 0.18, 12,  0.5),
 ]
 
 
@@ -276,6 +291,43 @@ CHOKEPOINT_LINKS: list[tuple[str, str, float]] = [
     # Hormuz: energy price channel (JPN=0.87, CHN=0.44 energy exposure via Hormuz → indirect)
     ("CP:Hormuz",       _n("JPN", Industry.AUTOMOTIVE),     0.12),
     ("CP:Hormuz",       _n("CHN", Industry.ELECTRONICS),    0.08),
+
+    # ── Chokepoint → shipping exposure (added 2026-06) ─────────────────────
+    # Structural fix: shipping nodes previously had NO inbound edges at all,
+    # so a Suez blockage predicted exactly zero shipping-industry impact
+    # (Suez-2021 and Red-Sea-2023 events: LOO predicted 0.000 vs observed
+    # 0.8–1.0%).
+    #
+    # Carriers — unlike cargo — keep operating through a blockage by taking
+    # the longer alternative route, so the carrier's output loss is NOT its
+    # traffic share through the strait. It is:
+    #
+    #   weight = traffic_share × (cost_c − 1) / cost_c
+    #
+    # where (cost_c − 1)/cost_c is the fraction of fleet capacity consumed by
+    # the longer route (a voyage that costs 1.35× delivers 1/1.35 of the
+    # throughput per ship-day). cost_c is the SAME literature-sourced
+    # reroute_cost_multiplier already defined in CHOKEPOINTS above — no new
+    # free parameter is introduced. Cross-check: Red Sea 2023–24 saw Suez
+    # transits fall >50% while delivered global trade dipped only ~1–2%
+    # (UNCTAD Feb 2024) — consistent with the ~26% capacity factor for Suez,
+    # not with a naive 100% traffic-share loss.
+    #
+    # traffic_share sources: Suez→NLD 0.30 (Asia–Europe leg ≈ 30–40% of
+    # Rotterdam throughput, UNCTAD 2024 / Port of Rotterdam 2023);
+    # Suez→CHN 0.10 (Europe-bound ≈ 10–15% of China container exports,
+    # UN Comtrade); Malacca→CHN 0.30, Malacca→TWN 0.15 (IEA Malacca
+    # exposure, §iea_chokepoint_exposure); TaiwanStrait→TWN 0.70 (same
+    # strait exposure as TWN semi/electronics above).
+    #
+    #   Suez (1.35):   NLD 0.30×0.26 = 0.08   CHN 0.10×0.26 = 0.03
+    #   Malacca (1.10): CHN 0.30×0.09 = 0.03  TWN 0.15×0.09 = 0.015
+    #   TaiwanStrait (1.15): TWN 0.70×0.13 = 0.09
+    ("CP:Suez",         _n("NLD", Industry.SHIPPING),       0.08),
+    ("CP:Suez",         _n("CHN", Industry.SHIPPING),       0.03),
+    ("CP:Malacca",      _n("CHN", Industry.SHIPPING),       0.03),
+    ("CP:Malacca",      _n("TWN", Industry.SHIPPING),       0.015),
+    ("CP:TaiwanStrait", _n("TWN", Industry.SHIPPING),       0.09),
 ]
 
 
@@ -655,7 +707,12 @@ HISTORICAL_EVENTS: list[dict] = [
         "slug": "yantian-port-closure-2021",
         "name": "Yantian port COVID closure (May–Jun 2021)",
         "shocks": [
-            {"target_node_id": _n("CHN", Industry.SHIPPING), "magnitude": 0.35,
+            # Node-level magnitude (convention fix 2026-06): the node is ALL
+            # of China shipping, not the Yantian terminal. Yantian ≈ 10% of
+            # China container exports; it ran at ~30% capacity ⇒ node-level
+            # shock ≈ 0.10 × 0.70 = 0.07. The original 0.35 mistakenly used
+            # the facility-level capacity loss.
+            {"target_node_id": _n("CHN", Industry.SHIPPING), "magnitude": 0.07,
              "start_week": 0, "duration_weeks": 4, "decay_curve": "step"},
         ],
         "horizon_weeks": 12,
