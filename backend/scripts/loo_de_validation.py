@@ -20,7 +20,7 @@ from __future__ import annotations
 
 import json
 import time
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 import numpy as np
@@ -46,13 +46,13 @@ OBJ_SIGMA = {"loss": 0.05, "infl": 0.01, "recovery": 0.20}
 OUT_PATH = Path(__file__).resolve().parents[1] / "data" / "calibration" / "loo_de_result.json"
 
 
-def _config(theta: np.ndarray) -> EngineConfig:
+def _config(theta: np.ndarray, overrides: dict | None = None) -> EngineConfig:
     kw = dict(zip(PARAM_NAMES, (float(x) for x in theta), strict=True))
-    return EngineConfig(seed=0, stochastic_sigma=0.0, **kw)
+    return EngineConfig(seed=0, stochastic_sigma=0.0, **kw, **(overrides or {}))
 
 
-def _objective(theta: np.ndarray, graph, events: list[dict]) -> float:
-    config = _config(theta)
+def _objective(theta: np.ndarray, graph, events: list[dict], overrides: dict | None = None) -> float:
+    config = _config(theta, overrides)
     total = 0.0
     for event in events:
         try:
@@ -70,6 +70,27 @@ def _objective(theta: np.ndarray, graph, events: list[dict]) -> float:
 
 
 def main() -> None:
+    import argparse
+
+    ap = argparse.ArgumentParser(
+        description="LOO-DE out-of-sample validation; optional fixed-config "
+                    "overrides for mechanism experiments (e.g. --r-output-floor 0)",
+    )
+    ap.add_argument("--r-output-floor", type=float, default=None,
+                    help="override the (non-calibrated) R-state output floor")
+    ap.add_argument("--per-node-recovery", action="store_true",
+                    help="enable the per-node recovery coupling (Batch 9b mechanism)")
+    ap.add_argument("--out", type=Path, default=OUT_PATH,
+                    help=f"output JSON path (default {OUT_PATH.name})")
+    args = ap.parse_args()
+
+    overrides: dict = {}
+    if args.r_output_floor is not None:
+        overrides["r_output_floor"] = args.r_output_floor
+    if args.per_node_recovery:
+        overrides["per_node_recovery"] = True
+    out_path = args.out
+
     graph = compile_graph(load_graph())
     bounds = [PARAM_BOUNDS[n] for n in PARAM_NAMES]
 
@@ -78,12 +99,12 @@ def main() -> None:
     for i, held_out in enumerate(HISTORICAL_EVENTS):
         train = [e for j, e in enumerate(HISTORICAL_EVENTS) if j != i]
         res = differential_evolution(
-            _objective, bounds, args=(graph, train),
+            _objective, bounds, args=(graph, train, overrides),
             strategy="best1bin", maxiter=DE_MAXITER, popsize=DE_POPSIZE,
             tol=1e-3, mutation=(0.5, 1.0), recombination=0.7,
             seed=DE_SEED, updating="deferred", workers=1, polish=False, init="sobol",
         )
-        r = backtest_event(held_out, graph, _config(res.x))
+        r = backtest_event(held_out, graph, _config(res.x, overrides))
         preds.append(r.industry_loss_predicted)
         obs.append(r.industry_loss_observed)
         folds.append({
@@ -99,9 +120,10 @@ def main() -> None:
 
     score = _score("GEDS SEIRS (LOO-DE, out-of-sample)", np.array(preds), np.array(obs))
     payload = {
-        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "timestamp": datetime.now(UTC).isoformat(),
         "n_folds": len(folds),
         "de_settings": {"maxiter": DE_MAXITER, "popsize_per_dim": DE_POPSIZE, "seed": DE_SEED},
+        "config_overrides": overrides,
         "runtime_seconds": round(time.perf_counter() - t0, 1),
         "out_of_sample_score": {
             "mae": score.mae, "rmse": score.rmse, "r_squared": score.r_squared,
@@ -109,11 +131,11 @@ def main() -> None:
         },
         "folds": folds,
     }
-    OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    OUT_PATH.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     print(f"\nOut-of-sample: MAE={score.mae:.4f} RMSE={score.rmse:.4f} "
           f"Pearson={score.pearson:+.3f} Spearman={score.spearman:+.3f} R2={score.r_squared:+.3f}")
-    print(f"Wrote {OUT_PATH}")
+    print(f"Wrote {out_path}")
 
 
 if __name__ == "__main__":

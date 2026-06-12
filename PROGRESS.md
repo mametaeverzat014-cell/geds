@@ -514,3 +514,39 @@ TWN→JPN:auto 0.240 manual vs 0.246 measured, TWN→DEU:auto 0.070 vs 0.077,
 TWN→THA:auto 0.150 vs 0.165. One under-weight surfaced: MYS→USA:auto 0.060
 manual vs 0.182 measured (Malaysia's ATP role) — joins the Batch-9
 correction-candidate list. Pinned by `test_c26_split_overlay`.
+
+### Batch 9d — pre-registered experiment: removing the R-state output floor (2026-06-12, running)
+
+The subtractive candidate from the 9b post-mortem, instrumented and
+PRE-REGISTERED before the out-of-sample run completes (protocol identical
+to 9b; `scripts/loo_de_validation.py` gained `--r-output-floor/--out`
+overrides so experiments never touch engine defaults).
+
+**Mechanism trace (default params).** `r_output_floor=0.30` pins
+`output_loss ≥ 0.30` for every node in R-state until its
+`recovery_delay_weeks` hysteresis elapses. Exactly four events move when
+the floor is removed, and they explain the entire ablation gain
+(MAE 0.0220 → 0.0144, RMSE 0.0446 → 0.0276):
+
+| event | obs | floor 0.30 | floor 0 |
+|---|---|---|---|
+| vietnam-covid-lockdown-2021 (worst miss in the set) | 0.0120 | 0.1399 | **0.0070** |
+| taiwan-chichi-earthquake-1999 | 0.0050 | 0.1605 | **0.0650** |
+| suez-canal-2021 | 0.0080 | 0.0193 | **0.0063** |
+| covid-semiconductor-2020-2021 | 0.1150 | 0.0435 | 0.0142 ⚠ |
+
+This is the impulse/near-miss over-prediction engine-wide: not shock decay
+(9b), not missing inventory absorption (Batch 8) — nodes that brush
+through I→R drag a hard-coded 30% output loss for ~8 weeks regardless of
+how small the shock was. The floor's one real service is carrying part of
+COVID-semi's persistent loss (⚠ under-prediction deepens 0.0435 → 0.0142);
+in LOO the per-fold calibrator may compensate (e.g. via lower
+recovery_rate) — that is what the experiment measures.
+
+**Pre-registered decision rule.** Adopt `r_output_floor=0.0` as engine
+default only if the 26-fold LOO-DE with the floor off improves pooled
+out-of-sample MAE vs the canonical 0.0170 without collapsing rank metrics
+(Spearman must stay ≥ ~0.45); the COVID-semi fold movement is recorded
+either way. Negative result ⇒ same disposition as 9b: keep the mechanism,
+document, don't adopt. Artifact will land at
+`data/calibration/loo_de_floor_experiment.json`.
