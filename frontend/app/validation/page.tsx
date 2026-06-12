@@ -122,6 +122,32 @@ interface GscpiReport {
   n_non_overlapping: number;
 }
 
+interface IcioEdgeCheck {
+  year: number;
+  source: string;
+  summary: {
+    n_production_edges: number;
+    n_chokepoint_links_excluded: number;
+    n_total_seed_edges: number;
+    correlations: Record<string, { n: number; pearson?: number; spearman?: number }>;
+    by_family: Record<string, Record<string, { n: number; pearson?: number; spearman?: number }>>;
+    worst_disagreements: Array<{
+      edge: string;
+      manual: number;
+      comparator: number | null;
+      manual_over_comparator: number | null;
+      family: string;
+      mapping_caveats: string[];
+    }>;
+  };
+}
+
+interface IcioC26Split {
+  importer_world_semi_share: Record<string, number>;
+  semi_family_correlation_excl_capital_channel: { n: number; pearson?: number; spearman?: number };
+  semi_family_correlation_manual_vs_refined: { n: number; pearson?: number; spearman?: number };
+}
+
 interface BenchmarkReport {
   timestamp: string;
   n_events: number;
@@ -154,6 +180,8 @@ export default function ValidationPage() {
   const [looDe, setLooDe] = useState<LooDeReport | null>(null);
   const [portwatch, setPortwatch] = useState<PortwatchReport | null>(null);
   const [gscpi, setGscpi] = useState<GscpiReport | null>(null);
+  const [icio, setIcio] = useState<IcioEdgeCheck | null>(null);
+  const [c26, setC26] = useState<IcioC26Split | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -167,6 +195,8 @@ export default function ValidationPage() {
       fetch(`${API_BASE}/api/v1/loo-de-report`).then(r => r.ok ? r.json() : null).then(setLooDe),
       fetch(`${API_BASE}/api/v1/portwatch-validation`).then(r => r.ok ? r.json() : null).then(setPortwatch),
       fetch(`${API_BASE}/api/v1/gscpi-validation`).then(r => r.ok ? r.json() : null).then(setGscpi),
+      fetch(`${API_BASE}/api/v1/icio-edge-check`).then(r => r.ok ? r.json() : null).then(setIcio),
+      fetch(`${API_BASE}/api/v1/icio-c26-split`).then(r => r.ok ? r.json() : null).then(setC26),
     ]).catch((e) => setError(String(e)));
   }, []);
 
@@ -610,6 +640,87 @@ export default function ValidationPage() {
             <div className="text-[10px] text-text-muted">{gscpi.caveat}</div>
           </div>
         ) : <div className="text-xs text-text-muted">{tr("GSCPI: loading…", "GSCPI: загрузка…")}</div>}
+      </div>
+
+      {/* ICIO edge cross-validation */}
+      <div className="panel p-4 space-y-3">
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
+          {tr("Graph weights vs OECD ICIO 2019 — measured input-output flows", "Веса графа против OECD ICIO 2019 — измеренные межотраслевые потоки")}
+        </h2>
+        <p className="text-xs text-text-secondary leading-relaxed max-w-4xl">
+          {tr(
+            "The OECD Inter-Country Input-Output table measures, in dollars, how much every country-industry buys from every other. Every hand-authored dependency weight in the graph is recomputed from those measured 2019 flows and compared like-for-like (import penetration — the same convention the weights were authored with from UN Comtrade). Chokepoint links are excluded: straits are not producing sectors (their capacity-factor convention is checked against IMF PortWatch above).",
+            "Таблица OECD ICIO измеряет в долларах, сколько каждая страна-отрасль покупает у каждой другой. Каждый ручной вес зависимости в графе пересчитан из измеренных потоков 2019 года и сравнён в одинаковой конвенции (импортная пенетрация — та же, в которой веса авторились по UN Comtrade). Chokepoint-связи исключены: проливы — не производящие сектора (их capacity-фактор проверяется по IMF PortWatch выше).",
+          )}
+        </p>
+        {icio ? (
+          <div className="space-y-2 text-xs">
+            <div className="flex flex-wrap gap-x-5 gap-y-1">
+              <span className="text-text-muted">
+                {tr("Coverage: ", "Покрытие: ")}
+                <span className="num text-text-primary">
+                  {icio.summary.n_production_edges}
+                </span>{" "}
+                {tr("production edges scored + ", "производственных рёбер оценено + ")}
+                <span className="num text-text-primary">{icio.summary.n_chokepoint_links_excluded}</span>{" "}
+                {tr("chokepoint links excluded = all ", "chokepoint-связей исключено = все ")}
+                <span className="num text-text-primary">{icio.summary.n_total_seed_edges}</span>
+                {tr(" seed edges", " рёбер графа")}
+              </span>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+              {Object.entries(icio.summary.correlations).map(([k, v]) => (
+                <div key={k} className="rounded-lg border border-border-subtle bg-bg-base/40 px-2.5 py-1.5">
+                  <div className="text-[9px] uppercase tracking-wider text-text-muted truncate" title={k}>
+                    {k.replace("icio_", "").replace(/_/g, " ")}
+                  </div>
+                  <div className="num text-text-primary">
+                    ρ {v.spearman != null ? (v.spearman >= 0 ? "+" : "") + v.spearman.toFixed(2) : "—"}
+                    <span className="text-text-muted text-[10px] ml-1.5">n={v.n}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            {c26 && c26.semi_family_correlation_excl_capital_channel.pearson != null && (
+              <div className="rounded-lg border border-accent-cyan/30 bg-accent-cyan/5 px-3 py-2">
+                <span className="text-text-primary font-semibold">
+                  {tr("C26 split headline: ", "Главный результат C26-сплита: ")}
+                </span>
+                <span className="text-text-secondary">
+                  {tr(
+                    `with ICIO's C26 sector split into semiconductors vs electronics via the committed Comtrade pull, the hand-authored semi-family weights validate at Pearson ${c26.semi_family_correlation_excl_capital_channel.pearson!.toFixed(2)} / Spearman ${c26.semi_family_correlation_excl_capital_channel.spearman!.toFixed(2)} (n=${c26.semi_family_correlation_excl_capital_channel.n}; the three NLD/ASML edges excluded — equipment is a measured capital-account flow that intermediate shares cannot represent).`,
+                    `после разделения сектора C26 на полупроводники и электронику через закоммиченный Comtrade-пулл ручные semi-веса подтверждаются: Пирсон ${c26.semi_family_correlation_excl_capital_channel.pearson!.toFixed(2)} / Спирмен ${c26.semi_family_correlation_excl_capital_channel.spearman!.toFixed(2)} (n=${c26.semi_family_correlation_excl_capital_channel.n}; три ребра NLD/ASML исключены — оборудование идёт капитальным потоком, который промежуточные доли представить не могут).`,
+                  )}
+                </span>
+              </div>
+            )}
+            <div className="pt-1 border-t border-border-subtle/50">
+              <div className="text-[10px] uppercase tracking-wider text-text-muted mb-1">
+                {tr("Largest disagreements (manual ÷ measured)", "Крупнейшие расхождения (ручной ÷ измеренный)")}
+              </div>
+              <div className="space-y-0.5">
+                {icio.summary.worst_disagreements.slice(0, 5).map((w) => (
+                  <div key={w.edge} className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
+                    <span className="num text-text-primary">{w.edge}</span>
+                    <span className="num text-text-secondary">
+                      {w.manual.toFixed(3)} {tr("vs", "против")} {w.comparator != null ? w.comparator.toFixed(4) : "—"}
+                      {w.manual_over_comparator != null && (
+                        <span className={w.manual_over_comparator > 5 || w.manual_over_comparator < 0.2 ? " text-sev-4" : " text-text-muted"}>
+                          {"  ×"}{w.manual_over_comparator.toFixed(1)}
+                        </span>
+                      )}
+                    </span>
+                    {w.mapping_caveats.length > 0 && (
+                      <span className="text-[10px] text-text-muted truncate max-w-[28rem]" title={w.mapping_caveats.join("; ")}>
+                        {w.mapping_caveats[0]}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : <div className="text-xs text-text-muted">{tr("ICIO: loading…", "ICIO: загрузка…")}</div>}
       </div>
 
       {/* Ablation */}

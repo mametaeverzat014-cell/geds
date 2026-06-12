@@ -550,3 +550,36 @@ out-of-sample MAE vs the canonical 0.0170 without collapsing rank metrics
 either way. Negative result ⇒ same disposition as 9b: keep the mechanism,
 document, don't adopt. Artifact will land at
 `data/calibration/loo_de_floor_experiment.json`.
+
+**Batch 9d verdict (26-fold LOO-DE, 65 min): REJECTED at the pre-registered
+gate — the floor stays.**
+
+| | MAE | RMSE | Pearson | Spearman | R² |
+|---|---|---|---|---|---|
+| floor 0.30 (canonical Batch 7) | **0.0170** | **0.0395** | **+0.166** | **0.525** | **−1.525** |
+| floor 0 (9d experiment) | 0.0183 | 0.0427 | −0.009 | 0.419 | −1.952 |
+
+Every pooled metric got worse; Pearson collapsed to zero and Spearman fell
+below the 0.45 gate. The fold autopsies explain why the default-param gain
+was a mirage: (1) the COVID-semi fold cratered 0.0469 → 0.0062 (observed
+0.115) — without the floor the fold calibrator went degenerate
+(recovery_rate 0.165, inventory_scale 0.36) and the one service the floor
+provided (persistent-crisis loss) has no replacement; (2) Chi-Chi did not
+move at all out-of-sample (0.1850 → 0.1848) — the calibrator rebuilt the
+same over-prediction through amplification_mu 7.26 + bullwhip 1.99 at their
+bounds; (3) vietnam-covid was ALREADY fine in LOO (0.0111) — per-fold
+recalibration had quietly absorbed the floor's worst in-sample distortion
+all along. Artifact: `loo_de_floor_experiment.json`. No engine change;
+`r_output_floor` keeps its 0.30 default.
+
+**Conclusion after three pre-registered mechanism experiments (B8
+inventory absorption, 9b per-node recovery, 9d floor removal): the 5-param
+calibration layer is flexible enough to mask, route around, or rebuild any
+single-component structural edit at N=26.** In-sample/default-config gains
+systematically do not survive per-fold recalibration. This closes the
+"one more mechanism will fix it" road and leaves the two honest exits that
+Batch 4 already flagged: (a) adopt linear diffusion as the production
+propagation kernel (it wins ranking out-of-sample with zero parameters)
+and keep SEIRS as the research layer, or (b) grow N — the ICIO-grounded
+graph expansion plus a 30+ event set — before touching engine structure
+again. Both are data/architecture decisions, not mechanism patches.
