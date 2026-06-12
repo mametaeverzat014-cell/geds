@@ -331,3 +331,23 @@ dynamics** (e.g., couple shock decay to the node's existing
 `recovery_delay_weeks` instead of one global rate). The negative experiment
 is preserved here deliberately — it converts the audit's old "recovery
 miscalibrated" note into a mechanistic diagnosis.
+
+### Batch 7 verdict — out-of-sample LOO-DE on the adversarial N=26 set (2026-06-11)
+
+| | MAE | Pearson | Spearman | R² |
+|---|---|---|---|---|
+| GEDS LOO-recalibrated, N=21 set | 0.0083 | 0.910 | 0.617 | +0.824 |
+| **GEDS LOO-recalibrated, N=26 adversarial** | **0.0170** | **0.166** | 0.525 | **−1.525** |
+| Best baseline on N=26 (Leontief MAE) | 0.0144 | — | — | — |
+
+**The N=21 out-of-sample win did not survive the adversarial expansion.**
+Per-fold recalibration cannot absorb the near-misses either: the worst fold
+is Chi-Chi (predicted 0.185 vs observed 0.005 — the source node never heals
+within the horizon), followed by the two big chip crises now UNDER-predicted
+(COVID 0.047 vs 0.115) because the calibrator is pulled in opposite
+directions by fast-recovery and slow-recovery events. This is precisely the
+Batch-8 mechanistic diagnosis showing up out-of-sample: **a single global
+recovery_rate is the binding structural constraint.** Per-node recovery
+dynamics (couple shock decay to the existing per-node recovery_delay_weeks)
+is now the top-priority engine change, with a ready-made falsification test:
+it must fix Chi-Chi without breaking COVID.
