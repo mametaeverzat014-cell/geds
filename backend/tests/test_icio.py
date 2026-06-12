@@ -118,3 +118,26 @@ def test_expansion_prototype_consistency():
     # world sector shares sum to 1 per industry
     sums = nodes.groupby("industry")["world_sector_share"].sum()
     assert np.allclose(sums, 1.0, atol=0.01)
+
+
+def test_c26_split_overlay():
+    from app.core.icio import run_c26_split
+
+    payload = run_c26_split()
+    shares = payload["importer_world_semi_share"]
+    # measured trade structure: chip-importing assemblers vs finished-goods importers
+    assert shares["TWN"] > 0.80
+    assert shares["MYS"] > 0.75
+    assert shares["USA"] < 0.25
+    # every cross-border semi-family edge is rescored
+    assert len(payload["edges"]) == 28
+    for r in payload["edges"]:
+        pen = r["icio_semi_import_penetration"]
+        if pen is not None:
+            assert 0.0 <= pen <= 1.0
+    # the headline: with the three capital-channel (ASML) edges excluded, the
+    # hand-authored semi weights track the measured semi-specific penetration
+    corr = payload["semi_family_correlation_excl_capital_channel"]
+    assert corr["n"] == 25
+    assert corr["pearson"] > 0.7
+    assert corr["spearman"] > 0.7

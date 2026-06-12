@@ -461,3 +461,25 @@ pushed `recovery_rate` to the 0.01 bound trying to serve slow-recovery
 crises, freezing Chi-Chi's source (fold prediction 0.185). With coupling,
 that same calibrated floor still lets TWN:semi heal 4× faster. 26-fold
 LOO-DE rerun in progress; verdict to be appended with the artifact.
+
+### Batch 9c — C26 semi/electronics split overlay (2026-06-12, same day)
+
+The one mapping collision flagged in Batch 9 (ICIO C26 bundles semis with
+computers/phones/displays) resolved with data already in the repo: the
+committed UN Comtrade 2019 pull measures, per (importer, exporter) pair,
+the semiconductor share of C26-type goods — (HS 8541+8542)/(+8471/8517/8528).
+`scripts/icio_c26_split.py` → `data/calibration/icio_c26_split.json`;
+importer world-shares match known trade structure (TWN 0.85, MYS 0.83,
+CHN 0.82 — chip-importing assemblers; USA 0.17 — finished-goods importer).
+
+**Headline: the semi-family hand weights are validated.** Rescoring all 28
+cross-border semi edges with a semi-specific import penetration (exporter
+C26 flows × pair semi-share): manual vs measured **Pearson 0.842 /
+Spearman 0.792 (n=25)** once the three NLD/ASML edges — the proven
+capital-account channel that flow shares cannot represent — are excluded.
+The raw Batch-9 comparator showed only ~0.30 for this family; the gap was
+the C26 collision, not the hands. Spot checks land within authoring noise:
+TWN→JPN:auto 0.240 manual vs 0.246 measured, TWN→DEU:auto 0.070 vs 0.077,
+TWN→THA:auto 0.150 vs 0.165. One under-weight surfaced: MYS→USA:auto 0.060
+manual vs 0.182 measured (Malaysia's ATP role) — joins the Batch-9
+correction-candidate list. Pinned by `test_c26_split_overlay`.

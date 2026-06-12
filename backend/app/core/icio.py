@@ -442,7 +442,172 @@ def run_graph_expansion(
     return nodes, edges, meta
 
 
+# ------------------- C26 semi/electronics split overlay ----------------------
+#
+# ICIO C26 bundles semiconductors with the rest of computer/electronic/optical
+# manufacturing — the one mapping collision flagged by run_edge_check and the
+# expansion prototype. The committed UN Comtrade 2019 imports (the same pull
+# the original edge weights were authored from) let us measure, per importer
+# and per trade partner, what share of C26-type goods is semiconductors:
+#
+#   semi_share = (HS 8541 + 8542) / (HS 8541 + 8542 + 8471 + 8517 + 8528)
+#
+# i.e. chips+components over chips+components+computers+phones+displays.
+# This is goods trade only (CIF, importer-reported) — an approximation of the
+# C26 product mix, not of domestic production, so it refines only the
+# cross-border semi-family comparators.
+
+COMTRADE_DIR = Path(__file__).resolve().parents[2] / "data" / "raw" / "comtrade"
+
+SEMI_HS = ("8541", "8542")
+ELEC_HS = ("8471", "8517", "8528")
+
+# UN M49 reporter codes of the committed pull -> graph country codes.
+# 490 "Other Asia, nes" is how Comtrade reports Taiwan (also partnerISO S19).
+COMTRADE_REPORTERS = {
+    156: "CHN", 276: "DEU", 392: "JPN", 410: "KOR", 458: "MYS", 484: "MEX",
+    490: "TWN", 528: "NLD", 699: "IND", 704: "VNM", 764: "THA", 842: "USA",
+}
+_PARTNER_ISO_FIX = {"S19": "TWN"}
+
+
+def load_c26_trade(year: int = 2019) -> pd.DataFrame:
+    """Tidy (importer, exporter, hs, value_usd) for the five C26-type HS codes."""
+    frames = []
+    for m49, iso3 in COMTRADE_REPORTERS.items():
+        for hs in SEMI_HS + ELEC_HS:
+            path = COMTRADE_DIR / f"comtrade_A_M_{m49}_{hs}_{year}.parquet"
+            if not path.exists():
+                continue
+            df = pd.read_parquet(
+                path, columns=["partnerISO", "cmdCode", "primaryValue"]
+            )
+            df = df.rename(columns={"partnerISO": "exporter", "cmdCode": "hs",
+                                    "primaryValue": "value_usd"})
+            df["exporter"] = df["exporter"].replace(_PARTNER_ISO_FIX)
+            df["importer"] = iso3
+            frames.append(df)
+    if not frames:
+        raise FileNotFoundError(f"no Comtrade parquet files under {COMTRADE_DIR}")
+    return pd.concat(frames, ignore_index=True)
+
+
+def run_c26_split(year: int = 2019, min_pair_usd: float = 5e7) -> dict:
+    """Measure semi vs non-semi composition of C26-type imports, then rescore
+    the cross-border semi-family edges with a semi-specific import penetration.
+
+    Refinement: every exporter's ICIO C26 flow into the target sector is
+    multiplied by that (exporter -> importer) semi_share (fallback: the
+    importer's world share) before the penetration ratio is recomputed, so the
+    denominator is the target's *semiconductor* import basket instead of all
+    C26 goods.
+    """
+    from scipy import stats
+
+    from ..data.seed_data import EDGES_RAW
+
+    trade = load_c26_trade(year)
+
+    # importer-level shares from the World rows (W00)
+    world = trade[trade["exporter"] == "W00"]
+    world_semi = world[world["hs"].isin(SEMI_HS)].groupby("importer")["value_usd"].sum()
+    world_all = world.groupby("importer")["value_usd"].sum()
+    world_share = (world_semi / world_all).to_dict()
+
+    # pair-level shares
+    pairs = trade[trade["exporter"] != "W00"]
+    pair_tot = pairs.groupby(["importer", "exporter"])["value_usd"].sum()
+    pair_semi = (
+        pairs[pairs["hs"].isin(SEMI_HS)]
+        .groupby(["importer", "exporter"])["value_usd"].sum()
+    )
+    pair_share = (pair_semi / pair_tot).dropna()
+    pair_share = pair_share[pair_tot.loc[pair_share.index] >= min_pair_usd]
+
+    def share(importer: str, exporter: str) -> float:
+        v = pair_share.get((importer, exporter))
+        return float(v) if v is not None else float(world_share.get(importer, np.nan))
+
+    # rescore the cross-border semi-family edges
+    df = load_icio(year)
+    z = intermediate_block(df)
+    c26_rows = [r for r in z.index if r.endswith("_C26")]
+
+    records = []
+    for src, tgt, dep, *_rest in EDGES_RAW:
+        if classify_edge_family(src, tgt) != "penetration_x_exposure":
+            continue
+        src_c, src_ind = src.split(":")
+        tgt_c, tgt_ind = tgt.split(":")
+        if src_c == tgt_c or src_ind != "semiconductors":
+            continue
+        tgt_cols = _labels(tgt_c, tgt_ind)
+        flows = z.loc[c26_rows, tgt_cols].sum(axis=1)          # per exporter row
+        semi_flows = {
+            r.split("_", 1)[0]: float(flows[r]) * share(tgt_c, r.split("_", 1)[0])
+            for r in c26_rows
+        }
+        foreign_total = sum(
+            v for c, v in semi_flows.items() if c != tgt_c and np.isfinite(v)
+        )
+        refined = (
+            semi_flows[src_c] / foreign_total
+            if foreign_total > 0 and np.isfinite(semi_flows[src_c]) else None
+        )
+        records.append({
+            "src": src, "tgt": tgt,
+            "manual_weight": dep,
+            "semi_share_pair": round(share(tgt_c, src_c), 4),
+            "icio_semi_import_penetration": round(refined, 5) if refined else None,
+        })
+
+    manual = np.array([r["manual_weight"] for r in records])
+    refined_arr = np.array(
+        [r["icio_semi_import_penetration"] or np.nan for r in records], dtype=float
+    )
+
+    def corr_block(mask: np.ndarray) -> dict:
+        ok = mask & np.isfinite(refined_arr)
+        if ok.sum() < 3:
+            return {"n": int(ok.sum())}
+        return {
+            "n": int(ok.sum()),
+            "pearson": round(float(stats.pearsonr(manual[ok], refined_arr[ok])[0]), 3),
+            "spearman": round(float(stats.spearmanr(manual[ok], refined_arr[ok])[0]), 3),
+        }
+
+    all_mask = np.ones(len(records), dtype=bool)
+    # the three NLD/ASML edges are a measured capital-account channel
+    # (C28 -> GFCF, see run_edge_check) — no flow share can represent them
+    non_capital = np.array(
+        [not r["src"].startswith("NLD:") for r in records], dtype=bool
+    )
+    corr = corr_block(all_mask)
+    corr_excl_capital = corr_block(non_capital)
+
+    return {
+        "year": year,
+        "source": "UN Comtrade 2019 (committed parquet pull) x OECD ICIO 2025",
+        "method": {
+            "semi_share": "(HS 8541+8542) / (8541+8542+8471+8517+8528), CIF import values",
+            "refined_penetration": "exporter C26 flows weighted by pair semi_share "
+                                   "(fallback: importer world share) before the "
+                                   "foreign-source penetration ratio",
+            "min_pair_usd": min_pair_usd,
+            "limitation": "goods trade approximates the C26 product mix; domestic "
+                          "flows stay unsplit, so only cross-border semi-family "
+                          "edges are rescored",
+        },
+        "importer_world_semi_share": {k: round(v, 4) for k, v in sorted(world_share.items())},
+        "n_pair_shares": len(pair_share),
+        "semi_family_correlation_manual_vs_refined": corr,
+        "semi_family_correlation_excl_capital_channel": corr_excl_capital,
+        "edges": records,
+    }
+
+
 __all__ = [
+    "COMTRADE_REPORTERS",
     "EXPANSION_SECTOR_MAP",
     "ICIO_DIR",
     "SECTOR_MAP",
@@ -451,7 +616,9 @@ __all__ = [
     "edge_measures",
     "industries",
     "intermediate_block",
+    "load_c26_trade",
     "load_icio",
+    "run_c26_split",
     "run_edge_check",
     "run_graph_expansion",
 ]
