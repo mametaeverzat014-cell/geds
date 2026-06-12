@@ -153,6 +153,11 @@ class PropagationEngine:
 
     AFFECTED_THRESHOLD = 0.10
 
+    # recovery_rate is defined as the weekly decay of a node at this delay
+    # (the historical uniform default), so per-node coupling changes nothing
+    # for 8-week nodes and the calibrated global parameter keeps its meaning.
+    REFERENCE_RECOVERY_DELAY_WEEKS = 8.0
+
     def __init__(self, graph: CompiledGraph, config: EngineConfig | None = None) -> None:
         self.g = graph
         self.config = config or EngineConfig()
@@ -224,6 +229,20 @@ class PropagationEngine:
 
         weekly_gdp = self.g.gdp_usd / 52.0   # (N,) — broadcast against (I, N)
 
+        # Per-node recovery rates (Batch 9b): shock decay coupled to the node's
+        # recovery_delay_weeks. A 2-week node (TSMC-class priority restoration)
+        # heals 4× faster than the 8-week reference; a 16-week node 2× slower.
+        # Capped at 0.95/week; the global recovery_rate remains the calibrated
+        # scale. cfg.per_node_recovery=False restores the uniform rate.
+        if cfg.per_node_recovery:
+            node_recovery_rate = np.clip(
+                cfg.recovery_rate
+                * (self.REFERENCE_RECOVERY_DELAY_WEEKS / np.maximum(self.g.recovery_delay, 0.5)),
+                0.0, 0.95,
+            )
+        else:
+            node_recovery_rate = np.full(N, cfg.recovery_rate)
+
         for t in range(T):
             state.week = t
 
@@ -248,8 +267,8 @@ class PropagationEngine:
             if cfg.adaptive_rerouting and self.g.reroute_map:
                 impact = self._apply_adaptive_rerouting_batch(impact, state.shock)
 
-            # 6. Recovery (only when no external forcing).
-            recovery = cfg.recovery_rate * state.shock * (~active_external).astype(np.float64)
+            # 6. Recovery (only when no external forcing), per-node rate.
+            recovery = node_recovery_rate[np.newaxis, :] * state.shock * (~active_external).astype(np.float64)
 
             # 7. Optional stochastic noise (independent per iter and node).
             if cfg.stochastic_sigma > 0:

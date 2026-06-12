@@ -32,11 +32,18 @@ from app.core.benchmark import (
 # deliberately: any future improvement must show up as an explicit, reviewed
 # change to these numbers.
 GOLDEN = {
-    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0220, "rmse": 0.0446, "spearman": 0.4161},
+    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0211, "rmse": 0.0414, "spearman": 0.4164},
     "Leontief (input-output equilibrium)": {"mae": 0.0144, "rmse": 0.0279},
     "Linear Diffusion (network)": {"mae": 0.0147, "rmse": 0.0288, "spearman": 0.7071},
     "Naive Persistence (predict mean)": {"mae": 0.0148, "rmse": 0.0248},
 }
+# 2026-06-12 Batch 9b — per-node recovery dynamics (shock decay coupled to
+# recovery_delay_weeks; TWN:semiconductors grounded at 2w from the cited
+# Chi-Chi restoration timeline). GEDS-only drift: MAE 0.0220 → 0.0211,
+# RMSE 0.0446 → 0.0414 (Chi-Chi prediction 0.1605 → 0.1349; COVID events
+# −0.0003). Baselines untouched by construction. The default-param
+# improvement is real but partial — the pre-registered "fix Chi-Chi"
+# criterion is judged on the LOO-DE rerun (loo_de_result.json).
 # 2026-06-11 (b): N=21 → 26 — five researched events added (Chi-Chi 1999,
 # Harvey 2017, WC ports 2015, Korea truckers 2022, Panama drought 2023 with
 # the new CP:Panama node); red-sea duration corrected 26 → 40 weeks

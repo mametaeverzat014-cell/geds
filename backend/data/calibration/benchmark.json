@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-11T17:49:52.212201+00:00",
+  "timestamp": "2026-06-12T11:41:17.714223+00:00",
   "n_events": 26,
   "ndcg_k": 5,
   "config": {
@@ -12,6 +12,7 @@
     "seed": 0,
     "seis_enabled": true,
     "adaptive_rerouting": true,
+    "per_node_recovery": true,
     "bullwhip_factor": 1.25,
     "r_output_floor": 0.3,
     "inventory_scale": 1.0,
@@ -23,16 +24,16 @@
     {
       "model": "SEIRS-Bullwhip-Hysteresis (GEDS)",
       "n_events": 26,
-      "mae": 0.022,
-      "rmse": 0.0446,
-      "mape": 234.94,
-      "r_squared": -2.2294,
-      "pearson": 0.0712,
-      "spearman": 0.4161,
-      "kendall": 0.3007,
-      "ndcg_at_k": 0.4249,
-      "bias": 0.0044,
-      "skill_score_vs_persistence": -2.2294
+      "mae": 0.0211,
+      "rmse": 0.0414,
+      "mape": 215.07,
+      "r_squared": -1.7783,
+      "pearson": 0.09,
+      "spearman": 0.4164,
+      "kendall": 0.298,
+      "ndcg_at_k": 0.4377,
+      "bias": 0.0034,
+      "skill_score_vs_persistence": -1.7783
     },
     {
       "model": "Leontief (input-output equilibrium)",

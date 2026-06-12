@@ -422,3 +422,42 @@ planned split). Pre-existing on this branch and unchanged: the 6
 `portwatch_daily_chokepoints.csv` was never committed (it lives on the
 local machine that ran Batch 6) — same gitignore trap the ICIO files just
 avoided via `git add -f`; worth committing the same way.
+
+### Batch 9b — per-node recovery dynamics (2026-06-12)
+
+The Batch-7/8 top-priority engine change, with its pre-registered
+falsification test ("fix Chi-Chi without breaking COVID"). Shock decay is now
+coupled to each node's `recovery_delay_weeks`:
+`rate_i = recovery_rate × (8w reference / delay_i)`, capped at 0.95/week —
+`recovery_rate` keeps its calibrated meaning (it IS the 8-week-node rate), so
+a node at the historical 8.0 default behaves bit-identically to the old
+engine, and the calibrator keeps 5 parameters. `per_node_recovery=False`
+restores the uniform rate (new ablation row). One grounded override ships
+with the mechanism: `TWN:semiconductors` = 2 weeks, from the already-cited
+TSMC Chi-Chi restoration timeline (full power day 5, 90% wafer output day 8);
+chokepoints' existing 4-week delays now also heal 2× faster than factories,
+consistent with the PortWatch catch-up surges. All other nodes remain at the
+ungrounded 8.0 default — flagged as open authoring work.
+
+**Default-param result (N=26): improved, NOT fixed — honestly recorded.**
+Chi-Chi prediction 0.1605 → 0.1349 (observed 0.005; still ~27× over), COVID
+events moved −0.0003, nothing degraded; benchmark GEDS MAE 0.0220 → 0.0211,
+RMSE 0.0446 → 0.0414, Pearson +0.07 → +0.09, winners table unchanged (golden
+snapshot updated in the same commit). The mechanism is necessary but not
+sufficient at default params: the downstream peak forms DURING the 2-week
+forcing window, so faster source healing trims only the tail. The remaining
+Chi-Chi error is a within-forcing absorption problem — the same wall the
+Batch-8 inventory experiment hit from the other side.
+
+Ablation on the new engine: `no_per_node_recovery` costs +0.0010 MAE (the
+component earns its keep at default params, unlike SEIS/adaptive-rerouting
+which remain exactly zero-effect). Honest side-finding pinned in
+`ablation.json`: `no_r_state_floor` IMPROVES MAE 0.0211 → 0.0135 on the
+adversarial set — the R-state hysteresis floor is now the top removal
+candidate for the next ablation-driven cleanup.
+
+The real verdict is out-of-sample: in the Batch-7 LOO-DE the calibrator
+pushed `recovery_rate` to the 0.01 bound trying to serve slow-recovery
+crises, freezing Chi-Chi's source (fold prediction 0.185). With coupling,
+that same calibrated floor still lets TWN:semi heal 4× faster. 26-fold
+LOO-DE rerun in progress; verdict to be appended with the artifact.

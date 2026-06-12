@@ -96,6 +96,9 @@ def _variants() -> list[tuple[str, str, EngineConfig]]:
     cfg = dict(base); cfg["r_output_floor"] = 0.0
     out.append(("no_r_state_floor", "R-state output floor at 0 (no hysteresis)", EngineConfig(**cfg)))
 
+    cfg = dict(base); cfg["per_node_recovery"] = False
+    out.append(("no_per_node_recovery", "Uniform global recovery rate (delay coupling off)", EngineConfig(**cfg)))
+
     return out
 
 
