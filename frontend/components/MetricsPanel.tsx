@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import CountUp from "@/components/CountUp";
 import { severityColor } from "@/lib/colors";
 import { useSimStore } from "@/lib/store";
 import { useUI } from "@/lib/ui-context";
@@ -33,8 +34,9 @@ function Tooltip({ text }: { text: string }) {
         ?
       </button>
       {show && (
-        <div className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-52 bg-bg-elevated border border-border-strong rounded p-2 text-[10px] text-text-secondary leading-relaxed shadow-xl pointer-events-none">
+        <div className="value-pop absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-52 bg-bg-elevated/95 backdrop-blur-md border border-border-strong rounded-lg p-2 text-[10px] text-text-secondary leading-relaxed shadow-[0_8px_24px_-8px_rgba(0,0,0,0.8),0_0_0_1px_rgba(77,208,225,0.08)] pointer-events-none">
           {text}
+          <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-border-strong" />
         </div>
       )}
     </span>
@@ -44,22 +46,27 @@ function Tooltip({ text }: { text: string }) {
 function Metric({
   label,
   value,
+  format,
   tooltip,
   highlight,
 }: {
   label: string;
-  value: string;
+  value: string | number;
+  format?: (v: number) => string;
   tooltip?: string;
   highlight?: string;
 }) {
   return (
-    <div>
-      <div className="text-text-muted uppercase tracking-wider text-[10px] flex items-center">
+    <div className="group/metric">
+      <div className="text-text-muted uppercase tracking-wider text-[10px] flex items-center transition-colors group-hover/metric:text-text-secondary">
         {label}
         {tooltip && <Tooltip text={tooltip} />}
       </div>
-      <div className="num text-text-primary" style={highlight ? { color: highlight } : undefined}>
-        {value}
+      <div
+        className="num text-text-primary text-[13px]"
+        style={highlight ? { color: highlight, textShadow: `0 0 14px ${highlight}55` } : undefined}
+      >
+        {typeof value === "number" && format ? <CountUp value={value} format={format} /> : value}
       </div>
     </div>
   );
@@ -115,37 +122,45 @@ export default function MetricsPanel() {
         </h2>
         {/* severity badge */}
         <div
-          className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold mb-3 border"
+          className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold mb-3 border value-pop"
           style={{
             color: csi.color,
-            borderColor: csi.color + "40",
-            background: csi.color + "15",
+            borderColor: csi.color + "55",
+            background: `linear-gradient(120deg, ${csi.color}22, ${csi.color}0d)`,
+            boxShadow: `0 0 18px -6px ${csi.color}aa, 0 1px 0 0 rgba(255,255,255,0.06) inset`,
           }}
         >
-          <span className="w-1.5 h-1.5 rounded-full" style={{ background: csi.color }} />
+          <span
+            className="glow-dot w-1.5 h-1.5"
+            style={{ background: csi.color, color: csi.color }}
+          />
           {lang === "en" ? `${csi.label} disruption` : `${csi.label === "Minimal" ? "Минимальное" : csi.label === "Moderate" ? "Умеренное" : csi.label === "Severe" ? "Серьёзное" : "Критическое"} нарушение`}
         </div>
 
         <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs">
           <Metric
             label={t("peakCSI")}
-            value={summary.peak_csi.toFixed(3)}
+            value={summary.peak_csi}
+            format={(v) => v.toFixed(3)}
             tooltip={t("peakCSIDesc")}
             highlight={csi.color}
           />
           <Metric
             label={t("peakECV")}
-            value={summary.peak_ecv.toFixed(3)}
+            value={summary.peak_ecv}
+            format={(v) => v.toFixed(3)}
             tooltip={t("peakECVDesc")}
           />
           <Metric
             label={t("finalCSI")}
-            value={summary.final_csi.toFixed(3)}
+            value={summary.final_csi}
+            format={(v) => v.toFixed(3)}
             tooltip={t("finalCSIDesc")}
           />
           <Metric
             label={t("outputLoss")}
-            value={fmtUsd(summary.total_output_loss_usd)}
+            value={summary.total_output_loss_usd}
+            format={fmtUsd}
           />
           <Metric
             label={t("topInflation")}
@@ -155,10 +170,15 @@ export default function MetricsPanel() {
             label={t("topGDPImpact")}
             value={`${summary.max_gdp_impact_country[0]}  ${fmtPct(summary.max_gdp_impact_country[1])}`}
           />
-          <Metric label={t("countriesAffected")} value={String(summary.affected_country_count)} />
+          <Metric
+            label={t("countriesAffected")}
+            value={summary.affected_country_count}
+            format={(v) => String(Math.round(v))}
+          />
           <Metric
             label={t("globalRecovery")}
-            value={`${summary.global_recovery_weeks.toFixed(0)} ${lang === "en" ? "weeks" : "нед."}`}
+            value={summary.global_recovery_weeks}
+            format={(v) => `${v.toFixed(0)} ${lang === "en" ? "weeks" : "нед."}`}
           />
         </div>
       </div>
@@ -174,16 +194,20 @@ export default function MetricsPanel() {
             : "Пиковая интенсивность шока, взвешенная по ВВП и сетевой центральности."}
         </p>
         <div className="space-y-1.5">
-          {summary.country_risk.slice(0, 9).map((r) => (
-            <div key={r.iso3} className="flex items-center gap-2 text-xs">
-              <span className="num w-10 text-text-primary font-semibold">{r.iso3}</span>
-              <div className="flex-1 bg-bg-base/60 rounded-sm h-2 overflow-hidden">
+          {summary.country_risk.slice(0, 9).map((r, i) => (
+            <div key={r.iso3} className="group/row flex items-center gap-2 text-xs">
+              <span className="num w-10 text-text-primary font-semibold transition-transform duration-200 group-hover/row:translate-x-0.5">
+                {r.iso3}
+              </span>
+              <div className="bar-track flex-1 h-2">
                 <div
-                  className="h-full transition-all"
+                  className="bar-fill"
                   style={{
+                    "--i": i,
                     width: `${Math.min(100, r.risk_score * 130)}%`,
-                    background: severityColor(r.risk_score * 1.3),
-                  }}
+                    background: `linear-gradient(90deg, ${severityColor(r.risk_score * 0.6)}, ${severityColor(r.risk_score * 1.3)})`,
+                    boxShadow: `0 0 10px -2px ${severityColor(r.risk_score * 1.3)}99`,
+                  } as React.CSSProperties}
                 />
               </div>
               <span className="num w-10 text-right text-text-secondary">
@@ -212,18 +236,20 @@ export default function MetricsPanel() {
             : "Какие отрасли структурно наиболее уязвимы к каскадным шокам."}
         </p>
         <div className="space-y-1.5">
-          {summary.sector_fragility.slice(0, 6).map((f) => (
-            <div key={f.industry} className="flex items-center gap-2 text-xs">
-              <span className="w-28 text-text-primary capitalize shrink-0">
+          {summary.sector_fragility.slice(0, 6).map((f, i) => (
+            <div key={f.industry} className="group/row flex items-center gap-2 text-xs">
+              <span className="w-28 text-text-primary capitalize shrink-0 transition-transform duration-200 group-hover/row:translate-x-0.5">
                 {f.industry.replace("_", " ")}
               </span>
-              <div className="flex-1 bg-bg-base/60 rounded-sm h-2 overflow-hidden">
+              <div className="bar-track flex-1 h-2">
                 <div
-                  className="h-full transition-all"
+                  className="bar-fill"
                   style={{
+                    "--i": i,
                     width: `${Math.min(100, f.fragility_score * 600)}%`,
-                    background: severityColor(Math.min(1, f.fragility_score * 6)),
-                  }}
+                    background: `linear-gradient(90deg, ${severityColor(Math.min(1, f.fragility_score * 3))}, ${severityColor(Math.min(1, f.fragility_score * 6))})`,
+                    boxShadow: `0 0 10px -2px ${severityColor(Math.min(1, f.fragility_score * 6))}99`,
+                  } as React.CSSProperties}
                 />
               </div>
               <span className="num w-10 text-right text-text-muted">{f.most_exposed_country}</span>

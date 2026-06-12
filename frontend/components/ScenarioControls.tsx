@@ -49,7 +49,18 @@ export default function ScenarioControls() {
         <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
           Scenario
         </h2>
-        <span className="text-xs text-text-muted num">
+        <span
+          className={clsx(
+            "text-xs num inline-flex items-center gap-1.5",
+            running ? "text-accent-gold" : "text-text-muted",
+          )}
+        >
+          <span
+            className={clsx(
+              "glow-dot h-1.5 w-1.5",
+              running ? "bg-accent-gold text-accent-gold" : "bg-accent-cyan/70 text-accent-cyan",
+            )}
+          />
           {running ? "running…" : "ready"}
         </span>
       </div>
@@ -60,29 +71,41 @@ export default function ScenarioControls() {
             key={p.id}
             onClick={() => setSelected(p.id)}
             className={clsx(
-              "text-left px-3 py-2 rounded text-xs border transition",
-              selected === p.id
-                ? "bg-accent-violet/15 border-accent-violet/40 text-text-primary"
-                : "bg-bg-base/40 border-border-subtle text-text-secondary hover:border-border-strong",
-              p.primary && selected !== p.id && "border-l-2 border-l-accent-cyan/70",
+              "btn-option px-3 py-2",
+              selected === p.id && "is-active",
             )}
           >
-            {p.label}
+            <span className="flex items-center justify-between gap-2">
+              <span className="truncate">{p.label}</span>
+              {p.primary && (
+                <span className="shrink-0 text-[9px] uppercase tracking-wider px-1.5 py-px rounded-full border border-accent-cyan/40 text-accent-cyan/90 bg-accent-cyan/10">
+                  flagship
+                </span>
+              )}
+            </span>
           </button>
         ))}
       </div>
 
-      <button
-        onClick={run}
-        disabled={running}
-        className={clsx(
-          "w-full mt-2 px-3 py-2.5 rounded text-sm font-semibold transition",
-          running
-            ? "bg-bg-base/40 text-text-muted cursor-not-allowed"
-            : "bg-accent-cyan text-bg-base hover:bg-accent-cyan/85",
+      <button onClick={run} disabled={running} className="btn-primary w-full mt-2 px-3 py-2.5">
+        {running ? (
+          <span className="inline-flex items-center justify-center gap-2.5">
+            <span className="inline-flex items-end gap-[3px] text-text-secondary" aria-hidden="true">
+              <span className="eq-bar" style={{ animationDelay: "0ms" }} />
+              <span className="eq-bar" style={{ animationDelay: "150ms" }} />
+              <span className="eq-bar" style={{ animationDelay: "300ms" }} />
+              <span className="eq-bar" style={{ animationDelay: "450ms" }} />
+            </span>
+            Simulating…
+          </span>
+        ) : (
+          <span className="inline-flex items-center justify-center gap-2">
+            <svg width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true">
+              <path d="M0.5 1.13c0-.78.85-1.27 1.53-.88l8.4 4.87c.67.4.67 1.37 0 1.76l-8.4 4.87c-.68.4-1.53-.1-1.53-.88V1.13Z" />
+            </svg>
+            Run simulation
+          </span>
         )}
-      >
-        {running ? "Simulating…" : "Run simulation"}
       </button>
     </div>
   );

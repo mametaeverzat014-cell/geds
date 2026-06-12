@@ -89,12 +89,12 @@ export default function StatusRibbon() {
                     ? "Backend unreachable"
                     : "Connecting to backend…"
                 }
-                className={`h-1.5 w-1.5 rounded-full ${
+                className={`glow-dot h-1.5 w-1.5 ${
                   backendStatus === "online"
-                    ? "bg-accent-cyan"
+                    ? "bg-accent-cyan text-accent-cyan"
                     : backendStatus === "offline"
-                    ? "bg-sev-5 animate-pulse"
-                    : "bg-text-muted animate-pulse"
+                    ? "bg-sev-5 text-sev-5 animate-pulse"
+                    : "bg-text-muted text-text-muted animate-pulse"
                 }`}
               />
               <span>

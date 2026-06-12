@@ -95,7 +95,7 @@ export default function CrisisRadarPanel() {
         <button
           onClick={() => generate(true)}
           disabled={loading}
-          className="text-[10px] px-2.5 py-1 rounded border border-accent-violet/40 text-accent-violet hover:bg-accent-violet/10 transition disabled:opacity-40 shrink-0 font-medium"
+          className="text-[10px] px-2.5 py-1 rounded-full border border-accent-violet/40 text-accent-violet hover:bg-accent-violet/10 hover:shadow-[0_0_16px_-6px_rgba(124,108,251,0.8)] hover:-translate-y-px active:scale-95 transition-all duration-200 disabled:opacity-40 shrink-0 font-medium"
         >
           {loading ? c.analyzing : data ? c.refresh : c.generate}
         </button>
