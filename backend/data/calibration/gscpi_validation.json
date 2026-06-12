@@ -1,18 +1,18 @@
 {
-  "timestamp": "2026-06-11T13:05:06.072979+00:00",
+  "timestamp": "2026-06-11T17:47:40.230247+00:00",
   "source": "NY Fed Global Supply Chain Pressure Index (monthly, 1997\u2192present)",
   "raw_file": "backend/data/raw/external/nyfed_gscpi.xls",
   "reproduce_command": "python -m scripts.gscpi_validation",
   "method": "Spearman rank correlation between the engine's predicted peak CSI and the measured GSCPI rise (s.d.) over each event window. The model was never calibrated on GSCPI \u2014 this is a fully independent check.",
   "caveat": "GSCPI is one global aggregate: the 2021 events overlap a single super-spike, blurring per-event attribution. The non-overlapping subset is the cleaner number.",
-  "n_events": 21,
-  "spearman_all_events": 0.451,
-  "spearman_non_overlapping": 0.7,
-  "n_non_overlapping": 9,
+  "n_events": 26,
+  "spearman_all_events": 0.46,
+  "spearman_non_overlapping": 0.312,
+  "n_non_overlapping": 12,
   "events": [
     {
       "slug": "covid-semiconductor-2020-2021",
-      "predicted_peak_csi": 0.036,
+      "predicted_peak_csi": 0.0351,
       "observed_gscpi_rise_sd": 2.102
     },
     {
@@ -22,12 +22,12 @@
     },
     {
       "slug": "auto-chip-shortage-2021",
-      "predicted_peak_csi": 0.0185,
+      "predicted_peak_csi": 0.0181,
       "observed_gscpi_rise_sd": 2.754
     },
     {
       "slug": "japan-triple-disaster-2011",
-      "predicted_peak_csi": 0.0009,
+      "predicted_peak_csi": 0.0008,
       "observed_gscpi_rise_sd": 1.254
     },
     {
@@ -42,7 +42,7 @@
     },
     {
       "slug": "eu-energy-crisis-2021",
-      "predicted_peak_csi": 0.0059,
+      "predicted_peak_csi": 0.0058,
       "observed_gscpi_rise_sd": 1.102
     },
     {
@@ -52,7 +52,7 @@
     },
     {
       "slug": "thailand-floods-2011",
-      "predicted_peak_csi": 0.0013,
+      "predicted_peak_csi": 0.0012,
       "observed_gscpi_rise_sd": 0.924
     },
     {
@@ -77,7 +77,7 @@
     },
     {
       "slug": "shanghai-lockdown-2022",
-      "predicted_peak_csi": 0.003,
+      "predicted_peak_csi": 0.0029,
       "observed_gscpi_rise_sd": 0.679
     },
     {
@@ -97,7 +97,7 @@
     },
     {
       "slug": "us-west-coast-ports-2021",
-      "predicted_peak_csi": 0.0,
+      "predicted_peak_csi": 0.0001,
       "observed_gscpi_rise_sd": 1.479
     },
     {
@@ -107,13 +107,38 @@
     },
     {
       "slug": "taiwan-drought-2021",
-      "predicted_peak_csi": 0.004,
+      "predicted_peak_csi": 0.0039,
       "observed_gscpi_rise_sd": 1.718
     },
     {
       "slug": "india-covid-wave-2021",
       "predicted_peak_csi": 0.0,
       "observed_gscpi_rise_sd": 0.767
+    },
+    {
+      "slug": "taiwan-chichi-earthquake-1999",
+      "predicted_peak_csi": 0.0777,
+      "observed_gscpi_rise_sd": 0.33
+    },
+    {
+      "slug": "hurricane-harvey-2017",
+      "predicted_peak_csi": 0.0,
+      "observed_gscpi_rise_sd": 0.721
+    },
+    {
+      "slug": "us-west-coast-ports-2015",
+      "predicted_peak_csi": 0.0,
+      "observed_gscpi_rise_sd": 0.493
+    },
+    {
+      "slug": "korea-trucker-strikes-2022",
+      "predicted_peak_csi": 0.0,
+      "observed_gscpi_rise_sd": -0.327
+    },
+    {
+      "slug": "panama-canal-drought-2023",
+      "predicted_peak_csi": 0.0001,
+      "observed_gscpi_rise_sd": 0.544
     }
   ]
 }

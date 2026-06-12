@@ -279,3 +279,75 @@ facts in the raw file — they double as data-integrity checks),
 `/portwatch-validation` + `/gscpi-validation`, and an "External data
 cross-checks" panel on the validation page. ICIO ReadMe received — full
 2023-edition tables still needed for the graph expansion (next batch).
+
+---
+
+## Batch 7 — researched event expansion N=21 → 26 + out-of-graph registry (2026-06-11)
+
+Eleven structured literature dossiers (committed with full citations under
+`backend/data/raw/external/perplexity_events/`) processed into:
+
+**Five new in-graph events** — Chi-Chi 1999 (TWN semi, near-miss), Hurricane
+Harvey 2017 (US petrochem→consumer, partial near-miss), US West Coast ports
+2015 (slowdown), Korea trucker strikes 2022 (near-miss), Panama Canal drought
+2023–24 (new `CP:Panama` node + capacity-factor links). Panama's spec was
+corrected DOWN by measurement: press transit counts implied 0.45, IMF
+PortWatch measures a 0.28 mean weekly deficit → spec 0.30, now CONFIRMED
+alongside Suez-2021 (0.90 vs 0.96) and Red Sea (0.55 vs 0.44).
+
+**Six out-of-graph near-misses** added to `data/csv/historical_events.csv`
+(SARS 2003, Kobe 1995, Eyjafjallajökull 2010, UK fuel 2021, Germany floods
+2021, China Ga/Ge controls 2023) — a documented false-positive library with
+absorption mechanisms cited; unmappable onto the current 12×6 graph.
+
+**The honest headline got harder — by design.** The N=26 set is adversarial
+(10+ near-misses). Default-param winners split: Leontief takes MAE (chronic
+under-prediction becomes an asset on near-misses), naive persistence takes
+RMSE/R², linear diffusion keeps the correlations; GEDS default trails. GSCPI
+clean-subset Spearman fell 0.70 → 0.31 — the default-param engine
+over-predicts near-misses, which is exactly the absorption-mechanism gap
+(inventories, priority restoration, modal substitution) the dossiers
+document. Next target: make the SEIRS buffer layer earn its keep on the
+near-miss subset. Out-of-sample LOO-DE re-run pending.
+
+### Batch 8 attempt — inventory-absorption mechanism (2026-06-11): NEGATIVE result, kept out of the engine
+
+Hypothesis from the Batch-7 dossiers: near-miss over-prediction should be
+fixed by making the E-state buffer absorb damage (a node with stock consumes
+inventory instead of taking propagated impact, incl. first-strike
+interception for sudden upstream outages). Implemented three escalating
+variants; all were REVERTED because the benchmark refused to move
+(0.0220 → 0.0250 → 0.0257 MAE — worse each time).
+
+The trace explains why, and it is the real finding: **downstream absorption
+cannot rescue a near-miss while the upstream source never heals.** Chi-Chi's
+prediction is dominated by the source node still carrying ~70% of its shock
+at week 12, because shock decay is a single global `recovery_rate` (7%/week
+default; the DE calibrator pushes it to 1%/week to fit long crises) — while
+the real TSMC restored ~90% of output in 8 days. One global recovery
+constant cannot represent both "TSMC heals in days" and "COVID drags for a
+year". **Next mechanism target, with evidence: per-node/per-event recovery
+dynamics** (e.g., couple shock decay to the node's existing
+`recovery_delay_weeks` instead of one global rate). The negative experiment
+is preserved here deliberately — it converts the audit's old "recovery
+miscalibrated" note into a mechanistic diagnosis.
+
+### Batch 7 verdict — out-of-sample LOO-DE on the adversarial N=26 set (2026-06-11)
+
+| | MAE | Pearson | Spearman | R² |
+|---|---|---|---|---|
+| GEDS LOO-recalibrated, N=21 set | 0.0083 | 0.910 | 0.617 | +0.824 |
+| **GEDS LOO-recalibrated, N=26 adversarial** | **0.0170** | **0.166** | 0.525 | **−1.525** |
+| Best baseline on N=26 (Leontief MAE) | 0.0144 | — | — | — |
+
+**The N=21 out-of-sample win did not survive the adversarial expansion.**
+Per-fold recalibration cannot absorb the near-misses either: the worst fold
+is Chi-Chi (predicted 0.185 vs observed 0.005 — the source node never heals
+within the horizon), followed by the two big chip crises now UNDER-predicted
+(COVID 0.047 vs 0.115) because the calibrator is pulled in opposite
+directions by fast-recovery and slow-recovery events. This is precisely the
+Batch-8 mechanistic diagnosis showing up out-of-sample: **a single global
+recovery_rate is the binding structural constraint.** Per-node recovery
+dynamics (couple shock decay to the existing per-node recovery_delay_weeks)
+is now the top-priority engine change, with a ready-made falsification test:
+it must fix Chi-Chi without breaking COVID.

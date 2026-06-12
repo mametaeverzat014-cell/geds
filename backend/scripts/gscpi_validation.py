@@ -61,13 +61,21 @@ EVENT_START: dict[str, str] = {
     "red-sea-crisis-2023":              "2023-12",
     "taiwan-drought-2021":              "2021-02",
     "india-covid-wave-2021":            "2021-04",
+    "taiwan-chichi-earthquake-1999":    "1999-09",
+    "hurricane-harvey-2017":            "2017-08",
+    "us-west-coast-ports-2015":         "2014-10",
+    "korea-trucker-strikes-2022":       "2022-06",
+    "panama-canal-drought-2023":        "2023-11",
 }
 
 # Events whose windows do NOT overlap the 2021 supply-chain super-cycle
 # (or each other) — the cleaner subset for attribution.
 NON_OVERLAPPING = [
+    "taiwan-chichi-earthquake-1999",
     "japan-triple-disaster-2011", "thailand-floods-2011",
-    "kumamoto-earthquake-2016", "us-china-tariffs-2019",
+    "us-west-coast-ports-2015",
+    "kumamoto-earthquake-2016", "hurricane-harvey-2017",
+    "us-china-tariffs-2019",
     "japan-korea-export-controls-2019", "covid-semiconductor-2020-2021",
     "shanghai-lockdown-2022", "ukraine-war-harness-2022",
     "red-sea-crisis-2023",

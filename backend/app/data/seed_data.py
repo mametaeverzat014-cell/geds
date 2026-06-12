@@ -141,6 +141,13 @@ CHOKEPOINTS: list[dict] = [
     {"id": "CP:Malacca",      "name": "Strait of Malacca","lat": 2.5,   "lon": 101.5, "vulnerability": 0.40, "reroute_cost_multiplier": 1.10},
     {"id": "CP:Suez",         "name": "Suez Canal",       "lat": 30.5,  "lon": 32.3,  "vulnerability": 0.50, "reroute_cost_multiplier": 1.35},
     {"id": "CP:Hormuz",       "name": "Strait of Hormuz", "lat": 26.6,  "lon": 56.3,  "vulnerability": 0.65, "reroute_cost_multiplier": 2.00},
+    # Panama (added 2026-06 with the panama-drought-2023 event): ~5% of global
+    # maritime trade, ~73% of canal traffic US-linked (IMF PortWatch note Nov
+    # 2023). reroute_cost_multiplier 1.30 — alternatives are Suez/Cape routing
+    # (+6–14 days) or US intermodal rail; McKinsey put sustained-restriction
+    # cost at ~5% of total ocean-transport cost. Vulnerability between Malacca
+    # and Suez: drought-prone (2023–24 El Niño cut transits ~50%).
+    {"id": "CP:Panama",       "name": "Panama Canal",     "lat": 9.1,   "lon": -79.7, "vulnerability": 0.45, "reroute_cost_multiplier": 1.30},
 ]
 
 
@@ -328,6 +335,13 @@ CHOKEPOINT_LINKS: list[tuple[str, str, float]] = [
     ("CP:Malacca",      _n("CHN", Industry.SHIPPING),       0.03),
     ("CP:Malacca",      _n("TWN", Industry.SHIPPING),       0.015),
     ("CP:TaiwanStrait", _n("TWN", Industry.SHIPPING),       0.09),
+
+    # Panama (added 2026-06). Cargo side: ~12% of US containerized imports
+    # transit the canal (BTS / IMF PortWatch 2023). Carrier side uses the same
+    # capacity-factor convention as above: US-carrier traffic share via the
+    # canal ≈ 0.16 × (0.30/1.30) ≈ 0.04.
+    ("CP:Panama",       _n("USA", Industry.CONSUMER_GOODS), 0.12),
+    ("CP:Panama",       _n("USA", Industry.SHIPPING),       0.04),
 ]
 
 
@@ -817,6 +831,156 @@ HISTORICAL_EVENTS: list[dict] = [
         "notes": "Delta-wave lockdowns + industrial oxygen diverted to hospitals. "
                  "Indian auto output roughly halved for ~6 weeks; India ≈5% of global "
                  "production and weakly coupled, so the global cascade stayed small.",
+    },
+
+    # ── Expansion batch 2 (2026-06, events 22–26) ──────────────────────────
+    # Researched via structured literature queries (raw findings with full
+    # citations committed under data/raw/external/perplexity_events/). Same
+    # authoring convention: source-side magnitudes from published reporting,
+    # never derived from targets; derivations shown where a facility-level
+    # figure had to be converted to node level. Six further researched events
+    # (SARS 2003, Kobe 1995, Eyjafjallajökull 2010, UK fuel 2021, Germany
+    # floods 2021, China Ga/Ge controls 2023) could not be mapped onto the
+    # current 12-country × 6-industry graph and are recorded as out-of-graph
+    # near-misses in data/csv/historical_events.csv instead.
+    {
+        "slug": "taiwan-chichi-earthquake-1999",
+        "name": "Taiwan Chi-Chi earthquake — DRAM/foundry outage (Sep 1999)",
+        "shocks": [
+            # Near-total knockout of Taiwan fab output for ~1 week, ~85–90%
+            # restored by day 8 (TSMC full power day 5; wafer output 20% day 5
+            # → 90% day 8) ⇒ magnitude 0.90 with fast exponential decay.
+            {"target_node_id": _n("TWN", Industry.SEMICONDUCTORS), "magnitude": 0.90,
+             "start_week": 0, "duration_weeks": 2, "decay_curve": "exp"},
+        ],
+        "horizon_weeks": 12,
+        "observed": {
+            # "~15% of world RAM production lost, at least for a week" +
+            # Taiwan Q4 PC output cut −7% ⇒ global electronics output loss
+            # over the quarter ≈ 0.5% (derived; the feared sustained shortage
+            # did NOT materialise — DRAM oversupply absorbed it).
+            "auto_production_loss_pct":  0.005,
+            "us_inflation_contribution": 0.0,
+            "expected_recovery_weeks":   2.0,
+            "most_impacted_industry":    Industry.ELECTRONICS.value,
+        },
+        "sources": ["Semico Research / Deseret News 1999", "Taipei Times 1999",
+                    "EE Times 1999", "Semiconductor Digest 1999"],
+        "notes": "NEAR-MISS validator. M7.6 quake knocked out 41% of Taiwan's power; "
+                 "fabs got priority restoration and seismic design held. Brief DRAM "
+                 "spot-price spike (~5× July), no sustained global chip shortage.",
+    },
+    {
+        "slug": "hurricane-harvey-2017",
+        "name": "Hurricane Harvey — US petrochemical complex (Aug 2017)",
+        "shocks": [
+            # Fed plant-level month-averaged national-output hit: petrochemicals
+            # −8%, plastic resins −7.5% of August output (peak: ethylene >50%
+            # offline ~1–2 weeks). Mapped to USA consumer goods as the resin-fed
+            # node; fast restart ⇒ exponential decay.
+            {"target_node_id": _n("USA", Industry.CONSUMER_GOODS), "magnitude": 0.075,
+             "start_week": 0, "duration_weeks": 4, "decay_curve": "exp"},
+        ],
+        "horizon_weeks": 16,
+        "observed": {
+            # No published global downstream production loss (partial near-miss);
+            # measured US drag: −0.65pp August IP growth, reversed by September.
+            "auto_production_loss_pct":  0.002,
+            "us_inflation_contribution": 0.001,
+            "expected_recovery_weeks":   6.0,
+            "most_impacted_industry":    Industry.AUTOMOTIVE.value,
+        },
+        "sources": ["Federal Reserve G.17 special note 2017", "White House CEA 2017",
+                    "Chemistry World 2017", "US DOE/EIA 2017"],
+        "notes": "PARTIAL NEAR-MISS. Sharp, well-measured source shock (refining "
+                 "working capacity 76% on Aug 31 → 95% by Sep 28) absorbed by rapid "
+                 "restart, resin inventories, imports and force-majeure rationing. "
+                 "Gasoline drove ~3/4 of the +0.5% Sep CPI print (transitory).",
+    },
+    {
+        "slug": "us-west-coast-ports-2015",
+        "name": "US West Coast port slowdown — ILWU dispute (Oct 2014 – Feb 2015)",
+        "shocks": [
+            # Productivity slowdown, not closure: WC ports ≈ 43% of US container
+            # trade; Q1-2015 exports via WC −20.5%, imports −9% ⇒ throughput-
+            # weighted slowdown ~13–15% of WC volume ⇒ node-level shock
+            # ≈ 0.43 × 0.14 ≈ 0.06, deepening toward the Feb settlement.
+            {"target_node_id": _n("USA", Industry.SHIPPING), "magnitude": 0.06,
+             "start_week": 0, "duration_weeks": 18, "decay_curve": "linear"},
+        ],
+        "horizon_weeks": 30,
+        "observed": {
+            # No global production-loss % published; measured US drag −0.2pp
+            # Q1-2015 GDP (Fed IFDP). US ≈ 12% of global container traffic ⇒
+            # global shipping output dip ≈ 0.7% at peak quarter (derived).
+            "auto_production_loss_pct":  0.007,
+            "us_inflation_contribution": 0.0,
+            "expected_recovery_weeks":   20.0,
+            "most_impacted_industry":    Industry.SHIPPING.value,
+        },
+        "sources": ["Federal Reserve IFDP Notes 2015", "WCIT 2015",
+                    "Sumner et al., UC ARE / Lodi Growers 2015", "BTS port statistics"],
+        "notes": "PARTIAL NEAR-MISS: feared full-shutdown ($2bn/day scenarios) never "
+                 "happened. Absorbed by airfreight substitution and East/Gulf-coast "
+                 "diversion. Recovery weeks not precisely published; congestion "
+                 "cleared into spring 2015 (~20w estimate flagged as imprecise).",
+    },
+    {
+        "slug": "korea-trucker-strikes-2022",
+        "name": "South Korea trucker strikes (Jun + Nov–Dec 2022)",
+        "shocks": [
+            # June strike: Hyundai's Ulsan complex (largest plant) ran at ~50%
+            # for ~1 week. November strike: "no reported impact on automotive
+            # production" ⇒ only the June shock is modelled.
+            {"target_node_id": _n("KOR", Industry.AUTOMOTIVE), "magnitude": 0.50,
+             "start_week": 0, "duration_weeks": 1, "decay_curve": "step"},
+        ],
+        "horizon_weeks": 12,
+        "observed": {
+            # No published global figure; Korea ≈ 5% of global auto output,
+            # halved for ~1 week ⇒ global quarterly dip ≈ 0.2% (derived).
+            # Korea's trade ministry: ~$1.2bn shipment delays in week one
+            # (≈2% of one month's exports) — delays, not lost output.
+            "auto_production_loss_pct":  0.002,
+            "us_inflation_contribution": 0.0,
+            "expected_recovery_weeks":   2.0,
+            "most_impacted_industry":    Industry.AUTOMOTIVE.value,
+        },
+        "sources": ["Reuters Jun/Nov 2022", "Flexport 2022", "CNBC 2022", "DW 2022"],
+        "notes": "NEAR-MISS validator. Freight blockade (capacity intact): steel/cement "
+                 "shipments collapsed domestically, chips insulated (fabs ship by air, "
+                 "~2 weeks of materials on hand). Strikes ended abruptly; backlog "
+                 "cleared in days. Feared global cascade never materialised.",
+    },
+    {
+        "slug": "panama-canal-drought-2023",
+        "name": "Panama Canal drought restrictions (Nov 2023 – Aug 2024)",
+        "shocks": [
+            # Press-reported transit counts (36–38/day → 18) suggest ~0.45–0.50,
+            # but the MEASURED IMF PortWatch mean weekly transit deficit over the
+            # restriction window is 0.28–0.30 (peak weeks deeper) — the published
+            # counts overstate the throughput hit. Magnitude follows the
+            # measurement: see data/calibration/portwatch_validation.json.
+            {"target_node_id": "CP:Panama", "magnitude": 0.30,
+             "start_week": 0, "duration_weeks": 30, "decay_curve": "step"},
+        ],
+        "horizon_weeks": 40,
+        "observed": {
+            # Canal ≈ 5% of global maritime trade; canal trade −32% (IMF,
+            # Jan–Feb 2024) ⇒ global shipping output dip ≈ 0.5% (derived);
+            # rerouting + booking priority kept container flows largely whole
+            # (LNG/dry-bulk absorbed the cuts).
+            "auto_production_loss_pct":  0.005,
+            "us_inflation_contribution": 0.0,
+            "expected_recovery_weeks":   26.0,
+            "most_impacted_industry":    Industry.SHIPPING.value,
+        },
+        "sources": ["IMF PortWatch note Nov 2023", "UNCTAD 2024", "Project44 2025",
+                    "Xeneta 2024", "McKinsey 2024"],
+        "notes": "NEAR-MISS for downstream production, real shock for shipping. "
+                 "Recovery 26w is published (peak restriction Feb 2024 → full "
+                 "capacity Aug 2024). LNG transits never returned to trend — "
+                 "structural shift to Cape routing.",
     },
 ]
 
