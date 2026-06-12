@@ -1,0 +1,20 @@
+{
+  "year": 2019,
+  "source": "OECD ICIO 2025 edition, small",
+  "n_nodes": 405,
+  "n_edges": 1964,
+  "sector_map": {
+    "electronics_c26": "C26",
+    "automotive": "C29",
+    "aerospace": "C302T309",
+    "consumer_goods": "C10T12+C13T15+C31T33",
+    "shipping": "H50"
+  },
+  "note": "semiconductors+electronics merged into electronics_c26 (ICIO C26 is not separable); NOT wired into the engine",
+  "filters": {
+    "min_flow_usd_m": 50.0,
+    "min_input_share": 0.002,
+    "min_penetration": 0.05
+  },
+  "timestamp": "2026-06-12T04:29:36.176808+00:00"
+}

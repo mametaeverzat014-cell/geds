@@ -1,0 +1,1297 @@
+{
+  "year": 2019,
+  "source": "OECD ICIO 2025 edition, small (81 economies x 50 industries)",
+  "raw_file": "backend/data/raw/external/icio2025/2019_SML.csv.gz",
+  "method": {
+    "input_share": "flow(src,tgt) / total intermediate inputs of tgt (Z columns only; VA/TLS/final demand excluded)",
+    "penetration": "flow(src,tgt) / flow(all countries' src-industry rows, tgt), domestic supply included in the denominator",
+    "import_penetration": "as penetration but FOREIGN sources only -- the Comtrade convention most weights were authored with",
+    "import_penetration_incl_fd": "import penetration over absorption = tgt-sector intermediate cols + tgt-country final-demand cols (finished goods land in HFCE/GFCF, not Z)",
+    "sector_map": {
+      "semiconductors": [
+        "C26"
+      ],
+      "electronics": [
+        "C26"
+      ],
+      "automotive": [
+        "C29"
+      ],
+      "aerospace": [
+        "C302T309"
+      ],
+      "consumer_goods": [
+        "C10T12",
+        "C13T15",
+        "C31T33"
+      ],
+      "shipping": [
+        "H50"
+      ]
+    },
+    "chokepoint_links": "included as excluded records (capacity-factor convention)"
+  },
+  "summary": {
+    "n_production_edges": 55,
+    "n_chokepoint_links_excluded": 19,
+    "n_total_seed_edges": 74,
+    "correlations": {
+      "icio_input_share": {
+        "n": 55,
+        "pearson": -0.013,
+        "spearman": 0.211
+      },
+      "icio_penetration": {
+        "n": 55,
+        "pearson": 0.148,
+        "spearman": 0.203
+      },
+      "icio_import_penetration": {
+        "n": 46,
+        "pearson": 0.457,
+        "spearman": 0.432
+      },
+      "icio_import_penetration_incl_fd": {
+        "n": 46,
+        "pearson": 0.422,
+        "spearman": 0.42
+      }
+    },
+    "by_family": {
+      "authored": {
+        "icio_input_share": {
+          "n": 17,
+          "pearson": -0.161,
+          "spearman": -0.136
+        },
+        "icio_penetration": {
+          "n": 17,
+          "pearson": 0.097,
+          "spearman": 0.138
+        },
+        "icio_import_penetration": {
+          "n": 12,
+          "pearson": 0.659,
+          "spearman": 0.074
+        },
+        "icio_import_penetration_incl_fd": {
+          "n": 12,
+          "pearson": 0.537,
+          "spearman": -0.049
+        }
+      },
+      "penetration_x_exposure": {
+        "icio_input_share": {
+          "n": 32,
+          "pearson": 0.008,
+          "spearman": 0.377
+        },
+        "icio_penetration": {
+          "n": 32,
+          "pearson": 0.184,
+          "spearman": 0.311
+        },
+        "icio_import_penetration": {
+          "n": 28,
+          "pearson": 0.302,
+          "spearman": 0.303
+        },
+        "icio_import_penetration_incl_fd": {
+          "n": 28,
+          "pearson": 0.303,
+          "spearman": 0.32
+        }
+      },
+      "pure_penetration": {
+        "icio_input_share": {
+          "n": 6,
+          "pearson": 0.146,
+          "spearman": 0.6
+        },
+        "icio_penetration": {
+          "n": 6,
+          "pearson": 0.002,
+          "spearman": 0.086
+        },
+        "icio_import_penetration": {
+          "n": 6,
+          "pearson": 0.559,
+          "spearman": 0.829
+        },
+        "icio_import_penetration_incl_fd": {
+          "n": 6,
+          "pearson": 0.557,
+          "spearman": 0.771
+        }
+      }
+    },
+    "worst_disagreements": [
+      {
+        "edge": "NLD:semiconductors -> TWN:semiconductors",
+        "manual": 0.45,
+        "comparator": 0.00352,
+        "manual_over_comparator": 127.84,
+        "family": "penetration_x_exposure",
+        "mapping_caveats": [
+          "ASML litho equipment partly classifies as C28 machinery; C26 understates it",
+          "ICIO has no semi split; uses all of C26 (collides with electronics)"
+        ]
+      },
+      {
+        "edge": "NLD:semiconductors -> USA:semiconductors",
+        "manual": 0.3,
+        "comparator": 0.00254,
+        "manual_over_comparator": 118.11,
+        "family": "penetration_x_exposure",
+        "mapping_caveats": [
+          "ASML litho equipment partly classifies as C28 machinery; C26 understates it",
+          "ICIO has no semi split; uses all of C26 (collides with electronics)"
+        ]
+      },
+      {
+        "edge": "NLD:semiconductors -> KOR:semiconductors",
+        "manual": 0.4,
+        "comparator": 0.00429,
+        "manual_over_comparator": 93.24,
+        "family": "penetration_x_exposure",
+        "mapping_caveats": [
+          "ASML litho equipment partly classifies as C28 machinery; C26 understates it",
+          "ICIO has no semi split; uses all of C26 (collides with electronics)"
+        ]
+      },
+      {
+        "edge": "USA:automotive -> USA:consumer_goods",
+        "manual": 0.1,
+        "comparator": 0.63489,
+        "manual_over_comparator": 0.16,
+        "family": "authored",
+        "mapping_caveats": []
+      },
+      {
+        "edge": "JPN:electronics -> USA:automotive",
+        "manual": 0.2,
+        "comparator": 0.03265,
+        "manual_over_comparator": 6.13,
+        "family": "authored",
+        "mapping_caveats": [
+          "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+        ]
+      },
+      {
+        "edge": "KOR:electronics -> DEU:automotive",
+        "manual": 0.18,
+        "comparator": 0.02998,
+        "manual_over_comparator": 6.0,
+        "family": "authored",
+        "mapping_caveats": [
+          "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+        ]
+      },
+      {
+        "edge": "DEU:automotive -> DEU:electronics",
+        "manual": 0.12,
+        "comparator": 0.66441,
+        "manual_over_comparator": 0.18,
+        "family": "authored",
+        "mapping_caveats": [
+          "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+        ]
+      },
+      {
+        "edge": "CHN:semiconductors -> CHN:electronics",
+        "manual": 0.15,
+        "comparator": 0.78224,
+        "manual_over_comparator": 0.19,
+        "family": "penetration_x_exposure",
+        "mapping_caveats": [
+          "ICIO has no semi split; uses all of C26 (collides with electronics)",
+          "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+        ]
+      },
+      {
+        "edge": "CHN:shipping -> USA:consumer_goods",
+        "manual": 0.4,
+        "comparator": 0.08266,
+        "manual_over_comparator": 4.84,
+        "family": "authored",
+        "mapping_caveats": []
+      },
+      {
+        "edge": "KOR:semiconductors -> DEU:automotive",
+        "manual": 0.14,
+        "comparator": 0.02998,
+        "manual_over_comparator": 4.67,
+        "family": "penetration_x_exposure",
+        "mapping_caveats": [
+          "ICIO has no semi split; uses all of C26 (collides with electronics)"
+        ]
+      }
+    ]
+  },
+  "edges": [
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "JPN:automotive",
+      "icio_flow_usd_m": 270.3,
+      "icio_input_share": 0.00077,
+      "icio_penetration": 0.03752,
+      "icio_import_penetration": 0.08995,
+      "icio_import_penetration_incl_fd": 0.08667,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.24,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 6.4,
+      "manual_over_import_penetration": 2.67,
+      "manual_over_import_penetration_incl_fd": 2.77
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "JPN:electronics",
+      "icio_flow_usd_m": 1038.3,
+      "icio_input_share": 0.00994,
+      "icio_penetration": 0.03417,
+      "icio_import_penetration": 0.08564,
+      "icio_import_penetration_incl_fd": 0.08625,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.37,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 10.83,
+      "manual_over_import_penetration": 4.32,
+      "manual_over_import_penetration_incl_fd": 4.29
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "CHN:electronics",
+      "icio_flow_usd_m": 42526.3,
+      "icio_input_share": 0.03029,
+      "icio_penetration": 0.05116,
+      "icio_import_penetration": 0.23495,
+      "icio_import_penetration_incl_fd": 0.23294,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.36,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 7.04,
+      "manual_over_import_penetration": 1.53,
+      "manual_over_import_penetration_incl_fd": 1.55
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "THA:automotive",
+      "icio_flow_usd_m": 29.3,
+      "icio_input_share": 0.00084,
+      "icio_penetration": 0.03297,
+      "icio_import_penetration": 0.09494,
+      "icio_import_penetration_incl_fd": 0.07852,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.15,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 4.55,
+      "manual_over_import_penetration": 1.58,
+      "manual_over_import_penetration_incl_fd": 1.91
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "THA:electronics",
+      "icio_flow_usd_m": 1101.3,
+      "icio_input_share": 0.01283,
+      "icio_penetration": 0.02452,
+      "icio_import_penetration": 0.07838,
+      "icio_import_penetration_incl_fd": 0.07827,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.23,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 9.38,
+      "manual_over_import_penetration": 2.93,
+      "manual_over_import_penetration_incl_fd": 2.94
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "MYS:electronics",
+      "icio_flow_usd_m": 1883.5,
+      "icio_input_share": 0.03527,
+      "icio_penetration": 0.07696,
+      "icio_import_penetration": 0.1218,
+      "icio_import_penetration_incl_fd": 0.12173,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.21,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 2.73,
+      "manual_over_import_penetration": 1.72,
+      "manual_over_import_penetration_incl_fd": 1.73
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "KOR:electronics",
+      "icio_flow_usd_m": 2480.6,
+      "icio_input_share": 0.01326,
+      "icio_penetration": 0.02618,
+      "icio_import_penetration": 0.08827,
+      "icio_import_penetration_incl_fd": 0.0876,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.2,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 7.64,
+      "manual_over_import_penetration": 2.27,
+      "manual_over_import_penetration_incl_fd": 2.28
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "VNM:electronics",
+      "icio_flow_usd_m": 2301.4,
+      "icio_input_share": 0.02236,
+      "icio_penetration": 0.02946,
+      "icio_import_penetration": 0.0585,
+      "icio_import_penetration_incl_fd": 0.05908,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.12,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 4.07,
+      "manual_over_import_penetration": 2.05,
+      "manual_over_import_penetration_incl_fd": 2.03
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "DEU:automotive",
+      "icio_flow_usd_m": 45.6,
+      "icio_input_share": 0.00016,
+      "icio_penetration": 0.02142,
+      "icio_import_penetration": 0.03228,
+      "icio_import_penetration_incl_fd": 0.03287,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.07,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 3.27,
+      "manual_over_import_penetration": 2.17,
+      "manual_over_import_penetration_incl_fd": 2.13
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "DEU:electronics",
+      "icio_flow_usd_m": 364.5,
+      "icio_input_share": 0.00667,
+      "icio_penetration": 0.02925,
+      "icio_import_penetration": 0.03348,
+      "icio_import_penetration_incl_fd": 0.033,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.11,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 3.76,
+      "manual_over_import_penetration": 3.29,
+      "manual_over_import_penetration_incl_fd": 3.33
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "USA:automotive",
+      "icio_flow_usd_m": 387.6,
+      "icio_input_share": 0.00075,
+      "icio_penetration": 0.02245,
+      "icio_import_penetration": 0.04875,
+      "icio_import_penetration_incl_fd": 0.04493,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.05,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 2.23,
+      "manual_over_import_penetration": 1.03,
+      "manual_over_import_penetration_incl_fd": 1.11
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "USA:electronics",
+      "icio_flow_usd_m": 473.1,
+      "icio_input_share": 0.0039,
+      "icio_penetration": 0.02019,
+      "icio_import_penetration": 0.04506,
+      "icio_import_penetration_incl_fd": 0.04478,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.08,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 3.96,
+      "manual_over_import_penetration": 1.78,
+      "manual_over_import_penetration_incl_fd": 1.79
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "USA:aerospace",
+      "icio_flow_usd_m": 155.3,
+      "icio_input_share": 0.001,
+      "icio_penetration": 0.02101,
+      "icio_import_penetration": 0.04726,
+      "icio_import_penetration_incl_fd": 0.0448,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.06,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 2.86,
+      "manual_over_import_penetration": 1.27,
+      "manual_over_import_penetration_incl_fd": 1.34
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "MEX:automotive",
+      "icio_flow_usd_m": 279.6,
+      "icio_input_share": 0.00212,
+      "icio_penetration": 0.03242,
+      "icio_import_penetration": 0.0518,
+      "icio_import_penetration_incl_fd": 0.05065,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.05,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 1.54,
+      "manual_over_import_penetration": 0.97,
+      "manual_over_import_penetration_incl_fd": 0.99
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "MEX:electronics",
+      "icio_flow_usd_m": 1356.0,
+      "icio_input_share": 0.01737,
+      "icio_penetration": 0.03224,
+      "icio_import_penetration": 0.05,
+      "icio_import_penetration_incl_fd": 0.0502,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.07,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 2.17,
+      "manual_over_import_penetration": 1.4,
+      "manual_over_import_penetration_incl_fd": 1.39
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "IND:automotive",
+      "icio_flow_usd_m": 29.3,
+      "icio_input_share": 0.00033,
+      "icio_penetration": 0.01559,
+      "icio_import_penetration": 0.01634,
+      "icio_import_penetration_incl_fd": 0.01616,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.02,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 1.28,
+      "manual_over_import_penetration": 1.22,
+      "manual_over_import_penetration_incl_fd": 1.24
+    },
+    {
+      "src": "TWN:semiconductors",
+      "tgt": "IND:electronics",
+      "icio_flow_usd_m": 108.4,
+      "icio_input_share": 0.00346,
+      "icio_penetration": 0.01501,
+      "icio_import_penetration": 0.01501,
+      "icio_import_penetration_incl_fd": 0.01587,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.04,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 2.66,
+      "manual_over_import_penetration": 2.66,
+      "manual_over_import_penetration_incl_fd": 2.52
+    },
+    {
+      "src": "KOR:semiconductors",
+      "tgt": "USA:electronics",
+      "icio_flow_usd_m": 548.3,
+      "icio_input_share": 0.00452,
+      "icio_penetration": 0.0234,
+      "icio_import_penetration": 0.05222,
+      "icio_import_penetration_incl_fd": 0.05197,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.22,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 9.4,
+      "manual_over_import_penetration": 4.21,
+      "manual_over_import_penetration_incl_fd": 4.23
+    },
+    {
+      "src": "KOR:semiconductors",
+      "tgt": "CHN:electronics",
+      "icio_flow_usd_m": 39797.4,
+      "icio_input_share": 0.02834,
+      "icio_penetration": 0.04788,
+      "icio_import_penetration": 0.21987,
+      "icio_import_penetration_incl_fd": 0.21796,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.25,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 5.22,
+      "manual_over_import_penetration": 1.14,
+      "manual_over_import_penetration_incl_fd": 1.15
+    },
+    {
+      "src": "KOR:semiconductors",
+      "tgt": "DEU:automotive",
+      "icio_flow_usd_m": 43.4,
+      "icio_input_share": 0.00015,
+      "icio_penetration": 0.0204,
+      "icio_import_penetration": 0.03074,
+      "icio_import_penetration_incl_fd": 0.02998,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.14,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 6.86,
+      "manual_over_import_penetration": 4.55,
+      "manual_over_import_penetration_incl_fd": 4.67
+    },
+    {
+      "src": "USA:semiconductors",
+      "tgt": "USA:automotive",
+      "icio_flow_usd_m": 9316.9,
+      "icio_input_share": 0.01806,
+      "icio_penetration": 0.53958,
+      "icio_import_penetration": null,
+      "icio_import_penetration_incl_fd": null,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.18,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 0.33,
+      "manual_over_import_penetration": null,
+      "manual_over_import_penetration_incl_fd": null
+    },
+    {
+      "src": "USA:semiconductors",
+      "tgt": "USA:aerospace",
+      "icio_flow_usd_m": 4107.9,
+      "icio_input_share": 0.02653,
+      "icio_penetration": 0.55558,
+      "icio_import_penetration": null,
+      "icio_import_penetration_incl_fd": null,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.35,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 0.63,
+      "manual_over_import_penetration": null,
+      "manual_over_import_penetration_incl_fd": null
+    },
+    {
+      "src": "USA:semiconductors",
+      "tgt": "MEX:automotive",
+      "icio_flow_usd_m": 620.9,
+      "icio_input_share": 0.0047,
+      "icio_penetration": 0.07201,
+      "icio_import_penetration": 0.11505,
+      "icio_import_penetration_incl_fd": 0.1168,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.16,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 2.22,
+      "manual_over_import_penetration": 1.39,
+      "manual_over_import_penetration_incl_fd": 1.37
+    },
+    {
+      "src": "JPN:semiconductors",
+      "tgt": "JPN:automotive",
+      "icio_flow_usd_m": 4198.6,
+      "icio_input_share": 0.01194,
+      "icio_penetration": 0.58284,
+      "icio_import_penetration": null,
+      "icio_import_penetration_incl_fd": null,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.28,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 0.48,
+      "manual_over_import_penetration": null,
+      "manual_over_import_penetration_incl_fd": null
+    },
+    {
+      "src": "JPN:semiconductors",
+      "tgt": "DEU:automotive",
+      "icio_flow_usd_m": 56.1,
+      "icio_input_share": 0.00019,
+      "icio_penetration": 0.02637,
+      "icio_import_penetration": 0.03974,
+      "icio_import_penetration_incl_fd": 0.04917,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.1,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 3.79,
+      "manual_over_import_penetration": 2.52,
+      "manual_over_import_penetration_incl_fd": 2.03
+    },
+    {
+      "src": "CHN:semiconductors",
+      "tgt": "CHN:electronics",
+      "icio_flow_usd_m": 650200.3,
+      "icio_input_share": 0.46304,
+      "icio_penetration": 0.78224,
+      "icio_import_penetration": null,
+      "icio_import_penetration_incl_fd": null,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)",
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.15,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 0.19,
+      "manual_over_import_penetration": null,
+      "manual_over_import_penetration_incl_fd": null
+    },
+    {
+      "src": "NLD:semiconductors",
+      "tgt": "TWN:semiconductors",
+      "icio_flow_usd_m": 74.8,
+      "icio_input_share": 0.00056,
+      "icio_penetration": 0.00121,
+      "icio_import_penetration": 0.00293,
+      "icio_import_penetration_incl_fd": 0.00352,
+      "mapping_caveats": [
+        "ASML litho equipment partly classifies as C28 machinery; C26 understates it",
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "nld_c28_to_tgt_gfcf_usd_m": 2510.3,
+      "manual_weight": 0.45,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 371.9,
+      "manual_over_import_penetration": 153.58,
+      "manual_over_import_penetration_incl_fd": 127.84
+    },
+    {
+      "src": "NLD:semiconductors",
+      "tgt": "KOR:semiconductors",
+      "icio_flow_usd_m": 116.6,
+      "icio_input_share": 0.00062,
+      "icio_penetration": 0.00123,
+      "icio_import_penetration": 0.00415,
+      "icio_import_penetration_incl_fd": 0.00429,
+      "mapping_caveats": [
+        "ASML litho equipment partly classifies as C28 machinery; C26 understates it",
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "nld_c28_to_tgt_gfcf_usd_m": 556.7,
+      "manual_weight": 0.4,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 325.2,
+      "manual_over_import_penetration": 96.39,
+      "manual_over_import_penetration_incl_fd": 93.24
+    },
+    {
+      "src": "NLD:semiconductors",
+      "tgt": "USA:semiconductors",
+      "icio_flow_usd_m": 24.9,
+      "icio_input_share": 0.00021,
+      "icio_penetration": 0.00106,
+      "icio_import_penetration": 0.00238,
+      "icio_import_penetration_incl_fd": 0.00254,
+      "mapping_caveats": [
+        "ASML litho equipment partly classifies as C28 machinery; C26 understates it",
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "nld_c28_to_tgt_gfcf_usd_m": 1881.5,
+      "manual_weight": 0.3,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 283.02,
+      "manual_over_import_penetration": 126.05,
+      "manual_over_import_penetration_incl_fd": 118.11
+    },
+    {
+      "src": "CHN:electronics",
+      "tgt": "USA:consumer_goods",
+      "icio_flow_usd_m": 938.5,
+      "icio_input_share": 0.0011,
+      "icio_penetration": 0.16493,
+      "icio_import_penetration": 0.39678,
+      "icio_import_penetration_incl_fd": 0.41581,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.45,
+      "family": "authored",
+      "manual_over_penetration": 2.73,
+      "manual_over_import_penetration": 1.13,
+      "manual_over_import_penetration_incl_fd": 1.08
+    },
+    {
+      "src": "VNM:electronics",
+      "tgt": "USA:consumer_goods",
+      "icio_flow_usd_m": 119.5,
+      "icio_input_share": 0.00014,
+      "icio_penetration": 0.02101,
+      "icio_import_penetration": 0.05053,
+      "icio_import_penetration_incl_fd": 0.05293,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.18,
+      "family": "authored",
+      "manual_over_penetration": 8.57,
+      "manual_over_import_penetration": 3.56,
+      "manual_over_import_penetration_incl_fd": 3.4
+    },
+    {
+      "src": "KOR:electronics",
+      "tgt": "USA:consumer_goods",
+      "icio_flow_usd_m": 120.2,
+      "icio_input_share": 0.00014,
+      "icio_penetration": 0.02112,
+      "icio_import_penetration": 0.05081,
+      "icio_import_penetration_incl_fd": 0.05194,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.15,
+      "family": "authored",
+      "manual_over_penetration": 7.1,
+      "manual_over_import_penetration": 2.95,
+      "manual_over_import_penetration_incl_fd": 2.89
+    },
+    {
+      "src": "MYS:electronics",
+      "tgt": "USA:consumer_goods",
+      "icio_flow_usd_m": 87.8,
+      "icio_input_share": 0.0001,
+      "icio_penetration": 0.01543,
+      "icio_import_penetration": 0.03713,
+      "icio_import_penetration_incl_fd": 0.0387,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.1,
+      "family": "authored",
+      "manual_over_penetration": 6.48,
+      "manual_over_import_penetration": 2.69,
+      "manual_over_import_penetration_incl_fd": 2.58
+    },
+    {
+      "src": "MEX:electronics",
+      "tgt": "USA:consumer_goods",
+      "icio_flow_usd_m": 385.1,
+      "icio_input_share": 0.00045,
+      "icio_penetration": 0.06767,
+      "icio_import_penetration": 0.16281,
+      "icio_import_penetration_incl_fd": 0.16472,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.12,
+      "family": "authored",
+      "manual_over_penetration": 1.77,
+      "manual_over_import_penetration": 0.74,
+      "manual_over_import_penetration_incl_fd": 0.73
+    },
+    {
+      "src": "KOR:electronics",
+      "tgt": "DEU:automotive",
+      "icio_flow_usd_m": 43.4,
+      "icio_input_share": 0.00015,
+      "icio_penetration": 0.0204,
+      "icio_import_penetration": 0.03074,
+      "icio_import_penetration_incl_fd": 0.02998,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.18,
+      "family": "authored",
+      "manual_over_penetration": 8.82,
+      "manual_over_import_penetration": 5.86,
+      "manual_over_import_penetration_incl_fd": 6.0
+    },
+    {
+      "src": "JPN:electronics",
+      "tgt": "USA:automotive",
+      "icio_flow_usd_m": 252.9,
+      "icio_input_share": 0.00049,
+      "icio_penetration": 0.01464,
+      "icio_import_penetration": 0.03181,
+      "icio_import_penetration_incl_fd": 0.03265,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.2,
+      "family": "authored",
+      "manual_over_penetration": 13.66,
+      "manual_over_import_penetration": 6.29,
+      "manual_over_import_penetration_incl_fd": 6.13
+    },
+    {
+      "src": "MEX:automotive",
+      "tgt": "USA:automotive",
+      "icio_flow_usd_m": 14011.7,
+      "icio_input_share": 0.02717,
+      "icio_penetration": 0.11744,
+      "icio_import_penetration": 0.35427,
+      "icio_import_penetration_incl_fd": 0.35748,
+      "mapping_caveats": [],
+      "manual_weight": 0.212,
+      "family": "pure_penetration",
+      "manual_over_penetration": 1.81,
+      "manual_over_import_penetration": 0.6,
+      "manual_over_import_penetration_incl_fd": 0.59
+    },
+    {
+      "src": "DEU:automotive",
+      "tgt": "USA:automotive",
+      "icio_flow_usd_m": 3109.7,
+      "icio_input_share": 0.00603,
+      "icio_penetration": 0.02606,
+      "icio_import_penetration": 0.07863,
+      "icio_import_penetration_incl_fd": 0.07955,
+      "mapping_caveats": [],
+      "manual_weight": 0.101,
+      "family": "pure_penetration",
+      "manual_over_penetration": 3.88,
+      "manual_over_import_penetration": 1.28,
+      "manual_over_import_penetration_incl_fd": 1.27
+    },
+    {
+      "src": "JPN:automotive",
+      "tgt": "USA:automotive",
+      "icio_flow_usd_m": 6669.2,
+      "icio_input_share": 0.01293,
+      "icio_penetration": 0.0559,
+      "icio_import_penetration": 0.16862,
+      "icio_import_penetration_incl_fd": 0.16615,
+      "mapping_caveats": [],
+      "manual_weight": 0.222,
+      "family": "pure_penetration",
+      "manual_over_penetration": 3.97,
+      "manual_over_import_penetration": 1.32,
+      "manual_over_import_penetration_incl_fd": 1.34
+    },
+    {
+      "src": "KOR:automotive",
+      "tgt": "USA:automotive",
+      "icio_flow_usd_m": 2728.3,
+      "icio_input_share": 0.00529,
+      "icio_penetration": 0.02287,
+      "icio_import_penetration": 0.06898,
+      "icio_import_penetration_incl_fd": 0.06862,
+      "mapping_caveats": [],
+      "manual_weight": 0.091,
+      "family": "pure_penetration",
+      "manual_over_penetration": 3.98,
+      "manual_over_import_penetration": 1.32,
+      "manual_over_import_penetration_incl_fd": 1.33
+    },
+    {
+      "src": "DEU:automotive",
+      "tgt": "JPN:automotive",
+      "icio_flow_usd_m": 2566.0,
+      "icio_input_share": 0.0073,
+      "icio_penetration": 0.01535,
+      "icio_import_penetration": 0.22934,
+      "icio_import_penetration_incl_fd": 0.23075,
+      "mapping_caveats": [],
+      "manual_weight": 0.451,
+      "family": "pure_penetration",
+      "manual_over_penetration": 29.38,
+      "manual_over_import_penetration": 1.97,
+      "manual_over_import_penetration_incl_fd": 1.95
+    },
+    {
+      "src": "THA:automotive",
+      "tgt": "JPN:automotive",
+      "icio_flow_usd_m": 890.8,
+      "icio_input_share": 0.00253,
+      "icio_penetration": 0.00533,
+      "icio_import_penetration": 0.07962,
+      "icio_import_penetration_incl_fd": 0.0776,
+      "mapping_caveats": [],
+      "manual_weight": 0.15,
+      "family": "pure_penetration",
+      "manual_over_penetration": 28.14,
+      "manual_over_import_penetration": 1.88,
+      "manual_over_import_penetration_incl_fd": 1.93
+    },
+    {
+      "src": "VNM:consumer_goods",
+      "tgt": "USA:consumer_goods",
+      "icio_flow_usd_m": 701.8,
+      "icio_input_share": 0.00082,
+      "icio_penetration": 0.00655,
+      "icio_import_penetration": 0.05328,
+      "icio_import_penetration_incl_fd": 0.09148,
+      "mapping_caveats": [],
+      "manual_weight": 0.14,
+      "family": "authored",
+      "manual_over_penetration": 21.37,
+      "manual_over_import_penetration": 2.63,
+      "manual_over_import_penetration_incl_fd": 1.53
+    },
+    {
+      "src": "IND:consumer_goods",
+      "tgt": "USA:consumer_goods",
+      "icio_flow_usd_m": 856.5,
+      "icio_input_share": 0.001,
+      "icio_penetration": 0.00799,
+      "icio_import_penetration": 0.06502,
+      "icio_import_penetration_incl_fd": 0.06186,
+      "mapping_caveats": [],
+      "manual_weight": 0.1,
+      "family": "authored",
+      "manual_over_penetration": 12.52,
+      "manual_over_import_penetration": 1.54,
+      "manual_over_import_penetration_incl_fd": 1.62
+    },
+    {
+      "src": "CHN:consumer_goods",
+      "tgt": "DEU:automotive",
+      "icio_flow_usd_m": 228.2,
+      "icio_input_share": 0.00079,
+      "icio_penetration": 0.03968,
+      "icio_import_penetration": 0.15621,
+      "icio_import_penetration_incl_fd": 0.18127,
+      "mapping_caveats": [],
+      "manual_weight": 0.08,
+      "family": "authored",
+      "manual_over_penetration": 2.02,
+      "manual_over_import_penetration": 0.51,
+      "manual_over_import_penetration_incl_fd": 0.44
+    },
+    {
+      "src": "TWN:shipping",
+      "tgt": "TWN:semiconductors",
+      "icio_flow_usd_m": 107.5,
+      "icio_input_share": 0.0008,
+      "icio_penetration": 0.33728,
+      "icio_import_penetration": null,
+      "icio_import_penetration_incl_fd": null,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.5,
+      "family": "authored",
+      "manual_over_penetration": 1.48,
+      "manual_over_import_penetration": null,
+      "manual_over_import_penetration_incl_fd": null
+    },
+    {
+      "src": "USA:shipping",
+      "tgt": "USA:consumer_goods",
+      "icio_flow_usd_m": 1338.9,
+      "icio_input_share": 0.00157,
+      "icio_penetration": 0.88611,
+      "icio_import_penetration": null,
+      "icio_import_penetration_incl_fd": null,
+      "mapping_caveats": [],
+      "manual_weight": 0.3,
+      "family": "authored",
+      "manual_over_penetration": 0.34,
+      "manual_over_import_penetration": null,
+      "manual_over_import_penetration_incl_fd": null
+    },
+    {
+      "src": "CHN:shipping",
+      "tgt": "USA:consumer_goods",
+      "icio_flow_usd_m": 24.6,
+      "icio_input_share": 3e-05,
+      "icio_penetration": 0.01626,
+      "icio_import_penetration": 0.14273,
+      "icio_import_penetration_incl_fd": 0.08266,
+      "mapping_caveats": [],
+      "manual_weight": 0.4,
+      "family": "authored",
+      "manual_over_penetration": 24.6,
+      "manual_over_import_penetration": 2.8,
+      "manual_over_import_penetration_incl_fd": 4.84
+    },
+    {
+      "src": "NLD:shipping",
+      "tgt": "DEU:automotive",
+      "icio_flow_usd_m": 5.2,
+      "icio_input_share": 2e-05,
+      "icio_penetration": 0.00948,
+      "icio_import_penetration": 0.071,
+      "icio_import_penetration_incl_fd": 0.05988,
+      "mapping_caveats": [],
+      "manual_weight": 0.22,
+      "family": "authored",
+      "manual_over_penetration": 23.21,
+      "manual_over_import_penetration": 3.1,
+      "manual_over_import_penetration_incl_fd": 3.67
+    },
+    {
+      "src": "USA:automotive",
+      "tgt": "USA:consumer_goods",
+      "icio_flow_usd_m": 1937.0,
+      "icio_input_share": 0.00226,
+      "icio_penetration": 0.63489,
+      "icio_import_penetration": null,
+      "icio_import_penetration_incl_fd": null,
+      "mapping_caveats": [],
+      "manual_weight": 0.1,
+      "family": "authored",
+      "manual_over_penetration": 0.16,
+      "manual_over_import_penetration": null,
+      "manual_over_import_penetration_incl_fd": null
+    },
+    {
+      "src": "DEU:automotive",
+      "tgt": "DEU:electronics",
+      "icio_flow_usd_m": 276.4,
+      "icio_input_share": 0.00506,
+      "icio_penetration": 0.66441,
+      "icio_import_penetration": null,
+      "icio_import_penetration_incl_fd": null,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.12,
+      "family": "authored",
+      "manual_over_penetration": 0.18,
+      "manual_over_import_penetration": null,
+      "manual_over_import_penetration_incl_fd": null
+    },
+    {
+      "src": "CHN:electronics",
+      "tgt": "CHN:consumer_goods",
+      "icio_flow_usd_m": 6084.5,
+      "icio_input_share": 0.00227,
+      "icio_penetration": 0.75005,
+      "icio_import_penetration": null,
+      "icio_import_penetration_incl_fd": null,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with semiconductors)"
+      ],
+      "manual_weight": 0.18,
+      "family": "authored",
+      "manual_over_penetration": 0.24,
+      "manual_over_import_penetration": null,
+      "manual_over_import_penetration_incl_fd": null
+    },
+    {
+      "src": "MYS:semiconductors",
+      "tgt": "USA:automotive",
+      "icio_flow_usd_m": 305.8,
+      "icio_input_share": 0.00059,
+      "icio_penetration": 0.01771,
+      "icio_import_penetration": 0.03846,
+      "icio_import_penetration_incl_fd": 0.03871,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.06,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 3.39,
+      "manual_over_import_penetration": 1.56,
+      "manual_over_import_penetration_incl_fd": 1.55
+    },
+    {
+      "src": "MYS:semiconductors",
+      "tgt": "DEU:automotive",
+      "icio_flow_usd_m": 29.0,
+      "icio_input_share": 0.0001,
+      "icio_penetration": 0.01362,
+      "icio_import_penetration": 0.02052,
+      "icio_import_penetration_incl_fd": 0.02441,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.06,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 4.41,
+      "manual_over_import_penetration": 2.92,
+      "manual_over_import_penetration_incl_fd": 2.46
+    },
+    {
+      "src": "MYS:semiconductors",
+      "tgt": "JPN:automotive",
+      "icio_flow_usd_m": 63.9,
+      "icio_input_share": 0.00018,
+      "icio_penetration": 0.00887,
+      "icio_import_penetration": 0.02126,
+      "icio_import_penetration_incl_fd": 0.02074,
+      "mapping_caveats": [
+        "ICIO has no semi split; uses all of C26 (collides with electronics)"
+      ],
+      "manual_weight": 0.05,
+      "family": "penetration_x_exposure",
+      "manual_over_penetration": 5.64,
+      "manual_over_import_penetration": 2.35,
+      "manual_over_import_penetration_incl_fd": 2.41
+    }
+  ],
+  "excluded_chokepoint_links": [
+    {
+      "src": "CP:TaiwanStrait",
+      "tgt": "TWN:semiconductors",
+      "manual_weight": 0.75,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:TaiwanStrait",
+      "tgt": "TWN:electronics",
+      "manual_weight": 0.7,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:TaiwanStrait",
+      "tgt": "KOR:electronics",
+      "manual_weight": 0.15,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:TaiwanStrait",
+      "tgt": "JPN:electronics",
+      "manual_weight": 0.12,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Malacca",
+      "tgt": "CHN:electronics",
+      "manual_weight": 0.25,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Malacca",
+      "tgt": "VNM:electronics",
+      "manual_weight": 0.28,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Malacca",
+      "tgt": "THA:automotive",
+      "manual_weight": 0.18,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Malacca",
+      "tgt": "MYS:electronics",
+      "manual_weight": 0.2,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Suez",
+      "tgt": "DEU:automotive",
+      "manual_weight": 0.2,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Suez",
+      "tgt": "DEU:electronics",
+      "manual_weight": 0.18,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Hormuz",
+      "tgt": "JPN:automotive",
+      "manual_weight": 0.12,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Hormuz",
+      "tgt": "CHN:electronics",
+      "manual_weight": 0.08,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Suez",
+      "tgt": "NLD:shipping",
+      "manual_weight": 0.08,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Suez",
+      "tgt": "CHN:shipping",
+      "manual_weight": 0.03,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Malacca",
+      "tgt": "CHN:shipping",
+      "manual_weight": 0.03,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Malacca",
+      "tgt": "TWN:shipping",
+      "manual_weight": 0.015,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:TaiwanStrait",
+      "tgt": "TWN:shipping",
+      "manual_weight": 0.09,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Panama",
+      "tgt": "USA:consumer_goods",
+      "manual_weight": 0.12,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    },
+    {
+      "src": "CP:Panama",
+      "tgt": "USA:shipping",
+      "manual_weight": 0.04,
+      "family": "chokepoint_capacity_factor",
+      "excluded_reason": "chokepoints are not producing sectors; weights follow the capacity-factor convention validated against IMF PortWatch (Batch 5), no I-O analog"
+    }
+  ],
+  "timestamp": "2026-06-12T04:27:34.687373+00:00"
+}

@@ -351,3 +351,74 @@ recovery_rate is the binding structural constraint.** Per-node recovery
 dynamics (couple shock decay to the existing per-node recovery_delay_weeks)
 is now the top-priority engine change, with a ready-made falsification test:
 it must fix Chi-Chi without breaking COVID.
+
+---
+
+## Batch 9 — OECD ICIO 2025: data layer + hand-weight cross-validation (2026-06-12)
+
+The graph-expansion prerequisite finally landed: the official **OECD ICIO
+2025-edition** year-2019 table (the pre-COVID structural baseline) is now in
+the repo with full provenance, and — per the "cross-validate before you
+expand" instruction — the first scientific use is an audit of our own hands:
+every hand-authored `EDGES_RAW` weight recomputed from measured 2019
+input-output flows.
+
+| Change | Where |
+|---|---|
+| ICIO 2025 ed. 2019 table (81 economies × 50 industries, SML) + ReadMe + annex + provenance, sha256-pinned | `backend/data/raw/external/icio2025/` |
+| Loader + edge-measure derivation + expansion prototype | `app/core/icio.py` |
+| Cross-validation report (55 production edges scored, 19 chokepoint links explicitly excluded → all 74 seed edges covered) | `scripts/icio_derive_edges.py` → `data/calibration/icio_edge_check.json` |
+| Expanded-graph prototype, measured columns only, **NOT wired into the engine** | `scripts/icio_expand_graph.py` → `data/csv/expanded_graph_{nodes,edges,meta}_v3.*` (405 nodes, 1 964 edges) |
+| 8 data-integrity tests pinned to measured facts | `tests/test_icio.py` |
+
+Notes: the small (SML) version is *not* sector-aggregated — it is the full
+50-industry 2025 edition, only without the CN1/CN2/MX1/MX2 splits (the
+"~76×45" expectation was the 2023 edition's shape; recorded in
+PROVENANCE.md). oecd.org/webfs-sti sit behind TLS-fingerprint bot
+protection; `curl_cffi impersonate="chrome"` downloads them (documented in
+PROVENANCE.md for re-runs).
+
+### Batch 9 findings — the instrument matters, and the hands are mostly honest
+
+1. **The comparison measure must match the authoring convention.** Manual
+   weights vs naive ICIO penetration (domestic supply in the denominator):
+   Spearman 0.20. Same weights vs **import penetration** (foreign sources
+   only — the Comtrade convention the weights were authored with): Spearman
+   0.43, Pearson 0.46. Per family: the six Comtrade-derived automotive edges
+   hit **Spearman 0.83**; the TWN-semi family (penetration × exposure) sits
+   at ~0.31 with manual/measured ratios mostly 1–4.7×; the "authored"
+   (literature/calibrated) family is the weakest (~0 rank correlation) — the
+   edges to revisit first.
+2. **Import-derived weights are blind to domestic input dominance.** ICIO
+   measures what Comtrade can't: USA:auto→USA:consumer manual 0.10 vs 0.63
+   measured within-type share; CHN:semi→CHN:elec 0.15 vs 0.78; JPN/USA
+   domestic semi→auto similar. The current 12×6 graph systematically
+   under-couples domestic supply chains.
+3. **The ASML dependency is real but lives in the capital account.**
+   NLD:semi edges (manual 0.30–0.45) score ~0.003 on every flow share — not
+   because the dependency is fake, but because lithography equipment is C28
+   machinery flowing into the buyer's **GFCF (investment) column**:
+   measured NLD_C28→TWN_GFCF = $2.51 B, →KOR $0.56 B (2019). Input-output
+   intermediate flows structurally cannot ground criticality edges for
+   capital equipment; these stay literature-authored, now with the measured
+   reason pinned in a test.
+4. **Two concrete weight corrections surfaced:** DEU→JPN:auto manual 0.451
+   was *finished-car* import share — measured all-of-C29 import share is
+   0.23 (manual 2× high); THA→JPN:auto was confessed "calibrated, no
+   bilateral pair" at 0.15 — ICIO measures 0.08. Both are replacement
+   candidates for the next graph revision (deliberately not hot-fixed here:
+   weight changes re-open the benchmark, which deserves its own batch).
+5. **Shipping-as-service edges are over-weighted 3.7–4.8×** (CHN:ship→USA:cons
+   0.40 vs 0.083): the authored numbers encode logistics dependency, but H50
+   purchases measure only direct freight-service spend. Same lesson as the
+   Batch-5 chokepoint repair: the logistics layer needs its own convention
+   (transport margins), not naive I-O shares.
+
+Expansion prototype caveat, recorded in the meta artifact: ICIO C26 cannot
+split semiconductors from electronics, so the v3 prototype carries one
+merged `electronics_c26` industry (a Comtrade HS-8541/42 overlay is the
+planned split). Pre-existing on this branch and unchanged: the 6
+`test_portwatch.py` tests fail in a fresh clone because
+`portwatch_daily_chokepoints.csv` was never committed (it lives on the
+local machine that ran Batch 6) — same gitignore trap the ICIO files just
+avoided via `git add -f`; worth committing the same way.

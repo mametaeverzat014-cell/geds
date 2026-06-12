@@ -34,6 +34,35 @@ compression="infer")`) restores the byte-identical original
 - 2019 chosen as the last pre-COVID structural baseline year for graph
   expansion work (PROGRESS.md, deferred Phase 3).
 
+## Structure verification (2026-06-12, against the committed `ReadMe_ICIO_small.xlsx`)
+
+Parsed the committed `2019_SML.csv.gz` and cross-checked every count against
+the ReadMe "Structure" sheet — **match**:
+
+- Data rows: 4053 = **81 economies × 50 industries** (4050 `CCC_III` rows)
+  + `TLS` (taxes less subsidies) + `VA` (value added) + `OUT` (output).
+- Data cols: 4537 = 4050 intermediate-use cols + 81 × 6 final-demand cols
+  (`HFCE`, `NPISH`, `GGFC`, `GFCF`, `INVNT`, `DPABR`) + `OUT`.
+- Values: current USD million (ReadMe sheet 1).
+
+**Honest note vs the earlier expectation of "~76 countries × 45 industries
+(~3400 rows)":** that shape describes the **2023 edition**. This file is the
+**2025 edition**, which is *larger*, not aggregated: 81 economies (added AGO,
+ARE, COD, STP) × 50 industries (Agriculture/Mining expanded to 2-digit ISIC,
+C24 split into C24A/C24B, C301 shipbuilding split from C302T309). "Small"
+(SML) refers only to the absence of the China/Mexico firm-heterogeneity splits
+(CN1/CN2/MX1/MX2 appear in the `_EXT` files); sector resolution is full.
+
+Economies (81): AGO ARE ARG AUS AUT BEL BGD BGR BLR BRA BRN CAN CHE CHL CHN
+CIV CMR COD COL CRI CYP CZE DEU DNK EGY ESP EST FIN FRA GBR GRC HKG HRV HUN
+IDN IND IRL ISL ISR ITA JOR JPN KAZ KHM KOR LAO LTU LUX LVA MAR MEX MLT MMR
+MYS NGA NLD NOR NZL PAK PER PHL POL PRT ROU **ROW** RUS SAU SEN SGP STP SVK
+SVN SWE THA TUN TUR TWN UKR USA VNM ZAF
+
+Industries (50): A01 A02 A03 B05 B06 B07 B08 B09 C10T12 C13T15 C16 C17_18 C19
+C20 C21 C22 C23 C24A C24B C25 C26 C27 C28 C29 C301 C302T309 C31T33 D E F G
+H49 H50 H51 H52 H53 I J58T60 J61 J62_63 K L M N O P Q R S T
+
 ## Companion archives (same directory on the OECD server, not committed)
 
 - `1995-2000_SML.zip`, `2001-2005_SML.zip`, `2006-2010_SML.zip`,
