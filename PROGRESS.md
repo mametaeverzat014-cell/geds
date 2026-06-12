@@ -456,11 +456,42 @@ which remain exactly zero-effect). Honest side-finding pinned in
 adversarial set — the R-state hysteresis floor is now the top removal
 candidate for the next ablation-driven cleanup.
 
-The real verdict is out-of-sample: in the Batch-7 LOO-DE the calibrator
-pushed `recovery_rate` to the 0.01 bound trying to serve slow-recovery
-crises, freezing Chi-Chi's source (fold prediction 0.185). With coupling,
-that same calibrated floor still lets TWN:semi heal 4× faster. 26-fold
-LOO-DE rerun in progress; verdict to be appended with the artifact.
+**Out-of-sample verdict (26-fold LOO-DE, 66 min): the pre-registered test
+FAILED — mechanism NOT adopted as engine default.**
+
+| | MAE | RMSE | Pearson | Spearman | R² |
+|---|---|---|---|---|---|
+| LOO-DE, uniform recovery (Batch 7) | **0.0170** | 0.0395 | **0.166** | **0.525** | −1.525 |
+| LOO-DE, per-node recovery (9b) | 0.0176 | **0.0389** | 0.127 | 0.474 | **−1.458** |
+
+Chi-Chi fold: 0.185 → 0.176 (observed 0.005) — not fixed. The fold
+calibrator still pins `recovery_rate` at the 0.0103 floor, so even 4× faster
+TWN:semi decay (0.041/week) is irrelevant inside a 12-week horizon whose
+downstream peak forms DURING the 2-week forcing. Worse, the coupling lets
+other folds raise the global rate (auto-chip fold: recovery_rate 0.014 →
+0.053), gutting the 30-week chip-shortage prediction 0.033 → 0.011 (observed
+0.077). COVID itself held (0.047 → 0.049). Pooled error/rank metrics
+slightly worse; only RMSE/R² marginally better.
+
+Disposition, per the Batch-8 precedent for negative results: default
+reverted to the uniform rate (`per_node_recovery=False`), golden snapshot
+unchanged from 2026-06-11; the mechanism stays implemented and measured by
+ablation (`with_per_node_recovery`: would give −0.0010 MAE at default
+params — the in-sample/out-of-sample split is itself recorded). Experiment
+artifact: `data/calibration/loo_de_per_node_recovery_experiment.json`
+(canonical `loo_de_result.json` restored to the Batch-7 run). The grounded
+TWN:semi `recovery_delay_weeks` 8 → 2 stays in the data layer (it only
+shortens that node's R-state hysteresis; no scored metric moves).
+
+**Refined diagnosis after two failed mechanisms:** Batch 8 attacked
+within-forcing absorption downstream (inventory interception — benchmark got
+worse), 9b attacked post-forcing source healing (OOS worse). The impulse
+near-miss over-prediction lives in the inbound→shock conversion *during*
+forcing, and the single strongest lever the ablation keeps flagging is
+`r_output_floor`: removing the R-state output floor improves default MAE
+0.0220 → **0.0144** — within noise of linear diffusion (0.0147). Next
+mechanism candidate is therefore subtractive, not additive: drop or rethink
+the hysteresis floor, re-run LOO-DE as the gate.
 
 ### Batch 9c — C26 semi/electronics split overlay (2026-06-12, same day)
 

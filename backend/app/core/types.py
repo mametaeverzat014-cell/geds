@@ -151,11 +151,12 @@ class EngineConfig(BaseModel):
     seis_enabled: bool = Field(True)
     adaptive_rerouting: bool = Field(True)
     # Couple shock decay to each node's recovery_delay_weeks (Batch 9b):
-    # rate_i = recovery_rate × (8-week reference / delay_i), so recovery_rate
-    # stays the single calibrated scale and a node at the historical 8.0
-    # default decays exactly as before. False restores the uniform global
-    # rate at every node (ablation hook).
-    per_node_recovery: bool = Field(True)
+    # rate_i = recovery_rate × (8-week reference / delay_i). Default OFF —
+    # the pre-registered out-of-sample test failed (LOO-DE: Chi-Chi fold
+    # 0.185 → 0.176 vs observed 0.005, auto-chip fold degraded, pooled
+    # metrics slightly worse; see loo_de_per_node_recovery_experiment.json).
+    # Kept as an ablation-able mechanism, not engine default.
+    per_node_recovery: bool = Field(False)
 
     # ── Calibratable behavioral parameters (lifted from hardcoded constants) ──
     bullwhip_factor: float = Field(1.25, ge=1.0, le=2.0)        # E-state inbound multiplier
