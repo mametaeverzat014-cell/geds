@@ -1,6 +1,6 @@
 # GEDS Benchmark Leaderboard
 
-- Generated: 2026-06-11T17:49:50.966583+00:00
+- Generated: 2026-06-12T12:52:11.675548+00:00
 - Events: 26  |  NDCG cutoff: k=5
 - Pinned config: seed=0, stochastic_sigma=0.0
 

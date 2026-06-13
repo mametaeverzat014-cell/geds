@@ -96,6 +96,11 @@ def _variants() -> list[tuple[str, str, EngineConfig]]:
     cfg = dict(base); cfg["r_output_floor"] = 0.0
     out.append(("no_r_state_floor", "R-state output floor at 0 (no hysteresis)", EngineConfig(**cfg)))
 
+    # Candidate mechanism, default-off after the failed Batch-9b OOS test:
+    # ablation keeps measuring what turning it ON would do.
+    cfg = dict(base); cfg["per_node_recovery"] = True
+    out.append(("with_per_node_recovery", "Shock decay coupled to per-node recovery_delay_weeks", EngineConfig(**cfg)))
+
     return out
 
 

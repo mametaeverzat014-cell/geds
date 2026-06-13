@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-06-11T17:49:52.212201+00:00",
+  "timestamp": "2026-06-12T12:52:11.675548+00:00",
   "n_events": 26,
   "ndcg_k": 5,
   "config": {
@@ -12,6 +12,7 @@
     "seed": 0,
     "seis_enabled": true,
     "adaptive_rerouting": true,
+    "per_node_recovery": false,
     "bullwhip_factor": 1.25,
     "r_output_floor": 0.3,
     "inventory_scale": 1.0,

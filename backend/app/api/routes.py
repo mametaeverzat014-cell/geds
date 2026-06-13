@@ -664,6 +664,22 @@ def gscpi_validation() -> dict:
         "gscpi_validation.json", "python -m scripts.gscpi_validation")
 
 
+@router.get("/icio-edge-check", tags=["validation"])
+def icio_edge_check() -> dict:
+    """Every hand-authored edge weight vs OECD ICIO 2019 measured flow shares
+    (input share, penetration, import penetration, import+final-demand)."""
+    return _serve_calibration_artifact(
+        "icio_edge_check.json", "python -m scripts.icio_derive_edges")
+
+
+@router.get("/icio-c26-split", tags=["validation"])
+def icio_c26_split() -> dict:
+    """Comtrade HS-overlay splitting ICIO C26 into semi vs electronics; the
+    semi-family edges rescored with semi-specific import penetration."""
+    return _serve_calibration_artifact(
+        "icio_c26_split.json", "python -m scripts.icio_c26_split")
+
+
 @router.get("/benchmark", tags=["validation"])
 def benchmark() -> dict:
     """Unified model leaderboard: SEIRS vs Leontief vs Diffusion vs naive."""

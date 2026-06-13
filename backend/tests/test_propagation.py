@@ -168,3 +168,44 @@ def test_amplification_activates_above_threshold(graph):
     r_hi = PropagationEngine(graph, high_cfg).run(scenario_high)
 
     assert r_hi.summary.peak_csi > r_lo.summary.peak_csi
+
+
+def test_per_node_recovery_couples_to_delay(graph):
+    """Batch 9b: a node's post-forcing shock decay follows its recovery_delay_weeks.
+
+    TWN:semiconductors carries a grounded 2-week delay (TSMC Chi-Chi restoration
+    timeline) → 4× the reference decay rate; with the coupling disabled it must
+    decay exactly at the uniform global rate.
+    """
+    scenario = Scenario(
+        id="impulse",
+        name="One-week impulse at TWN semis",
+        horizon_weeks=12,
+        shocks=[
+            ShockSpec(
+                target_node_id=_id("TWN", Industry.SEMICONDUCTORS),
+                magnitude=0.9,
+                start_week=0,
+                duration_weeks=1,
+                decay_curve="step",
+            )
+        ],
+    )
+    i = graph.index[_id("TWN", Industry.SEMICONDUCTORS)]
+    assert graph.recovery_delay[i] == 2.0
+
+    shocks = {}
+    for flag in (True, False):
+        cfg = EngineConfig(per_node_recovery=flag, stochastic_sigma=0.0, seed=0)
+        result = PropagationEngine(graph, cfg).run(
+            Scenario(**{**scenario.model_dump(), "config": cfg})
+        )
+        shocks[flag] = np.array([f.nodes[i].shock for f in result.frames])
+
+    # Coupled: the 2-week node sheds shock 4x faster than the global rate.
+    assert shocks[True][6] < 0.5 * shocks[False][6], (
+        f"coupled decay too slow: week-6 shock {shocks[True][6]:.3f} vs "
+        f"uniform {shocks[False][6]:.3f}"
+    )
+    # Both runs see the same forcing peak.
+    assert shocks[True][0] == shocks[False][0] > 0.8

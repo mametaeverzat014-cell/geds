@@ -37,6 +37,17 @@ GOLDEN = {
     "Linear Diffusion (network)": {"mae": 0.0147, "rmse": 0.0288, "spearman": 0.7071},
     "Naive Persistence (predict mean)": {"mae": 0.0148, "rmse": 0.0248},
 }
+# 2026-06-12 Batch 9b round-trip — per-node recovery dynamics were
+# implemented, improved the default-config benchmark (MAE 0.0220 → 0.0211),
+# but FAILED the pre-registered out-of-sample test (26-fold LOO-DE: Chi-Chi
+# 0.185 → 0.176 vs observed 0.005; auto-chip fold degraded 0.033 → 0.011;
+# pooled MAE/Spearman slightly worse — artifact:
+# loo_de_per_node_recovery_experiment.json). Per the Batch-8 precedent the
+# mechanism is NOT the engine default (per_node_recovery=False), so these
+# golden numbers are unchanged from the 2026-06-11 snapshot. The
+# TWN:semiconductors recovery_delay override (8 → 2 weeks, sourced) stays in
+# the data layer; with the coupling off it only shortens that node's R-state
+# hysteresis, which does not move any scored metric at this precision.
 # 2026-06-11 (b): N=21 → 26 — five researched events added (Chi-Chi 1999,
 # Harvey 2017, WC ports 2015, Korea truckers 2022, Panama drought 2023 with
 # the new CP:Panama node); red-sea duration corrected 26 → 40 weeks

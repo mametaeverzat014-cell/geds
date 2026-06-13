@@ -351,3 +351,235 @@ recovery_rate is the binding structural constraint.** Per-node recovery
 dynamics (couple shock decay to the existing per-node recovery_delay_weeks)
 is now the top-priority engine change, with a ready-made falsification test:
 it must fix Chi-Chi without breaking COVID.
+
+---
+
+## Batch 9 — OECD ICIO 2025: data layer + hand-weight cross-validation (2026-06-12)
+
+The graph-expansion prerequisite finally landed: the official **OECD ICIO
+2025-edition** year-2019 table (the pre-COVID structural baseline) is now in
+the repo with full provenance, and — per the "cross-validate before you
+expand" instruction — the first scientific use is an audit of our own hands:
+every hand-authored `EDGES_RAW` weight recomputed from measured 2019
+input-output flows.
+
+| Change | Where |
+|---|---|
+| ICIO 2025 ed. 2019 table (81 economies × 50 industries, SML) + ReadMe + annex + provenance, sha256-pinned | `backend/data/raw/external/icio2025/` |
+| Loader + edge-measure derivation + expansion prototype | `app/core/icio.py` |
+| Cross-validation report (55 production edges scored, 19 chokepoint links explicitly excluded → all 74 seed edges covered) | `scripts/icio_derive_edges.py` → `data/calibration/icio_edge_check.json` |
+| Expanded-graph prototype, measured columns only, **NOT wired into the engine** | `scripts/icio_expand_graph.py` → `data/csv/expanded_graph_{nodes,edges,meta}_v3.*` (405 nodes, 1 964 edges) |
+| 8 data-integrity tests pinned to measured facts | `tests/test_icio.py` |
+
+Notes: the small (SML) version is *not* sector-aggregated — it is the full
+50-industry 2025 edition, only without the CN1/CN2/MX1/MX2 splits (the
+"~76×45" expectation was the 2023 edition's shape; recorded in
+PROVENANCE.md). oecd.org/webfs-sti sit behind TLS-fingerprint bot
+protection; `curl_cffi impersonate="chrome"` downloads them (documented in
+PROVENANCE.md for re-runs).
+
+### Batch 9 findings — the instrument matters, and the hands are mostly honest
+
+1. **The comparison measure must match the authoring convention.** Manual
+   weights vs naive ICIO penetration (domestic supply in the denominator):
+   Spearman 0.20. Same weights vs **import penetration** (foreign sources
+   only — the Comtrade convention the weights were authored with): Spearman
+   0.43, Pearson 0.46. Per family: the six Comtrade-derived automotive edges
+   hit **Spearman 0.83**; the TWN-semi family (penetration × exposure) sits
+   at ~0.31 with manual/measured ratios mostly 1–4.7×; the "authored"
+   (literature/calibrated) family is the weakest (~0 rank correlation) — the
+   edges to revisit first.
+2. **Import-derived weights are blind to domestic input dominance.** ICIO
+   measures what Comtrade can't: USA:auto→USA:consumer manual 0.10 vs 0.63
+   measured within-type share; CHN:semi→CHN:elec 0.15 vs 0.78; JPN/USA
+   domestic semi→auto similar. The current 12×6 graph systematically
+   under-couples domestic supply chains.
+3. **The ASML dependency is real but lives in the capital account.**
+   NLD:semi edges (manual 0.30–0.45) score ~0.003 on every flow share — not
+   because the dependency is fake, but because lithography equipment is C28
+   machinery flowing into the buyer's **GFCF (investment) column**:
+   measured NLD_C28→TWN_GFCF = $2.51 B, →KOR $0.56 B (2019). Input-output
+   intermediate flows structurally cannot ground criticality edges for
+   capital equipment; these stay literature-authored, now with the measured
+   reason pinned in a test.
+4. **Two concrete weight corrections surfaced:** DEU→JPN:auto manual 0.451
+   was *finished-car* import share — measured all-of-C29 import share is
+   0.23 (manual 2× high); THA→JPN:auto was confessed "calibrated, no
+   bilateral pair" at 0.15 — ICIO measures 0.08. Both are replacement
+   candidates for the next graph revision (deliberately not hot-fixed here:
+   weight changes re-open the benchmark, which deserves its own batch).
+5. **Shipping-as-service edges are over-weighted 3.7–4.8×** (CHN:ship→USA:cons
+   0.40 vs 0.083): the authored numbers encode logistics dependency, but H50
+   purchases measure only direct freight-service spend. Same lesson as the
+   Batch-5 chokepoint repair: the logistics layer needs its own convention
+   (transport margins), not naive I-O shares.
+
+Expansion prototype caveat, recorded in the meta artifact: ICIO C26 cannot
+split semiconductors from electronics, so the v3 prototype carries one
+merged `electronics_c26` industry (a Comtrade HS-8541/42 overlay is the
+planned split). Pre-existing on this branch and unchanged: the 6
+`test_portwatch.py` tests fail in a fresh clone because
+`portwatch_daily_chokepoints.csv` was never committed (it lives on the
+local machine that ran Batch 6) — same gitignore trap the ICIO files just
+avoided via `git add -f`; worth committing the same way.
+
+### Batch 9b — per-node recovery dynamics (2026-06-12)
+
+The Batch-7/8 top-priority engine change, with its pre-registered
+falsification test ("fix Chi-Chi without breaking COVID"). Shock decay is now
+coupled to each node's `recovery_delay_weeks`:
+`rate_i = recovery_rate × (8w reference / delay_i)`, capped at 0.95/week —
+`recovery_rate` keeps its calibrated meaning (it IS the 8-week-node rate), so
+a node at the historical 8.0 default behaves bit-identically to the old
+engine, and the calibrator keeps 5 parameters. `per_node_recovery=False`
+restores the uniform rate (new ablation row). One grounded override ships
+with the mechanism: `TWN:semiconductors` = 2 weeks, from the already-cited
+TSMC Chi-Chi restoration timeline (full power day 5, 90% wafer output day 8);
+chokepoints' existing 4-week delays now also heal 2× faster than factories,
+consistent with the PortWatch catch-up surges. All other nodes remain at the
+ungrounded 8.0 default — flagged as open authoring work.
+
+**Default-param result (N=26): improved, NOT fixed — honestly recorded.**
+Chi-Chi prediction 0.1605 → 0.1349 (observed 0.005; still ~27× over), COVID
+events moved −0.0003, nothing degraded; benchmark GEDS MAE 0.0220 → 0.0211,
+RMSE 0.0446 → 0.0414, Pearson +0.07 → +0.09, winners table unchanged (golden
+snapshot updated in the same commit). The mechanism is necessary but not
+sufficient at default params: the downstream peak forms DURING the 2-week
+forcing window, so faster source healing trims only the tail. The remaining
+Chi-Chi error is a within-forcing absorption problem — the same wall the
+Batch-8 inventory experiment hit from the other side.
+
+Ablation on the new engine: `no_per_node_recovery` costs +0.0010 MAE (the
+component earns its keep at default params, unlike SEIS/adaptive-rerouting
+which remain exactly zero-effect). Honest side-finding pinned in
+`ablation.json`: `no_r_state_floor` IMPROVES MAE 0.0211 → 0.0135 on the
+adversarial set — the R-state hysteresis floor is now the top removal
+candidate for the next ablation-driven cleanup.
+
+**Out-of-sample verdict (26-fold LOO-DE, 66 min): the pre-registered test
+FAILED — mechanism NOT adopted as engine default.**
+
+| | MAE | RMSE | Pearson | Spearman | R² |
+|---|---|---|---|---|---|
+| LOO-DE, uniform recovery (Batch 7) | **0.0170** | 0.0395 | **0.166** | **0.525** | −1.525 |
+| LOO-DE, per-node recovery (9b) | 0.0176 | **0.0389** | 0.127 | 0.474 | **−1.458** |
+
+Chi-Chi fold: 0.185 → 0.176 (observed 0.005) — not fixed. The fold
+calibrator still pins `recovery_rate` at the 0.0103 floor, so even 4× faster
+TWN:semi decay (0.041/week) is irrelevant inside a 12-week horizon whose
+downstream peak forms DURING the 2-week forcing. Worse, the coupling lets
+other folds raise the global rate (auto-chip fold: recovery_rate 0.014 →
+0.053), gutting the 30-week chip-shortage prediction 0.033 → 0.011 (observed
+0.077). COVID itself held (0.047 → 0.049). Pooled error/rank metrics
+slightly worse; only RMSE/R² marginally better.
+
+Disposition, per the Batch-8 precedent for negative results: default
+reverted to the uniform rate (`per_node_recovery=False`), golden snapshot
+unchanged from 2026-06-11; the mechanism stays implemented and measured by
+ablation (`with_per_node_recovery`: would give −0.0010 MAE at default
+params — the in-sample/out-of-sample split is itself recorded). Experiment
+artifact: `data/calibration/loo_de_per_node_recovery_experiment.json`
+(canonical `loo_de_result.json` restored to the Batch-7 run). The grounded
+TWN:semi `recovery_delay_weeks` 8 → 2 stays in the data layer (it only
+shortens that node's R-state hysteresis; no scored metric moves).
+
+**Refined diagnosis after two failed mechanisms:** Batch 8 attacked
+within-forcing absorption downstream (inventory interception — benchmark got
+worse), 9b attacked post-forcing source healing (OOS worse). The impulse
+near-miss over-prediction lives in the inbound→shock conversion *during*
+forcing, and the single strongest lever the ablation keeps flagging is
+`r_output_floor`: removing the R-state output floor improves default MAE
+0.0220 → **0.0144** — within noise of linear diffusion (0.0147). Next
+mechanism candidate is therefore subtractive, not additive: drop or rethink
+the hysteresis floor, re-run LOO-DE as the gate.
+
+### Batch 9c — C26 semi/electronics split overlay (2026-06-12, same day)
+
+The one mapping collision flagged in Batch 9 (ICIO C26 bundles semis with
+computers/phones/displays) resolved with data already in the repo: the
+committed UN Comtrade 2019 pull measures, per (importer, exporter) pair,
+the semiconductor share of C26-type goods — (HS 8541+8542)/(+8471/8517/8528).
+`scripts/icio_c26_split.py` → `data/calibration/icio_c26_split.json`;
+importer world-shares match known trade structure (TWN 0.85, MYS 0.83,
+CHN 0.82 — chip-importing assemblers; USA 0.17 — finished-goods importer).
+
+**Headline: the semi-family hand weights are validated.** Rescoring all 28
+cross-border semi edges with a semi-specific import penetration (exporter
+C26 flows × pair semi-share): manual vs measured **Pearson 0.842 /
+Spearman 0.792 (n=25)** once the three NLD/ASML edges — the proven
+capital-account channel that flow shares cannot represent — are excluded.
+The raw Batch-9 comparator showed only ~0.30 for this family; the gap was
+the C26 collision, not the hands. Spot checks land within authoring noise:
+TWN→JPN:auto 0.240 manual vs 0.246 measured, TWN→DEU:auto 0.070 vs 0.077,
+TWN→THA:auto 0.150 vs 0.165. One under-weight surfaced: MYS→USA:auto 0.060
+manual vs 0.182 measured (Malaysia's ATP role) — joins the Batch-9
+correction-candidate list. Pinned by `test_c26_split_overlay`.
+
+### Batch 9d — pre-registered experiment: removing the R-state output floor (2026-06-12, running)
+
+The subtractive candidate from the 9b post-mortem, instrumented and
+PRE-REGISTERED before the out-of-sample run completes (protocol identical
+to 9b; `scripts/loo_de_validation.py` gained `--r-output-floor/--out`
+overrides so experiments never touch engine defaults).
+
+**Mechanism trace (default params).** `r_output_floor=0.30` pins
+`output_loss ≥ 0.30` for every node in R-state until its
+`recovery_delay_weeks` hysteresis elapses. Exactly four events move when
+the floor is removed, and they explain the entire ablation gain
+(MAE 0.0220 → 0.0144, RMSE 0.0446 → 0.0276):
+
+| event | obs | floor 0.30 | floor 0 |
+|---|---|---|---|
+| vietnam-covid-lockdown-2021 (worst miss in the set) | 0.0120 | 0.1399 | **0.0070** |
+| taiwan-chichi-earthquake-1999 | 0.0050 | 0.1605 | **0.0650** |
+| suez-canal-2021 | 0.0080 | 0.0193 | **0.0063** |
+| covid-semiconductor-2020-2021 | 0.1150 | 0.0435 | 0.0142 ⚠ |
+
+This is the impulse/near-miss over-prediction engine-wide: not shock decay
+(9b), not missing inventory absorption (Batch 8) — nodes that brush
+through I→R drag a hard-coded 30% output loss for ~8 weeks regardless of
+how small the shock was. The floor's one real service is carrying part of
+COVID-semi's persistent loss (⚠ under-prediction deepens 0.0435 → 0.0142);
+in LOO the per-fold calibrator may compensate (e.g. via lower
+recovery_rate) — that is what the experiment measures.
+
+**Pre-registered decision rule.** Adopt `r_output_floor=0.0` as engine
+default only if the 26-fold LOO-DE with the floor off improves pooled
+out-of-sample MAE vs the canonical 0.0170 without collapsing rank metrics
+(Spearman must stay ≥ ~0.45); the COVID-semi fold movement is recorded
+either way. Negative result ⇒ same disposition as 9b: keep the mechanism,
+document, don't adopt. Artifact will land at
+`data/calibration/loo_de_floor_experiment.json`.
+
+**Batch 9d verdict (26-fold LOO-DE, 65 min): REJECTED at the pre-registered
+gate — the floor stays.**
+
+| | MAE | RMSE | Pearson | Spearman | R² |
+|---|---|---|---|---|---|
+| floor 0.30 (canonical Batch 7) | **0.0170** | **0.0395** | **+0.166** | **0.525** | **−1.525** |
+| floor 0 (9d experiment) | 0.0183 | 0.0427 | −0.009 | 0.419 | −1.952 |
+
+Every pooled metric got worse; Pearson collapsed to zero and Spearman fell
+below the 0.45 gate. The fold autopsies explain why the default-param gain
+was a mirage: (1) the COVID-semi fold cratered 0.0469 → 0.0062 (observed
+0.115) — without the floor the fold calibrator went degenerate
+(recovery_rate 0.165, inventory_scale 0.36) and the one service the floor
+provided (persistent-crisis loss) has no replacement; (2) Chi-Chi did not
+move at all out-of-sample (0.1850 → 0.1848) — the calibrator rebuilt the
+same over-prediction through amplification_mu 7.26 + bullwhip 1.99 at their
+bounds; (3) vietnam-covid was ALREADY fine in LOO (0.0111) — per-fold
+recalibration had quietly absorbed the floor's worst in-sample distortion
+all along. Artifact: `loo_de_floor_experiment.json`. No engine change;
+`r_output_floor` keeps its 0.30 default.
+
+**Conclusion after three pre-registered mechanism experiments (B8
+inventory absorption, 9b per-node recovery, 9d floor removal): the 5-param
+calibration layer is flexible enough to mask, route around, or rebuild any
+single-component structural edit at N=26.** In-sample/default-config gains
+systematically do not survive per-fold recalibration. This closes the
+"one more mechanism will fix it" road and leaves the two honest exits that
+Batch 4 already flagged: (a) adopt linear diffusion as the production
+propagation kernel (it wins ranking out-of-sample with zero parameters)
+and keep SEIRS as the research layer, or (b) grow N — the ICIO-grounded
+graph expansion plus a 30+ event set — before touching engine structure
+again. Both are data/architecture decisions, not mechanism patches.

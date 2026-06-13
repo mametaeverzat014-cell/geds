@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SpotlightEffect from "@/components/SpotlightEffect";
 import { UIProvider } from "@/lib/ui-context";
 
 export const metadata: Metadata = {
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="min-h-screen relative">
         <div className="aurora" aria-hidden="true" />
+        <SpotlightEffect />
         <UIProvider>
           <div className="relative z-10">{children}</div>
         </UIProvider>

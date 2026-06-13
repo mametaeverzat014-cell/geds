@@ -1,6 +1,5 @@
 "use client";
 
-import clsx from "clsx";
 import { useState } from "react";
 import { api } from "@/lib/api";
 import { useSimStore } from "@/lib/store";
@@ -243,12 +242,7 @@ export default function ScenarioBuilder() {
           <button
             onClick={run}
             disabled={running || shocks.length === 0}
-            className={clsx(
-              "w-full px-3 py-2 rounded text-sm font-semibold transition",
-              running || shocks.length === 0
-                ? "bg-bg-base/40 text-text-muted cursor-not-allowed"
-                : "bg-accent-violet text-white hover:bg-accent-violet/85",
-            )}
+            className="btn-primary w-full px-3 py-2"
           >
             {running ? "Simulating…" : "Run custom scenario"}
           </button>

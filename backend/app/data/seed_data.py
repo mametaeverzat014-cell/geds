@@ -988,15 +988,32 @@ HISTORICAL_EVENTS: list[dict] = [
 # ──────────────────────────────── builders ────────────────────────────────────
 
 
+# Per-node recovery delay overrides (weeks). The engine couples shock decay
+# to this value (propagation.py step 6, Batch 9b); every node not listed here
+# keeps the historical 8.0 default, i.e. behaves exactly as before. Only add
+# entries with a source-side citation — same authoring rule as shock specs.
+NODE_RECOVERY_DELAY_OVERRIDES: dict[str, float] = {
+    # TSMC priority restoration after Chi-Chi (M7.6, Sep 1999): full power
+    # day 5, wafer output 20% day 5 → 90% day 8 — the source heals in
+    # ~2 weeks, not the 8-week reference. Sources already cited on the
+    # taiwan-chichi-earthquake-1999 event (Semico/Deseret News, Taipei Times,
+    # EE Times, Semiconductor Digest, 1999). Fab seismic design + priority
+    # grid restoration are structural properties of the node, not of one
+    # event — the 2021 drought near-miss is consistent with it.
+    "TWN:semiconductors": 2.0,
+}
+
+
 def build_nodes() -> list[Node]:
     nodes: list[Node] = []
 
     for country, ind, gdp_share, vuln, res, amp, thresh in NODE_SPECS:
         c = COUNTRIES[country]
         gdp_b = c["gdp_t"] * 1000.0 * gdp_share
+        node_id = _n(country, ind)
         nodes.append(
             Node(
-                id=_n(country, ind),
+                id=node_id,
                 name=f"{c['name']} · {ind.value.replace('_', ' ').title()}",
                 kind=NodeKind.COUNTRY_INDUSTRY,
                 country=country,
@@ -1008,7 +1025,7 @@ def build_nodes() -> list[Node]:
                 resilience=res,
                 amplification=amp,
                 threshold=thresh,
-                recovery_delay_weeks=8.0,
+                recovery_delay_weeks=NODE_RECOVERY_DELAY_OVERRIDES.get(node_id, 8.0),
                 meta={"gdp_share_of_country": gdp_share},
             )
         )
