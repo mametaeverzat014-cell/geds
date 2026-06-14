@@ -583,3 +583,54 @@ propagation kernel (it wins ranking out-of-sample with zero parameters)
 and keep SEIRS as the research layer, or (b) grow N — the ICIO-grounded
 graph expansion plus a 30+ event set — before touching engine structure
 again. Both are data/architecture decisions, not mechanism patches.
+
+---
+
+## Batch 10 — Event database expansion N=18 → N=43
+
+**Status: DONE (2026-06-14)**
+
+Three Perplexity research files (31 source-validated queries each) were
+processed into 25 new historical disruption events appended to
+`backend/data/csv/historical_events.csv`.
+
+### Event database summary (N=43)
+
+| in_geds_graph | count | notes |
+|---|---|---|
+| yes | 11 | Directly calibratable against current 12-country graph |
+| partial | 10 | Mappable to a node with documented caveats |
+| no | 22 | Out-of-graph (countries/industries not yet in GEDS) |
+
+### New IN-graph events (key additions)
+| slug | target_node | shock_magnitude | delta_output_pct | source |
+|---|---|---|---|---|
+| chichi-earthquake-1999 | TWN:semiconductors | 0.50 | 0.040 | Preventionweb/TSMC/SIA 1999 |
+| shanghai-lockdown-2022 | CHN:electronics | 0.20 | 0.029 | China NBS April 2022; Fortune |
+| wuhan-lockdown-2020 | CHN:automotive | 0.15 | 0.015 | World Bank COVID Logistics 2020 |
+
+### New events by type
+- **Pandemic-logistics** (4): Yantian, Ningbo, Shanghai, Wuhan
+- **Natural disaster logistics** (6): Rhine 2018, Rhine 2022, Panama Canal, BC floods, Mississippi, Hokkaido
+- **Geopolitical-logistics** (2): Red Sea crisis, NotPetya
+- **Industrial accidents** (3): Renesas fire, Freeport LNG, Colonial Pipeline
+- **Natural disaster manufacturing** (5): Chi-Chi 1999, Taiwan 2024, Thailand 2011, Harvey, Katrina
+- **Infrastructure** (2): LA Port congestion, Baltimore bridge
+- **Near-miss documented** (3): Taiwan drought 2021, Kaohsiung 2016, Taiwan earthquake 2024
+
+### What these unlock
+- Chi-Chi 1999 + Shanghai 2022 + Wuhan 2020 add 3 new in-graph calibration
+  points, bringing the in-graph total from 8 to 11.
+- 10 "partial" events become fully calibratable once the ICIO graph
+  expansion (Batch 8, 405 nodes) is wired into the engine.
+- Near-miss events (taiwan-drought-2021, kaohsiung-2016, taiwan-2024)
+  provide ground-truth FALSE POSITIVES for specificity testing.
+- The Rhine drought pair (2018 + 2022) offers a natural repeat-event
+  calibration check for the DEU:automotive demand node.
+
+### Data provenance
+All measurements extracted from primary sources cited per-row in the CSV
+`sources` column. Values flagged `missing` where no clean published number
+exists. Methodology follows the Batch 5 convention: source-side
+`shock_magnitude_geds` only; demand-side and macroeconomic effects in
+`delta_gdp_pct` / `delta_cpi_pct` columns separately.
