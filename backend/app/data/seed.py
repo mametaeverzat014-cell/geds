@@ -52,9 +52,21 @@ def _use_comtrade_edges() -> bool:
     return os.environ.get("GEDS_USE_COMTRADE_EDGES", "0") in {"1", "true", "True"}
 
 
+def _graph_version() -> str:
+    """Active graph topology. 'v2' (default) = hand-authored 12-country seed graph;
+    'v3' = ICIO-grounded 81×5 expanded graph (opt-in via GEDS_GRAPH_VERSION=v3)."""
+    return os.environ.get("GEDS_GRAPH_VERSION", "v2").lower()
+
+
 @lru_cache(maxsize=1)
 def load_graph() -> GraphSnapshot:
     """Materialize the MVP graph snapshot, with centrality and shortest paths precomputed."""
+
+    if _graph_version() == "v3":
+        from .expanded_graph import build_expanded_snapshot
+
+        log.info("GEDS_GRAPH_VERSION=v3 → loading ICIO 81×5 expanded graph")
+        return build_expanded_snapshot()
 
     nodes = seed_data.build_nodes()
     edges = seed_data.build_edges()

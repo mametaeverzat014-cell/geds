@@ -634,3 +634,55 @@ All measurements extracted from primary sources cited per-row in the CSV
 exists. Methodology follows the Batch 5 convention: source-side
 `shock_magnitude_geds` only; demand-side and macroeconomic effects in
 `delta_gdp_pct` / `delta_cpi_pct` columns separately.
+
+---
+
+## Batch 11 — ICIO 81×5 expanded graph wired into the live engine
+
+**Status: DONE (2026-06-14) — opt-in, default unchanged**
+
+This is exit (b) from the Batch 9 conclusion: grow N (graph) rather than
+patch engine mechanism. The expansion prototype (`core.icio.run_graph_expansion`,
+405 nodes / 1964 edges, committed as `expanded_graph_{nodes,edges}_v3.csv`) is
+now loadable by the running engine.
+
+### What landed
+- `app/data/expanded_graph.py` — `build_expanded_snapshot()` reads the v3 CSVs
+  and produces an engine-ready `GraphSnapshot` (81 economies × 5 sectors:
+  electronics_c26, automotive, consumer_goods, aerospace, shipping).
+- `app/data/seed.py` — `load_graph()` dispatches to the expanded snapshot when
+  `GEDS_GRAPH_VERSION=v3`; default `v2` is byte-for-byte unchanged.
+- `tests/test_expanded_graph.py` — 3 smoke tests (shape, industry/resilience
+  mapping, compiles-and-cascades).
+
+### Parameter derivation (uncalibrated structural priors)
+The v3 CSVs carry only ICIO structure (output, flow, input_share, penetration);
+the engine's behavioral parameters are derived:
+| param | source |
+|---|---|
+| industry | ICIO label → `Industry` enum (electronics_c26 → ELECTRONICS) |
+| resilience | LPI 2018 where available (same formula as seed); neutral 0.50 for the 69 economies LPI 2018 doesn't cover in-repo |
+| amplification / threshold | per-sector defaults mirroring the seed graph ranges |
+| dependency_weight | import penetration, clipped [0,1] |
+| gdp_usd | node output_usd_m × 1e6 |
+
+### Verification
+- v3: 405 nodes, 1964 edges, full centrality, 81 ECV-geo origins; a 0.6 shock on
+  `TWN:electronics_c26` cascades to 44 affected nodes at peak.
+- v2 regression: golden reproducibility snapshot + propagation suite pass
+  unchanged (88/88 non-portwatch tests green; the 6 portwatch failures are a
+  pre-existing missing-external-CSV issue, untracked in git).
+- Only 60 of 405 nodes (12 LPI-covered countries × 5 sectors) have real
+  resilience; the rest use the neutral default.
+
+### Honest limitations / next steps
+- **Not calibrated.** The seed parameters were fit to the sparse 12-country
+  topology; the v3 priors are structural, not tuned. A dedicated DE/MCMC
+  recalibration on the dense graph is required before v3 predictions are
+  trustworthy — that is the follow-up, not this PR.
+- **LPI gap.** Full LPI 2018 ingestion for all 81 economies (the WB endpoint
+  already returns them; the fetcher just filtered to 12) replaces the neutral
+  default.
+- **Scenarios still target v2 IDs.** Mapping the historical-event shocks onto
+  v3 node IDs (so the 10 "partial" events from Batch 10 become in-graph
+  calibration points) is the payoff step that this wiring unlocks.
