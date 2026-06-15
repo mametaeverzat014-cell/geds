@@ -810,3 +810,39 @@ concrete, measurable recalibration targets — the first quantitative use of the
 expanded target set. Spatial cascade dimension (ordered affected-node set) is
 pending the Task #3 affected-nodes JSON, which did not come through in the
 upload (only the temporal CSV did).
+
+---
+
+## Batch 14 — Baseline comparison inline + LOO forecast band (Tasks #4 & #5)
+
+**Status: DONE (2026-06-15)**
+
+Two honesty features moved from the aggregate validation dashboard into the
+live run view, so they're visible with the actual scenario, not buried.
+
+### #4 — per-scenario baseline comparison
+`core/forecast_ensemble.baseline_compare()` runs SEIRS, linear diffusion and
+Leontief on the *same* scenario and returns peak industry-loss + recovery for
+each, with parameter counts (SEIRS 5, baselines 0). Endpoint
+`POST /api/v1/baseline-compare`. The aggregate leaderboard (`/benchmark`)
+already existed; this makes the zero-parameter reference visible per run, so when
+SEIRS doesn't beat linear diffusion that's on screen, not hidden. (Example:
+Taiwan-semi-75 → SEIRS 4.8% loss / 22w recovery vs linear diffusion 4.1% / 3w —
+the engine's extra machinery mostly buys a longer, more realistic recovery tail.)
+
+### #5 — leave-one-out forecast band
+`core/forecast_ensemble.loo_forecast_band()` re-runs the scenario under each of
+the 26 LOO fold parameter sets and returns the median + 10/90 percentile band of
+peak CSI. Endpoint `POST /api/v1/forecast-band`. With N=26 the point estimate is
+not exact; the band shows the *parametric* uncertainty honestly (and the UI notes
+that structural uncertainty is larger and not captured). On most scenarios the
+band is tight (rel-width ~1–10%) — the 5 calibrated params barely move peak CSI,
+which is itself an honest signal that structure, not parameter tuning, dominates.
+
+### Frontend
+`components/ModelComparisonPanel.tsx` (right column, under MetricsPanel) fetches
+both after a run completes: a SEIRS-vs-baseline bar chart and the LOO band bar.
+`backtest._aggregate_industry` exposing `peak_week` (Batch 13) is reused.
+
+Tests: `tests/test_forecast_ensemble.py` (3). Full backend suite 99/99
+(ex-portwatch); frontend `tsc --noEmit` clean.

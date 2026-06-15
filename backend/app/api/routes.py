@@ -697,6 +697,33 @@ def benchmark() -> dict:
     }
 
 
+@router.post("/baseline-compare", tags=["validation"])
+def baseline_compare_endpoint(payload: SimulationRequest, req: Request) -> dict:
+    """SEIRS vs linear-diffusion vs Leontief peak loss for THIS scenario.
+
+    Surfaces the zero-parameter baseline next to SEIRS inline with a run, so the
+    cost/benefit of the engine's machinery is visible per scenario, not only in
+    the aggregate leaderboard.
+    """
+    from ..core.forecast_ensemble import baseline_compare
+
+    scenario = _resolve_scenario(payload)
+    return baseline_compare(scenario, _graph(req))
+
+
+@router.post("/forecast-band", tags=["validation"])
+def forecast_band_endpoint(payload: SimulationRequest, req: Request) -> dict:
+    """Peak-CSI uncertainty band from the 26 leave-one-out fold parameter sets.
+
+    Returns 404-style available=False if loo_de_result.json has not been
+    generated. With N=26 the point estimate is uncertain; this is the honest band.
+    """
+    from ..core.forecast_ensemble import loo_forecast_band
+
+    scenario = _resolve_scenario(payload)
+    return loo_forecast_band(scenario, _graph(req))
+
+
 # ─────────────────────────── CSV data layer ──────────────────────────────
 
 
