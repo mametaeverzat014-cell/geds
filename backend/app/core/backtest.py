@@ -120,6 +120,7 @@ def _aggregate_industry(result, graph, industry: Industry) -> dict:
         "loss": float(loss_s.max()),
         "infl": float(infl_s.max()),
         "recovery": recovery,
+        "peak_week": int(loss_s.argmax()),   # weeks-to-peak of the output-loss trajectory
         "country": country,
     }
 

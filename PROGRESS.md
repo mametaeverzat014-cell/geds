@@ -757,3 +757,56 @@ chip events is downstream (pairs with the Task #3 spatiotemporal-pattern data,
 incoming). Recommendation: adopt standardized targets only inside the new
 multi-output validation harness (Task #3), keep the v2 engine targets as the
 calibrated baseline until a full recalibration is run.
+
+---
+
+## Batch 13 — Multi-output cascade-shape validation (Task #3)
+
+**Status: DONE (2026-06-15)**
+
+Stops collapsing each event to one scalar. The engine is now scored against the
+*shape* of the cascade on three dimensions, using primary-source research:
+
+| dimension | observed source |
+|---|---|
+| magnitude (peak source-sector output loss) | standardized_targets.csv (Batch 12) |
+| weeks_to_peak | cascade_timing.csv (Batch 13) |
+| recovery_weeks_to_90% | cascade_timing.csv |
+
+`core/cascade_validation.py` reads the directly-shocked **node's** trajectory
+(not the GDP-weighted industry-global average — that diluted JPN auto's −60% peak
+to ~0.02) and scores each dimension only where a clean observed value exists.
+`backtest._aggregate_industry` now also exposes `peak_week`.
+
+### Engine result (default config, node-level)
+| dim | MAE | Spearman | n |
+|---|---|---|---|
+| magnitude | 0.43 | **+0.80** | 4 |
+| weeks_to_peak | 8.4 | +0.60 | 14 |
+| recovery_weeks | 8.0 | **+0.85** | 10 |
+
+**The honest read:** the engine **ranks** cascade shape well on all three axes
+(Spearman 0.60–0.85) — it gets *relative* ordering right — but has two systematic
+biases the single scalar hid:
+1. **Under-predicts source magnitude.** Predicts 0.10–0.30 where measured is
+   0.38–0.88. Consistent with Batch 12: the engine was tuned to smaller
+   (global-annual) targets, not node-level monthly peaks.
+2. **Mis-times slow-building events.** Sharp shocks (quakes, fires, lockdowns)
+   correctly peak at week 0–1, but droughts/congestion (panama obs 20w,
+   us-west-coast obs 52w) also peak at week 0 in the engine — it has no
+   slow-accumulation mechanism for gradual chokepoint stress.
+
+### Structural prediction tested (and not assumed)
+The research review claimed "chokepoints recover faster than production shocks."
+In *this* sample it does NOT hold — chokepoint mean recovery 21.5w > production
+13.8w — because the panama drought (40w) dominates the small chokepoint set. The
+engine reproduces the same non-separation (30.0w vs 26.9w) rather than falsely
+imposing the generalization. Honest both ways.
+
+### Scope
+Read-only validation layer; does not change the engine or its calibrated
+targets. The two biases above (magnitude scaling, slow-accumulation timing) are
+concrete, measurable recalibration targets — the first quantitative use of the
+expanded target set. Spatial cascade dimension (ordered affected-node set) is
+pending the Task #3 affected-nodes JSON, which did not come through in the
+upload (only the temporal CSV did).

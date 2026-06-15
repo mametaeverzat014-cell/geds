@@ -361,6 +361,36 @@ def load_standardized_targets_csv(path: Path | None = None) -> list[Standardized
     return out
 
 
+@dataclass
+class CascadeTimingCSV:
+    """One row of cascade_timing.csv — the temporal shape of an event (Task #3).
+
+    weeks_to_peak: weeks from event start to maximum disruption at the shocked node.
+    recovery_weeks_to_90: weeks from start until the shocked sector returned to ~90%.
+    Both None where no clean primary anchor exists (diffuse/chronic events).
+    """
+    perplexity_slug: str
+    engine_slug: str
+    weeks_to_peak: int | None
+    recovery_weeks_to_90: int | None
+    source_anchor: str
+
+
+def load_cascade_timing_csv(path: Path | None = None) -> list[CascadeTimingCSV]:
+    path = path or (_CSV_DIR / "cascade_timing.csv")
+    out: list[CascadeTimingCSV] = []
+    with path.open(encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            out.append(CascadeTimingCSV(
+                perplexity_slug=row["perplexity_slug"].strip(),
+                engine_slug=row["engine_slug"].strip(),
+                weeks_to_peak=_parse_int(row.get("weeks_to_peak")),
+                recovery_weeks_to_90=_parse_int(row.get("recovery_weeks_to_90")),
+                source_anchor=row.get("source_anchor", "").strip(),
+            ))
+    return out
+
+
 def clean_calibration_targets() -> dict[str, float]:
     """The high/medium-confidence, directly-measured source-sector output targets.
 
@@ -379,8 +409,10 @@ def clean_calibration_targets() -> dict[str, float]:
 
 __all__ = [
     "HistoricalEventCSV", "ParameterCSV", "DatasetCSV", "StandardizedTargetCSV",
+    "CascadeTimingCSV",
     "load_historical_events_csv", "load_parameters_csv", "load_datasets_csv",
     "load_standardized_targets_csv", "clean_calibration_targets",
+    "load_cascade_timing_csv",
     "csv_to_geds_historical_events", "parameter_bounds_from_csv",
     "out_of_graph_events",
 ]
