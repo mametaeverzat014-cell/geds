@@ -20,10 +20,8 @@ Rules
 from __future__ import annotations
 
 import csv
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
-
 
 _CSV_DIR = Path(__file__).resolve().parent.parent.parent / "data" / "csv"
 
@@ -313,9 +311,76 @@ def out_of_graph_events() -> list[HistoricalEventCSV]:
     return [e for e in load_historical_events_csv() if not e.in_geds_graph]
 
 
+# ─────────────────────── standardized targets (Task #2) ────────────────────
+
+
+@dataclass
+class StandardizedTargetCSV:
+    """One row of standardized_targets.csv.
+
+    A single, consistently-defined production-impact target per event:
+    peak % decline in real production volume of the directly-shocked sector
+    in the source country (or, for chokepoint/logistics events, peak %
+    throughput reduction). Replaces the heterogeneous per-event `observed`
+    dict so source-side losses and downstream/chokepoint losses are no longer
+    pooled blindly. See PROGRESS Batch 12.
+    """
+    perplexity_slug: str
+    engine_slug: str
+    geds_node: str
+    target_class: str        # source_sector_output | chokepoint_throughput | facility_capacity | national_index_proxy | facility_throughput | logistics_throughput
+    value_pct: float | None  # fractional loss [0,1]; None when status == "null"
+    baseline_type: str       # yoy | vs_capacity | vs_prior_month | n/a
+    confidence: str          # high | medium | low | n/a
+    usability: str           # direct | chokepoint | facility_proxy | national_proxy | logistics_proxy | none
+    status: str              # measured | null
+    source: str
+    measurement_window: str
+    note: str
+
+
+def load_standardized_targets_csv(path: Path | None = None) -> list[StandardizedTargetCSV]:
+    path = path or (_CSV_DIR / "standardized_targets.csv")
+    out: list[StandardizedTargetCSV] = []
+    with path.open(encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            out.append(StandardizedTargetCSV(
+                perplexity_slug=row["perplexity_slug"].strip(),
+                engine_slug=row["engine_slug"].strip(),
+                geds_node=row["geds_node"].strip(),
+                target_class=row["target_class"].strip(),
+                value_pct=_parse_float(row.get("value_pct")),
+                baseline_type=row.get("baseline_type", "").strip(),
+                confidence=row.get("confidence", "").strip(),
+                usability=row.get("usability", "").strip(),
+                status=row.get("status", "").strip(),
+                source=row.get("source", "").strip(),
+                measurement_window=row.get("measurement_window", "").strip(),
+                note=row.get("note", "").strip(),
+            ))
+    return out
+
+
+def clean_calibration_targets() -> dict[str, float]:
+    """The high/medium-confidence, directly-measured source-sector output targets.
+
+    These are the only events with a clean node-level production-volume target
+    under the standardized definition — the gold set for any future node-level
+    recalibration. Keyed by geds_node is ambiguous (two events hit
+    CHN:automotive), so this returns engine_slug -> value_pct.
+    """
+    rows = load_standardized_targets_csv()
+    return {
+        r.engine_slug: r.value_pct
+        for r in rows
+        if r.status == "measured" and r.usability == "direct" and r.value_pct is not None
+    }
+
+
 __all__ = [
-    "HistoricalEventCSV", "ParameterCSV", "DatasetCSV",
+    "HistoricalEventCSV", "ParameterCSV", "DatasetCSV", "StandardizedTargetCSV",
     "load_historical_events_csv", "load_parameters_csv", "load_datasets_csv",
+    "load_standardized_targets_csv", "clean_calibration_targets",
     "csv_to_geds_historical_events", "parameter_bounds_from_csv",
     "out_of_graph_events",
 ]

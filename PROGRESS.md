@@ -686,3 +686,74 @@ the engine's behavioral parameters are derived:
 - **Scenarios still target v2 IDs.** Mapping the historical-event shocks onto
   v3 node IDs (so the 10 "partial" events from Batch 10 become in-graph
   calibration points) is the payoff step that this wiring unlocks.
+
+---
+
+## Batch 12 — Standardized production-impact target (Task #2)
+
+**Status: DONE (2026-06-15) — data + finding; engine targets NOT changed**
+
+Deep-research pass (Perplexity, primary/official sources only) to replace the
+heterogeneous per-event `observed` dict with ONE consistently-defined target:
+peak % decline in real production volume of the directly-shocked sector in the
+source country (or, for chokepoint/logistics events, peak % throughput loss).
+Artifacts: `data/csv/standardized_targets.csv` (engine-facing, 23 events),
+`data/raw/external/perplexity_events/standardized_targets_2026-06.json` (raw
+provenance), loader + 4 tests.
+
+### Result: 14 measured, 9 null
+
+**Finding 1 — semiconductor-source shocks have no measurable source-side target.**
+Of the five chip-source events, four are NULL and the fifth is a weak proxy:
+
+| event | status | why |
+|---|---|---|
+| covid-semiconductor-2020-2021 | **null** | Taiwan semi output GREW +20.7% YoY in 2020 — no source decline at all |
+| auto-chip-shortage-2021 | **null** | no agency isolated a production-volume loss (only consultant estimates) |
+| texas-winter-storm-2021 | **null** | full fab shutdown confirmed, but no published Austin fab output index |
+| taiwan-chichi-earthquake-1999 | **null** | TSMC lost ~2–3 weeks, but no 1999 monthly semi production index exists |
+| malaysia-semiconductor-2021 | weak proxy | DOSM −6.5% is FULL manufacturing; the E&E sub-sector actually +8.6% YoY |
+
+Root cause: statistics agencies publish monthly **vehicle** production indices
+but **not** monthly **fab-output** indices. So a chip shock is only observable
+through its **downstream auto effect** — which the engine already targets
+(`auto_production_loss_pct`). This *confirms* the cascade-centric design but
+proves the "source magnitude" for chip events is a **latent input, not a measured
+target** — you cannot calibrate it against a source-side number because none is
+published.
+
+**Finding 2 — every clean source-side target is automotive.** The only five
+events with a direct, high/medium-confidence node-level production-loss number:
+
+| node | peak loss | event |
+|---|---|---|
+| CHN:automotive | 0.790 | wuhan-lockdown-2020 (Feb 2020, CAAM) |
+| THA:automotive | 0.875 | thailand-floods-2011 (Nov 2011, BOT/FTI) |
+| JPN:automotive | 0.601 | japan-triple-disaster-2011 (Apr 2011, JAMA) |
+| CHN:automotive | 0.461 | shanghai-lockdown-2022 (Apr 2022, CAAM) |
+| DEU:automotive | 0.380 | eu-energy-crisis-2021 (Oct 2021, VDA) |
+
+**Finding 3 — standardization moves the numbers a lot.** Example: the engine's
+current `observed` for japan-2011 is 0.039 (a GLOBAL-ANNUAL figure); the
+standardized node-level monthly peak is 0.601. Adopting these as engine targets
+is therefore NOT a drop-in — it requires re-calibration and is gated, not
+automatic.
+
+### Two target families (the structural takeaway)
+The single scalar `delta_output_pct` was silently pooling two different things:
+- **source-side output loss** (supply-destruction: quakes, floods, fires,
+  producer-region lockdowns) — measurable, all automotive here;
+- **downstream / chokepoint loss** (demand/allocation/logistics: COVID-semi,
+  Suez, Red Sea) — the source node may be flat or growing; the meaningful
+  target is the propagated auto loss or the throughput cut.
+
+`standardized_targets.csv` now tags every event with `target_class` and
+`usability` so the two families are never compared in the same MAE again.
+
+### Deliberately NOT done (needs a decision + Task #3 data)
+The engine's `observed` targets were left untouched. Swapping in node-level peak
+targets changes calibration and the golden snapshot, and the right target for
+chip events is downstream (pairs with the Task #3 spatiotemporal-pattern data,
+incoming). Recommendation: adopt standardized targets only inside the new
+multi-output validation harness (Task #3), keep the v2 engine targets as the
+calibrated baseline until a full recalibration is run.
