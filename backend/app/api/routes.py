@@ -707,10 +707,15 @@ def cascade_validation_endpoint() -> dict:
     """
     from dataclasses import asdict
 
-    from ..core.cascade_validation import run_cascade_validation, run_spatial_validation
+    from ..core.cascade_validation import (
+        compare_spatial_recall,
+        run_cascade_validation,
+        run_spatial_validation,
+    )
 
     shape = run_cascade_validation()
     spatial = run_spatial_validation()
+    expansion = compare_spatial_recall()
     return {
         "shape": {
             "events": [asdict(e) for e in shape.events],
@@ -721,6 +726,7 @@ def cascade_validation_endpoint() -> dict:
             "structural_separation_predicted": shape.structural_separation_predicted,
         },
         "spatial": asdict(spatial),
+        "expansion": asdict(expansion),
     }
 
 

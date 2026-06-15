@@ -890,3 +890,44 @@ target list for the next graph/sector expansion.
 Tests: `test_cascade_validation.py` (+2 spatial). Backend 101/101 (ex-portwatch);
 frontend `tsc` clean. This completes the four-axis pattern validation
 (magnitude · weeks-to-peak · recovery · spatial reach/order).
+
+---
+
+## Batch 16 — The ICIO expansion pays off: spatial recall 0.32 → 0.76
+
+**Status: DONE (2026-06-15) — headline result**
+
+Batch 15 showed the engine reaches only ~38% of historically-hit nodes on the
+sparse 36-node graph, and argued the dense v3 ICIO graph (Batch 11) should fix
+it. `cascade_validation.compare_spatial_recall()` now *measures* it: same engine,
+same shocks, only the graph changes (v2 shocks remapped to v3 node ids;
+semiconductors+electronics → electronics_c26).
+
+### Result (11 common production events, reach_threshold 0.01)
+| graph | nodes | spatial recall |
+|---|---|---|
+| v2 hand-authored | 36 | **0.32** (11/34) |
+| v3 OECD ICIO 2019 | 405 | **0.76** (26/34) |
+
+Per-event, the dense graph closes exactly the gaps Batch 15 flagged:
+Renesas 0/4 → 3/4, Shanghai 1/4 → 4/4, Japan-2011 2/3 → 4/4, auto-chip 1/3 → 3/3,
+covid-semi 2/3 → 3/3, Thailand 1/4 → 3/4. The cascade now reaches the foreign
+auto plants history recorded, because the ICIO table actually has those
+intermediate-input edges and the hand-authored graph did not.
+
+This is the quantitative justification for the whole Batch 11–15 arc: **grounding
+the topology in real input-output data more than doubles the share of the
+observed cascade the model can even reach** — a structural win that needs zero
+parameter tuning. Chokepoint events are excluded (v3 has no chokepoint nodes);
+Malaysia stays 0/3 even on v3 (its downstream auto edges are weak in ICIO too —
+an honest remaining gap).
+
+Exposed via `GET /api/v1/cascade-validation` (`expansion` block) and shown as a
+before→after headline card on `/validation`. Tests: `test_cascade_validation.py`
+(+1). Backend 102/102 (ex-portwatch); frontend `tsc` clean.
+
+### Caveat
+v3 params are uncalibrated structural priors, so this measures *reach* (does an
+edge path exist that propagates), not calibrated magnitude. Reach is exactly the
+right question for "did we expand the graph correctly" — magnitude calibration on
+v3 is the separate next step.

@@ -7,7 +7,11 @@ global average), scored only where a clean observed value exists.
 
 from __future__ import annotations
 
-from app.core.cascade_validation import run_cascade_validation, run_spatial_validation
+from app.core.cascade_validation import (
+    compare_spatial_recall,
+    run_cascade_validation,
+    run_spatial_validation,
+)
 
 _DIMS = {"magnitude", "weeks_to_peak", "recovery_weeks"}
 
@@ -69,3 +73,13 @@ def test_spatial_recall_below_one_documents_sparse_graph():
     assert rep.spatial_recall < 1.0
     # ordering of the nodes it does reach should still track observed onset
     assert rep.onset_spearman > 0.0
+
+
+def test_dense_v3_graph_improves_spatial_recall():
+    """Batch 16 headline: the dense ICIO 405-node graph should reach materially
+    more historically-hit nodes than the sparse 36-node graph."""
+    cmp = compare_spatial_recall()
+    assert cmp.events_compared >= 8
+    assert cmp.v3_recall > cmp.v2_recall, "ICIO expansion should lift spatial recall"
+    # chokepoint events can't run on v3 (no chokepoint nodes) — must be excluded, not crash
+    assert all("/" in e["v2"] and "/" in e["v3"] for e in cmp.per_event)

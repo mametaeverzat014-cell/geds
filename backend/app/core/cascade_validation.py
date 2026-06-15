@@ -296,3 +296,126 @@ def run_spatial_validation(config: EngineConfig | None = None, reach_threshold: 
         n_reached=total_reached,
         n_out_of_graph=sum(out_of_graph.values()),
     )
+
+
+# ───────── does the dense ICIO v3 graph fix the reach problem? (Batch 16) ─────
+
+# v2 sector → v3 ICIO sector. semiconductors+electronics collapse into the merged
+# C26 bucket (ICIO cannot split them); chemicals/energy/agriculture have no v3 node.
+_V2_TO_V3_SECTOR = {
+    "semiconductors": "electronics_c26",
+    "electronics": "electronics_c26",
+    "automotive": "automotive",
+    "consumer_goods": "consumer_goods",
+    "shipping": "shipping",
+    "aerospace": "aerospace",
+}
+
+
+def _to_v3_node(node_id: str) -> str | None:
+    """Map a v2 'COUNTRY:sector' id to its v3 equivalent, or None if unrepresentable
+    (chokepoints, or chemicals/energy/agriculture sectors absent from the 5-sector v3)."""
+    if ":" not in node_id:
+        return None
+    country, sector = node_id.split(":", 1)
+    v3_sector = _V2_TO_V3_SECTOR.get(sector)
+    return f"{country}:{v3_sector}" if v3_sector else None
+
+
+@dataclass
+class SpatialRecallComparison:
+    events_compared: int
+    reach_threshold: float
+    v2_recall: float
+    v3_recall: float
+    v2_reached: int
+    v2_nodes: int
+    v3_reached: int
+    v3_nodes: int
+    per_event: list[dict]                 # {slug, v2, v3} reach strings
+    chokepoint_events_v2_only: list[str]  # events that can't run on v3 (no chokepoint nodes)
+
+
+def _reach_count(graph, scenario, observed_nodes: dict[str, int], cfg, threshold: float) -> tuple[int, int]:
+    """(# observed nodes the cascade reaches, # observed nodes representable in this graph)."""
+    sim = PropagationEngine(graph, cfg).run(scenario)
+    reached = representable = 0
+    for nid in observed_nodes:
+        idx = graph.index.get(nid)
+        if idx is None:
+            continue
+        representable += 1
+        traj = [f.nodes[idx].output_loss for f in sim.frames]
+        if max(traj) >= threshold:
+            reached += 1
+    return reached, representable
+
+
+def compare_spatial_recall(config: EngineConfig | None = None, reach_threshold: float = 0.01) -> SpatialRecallComparison:
+    """Headline test of the ICIO expansion: does the dense 405-node v3 graph reach
+    more of the nodes history actually hit than the sparse 36-node v2 graph?
+
+    Compared only on production-shock events (chokepoint events shock CP:* nodes,
+    which v3 has no equivalent for) so the comparison is apples-to-apples.
+    """
+    from ..data.expanded_graph import build_expanded_snapshot
+    from ..data.seed_data import HISTORICAL_EVENTS
+
+    cfg = config or EngineConfig()
+    g2 = compile_graph(load_graph())
+    g3 = compile_graph(build_expanded_snapshot())
+    engine_events = {e["slug"]: e for e in HISTORICAL_EVENTS}
+    perp_to_engine = {t.perplexity_slug: t.engine_slug for t in load_standardized_targets_csv()}
+
+    observed: dict[str, dict[str, int]] = {}
+    for r in load_cascade_spatial_csv():
+        eng = perp_to_engine.get(r.slug, r.slug)
+        onset = r.onset_week if r.onset_week is not None else 0
+        bucket = observed.setdefault(eng, {})
+        bucket[r.node_id()] = min(bucket.get(r.node_id(), onset), onset)
+
+    per_event: list[dict] = []
+    chokepoint_only: list[str] = []
+    v2r = v2n = v3r = v3n = 0
+    compared = 0
+
+    for slug, nodes in observed.items():
+        ev = engine_events.get(slug)
+        if ev is None:
+            continue
+
+        # remap shocks to v3; skip the event if any shock has no v3 node (chokepoint)
+        v3_shocks = []
+        mappable = True
+        for sh in ev["shocks"]:
+            t3 = _to_v3_node(sh["target_node_id"])
+            if t3 is None or t3 not in g3.index:
+                mappable = False
+                break
+            v3_shocks.append({**sh, "target_node_id": t3})
+        if not mappable:
+            chokepoint_only.append(slug)
+            continue
+
+        r2, n2 = _reach_count(g2, _scenario_from_event(ev, cfg), nodes, cfg, reach_threshold)
+        ev3 = {**ev, "shocks": v3_shocks}
+        nodes3 = {n3id: o for nid, o in nodes.items() if (n3id := _to_v3_node(nid))}
+        r3, n3 = _reach_count(g3, _scenario_from_event(ev3, cfg), nodes3, cfg, reach_threshold)
+
+        v2r += r2
+        v2n += n2
+        v3r += r3
+        v3n += n3
+        compared += 1
+        per_event.append({"slug": slug, "v2": f"{r2}/{n2}", "v3": f"{r3}/{n3}"})
+
+    return SpatialRecallComparison(
+        events_compared=compared,
+        reach_threshold=reach_threshold,
+        v2_recall=round(v2r / v2n, 3) if v2n else 0.0,
+        v3_recall=round(v3r / v3n, 3) if v3n else 0.0,
+        v2_reached=v2r, v2_nodes=v2n,
+        v3_reached=v3r, v3_nodes=v3n,
+        per_event=sorted(per_event, key=lambda e: e["slug"]),
+        chokepoint_events_v2_only=sorted(chokepoint_only),
+    )
