@@ -391,6 +391,42 @@ def load_cascade_timing_csv(path: Path | None = None) -> list[CascadeTimingCSV]:
     return out
 
 
+@dataclass
+class CascadeSpatialCSV:
+    """One row of cascade_spatial.csv — one downstream node hit by an event (Task #3 spatial).
+
+    The flat, one-row-per-affected-node format (so CSV export never drops the
+    cascade). node_id() rebuilds the GEDS node key for graph lookup.
+    """
+    slug: str
+    affected_country_iso3: str
+    affected_sector: str
+    onset_week: int | None
+    effect: str            # output_loss | price_rise | lead_time_increase | shutdown
+    magnitude_hint: str
+    source_url: str
+
+    def node_id(self) -> str:
+        return f"{self.affected_country_iso3}:{self.affected_sector}"
+
+
+def load_cascade_spatial_csv(path: Path | None = None) -> list[CascadeSpatialCSV]:
+    path = path or (_CSV_DIR / "cascade_spatial.csv")
+    out: list[CascadeSpatialCSV] = []
+    with path.open(encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            out.append(CascadeSpatialCSV(
+                slug=row["slug"].strip(),
+                affected_country_iso3=row["affected_country_iso3"].strip(),
+                affected_sector=row["affected_sector"].strip(),
+                onset_week=_parse_int(row.get("onset_week")),
+                effect=row.get("effect", "").strip(),
+                magnitude_hint=row.get("magnitude_hint", "").strip(),
+                source_url=row.get("source_url", "").strip(),
+            ))
+    return out
+
+
 def clean_calibration_targets() -> dict[str, float]:
     """The high/medium-confidence, directly-measured source-sector output targets.
 
@@ -409,10 +445,10 @@ def clean_calibration_targets() -> dict[str, float]:
 
 __all__ = [
     "HistoricalEventCSV", "ParameterCSV", "DatasetCSV", "StandardizedTargetCSV",
-    "CascadeTimingCSV",
+    "CascadeTimingCSV", "CascadeSpatialCSV",
     "load_historical_events_csv", "load_parameters_csv", "load_datasets_csv",
     "load_standardized_targets_csv", "clean_calibration_targets",
-    "load_cascade_timing_csv",
+    "load_cascade_timing_csv", "load_cascade_spatial_csv",
     "csv_to_geds_historical_events", "parameter_bounds_from_csv",
     "out_of_graph_events",
 ]

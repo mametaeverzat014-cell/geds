@@ -697,6 +697,33 @@ def benchmark() -> dict:
     }
 
 
+@router.get("/cascade-validation", tags=["validation"])
+def cascade_validation_endpoint() -> dict:
+    """Multi-output cascade-shape validation: magnitude/timing axes + spatial reach.
+
+    Scores the engine against the SHAPE of historical cascades (Task #3), not a
+    single scalar — peak magnitude, weeks-to-peak, recovery, plus whether the
+    cascade reaches the nodes history actually hit and in the right order.
+    """
+    from dataclasses import asdict
+
+    from ..core.cascade_validation import run_cascade_validation, run_spatial_validation
+
+    shape = run_cascade_validation()
+    spatial = run_spatial_validation()
+    return {
+        "shape": {
+            "events": [asdict(e) for e in shape.events],
+            "mae_by_dim": shape.mae_by_dim,
+            "spearman_by_dim": shape.spearman_by_dim,
+            "n_by_dim": shape.n_by_dim,
+            "structural_separation_observed": shape.structural_separation_observed,
+            "structural_separation_predicted": shape.structural_separation_predicted,
+        },
+        "spatial": asdict(spatial),
+    }
+
+
 @router.post("/baseline-compare", tags=["validation"])
 def baseline_compare_endpoint(payload: SimulationRequest, req: Request) -> dict:
     """SEIRS vs linear-diffusion vs Leontief peak loss for THIS scenario.

@@ -26,6 +26,7 @@ from dataclasses import dataclass
 import numpy as np
 
 from ..data.csv_loader import (
+    load_cascade_spatial_csv,
     load_cascade_timing_csv,
     load_standardized_targets_csv,
 )
@@ -195,4 +196,103 @@ def run_cascade_validation(config: EngineConfig | None = None) -> CascadeReport:
         production_recovery_predicted=round(pr_pred_m, 1),
         structural_separation_observed=bool(cp_obs and pr_obs and cp_obs_m < pr_obs_m),
         structural_separation_predicted=bool(cp_pred and pr_pred and cp_pred_m < pr_pred_m),
+    )
+
+
+# ─────────────────── spatial axis: did the cascade reach the right nodes? ───
+
+
+@dataclass
+class SpatialEventResult:
+    slug: str
+    observed_nodes: int          # unique downstream nodes that map to the graph
+    reached: int                 # of those, how many the engine's cascade reaches
+    out_of_graph: int            # observed nodes the 12-country graph cannot represent
+
+
+@dataclass
+class SpatialReport:
+    events: list[SpatialEventResult]
+    reach_threshold: float
+    coverage: float              # in-graph observed rows / all observed rows
+    spatial_recall: float        # reached / in-graph observed nodes (pooled)
+    onset_spearman: float        # observed vs predicted onset week, over reached nodes
+    onset_mae_weeks: float
+    n_reached: int
+    n_out_of_graph: int
+
+
+def run_spatial_validation(config: EngineConfig | None = None, reach_threshold: float = 0.01) -> SpatialReport:
+    """Does the engine's cascade reach the nodes history actually hit, and in order?
+
+    For each event with a documented downstream cascade, map the observed
+    affected nodes to graph nodes, run the engine, and check (a) reach — does the
+    node's output loss cross `reach_threshold` within the horizon — and (b) timing
+    — does the engine's onset-week ordering track the observed ordering.
+    """
+    from ..data.seed_data import HISTORICAL_EVENTS
+
+    cfg = config or EngineConfig()
+    graph = compile_graph(load_graph())
+    engine_events = {e["slug"]: e for e in HISTORICAL_EVENTS}
+    perp_to_engine = {t.perplexity_slug: t.engine_slug for t in load_standardized_targets_csv()}
+
+    # group spatial rows: (engine_slug, node_id) -> earliest observed onset
+    observed: dict[str, dict[str, int]] = {}
+    out_of_graph: dict[str, int] = {}
+    total_rows = in_graph_rows = 0
+    for r in load_cascade_spatial_csv():
+        total_rows += 1
+        eng = perp_to_engine.get(r.slug, r.slug)
+        nid = r.node_id()
+        if nid not in graph.index:
+            out_of_graph[eng] = out_of_graph.get(eng, 0) + 1
+            continue
+        in_graph_rows += 1
+        onset = r.onset_week if r.onset_week is not None else 0
+        bucket = observed.setdefault(eng, {})
+        bucket[nid] = min(bucket.get(nid, onset), onset)
+
+    events: list[SpatialEventResult] = []
+    obs_onsets: list[float] = []
+    pred_onsets: list[float] = []
+    total_reached = 0
+    total_in_graph_nodes = 0
+
+    for slug, nodes in observed.items():
+        ev = engine_events.get(slug)
+        if ev is None:
+            continue
+        sim = PropagationEngine(graph, cfg).run(_scenario_from_event(ev, cfg))
+        reached = 0
+        for nid, obs_onset in nodes.items():
+            idx = graph.index[nid]
+            traj = np.array([f.nodes[idx].output_loss for f in sim.frames], dtype=float)
+            crossings = np.where(traj >= reach_threshold)[0]
+            if crossings.size:
+                reached += 1
+                obs_onsets.append(float(obs_onset))
+                pred_onsets.append(float(crossings[0]))
+        total_reached += reached
+        total_in_graph_nodes += len(nodes)
+        events.append(SpatialEventResult(
+            slug=slug,
+            observed_nodes=len(nodes),
+            reached=reached,
+            out_of_graph=out_of_graph.get(slug, 0),
+        ))
+
+    onset_mae = (
+        float(np.mean([abs(o - p) for o, p in zip(obs_onsets, pred_onsets, strict=True)]))
+        if obs_onsets else float("nan")
+    )
+    return SpatialReport(
+        events=sorted(events, key=lambda e: e.slug),
+        reach_threshold=reach_threshold,
+        coverage=round(in_graph_rows / total_rows, 3) if total_rows else 0.0,
+        spatial_recall=round(total_reached / total_in_graph_nodes, 3) if total_in_graph_nodes else 0.0,
+        onset_spearman=round(_spearman(pred_onsets, obs_onsets), 3),
+        onset_mae_weeks=round(onset_mae, 2),
+        n_reached=total_reached,
+        n_out_of_graph=sum(out_of_graph.values()),
     )

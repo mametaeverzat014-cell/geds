@@ -846,3 +846,47 @@ both after a run completes: a SEIRS-vs-baseline bar chart and the LOO band bar.
 
 Tests: `tests/test_forecast_ensemble.py` (3). Full backend suite 99/99
 (ex-portwatch); frontend `tsc --noEmit` clean.
+
+---
+
+## Batch 15 — Spatial cascade axis: did the cascade reach the right nodes? (Task #3 finish)
+
+**Status: DONE (2026-06-15)**
+
+The spatial half of "predict the pattern, not one number." Perplexity returned a
+flat, one-row-per-affected-node table (62 rows / 17 events, every row primary-
+source-cited) — `data/csv/cascade_spatial.csv`. `cascade_validation.run_spatial_
+validation()` maps each observed downstream node to a graph node, runs the engine,
+and scores **reach** (does the node's output loss cross a threshold) and **onset
+order** (does the engine's first-touch week ordering track the observed ordering).
+Endpoint: `GET /api/v1/cascade-validation` (both shape + spatial axes); rendered
+on `/validation`.
+
+### Result (reach_threshold 0.01)
+| metric | value | reading |
+|---|---|---|
+| graph coverage | **0.76** | 47/62 observed nodes representable in the 12-country graph |
+| spatial recall | **0.38** | of in-graph hit nodes, the engine reaches only 38% |
+| onset Spearman | **+0.79** | for nodes it reaches, ordering tracks observed onset well |
+| onset MAE | 9.2 wk | …but absolute timing is ~9 weeks too fast |
+| out-of-graph | 15 nodes | UK/Italy/Belgium/Spain autos, chemicals, energy, agriculture |
+
+### Two findings
+1. **Low recall is a topology problem, not a dynamics problem.** Per-event the
+   engine reaches 0/4 Renesas, 0/3 Malaysia, 0/2 Vietnam downstream auto nodes —
+   because the sparse hand-authored graph has *no edge* from those semi/parts
+   nodes to foreign automotive. This is the first **quantitative** case for the
+   ICIO 81×5 expansion (Batch 11): the dense graph has those edges. Spatial
+   recall is now the metric to re-run after wiring scenarios onto v3.
+2. **Timing: right order, wrong clock.** Onset Spearman +0.79 with MAE 9.2w
+   independently reproduces Batch 13's finding — the engine cascades too fast.
+   The graph tells it *who's* downstream correctly; the dynamics fire too early.
+
+### Coverage gap is itself data
+The 15 out-of-graph nodes (UK/IT/BE/ES autos; chemicals; energy; agriculture)
+are an honest map of what the current node taxonomy can't express — a concrete
+target list for the next graph/sector expansion.
+
+Tests: `test_cascade_validation.py` (+2 spatial). Backend 101/101 (ex-portwatch);
+frontend `tsc` clean. This completes the four-axis pattern validation
+(magnitude · weeks-to-peak · recovery · spatial reach/order).

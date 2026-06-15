@@ -7,7 +7,7 @@ global average), scored only where a clean observed value exists.
 
 from __future__ import annotations
 
-from app.core.cascade_validation import run_cascade_validation
+from app.core.cascade_validation import run_cascade_validation, run_spatial_validation
 
 _DIMS = {"magnitude", "weeks_to_peak", "recovery_weeks"}
 
@@ -47,3 +47,25 @@ def test_structural_separation_fields_present():
     # both observed and predicted separation flags are computed (booleans)
     assert isinstance(rep.structural_separation_observed, bool)
     assert isinstance(rep.structural_separation_predicted, bool)
+
+
+# ── spatial axis ──
+
+
+def test_spatial_validation_well_formed():
+    rep = run_spatial_validation()
+    assert 0.0 < rep.coverage <= 1.0
+    assert 0.0 <= rep.spatial_recall <= 1.0
+    assert -1.0 <= rep.onset_spearman <= 1.0
+    assert rep.n_out_of_graph == 15  # documented coverage gaps in the 12-country graph
+    for e in rep.events:
+        assert e.reached <= e.observed_nodes
+
+
+def test_spatial_recall_below_one_documents_sparse_graph():
+    """The engine misses nodes history hit because the hand-authored graph lacks
+    the edges — this is the quantified case for the ICIO expansion (Batch 11)."""
+    rep = run_spatial_validation()
+    assert rep.spatial_recall < 1.0
+    # ordering of the nodes it does reach should still track observed onset
+    assert rep.onset_spearman > 0.0
