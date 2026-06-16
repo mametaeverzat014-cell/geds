@@ -10,8 +10,11 @@ import type {
 export type OverlayMode = "shock" | "inflation" | "output_loss" | "unemployment";
 export type BackendStatus = "checking" | "online" | "offline";
 
+export type GraphVersion = "v2" | "v3";
+
 interface SimState {
   graph: GraphSnapshot | null;
+  graphVersion: GraphVersion;
   scenarios: Scenario[];
   selectedScenarioId: string;
   customMagnitude: number;
@@ -41,6 +44,7 @@ interface SimState {
 
   // actions
   setGraph: (g: GraphSnapshot) => void;
+  setGraphVersion: (v: GraphVersion) => void;
   setScenarios: (s: Scenario[]) => void;
   setSelectedScenario: (id: string) => void;
   setCustom: (mag: number, dur: number) => void;
@@ -59,6 +63,7 @@ interface SimState {
 
 export const useSimStore = create<SimState>((set) => ({
   graph: null,
+  graphVersion: "v2",
   scenarios: [],
   selectedScenarioId: "taiwan-semi-75",
   customMagnitude: 0.75,
@@ -82,6 +87,7 @@ export const useSimStore = create<SimState>((set) => ({
   backendStatus: "checking",
 
   setGraph: (g) => set({ graph: g }),
+  setGraphVersion: (v) => set({ graphVersion: v, frames: [], currentWeek: 0, summary: null }),
   setScenarios: (s) => set({ scenarios: s }),
   setSelectedScenario: (id) => set({ selectedScenarioId: id }),
   setCustom: (mag, dur) => set({ customMagnitude: mag, customDuration: dur }),

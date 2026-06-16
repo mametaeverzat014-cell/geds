@@ -77,6 +77,68 @@ _SECTOR_DEFAULTS: dict[str, tuple[float, float, float]] = {
 
 _DEFAULT_RESILIENCE = 0.50   # neutral prior for economies LPI 2018 doesn't cover here
 
+# v2 sector → v3 ICIO sector. semiconductors+electronics collapse into the merged
+# C26 bucket (ICIO cannot split them); chemicals/energy/agriculture have no v3 node.
+_V2_TO_V3_SECTOR = {
+    "semiconductors": "electronics_c26",
+    "electronics": "electronics_c26",
+    "automotive": "automotive",
+    "consumer_goods": "consumer_goods",
+    "shipping": "shipping",
+    "aerospace": "aerospace",
+}
+
+
+def to_v3_node(node_id: str) -> str | None:
+    """Map a v2 'COUNTRY:sector' id to its v3 equivalent, or None if unrepresentable
+    (chokepoints 'CP:*', or chemicals/energy/agriculture absent from the 5-sector v3)."""
+    if ":" not in node_id:
+        return None
+    country, sector = node_id.split(":", 1)
+    v3_sector = _V2_TO_V3_SECTOR.get(sector)
+    return f"{country}:{v3_sector}" if v3_sector else None
+
+
+# Approximate country centroids (lat, lon) for the 81 ICIO economies, so v3 nodes
+# render on the world map. ROW (Rest of World) is an aggregate with no location.
+_COUNTRY_CENTROID: dict[str, tuple[float, float]] = {
+    "AGO": (-12.3, 17.5), "ARE": (23.4, 53.8), "ARG": (-38.4, -63.6), "AUS": (-25.3, 133.8),
+    "AUT": (47.5, 14.6), "BEL": (50.5, 4.5), "BGD": (23.7, 90.4), "BGR": (42.7, 25.5),
+    "BLR": (53.7, 27.9), "BRA": (-14.2, -51.9), "BRN": (4.5, 114.7), "CAN": (56.1, -106.3),
+    "CHE": (46.8, 8.2), "CHL": (-35.7, -71.5), "CHN": (35.9, 104.2), "CIV": (7.5, -5.5),
+    "CMR": (7.4, 12.4), "COD": (-4.0, 21.8), "COL": (4.6, -74.3), "CRI": (9.7, -83.8),
+    "CYP": (35.1, 33.4), "CZE": (49.8, 15.5), "DEU": (51.2, 10.4), "DNK": (56.3, 9.5),
+    "EGY": (26.8, 30.8), "ESP": (40.5, -3.7), "EST": (58.6, 25.0), "FIN": (61.9, 25.7),
+    "FRA": (46.2, 2.2), "GBR": (55.4, -3.4), "GRC": (39.1, 21.8), "HKG": (22.3, 114.2),
+    "HRV": (45.1, 15.2), "HUN": (47.2, 19.5), "IDN": (-0.8, 113.9), "IND": (20.6, 78.9),
+    "IRL": (53.4, -8.2), "ISL": (64.9, -19.0), "ISR": (31.0, 34.9), "ITA": (41.9, 12.6),
+    "JOR": (30.6, 36.2), "JPN": (36.2, 138.3), "KAZ": (48.0, 66.9), "KHM": (12.6, 104.9),
+    "KOR": (35.9, 127.8), "LAO": (19.9, 102.5), "LTU": (55.2, 23.9), "LUX": (49.8, 6.1),
+    "LVA": (56.9, 24.6), "MAR": (31.8, -7.1), "MEX": (23.6, -102.5), "MLT": (35.9, 14.4),
+    "MMR": (21.9, 96.0), "MYS": (4.2, 101.9), "NGA": (9.1, 8.7), "NLD": (52.1, 5.3),
+    "NOR": (60.5, 8.5), "NZL": (-40.9, 174.9), "PAK": (30.4, 69.3), "PER": (-9.2, -75.0),
+    "PHL": (12.9, 121.8), "POL": (51.9, 19.1), "PRT": (39.4, -8.2), "ROU": (45.9, 25.0),
+    "RUS": (61.5, 105.3), "SAU": (23.9, 45.1), "SEN": (14.5, -14.5), "SGP": (1.35, 103.8),
+    "STP": (0.2, 6.6), "SVK": (48.7, 19.7), "SVN": (46.2, 14.8), "SWE": (60.1, 18.6),
+    "THA": (15.9, 100.9), "TUN": (33.9, 9.6), "TUR": (39.0, 35.2), "TWN": (23.7, 121.0),
+    "UKR": (48.4, 31.2), "USA": (37.1, -95.7), "VNM": (14.1, 108.3), "ZAF": (-30.6, 22.9),
+}
+
+# Stable per-sector angular offset so a country's 5 sector-nodes form a small
+# legible cluster instead of stacking on one pixel.
+_SECTOR_ORDER = ["electronics_c26", "automotive", "consumer_goods", "aerospace", "shipping"]
+
+
+def _node_coords(iso3: str, icio_industry: str) -> tuple[float | None, float | None]:
+    base = _COUNTRY_CENTROID.get(iso3)
+    if base is None:
+        return None, None
+    import math
+    i = _SECTOR_ORDER.index(icio_industry) if icio_industry in _SECTOR_ORDER else 0
+    r = 1.4  # degrees
+    angle = (2 * math.pi / len(_SECTOR_ORDER)) * i
+    return round(base[0] + r * math.sin(angle), 3), round(base[1] + r * math.cos(angle), 3)
+
 
 @lru_cache(maxsize=1)
 def _lpi_resilience() -> dict[str, float]:
@@ -119,6 +181,7 @@ def _build_nodes(rows: list[dict[str, str]]) -> list[Node]:
         resilience = lpi.get(iso3, _DEFAULT_RESILIENCE)
         amp, thresh, _sub = _SECTOR_DEFAULTS[icio_industry]
         output_usd = float(r.get("output_usd_m", 0.0) or 0.0) * 1e6
+        lat, lon = _node_coords(iso3, icio_industry)
         nodes.append(
             Node(
                 id=r["node_id"],
@@ -126,6 +189,8 @@ def _build_nodes(rows: list[dict[str, str]]) -> list[Node]:
                 kind=NodeKind.COUNTRY_INDUSTRY,
                 country=iso3,
                 industry=ind,
+                lat=lat,
+                lon=lon,
                 gdp_usd=output_usd,
                 vulnerability=round(1.0 - resilience, 3),
                 resilience=resilience,

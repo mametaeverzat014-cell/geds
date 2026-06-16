@@ -42,17 +42,42 @@ async def simulate_stream(ws: WebSocket) -> None:
     # "Suez blockage in progress" / "war footing" actually changes the streamed
     # forecast — the WS path is what the Run button uses, so without this the
     # overlay would silently do nothing here.
-    base_graph: CompiledGraph = ws.app.state.compiled_graph
-    overlay = getattr(ws.app.state, "news_overlay", None)
-    g: CompiledGraph = apply_overlay_to_graph(base_graph, overlay) if overlay else base_graph
+    graph_version = (payload.get("graph_version") or "v2").lower()
+    overlay = None
 
-    # Inject active-news disruptions as real shocks on the matched nodes, so the
-    # streamed forecast (this is the path the Run button uses) reflects them.
-    extra_shocks = overlay_to_shocks(overlay) if overlay else []
-    if extra_shocks:
-        scenario = scenario.model_copy(
-            update={"shocks": list(scenario.shocks) + [ShockSpec(**d) for d in extra_shocks]}
-        )
+    if graph_version == "v3":
+        # ICIO 81×5 graph: remap the scenario's shocks onto v3 node ids; the
+        # news overlay (v2 node ids) does not apply here.
+        from ..data.expanded_graph import to_v3_node
+        from ..data.seed import compiled_graph_for
+
+        g = compiled_graph_for("v3")
+        remapped, dropped = [], []
+        for sh in scenario.shocks:
+            t3 = to_v3_node(sh.target_node_id)
+            if t3 and t3 in g.index:
+                remapped.append(sh.model_copy(update={"target_node_id": t3}))
+            else:
+                dropped.append(sh.target_node_id)
+        if not remapped:
+            await ws.send_json({"event": "error", "message":
+                "This scenario has no equivalent on the ICIO 81×5 graph "
+                "(chokepoint-only shocks have no node there). Try a production shock."})
+            await ws.close()
+            return
+        scenario = scenario.model_copy(update={"shocks": remapped})
+    else:
+        base_graph: CompiledGraph = ws.app.state.compiled_graph
+        overlay = getattr(ws.app.state, "news_overlay", None)
+        g = apply_overlay_to_graph(base_graph, overlay) if overlay else base_graph
+
+        # Inject active-news disruptions as real shocks on the matched nodes, so the
+        # streamed forecast (this is the path the Run button uses) reflects them.
+        extra_shocks = overlay_to_shocks(overlay) if overlay else []
+        if extra_shocks:
+            scenario = scenario.model_copy(
+                update={"shocks": list(scenario.shocks) + [ShockSpec(**d) for d in extra_shocks]}
+            )
 
     engine = PropagationEngine(g, scenario.config)
 

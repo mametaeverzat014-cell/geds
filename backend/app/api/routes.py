@@ -77,7 +77,12 @@ def _snapshot(req: Request) -> GraphSnapshot:
 
 
 @router.get("/graph", tags=["graph"])
-def get_graph(req: Request) -> GraphSnapshot:
+def get_graph(req: Request, version: str = "v2") -> GraphSnapshot:
+    """Graph snapshot. version=v3 returns the ICIO 81×5 expanded graph (for the
+    map + node list when the client selects it); v2 (default) is the live engine graph."""
+    if version.lower() == "v3":
+        from ..data.seed import load_graph_version
+        return load_graph_version("v3")
     return _snapshot(req)
 
 

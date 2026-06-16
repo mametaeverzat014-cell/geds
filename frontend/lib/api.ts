@@ -165,7 +165,8 @@ export interface CrisisRadarResult {
 // ─── API client ────────────────────────────────────────────────────────────
 
 export const api = {
-  graph: (): Promise<GraphSnapshot> => getJson("/api/v1/graph"),
+  graph: (version: "v2" | "v3" = "v2"): Promise<GraphSnapshot> =>
+    getJson(version === "v3" ? "/api/v1/graph?version=v3" : "/api/v1/graph"),
   scenarios: (): Promise<Scenario[]> => getJson("/api/v1/scenarios"),
   scenario: (id: string): Promise<Scenario> => getJson(`/api/v1/scenarios/${id}`),
   simulate: (req: { scenario_id?: string; custom?: unknown }): Promise<SimulationResult> =>

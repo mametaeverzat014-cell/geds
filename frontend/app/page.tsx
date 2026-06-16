@@ -27,14 +27,14 @@ import { useSimStore } from "@/lib/store";
 import { useUI } from "@/lib/ui-context";
 
 export default function Home() {
-  const setGraph     = useSimStore((s) => s.setGraph);
   const setScenarios = useSimStore((s) => s.setScenarios);
   const { lang } = useUI();
 
+  // Graph snapshot is owned by ScenarioControls (it tracks the v2/v3 selector);
+  // here we only load the scenario list.
   useEffect(() => {
-    api.graph().then(setGraph).catch(() => {});
     api.scenarios().then(setScenarios).catch(() => {});
-  }, [setGraph, setScenarios]);
+  }, [setScenarios]);
 
   return (
     <main className="max-w-[1600px] mx-auto px-6 pb-6 space-y-4">
