@@ -1,0 +1,24 @@
+perplexity_slug,engine_slug,weeks_to_peak,recovery_weeks_to_90,source_anchor
+japan-triple-disaster-2011,japan-triple-disaster-2011,2,25,Toyota pressroom Apr 22; RBA Aug 2011; METI (Edinburgh paper)
+suez-canal-2021,suez-canal-2021,1,3,Canal reopened Mar 29; Maersk 1-week backlog clearance
+texas-winter-storm-2021,texas-winter-storm-2021,1,6,Samsung 'additional time' Mar 2; trade body 'couple of weeks' restart
+renesas-naka-fire-2021,renesas-naka-fire-2021,1,14,Renesas: 100 days to full capacity; partial restart Apr 17
+wuhan-lockdown-2020,wuhan-lockdown-2020,4,16,CAAM trough Feb 2020; Hyundai Korea resumed Feb 11-12
+shanghai-lockdown-2022,shanghai-lockdown-2022,4,12,CAAM Apr trough; lockdown lifted Jun 1
+thailand-floods-2011,thailand-floods-2011,4,26,IHS: HDD supply/demand balance by end Q3 2012; Toyota TMT resumed late Nov
+vietnam-covid-lockdown-2021,vietnam-covid-lockdown-2021,4,16,Toyota normal production Nov 2021; Kyodo Jul 3 Japan line suspensions
+malaysia-semiconductor-2021,malaysia-semiconductor-2021,4,,IHS: 2.5-month backlog 'well into 2022'; NXP 52+ week lead times
+red-sea-crisis-2023,red-sea-crisis-2023,4,,DIA: 90% reduction persisted through Feb 2024; >100 ships rerouted by Dec 21
+chichi-earthquake-1999,taiwan-chichi-earthquake-1999,1,3,TSMC 85% capacity in 7 days; foundry 90% in ~3 weeks (Taipei Times)
+eu-energy-crisis-2021,eu-energy-crisis-2021,13,,VDA Oct 2021 trough; clean recovery impossible (concurrent chip shortage)
+rhine-drought-2018,rhine-drought-2018,12,20,ICIS Oct record lows; Rhine recovered with autumn rains Dec 2018
+panama-canal-drought-2023,panama-canal-drought-2023,20,40,ACP: quota back to 32/day by Jun 2024; 22 transits/day trough Nov 2023
+ningbo-port-2021,ningbo-port-closure-2021,1,3,Terminal closed Aug 11; full reopening Sep 1
+yantian-port-2021,yantian-port-closure-2021,3,8,FourKites: peak 25.4-day dwell mid-June; Jul 1 rolling avg 12.9 days
+henan-floods-2021,henan-floods-2021,1,4,Zhengzhou station closed Jul 20-26; rail restored by end Aug
+rhine-drought-2022,rhine-drought-2022,8,16,ICIS Aug 2022 low point; Nov 2022 recovery
+hokkaido-earthquake-2018,hokkaido-earthquake-2018,1,4,Power restored within days; semiconductor restart within weeks
+la-port-congestion-2021,us-west-coast-ports-2021,52,,Chronic; 73 ships Sep 19 2021 peak (record); disruption into 2022
+covid-semiconductor-2020-2021,covid-semiconductor-2020-2021,,,Taiwan output grew; no source-country trough
+auto-chip-shortage-2021,auto-chip-shortage-2021,,,Diffuse multi-origin; no single source isolates weeks_to_peak
+us-china-tariffs-2019,us-china-tariffs-2019,,,Chronic policy shock; no discrete trough in production

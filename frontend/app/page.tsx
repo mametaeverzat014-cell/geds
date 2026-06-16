@@ -8,6 +8,7 @@ import ConnectionBanner from "@/components/ConnectionBanner";
 import HeroNetwork from "@/components/HeroNetwork";
 import FAQPanel from "@/components/FAQPanel";
 import MetricsPanel from "@/components/MetricsPanel";
+import ModelComparisonPanel from "@/components/ModelComparisonPanel";
 import NarrativePanel from "@/components/NarrativePanel";
 import NewsSignalsPanel from "@/components/NewsSignalsPanel";
 import OnboardingGuide from "@/components/OnboardingGuide";
@@ -70,6 +71,7 @@ export default function Home() {
         {/* ── right column ── */}
         <div className="lg:col-span-3 space-y-3 fade-up fade-up-3">
           <MetricsPanel />
+          <ModelComparisonPanel />
           <NarrativePanel />
         </div>
       </div>

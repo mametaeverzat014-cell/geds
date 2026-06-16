@@ -3,29 +3,34 @@
 from __future__ import annotations
 
 import json
+from functools import lru_cache
 from pathlib import Path
 
 from fastapi import APIRouter, HTTPException, Request
 from pydantic import BaseModel, Field
 
 from ..core import scenarios as scenario_registry
-from ..core.advisor import analyze as advise
 from ..core.ablation import run_ablation_study, save_ablation
+from ..core.advisor import analyze as advise
 from ..core.backtest import run_track_record, track_record_to_dict
 from ..core.benchmark import run_benchmark, save_benchmark
+from ..core.centrality import full_centrality_report
 from ..core.cross_validation import loo_cross_validate_fast, save_cv
+from ..core.graph import CompiledGraph
 from ..core.mcmc import load_result as load_posterior
+from ..core.monte_carlo import run_monte_carlo
 from ..core.postcalibration import loo_calibration_report
+from ..core.propagation import PropagationEngine
 from ..core.research_metrics import (
-    cascading_criticality_score, ert_summary, evaluate_metrics_against_history,
-    evaluate_metrics_v2, recovery_elasticity_score, sac_summary,
-    shock_absorption_capacity, systemic_fragility_index,
+    cascading_criticality_score,
+    ert_summary,
+    evaluate_metrics_against_history,
+    evaluate_metrics_v2,
+    recovery_elasticity_score,
+    sac_summary,
+    systemic_fragility_index,
 )
 from ..core.tail_risk import compute_tail_risk, tail_risk_to_dict
-from ..core.centrality import full_centrality_report
-from ..core.graph import CompiledGraph
-from ..core.monte_carlo import run_monte_carlo
-from ..core.propagation import PropagationEngine
 from ..core.types import (
     AdvisorResult,
     CentralityResult,
@@ -37,8 +42,9 @@ from ..core.types import (
 )
 from ..core.validation import run_all as validate_all
 from ..data.csv_loader import (
-    load_datasets_csv, load_historical_events_csv,
-    load_parameters_csv, out_of_graph_events,
+    load_datasets_csv,
+    load_historical_events_csv,
+    load_parameters_csv,
 )
 from ..services.claude_advisor import ClaudeCrisisAdvisor
 from ..services.event_logger import log_event
@@ -117,7 +123,7 @@ def get_scenario(scenario_id: str) -> Scenario:
     try:
         return scenario_registry.by_id(scenario_id)
     except KeyError as e:
-        raise HTTPException(status_code=404, detail=str(e))
+        raise HTTPException(status_code=404, detail=str(e)) from e
 
 
 # ────────────────────────── simulation ──────────────────────────
@@ -163,7 +169,7 @@ def _resolve_scenario(payload: SimulationRequest) -> Scenario:
         try:
             return scenario_registry.by_id(payload.scenario_id)
         except KeyError as e:
-            raise HTTPException(status_code=404, detail=str(e))
+            raise HTTPException(status_code=404, detail=str(e)) from e
     if payload.custom:
         shocks = [ShockSpec(**s.model_dump()) for s in payload.custom.shocks]
         return Scenario(
@@ -697,6 +703,77 @@ def benchmark() -> dict:
     }
 
 
+@lru_cache(maxsize=1)
+def _cascade_validation_payload() -> dict:
+    """Compute the cascade-validation payload once per process.
+
+    Deterministic for the default engine config, but runs the engine ~40 times
+    (shape + spatial + v2-vs-v3 expansion), so it's memoized — the validation
+    page fetches it on load and must not pay ~3 s every visit.
+    """
+    from dataclasses import asdict
+
+    from ..core.cascade_validation import (
+        compare_spatial_recall,
+        run_cascade_validation,
+        run_spatial_validation,
+    )
+
+    shape = run_cascade_validation()
+    spatial = run_spatial_validation()
+    expansion = compare_spatial_recall()
+    return {
+        "shape": {
+            "events": [asdict(e) for e in shape.events],
+            "mae_by_dim": shape.mae_by_dim,
+            "spearman_by_dim": shape.spearman_by_dim,
+            "n_by_dim": shape.n_by_dim,
+            "structural_separation_observed": shape.structural_separation_observed,
+            "structural_separation_predicted": shape.structural_separation_predicted,
+        },
+        "spatial": asdict(spatial),
+        "expansion": asdict(expansion),
+    }
+
+
+@router.get("/cascade-validation", tags=["validation"])
+def cascade_validation_endpoint() -> dict:
+    """Multi-output cascade-shape validation: magnitude/timing axes + spatial reach.
+
+    Scores the engine against the SHAPE of historical cascades (Task #3), not a
+    single scalar — peak magnitude, weeks-to-peak, recovery, plus whether the
+    cascade reaches the nodes history actually hit and in the right order.
+    """
+    return _cascade_validation_payload()
+
+
+@router.post("/baseline-compare", tags=["validation"])
+def baseline_compare_endpoint(payload: SimulationRequest, req: Request) -> dict:
+    """SEIRS vs linear-diffusion vs Leontief peak loss for THIS scenario.
+
+    Surfaces the zero-parameter baseline next to SEIRS inline with a run, so the
+    cost/benefit of the engine's machinery is visible per scenario, not only in
+    the aggregate leaderboard.
+    """
+    from ..core.forecast_ensemble import baseline_compare
+
+    scenario = _resolve_scenario(payload)
+    return baseline_compare(scenario, _graph(req))
+
+
+@router.post("/forecast-band", tags=["validation"])
+def forecast_band_endpoint(payload: SimulationRequest, req: Request) -> dict:
+    """Peak-CSI uncertainty band from the 26 leave-one-out fold parameter sets.
+
+    Returns 404-style available=False if loo_de_result.json has not been
+    generated. With N=26 the point estimate is uncertain; this is the honest band.
+    """
+    from ..core.forecast_ensemble import loo_forecast_band
+
+    scenario = _resolve_scenario(payload)
+    return loo_forecast_band(scenario, _graph(req))
+
+
 # ─────────────────────────── CSV data layer ──────────────────────────────
 
 
@@ -740,7 +817,7 @@ def last_refresh_endpoint() -> dict:
     GitHub Actions workflow .github/workflows/refresh-comtrade.yml.
     """
     import json
-    from datetime import datetime, timezone
+    from datetime import UTC, datetime
     p = Path(__file__).parent.parent.parent / "data" / "csv" / "last_refresh.json"
     if not p.exists():
         return {
@@ -754,7 +831,7 @@ def last_refresh_endpoint() -> dict:
         ts = data.get("last_refresh_utc")
         if ts:
             last = datetime.fromisoformat(ts.replace("Z", "+00:00"))
-            age = (datetime.now(timezone.utc) - last).total_seconds() / 3600.0
+            age = (datetime.now(UTC) - last).total_seconds() / 3600.0
             data["age_hours"] = round(age, 2)
         return data
     except (json.JSONDecodeError, ValueError):

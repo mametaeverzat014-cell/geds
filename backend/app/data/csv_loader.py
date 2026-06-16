@@ -20,10 +20,8 @@ Rules
 from __future__ import annotations
 
 import csv
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
-
 
 _CSV_DIR = Path(__file__).resolve().parent.parent.parent / "data" / "csv"
 
@@ -313,9 +311,144 @@ def out_of_graph_events() -> list[HistoricalEventCSV]:
     return [e for e in load_historical_events_csv() if not e.in_geds_graph]
 
 
+# ─────────────────────── standardized targets (Task #2) ────────────────────
+
+
+@dataclass
+class StandardizedTargetCSV:
+    """One row of standardized_targets.csv.
+
+    A single, consistently-defined production-impact target per event:
+    peak % decline in real production volume of the directly-shocked sector
+    in the source country (or, for chokepoint/logistics events, peak %
+    throughput reduction). Replaces the heterogeneous per-event `observed`
+    dict so source-side losses and downstream/chokepoint losses are no longer
+    pooled blindly. See PROGRESS Batch 12.
+    """
+    perplexity_slug: str
+    engine_slug: str
+    geds_node: str
+    target_class: str        # source_sector_output | chokepoint_throughput | facility_capacity | national_index_proxy | facility_throughput | logistics_throughput
+    value_pct: float | None  # fractional loss [0,1]; None when status == "null"
+    baseline_type: str       # yoy | vs_capacity | vs_prior_month | n/a
+    confidence: str          # high | medium | low | n/a
+    usability: str           # direct | chokepoint | facility_proxy | national_proxy | logistics_proxy | none
+    status: str              # measured | null
+    source: str
+    measurement_window: str
+    note: str
+
+
+def load_standardized_targets_csv(path: Path | None = None) -> list[StandardizedTargetCSV]:
+    path = path or (_CSV_DIR / "standardized_targets.csv")
+    out: list[StandardizedTargetCSV] = []
+    with path.open(encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            out.append(StandardizedTargetCSV(
+                perplexity_slug=row["perplexity_slug"].strip(),
+                engine_slug=row["engine_slug"].strip(),
+                geds_node=row["geds_node"].strip(),
+                target_class=row["target_class"].strip(),
+                value_pct=_parse_float(row.get("value_pct")),
+                baseline_type=row.get("baseline_type", "").strip(),
+                confidence=row.get("confidence", "").strip(),
+                usability=row.get("usability", "").strip(),
+                status=row.get("status", "").strip(),
+                source=row.get("source", "").strip(),
+                measurement_window=row.get("measurement_window", "").strip(),
+                note=row.get("note", "").strip(),
+            ))
+    return out
+
+
+@dataclass
+class CascadeTimingCSV:
+    """One row of cascade_timing.csv — the temporal shape of an event (Task #3).
+
+    weeks_to_peak: weeks from event start to maximum disruption at the shocked node.
+    recovery_weeks_to_90: weeks from start until the shocked sector returned to ~90%.
+    Both None where no clean primary anchor exists (diffuse/chronic events).
+    """
+    perplexity_slug: str
+    engine_slug: str
+    weeks_to_peak: int | None
+    recovery_weeks_to_90: int | None
+    source_anchor: str
+
+
+def load_cascade_timing_csv(path: Path | None = None) -> list[CascadeTimingCSV]:
+    path = path or (_CSV_DIR / "cascade_timing.csv")
+    out: list[CascadeTimingCSV] = []
+    with path.open(encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            out.append(CascadeTimingCSV(
+                perplexity_slug=row["perplexity_slug"].strip(),
+                engine_slug=row["engine_slug"].strip(),
+                weeks_to_peak=_parse_int(row.get("weeks_to_peak")),
+                recovery_weeks_to_90=_parse_int(row.get("recovery_weeks_to_90")),
+                source_anchor=row.get("source_anchor", "").strip(),
+            ))
+    return out
+
+
+@dataclass
+class CascadeSpatialCSV:
+    """One row of cascade_spatial.csv — one downstream node hit by an event (Task #3 spatial).
+
+    The flat, one-row-per-affected-node format (so CSV export never drops the
+    cascade). node_id() rebuilds the GEDS node key for graph lookup.
+    """
+    slug: str
+    affected_country_iso3: str
+    affected_sector: str
+    onset_week: int | None
+    effect: str            # output_loss | price_rise | lead_time_increase | shutdown
+    magnitude_hint: str
+    source_url: str
+
+    def node_id(self) -> str:
+        return f"{self.affected_country_iso3}:{self.affected_sector}"
+
+
+def load_cascade_spatial_csv(path: Path | None = None) -> list[CascadeSpatialCSV]:
+    path = path or (_CSV_DIR / "cascade_spatial.csv")
+    out: list[CascadeSpatialCSV] = []
+    with path.open(encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            out.append(CascadeSpatialCSV(
+                slug=row["slug"].strip(),
+                affected_country_iso3=row["affected_country_iso3"].strip(),
+                affected_sector=row["affected_sector"].strip(),
+                onset_week=_parse_int(row.get("onset_week")),
+                effect=row.get("effect", "").strip(),
+                magnitude_hint=row.get("magnitude_hint", "").strip(),
+                source_url=row.get("source_url", "").strip(),
+            ))
+    return out
+
+
+def clean_calibration_targets() -> dict[str, float]:
+    """The high/medium-confidence, directly-measured source-sector output targets.
+
+    These are the only events with a clean node-level production-volume target
+    under the standardized definition — the gold set for any future node-level
+    recalibration. Keyed by geds_node is ambiguous (two events hit
+    CHN:automotive), so this returns engine_slug -> value_pct.
+    """
+    rows = load_standardized_targets_csv()
+    return {
+        r.engine_slug: r.value_pct
+        for r in rows
+        if r.status == "measured" and r.usability == "direct" and r.value_pct is not None
+    }
+
+
 __all__ = [
-    "HistoricalEventCSV", "ParameterCSV", "DatasetCSV",
+    "HistoricalEventCSV", "ParameterCSV", "DatasetCSV", "StandardizedTargetCSV",
+    "CascadeTimingCSV", "CascadeSpatialCSV",
     "load_historical_events_csv", "load_parameters_csv", "load_datasets_csv",
+    "load_standardized_targets_csv", "clean_calibration_targets",
+    "load_cascade_timing_csv", "load_cascade_spatial_csv",
     "csv_to_geds_historical_events", "parameter_bounds_from_csv",
     "out_of_graph_events",
 ]

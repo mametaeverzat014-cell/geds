@@ -28,6 +28,30 @@ async function deleteJson<T>(path: string): Promise<T> {
   return res.json();
 }
 
+// ─── model comparison + forecast band (Tasks #4/#5) ─────────────────────────
+
+export interface BaselineModel {
+  model: string;
+  industry_loss: number;
+  recovery_weeks: number;
+  parameters: number;
+}
+export interface BaselineCompare {
+  industry: string;
+  models: BaselineModel[];
+}
+export interface ForecastBand {
+  n_folds: number;
+  metric: string;
+  available: boolean;
+  median?: number;
+  p10?: number;
+  p90?: number;
+  min?: number;
+  max?: number;
+  rel_width?: number;
+}
+
 // ─── Grok narrative ────────────────────────────────────────────────────────
 
 export interface PolicyRec {
@@ -146,6 +170,10 @@ export const api = {
   scenario: (id: string): Promise<Scenario> => getJson(`/api/v1/scenarios/${id}`),
   simulate: (req: { scenario_id?: string; custom?: unknown }): Promise<SimulationResult> =>
     postJson("/api/v1/simulate", req),
+  baselineCompare: (req: { scenario_id?: string; custom?: unknown }): Promise<BaselineCompare> =>
+    postJson("/api/v1/baseline-compare", req),
+  forecastBand: (req: { scenario_id?: string; custom?: unknown }): Promise<ForecastBand> =>
+    postJson("/api/v1/forecast-band", req),
   policy: (req: { scenario_id?: string; custom?: unknown }): Promise<AdvisorResult> =>
     postJson("/api/v1/policy", req),
   wsStreamUrl: () => `${WS}/ws/simulate`,

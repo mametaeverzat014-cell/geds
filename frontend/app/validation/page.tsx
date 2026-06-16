@@ -169,6 +169,33 @@ interface BenchmarkReport {
   }>;
 }
 
+interface CascadeValidation {
+  shape: {
+    mae_by_dim: Record<string, number>;
+    spearman_by_dim: Record<string, number>;
+    n_by_dim: Record<string, number>;
+  };
+  spatial: {
+    coverage: number;
+    spatial_recall: number;
+    onset_spearman: number;
+    onset_mae_weeks: number;
+    n_reached: number;
+    n_out_of_graph: number;
+  };
+  expansion: {
+    events_compared: number;
+    v2_recall: number;
+    v3_recall: number;
+    v2_reached: number;
+    v2_nodes: number;
+    v3_reached: number;
+    v3_nodes: number;
+    per_event: Array<{ slug: string; v2: string; v3: string }>;
+    chokepoint_events_v2_only: string[];
+  };
+}
+
 export default function ValidationPage() {
   const { lang } = useUI();
   const [cv, setCv] = useState<CVReport | null>(null);
@@ -182,6 +209,7 @@ export default function ValidationPage() {
   const [gscpi, setGscpi] = useState<GscpiReport | null>(null);
   const [icio, setIcio] = useState<IcioEdgeCheck | null>(null);
   const [c26, setC26] = useState<IcioC26Split | null>(null);
+  const [cascade, setCascade] = useState<CascadeValidation | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -197,6 +225,7 @@ export default function ValidationPage() {
       fetch(`${API_BASE}/api/v1/gscpi-validation`).then(r => r.ok ? r.json() : null).then(setGscpi),
       fetch(`${API_BASE}/api/v1/icio-edge-check`).then(r => r.ok ? r.json() : null).then(setIcio),
       fetch(`${API_BASE}/api/v1/icio-c26-split`).then(r => r.ok ? r.json() : null).then(setC26),
+      fetch(`${API_BASE}/api/v1/cascade-validation`).then(r => r.ok ? r.json() : null).then(setCascade),
     ]).catch((e) => setError(String(e)));
   }, []);
 
@@ -540,6 +569,93 @@ export default function ValidationPage() {
         ) : <div className="text-xs text-text-muted">{tr("Loading…", "Загрузка…")}</div>}
       </div>
 
+      {/* Multi-output cascade-shape validation (Task #3) */}
+      <div className="panel p-4 space-y-3">
+        <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
+          {tr("Cascade-shape validation", "Валидация формы каскада")}
+        </h2>
+        <p className="text-xs text-text-secondary leading-relaxed max-w-4xl">
+          {tr(
+            "Scores the engine against the SHAPE of each historical cascade, not one scalar: peak magnitude, weeks-to-peak and recovery — plus whether the cascade reaches the nodes history actually hit, in the right order. Spearman is rank agreement (1 = perfect ordering); spatial recall is the fraction of hit nodes the engine's cascade actually reaches.",
+            "Оценивает движок по ФОРМЕ каждого исторического каскада, а не по одному числу: пиковая магнитуда, недели до пика и восстановление — плюс доходит ли каскад до узлов, которые история реально задела, и в правильном ли порядке. Spearman — ранговое согласие (1 = идеальный порядок); spatial recall — доля задетых узлов, до которых каскад движка реально доходит.",
+          )}
+        </p>
+        {cascade ? (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            {(["magnitude", "weeks_to_peak", "recovery_weeks"] as const).map((dim) => (
+              <Cell
+                key={dim}
+                label={`${dim} ${tr("Spearman", "Spearman")} (n=${cascade.shape.n_by_dim[dim] ?? 0})`}
+                value={`${(cascade.shape.spearman_by_dim[dim] ?? 0) >= 0 ? "+" : ""}${(cascade.shape.spearman_by_dim[dim] ?? 0).toFixed(2)}`}
+              />
+            ))}
+            <Cell
+              label={tr("spatial recall", "пространств. recall")}
+              value={`${(cascade.spatial.spatial_recall * 100).toFixed(0)}%`}
+            />
+            <Cell
+              label={tr("graph coverage", "покрытие графа")}
+              value={`${(cascade.spatial.coverage * 100).toFixed(0)}%`}
+            />
+            <Cell
+              label={tr("onset order (Spearman)", "порядок onset (Spearman)")}
+              value={`${cascade.spatial.onset_spearman >= 0 ? "+" : ""}${cascade.spatial.onset_spearman.toFixed(2)}`}
+            />
+            <Cell
+              label={tr("onset MAE", "onset MAE")}
+              value={`${cascade.spatial.onset_mae_weeks.toFixed(1)} ${tr("wk", "нед")}`}
+            />
+            <Cell
+              label={tr("out-of-graph nodes", "узлов вне графа")}
+              value={`${cascade.spatial.n_out_of_graph}`}
+            />
+          </div>
+        ) : <div className="text-xs text-text-muted">{tr("Loading…", "Загрузка…")}</div>}
+        <p className="text-[10px] text-text-muted leading-snug">
+          {tr(
+            "Read: the engine ranks shape well (Spearman 0.6–0.85) but under-predicts magnitude and reaches only ~38% of hit nodes — the sparse 12-country graph has no edge to many places history hit. That gap is the quantitative case for the ICIO 81×5 expansion, measured below.",
+            "Вывод: движок хорошо ранжирует форму (Spearman 0.6–0.85), но недооценивает магнитуду и доходит лишь до ~38% задетых узлов — у разреженного графа из 12 стран нет рёбер ко многим местам, которые задела история. Этот разрыв — количественный аргумент за расширение ICIO 81×5, измеренный ниже.",
+          )}
+        </p>
+
+        {/* ── headline: does the dense ICIO graph fix reach? ── */}
+        {cascade?.expansion && (
+          <div className="mt-1 rounded-md border border-accent-violet/30 bg-gradient-to-br from-accent-violet/8 to-accent-cyan/5 p-4 space-y-3">
+            <div className="flex items-baseline justify-between">
+              <span className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
+                {tr("ICIO expansion impact · spatial reach", "Эффект расширения ICIO · охват")}
+              </span>
+              <span className="text-[10px] text-text-muted num">
+                {tr("on", "на")} {cascade.expansion.events_compared} {tr("common events", "общих событиях")}
+              </span>
+            </div>
+            <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3">
+              <RecallStat
+                label={tr("12-country graph", "граф 12 стран")}
+                sub="36 nodes · hand-authored"
+                recall={cascade.expansion.v2_recall}
+                detail={`${cascade.expansion.v2_reached}/${cascade.expansion.v2_nodes}`}
+                tone="muted"
+              />
+              <div className="text-2xl text-text-muted">→</div>
+              <RecallStat
+                label={tr("81-economy graph", "граф 81 экономики")}
+                sub="405 nodes · OECD ICIO 2019"
+                recall={cascade.expansion.v3_recall}
+                detail={`${cascade.expansion.v3_reached}/${cascade.expansion.v3_nodes}`}
+                tone="bright"
+              />
+            </div>
+            <p className="text-[10px] text-text-muted leading-snug">
+              {tr(
+                `Same engine, same shocks — only the graph changes. Grounding the topology in the OECD inter-country input-output table lifts the share of historically-hit nodes the cascade reaches from ${(cascade.expansion.v2_recall * 100).toFixed(0)}% to ${(cascade.expansion.v3_recall * 100).toFixed(0)}%. Chokepoint events are excluded (the v3 table has no chokepoint nodes).`,
+                `Тот же движок, те же шоки — меняется только граф. Привязка топологии к межстрановой таблице «затраты-выпуск» ОЭСР поднимает долю исторически задетых узлов, до которых доходит каскад, с ${(cascade.expansion.v2_recall * 100).toFixed(0)}% до ${(cascade.expansion.v3_recall * 100).toFixed(0)}%. События-чокпоинты исключены (в таблице v3 нет узлов-чокпоинтов).`,
+              )}
+            </p>
+          </div>
+        )}
+      </div>
+
       {/* Out-of-sample LOO-DE verdict */}
       <div className="panel p-4 space-y-2">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
@@ -784,6 +900,32 @@ function Cell({ label, value }: { label: string; value: string }) {
     <div className="rounded border border-border-subtle bg-bg-base/30 p-2">
       <div className="text-[9px] uppercase tracking-widest text-text-muted font-bold">{label}</div>
       <div className="num text-text-primary text-sm mt-0.5">{value}</div>
+    </div>
+  );
+}
+
+function RecallStat({ label, sub, recall, detail, tone }: {
+  label: string; sub: string; recall: number; detail: string; tone: "muted" | "bright";
+}) {
+  const pct = Math.round(recall * 100);
+  return (
+    <div className="text-center space-y-1">
+      <div className="text-[10px] uppercase tracking-wider text-text-secondary">{label}</div>
+      <div className={`num font-extrabold leading-none ${tone === "bright" ? "text-3xl title-gradient" : "text-3xl text-text-muted"}`}>
+        {pct}%
+      </div>
+      <div className="h-1.5 rounded-full bg-bg-base/60 overflow-hidden">
+        <div
+          className="h-full rounded-full transition-all"
+          style={{
+            width: `${pct}%`,
+            background: tone === "bright"
+              ? "linear-gradient(90deg, rgba(124,108,251,0.95), rgba(77,208,225,0.95))"
+              : "rgba(120,130,150,0.6)",
+          }}
+        />
+      </div>
+      <div className="text-[9px] text-text-muted num">{detail} · {sub}</div>
     </div>
   );
 }

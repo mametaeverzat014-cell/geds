@@ -583,3 +583,351 @@ propagation kernel (it wins ranking out-of-sample with zero parameters)
 and keep SEIRS as the research layer, or (b) grow N — the ICIO-grounded
 graph expansion plus a 30+ event set — before touching engine structure
 again. Both are data/architecture decisions, not mechanism patches.
+
+---
+
+## Batch 10 — Event database expansion N=18 → N=43
+
+**Status: DONE (2026-06-14)**
+
+Three Perplexity research files (31 source-validated queries each) were
+processed into 25 new historical disruption events appended to
+`backend/data/csv/historical_events.csv`.
+
+### Event database summary (N=43)
+
+| in_geds_graph | count | notes |
+|---|---|---|
+| yes | 11 | Directly calibratable against current 12-country graph |
+| partial | 10 | Mappable to a node with documented caveats |
+| no | 22 | Out-of-graph (countries/industries not yet in GEDS) |
+
+### New IN-graph events (key additions)
+| slug | target_node | shock_magnitude | delta_output_pct | source |
+|---|---|---|---|---|
+| chichi-earthquake-1999 | TWN:semiconductors | 0.50 | 0.040 | Preventionweb/TSMC/SIA 1999 |
+| shanghai-lockdown-2022 | CHN:electronics | 0.20 | 0.029 | China NBS April 2022; Fortune |
+| wuhan-lockdown-2020 | CHN:automotive | 0.15 | 0.015 | World Bank COVID Logistics 2020 |
+
+### New events by type
+- **Pandemic-logistics** (4): Yantian, Ningbo, Shanghai, Wuhan
+- **Natural disaster logistics** (6): Rhine 2018, Rhine 2022, Panama Canal, BC floods, Mississippi, Hokkaido
+- **Geopolitical-logistics** (2): Red Sea crisis, NotPetya
+- **Industrial accidents** (3): Renesas fire, Freeport LNG, Colonial Pipeline
+- **Natural disaster manufacturing** (5): Chi-Chi 1999, Taiwan 2024, Thailand 2011, Harvey, Katrina
+- **Infrastructure** (2): LA Port congestion, Baltimore bridge
+- **Near-miss documented** (3): Taiwan drought 2021, Kaohsiung 2016, Taiwan earthquake 2024
+
+### What these unlock
+- Chi-Chi 1999 + Shanghai 2022 + Wuhan 2020 add 3 new in-graph calibration
+  points, bringing the in-graph total from 8 to 11.
+- 10 "partial" events become fully calibratable once the ICIO graph
+  expansion (Batch 8, 405 nodes) is wired into the engine.
+- Near-miss events (taiwan-drought-2021, kaohsiung-2016, taiwan-2024)
+  provide ground-truth FALSE POSITIVES for specificity testing.
+- The Rhine drought pair (2018 + 2022) offers a natural repeat-event
+  calibration check for the DEU:automotive demand node.
+
+### Data provenance
+All measurements extracted from primary sources cited per-row in the CSV
+`sources` column. Values flagged `missing` where no clean published number
+exists. Methodology follows the Batch 5 convention: source-side
+`shock_magnitude_geds` only; demand-side and macroeconomic effects in
+`delta_gdp_pct` / `delta_cpi_pct` columns separately.
+
+---
+
+## Batch 11 — ICIO 81×5 expanded graph wired into the live engine
+
+**Status: DONE (2026-06-14) — opt-in, default unchanged**
+
+This is exit (b) from the Batch 9 conclusion: grow N (graph) rather than
+patch engine mechanism. The expansion prototype (`core.icio.run_graph_expansion`,
+405 nodes / 1964 edges, committed as `expanded_graph_{nodes,edges}_v3.csv`) is
+now loadable by the running engine.
+
+### What landed
+- `app/data/expanded_graph.py` — `build_expanded_snapshot()` reads the v3 CSVs
+  and produces an engine-ready `GraphSnapshot` (81 economies × 5 sectors:
+  electronics_c26, automotive, consumer_goods, aerospace, shipping).
+- `app/data/seed.py` — `load_graph()` dispatches to the expanded snapshot when
+  `GEDS_GRAPH_VERSION=v3`; default `v2` is byte-for-byte unchanged.
+- `tests/test_expanded_graph.py` — 3 smoke tests (shape, industry/resilience
+  mapping, compiles-and-cascades).
+
+### Parameter derivation (uncalibrated structural priors)
+The v3 CSVs carry only ICIO structure (output, flow, input_share, penetration);
+the engine's behavioral parameters are derived:
+| param | source |
+|---|---|
+| industry | ICIO label → `Industry` enum (electronics_c26 → ELECTRONICS) |
+| resilience | LPI 2018 where available (same formula as seed); neutral 0.50 for the 69 economies LPI 2018 doesn't cover in-repo |
+| amplification / threshold | per-sector defaults mirroring the seed graph ranges |
+| dependency_weight | import penetration, clipped [0,1] |
+| gdp_usd | node output_usd_m × 1e6 |
+
+### Verification
+- v3: 405 nodes, 1964 edges, full centrality, 81 ECV-geo origins; a 0.6 shock on
+  `TWN:electronics_c26` cascades to 44 affected nodes at peak.
+- v2 regression: golden reproducibility snapshot + propagation suite pass
+  unchanged (88/88 non-portwatch tests green; the 6 portwatch failures are a
+  pre-existing missing-external-CSV issue, untracked in git).
+- Only 60 of 405 nodes (12 LPI-covered countries × 5 sectors) have real
+  resilience; the rest use the neutral default.
+
+### Honest limitations / next steps
+- **Not calibrated.** The seed parameters were fit to the sparse 12-country
+  topology; the v3 priors are structural, not tuned. A dedicated DE/MCMC
+  recalibration on the dense graph is required before v3 predictions are
+  trustworthy — that is the follow-up, not this PR.
+- **LPI gap.** Full LPI 2018 ingestion for all 81 economies (the WB endpoint
+  already returns them; the fetcher just filtered to 12) replaces the neutral
+  default.
+- **Scenarios still target v2 IDs.** Mapping the historical-event shocks onto
+  v3 node IDs (so the 10 "partial" events from Batch 10 become in-graph
+  calibration points) is the payoff step that this wiring unlocks.
+
+---
+
+## Batch 12 — Standardized production-impact target (Task #2)
+
+**Status: DONE (2026-06-15) — data + finding; engine targets NOT changed**
+
+Deep-research pass (Perplexity, primary/official sources only) to replace the
+heterogeneous per-event `observed` dict with ONE consistently-defined target:
+peak % decline in real production volume of the directly-shocked sector in the
+source country (or, for chokepoint/logistics events, peak % throughput loss).
+Artifacts: `data/csv/standardized_targets.csv` (engine-facing, 23 events),
+`data/raw/external/perplexity_events/standardized_targets_2026-06.json` (raw
+provenance), loader + 4 tests.
+
+### Result: 14 measured, 9 null
+
+**Finding 1 — semiconductor-source shocks have no measurable source-side target.**
+Of the five chip-source events, four are NULL and the fifth is a weak proxy:
+
+| event | status | why |
+|---|---|---|
+| covid-semiconductor-2020-2021 | **null** | Taiwan semi output GREW +20.7% YoY in 2020 — no source decline at all |
+| auto-chip-shortage-2021 | **null** | no agency isolated a production-volume loss (only consultant estimates) |
+| texas-winter-storm-2021 | **null** | full fab shutdown confirmed, but no published Austin fab output index |
+| taiwan-chichi-earthquake-1999 | **null** | TSMC lost ~2–3 weeks, but no 1999 monthly semi production index exists |
+| malaysia-semiconductor-2021 | weak proxy | DOSM −6.5% is FULL manufacturing; the E&E sub-sector actually +8.6% YoY |
+
+Root cause: statistics agencies publish monthly **vehicle** production indices
+but **not** monthly **fab-output** indices. So a chip shock is only observable
+through its **downstream auto effect** — which the engine already targets
+(`auto_production_loss_pct`). This *confirms* the cascade-centric design but
+proves the "source magnitude" for chip events is a **latent input, not a measured
+target** — you cannot calibrate it against a source-side number because none is
+published.
+
+**Finding 2 — every clean source-side target is automotive.** The only five
+events with a direct, high/medium-confidence node-level production-loss number:
+
+| node | peak loss | event |
+|---|---|---|
+| CHN:automotive | 0.790 | wuhan-lockdown-2020 (Feb 2020, CAAM) |
+| THA:automotive | 0.875 | thailand-floods-2011 (Nov 2011, BOT/FTI) |
+| JPN:automotive | 0.601 | japan-triple-disaster-2011 (Apr 2011, JAMA) |
+| CHN:automotive | 0.461 | shanghai-lockdown-2022 (Apr 2022, CAAM) |
+| DEU:automotive | 0.380 | eu-energy-crisis-2021 (Oct 2021, VDA) |
+
+**Finding 3 — standardization moves the numbers a lot.** Example: the engine's
+current `observed` for japan-2011 is 0.039 (a GLOBAL-ANNUAL figure); the
+standardized node-level monthly peak is 0.601. Adopting these as engine targets
+is therefore NOT a drop-in — it requires re-calibration and is gated, not
+automatic.
+
+### Two target families (the structural takeaway)
+The single scalar `delta_output_pct` was silently pooling two different things:
+- **source-side output loss** (supply-destruction: quakes, floods, fires,
+  producer-region lockdowns) — measurable, all automotive here;
+- **downstream / chokepoint loss** (demand/allocation/logistics: COVID-semi,
+  Suez, Red Sea) — the source node may be flat or growing; the meaningful
+  target is the propagated auto loss or the throughput cut.
+
+`standardized_targets.csv` now tags every event with `target_class` and
+`usability` so the two families are never compared in the same MAE again.
+
+### Deliberately NOT done (needs a decision + Task #3 data)
+The engine's `observed` targets were left untouched. Swapping in node-level peak
+targets changes calibration and the golden snapshot, and the right target for
+chip events is downstream (pairs with the Task #3 spatiotemporal-pattern data,
+incoming). Recommendation: adopt standardized targets only inside the new
+multi-output validation harness (Task #3), keep the v2 engine targets as the
+calibrated baseline until a full recalibration is run.
+
+---
+
+## Batch 13 — Multi-output cascade-shape validation (Task #3)
+
+**Status: DONE (2026-06-15)**
+
+Stops collapsing each event to one scalar. The engine is now scored against the
+*shape* of the cascade on three dimensions, using primary-source research:
+
+| dimension | observed source |
+|---|---|
+| magnitude (peak source-sector output loss) | standardized_targets.csv (Batch 12) |
+| weeks_to_peak | cascade_timing.csv (Batch 13) |
+| recovery_weeks_to_90% | cascade_timing.csv |
+
+`core/cascade_validation.py` reads the directly-shocked **node's** trajectory
+(not the GDP-weighted industry-global average — that diluted JPN auto's −60% peak
+to ~0.02) and scores each dimension only where a clean observed value exists.
+`backtest._aggregate_industry` now also exposes `peak_week`.
+
+### Engine result (default config, node-level)
+| dim | MAE | Spearman | n |
+|---|---|---|---|
+| magnitude | 0.43 | **+0.80** | 4 |
+| weeks_to_peak | 8.4 | +0.60 | 14 |
+| recovery_weeks | 8.0 | **+0.85** | 10 |
+
+**The honest read:** the engine **ranks** cascade shape well on all three axes
+(Spearman 0.60–0.85) — it gets *relative* ordering right — but has two systematic
+biases the single scalar hid:
+1. **Under-predicts source magnitude.** Predicts 0.10–0.30 where measured is
+   0.38–0.88. Consistent with Batch 12: the engine was tuned to smaller
+   (global-annual) targets, not node-level monthly peaks.
+2. **Mis-times slow-building events.** Sharp shocks (quakes, fires, lockdowns)
+   correctly peak at week 0–1, but droughts/congestion (panama obs 20w,
+   us-west-coast obs 52w) also peak at week 0 in the engine — it has no
+   slow-accumulation mechanism for gradual chokepoint stress.
+
+### Structural prediction tested (and not assumed)
+The research review claimed "chokepoints recover faster than production shocks."
+In *this* sample it does NOT hold — chokepoint mean recovery 21.5w > production
+13.8w — because the panama drought (40w) dominates the small chokepoint set. The
+engine reproduces the same non-separation (30.0w vs 26.9w) rather than falsely
+imposing the generalization. Honest both ways.
+
+### Scope
+Read-only validation layer; does not change the engine or its calibrated
+targets. The two biases above (magnitude scaling, slow-accumulation timing) are
+concrete, measurable recalibration targets — the first quantitative use of the
+expanded target set. Spatial cascade dimension (ordered affected-node set) is
+pending the Task #3 affected-nodes JSON, which did not come through in the
+upload (only the temporal CSV did).
+
+---
+
+## Batch 14 — Baseline comparison inline + LOO forecast band (Tasks #4 & #5)
+
+**Status: DONE (2026-06-15)**
+
+Two honesty features moved from the aggregate validation dashboard into the
+live run view, so they're visible with the actual scenario, not buried.
+
+### #4 — per-scenario baseline comparison
+`core/forecast_ensemble.baseline_compare()` runs SEIRS, linear diffusion and
+Leontief on the *same* scenario and returns peak industry-loss + recovery for
+each, with parameter counts (SEIRS 5, baselines 0). Endpoint
+`POST /api/v1/baseline-compare`. The aggregate leaderboard (`/benchmark`)
+already existed; this makes the zero-parameter reference visible per run, so when
+SEIRS doesn't beat linear diffusion that's on screen, not hidden. (Example:
+Taiwan-semi-75 → SEIRS 4.8% loss / 22w recovery vs linear diffusion 4.1% / 3w —
+the engine's extra machinery mostly buys a longer, more realistic recovery tail.)
+
+### #5 — leave-one-out forecast band
+`core/forecast_ensemble.loo_forecast_band()` re-runs the scenario under each of
+the 26 LOO fold parameter sets and returns the median + 10/90 percentile band of
+peak CSI. Endpoint `POST /api/v1/forecast-band`. With N=26 the point estimate is
+not exact; the band shows the *parametric* uncertainty honestly (and the UI notes
+that structural uncertainty is larger and not captured). On most scenarios the
+band is tight (rel-width ~1–10%) — the 5 calibrated params barely move peak CSI,
+which is itself an honest signal that structure, not parameter tuning, dominates.
+
+### Frontend
+`components/ModelComparisonPanel.tsx` (right column, under MetricsPanel) fetches
+both after a run completes: a SEIRS-vs-baseline bar chart and the LOO band bar.
+`backtest._aggregate_industry` exposing `peak_week` (Batch 13) is reused.
+
+Tests: `tests/test_forecast_ensemble.py` (3). Full backend suite 99/99
+(ex-portwatch); frontend `tsc --noEmit` clean.
+
+---
+
+## Batch 15 — Spatial cascade axis: did the cascade reach the right nodes? (Task #3 finish)
+
+**Status: DONE (2026-06-15)**
+
+The spatial half of "predict the pattern, not one number." Perplexity returned a
+flat, one-row-per-affected-node table (62 rows / 17 events, every row primary-
+source-cited) — `data/csv/cascade_spatial.csv`. `cascade_validation.run_spatial_
+validation()` maps each observed downstream node to a graph node, runs the engine,
+and scores **reach** (does the node's output loss cross a threshold) and **onset
+order** (does the engine's first-touch week ordering track the observed ordering).
+Endpoint: `GET /api/v1/cascade-validation` (both shape + spatial axes); rendered
+on `/validation`.
+
+### Result (reach_threshold 0.01)
+| metric | value | reading |
+|---|---|---|
+| graph coverage | **0.76** | 47/62 observed nodes representable in the 12-country graph |
+| spatial recall | **0.38** | of in-graph hit nodes, the engine reaches only 38% |
+| onset Spearman | **+0.79** | for nodes it reaches, ordering tracks observed onset well |
+| onset MAE | 9.2 wk | …but absolute timing is ~9 weeks too fast |
+| out-of-graph | 15 nodes | UK/Italy/Belgium/Spain autos, chemicals, energy, agriculture |
+
+### Two findings
+1. **Low recall is a topology problem, not a dynamics problem.** Per-event the
+   engine reaches 0/4 Renesas, 0/3 Malaysia, 0/2 Vietnam downstream auto nodes —
+   because the sparse hand-authored graph has *no edge* from those semi/parts
+   nodes to foreign automotive. This is the first **quantitative** case for the
+   ICIO 81×5 expansion (Batch 11): the dense graph has those edges. Spatial
+   recall is now the metric to re-run after wiring scenarios onto v3.
+2. **Timing: right order, wrong clock.** Onset Spearman +0.79 with MAE 9.2w
+   independently reproduces Batch 13's finding — the engine cascades too fast.
+   The graph tells it *who's* downstream correctly; the dynamics fire too early.
+
+### Coverage gap is itself data
+The 15 out-of-graph nodes (UK/IT/BE/ES autos; chemicals; energy; agriculture)
+are an honest map of what the current node taxonomy can't express — a concrete
+target list for the next graph/sector expansion.
+
+Tests: `test_cascade_validation.py` (+2 spatial). Backend 101/101 (ex-portwatch);
+frontend `tsc` clean. This completes the four-axis pattern validation
+(magnitude · weeks-to-peak · recovery · spatial reach/order).
+
+---
+
+## Batch 16 — The ICIO expansion pays off: spatial recall 0.32 → 0.76
+
+**Status: DONE (2026-06-15) — headline result**
+
+Batch 15 showed the engine reaches only ~38% of historically-hit nodes on the
+sparse 36-node graph, and argued the dense v3 ICIO graph (Batch 11) should fix
+it. `cascade_validation.compare_spatial_recall()` now *measures* it: same engine,
+same shocks, only the graph changes (v2 shocks remapped to v3 node ids;
+semiconductors+electronics → electronics_c26).
+
+### Result (11 common production events, reach_threshold 0.01)
+| graph | nodes | spatial recall |
+|---|---|---|
+| v2 hand-authored | 36 | **0.32** (11/34) |
+| v3 OECD ICIO 2019 | 405 | **0.76** (26/34) |
+
+Per-event, the dense graph closes exactly the gaps Batch 15 flagged:
+Renesas 0/4 → 3/4, Shanghai 1/4 → 4/4, Japan-2011 2/3 → 4/4, auto-chip 1/3 → 3/3,
+covid-semi 2/3 → 3/3, Thailand 1/4 → 3/4. The cascade now reaches the foreign
+auto plants history recorded, because the ICIO table actually has those
+intermediate-input edges and the hand-authored graph did not.
+
+This is the quantitative justification for the whole Batch 11–15 arc: **grounding
+the topology in real input-output data more than doubles the share of the
+observed cascade the model can even reach** — a structural win that needs zero
+parameter tuning. Chokepoint events are excluded (v3 has no chokepoint nodes);
+Malaysia stays 0/3 even on v3 (its downstream auto edges are weak in ICIO too —
+an honest remaining gap).
+
+Exposed via `GET /api/v1/cascade-validation` (`expansion` block) and shown as a
+before→after headline card on `/validation`. Tests: `test_cascade_validation.py`
+(+1). Backend 102/102 (ex-portwatch); frontend `tsc` clean.
+
+### Caveat
+v3 params are uncalibrated structural priors, so this measures *reach* (does an
+edge path exist that propagates), not calibrated magnitude. Reach is exactly the
+right question for "did we expand the graph correctly" — magnitude calibration on
+v3 is the separate next step.

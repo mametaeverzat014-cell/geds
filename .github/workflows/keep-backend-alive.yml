@@ -1,0 +1,33 @@
+# Keep the Render free-tier backend from sleeping.
+#
+# Render free plan sleeps after ~15 min with no incoming requests;
+# cold start takes ~30 s. This workflow pings /healthz every 5 minutes
+# to prevent that without any external paid service.
+#
+# If you upgrade to Render Starter ($7/mo) this workflow is harmless but
+# unnecessary — you can disable it in the Actions tab.
+
+name: Keep backend alive
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"     # every 5 minutes, 24/7
+  workflow_dispatch:           # manual trigger for testing
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+
+    steps:
+      - name: Ping /healthz
+        run: |
+          HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" \
+            --max-time 25 \
+            "https://geds-backend-p4tx.onrender.com/healthz")
+          echo "HTTP status: $HTTP_STATUS"
+          if [ "$HTTP_STATUS" = "200" ]; then
+            echo "Backend is alive."
+          else
+            echo "Warning: unexpected status $HTTP_STATUS (may be waking up)"
+          fi
