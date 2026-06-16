@@ -1,33 +1,58 @@
 "use client";
 
 import clsx from "clsx";
-import { useSimStore } from "@/lib/store";
+import { useEffect } from "react";
+import { useSimStore, type GraphVersion } from "@/lib/store";
 import { api } from "@/lib/api";
 import type { StreamMessage } from "@/lib/types";
 
+// `v2only` presets shock a chokepoint node, which the ICIO v3 graph has no
+// equivalent for — they're disabled when the 81-economy graph is selected.
 const PRESETS = [
   { id: "taiwan-semi-75", label: "Taiwan Semi 75%", primary: true },
   { id: "taiwan-semi-80", label: "Taiwan Semi 80%" },
   { id: "taiwan-strait",  label: "Taiwan Semi + Strait" },
-  { id: "historical-suez-2021", label: "Suez 2021 (replay)" },
+  { id: "historical-suez-2021", label: "Suez 2021 (replay)", v2only: true },
   { id: "historical-covid-semi", label: "COVID Semi (replay)" },
-  { id: "hypothetical-hormuz", label: "Hormuz Closure" },
+  { id: "hypothetical-hormuz", label: "Hormuz Closure", v2only: true },
+];
+
+const GRAPHS: { id: GraphVersion; label: string; nodes: string }[] = [
+  { id: "v2", label: "12-country", nodes: "41 nodes · calibrated" },
+  { id: "v3", label: "81-economy", nodes: "405 nodes · OECD ICIO" },
 ];
 
 export default function ScenarioControls() {
   const selected = useSimStore((s) => s.selectedScenarioId);
   const setSelected = useSimStore((s) => s.setSelectedScenario);
+  const graphVersion = useSimStore((s) => s.graphVersion);
+  const setGraphVersion = useSimStore((s) => s.setGraphVersion);
+  const setGraph = useSimStore((s) => s.setGraph);
   const beginRun = useSimStore((s) => s.beginRun);
   const pushFrame = useSimStore((s) => s.pushFrame);
   const completeRun = useSimStore((s) => s.completeRun);
   const failRun = useSimStore((s) => s.failRun);
   const running = useSimStore((s) => s.running);
 
+  // Load the snapshot for the active graph so the map + node list reflect it.
+  useEffect(() => {
+    api.graph(graphVersion).then(setGraph).catch(() => {});
+  }, [graphVersion, setGraph]);
+
+  const pickGraph = (v: GraphVersion) => {
+    if (v === graphVersion) return;
+    setGraphVersion(v);
+    // a chokepoint-only scenario can't run on v3 → fall back to the flagship
+    if (v === "v3" && PRESETS.find((p) => p.id === selected)?.v2only) {
+      setSelected("taiwan-semi-75");
+    }
+  };
+
   const run = () => {
     beginRun();
     const ws = new WebSocket(api.wsStreamUrl());
     ws.onopen = () => {
-      ws.send(JSON.stringify({ scenario_id: selected }));
+      ws.send(JSON.stringify({ scenario_id: selected, graph_version: graphVersion }));
     };
     ws.onmessage = (ev) => {
       const msg: StreamMessage = JSON.parse(ev.data);
@@ -65,26 +90,66 @@ export default function ScenarioControls() {
         </span>
       </div>
 
-      <div className="grid grid-cols-1 gap-1.5">
-        {PRESETS.map((p) => (
-          <button
-            key={p.id}
-            onClick={() => setSelected(p.id)}
-            className={clsx(
-              "btn-option px-3 py-2",
-              selected === p.id && "is-active",
-            )}
-          >
-            <span className="flex items-center justify-between gap-2">
-              <span className="truncate">{p.label}</span>
-              {p.primary && (
-                <span className="shrink-0 text-[9px] uppercase tracking-wider px-1.5 py-px rounded-full border border-accent-cyan/40 text-accent-cyan/90 bg-accent-cyan/10">
-                  flagship
-                </span>
+      {/* ── graph selector ── */}
+      <div>
+        <div className="text-[10px] uppercase tracking-wider text-text-muted mb-1">Graph</div>
+        <div className="grid grid-cols-2 gap-1.5">
+          {GRAPHS.map((g) => (
+            <button
+              key={g.id}
+              onClick={() => pickGraph(g.id)}
+              disabled={running}
+              className={clsx(
+                "rounded-md border px-2.5 py-1.5 text-left transition-all duration-200 disabled:opacity-50",
+                graphVersion === g.id
+                  ? "border-accent-violet/55 bg-gradient-to-br from-accent-violet/15 to-accent-cyan/10 text-text-primary shadow-[0_0_14px_-5px_rgba(124,108,251,0.8)]"
+                  : "border-border-subtle text-text-muted hover:text-text-secondary hover:border-border-strong",
               )}
-            </span>
-          </button>
-        ))}
+            >
+              <div className="text-xs font-semibold">{g.label}</div>
+              <div className="text-[9px] num text-text-muted">{g.nodes}</div>
+            </button>
+          ))}
+        </div>
+        {graphVersion === "v3" && (
+          <p className="text-[10px] text-text-muted mt-1 leading-snug">
+            ICIO structural graph (uncalibrated priors). Cascade <em>reach</em> is far wider;
+            magnitudes aren&apos;t tuned to this topology yet.
+          </p>
+        )}
+      </div>
+
+      <div className="grid grid-cols-1 gap-1.5">
+        {PRESETS.map((p) => {
+          const disabled = graphVersion === "v3" && p.v2only;
+          return (
+            <button
+              key={p.id}
+              onClick={() => setSelected(p.id)}
+              disabled={disabled}
+              title={disabled ? "Chokepoint scenario — 12-country graph only" : undefined}
+              className={clsx(
+                "btn-option px-3 py-2",
+                selected === p.id && !disabled && "is-active",
+                disabled && "opacity-40 cursor-not-allowed",
+              )}
+            >
+              <span className="flex items-center justify-between gap-2">
+                <span className="truncate">{p.label}</span>
+                {p.primary && (
+                  <span className="shrink-0 text-[9px] uppercase tracking-wider px-1.5 py-px rounded-full border border-accent-cyan/40 text-accent-cyan/90 bg-accent-cyan/10">
+                    flagship
+                  </span>
+                )}
+                {disabled && (
+                  <span className="shrink-0 text-[9px] uppercase tracking-wider text-text-muted">
+                    v2 only
+                  </span>
+                )}
+              </span>
+            </button>
+          );
+        })}
       </div>
 
       <button onClick={run} disabled={running} className="btn-primary w-full mt-2 px-3 py-2.5">

@@ -931,3 +931,49 @@ v3 params are uncalibrated structural priors, so this measures *reach* (does an
 edge path exist that propagates), not calibrated magnitude. Reach is exactly the
 right question for "did we expand the graph correctly" — magnitude calibration on
 v3 is the separate next step.
+
+---
+
+## Batch 17 — the ICIO 81×5 graph becomes a runnable, user-selectable engine
+
+**Status: DONE (2026-06-16) — shipped to production**
+
+Until now the 405-node ICIO graph was opt-in only via an env var and invisible to
+users — it could be validated but not *run*. This makes it a first-class choice in
+the product: a visitor can flip the graph selector and run any production scenario
+on the dense 81-economy graph, watching the (much wider) cascade on the map.
+
+### What landed
+- **`expanded_graph.py`**: country centroids for all 81 economies → every v3 node
+  gets map coordinates (400/405; the 5 ROW aggregate nodes have none), with a small
+  per-sector angular offset so a country's 5 nodes form a legible cluster. Promoted
+  `to_v3_node()` (v2 id → v3 id; chokepoints / chemicals / energy / agriculture →
+  None) as the shared mapping, reused by `cascade_validation`.
+- **`seed.py`**: `compiled_graph_for(version)` — lazily builds + caches the v3
+  compiled graph on first request, so the v2 default boot is untouched.
+- **WebSocket** (`/ws/simulate`): honours a `graph_version` field. For `v3` it
+  remaps the scenario's shocks onto v3 node ids, drops unmappable (chokepoint)
+  ones, and errors cleanly if nothing maps. v2 path is byte-identical to before.
+- **`/api/v1/graph?version=v3`**: serves the v3 snapshot for the map + node list.
+- **Frontend**: a Graph selector (12-country · 41 nodes · calibrated  /  81-economy
+  · 405 nodes · OECD ICIO) in the scenario panel; switching refetches the snapshot
+  (the map re-renders 400 nodes by id, no map code change needed) and the Run
+  button streams on the chosen graph. Chokepoint-only presets (Suez, Hormuz) are
+  disabled + tagged "v2 only" when v3 is active; selection auto-falls-back.
+
+### Honest framing surfaced in the UI
+The selector explicitly labels v3 as "uncalibrated priors — cascade *reach* is far
+wider; magnitudes aren't tuned to this topology yet." So users aren't misled into
+reading v3 magnitudes as calibrated; the win it showcases is reach/connectivity
+(Batch 16: 0.32 → 0.76), which is real and parameter-free.
+
+### Verification
+105/105 backend tests (ex-portwatch), frontend `tsc` + production build clean, v2
+default behaviour unchanged. Tests added for centroids, the v2→v3 mapping, and the
+exact `compiled_graph_for` + remap run-flow the WebSocket uses.
+
+### Known limitation (honest)
+The inline baseline-comparison and LOO-band panels still compute on the v2 engine
+graph even when v3 is selected for the main run — they're about the calibrated
+reference, so this is defensible, but it's a mild inconsistency to revisit if v3
+ever gets its own calibration.

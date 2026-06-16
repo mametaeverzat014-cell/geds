@@ -11,7 +11,8 @@ from __future__ import annotations
 from app.core.graph import compile_graph
 from app.core.propagation import simulate
 from app.core.types import EngineConfig, Industry, NodeKind, Scenario, ShockSpec
-from app.data.expanded_graph import build_expanded_snapshot
+from app.data.expanded_graph import build_expanded_snapshot, to_v3_node
+from app.data.seed import compiled_graph_for
 
 
 def test_v3_snapshot_shape():
@@ -67,3 +68,36 @@ def test_v3_compiles_and_cascades():
     assert len(res.frames) == 20
     peak_affected = max(f.affected_count for f in res.frames)
     assert peak_affected > 1, "shock must cascade beyond the directly-hit node"
+
+
+def test_v3_nodes_have_map_coordinates():
+    snap = build_expanded_snapshot()
+    with_coords = [n for n in snap.nodes if n.lat is not None and n.lon is not None]
+    # all but the 5 ROW (Rest-of-World) sector nodes have a country centroid
+    assert len(with_coords) == 400
+    twn = next(n for n in snap.nodes if n.id == "TWN:electronics_c26")
+    assert 20 < twn.lat < 27 and 118 < twn.lon < 126  # near Taiwan
+
+
+def test_v2_to_v3_node_mapping():
+    assert to_v3_node("TWN:semiconductors") == "TWN:electronics_c26"
+    assert to_v3_node("CHN:electronics") == "CHN:electronics_c26"
+    assert to_v3_node("DEU:automotive") == "DEU:automotive"
+    assert to_v3_node("CP:Suez") is None          # chokepoints have no v3 node
+    assert to_v3_node("USA:energy") is None        # sector absent from the 5-sector v3
+
+
+def test_compiled_graph_for_runs_remapped_scenario():
+    """The exact run-flow the WebSocket uses when graph_version=v3."""
+    g3 = compiled_graph_for("v3")
+    assert g3.n == 405
+    assert compiled_graph_for("v3") is g3, "compiled v3 graph must be cached"
+
+    node = to_v3_node("TWN:semiconductors")
+    scen = Scenario(
+        id="v3-run", name="v3 run", horizon_weeks=20,
+        shocks=[ShockSpec(target_node_id=node, magnitude=0.6, start_week=0, duration_weeks=4)],
+        config=EngineConfig(),
+    )
+    res = simulate(scen, g3)
+    assert max(f.affected_count for f in res.frames) > 1

@@ -30,6 +30,7 @@ from ..data.csv_loader import (
     load_cascade_timing_csv,
     load_standardized_targets_csv,
 )
+from ..data.expanded_graph import to_v3_node as _to_v3_node
 from ..data.seed import load_graph
 from .backtest import _scenario_from_event
 from .graph import compile_graph
@@ -299,27 +300,8 @@ def run_spatial_validation(config: EngineConfig | None = None, reach_threshold: 
 
 
 # ───────── does the dense ICIO v3 graph fix the reach problem? (Batch 16) ─────
-
-# v2 sector → v3 ICIO sector. semiconductors+electronics collapse into the merged
-# C26 bucket (ICIO cannot split them); chemicals/energy/agriculture have no v3 node.
-_V2_TO_V3_SECTOR = {
-    "semiconductors": "electronics_c26",
-    "electronics": "electronics_c26",
-    "automotive": "automotive",
-    "consumer_goods": "consumer_goods",
-    "shipping": "shipping",
-    "aerospace": "aerospace",
-}
-
-
-def _to_v3_node(node_id: str) -> str | None:
-    """Map a v2 'COUNTRY:sector' id to its v3 equivalent, or None if unrepresentable
-    (chokepoints, or chemicals/energy/agriculture sectors absent from the 5-sector v3)."""
-    if ":" not in node_id:
-        return None
-    country, sector = node_id.split(":", 1)
-    v3_sector = _V2_TO_V3_SECTOR.get(sector)
-    return f"{country}:{v3_sector}" if v3_sector else None
+# (v2→v3 node mapping is imported at the top from expanded_graph, shared with the
+#  API run-flow.)
 
 
 @dataclass

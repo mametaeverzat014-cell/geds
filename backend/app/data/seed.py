@@ -19,7 +19,6 @@ from ..core.types import GraphSnapshot
 from . import seed_data
 from .edge_merger import merge_edges
 
-
 log = logging.getLogger("geds.seed")
 
 
@@ -56,6 +55,28 @@ def _graph_version() -> str:
     """Active graph topology. 'v2' (default) = hand-authored 12-country seed graph;
     'v3' = ICIO-grounded 81×5 expanded graph (opt-in via GEDS_GRAPH_VERSION=v3)."""
     return os.environ.get("GEDS_GRAPH_VERSION", "v2").lower()
+
+
+def load_graph_version(version: str) -> GraphSnapshot:
+    """Snapshot for an explicit graph version: 'v2' (seed) or 'v3' (ICIO expanded).
+
+    Used by the run-flow when the client picks a graph at request time, independent
+    of the GEDS_GRAPH_VERSION default that load_graph() honours.
+    """
+    if version == "v3":
+        from .expanded_graph import build_expanded_snapshot
+
+        return build_expanded_snapshot()
+    return load_graph()
+
+
+@lru_cache(maxsize=2)
+def compiled_graph_for(version: str):
+    """Compiled (engine-ready) graph for a version, cached. v3 is built lazily on
+    first request so it never slows the v2 default boot."""
+    from ..core.graph import compile_graph
+
+    return compile_graph(load_graph_version(version))
 
 
 @lru_cache(maxsize=1)
