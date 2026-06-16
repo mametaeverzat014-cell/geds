@@ -27,7 +27,9 @@ export default function ScenarioControls() {
   const setSelected = useSimStore((s) => s.setSelectedScenario);
   const graphVersion = useSimStore((s) => s.graphVersion);
   const setGraphVersion = useSimStore((s) => s.setGraphVersion);
+  const graph = useSimStore((s) => s.graph);
   const setGraph = useSimStore((s) => s.setGraph);
+  const backendStatus = useSimStore((s) => s.backendStatus);
   const beginRun = useSimStore((s) => s.beginRun);
   const pushFrame = useSimStore((s) => s.pushFrame);
   const completeRun = useSimStore((s) => s.completeRun);
@@ -35,9 +37,12 @@ export default function ScenarioControls() {
   const running = useSimStore((s) => s.running);
 
   // Load the snapshot for the active graph so the map + node list reflect it.
+  // Re-runs whenever graphVersion changes OR when the backend comes back online
+  // (backend may have been sleeping when the page first loaded).
   useEffect(() => {
+    if (backendStatus === "offline") return;
     api.graph(graphVersion).then(setGraph).catch(() => {});
-  }, [graphVersion, setGraph]);
+  }, [graphVersion, backendStatus, setGraph]);
 
   const pickGraph = (v: GraphVersion) => {
     if (v === graphVersion) return;
@@ -152,7 +157,7 @@ export default function ScenarioControls() {
         })}
       </div>
 
-      <button onClick={run} disabled={running} className="btn-primary w-full mt-2 px-3 py-2.5">
+      <button onClick={run} disabled={running || backendStatus === "offline"} className="btn-primary w-full mt-2 px-3 py-2.5">
         {running ? (
           <span className="inline-flex items-center justify-center gap-2.5">
             <span className="inline-flex items-end gap-[3px] text-text-secondary" aria-hidden="true">
@@ -162,6 +167,11 @@ export default function ScenarioControls() {
               <span className="eq-bar" style={{ animationDelay: "450ms" }} />
             </span>
             Simulating…
+          </span>
+        ) : backendStatus === "offline" ? (
+          <span className="inline-flex items-center justify-center gap-2 opacity-60">
+            <span className="h-1.5 w-1.5 rounded-full bg-current animate-pulse" />
+            Starting up…
           </span>
         ) : (
           <span className="inline-flex items-center justify-center gap-2">
