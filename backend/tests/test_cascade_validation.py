@@ -24,9 +24,9 @@ def test_runs_and_dimension_coverage():
             assert d.name in _DIMS
             assert d.abs_error >= 0.0
     # deterministic join counts against the current engine event set
-    assert rep.n_by_dim["magnitude"] == 4       # japan, eu, thailand, shanghai (direct)
-    assert rep.n_by_dim["weeks_to_peak"] == 14
-    assert rep.n_by_dim["recovery_weeks"] == 10
+    assert rep.n_by_dim["magnitude"] == 5       # japan, eu, thailand, shanghai, gfc-auto (direct)
+    assert rep.n_by_dim["weeks_to_peak"] == 15
+    assert rep.n_by_dim["recovery_weeks"] == 11
 
 
 def test_node_level_not_diluted():

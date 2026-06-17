@@ -144,7 +144,10 @@ def _score(model: str, pred: np.ndarray, obs: np.ndarray, ndcg_k: int = NDCG_K) 
     # ranking metrics are undefined rather than literally zero/worst. We report
     # 0.0 for correlation coefficients (no rank correlation) and None for NDCG
     # (which is bounded [0,1] where 0 would wrongly read as "worst ranking").
-    has_ranking = float(np.std(pred)) > 0.0
+    # Tolerance (not > 0.0) because np.full_like(obs, obs.mean()) is a bit-identical
+    # constant array, but np.std()'s internal mean recomputation can introduce
+    # ~1e-17 floating-point noise that otherwise flips this for specific N.
+    has_ranking = float(np.std(pred)) > 1e-9
     ndcg = round(float(ndcg_at_k(pred, obs, ndcg_k)), 4) if has_ranking else None
     return ModelScore(
         model=model,

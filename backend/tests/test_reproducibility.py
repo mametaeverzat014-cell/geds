@@ -32,11 +32,19 @@ from app.core.benchmark import (
 # deliberately: any future improvement must show up as an explicit, reviewed
 # change to these numbers.
 GOLDEN = {
-    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0220, "rmse": 0.0446, "spearman": 0.4161},
-    "Leontief (input-output equilibrium)": {"mae": 0.0144, "rmse": 0.0279},
-    "Linear Diffusion (network)": {"mae": 0.0147, "rmse": 0.0288, "spearman": 0.7071},
-    "Naive Persistence (predict mean)": {"mae": 0.0148, "rmse": 0.0248},
+    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0241, "rmse": 0.0464, "spearman": 0.4608},
+    "Leontief (input-output equilibrium)": {"mae": 0.0168, "rmse": 0.0313},
+    "Linear Diffusion (network)": {"mae": 0.0168, "rmse": 0.0315, "spearman": 0.7248},
+    "Naive Persistence (predict mean)": {"mae": 0.0208, "rmse": 0.0324},
 }
+# 2026-06-17: N=26 -> 27 — added gfc-auto-collapse-2008-2009 (Global Financial
+# Crisis automotive collapse), the largest-magnitude event in the set (OICA
+# -13.1% YoY global production, USA SAAR trough -47.3%, 104-week horizon, the
+# widest so far). It pulls every model's error up (GEDS MAE 0.0220 -> 0.0241)
+# because no model was tuned for a shock this large, and flips winner_by_rmse
+# from Naive Persistence to Leontief: persistence's constant-mean prediction
+# is now further from this one outlier-magnitude event than Leontief's
+# chronic under-prediction is. See test_winner_split_on_adversarial_set.
 # 2026-06-12 Batch 9b round-trip — per-node recovery dynamics were
 # implemented, improved the default-config benchmark (MAE 0.0220 → 0.0211),
 # but FAILED the pre-registered out-of-sample test (26-fold LOO-DE: Chi-Chi
@@ -95,15 +103,17 @@ def test_persistence_has_no_ranking_metrics():
 
 
 def test_winner_split_on_adversarial_set():
-    # Honest result on the N=26 set (10+ researched near-miss events): with
-    # default parameters NO model convincingly beats predicting the mean.
-    # Leontief's chronic under-prediction becomes an asset on near-misses and
-    # takes MAE; naive persistence takes RMSE/R²; linear diffusion keeps both
-    # correlation metrics. GEDS (default params) trails on error. Locked so
-    # any future "win" must arrive as an explicit, reviewed change. The
-    # out-of-sample recalibrated story lives in loo_de_result.json.
+    # Honest result on the N=27 set (10+ researched near-miss events plus the
+    # 2008-09 GFC outlier): with default parameters NO model convincingly
+    # beats predicting the mean. Leontief's chronic under-prediction takes
+    # both MAE and RMSE now that one outlier-magnitude event (GFC) makes the
+    # naive constant-mean prediction the worse of the two biases; linear
+    # diffusion keeps both correlation metrics. GEDS (default params) trails
+    # on error. Locked so any future "win" must arrive as an explicit,
+    # reviewed change. The out-of-sample recalibrated story lives in
+    # loo_de_result.json.
     report = run_benchmark()
     assert report.winner_by_mae == "Leontief (input-output equilibrium)"
-    assert report.winner_by_rmse == "Naive Persistence (predict mean)"
+    assert report.winner_by_rmse == "Leontief (input-output equilibrium)"
     assert report.winner_by_pearson == "Linear Diffusion (network)"
     assert report.winner_by_spearman == "Linear Diffusion (network)"
