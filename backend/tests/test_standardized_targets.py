@@ -25,7 +25,7 @@ _MEASURED_CLASSES = {
 
 def test_standardized_targets_schema():
     rows = load_standardized_targets_csv()
-    assert len(rows) == 23, "15 priority + 8 secondary events"
+    assert len(rows) == 24, "15 priority + 8 secondary + 1 (gfc-auto-collapse-2008-2009) events"
     for r in rows:
         assert r.target_class in _MEASURED_CLASSES, r.target_class
         assert r.status in {"measured", "null"}
@@ -42,7 +42,7 @@ def test_measured_null_split():
     rows = load_standardized_targets_csv()
     measured = [r for r in rows if r.status == "measured"]
     null = [r for r in rows if r.status == "null"]
-    assert len(measured) == 14
+    assert len(measured) == 15
     assert len(null) == 9
 
 
@@ -70,6 +70,7 @@ def test_clean_calibration_targets_are_all_automotive():
         "shanghai-lockdown-2022",
         "wuhan-lockdown-2020",
         "thailand-floods-2011",
+        "gfc-auto-collapse-2008-2009",
     }
     # sanity: peak monthly losses are large (node-level, not global-annual)
     assert clean["wuhan-lockdown-2020"] > 0.7
