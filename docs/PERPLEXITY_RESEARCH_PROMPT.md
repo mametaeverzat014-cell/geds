@@ -32,6 +32,47 @@ primary shocked node — e.g. "Renesas Naka fire, March 2021, JPN:semiconductors
 STEP 0 — TARGET VIABILITY PRE-CHECK (do this FIRST, before researching)
 ============================================================
 
+(0) DUPLICATE CHECK — is this event (or its shocked node) already in the set?
+The 27 events below are ALREADY calibrated in HISTORICAL_EVENTS. Before anything
+else, check whether your candidate is one of them under a different name, or
+re-shocks a node a listed event already covers in the same time window. If so,
+STOP — re-researching a covered event produces a duplicate, not growth (this has
+happened: the 2021 TSMC/chip-crunch was researched in full despite already being
+present TWICE, as covid-semiconductor-2020-2021 and auto-chip-shortage-2021).
+
+  covid-semiconductor-2020-2021   -> TWN:semiconductors, CHN:electronics
+  auto-chip-shortage-2021         -> TWN:semiconductors
+  taiwan-drought-2021             -> TWN:semiconductors
+  taiwan-chichi-earthquake-1999   -> TWN:semiconductors
+  texas-winter-storm-2021         -> USA:semiconductors
+  malaysia-semiconductor-2021     -> MYS:semiconductors, MYS:electronics
+  renesas-naka-fire-2021          -> JPN:semiconductors
+  kumamoto-earthquake-2016        -> JPN:semiconductors, JPN:automotive
+  japan-korea-export-controls-2019-> KOR:semiconductors
+  japan-triple-disaster-2011      -> JPN:automotive, JPN:electronics, JPN:semiconductors
+  thailand-floods-2011            -> THA:automotive, THA:electronics
+  gfc-auto-collapse-2008-2009     -> USA:automotive
+  ukraine-war-harness-2022        -> DEU:automotive
+  eu-energy-crisis-2021           -> DEU:automotive, DEU:electronics, NLD:semiconductors
+  korea-trucker-strikes-2022      -> KOR:automotive
+  india-covid-wave-2021           -> IND:automotive, IND:consumer_goods
+  shanghai-lockdown-2022          -> CHN:automotive, CHN:electronics, CHN:shipping
+  china-power-crunch-2021         -> CHN:electronics, CHN:consumer_goods
+  us-china-tariffs-2019           -> CHN:electronics, CHN:consumer_goods
+  vietnam-covid-lockdown-2021     -> VNM:electronics, VNM:consumer_goods
+  hurricane-harvey-2017           -> USA:consumer_goods
+  yantian-port-closure-2021       -> CHN:shipping
+  us-west-coast-ports-2021        -> USA:shipping
+  us-west-coast-ports-2015        -> USA:shipping
+  suez-canal-2021                 -> CP:Suez
+  red-sea-crisis-2023             -> CP:Suez
+  panama-canal-drought-2023       -> CP:Panama
+
+A node appearing above is NOT automatically off-limits — a genuinely distinct
+event at the same node in a different period is fine (e.g. TWN:semiconductors
+hosts a 1999 earthquake, a 2021 drought, AND the 2020-21 chip crunch). The test
+is whether the REAL-WORLD EVENT is already represented, not whether the node is.
+
 The simulator graph has exactly 41 nodes: a country paired with one of 6 populated
 industries. NOT every country x industry combination exists. The valid node list is:
 
@@ -214,3 +255,22 @@ global figure cannot be partially adopted. The fallback for a well-researched
 event that fails Step 0 (or fails Step 1 despite passing Step 0) is a fully
 documented `in_geds_graph=no` row in `backend/data/csv/historical_events.csv`,
 not silent deletion — see the Philips and Boeing rows for the format.
+
+## v3 -> v3.1 changelog (2026-06-19)
+
+First real use of v3 exposed a gap: its Step 0 correctly diagnosed the Track A
+problem on the 2021 TSMC/chip-crunch candidate (the research's own Step 0 found
+that global semiconductor output ROSE +26% in 2021, so there is no negative
+Track A figure — exactly the catch Step 0 is for), but the candidate was a
+DUPLICATE — already present twice as `covid-semiconductor-2020-2021` and
+`auto-chip-shortage-2021`, both shocking TWN:semiconductors, and the engine
+already encodes the "demand/allocation not output destruction" finding via a
+`null` source_sector_output target validated against the downstream auto loss.
+A full research cycle was spent re-deriving what the engine already had.
+
+v3.1 adds a dedup gate (0) at the very top of Step 0: the 27 already-calibrated
+events and their shocked nodes, with the rule that a repeated NODE is fine but a
+repeated real-world EVENT is not. This is the cheapest possible check and now
+runs before node-mapping or GDP-share triage. Keep the list in sync with
+`HISTORICAL_EVENTS` as the set grows (regenerate via the slug/node dump in
+seed_data).
