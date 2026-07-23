@@ -980,7 +980,7 @@ ever gets its own calibration.
 
 ## Batch 18 — Significance layer + ISEF strategy: which leaderboard differences are real?
 
-**Status: DONE (2026-07-18); LOO-DE n=27 refresh running**
+**Status: DONE (2026-07-18) — incl. the 27-fold LOO-DE refresh**
 
 The first technical question about a 27-event benchmark is "is any of that
 significant?" — it now has a precomputed, deterministic answer.
@@ -1012,7 +1012,25 @@ AI-disclosure, why-model-loses reframe), prioritized work plan, category
 recommendation, 240-word abstract draft. Numbers regenerate from
 significance.json — never hand-edited.
 
-### Also
-27-fold LOO-DE recalibration (last run: 26 folds, 2026-06-11) restarted in
-background to refresh `loo_de_result.json`; out-of-sample story updates when
-it lands.
+### 27-fold LOO-DE verdict (81 min, same protocol as Batch 7/9b/9d)
+
+| | MAE | RMSE | Pearson | Spearman | R² |
+|---|---|---|---|---|---|
+| LOO-DE, N=26 (2026-06-11, canonical until now) | **0.0170** | **0.0395** | +0.166 | 0.525 | −1.525 |
+| **LOO-DE, N=27 (+GFC, this refresh)** | 0.0188 | 0.0413 | **+0.292** | **0.581** | **−0.624** |
+
+Adding the demand-side GFC outlier moves the two families of metrics in
+opposite directions, and both movements are informative: pooled error worsens
+because the GFC fold is under-predicted (0.051 vs 0.130 — a credit-freeze
+demand collapse is structurally unlike the supply cascades the engine
+models), while every rank metric improves (a genuinely large event gives the
+ranking something real to rank, and the engine ranks it 2nd). Chi-Chi remains
+the worst fold (0.191 vs 0.005) — the Batch 8/9b/9d wall, unchanged.
+
+Paired significance of the tuned story (same machinery as significance.json,
+seed 20260718): LOO-GEDS vs Leontief ΔMAE +0.0020, 95% CI [−0.0087, +0.0164],
+p_perm=0.87; vs linear diffusion ΔMAE +0.0020, p=0.56. **Magnitude parity
+holds out-of-sample too** — the recalibrated engine is statistically
+indistinguishable from the zero-parameter baselines on error, which completes
+the Batch-18 narrative: the separation between models lives on the trajectory
+axes, not the point-magnitude axis, tuned or untuned.

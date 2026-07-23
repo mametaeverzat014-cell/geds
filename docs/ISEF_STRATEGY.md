@@ -16,7 +16,7 @@ file, the file is named.*
 | Three-axis validation harness | Track A global LOO backtest; Track B node-level shape (`cascade_validation.py`); spatial reach/onset (`cascade_spatial.csv`) | "Predict the pattern, not one number" — methodologically ahead of single-metric validation |
 | Honest 4-model leaderboard, golden-locked | `benchmark.py`, `test_reproducibility.py` GOLDEN | Reproducibility is enforced by CI, not promised |
 | Statistical significance layer | `significance.json` (new, 2026-07-18) | Pre-empts the first technical attack at N=27 |
-| Out-of-sample protocol | `loo_de_result.json` (LOO with per-fold DE recalibration; N=27 refresh running) | Answers "you tuned on your test set" |
+| Out-of-sample protocol | `loo_de_result.json` (LOO with per-fold DE recalibration; refreshed at N=27, 2026-07-18) | Answers "you tuned on your test set" |
 | Data-integrity audit trail | `archive/leaked/README.md`, leak quarantine, `SCIENTIFIC_STATUS.md` | A self-caught, documented, quarantined leak is an integrity *credential*, not a liability — if told confidently |
 | ICIO graph expansion result | Batch 16: spatial recall 0.32 → 0.76 on the 405-node OECD ICIO graph | A clean, parameter-free, positive structural result |
 | Live interactive simulator | Next.js frontend + FastAPI engine, deployed | Booth demo; judges remember what they touched |
@@ -73,7 +73,7 @@ sourced with a written research protocol (`PERPLEXITY_RESEARCH_PROMPT.md`).
 |---|---|
 | "N=27 — is anything significant?" | Yes and no, and we computed exactly which: per-pair permutation p-values + paired bootstrap CIs in `significance.json`. Magnitude differences: none significant. Recovery-ranking and severity-ranking: significantly positive. We claim only the latter. |
 | "Your model loses to a 1970s baseline" | On one axis, insignificantly (p=0.43); and that finding is the point — magnitude-only validation can't separate models, trajectory validation can. Leontief cannot produce a trajectory at all. |
-| "You tuned on your test set" | Default-parameter results are reported untuned; the tuned story uses leave-one-out with per-fold DE recalibration (`loo_de_result.json`) — the held-out event never influences its own parameters. |
+| "You tuned on your test set" | Default-parameter results are reported untuned; the tuned story uses leave-one-out with per-fold DE recalibration (`loo_de_result.json`) — the held-out event never influences its own parameters. At N=27: out-of-sample MAE 0.0188 vs Leontief's 0.0168, gap n.s. (paired sign-flip p=0.87); Spearman 0.58, Pearson 0.29. Same conclusion as the default story: magnitude parity, honestly reported both ways. |
 | "Why should I trust your observed values?" | Written source-tier protocol; every event carries named tier-1/tier-2 sources; events that failed sourcing were explicitly parked (`in_geds_graph=no` rows: Philips, Boeing) rather than wired in. |
 | "Did an AI do this?" | AI tools were used as engineering/research assistants (and are acknowledged); every mechanism, number, and decision is documented in the repo and defensible by the presenter without notes. Practice until this is literally true — judges probe depth, and ISEF rules require the finalist to own the work. |
 | "Overfitting to 2021?" | Event set spans 1999–2023, 10+ categories; the GFC 2008 demand-side event was added precisely to break the 2021 supply-shock monoculture, and it degraded every model's error honestly (golden comment, `test_reproducibility.py`). |
@@ -87,9 +87,14 @@ sourced with a written research protocol (`PERPLEXITY_RESEARCH_PROMPT.md`).
   `data/calibration/significance.json`, 7 tests. Seed 20260718, 10k bootstrap,
   20k permutations, deterministic.
 
-**Running:**
-- [ ] LOO-DE refresh at N=27 (background, ~2 h; last run was 26 folds). On
-  completion: update the out-of-sample story wherever it is cited.
+- [x] LOO-DE refresh at N=27 (81 min, 2026-07-18): out-of-sample MAE 0.0188 /
+  RMSE 0.0413 / Pearson 0.29 / Spearman 0.58 / R² −0.62. Versus the 26-fold
+  run: error slightly up (the GFC fold is under-predicted 0.051 vs 0.130 —
+  demand-side shocks are structurally unlike the supply cascades the engine
+  models), every rank metric up (Spearman 0.53→0.58, R² −1.53→−0.62). Paired
+  vs Leontief: ΔMAE +0.0020, n.s. (p=0.87) — magnitude parity holds in the
+  tuned story too. Chi-Chi remains the worst fold (0.191 vs 0.005), consistent
+  with the Batch 8/9b/9d structural diagnosis.
 
 **Next, in leverage order:**
 1. **Results one-pager** — a single generated table (script, not hand-edited)
@@ -130,7 +135,7 @@ negative results, honestly quantified, ARE the contribution.
   repo's provenance discipline (golden tests, seeds, source tiers) makes that
   possible; rehearse it.
 
-## 6. Abstract draft (≈240 words — rewrite in your own voice, update after LOO-DE n=27)
+## 6. Abstract draft (≈245 words — rewrite in your own voice; numbers verified 2026-07-18 incl. LOO-DE n=27)
 
 > Global supply-chain disruptions cascade across industries, yet published
 > simulation models are typically validated against one or two events with a
@@ -145,8 +150,9 @@ negative results, honestly quantified, ARE the contribution.
 > tested: a novel SEIRS-bullwhip-hysteresis epidemic-style simulator (GEDS),
 > a Leontief input-output model, linear network diffusion, and a naive mean
 > predictor. On point magnitude, no model significantly outperformed any
-> other (all pairwise sign-flip permutation p ≥ 0.09, paired bootstrap,
-> N=27) — single-number validation cannot separate these models. Trajectory
+> other (all pairwise sign-flip permutation p ≥ 0.09, N=27), and the result
+> persists under leave-one-out per-fold recalibration (p = 0.87) —
+> single-number validation cannot separate these models. Trajectory
 > validation can: GEDS, the only model producing full trajectories, ranked
 > recovery durations with Spearman 0.88 (95% CI 0.56–0.99) and event
 > severities at 0.46 (0.08–0.74), while onset timing remained at chance —
