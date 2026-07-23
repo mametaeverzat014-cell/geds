@@ -78,10 +78,10 @@ def test_run_significance_agrees_with_golden_benchmark():
     (same evaluators as run_benchmark) and cover all pairs and dims."""
     payload = run_significance(n_boot=300, n_perm=500, seed=1)
     assert payload["n_events"] == 27
-    golden_mae = {
-        "GEDS": 0.0241,
+    golden_mae = {  # 2026-07-23: Batch 19 ramp adoption (see test_reproducibility GOLDEN)
+        "GEDS": 0.0242,
         "Leontief": 0.0168,
-        "LinearDiffusion": 0.0168,
+        "LinearDiffusion": 0.0171,
         "NaivePersistence": 0.0208,
     }
     for name, expected in golden_mae.items():

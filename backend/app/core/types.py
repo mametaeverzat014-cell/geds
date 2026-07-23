@@ -122,11 +122,20 @@ class ShockSpec(BaseModel):
     magnitude: float = Field(..., ge=0, le=1)
     start_week: int = Field(0, ge=0)
     duration_weeks: int = Field(8, ge=1)
-    decay_curve: Literal["step", "linear", "exp"] = "step"
+    decay_curve: Literal["step", "linear", "exp", "ramp"] = "step"
     note: str | None = None
 
     def factor(self, t: int) -> float:
-        """Multiplicative factor in [0, 1] for the time-position within the shock window."""
+        """Multiplicative factor in [0, 1] for the time-position within the shock window.
+
+        step / linear / exp all peak at onset (linear and exp DECAY from full
+        force at t=start_week). ramp is the one rising shape: forcing builds
+        from ~0 to full magnitude across the window — required for events whose
+        real-world stress accumulates (droughts, congestion, demand collapse).
+        The engine's ratchet update (state = max(external, ...)) renders rising
+        forcing faithfully, while declining shapes unbind after onset; see the
+        Batch 19 weeks_to_peak forensics.
+        """
         if t < self.start_week or t >= self.start_week + self.duration_weeks:
             return 0.0
         rel = (t - self.start_week) / max(1, self.duration_weeks - 1)
@@ -134,6 +143,11 @@ class ShockSpec(BaseModel):
             return 1.0
         if self.decay_curve == "linear":
             return max(0.0, 1.0 - rel)
+        if self.decay_curve == "ramp":
+            # (t+1)/duration rises 1/D, 2/D, … 1.0 — monotone, reaches full
+            # force in the window's last week, and stays a real shock (not 0)
+            # in the degenerate duration_weeks=1 case.
+            return (t - self.start_week + 1) / self.duration_weeks
         # exp
         return float(2.71828 ** (-2.5 * rel))
 

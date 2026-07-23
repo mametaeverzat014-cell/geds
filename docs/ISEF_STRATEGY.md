@@ -23,13 +23,17 @@ file, the file is named.*
 
 **Liabilities** (know them, own them, never hide them):
 
-- On point magnitude, GEDS (default params) does NOT beat baselines: MAE 0.0241
+- On point magnitude, GEDS (default params) does NOT beat baselines: MAE 0.0242
   vs Leontief 0.0168 (golden snapshot).
-- N=27 is small; three shape dimensions have n = 5 / 15 / 11.
-- `weeks_to_peak` prediction is currently indistinguishable from chance
-  (Spearman 0.07, 95% CI [−0.43, +0.53] — `significance.json`).
+- N=27 is small; three shape dimensions have n = 5 / 15 / 11; the magnitude
+  shape dim (n=5) is too small to claim anything.
 - The 12-country graph misses real-world producers (no France/aerospace, etc.)
   — documented in `PERPLEXITY_RESEARCH_PROMPT.md` Step 0.
+- (RESOLVED 2026-07-23, Batch 19): `weeks_to_peak` WAS at chance (0.07
+  [−0.43, +0.53]); forensics traced it to the engine having no rising forcing
+  shape + a tie-handling bug in the cascade Spearman; a pre-registered ramp
+  experiment passed all four gates and the axis is now significant: **0.69
+  [0.20, 0.87]**. Tell this as the flagship methodology story, not as a fix.
 
 ## 2. The winning narrative (thesis inversion)
 
@@ -47,17 +51,20 @@ everything else. Frame it as:
 The three headline results, with today's significance numbers:
 
 1. **Magnitude parity (the honest negative).** No pairwise MAE difference
-   among the four models is significant: GEDS vs Leontief p=0.43, Leontief vs
+   among the four models is significant: GEDS vs Leontief p=0.42, Leontief vs
    naive-mean p=0.09, all six pairs n.s. (sign-flip permutation, 20k perms,
    `significance.json`). Single-number validation cannot rank these models at
    this N — which is precisely why the field's habit of validating on 1–3
    events with one metric is inadequate.
 2. **Shape separation (the positive).** GEDS is the only model of the four
-   that predicts trajectories at all, and on recovery-duration ranking it
-   scores Spearman **0.88, 95% CI [0.56, 0.99]** (n=11) — significantly
-   positive. Event-severity ranking is also significantly positive (Spearman
-   0.46 [0.08, 0.74], N=27). `weeks_to_peak` is not (0.07 [−0.43, +0.53]) —
-   reported as a limitation, which is what makes the 0.88 believable.
+   that predicts trajectories at all: recovery-duration ranking Spearman
+   **0.88 [0.56, 0.99]** (n=11), onset-timing ranking **0.69 [0.20, 0.87]**
+   (n=15, after the Batch 19 pre-registered ramp fix — it was at chance
+   before, and the full diagnose→gate→adopt arc is itself the best
+   methodology exhibit), event-severity ranking 0.45 [0.06, 0.73]
+   (significant, N=27).
+   The magnitude shape dim (n=5) stays unclaimed — that restraint is what
+   makes the claimed numbers believable.
 3. **Structure pays (the mechanism result).** Replacing the hand-authored
    12-country graph with the OECD ICIO 405-node graph lifts spatial recall
    0.32 → 0.76 with no parameter tuning (Batch 16) — evidence that what the
@@ -78,7 +85,7 @@ sourced with a written research protocol (`PERPLEXITY_RESEARCH_PROMPT.md`).
 | "Did an AI do this?" | AI tools were used as engineering/research assistants (and are acknowledged); every mechanism, number, and decision is documented in the repo and defensible by the presenter without notes. Practice until this is literally true — judges probe depth, and ISEF rules require the finalist to own the work. |
 | "Overfitting to 2021?" | Event set spans 1999–2023, 10+ categories; the GFC 2008 demand-side event was added precisely to break the 2021 supply-shock monoculture, and it degraded every model's error honestly (golden comment, `test_reproducibility.py`). |
 | "What's novel?" | See `NOVELTY_POSITIONING.md`: the SEIRS+bullwhip+hysteresis combination is plausibly novel, but the defended novelty is the benchmark + three-axis harness — verified claims only, framed "to the best of our knowledge". |
-| "Weakest point?" | `weeks_to_peak` at chance level; graph coverage gaps (missing producers documented in Step 0 of the research prompt); N still small. Naming them first is the credibility move. |
+| "Weakest point?" | The magnitude shape dim has n=5 (unclaimable); graph coverage gaps (missing producers documented in Step 0 of the research prompt); N still small; and until Batch 19 the onset-timing axis was at chance — walk them through how it was diagnosed and fixed under a pre-registered gate. Naming weaknesses first is the credibility move. |
 
 ## 4. Prioritized work plan
 
@@ -105,12 +112,14 @@ sourced with a written research protocol (`PERPLEXITY_RESEARCH_PROMPT.md`).
 4. **Grow N via the v3.1 research loop** (chokepoint events are the highest
    yield: CP:TaiwanStrait 2022, CP:Hormuz 2019 — see
    `PERPLEXITY_RESEARCH_PROMPT.md`). Each +1 event tightens every CI.
-5. **`weeks_to_peak` diagnosis** — the one mechanism improvement worth
-   attempting before ISEF: why is onset timing at chance while recovery
-   ranking is at 0.88? (Hypothesis: inventory-buffer weeks dominate onset and
-   are the least-sourced parameter; a sensitivity pass exists in `sobol.json`.)
-   Only ship if it survives the pre-registered LOO protocol, per Batch 9b
-   precedent (a mechanism that improved in-sample and failed LOO was rejected).
+5. ~~`weeks_to_peak` diagnosis~~ — DONE (Batch 19, 2026-07-23). Cause was not
+   inventory buffers: the engine had no rising forcing shape (all three decay
+   curves peak at onset) and the ratchet update renders declining forcing as a
+   rectangular pulse; plus a tie-handling bug inflated the cascade Spearman.
+   `ramp` curve added, 4 events flipped by a mechanism-selection rule, all
+   four pre-registered gates passed, axis now 0.69 [0.20, 0.87]. Artifacts:
+   `ramp_experiment.json`, PROGRESS Batch 19. LOO-DE re-run on the new specs
+   pending (background).
 6. **Booth demo hardening** — scripted 90-second walkthrough: pick Suez 2021 →
    watch cascade → overlay observed markers → switch to ICIO graph to show
    recall jump. (Frontend already supports all of this; needs a rehearsed path,
@@ -155,8 +164,11 @@ negative results, honestly quantified, ARE the contribution.
 > single-number validation cannot separate these models. Trajectory
 > validation can: GEDS, the only model producing full trajectories, ranked
 > recovery durations with Spearman 0.88 (95% CI 0.56–0.99) and event
-> severities at 0.46 (0.08–0.74), while onset timing remained at chance —
-> a quantified limitation. Replacing the hand-built 12-country graph with an
+> severities at 0.45. Onset timing was initially at chance; error forensics
+> traced this to the simulator lacking any rising forcing shape, and a
+> pre-registered fix (a ramp curve applied to slow-accumulation events by a
+> mechanism rule) lifted it to 0.69 (0.20–0.87) at a cost of +0.0001 MAE.
+> Replacing the hand-built 12-country graph with an
 > OECD ICIO 405-node graph raised spatial recall from 0.32 to 0.76 without
 > retuning, showing network completeness, not parameter fitting, is the
 > binding constraint. All results are seeded, golden-locked, and reproducible

@@ -44,6 +44,6 @@ def test_baseline_compare_chokepoint_industry_fallback(graph):
 def test_loo_forecast_band_well_ordered(graph):
     band = loo_forecast_band(_semi_scenario(), graph)
     assert band["available"] is True
-    assert band["n_folds"] == 26
+    assert band["n_folds"] == 27  # LOO-DE refreshed at N=27 (2026-07-18, +GFC fold)
     assert band["min"] <= band["p10"] <= band["median"] <= band["p90"] <= band["max"]
     assert band["rel_width"] >= 0.0

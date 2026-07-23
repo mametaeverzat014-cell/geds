@@ -1034,3 +1034,68 @@ holds out-of-sample too** — the recalibrated engine is statistically
 indistinguishable from the zero-parameter baselines on error, which completes
 the Batch-18 narrative: the separation between models lives on the trajectory
 axes, not the point-magnitude axis, tuned or untuned.
+
+## Batch 19 — weeks_to_peak: from chance level to significant, the honest way
+
+**Status: DONE (2026-07-23) — forensics → statistic bug fix → pre-registered ramp experiment → ADOPTED**
+
+Batch 18 flagged the one chance-level validation axis: weeks_to_peak Spearman
+0.07, 95% CI [-0.43, +0.53]. This batch closes it with a full causal arc.
+
+### Forensics (why it was at chance)
+The engine predicted peak week 0 for 12 of 15 scored events — the entire
+predicted support was {0, 11, 22} against an observed 1–52. Trajectory dumps
+showed the two nonzero values are argmax picks on near-flat plateau creep
+(JPN:auto 0.088→0.096; DEU:auto 0.012→0.013), not real late dynamics. Root
+cause located in code, two layers deep:
+1. `ShockSpec.factor()` had no rising shape — step is flat and linear/exp
+   DECAY from t=0, so every curve peaks at onset;
+2. the ratchet update `state = max(external, state + impact − recovery)`
+   renders any declining forcing as a rectangular pulse at the shocked node
+   (declining external unbinds after week 0). The engine structurally could
+   not represent an event whose stress accumulates.
+
+### Found on the way: a real statistics bug (now fixed)
+`cascade_validation._spearman` ranked via double-argsort, which assigns
+DISTINCT ranks to tied values in iteration order. With 12/15 predictions tied
+at 0.0 it manufactured +0.61 "correlation" out of event ordering. Fixed to
+delegate to the tie-corrected `metrics.spearman_rho` (average ranks) — the
+same statistic the benchmark and significance layers already use. Correction
+note for the record: the Batch 13 published shape Spearmans (magnitude +0.80,
+weeks_to_peak +0.60, recovery +0.85) were computed with the biased ranking;
+the tie-corrected values on today's data are +0.60 / +0.07 / +0.88.
+
+### Pre-registered experiment (scripts/ramp_experiment.py)
+New `decay_curve="ramp"` (rises 1/D … 1.0 across the window — the ratchet
+renders rising forcing faithfully, so no engine change needed). Treatment set
+selected by real-world MECHANISM, declared before running: WC ports 2021
+(congestion), Panama drought 2023 (progressive draft limits), GFC 2008-09
+(demand collapse over quarters), EU energy 2021 (price escalation). Sharp-
+onset events (quakes, fires, lockdowns, Suez blockage, Red Sea attack onset)
+keep front-loaded curves. Gate, registered in the script docstring before the
+corrected run: G1 weeks_to_peak Spearman ≥ 0.40; G2 magnitude/recovery drop
+≤ 0.05; G3 benchmark GEDS MAE worsens ≤ 0.001; G4 untouched events
+bit-identical. Result: **0.0683 → 0.6913**, drops 0.0/0.0, ΔMAE +0.0001,
+no side effects — ADOPT on all four gates. Artifact:
+`data/calibration/ramp_experiment.json`.
+
+### After adoption (significance.json regenerated, 10k/20k, seed 20260718)
+| Track B dim | before | after |
+|---|---|---|
+| weeks_to_peak (n=15) | +0.07 [−0.43, +0.53] — chance | **+0.69 [+0.20, +0.87] — significant** |
+| recovery_weeks (n=11) | +0.88 [+0.56, +0.99] | unchanged |
+| magnitude (n=5) | +0.60 [−1, +1] (n too small to claim) | unchanged |
+
+Track A magnitude parity is intact (all 6 pairwise deltas n.s., p ≥ 0.09) —
+the ramp costs +0.0001 benchmark MAE, no winner flips; goldens updated in the
+same commit (GEDS 0.0242/spearman 0.4511; LinDiff 0.0171/0.0317/0.7181 —
+only the two forcing-integrating models move). Also fixed on the way: the
+LOO-band test still pinned n_folds=26 from before the Batch-18 LOO refresh.
+`loo_de_result.json` (computed on pre-ramp specs) queued for a background
+re-run. 117 tests green (ex-portwatch).
+
+The ISEF read: the weakest validation axis now carries the strongest
+methodology story — failure quantified with CIs, cause localized to two code
+mechanisms, a statistics bug fixed en route, the fix gated by a pre-registered
+experiment that the Batch-8/9b/9d precedents show this project is willing to
+FAIL, and the CI flipping positive only after all of that.

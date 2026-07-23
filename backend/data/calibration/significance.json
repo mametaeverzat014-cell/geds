@@ -1,6 +1,6 @@
 {
   "schema": "geds.significance.v1",
-  "timestamp": "2026-07-18T02:29:18.700007+00:00",
+  "timestamp": "2026-07-23T17:39:08.214101+00:00",
   "seed": 20260718,
   "n_boot": 10000,
   "n_perm": 20000,
@@ -61,24 +61,24 @@
   "models": {
     "GEDS": {
       "mae": {
-        "point": 0.02413,
-        "p2_5": 0.01085,
-        "p50": 0.02361,
-        "p97_5": 0.04018,
+        "point": 0.02423,
+        "p2_5": 0.01097,
+        "p50": 0.02371,
+        "p97_5": 0.0402,
         "n_finite_resamples": 10000
       },
       "rmse": {
-        "point": 0.04637,
-        "p2_5": 0.02079,
-        "p50": 0.0453,
+        "point": 0.04639,
+        "p2_5": 0.0208,
+        "p50": 0.04532,
         "p97_5": 0.06688,
         "n_finite_resamples": 10000
       },
       "spearman": {
-        "point": 0.46085,
-        "p2_5": 0.07979,
-        "p50": 0.45882,
-        "p97_5": 0.73965,
+        "point": 0.45112,
+        "p2_5": 0.06491,
+        "p50": 0.44872,
+        "p97_5": 0.72973,
         "n_finite_resamples": 10000
       }
     },
@@ -107,24 +107,24 @@
     },
     "LinearDiffusion": {
       "mae": {
-        "point": 0.01684,
-        "p2_5": 0.00872,
-        "p50": 0.01626,
-        "p97_5": 0.02829,
+        "point": 0.01715,
+        "p2_5": 0.00894,
+        "p50": 0.01659,
+        "p97_5": 0.02865,
         "n_finite_resamples": 10000
       },
       "rmse": {
-        "point": 0.03145,
-        "p2_5": 0.01117,
-        "p50": 0.03036,
-        "p97_5": 0.04944,
+        "point": 0.03167,
+        "p2_5": 0.01156,
+        "p50": 0.03055,
+        "p97_5": 0.04952,
         "n_finite_resamples": 10000
       },
       "spearman": {
-        "point": 0.7248,
-        "p2_5": 0.40594,
-        "p50": 0.72745,
-        "p97_5": 0.91659,
+        "point": 0.71806,
+        "p2_5": 0.3966,
+        "p50": 0.71903,
+        "p97_5": 0.90856,
         "n_finite_resamples": 10000
       }
     },
@@ -149,97 +149,97 @@
   "pairwise": {
     "GEDS__vs__Leontief": {
       "delta_mae_a_minus_b": {
-        "point": 0.00732,
-        "p2_5": -0.00315,
-        "p50": 0.00706,
-        "p97_5": 0.02173,
+        "point": 0.00742,
+        "p2_5": -0.00306,
+        "p50": 0.00715,
+        "p97_5": 0.02181,
         "n_finite_resamples": 10000
       },
       "delta_rmse_a_minus_b": {
-        "point": 0.01506,
-        "p2_5": -0.00825,
-        "p50": 0.01479,
-        "p97_5": 0.03941,
+        "point": 0.01508,
+        "p2_5": -0.00823,
+        "p50": 0.0148,
+        "p97_5": 0.03943,
         "n_finite_resamples": 10000
       },
-      "frac_a_better_mae": 0.1314,
+      "frac_a_better_mae": 0.1284,
       "delta_spearman_a_minus_b": {
-        "point": 0.12128,
-        "p2_5": -0.08286,
-        "p50": 0.11784,
-        "p97_5": 0.36769,
+        "point": 0.11155,
+        "p2_5": -0.09396,
+        "p50": 0.10644,
+        "p97_5": 0.35811,
         "n_finite_resamples": 10000
       },
-      "p_perm_mae_two_sided": 0.43308
+      "p_perm_mae_two_sided": 0.42048
     },
     "GEDS__vs__LinearDiffusion": {
       "delta_mae_a_minus_b": {
-        "point": 0.00729,
-        "p2_5": -0.00155,
-        "p50": 0.00684,
-        "p97_5": 0.01839,
+        "point": 0.00708,
+        "p2_5": -0.00183,
+        "p50": 0.00662,
+        "p97_5": 0.01823,
         "n_finite_resamples": 10000
       },
       "delta_rmse_a_minus_b": {
-        "point": 0.01492,
-        "p2_5": 0.00249,
-        "p50": 0.01459,
-        "p97_5": 0.03132,
+        "point": 0.01471,
+        "p2_5": 0.00202,
+        "p50": 0.01437,
+        "p97_5": 0.03106,
         "n_finite_resamples": 10000
       },
-      "frac_a_better_mae": 0.0643,
+      "frac_a_better_mae": 0.0732,
       "delta_spearman_a_minus_b": {
-        "point": -0.26395,
-        "p2_5": -0.55597,
-        "p50": -0.24935,
-        "p97_5": -0.03943,
+        "point": -0.26693,
+        "p2_5": -0.5666,
+        "p50": -0.25127,
+        "p97_5": -0.0392,
         "n_finite_resamples": 10000
       },
-      "p_perm_mae_two_sided": 0.19254
+      "p_perm_mae_two_sided": 0.20994
     },
     "GEDS__vs__NaivePersistence": {
       "delta_mae_a_minus_b": {
-        "point": 0.00333,
-        "p2_5": -0.00856,
-        "p50": 0.00283,
-        "p97_5": 0.019,
+        "point": 0.00343,
+        "p2_5": -0.00847,
+        "p50": 0.00293,
+        "p97_5": 0.01908,
         "n_finite_resamples": 10000
       },
       "delta_rmse_a_minus_b": {
-        "point": 0.01396,
-        "p2_5": -0.00951,
-        "p50": 0.01344,
-        "p97_5": 0.03951,
+        "point": 0.01397,
+        "p2_5": -0.00948,
+        "p50": 0.01346,
+        "p97_5": 0.03954,
         "n_finite_resamples": 10000
       },
-      "frac_a_better_mae": 0.3531,
+      "frac_a_better_mae": 0.3482,
       "delta_spearman_a_minus_b": null,
-      "p_perm_mae_two_sided": 0.58927
+      "p_perm_mae_two_sided": 0.58207
     },
     "Leontief__vs__LinearDiffusion": {
       "delta_mae_a_minus_b": {
-        "point": -3e-05,
-        "p2_5": -0.01157,
-        "p50": -0.0001,
-        "p97_5": 0.01136,
+        "point": -0.00034,
+        "p2_5": -0.01195,
+        "p50": -0.00044,
+        "p97_5": 0.01106,
         "n_finite_resamples": 10000
       },
       "delta_rmse_a_minus_b": {
-        "point": -0.00014,
-        "p2_5": -0.02501,
-        "p50": 0.00029,
-        "p97_5": 0.02359,
+        "point": -0.00036,
+        "p2_5": -0.02513,
+        "p50": 4e-05,
+        "p97_5": 0.02331,
         "n_finite_resamples": 10000
       },
-      "frac_a_better_mae": 0.5071,
+      "frac_a_better_mae": 0.5313,
       "delta_spearman_a_minus_b": {
-        "point": -0.38523,
-        "p2_5": -0.77357,
-        "p50": -0.37164,
-        "p97_5": -0.07816,
+        "point": -0.37849,
+        "p2_5": -0.76827,
+        "p50": -0.36342,
+        "p97_5": -0.07082,
         "n_finite_resamples": 10000
       },
-      "p_perm_mae_two_sided": 0.99775
+      "p_perm_mae_two_sided": 0.96595
     },
     "Leontief__vs__NaivePersistence": {
       "delta_mae_a_minus_b": {
@@ -262,22 +262,22 @@
     },
     "LinearDiffusion__vs__NaivePersistence": {
       "delta_mae_a_minus_b": {
-        "point": -0.00396,
-        "p2_5": -0.01461,
-        "p50": -0.00425,
-        "p97_5": 0.00872,
+        "point": -0.00365,
+        "p2_5": -0.01432,
+        "p50": -0.00392,
+        "p97_5": 0.00902,
         "n_finite_resamples": 10000
       },
       "delta_rmse_a_minus_b": {
-        "point": -0.00096,
-        "p2_5": -0.02149,
-        "p50": -0.00208,
-        "p97_5": 0.02359,
+        "point": -0.00074,
+        "p2_5": -0.0212,
+        "p50": -0.00182,
+        "p97_5": 0.02375,
         "n_finite_resamples": 10000
       },
-      "frac_a_better_mae": 0.7573,
+      "frac_a_better_mae": 0.7384,
       "delta_spearman_a_minus_b": null,
-      "p_perm_mae_two_sided": 0.54222
+      "p_perm_mae_two_sided": 0.57527
     }
   },
   "cascade_shape_spearman": {
@@ -290,11 +290,11 @@
       "n": 5
     },
     "weeks_to_peak": {
-      "point": 0.06832,
-      "p2_5": -0.43103,
-      "p50": 0.06931,
-      "p97_5": 0.52948,
-      "n_finite_resamples": 8848,
+      "point": 0.69129,
+      "p2_5": 0.20061,
+      "p50": 0.71413,
+      "p97_5": 0.86914,
+      "n_finite_resamples": 9975,
       "n": 15
     },
     "recovery_weeks": {

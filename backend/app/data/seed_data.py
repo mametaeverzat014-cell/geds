@@ -482,11 +482,11 @@ HISTORICAL_EVENTS: list[dict] = [
         "name": "EU natural gas shortage (Sep 2021 – Feb 2022)",
         "shocks": [
             {"target_node_id": _n("DEU", Industry.AUTOMOTIVE),     "magnitude": 0.08,
-             "start_week": 0, "duration_weeks": 24, "decay_curve": "linear"},
+             "start_week": 0, "duration_weeks": 24, "decay_curve": "ramp"},
             {"target_node_id": _n("DEU", Industry.ELECTRONICS),    "magnitude": 0.06,
-             "start_week": 0, "duration_weeks": 24, "decay_curve": "linear"},
+             "start_week": 0, "duration_weeks": 24, "decay_curve": "ramp"},
             {"target_node_id": _n("NLD", Industry.SEMICONDUCTORS), "magnitude": 0.05,
-             "start_week": 0, "duration_weeks": 20, "decay_curve": "linear"},
+             "start_week": 0, "duration_weeks": 20, "decay_curve": "ramp"},
         ],
         "horizon_weeks": 36,
         "observed": {
@@ -747,7 +747,7 @@ HISTORICAL_EVENTS: list[dict] = [
         "name": "US West Coast port congestion (Aug 2021 – Feb 2022)",
         "shocks": [
             {"target_node_id": _n("USA", Industry.SHIPPING), "magnitude": 0.30,
-             "start_week": 0, "duration_weeks": 20, "decay_curve": "linear"},
+             "start_week": 0, "duration_weeks": 20, "decay_curve": "ramp"},
         ],
         "horizon_weeks": 36,
         "observed": {
@@ -962,7 +962,7 @@ HISTORICAL_EVENTS: list[dict] = [
             # counts overstate the throughput hit. Magnitude follows the
             # measurement: see data/calibration/portwatch_validation.json.
             {"target_node_id": "CP:Panama", "magnitude": 0.30,
-             "start_week": 0, "duration_weeks": 30, "decay_curve": "step"},
+             "start_week": 0, "duration_weeks": 30, "decay_curve": "ramp"},
         ],
         "horizon_weeks": 40,
         "observed": {
@@ -992,7 +992,7 @@ HISTORICAL_EVENTS: list[dict] = [
             # validation targets below rather than additional input shocks, per
             # existing convention (one entry point, downstream nodes as targets).
             {"target_node_id": _n("USA", Industry.AUTOMOTIVE), "magnitude": 0.47,
-             "start_week": 0, "duration_weeks": 39, "decay_curve": "linear"},
+             "start_week": 0, "duration_weeks": 39, "decay_curve": "ramp"},
         ],
         "horizon_weeks": 104,
         "observed": {

@@ -187,9 +187,13 @@ RULES:
   - [DERIVED]: if a number is not stated directly by a source but computed by you
     via arithmetic from numbers that are (e.g. (X-Y)/X from two raw cited
     figures), tag it [DERIVED] and show the formula and the raw inputs.
-  - decay_curve consistency: if weeks_to_peak >= 2, the shock ramps up rather
-    than hitting instantly — say so explicitly (this maps to decay_curve=linear
-    in the engine, vs step/exp which assume peak at week 0).
+  - decay_curve consistency: state explicitly whether the real-world forcing
+    ARRIVED AT FULL STRENGTH at onset (earthquake, fire, lockdown, blockage —
+    maps to step/exp/linear, all of which peak at week 0 in the engine) or
+    ACCUMULATED over weeks/months (drought, congestion, demand collapse,
+    price escalation — maps to decay_curve=ramp, rising to full force across
+    the window). If weeks_to_peak >= 2, the mechanism is almost certainly
+    accumulating — say which and why.
   - Node mapping must follow WHERE PRODUCTION ACTUALLY OCCURRED, never company
     headquarters or nationality.
 
@@ -274,3 +278,14 @@ repeated real-world EVENT is not. This is the cheapest possible check and now
 runs before node-mapping or GDP-share triage. Keep the list in sync with
 `HISTORICAL_EVENTS` as the set grows (regenerate via the slug/node dump in
 seed_data).
+
+## v3.1 -> v3.2 changelog (2026-07-23)
+
+The decay-curve consistency rule was wrong about the engine: it told the
+researcher "gradual build -> decay_curve=linear", but `linear` in the engine
+is a DECLINING triangle (peak at onset), and the Batch 19 forensics showed
+the ratchet update renders every declining curve as a rectangular pulse. The
+engine now has a genuine rising shape (`ramp`, adopted via the pre-registered
+Batch 19 experiment), and the rule asks for the mechanism distinction that
+actually matters: forcing at full strength at onset vs accumulating over the
+window.
