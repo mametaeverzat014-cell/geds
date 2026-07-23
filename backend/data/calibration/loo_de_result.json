@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-07-18T03:48:52.223436+00:00",
+  "timestamp": "2026-07-23T19:22:25.852488+00:00",
   "n_folds": 27,
   "de_settings": {
     "maxiter": 12,
@@ -7,352 +7,352 @@
     "seed": 42
   },
   "config_overrides": {},
-  "runtime_seconds": 4882.7,
+  "runtime_seconds": 5991.6,
   "out_of_sample_score": {
-    "mae": 0.0188,
-    "rmse": 0.0413,
-    "r_squared": -0.6236,
-    "pearson": 0.2919,
-    "spearman": 0.5808
+    "mae": 0.0192,
+    "rmse": 0.0422,
+    "r_squared": -0.6971,
+    "pearson": 0.2532,
+    "spearman": 0.5562
   },
   "folds": [
     {
       "slug": "covid-semiconductor-2020-2021",
-      "loss_predicted": 0.0767,
+      "loss_predicted": 0.0573,
       "loss_observed": 0.115,
       "fold_params": {
-        "amplification_mu": 0.9541,
-        "bullwhip_factor": 1.0007,
-        "recovery_rate": 0.0146,
-        "inventory_scale": 1.9291,
-        "distress_base": 0.4551
+        "amplification_mu": 0.2129,
+        "bullwhip_factor": 1.405,
+        "recovery_rate": 0.0101,
+        "inventory_scale": 1.876,
+        "distress_base": 0.642
       },
-      "fold_train_loss": 12.066
+      "fold_train_loss": 12.759
     },
     {
       "slug": "suez-canal-2021",
-      "loss_predicted": 0.027,
+      "loss_predicted": 0.0215,
       "loss_observed": 0.008,
       "fold_params": {
-        "amplification_mu": 0.1167,
-        "bullwhip_factor": 1.0299,
-        "recovery_rate": 0.0172,
-        "inventory_scale": 1.8233,
-        "distress_base": 0.4527
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.612
+      "fold_train_loss": 14.353
     },
     {
       "slug": "auto-chip-shortage-2021",
-      "loss_predicted": 0.0293,
+      "loss_predicted": 0.0367,
       "loss_observed": 0.077,
       "fold_params": {
-        "amplification_mu": 0.8764,
-        "bullwhip_factor": 1.0321,
-        "recovery_rate": 0.0175,
-        "inventory_scale": 1.7465,
-        "distress_base": 0.4801
+        "amplification_mu": 1.2536,
+        "bullwhip_factor": 1.1222,
+        "recovery_rate": 0.01,
+        "inventory_scale": 1.8705,
+        "distress_base": 0.5774
       },
-      "fold_train_loss": 12.927
+      "fold_train_loss": 13.353
     },
     {
       "slug": "japan-triple-disaster-2011",
-      "loss_predicted": 0.029,
+      "loss_predicted": 0.031,
       "loss_observed": 0.039,
       "fold_params": {
-        "amplification_mu": 0.8621,
-        "bullwhip_factor": 1.0156,
-        "recovery_rate": 0.0145,
-        "inventory_scale": 1.9826,
-        "distress_base": 0.3165
+        "amplification_mu": 0.1706,
+        "bullwhip_factor": 1.2577,
+        "recovery_rate": 0.0112,
+        "inventory_scale": 1.6988,
+        "distress_base": 0.4346
       },
-      "fold_train_loss": 13.403
+      "fold_train_loss": 14.029
     },
     {
       "slug": "us-china-tariffs-2019",
-      "loss_predicted": 0.0347,
+      "loss_predicted": 0.0351,
       "loss_observed": 0.02,
       "fold_params": {
-        "amplification_mu": 0.4254,
-        "bullwhip_factor": 1.0649,
-        "recovery_rate": 0.0146,
-        "inventory_scale": 1.8646,
-        "distress_base": 0.5028
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 11.196
+      "fold_train_loss": 11.968
     },
     {
       "slug": "texas-winter-storm-2021",
-      "loss_predicted": 0.0101,
+      "loss_predicted": 0.0102,
       "loss_observed": 0.005,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.484
+      "fold_train_loss": 14.268
     },
     {
       "slug": "eu-energy-crisis-2021",
-      "loss_predicted": 0.0164,
+      "loss_predicted": 0.0103,
       "loss_observed": 0.015,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 12.14
+      "fold_train_loss": 12.919
     },
     {
       "slug": "malaysia-semiconductor-2021",
       "loss_predicted": 0.0042,
       "loss_observed": 0.012,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.478
+      "fold_train_loss": 14.262
     },
     {
       "slug": "thailand-floods-2011",
-      "loss_predicted": 0.0118,
+      "loss_predicted": 0.0119,
       "loss_observed": 0.025,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.07
+      "fold_train_loss": 13.854
     },
     {
       "slug": "kumamoto-earthquake-2016",
-      "loss_predicted": 0.0134,
+      "loss_predicted": 0.0135,
       "loss_observed": 0.006,
       "fold_params": {
-        "amplification_mu": 0.5362,
-        "bullwhip_factor": 1.0533,
-        "recovery_rate": 0.0136,
-        "inventory_scale": 1.7747,
-        "distress_base": 0.4835
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.574
+      "fold_train_loss": 14.335
     },
     {
       "slug": "renesas-naka-fire-2021",
       "loss_predicted": 0.0036,
       "loss_observed": 0.016,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.337
+      "fold_train_loss": 14.121
     },
     {
       "slug": "japan-korea-export-controls-2019",
-      "loss_predicted": 0.0052,
+      "loss_predicted": 0.0053,
       "loss_observed": 0.002,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.585
+      "fold_train_loss": 14.369
     },
     {
       "slug": "vietnam-covid-lockdown-2021",
-      "loss_predicted": 0.0115,
+      "loss_predicted": 0.0118,
       "loss_observed": 0.012,
       "fold_params": {
-        "amplification_mu": 0.4158,
-        "bullwhip_factor": 1.0096,
-        "recovery_rate": 0.0112,
-        "inventory_scale": 1.8487,
-        "distress_base": 0.2544
+        "amplification_mu": 0.3115,
+        "bullwhip_factor": 1.0615,
+        "recovery_rate": 0.0103,
+        "inventory_scale": 1.929,
+        "distress_base": 0.6632
       },
-      "fold_train_loss": 13.475
+      "fold_train_loss": 13.875
     },
     {
       "slug": "shanghai-lockdown-2022",
       "loss_predicted": 0.0279,
       "loss_observed": 0.018,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.475
+      "fold_train_loss": 14.26
     },
     {
       "slug": "ukraine-war-harness-2022",
-      "loss_predicted": 0.0083,
+      "loss_predicted": 0.0084,
       "loss_observed": 0.012,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.249
+      "fold_train_loss": 14.033
     },
     {
       "slug": "china-power-crunch-2021",
-      "loss_predicted": 0.0155,
+      "loss_predicted": 0.0156,
       "loss_observed": 0.005,
       "fold_params": {
-        "amplification_mu": 0.5362,
-        "bullwhip_factor": 1.0533,
-        "recovery_rate": 0.0136,
-        "inventory_scale": 1.7747,
-        "distress_base": 0.4835
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.566
+      "fold_train_loss": 14.327
     },
     {
       "slug": "yantian-port-closure-2021",
       "loss_predicted": 0.0114,
       "loss_observed": 0.006,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.583
+      "fold_train_loss": 14.367
     },
     {
       "slug": "us-west-coast-ports-2021",
-      "loss_predicted": 0.01,
+      "loss_predicted": 0.0079,
       "loss_observed": 0.008,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 12.892
+      "fold_train_loss": 13.673
     },
     {
       "slug": "red-sea-crisis-2023",
-      "loss_predicted": 0.0186,
+      "loss_predicted": 0.0189,
       "loss_observed": 0.01,
       "fold_params": {
-        "amplification_mu": 0.5362,
-        "bullwhip_factor": 1.0533,
-        "recovery_rate": 0.0136,
-        "inventory_scale": 1.7747,
-        "distress_base": 0.4835
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 12.154
+      "fold_train_loss": 12.914
     },
     {
       "slug": "taiwan-drought-2021",
       "loss_predicted": 0.0025,
       "loss_observed": 0.002,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.587
+      "fold_train_loss": 14.371
     },
     {
       "slug": "india-covid-wave-2021",
       "loss_predicted": 0.0102,
       "loss_observed": 0.004,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.524
+      "fold_train_loss": 14.308
     },
     {
       "slug": "taiwan-chichi-earthquake-1999",
-      "loss_predicted": 0.1906,
+      "loss_predicted": 0.1934,
       "loss_observed": 0.005,
       "fold_params": {
-        "amplification_mu": 7.3992,
-        "bullwhip_factor": 1.8389,
-        "recovery_rate": 0.0133,
-        "inventory_scale": 1.0772,
-        "distress_base": 0.6375
+        "amplification_mu": 7.9791,
+        "bullwhip_factor": 1.7039,
+        "recovery_rate": 0.0105,
+        "inventory_scale": 1.3212,
+        "distress_base": 0.6971
       },
-      "fold_train_loss": 12.427
+      "fold_train_loss": 12.578
     },
     {
       "slug": "hurricane-harvey-2017",
       "loss_predicted": 0.0,
       "loss_observed": 0.002,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.585
+      "fold_train_loss": 14.369
     },
     {
       "slug": "us-west-coast-ports-2015",
       "loss_predicted": 0.0043,
       "loss_observed": 0.007,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.249
+      "fold_train_loss": 14.033
     },
     {
       "slug": "korea-trucker-strikes-2022",
-      "loss_predicted": 0.0104,
+      "loss_predicted": 0.0105,
       "loss_observed": 0.002,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 13.607
+      "fold_train_loss": 14.391
     },
     {
       "slug": "panama-canal-drought-2023",
-      "loss_predicted": 0.0026,
+      "loss_predicted": 0.0018,
       "loss_observed": 0.005,
       "fold_params": {
-        "amplification_mu": 0.5737,
-        "bullwhip_factor": 1.028,
-        "recovery_rate": 0.0135,
-        "inventory_scale": 1.8258,
-        "distress_base": 0.616
+        "amplification_mu": 0.2238,
+        "bullwhip_factor": 1.099,
+        "recovery_rate": 0.0127,
+        "inventory_scale": 1.836,
+        "distress_base": 0.6141
       },
-      "fold_train_loss": 12.994
+      "fold_train_loss": 13.778
     },
     {
       "slug": "gfc-auto-collapse-2008-2009",
@@ -365,7 +365,7 @@
         "inventory_scale": 1.8417,
         "distress_base": 0.4422
       },
-      "fold_train_loss": 13.161
+      "fold_train_loss": 13.17
     }
   ]
 }

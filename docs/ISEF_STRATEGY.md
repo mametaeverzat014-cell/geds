@@ -80,7 +80,7 @@ sourced with a written research protocol (`PERPLEXITY_RESEARCH_PROMPT.md`).
 |---|---|
 | "N=27 — is anything significant?" | Yes and no, and we computed exactly which: per-pair permutation p-values + paired bootstrap CIs in `significance.json`. Magnitude differences: none significant. Recovery-ranking and severity-ranking: significantly positive. We claim only the latter. |
 | "Your model loses to a 1970s baseline" | On one axis, insignificantly (p=0.43); and that finding is the point — magnitude-only validation can't separate models, trajectory validation can. Leontief cannot produce a trajectory at all. |
-| "You tuned on your test set" | Default-parameter results are reported untuned; the tuned story uses leave-one-out with per-fold DE recalibration (`loo_de_result.json`) — the held-out event never influences its own parameters. At N=27: out-of-sample MAE 0.0188 vs Leontief's 0.0168, gap n.s. (paired sign-flip p=0.87); Spearman 0.58, Pearson 0.29. Same conclusion as the default story: magnitude parity, honestly reported both ways. |
+| "You tuned on your test set" | Default-parameter results are reported untuned; the tuned story uses leave-one-out with per-fold DE recalibration (`loo_de_result.json`) — the held-out event never influences its own parameters. At N=27 on the ramp specs: out-of-sample MAE 0.0192 vs Leontief's 0.0168, gap n.s. (paired sign-flip p=0.89); Spearman 0.56, Pearson 0.25. Same conclusion as the default story: magnitude parity, honestly reported both ways. |
 | "Why should I trust your observed values?" | Written source-tier protocol; every event carries named tier-1/tier-2 sources; events that failed sourcing were explicitly parked (`in_geds_graph=no` rows: Philips, Boeing) rather than wired in. |
 | "Did an AI do this?" | AI tools were used as engineering/research assistants (and are acknowledged); every mechanism, number, and decision is documented in the repo and defensible by the presenter without notes. Practice until this is literally true — judges probe depth, and ISEF rules require the finalist to own the work. |
 | "Overfitting to 2021?" | Event set spans 1999–2023, 10+ categories; the GFC 2008 demand-side event was added precisely to break the 2021 supply-shock monoculture, and it degraded every model's error honestly (golden comment, `test_reproducibility.py`). |
@@ -118,8 +118,9 @@ sourced with a written research protocol (`PERPLEXITY_RESEARCH_PROMPT.md`).
    rectangular pulse; plus a tie-handling bug inflated the cascade Spearman.
    `ramp` curve added, 4 events flipped by a mechanism-selection rule, all
    four pre-registered gates passed, axis now 0.69 [0.20, 0.87]. Artifacts:
-   `ramp_experiment.json`, PROGRESS Batch 19. LOO-DE re-run on the new specs
-   pending (background).
+   `ramp_experiment.json`, PROGRESS Batch 19. LOO-DE re-run on the ramp
+   specs: MAE 0.0192 (was 0.0188), all shifts n.s. (paired vs Leontief
+   p=0.89); the WC-ports fold became near-exact (0.0079 vs observed 0.0080).
 6. **Booth demo hardening** — scripted 90-second walkthrough: pick Suez 2021 →
    watch cascade → overlay observed markers → switch to ICIO graph to show
    recall jump. (Frontend already supports all of this; needs a rehearsed path,
@@ -160,7 +161,7 @@ negative results, honestly quantified, ARE the contribution.
 > a Leontief input-output model, linear network diffusion, and a naive mean
 > predictor. On point magnitude, no model significantly outperformed any
 > other (all pairwise sign-flip permutation p ≥ 0.09, N=27), and the result
-> persists under leave-one-out per-fold recalibration (p = 0.87) —
+> persists under leave-one-out per-fold recalibration (p = 0.89) —
 > single-number validation cannot separate these models. Trajectory
 > validation can: GEDS, the only model producing full trajectories, ranked
 > recovery durations with Spearman 0.88 (95% CI 0.56–0.99) and event

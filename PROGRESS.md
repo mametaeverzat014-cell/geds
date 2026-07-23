@@ -1091,8 +1091,21 @@ the ramp costs +0.0001 benchmark MAE, no winner flips; goldens updated in the
 same commit (GEDS 0.0242/spearman 0.4511; LinDiff 0.0171/0.0317/0.7181 —
 only the two forcing-integrating models move). Also fixed on the way: the
 LOO-band test still pinned n_folds=26 from before the Batch-18 LOO refresh.
-`loo_de_result.json` (computed on pre-ramp specs) queued for a background
-re-run. 117 tests green (ex-portwatch).
+117 tests green (ex-portwatch).
+
+### LOO-DE re-run on the ramp specs (27 folds, 100 min — completes the batch)
+Out-of-sample: MAE 0.0192 / RMSE 0.0422 / Pearson 0.253 / Spearman 0.556 /
+R² −0.697, vs 0.0188 / 0.0413 / 0.292 / 0.581 / −0.624 on pre-ramp specs —
+every pooled Track A metric marginally worse, honestly recorded (the
+pre-registered gate covered the default-param benchmark, not LOO-DE). Paired
+vs Leontief: ΔMAE +0.0024, 95% CI [−0.0073, +0.0167], p_perm=0.89 —
+magnitude parity is intact out-of-sample. Fold-level, the ramp does exactly
+what it claims at the specs it touched: WC-ports fold 0.0100 → 0.0079
+(observed 0.0080, near-exact), while GFC (0.0509 vs 0.1300) and Chi-Chi
+(0.1934 vs 0.0050) remain the two structural walls. Net Batch-19 trade,
+stated plainly: a chance-level validation axis became significant
+(weeks_to_peak 0.07 → 0.69 [0.20, 0.87]) for ≈ +0.0004 out-of-sample MAE,
+none of it statistically distinguishable from zero.
 
 The ISEF read: the weakest validation axis now carries the strongest
 methodology story — failure quantified with CIs, cause localized to two code
