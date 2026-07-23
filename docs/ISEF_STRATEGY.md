@@ -103,10 +103,17 @@ sourced with a written research protocol (`PERPLEXITY_RESEARCH_PROMPT.md`).
   tuned story too. Chi-Chi remains the worst fold (0.191 vs 0.005), consistent
   with the Batch 8/9b/9d structural diagnosis.
 
+- [x] **Results one-pager** (2026-07-23): `scripts/results_onepager.py` →
+  `docs/RESULTS.md`, generated-only (never hand-edited), every headline number
+  + CI from artifacts. The poster, paper, and interview quote THIS file.
+- [x] **Poster figures** (2026-07-23): `scripts/isef_figures.py` → 4 PNG+CSV
+  pairs in `data/calibration/figures/` (parity forest, pred-vs-obs 2×2,
+  timing before/after ramp, spatial-recall dumbbell) — colorblind-safe
+  validated palette, every graphic with its numeric table per repo rule.
+
 **Next, in leverage order:**
-1. **Results one-pager** — a single generated table (script, not hand-edited)
-   with every headline number + CI, feeding the poster, paper, and interview.
-2. **250-word official abstract** — draft in §6; freeze only after LOO-DE n=27.
+1. **250-word official abstract** — draft in §6; numbers now final
+   (post-ramp, post-LOO-DE); the student rewrites it in their own voice.
 3. **Poster/quad-chart structure** around the §2 narrative: Question → Harness
    → Benchmark → the three results → limitations up front.
 4. **Grow N via the v3.1 research loop** (chokepoint events are the highest
