@@ -977,3 +977,42 @@ The inline baseline-comparison and LOO-band panels still compute on the v2 engin
 graph even when v3 is selected for the main run — they're about the calibrated
 reference, so this is defensible, but it's a mild inconsistency to revisit if v3
 ever gets its own calibration.
+
+## Batch 18 — Significance layer + ISEF strategy: which leaderboard differences are real?
+
+**Status: DONE (2026-07-18); LOO-DE n=27 refresh running**
+
+The first technical question about a 27-event benchmark is "is any of that
+significant?" — it now has a precomputed, deterministic answer.
+
+### New: `app/core/significance.py` + `scripts/significance_analysis.py`
+Event-level bootstrap CIs (10k resamples) for every model's MAE/RMSE/Spearman,
+PAIRED bootstrap deltas (shared resample indices) and sign-flip permutation
+p-values (20k) for all 6 model pairs, plus bootstrap CIs for the Track B
+cascade-shape Spearman dims. Seed 20260718; byte-identical across runs.
+Output: `data/calibration/significance.json`. 7 new tests (112 total green).
+
+### Findings (the honest headline set)
+- **Magnitude: parity.** No pairwise MAE difference is significant — GEDS vs
+  Leontief p=0.43; even Leontief vs naive-mean only p=0.09. At N=27,
+  single-number validation cannot rank these four models. This is a *finding*,
+  not a failure: it is the argument for multi-axis validation.
+- **Shape: separation.** Recovery-duration ranking (the axis only GEDS can
+  even attempt): Spearman 0.88, 95% CI [0.56, 0.99], n=11 — significant.
+  Severity ranking: 0.46 [0.08, 0.74] — significant. weeks_to_peak: 0.07
+  [-0.43, +0.53] — chance level, reported as a limitation.
+- Naive persistence carries no rank metrics (constant predictor → spearman
+  None), consistent with the benchmark's has_ranking convention.
+
+### New: `docs/ISEF_STRATEGY.md`
+The competition plan built on these numbers: thesis inversion ("the harness +
+benchmark + honest finding IS the contribution"), claim→artifact map, judge
+attack-surface table with prepared answers (N-power, leak-quarantine story,
+AI-disclosure, why-model-loses reframe), prioritized work plan, category
+recommendation, 240-word abstract draft. Numbers regenerate from
+significance.json — never hand-edited.
+
+### Also
+27-fold LOO-DE recalibration (last run: 26 folds, 2026-06-11) restarted in
+background to refresh `loo_de_result.json`; out-of-sample story updates when
+it lands.

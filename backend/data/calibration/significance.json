@@ -1,0 +1,314 @@
+{
+  "schema": "geds.significance.v1",
+  "timestamp": "2026-07-18T02:29:18.700007+00:00",
+  "seed": 20260718,
+  "n_boot": 10000,
+  "n_perm": 20000,
+  "n_events": 27,
+  "event_slugs": [
+    "covid-semiconductor-2020-2021",
+    "suez-canal-2021",
+    "auto-chip-shortage-2021",
+    "japan-triple-disaster-2011",
+    "us-china-tariffs-2019",
+    "texas-winter-storm-2021",
+    "eu-energy-crisis-2021",
+    "malaysia-semiconductor-2021",
+    "thailand-floods-2011",
+    "kumamoto-earthquake-2016",
+    "renesas-naka-fire-2021",
+    "japan-korea-export-controls-2019",
+    "vietnam-covid-lockdown-2021",
+    "shanghai-lockdown-2022",
+    "ukraine-war-harness-2022",
+    "china-power-crunch-2021",
+    "yantian-port-closure-2021",
+    "us-west-coast-ports-2021",
+    "red-sea-crisis-2023",
+    "taiwan-drought-2021",
+    "india-covid-wave-2021",
+    "taiwan-chichi-earthquake-1999",
+    "hurricane-harvey-2017",
+    "us-west-coast-ports-2015",
+    "korea-trucker-strikes-2022",
+    "panama-canal-drought-2023",
+    "gfc-auto-collapse-2008-2009"
+  ],
+  "model_display_names": {
+    "GEDS": "SEIRS-Bullwhip-Hysteresis (GEDS)",
+    "Leontief": "Leontief (input-output equilibrium)",
+    "LinearDiffusion": "Linear Diffusion (network)",
+    "NaivePersistence": "Naive Persistence (predict mean)"
+  },
+  "engine_config": {
+    "propagation_decay": 0.85,
+    "rerouting_efficiency": 0.55,
+    "amplification_mu": 2.2,
+    "amplification_eps": 0.06,
+    "recovery_rate": 0.07,
+    "stochastic_sigma": 0.0,
+    "seed": 0,
+    "seis_enabled": true,
+    "adaptive_rerouting": true,
+    "per_node_recovery": false,
+    "bullwhip_factor": 1.25,
+    "r_output_floor": 0.3,
+    "inventory_scale": 1.0,
+    "distress_base": 0.4,
+    "distress_week_threshold": 6,
+    "sanity_max_loss_fraction": 0.15
+  },
+  "models": {
+    "GEDS": {
+      "mae": {
+        "point": 0.02413,
+        "p2_5": 0.01085,
+        "p50": 0.02361,
+        "p97_5": 0.04018,
+        "n_finite_resamples": 10000
+      },
+      "rmse": {
+        "point": 0.04637,
+        "p2_5": 0.02079,
+        "p50": 0.0453,
+        "p97_5": 0.06688,
+        "n_finite_resamples": 10000
+      },
+      "spearman": {
+        "point": 0.46085,
+        "p2_5": 0.07979,
+        "p50": 0.45882,
+        "p97_5": 0.73965,
+        "n_finite_resamples": 10000
+      }
+    },
+    "Leontief": {
+      "mae": {
+        "point": 0.01681,
+        "p2_5": 0.00792,
+        "p50": 0.01642,
+        "p97_5": 0.02775,
+        "n_finite_resamples": 10000
+      },
+      "rmse": {
+        "point": 0.03131,
+        "p2_5": 0.01071,
+        "p50": 0.03078,
+        "p97_5": 0.0457,
+        "n_finite_resamples": 10000
+      },
+      "spearman": {
+        "point": 0.33957,
+        "p2_5": -0.10017,
+        "p50": 0.33868,
+        "p97_5": 0.66555,
+        "n_finite_resamples": 10000
+      }
+    },
+    "LinearDiffusion": {
+      "mae": {
+        "point": 0.01684,
+        "p2_5": 0.00872,
+        "p50": 0.01626,
+        "p97_5": 0.02829,
+        "n_finite_resamples": 10000
+      },
+      "rmse": {
+        "point": 0.03145,
+        "p2_5": 0.01117,
+        "p50": 0.03036,
+        "p97_5": 0.04944,
+        "n_finite_resamples": 10000
+      },
+      "spearman": {
+        "point": 0.7248,
+        "p2_5": 0.40594,
+        "p50": 0.72745,
+        "p97_5": 0.91659,
+        "n_finite_resamples": 10000
+      }
+    },
+    "NaivePersistence": {
+      "mae": {
+        "point": 0.0208,
+        "p2_5": 0.01259,
+        "p50": 0.02033,
+        "p97_5": 0.03109,
+        "n_finite_resamples": 10000
+      },
+      "rmse": {
+        "point": 0.03241,
+        "p2_5": 0.01381,
+        "p50": 0.03192,
+        "p97_5": 0.04727,
+        "n_finite_resamples": 10000
+      },
+      "spearman": null
+    }
+  },
+  "pairwise": {
+    "GEDS__vs__Leontief": {
+      "delta_mae_a_minus_b": {
+        "point": 0.00732,
+        "p2_5": -0.00315,
+        "p50": 0.00706,
+        "p97_5": 0.02173,
+        "n_finite_resamples": 10000
+      },
+      "delta_rmse_a_minus_b": {
+        "point": 0.01506,
+        "p2_5": -0.00825,
+        "p50": 0.01479,
+        "p97_5": 0.03941,
+        "n_finite_resamples": 10000
+      },
+      "frac_a_better_mae": 0.1314,
+      "delta_spearman_a_minus_b": {
+        "point": 0.12128,
+        "p2_5": -0.08286,
+        "p50": 0.11784,
+        "p97_5": 0.36769,
+        "n_finite_resamples": 10000
+      },
+      "p_perm_mae_two_sided": 0.43308
+    },
+    "GEDS__vs__LinearDiffusion": {
+      "delta_mae_a_minus_b": {
+        "point": 0.00729,
+        "p2_5": -0.00155,
+        "p50": 0.00684,
+        "p97_5": 0.01839,
+        "n_finite_resamples": 10000
+      },
+      "delta_rmse_a_minus_b": {
+        "point": 0.01492,
+        "p2_5": 0.00249,
+        "p50": 0.01459,
+        "p97_5": 0.03132,
+        "n_finite_resamples": 10000
+      },
+      "frac_a_better_mae": 0.0643,
+      "delta_spearman_a_minus_b": {
+        "point": -0.26395,
+        "p2_5": -0.55597,
+        "p50": -0.24935,
+        "p97_5": -0.03943,
+        "n_finite_resamples": 10000
+      },
+      "p_perm_mae_two_sided": 0.19254
+    },
+    "GEDS__vs__NaivePersistence": {
+      "delta_mae_a_minus_b": {
+        "point": 0.00333,
+        "p2_5": -0.00856,
+        "p50": 0.00283,
+        "p97_5": 0.019,
+        "n_finite_resamples": 10000
+      },
+      "delta_rmse_a_minus_b": {
+        "point": 0.01396,
+        "p2_5": -0.00951,
+        "p50": 0.01344,
+        "p97_5": 0.03951,
+        "n_finite_resamples": 10000
+      },
+      "frac_a_better_mae": 0.3531,
+      "delta_spearman_a_minus_b": null,
+      "p_perm_mae_two_sided": 0.58927
+    },
+    "Leontief__vs__LinearDiffusion": {
+      "delta_mae_a_minus_b": {
+        "point": -3e-05,
+        "p2_5": -0.01157,
+        "p50": -0.0001,
+        "p97_5": 0.01136,
+        "n_finite_resamples": 10000
+      },
+      "delta_rmse_a_minus_b": {
+        "point": -0.00014,
+        "p2_5": -0.02501,
+        "p50": 0.00029,
+        "p97_5": 0.02359,
+        "n_finite_resamples": 10000
+      },
+      "frac_a_better_mae": 0.5071,
+      "delta_spearman_a_minus_b": {
+        "point": -0.38523,
+        "p2_5": -0.77357,
+        "p50": -0.37164,
+        "p97_5": -0.07816,
+        "n_finite_resamples": 10000
+      },
+      "p_perm_mae_two_sided": 0.99775
+    },
+    "Leontief__vs__NaivePersistence": {
+      "delta_mae_a_minus_b": {
+        "point": -0.00399,
+        "p2_5": -0.00831,
+        "p50": -0.00397,
+        "p97_5": 0.00049,
+        "n_finite_resamples": 10000
+      },
+      "delta_rmse_a_minus_b": {
+        "point": -0.00111,
+        "p2_5": -0.00908,
+        "p50": -0.00099,
+        "p97_5": 0.00549,
+        "n_finite_resamples": 10000
+      },
+      "frac_a_better_mae": 0.9597,
+      "delta_spearman_a_minus_b": null,
+      "p_perm_mae_two_sided": 0.09025
+    },
+    "LinearDiffusion__vs__NaivePersistence": {
+      "delta_mae_a_minus_b": {
+        "point": -0.00396,
+        "p2_5": -0.01461,
+        "p50": -0.00425,
+        "p97_5": 0.00872,
+        "n_finite_resamples": 10000
+      },
+      "delta_rmse_a_minus_b": {
+        "point": -0.00096,
+        "p2_5": -0.02149,
+        "p50": -0.00208,
+        "p97_5": 0.02359,
+        "n_finite_resamples": 10000
+      },
+      "frac_a_better_mae": 0.7573,
+      "delta_spearman_a_minus_b": null,
+      "p_perm_mae_two_sided": 0.54222
+    }
+  },
+  "cascade_shape_spearman": {
+    "magnitude": {
+      "point": 0.6,
+      "p2_5": -1.0,
+      "p50": 0.66667,
+      "p97_5": 1.0,
+      "n_finite_resamples": 9986,
+      "n": 5
+    },
+    "weeks_to_peak": {
+      "point": 0.06832,
+      "p2_5": -0.43103,
+      "p50": 0.06931,
+      "p97_5": 0.52948,
+      "n_finite_resamples": 8848,
+      "n": 15
+    },
+    "recovery_weeks": {
+      "point": 0.88278,
+      "p2_5": 0.55792,
+      "p50": 0.87615,
+      "p97_5": 0.99065,
+      "n_finite_resamples": 10000,
+      "n": 11
+    }
+  },
+  "interpretation": {
+    "delta_sign": "delta_*_a_minus_b < 0 means the first-named model has the lower (better) error metric",
+    "significance_rule": "a pairwise difference is significant at alpha=0.05 if 0 lies outside the paired 95% CI AND p_perm_mae_two_sided < 0.05",
+    "caveat": "event-level bootstrap at N=27 (and n=5..15 for shape dims) has limited power; absence of significance is not evidence of equivalence"
+  }
+}
