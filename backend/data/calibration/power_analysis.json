@@ -1,0 +1,56 @@
+{
+  "schema": "geds.power.v1",
+  "timestamp": "2026-07-23T21:15:45.003280+00:00",
+  "n_events": 27,
+  "power": 0.8,
+  "alpha_two_sided": 0.05,
+  "z_multiplier": 2.8016,
+  "pairs": {
+    "GEDS__vs__Leontief": {
+      "observed_delta_mae": 0.00742,
+      "sd_of_paired_diff": 0.03409,
+      "mde_80pct_power_at_N": 0.01838,
+      "observed_is_below_mde": true,
+      "n_required_for_observed_effect": 166
+    },
+    "GEDS__vs__LinearDiffusion": {
+      "observed_delta_mae": 0.00708,
+      "sd_of_paired_diff": 0.02759,
+      "mde_80pct_power_at_N": 0.01488,
+      "observed_is_below_mde": true,
+      "n_required_for_observed_effect": 119
+    },
+    "GEDS__vs__NaivePersistence": {
+      "observed_delta_mae": 0.00343,
+      "sd_of_paired_diff": 0.0379,
+      "mde_80pct_power_at_N": 0.02043,
+      "observed_is_below_mde": true,
+      "n_required_for_observed_effect": 959
+    },
+    "Leontief__vs__LinearDiffusion": {
+      "observed_delta_mae": -0.00034,
+      "sd_of_paired_diff": 0.03058,
+      "mde_80pct_power_at_N": 0.01649,
+      "observed_is_below_mde": true,
+      "n_required_for_observed_effect": 63882
+    },
+    "Leontief__vs__NaivePersistence": {
+      "observed_delta_mae": -0.00399,
+      "sd_of_paired_diff": 0.0118,
+      "mde_80pct_power_at_N": 0.00636,
+      "observed_is_below_mde": true,
+      "n_required_for_observed_effect": 69
+    },
+    "LinearDiffusion__vs__NaivePersistence": {
+      "observed_delta_mae": -0.00365,
+      "sd_of_paired_diff": 0.03147,
+      "mde_80pct_power_at_N": 0.01697,
+      "observed_is_below_mde": true,
+      "n_required_for_observed_effect": 583
+    }
+  },
+  "interpretation": {
+    "mde": "smallest true mean MAE difference detectable at 80% power given the observed variance and N",
+    "headline": "every pair's observed |\u0394MAE| is below its MDE, so the parity finding is resolution-limited, not proven equivalence; n_required quantifies the events needed to detect each observed effect."
+  }
+}
