@@ -472,23 +472,80 @@ Anthropic) под руководством автора; постановка з
 авторские. Все данные — из открытых первичных источников, перечисленных
 построчно в CSV-файлах репозитория.
 
-## Литература (ключевые позиции; полный список — CITATIONS.bib)
+## Литература
 
-- Acemoglu D., Carvalho V., Ozdaglar A., Tahbaz-Salehi A. The Network Origins
-  of Aggregate Fluctuations. *Econometrica*, 2012.
-- Carvalho V., Nirei M., Saito Y., Tahbaz-Salehi A. Supply Chain Disruptions:
-  Evidence from the Great East Japan Earthquake. *QJE*, 2021.
-- Barrot J.-N., Sauvagnat J. Input Specificity and the Propagation of
-  Idiosyncratic Shocks in Production Networks. *QJE*, 2016.
-- Lee H., Padmanabhan V., Whang S. Information Distortion in a Supply Chain:
-  The Bullwhip Effect. *Management Science*, 1997.
-- Cerra V., Saxena S. Growth Dynamics: The Myth of Economic Recovery.
-  *American Economic Review*, 2008.
-- Makridakis S. et al. The M4/M5 Competitions. *IJF*, 2020–2022.
-- Inoue H., Todo Y. Firm-level propagation of shocks through supply-chain
-  networks. *Nature Sustainability / Sci. Rep.*, 2019–2021.
-- OICA, JAMA, VDA, SIA — отраслевая производственная статистика; IMF
-  PortWatch — транзит чокпойнтов; OECD ICIO 2025 ed. (таблицы 2019).
+*Нумерация соответствует ссылкам [n] в тексте; полные записи — `CITATIONS.bib`
+(61 позиция). DOI приведены как в источнике и не выдуманы.*
+
+1. Acemoglu D., Carvalho V.M., Ozdaglar A., Tahbaz-Salehi A. The Network
+   Origins of Aggregate Fluctuations. *Econometrica* 2012, 80, 1977–2016.
+   doi:10.3982/ECTA9623.
+2. Acemoglu D., Ozdaglar A., Tahbaz-Salehi A. Microeconomic Origins of
+   Macroeconomic Tail Risks. *American Economic Review* 2017, 107, 54–108.
+   doi:10.1257/aer.20151086.
+3. Baqaee D.R. Cascading Failures in Production Networks. *Working Paper* 2016.
+4. Bigio S., La'O J. Distortions in Production Networks. *Quarterly Journal of
+   Economics* 2020, 135, 2187–2253. doi:10.1093/qjecon/qjaa002.
+5. Carvalho V.M., Nirei M., Saito Y.U., Tahbaz-Salehi A. Supply Chain
+   Disruptions: Evidence from the Great East Japan Earthquake. *Quarterly
+   Journal of Economics* 2021, 136, 1255–1321. doi:10.1093/qje/qjaa044.
+6. Barrot J.-N., Sauvagnat J. Input Specificity and the Propagation of
+   Idiosyncratic Shocks in Production Networks. *Quarterly Journal of
+   Economics* 2016, 131, 1543–1592. doi:10.1093/qje/qjw018.
+7. Boehm C.E., Flaaen A., Pandalai-Nayar N. Input Linkages and the Transmission
+   of Shocks: Firm-Level Evidence from the 2011 Tōhoku Earthquake. *Review of
+   Economics and Statistics* 2019, 101, 60–75. doi:10.1162/rest_a_00750.
+8. Gabaix X. The Granular Origins of Aggregate Fluctuations. *Econometrica*
+   2011, 79, 733–772. doi:10.3982/ECTA8769.
+9. di Giovanni J., Levchenko A.A. Country Size, International Trade, and
+   Aggregate Fluctuations in Granular Economies. *Journal of Political Economy*
+   2012, 120, 1083–1132. doi:10.1086/669161.
+10. Oberfield E., et al. Aggregate Fluctuations in Adaptive Production
+    Networks. *PNAS* 2022, 119, e2203730119. doi:10.1073/pnas.2203730119.
+11. Inoue H., Todo Y. Firm-Level Propagation of Shocks Through Supply-Chain
+    Networks. *Nature Sustainability* 2019, 2, 841–847.
+    doi:10.1038/s41893-019-0357-z.
+12. Otto C., Willner S.N., Wenz L., Frieler K., Levermann A. Modeling
+    Loss-Propagation in the Global Supply Network: The Dynamic Agent-Based
+    Model Acclimate. *Journal of Economic Dynamics & Control* 2017, 83,
+    232–269. doi:10.1016/j.jedc.2017.08.001.
+13. Allen F., Gale D. Financial Contagion. *Journal of Political Economy* 2000,
+    108, 1–33. doi:10.1086/262109.
+14. Gai P., Kapadia S. Contagion in Financial Networks. *Proceedings of the
+    Royal Society A* 2010, 466, 2401–2423. doi:10.1098/rspa.2009.0410.
+15. Battiston S., Delli Gatti D., Gallegati M., Greenwald B., Stiglitz J.E.
+    Liaisons Dangereuses: Increasing Connectivity, Risk Sharing, and Systemic
+    Risk. *Journal of Economic Dynamics & Control* 2012, 36, 1121–1141.
+    doi:10.1016/j.jedc.2012.04.001.
+16. Elliott M., Golub B., Jackson M.O. Financial Networks and Contagion.
+    *American Economic Review* 2014, 104, 3115–3153.
+    doi:10.1257/aer.104.10.3115.
+17. Haldane A.G., May R.M. Systemic Risk in Banking Ecosystems. *Nature* 2011,
+    469, 351–355. doi:10.1038/nature09659.
+18. Eichenbaum M.S., Rebelo S., Trabandt M. The Macroeconomics of Epidemics.
+    *Review of Financial Studies* 2021, 34, 5149–5187. doi:10.1093/rfs/hhab040.
+19. Coquidé C., Lages J., Shepelyansky D.L. Crisis Contagion in the World Trade
+    Network. *Applied Network Science* 2020, 5, 67.
+    doi:10.1007/s41109-020-00304-z.
+20. Acemoglu D., Ozdaglar A., Tahbaz-Salehi A. Systemic Risk and Stability in
+    Financial Networks. *American Economic Review* 2015, 105, 564–608.
+    doi:10.1257/aer.20130456.
+21. Starnini M., Boguñá M., Serrano M.Á. Shock Propagation on Global
+    Trade-Investment Multiplex Networks. *Scientific Reports* 2019, 9, 13079.
+    doi:10.1038/s41598-019-49173-2.
+22. Hidalgo C.A., Hausmann R. The Building Blocks of Economic Complexity.
+    *PNAS* 2009, 106, 10570–10575. doi:10.1073/pnas.0900943106.
+23. Caliendo L., Parro F., Rossi-Hansberg E., Sarte P.-D. The Impact of
+    Regional and Sectoral Productivity Changes on the U.S. Economy. *Review of
+    Economic Studies* 2018, 85, 2042–2096. doi:10.1093/restud/rdx082.
+24. Eaton J., Kortum S. Technology, Geography, and Trade. *Econometrica* 2002,
+    70, 1741–1779. doi:10.1111/1468-0262.00352.
+25. OECD. Inter-Country Input-Output (ICIO) Tables, 2025 Edition (Year 2019);
+    OECD: Paris, 2025.
+26. International Monetary Fund. PortWatch: Daily Chokepoint Transit Data; IMF:
+    Washington, DC, 2021–2024.
+27. OICA; JAMA; VDA; SIA. Industry Motor-Vehicle and Semiconductor Production
+    Statistics, 1999–2023.
 
 ---
 
