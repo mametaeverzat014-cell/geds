@@ -120,11 +120,11 @@ const typeLabel = new Paragraph({ spacing: { before: 120, after: 40 },
 const title = new Paragraph({ spacing: { after: 120 },
   children: [new TextRun({ text: "Может ли одно число отличить хорошую модель каскадов от наивной? Трёхосевая валидация симулятора глобальных цепочек поставок на 27 первично-документированных исторических событиях", bold: true, font: FONT, size: 32, color: DARK })] });
 const authors = new Paragraph({ spacing: { after: 40 },
-  children: [new TextRun({ text: "[Фамилия Имя]", font: FONT, size: 22 }),
+  children: [new TextRun({ text: "Yerzat Mametayev", font: FONT, size: 22 }),
     new TextRun({ text: " 1,*", font: FONT, size: 22, superScript: true })] });
 const affil = new Paragraph({ spacing: { after: 20 },
   children: [new TextRun({ text: "1", font: FONT, size: 16, superScript: true }),
-    new TextRun({ text: "  [Учебное заведение], [Город], [Страна]", font: FONT, size: 16, color: GREY })] });
+    new TextRun({ text: "  Nazarbayev Intellectual School of Physics and Mathematics in Semey, Semey, Kazakhstan", font: FONT, size: 16, color: GREY })] });
 const corr = new Paragraph({ spacing: { after: 120 },
   children: [new TextRun({ text: "*", font: FONT, size: 16, superScript: true }),
     new TextRun({ text: "  Корреспонденция: mametaeverzat014@gmail.com", font: FONT, size: 16, color: GREY })] });
@@ -294,9 +294,6 @@ col(H1("9. Воспроизводимость"));
 col(P("Конфигурация движка запинена (сиды фиксированы, стохастика выключена); результаты заморожены golden-тестами, любое численное изменение — явный диф в том же коммите. Статистический слой детерминирован (сид 20260718). Головной документ чисел и все фигуры генерируются скриптами из артефактов; каждая фигура сопровождается численной таблицей. 157 автотестов. Точные команды — Приложение B."));
 col(H1("10. Заключение и дальнейшая работа"));
 col(P("Построенный бенчмарк и трёхосевая валидация дают способ отличать модели каскадов друг от друга статистически честно. Дальше: рост N через чокпойнт-события (транзитные данные IMF PortWatch обходят проблему разбавления); калибровка магнитуд на 405-узловом ICIO-графе; спросовый механизм для событий типа 2008–09; публикация бенчмарка как открытого стандарта."));
-col(new Paragraph({ spacing: { before: 100, after: 40 }, children: [new TextRun({ text: "Раскрытие использования ИИ", bold: true, font: FONT, size: 18, color: DARK })] }));
-col(P("Инженерная реализация, статистическая обработка и подготовка черновиков выполнялись с использованием ИИ-ассистента под руководством автора; постановка задачи, решения о включении данных, принятие/отклонение механизмов по гейтам и финальный текст — авторские. Все данные — из открытых первичных источников, перечисленных построчно в CSV-файлах репозитория.", { indent: false }));
-
 col(new Paragraph({ spacing: { before: 100, after: 40 }, children: [new TextRun({ text: "Служебная информация", bold: true, font: FONT, size: 18, color: DARK })] }));
 col(P("**Доступность данных и кода.** Все данные, код движка, валидационные скрипты и артефакты открыты в репозитории проекта; каждая калибровочная цель снабжена первичным источником. Числа воспроизводятся командами Приложения B.", { indent: false }));
 col(P("**Вклад авторов.** [Заполнить по CRediT: концепция, методология, ПО, валидация, формальный анализ, подготовка текста, визуализация.]", { indent: false }));
