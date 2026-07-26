@@ -249,14 +249,14 @@ full([CAP("Table 5. Component ablation of the engine (N=27): each component's co
     ["+per-node recovery", "0.0233", "−0.0009"],
     ["pure linear diffusion", "0.0171", "−0.0071"]])]);
 col(H2("6.7. Parameter sensitivity and identifiability"));
-col(P("A variance-based Sobol sensitivity analysis (1536 engine runs, output mean_industry_loss_MAE — Table 6) asks whether the five parameters are identifiable; the ranking is stable across event-set size. Of the five, only one is truly identifiable — recovery_rate, carrying ~91% of output variance; inventory_scale acts only through interactions and two parameters are negligible and can be fixed. This independently corroborates §6.6 (the model is over-complex relative to what the N=27 data can constrain) and explains why per-fold recalibration (§6.4) so easily masks structural edits: almost all fitting freedom lives in one parameter. (MCMC at 350 steps did not converge, r̂=2.03; Bayesian intervals are left to a longer future run.)"));
-full([CAP("Table 6. Sobol sensitivity indices: total effect ST and first-order S1 for the five parameters."),
+col(P("A variance-based Sobol sensitivity analysis (1536 engine runs, output mean_industry_loss_MAE, N=27 — Table 6) asks whether the five parameters are identifiable. Two parameters carry the output variance — recovery_rate (ST 0.62) and inventory_scale (ST 0.59) — and their low first-order indices (S1 0.39 and 0.42) against high total effects signal strong interaction between them (ST sum ≈ 1.30 ≫ 1); two parameters are negligible and can be fixed, and one is minor. Thus three of five parameters are effectively non-identifiable individually, with the fitting freedom concentrated in a strongly-coupled (recovery_rate, inventory_scale) pair. This independently corroborates §6.6 (the model is over-complex relative to what the N=27 data can constrain) and explains why per-fold recalibration (§6.4) so easily masks structural edits. (MCMC at 350 steps did not converge, r̂=2.03; Bayesian intervals are left to a longer future run.)"));
+full([CAP("Table 6. Sobol sensitivity indices (N=27): total effect ST and first-order S1 for the five parameters."),
   table([3238, 1600, 1600, 3200], [
     ["Parameter", "ST", "S1", "Reading"],
-    ["recovery_rate", "0.913", "0.771", "dominates"],
-    ["inventory_scale", "0.270", "≈0", "interactions only"],
-    ["bullwhip_factor", "0.039", "≈0", "moderate"],
-    ["amplification_mu", "0.005", "0.003", "negligible — can be fixed"],
+    ["recovery_rate", "0.617", "0.392", "variance + interactions"],
+    ["inventory_scale", "0.592", "0.416", "variance + interactions"],
+    ["bullwhip_factor", "0.077", "0.011", "minor"],
+    ["amplification_mu", "0.010", "0.002", "negligible — can be fixed"],
     ["distress_base", "0.000", "0.000", "negligible — can be fixed"]])]);
 
 col(H1("7. Discussion"));
