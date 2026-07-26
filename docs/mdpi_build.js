@@ -146,7 +146,7 @@ const metaBlock = new Paragraph({ spacing: { before: 40, after: 100 },
     new TextRun({ text: "Поступила / Принята / Опубликована: —.  ", font: FONT, size: 15, color: GREY }),
     new TextRun({ text: "Авторские права: © 2026 автор(ы). CC BY 4.0.  ", font: FONT, size: 15, color: GREY }),
     new TextRun({ text: "Все числа генерируются из артефактов репозитория и воспроизводимы с фиксированными сидами.", font: FONT, size: 15, color: GREY })] });
-const front = [masthead, typeLabel, title, authors, affil, corr, abstractBox, keywords, metaBlock];
+const front = [typeLabel, title, authors, affil, corr, abstractBox, keywords, metaBlock];
 
 // ===================== BODY =====================
 const flow = [];
@@ -386,8 +386,8 @@ const pageProps = { page: { size: { width: 11906, height: 16838 },
 const footer = () => new Footer({ children: [new Paragraph({
   border: { top: { style: BorderStyle.SINGLE, size: 6, color: GREEN, space: 6 } },
   tabStops: [{ type: TabStopType.RIGHT, position: TW }],
-  children: [new TextRun({ text: "[Название журнала] 2026, рабочий препринт", italics: true, font: FONT, size: 14, color: GREY }),
-    new TextRun({ children: ["\tGEDS · ", PageNumber.CURRENT, " из ", PageNumber.TOTAL_PAGES], font: FONT, size: 14, color: GREY })] })] });
+  children: [new TextRun({ text: "GEDS — рабочий препринт", italics: true, font: FONT, size: 14, color: GREY }),
+    new TextRun({ children: ["\t", PageNumber.CURRENT, " из ", PageNumber.TOTAL_PAGES], font: FONT, size: 14, color: GREY })] })] });
 
 const sections = [{ properties: { ...pageProps, column: { count: 1 }, footers: { default: footer() } }, children: front }];
 let buf = [];

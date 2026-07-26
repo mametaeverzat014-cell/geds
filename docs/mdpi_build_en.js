@@ -124,7 +124,7 @@ const metaBlock = new Paragraph({ spacing: { before: 40, after: 100 }, border: {
     new TextRun({ text: "Received / Accepted / Published: —.  ", font: FONT, size: 15, color: GREY }),
     new TextRun({ text: "Copyright: © 2026 the author(s). CC BY 4.0.  ", font: FONT, size: 15, color: GREY }),
     new TextRun({ text: "All numbers are generated from repository artifacts and reproducible under fixed seeds.", font: FONT, size: 15, color: GREY })] });
-const front = [masthead, typeLabel, title, authors, affil, corr, abstractBox, keywords, highlightsBox, metaBlock];
+const front = [typeLabel, title, authors, affil, corr, abstractBox, keywords, highlightsBox, metaBlock];
 
 // ===================== BODY =====================
 const flow = [];
@@ -362,8 +362,8 @@ col(CODE([
 const pageProps = { page: { size: { width: 11906, height: 16838 }, margin: { top: 1134, bottom: 1134, left: 1134, right: 1134 } } };
 const footer = () => new Footer({ children: [new Paragraph({ border: { top: { style: BorderStyle.SINGLE, size: 6, color: GREEN, space: 6 } },
   tabStops: [{ type: TabStopType.RIGHT, position: TW }],
-  children: [new TextRun({ text: "[Journal Name] 2026, working preprint", italics: true, font: FONT, size: 14, color: GREY }),
-    new TextRun({ children: ["\tGEDS · ", PageNumber.CURRENT, " of ", PageNumber.TOTAL_PAGES], font: FONT, size: 14, color: GREY })] })] });
+  children: [new TextRun({ text: "GEDS — working preprint", italics: true, font: FONT, size: 14, color: GREY }),
+    new TextRun({ children: ["\t", PageNumber.CURRENT, " of ", PageNumber.TOTAL_PAGES], font: FONT, size: 14, color: GREY })] })] });
 const sections = [{ properties: { ...pageProps, column: { count: 1 }, footers: { default: footer() } }, children: front }];
 let buf = [];
 const flushCol = () => { if (buf.length) { sections.push({ properties: { ...pageProps, type: SectionType.CONTINUOUS, column: { count: 2, space: 454, equalWidth: true }, footers: { default: footer() } }, children: buf }); buf = []; } };
