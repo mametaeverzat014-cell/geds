@@ -1,0 +1,118 @@
+{
+  "schema": "geds.v3scale.v1",
+  "timestamp": "2026-07-27T05:02:48.869409+00:00",
+  "seed": 20260718,
+  "n_events": 24,
+  "excluded": "chokepoint-only events (no v3 node): suez-canal-2021, red-sea-crisis-2023, panama-canal-drought-2023",
+  "event_slugs": [
+    "covid-semiconductor-2020-2021",
+    "auto-chip-shortage-2021",
+    "japan-triple-disaster-2011",
+    "us-china-tariffs-2019",
+    "texas-winter-storm-2021",
+    "eu-energy-crisis-2021",
+    "malaysia-semiconductor-2021",
+    "thailand-floods-2011",
+    "kumamoto-earthquake-2016",
+    "renesas-naka-fire-2021",
+    "japan-korea-export-controls-2019",
+    "vietnam-covid-lockdown-2021",
+    "shanghai-lockdown-2022",
+    "ukraine-war-harness-2022",
+    "china-power-crunch-2021",
+    "yantian-port-closure-2021",
+    "us-west-coast-ports-2021",
+    "taiwan-drought-2021",
+    "india-covid-wave-2021",
+    "taiwan-chichi-earthquake-1999",
+    "hurricane-harvey-2017",
+    "us-west-coast-ports-2015",
+    "korea-trucker-strikes-2022",
+    "gfc-auto-collapse-2008-2009"
+  ],
+  "free_parameters": {
+    "GEDS_v3_LOO_scale": 1,
+    "GEDS_v2_calibrated": 5,
+    "Leontief": 0,
+    "LinearDiffusion": 0,
+    "NaivePersistence": 0
+  },
+  "loo_scale_k": {
+    "mean": 0.2578,
+    "min": 0.2184,
+    "max": 0.2936
+  },
+  "scores": {
+    "GEDS_v3_LOO_scale": {
+      "mae": 0.01331,
+      "rmse": 0.02214,
+      "spearman": 0.7876,
+      "mean_pred": 0.02305
+    },
+    "GEDS_v3_raw": {
+      "mae": 0.06771,
+      "rmse": 0.10638,
+      "spearman": 0.8025,
+      "mean_pred": 0.09025
+    },
+    "GEDS_v2_calibrated": {
+      "mae": 0.02655,
+      "rmse": 0.04914,
+      "spearman": 0.444,
+      "mean_pred": 0.02388
+    },
+    "Leontief": {
+      "mae": 0.01825,
+      "rmse": 0.03315,
+      "spearman": 0.3314,
+      "mean_pred": 0.01098
+    },
+    "LinearDiffusion": {
+      "mae": 0.01854,
+      "rmse": 0.03349,
+      "spearman": 0.7068,
+      "mean_pred": 0.03217
+    },
+    "NaivePersistence": {
+      "mae": 0.0227,
+      "rmse": 0.03401,
+      "spearman": null,
+      "mean_pred": 0.02271
+    }
+  },
+  "pairwise_vs_v3_scaled": {
+    "GEDS_v3_LOO_scale__vs__GEDS_v2_calibrated": {
+      "point": -0.01323,
+      "p2_5": -0.03157,
+      "p97_5": 0.00166,
+      "p_perm_mae_two_sided": 0.16634,
+      "significant_at_05": false
+    },
+    "GEDS_v3_LOO_scale__vs__Leontief": {
+      "point": -0.00494,
+      "p2_5": -0.01469,
+      "p97_5": 0.00466,
+      "p_perm_mae_two_sided": 0.34383,
+      "significant_at_05": false
+    },
+    "GEDS_v3_LOO_scale__vs__LinearDiffusion": {
+      "point": -0.00523,
+      "p2_5": -0.01865,
+      "p97_5": 0.00579,
+      "p_perm_mae_two_sided": 0.50017,
+      "significant_at_05": false
+    },
+    "GEDS_v3_LOO_scale__vs__NaivePersistence": {
+      "point": -0.00939,
+      "p2_5": -0.01781,
+      "p97_5": 0.00013,
+      "p_perm_mae_two_sided": 0.0571,
+      "significant_at_05": false
+    }
+  },
+  "interpretation": {
+    "headline": "The dense ICIO graph with ONE leave-one-out-fitted scale parameter leads every metric, beating the 5-parameter calibrated v2 engine and all zero-parameter baselines \u2014 but no advantage is statistically significant at n=24.",
+    "why_it_matters": "v3's raw predictions rank events far better than calibrated v2 (Spearman 0.80 vs 0.44) while running ~4x hot; the error is a scale offset, not a shape error. This is the magnitude-axis counterpart of the spatial-recall result: network structure carries information that parameter tuning does not replace.",
+    "caveat": "The scale is fitted leave-one-out so the held-out event never informs its own k, but the comparison set (24 events) excludes chokepoints and n is small; absence of significance is not evidence of equivalence."
+  }
+}
