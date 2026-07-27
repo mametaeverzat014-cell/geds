@@ -259,6 +259,21 @@ full([CAP("Table 6. Sobol sensitivity indices (N=27): total effect ST and first-
     ["amplification_mu", "0.010", "0.002", "negligible — can be fixed"],
     ["distress_base", "0.000", "0.000", "negligible — can be fixed"]])]);
 
+col(H2("6.8. Structure versus tuning: the dense graph with a single parameter"));
+col(P("Section 6.5 showed the ICIO graph reaches far more of the observed cascade, but its magnitudes were never scored: v3's parameters are uncalibrated structural priors and its predictions run roughly four times hot. Is that a shape error or a scale error?"));
+col(P("It is scale. At default parameters the raw v3 ranks events markedly better than the fully calibrated v2 (Spearman 0.80 vs. 0.44) while systematically over-predicting (mean prediction 0.090 vs. observed 0.023). We added a **single** free quantity — a global scale factor fitted **out-of-sample** (leave-one-out: k is least-squares estimated on the other N−1 events and applied to the held-out one). Chokepoint events have no v3 representation, so all models are scored on the same 24 events (Table 7). The mean LOO factor k ≈ 0.26 is stable across folds."));
+full([CAP("Table 7. The dense ICIO graph with one out-of-sample scale factor versus the calibrated v2 engine and the zero-parameter baselines (same 24 events)."),
+  table([3838, 1900, 1950, 1950], [
+    ["Model", "Free params", "MAE", "Spearman"],
+    ["GEDS v3 + LOO scale", "1", "0.0133", "+0.788"],
+    ["Leontief", "0", "0.0182", "+0.331"],
+    ["Linear diffusion", "0", "0.0185", "+0.707"],
+    ["Naive mean", "0", "0.0227", "—"],
+    ["GEDS v2 (calibrated)", "5", "0.0266", "+0.444"],
+    ["GEDS v3 raw (no scale)", "0", "0.0677", "+0.802"]])]);
+col(P("This is the first configuration to lead **every metric at once** — achieved with one parameter instead of five. **What we do not claim:** no advantage is significant — against Leontief ΔMAE −0.0049 (p = 0.34), against linear diffusion −0.0052 (p = 0.50), against the naive mean −0.0094 (p = 0.06), against v2 −0.0132 (p = 0.17). The §6.1 parity finding is therefore not overturned but confirmed once more, now on the best available configuration: even it does not separate from the baselines at this N — exactly what the §6.4 power analysis predicts."));
+col(P("The substantive meaning lies elsewhere. Replacing the hand-built graph with measured input–output structure buys more on magnitude than calibrating five dynamics parameters on the hand-built graph (0.0133 vs. 0.0266) — the magnitude-axis counterpart of the spatial result in §6.5. Both point the same way: **the information carried by network completeness and accuracy is not substitutable by parameter tuning.** A full five-parameter calibration on v3 is a separate computational task (the 405-node engine is roughly 9× slower) and is left to future work."));
+
 col(H1("7. Discussion"));
 col(P("Three results combine into one conclusion. (1) On the axis almost every paper reports — point magnitude — four fundamentally different models are statistically indistinguishable, and this is not an artifact of weak tuning: the parity survives per-fold recalibration and is quantitatively power-limited. (2) The axes that do separate the models are temporal and spatial: where only a full dynamic model can even compete, its results are significant (0.69 and 0.88). (3) The largest measured quality gain came not from dynamics but from network-structure data (recall 0.29 → 0.79, free in parameters)."));
 col(P("Practical takeaway: cascade models should be validated by “predict the pattern, not one number,” or leaderboards compare noise. Methodological takeaway: pre-registering gates turns negative results into publishable assets."));
