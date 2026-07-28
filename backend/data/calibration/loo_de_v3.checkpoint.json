@@ -144,6 +144,19 @@
       "fold_params": {},
       "fold_train_loss": null,
       "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "india-covid-wave-2021",
+      "loss_predicted": 0.0089,
+      "loss_observed": 0.004,
+      "fold_params": {
+        "amplification_mu": 0.3865,
+        "bullwhip_factor": 1.9512,
+        "recovery_rate": 0.2362,
+        "inventory_scale": 1.6523,
+        "distress_base": 0.5137
+      },
+      "fold_train_loss": 17.159
     }
   ]
 }
