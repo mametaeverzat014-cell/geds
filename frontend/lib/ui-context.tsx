@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
 export type Lang = "en" | "ru";
 
@@ -486,10 +486,35 @@ const UIContext = createContext<UIContextType>({
   toggleFaq: () => {},
 });
 
+const LANG_KEY = "geds.lang";
+
 export function UIProvider({ children }: { children: ReactNode }) {
+  // Language must survive navigation: /validation is reached through a plain
+  // <a href>, i.e. a full document load, so in-memory state alone reset every
+  // visitor back to English and made the Russian validation copy unreachable.
   const [lang, setLang] = useState<Lang>("en");
   const [faqOpen, setFaqOpen] = useState(false);
-  const toggleLang = () => setLang((l) => (l === "en" ? "ru" : "en"));
+
+  // Read after mount, not during render, so server and client markup match.
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(LANG_KEY);
+      if (saved === "en" || saved === "ru") setLang(saved);
+    } catch {
+      /* storage blocked (private mode) — fall back to the default language */
+    }
+  }, []);
+
+  const toggleLang = () =>
+    setLang((l) => {
+      const next: Lang = l === "en" ? "ru" : "en";
+      try {
+        window.localStorage.setItem(LANG_KEY, next);
+      } catch {
+        /* non-fatal: the toggle still works for this page view */
+      }
+      return next;
+    });
   const toggleFaq = () => setFaqOpen((o) => !o);
   const t = (key: TKey) => (T[lang] as Record<string, string>)[key] ?? (T.en as Record<string, string>)[key] ?? key;
   return (

@@ -197,7 +197,7 @@ interface CascadeValidation {
 }
 
 export default function ValidationPage() {
-  const { lang } = useUI();
+  const { lang, toggleLang, t } = useUI();
   const [cv, setCv] = useState<CVReport | null>(null);
   const [posterior, setPosterior] = useState<Posterior | null>(null);
   const [research, setResearch] = useState<ResearchMetrics | null>(null);
@@ -234,12 +234,23 @@ export default function ValidationPage() {
   return (
     <main className="max-w-[1600px] mx-auto px-6 py-6 space-y-4">
       <div className="border-b border-border-subtle pb-3">
-        <h1 className="text-2xl font-extrabold tracking-tight">
-          <a href="/" className="title-gradient hover:opacity-80 transition">GEDS</a>
-          <span className="text-text-secondary font-semibold text-sm uppercase tracking-[0.2em] ml-3">
-            {tr("Validation Mode", "Режим валидации")}
-          </span>
-        </h1>
+        <div className="flex items-start justify-between gap-3">
+          <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight min-w-0">
+            <a href="/" className="title-gradient hover:opacity-80 transition">GEDS</a>
+            <span className="text-text-secondary font-semibold text-[12px] sm:text-sm uppercase tracking-[0.12em] sm:tracking-[0.2em] ml-2 sm:ml-3">
+              {tr("Validation Mode", "Режим валидации")}
+            </span>
+          </h1>
+          {/* this page had no language control at all, so its Russian copy was unreachable */}
+          <div className="flex items-center gap-2 shrink-0">
+            <a href="/" className="btn-pill">
+              {tr("← Simulator", "← Симулятор")}
+            </a>
+            <button onClick={toggleLang} className="btn-pill">
+              {t("langBtn")}
+            </button>
+          </div>
+        </div>
         <p className="text-[13px] text-text-muted mt-1 max-w-3xl leading-relaxed">
           {tr(
             "Live, computed validation metrics. Nothing on this page is hardcoded — every number is fetched from the running backend.",
