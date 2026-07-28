@@ -81,7 +81,7 @@ export default function ScenarioControls() {
         </h2>
         <span
           className={clsx(
-            "text-xs num inline-flex items-center gap-1.5",
+            "text-[13px] num inline-flex items-center gap-1.5",
             running ? "text-accent-gold" : "text-text-muted",
           )}
         >
@@ -97,7 +97,7 @@ export default function ScenarioControls() {
 
       {/* ── graph selector ── */}
       <div>
-        <div className="text-[10px] uppercase tracking-wider text-text-muted mb-1">Graph</div>
+        <div className="text-[12px] uppercase tracking-wider text-text-muted mb-1">Graph</div>
         <div className="grid grid-cols-2 gap-1.5">
           {GRAPHS.map((g) => (
             <button
@@ -111,13 +111,13 @@ export default function ScenarioControls() {
                   : "border-border-subtle text-text-muted hover:text-text-secondary hover:border-border-strong",
               )}
             >
-              <div className="text-xs font-semibold">{g.label}</div>
-              <div className="text-[9px] num text-text-muted">{g.nodes}</div>
+              <div className="text-[13px] font-semibold">{g.label}</div>
+              <div className="text-[12px] num text-text-muted">{g.nodes}</div>
             </button>
           ))}
         </div>
         {graphVersion === "v3" && (
-          <p className="text-[10px] text-text-muted mt-1 leading-snug">
+          <p className="text-[12px] text-text-muted mt-1 leading-snug">
             ICIO structural graph (uncalibrated priors). Cascade <em>reach</em> is far wider;
             magnitudes aren&apos;t tuned to this topology yet.
           </p>
@@ -142,12 +142,12 @@ export default function ScenarioControls() {
               <span className="flex items-center justify-between gap-2">
                 <span className="truncate">{p.label}</span>
                 {p.primary && (
-                  <span className="shrink-0 text-[9px] uppercase tracking-wider px-1.5 py-px rounded-full border border-accent-cyan/40 text-accent-cyan/90 bg-accent-cyan/10">
+                  <span className="shrink-0 text-[12px] uppercase tracking-wider px-1.5 py-px rounded-full border border-accent-cyan/40 text-accent-cyan/90 bg-accent-cyan/10">
                     flagship
                   </span>
                 )}
                 {disabled && (
-                  <span className="shrink-0 text-[9px] uppercase tracking-wider text-text-muted">
+                  <span className="shrink-0 text-[12px] uppercase tracking-wider text-text-muted">
                     v2 only
                   </span>
                 )}

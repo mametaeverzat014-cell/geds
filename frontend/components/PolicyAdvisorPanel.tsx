@@ -56,26 +56,26 @@ function RecommendationCard({
         <div className={clsx("w-0.5 self-stretch rounded-full shrink-0 mt-0.5", ps.bar)} />
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className={clsx("text-[10px] px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider", ps.badge)}>
+            <span className={clsx("text-[12px] px-1.5 py-0.5 rounded font-semibold uppercase tracking-wider", ps.badge)}>
               {lang === "en" ? ps.label_en : ps.label_ru}
             </span>
-            <span className="text-[10px] text-text-muted">
+            <span className="text-[12px] text-text-muted">
               {CATEGORY_ICON[rec.category]} {lang === "en" ? catLabel.en : catLabel.ru}
             </span>
-            <span className="text-[10px] text-text-muted ml-auto num">
+            <span className="text-[12px] text-text-muted ml-auto num">
               {rec.horizon_weeks} {t("weeksToEffect")}
             </span>
           </div>
-          <p className="text-xs text-text-primary mt-1 font-medium leading-snug">{rec.title}</p>
+          <p className="text-[13px] text-text-primary mt-1 font-medium leading-snug">{rec.title}</p>
         </div>
-        <span className="text-text-muted text-xs shrink-0">{expanded ? "▴" : "▾"}</span>
+        <span className="text-text-muted text-[13px] shrink-0">{expanded ? "▴" : "▾"}</span>
       </button>
 
       {expanded && (
         <div className="px-3 pb-3 border-t border-border-subtle/60 pt-2 space-y-3">
-          <p className="text-xs text-text-secondary leading-relaxed">{rec.description}</p>
+          <p className="text-[13px] text-text-secondary leading-relaxed">{rec.description}</p>
 
-          <div className="grid grid-cols-2 gap-3 text-[10px]">
+          <div className="grid grid-cols-2 gap-3 text-[12px]">
             <div>
               <div className="text-text-muted uppercase tracking-wider mb-1">{t("estimatedImpact")}</div>
               <div className="flex items-center gap-2">
@@ -97,7 +97,7 @@ function RecommendationCard({
           </div>
 
           {(rec.target_countries.length > 0 || rec.target_industries.length > 0) && (
-            <div className="flex gap-3 text-[10px] text-text-muted flex-wrap border-t border-border-subtle/40 pt-2">
+            <div className="flex gap-3 text-[12px] text-text-muted flex-wrap border-t border-border-subtle/40 pt-2">
               {rec.target_countries.length > 0 && (
                 <span>
                   <span className="text-text-muted/60">{t("targetCountries")}:</span>{" "}
@@ -160,11 +160,11 @@ export default function PolicyAdvisorPanel() {
           className="text-sm font-semibold uppercase tracking-wider text-text-secondary hover:text-text-primary transition flex items-center gap-2"
         >
           <span>🧠 {t("policyAdvisor")}</span>
-          {hasResult && <span className="text-text-muted text-xs">{open ? "▴" : "▾"}</span>}
+          {hasResult && <span className="text-text-muted text-[13px]">{open ? "▴" : "▾"}</span>}
         </button>
         <div className="flex items-center gap-2">
           {hasResult && (
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">
+            <span className="text-[12px] px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">
               {advisor!.recommendations.length} {lang === "en" ? "recommendations" : "рекомендаций"}
             </span>
           )}
@@ -173,7 +173,7 @@ export default function PolicyAdvisorPanel() {
             disabled={advisorLoading || !summary}
             title={!summary ? t("runFirstHint") : undefined}
             className={clsx(
-              "text-xs px-3 py-1 rounded font-semibold border transition",
+              "text-[13px] px-3 py-1 rounded font-semibold border transition",
               advisorLoading
                 ? "border-border-subtle text-text-muted cursor-not-allowed"
                 : !summary
@@ -189,8 +189,8 @@ export default function PolicyAdvisorPanel() {
       {/* ── no result hint ── */}
       {!hasResult && !advisorLoading && (
         <div className="px-4 py-4">
-          <p className="text-xs text-text-muted">{t("noResultsHint")}</p>
-          <div className="mt-3 grid grid-cols-3 gap-2 text-[10px]">
+          <p className="text-[13px] text-text-muted">{t("noResultsHint")}</p>
+          <div className="mt-3 grid grid-cols-3 gap-2 text-[12px]">
             {[
               { icon: "1️⃣", en: "Select a scenario on the left", ru: "Выберите сценарий слева" },
               { icon: "2️⃣", en: "Click 'Run simulation'",        ru: "Нажмите «Запустить»" },
@@ -211,7 +211,7 @@ export default function PolicyAdvisorPanel() {
 
           {/* Executive summary */}
           <div className="bg-bg-base/50 rounded border border-border-subtle p-3 space-y-2.5">
-            <div className="text-[11px] font-bold uppercase tracking-widest text-text-muted">
+            <div className="text-[12px] font-bold uppercase tracking-widest text-text-muted">
               {t("executiveSummary")}
             </div>
             <div className="grid grid-cols-3 gap-3">
@@ -235,12 +235,12 @@ export default function PolicyAdvisorPanel() {
             {/* critical nodes list */}
             {advisor.critical_nodes.length > 0 && (
               <div>
-                <div className="text-[10px] text-text-muted mb-1">
+                <div className="text-[12px] text-text-muted mb-1">
                   {lang === "en" ? "Most critically disrupted nodes:" : "Наиболее критически нарушенные узлы:"}
                 </div>
                 <div className="flex flex-wrap gap-1">
                   {advisor.critical_nodes.slice(0, 8).map((n) => (
-                    <span key={n} className="text-[10px] px-1.5 py-0.5 rounded bg-sev-5/10 border border-sev-5/25 text-sev-4 num">
+                    <span key={n} className="text-[12px] px-1.5 py-0.5 rounded bg-sev-5/10 border border-sev-5/25 text-sev-4 num">
                       {n}
                     </span>
                   ))}
@@ -252,7 +252,7 @@ export default function PolicyAdvisorPanel() {
             {advisor.chokepoint_alerts.length > 0 && (
               <div className="flex gap-1.5 flex-wrap">
                 {advisor.chokepoint_alerts.map((cp) => (
-                  <span key={cp} className="text-[10px] px-2 py-0.5 rounded bg-accent-gold/10 border border-accent-gold/30 text-accent-gold">
+                  <span key={cp} className="text-[12px] px-2 py-0.5 rounded bg-accent-gold/10 border border-accent-gold/30 text-accent-gold">
                     ⚠ {cp.replace("CP:", "")}
                   </span>
                 ))}
@@ -260,7 +260,7 @@ export default function PolicyAdvisorPanel() {
             )}
 
             {/* what this means */}
-            <p className="text-[10px] text-text-muted leading-relaxed border-t border-border-subtle/50 pt-2">
+            <p className="text-[12px] text-text-muted leading-relaxed border-t border-border-subtle/50 pt-2">
               {lang === "en"
                 ? `You have approximately ${advisor.intervention_window_weeks} weeks before the cascade reaches its peak. ${advisor.critical_nodes.length} nodes are experiencing significant disruption. ${advisor.recommendations.length} policy actions are recommended below, ordered by priority.`
                 : `У вас примерно ${advisor.intervention_window_weeks} недель до достижения пика каскада. ${advisor.critical_nodes.length} узлов испытывают значительные нарушения. Ниже приведены ${advisor.recommendations.length} приоритетных рекомендации по политике.`}
@@ -270,14 +270,14 @@ export default function PolicyAdvisorPanel() {
           {/* Recommendations */}
           {advisor.recommendations.length > 0 && (
             <div className="space-y-2">
-              <div className="text-[11px] font-bold uppercase tracking-widest text-text-muted">
+              <div className="text-[12px] font-bold uppercase tracking-widest text-text-muted">
                 {t("recommendations")}
               </div>
 
               {/* Critical first */}
               {criticalRecs.length > 0 && (
                 <div className="space-y-1.5">
-                  <div className="text-[10px] text-sev-5 uppercase tracking-wider font-semibold flex items-center gap-1">
+                  <div className="text-[12px] text-sev-5 uppercase tracking-wider font-semibold flex items-center gap-1">
                     <span className="w-4 h-px bg-sev-5/50" />
                     {lang === "en" ? "Immediate action required" : "Требуется немедленное действие"}
                     <span className="flex-1 h-px bg-sev-5/50" />
@@ -305,7 +305,7 @@ export default function PolicyAdvisorPanel() {
               {otherRecs.length > 0 && (
                 <div className="space-y-1.5">
                   {criticalRecs.length > 0 && (
-                    <div className="text-[10px] text-text-muted uppercase tracking-wider font-semibold flex items-center gap-1 mt-1">
+                    <div className="text-[12px] text-text-muted uppercase tracking-wider font-semibold flex items-center gap-1 mt-1">
                       <span className="w-4 h-px bg-border-subtle" />
                       {lang === "en" ? "Additional recommendations" : "Дополнительные рекомендации"}
                       <span className="flex-1 h-px bg-border-subtle" />
@@ -336,7 +336,7 @@ export default function PolicyAdvisorPanel() {
           <div className="border-t border-border-subtle pt-3">
             <button
               onClick={() => setShowMethod((s) => !s)}
-              className="w-full flex items-center justify-between text-[10px] text-text-muted hover:text-text-secondary transition"
+              className="w-full flex items-center justify-between text-[12px] text-text-muted hover:text-text-secondary transition"
             >
               <span className="uppercase tracking-wider font-semibold">{t("methodologyTitle")}</span>
               <span>{showMethod ? "▴" : "▾"}</span>
@@ -344,22 +344,22 @@ export default function PolicyAdvisorPanel() {
 
             {showMethod && (
               <div className="mt-2 space-y-2.5">
-                <p className="text-[10px] text-text-secondary leading-relaxed">
+                <p className="text-[12px] text-text-secondary leading-relaxed">
                   {t("methodologyText")}
                 </p>
 
                 {/* confidence badge */}
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] text-text-muted uppercase tracking-wider">{t("confidenceLabel")}:</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20 font-semibold">
+                  <span className="text-[12px] text-text-muted uppercase tracking-wider">{t("confidenceLabel")}:</span>
+                  <span className="text-[12px] px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20 font-semibold">
                     {t("confidenceValue")}
                   </span>
                 </div>
 
                 {/* sources */}
                 <div>
-                  <div className="text-[10px] text-text-muted uppercase tracking-wider mb-1">{t("sourcesLabel")}</div>
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-[10px] text-text-muted">
+                  <div className="text-[12px] text-text-muted uppercase tracking-wider mb-1">{t("sourcesLabel")}</div>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-0.5 text-[12px] text-text-muted">
                     {[
                       "UN Comtrade 2019 (HS 8541/8542/8703)",
                       "World Bank LPI 2018",
@@ -377,7 +377,7 @@ export default function PolicyAdvisorPanel() {
 
                 {/* validated events */}
                 <div>
-                  <div className="text-[10px] text-text-muted uppercase tracking-wider mb-1">
+                  <div className="text-[12px] text-text-muted uppercase tracking-wider mb-1">
                     {lang === "en" ? "Validated against" : "Проверено на"}
                   </div>
                   <div className="flex flex-wrap gap-1">
@@ -391,7 +391,7 @@ export default function PolicyAdvisorPanel() {
                       lang === "en" ? "EU energy 2021" : "Энергокризис ЕС 2021",
                       lang === "en" ? "Malaysia 2021" : "Малайзия 2021",
                     ].map((e) => (
-                      <span key={e} className="text-[9px] px-1.5 py-0.5 rounded bg-bg-base border border-border-subtle text-text-muted">
+                      <span key={e} className="text-[12px] px-1.5 py-0.5 rounded bg-bg-base border border-border-subtle text-text-muted">
                         {e}
                       </span>
                     ))}
@@ -411,7 +411,7 @@ function SummaryChip({ icon, value, label }: { icon: string; value: string; labe
     <div className="flex flex-col items-center text-center p-2 rounded border border-border-subtle bg-bg-base/40">
       <span className="text-lg">{icon}</span>
       <span className="num text-text-primary font-bold text-sm">{value}</span>
-      <span className="text-[9px] text-text-muted leading-tight mt-0.5">{label}</span>
+      <span className="text-[12px] text-text-muted leading-tight mt-0.5">{label}</span>
     </div>
   );
 }

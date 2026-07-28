@@ -50,7 +50,7 @@ export default function ModelComparisonPanel() {
         <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
           Model vs baseline
         </h2>
-        {loading && <span className="text-[10px] text-text-muted num">computing…</span>}
+        {loading && <span className="text-[12px] text-text-muted num">computing…</span>}
       </div>
 
       {/* ── SEIRS vs zero-parameter baselines ── */}
@@ -60,10 +60,10 @@ export default function ModelComparisonPanel() {
             const isEngine = m.parameters > 0;
             return (
               <div key={m.model} className="space-y-0.5">
-                <div className="flex items-baseline justify-between text-xs">
+                <div className="flex items-baseline justify-between text-[13px]">
                   <span className={isEngine ? "text-text-primary font-medium" : "text-text-secondary"}>
                     {m.model}
-                    <span className="ml-1.5 text-[9px] uppercase tracking-wider text-text-muted">
+                    <span className="ml-1.5 text-[12px] uppercase tracking-wider text-text-muted">
                       {m.parameters === 0 ? "0-param" : `${m.parameters}-param`}
                     </span>
                   </span>
@@ -85,26 +85,26 @@ export default function ModelComparisonPanel() {
               </div>
             );
           })}
-          <p className="text-[10px] text-text-muted leading-snug pt-0.5">
+          <p className="text-[12px] text-text-muted leading-snug pt-0.5">
             Peak {cmp.industry} loss · recovery weeks. Linear diffusion is the honest
             zero-free-parameter reference — when SEIRS doesn&apos;t beat it, that&apos;s worth seeing.
           </p>
         </div>
       ) : (
-        !loading && <p className="text-[11px] text-text-muted">Baseline comparison unavailable.</p>
+        !loading && <p className="text-[12px] text-text-muted">Baseline comparison unavailable.</p>
       )}
 
       {/* ── LOO forecast band ── */}
       {band?.available && band.median != null && (
         <div className="hairline pt-3 space-y-1.5">
           <div className="flex items-baseline justify-between">
-            <span className="text-[10px] uppercase tracking-wider text-text-muted">
+            <span className="text-[12px] uppercase tracking-wider text-text-muted">
               LOO forecast band · peak CSI
             </span>
-            <span className="num text-xs text-text-primary">{band.median.toFixed(3)}</span>
+            <span className="num text-[13px] text-text-primary">{band.median.toFixed(3)}</span>
           </div>
           <ForecastBandBar band={band} />
-          <p className="text-[10px] text-text-muted leading-snug">
+          <p className="text-[12px] text-text-muted leading-snug">
             Median with 10–90% band across {band.n_folds} leave-one-out fold calibrations.
             Relative width {((band.rel_width ?? 0) * 100).toFixed(0)}% — parametric uncertainty
             only (structural uncertainty is larger).

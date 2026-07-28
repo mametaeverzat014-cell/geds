@@ -90,12 +90,12 @@ export default function CrisisRadarPanel() {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
             {c.title}
           </h2>
-          <p className="text-[10px] text-text-muted leading-relaxed mt-0.5">{c.subtitle}</p>
+          <p className="text-[12px] text-text-muted leading-relaxed mt-0.5">{c.subtitle}</p>
         </div>
         <button
           onClick={() => generate(true)}
           disabled={loading}
-          className="text-[10px] px-2.5 py-1 rounded-full border border-accent-violet/40 text-accent-violet hover:bg-accent-violet/10 hover:shadow-[0_0_16px_-6px_rgba(124,108,251,0.8)] hover:-translate-y-px active:scale-95 transition-all duration-200 disabled:opacity-40 shrink-0 font-medium"
+          className="text-[12px] px-2.5 py-1 rounded-full border border-accent-violet/40 text-accent-violet hover:bg-accent-violet/10 hover:shadow-[0_0_16px_-6px_rgba(124,108,251,0.8)] hover:-translate-y-px active:scale-95 transition-all duration-200 disabled:opacity-40 shrink-0 font-medium"
         >
           {loading ? c.analyzing : data ? c.refresh : c.generate}
         </button>
@@ -103,7 +103,7 @@ export default function CrisisRadarPanel() {
 
       {/* badges */}
       {data && (
-        <div className="flex items-center gap-2 flex-wrap text-[10px]">
+        <div className="flex items-center gap-2 flex-wrap text-[12px]">
           <span
             className={`px-2 py-0.5 rounded-full border font-semibold ${
               data.mode === "live"
@@ -131,17 +131,17 @@ export default function CrisisRadarPanel() {
 
       {/* empty state */}
       {!data && !loading && !error && (
-        <p className="text-xs text-text-muted leading-relaxed">{c.hint}</p>
+        <p className="text-[13px] text-text-muted leading-relaxed">{c.hint}</p>
       )}
 
       {error && (
-        <div className="text-xs text-sev-5 bg-sev-5/10 border border-sev-5/30 rounded px-3 py-2">
+        <div className="text-[13px] text-sev-5 bg-sev-5/10 border border-sev-5/30 rounded px-3 py-2">
           {c.error} {error}
         </div>
       )}
 
       {loading && !data && (
-        <div className="flex items-center gap-2 text-xs text-text-muted">
+        <div className="flex items-center gap-2 text-[13px] text-text-muted">
           <span className="w-2 h-2 rounded-full bg-accent-violet animate-pulse" />
           {c.analyzing}
         </div>
@@ -150,17 +150,17 @@ export default function CrisisRadarPanel() {
       {data && (
         <div className="space-y-3">
           {data.mode === "stub" && (
-            <p className="text-[10px] text-sev-4 bg-sev-4/10 border border-sev-4/30 rounded px-3 py-2 leading-relaxed">
+            <p className="text-[12px] text-sev-4 bg-sev-4/10 border border-sev-4/30 rounded px-3 py-2 leading-relaxed">
               {c.demoNote}
             </p>
           )}
 
           {/* overview */}
           <div className="border-l-2 border-accent-violet/40 pl-3">
-            <div className="text-[10px] uppercase tracking-widest text-text-muted font-bold mb-1">
+            <div className="text-[12px] uppercase tracking-widest text-text-muted font-bold mb-1">
               {c.overview}
             </div>
-            <p className="text-xs text-text-primary leading-relaxed">
+            <p className="text-[13px] text-text-primary leading-relaxed">
               {lang === "ru" ? data.overview_ru : data.overview_en}
             </p>
           </div>
@@ -170,11 +170,11 @@ export default function CrisisRadarPanel() {
             {data.scenarios.map((s, i) => (
               <div key={i} className="rounded border border-border-subtle bg-bg-base/30 p-3 space-y-2">
                 <div className="flex items-start justify-between gap-2">
-                  <div className="text-xs font-semibold text-text-primary leading-snug">
+                  <div className="text-[13px] font-semibold text-text-primary leading-snug">
                     {pick(s, "title")}
                   </div>
                   <span
-                    className={`text-[9px] px-1.5 py-0.5 rounded-full border font-semibold shrink-0 ${
+                    className={`text-[12px] px-1.5 py-0.5 rounded-full border font-semibold shrink-0 ${
                       SEVERITY_STYLE[s.severity] ?? SEVERITY_STYLE.low
                     }`}
                   >
@@ -187,7 +187,7 @@ export default function CrisisRadarPanel() {
                 <Field label={c.watch} value={pick(s, "watch")} />
 
                 {s.basis && (
-                  <div className="text-[9px] text-text-muted pt-1 border-t border-border-subtle/40">
+                  <div className="text-[12px] text-text-muted pt-1 border-t border-border-subtle/40">
                     <span className="uppercase tracking-widest font-bold">{c.basis}:</span>{" "}
                     <span className="num text-text-secondary">{s.basis}</span>
                   </div>
@@ -197,7 +197,7 @@ export default function CrisisRadarPanel() {
           </div>
 
           {/* disclaimer — always shown, honest framing */}
-          <p className="text-[10px] text-text-muted italic leading-relaxed pt-1">
+          <p className="text-[12px] text-text-muted italic leading-relaxed pt-1">
             {lang === "ru" ? data.disclaimer_ru : data.disclaimer_en}
           </p>
         </div>
@@ -209,8 +209,8 @@ export default function CrisisRadarPanel() {
 function Field({ label, value }: { label: string; value: string }) {
   if (!value) return null;
   return (
-    <div className="text-[11px] leading-relaxed">
-      <span className="text-[9px] uppercase tracking-widest text-text-muted font-bold">{label}: </span>
+    <div className="text-[12px] leading-relaxed">
+      <span className="text-[12px] uppercase tracking-widest text-text-muted font-bold">{label}: </span>
       <span className="text-text-secondary">{value}</span>
     </div>
   );

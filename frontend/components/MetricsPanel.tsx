@@ -29,12 +29,12 @@ function Tooltip({ text }: { text: string }) {
       <button
         onMouseEnter={() => setShow(true)}
         onMouseLeave={() => setShow(false)}
-        className="text-[9px] w-3.5 h-3.5 rounded-full bg-border-strong text-text-muted hover:text-text-secondary flex items-center justify-center leading-none"
+        className="text-[12px] w-3.5 h-3.5 rounded-full bg-border-strong text-text-muted hover:text-text-secondary flex items-center justify-center leading-none"
       >
         ?
       </button>
       {show && (
-        <div className="value-pop absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-52 bg-bg-elevated/95 backdrop-blur-md border border-border-strong rounded-lg p-2 text-[10px] text-text-secondary leading-relaxed shadow-[0_8px_24px_-8px_rgba(0,0,0,0.8),0_0_0_1px_rgba(77,208,225,0.08)] pointer-events-none">
+        <div className="value-pop absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-1.5 w-52 bg-bg-elevated/95 backdrop-blur-md border border-border-strong rounded-lg p-2 text-[12px] text-text-secondary leading-relaxed shadow-[0_8px_24px_-8px_rgba(0,0,0,0.8),0_0_0_1px_rgba(77,208,225,0.08)] pointer-events-none">
           {text}
           <span className="absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-border-strong" />
         </div>
@@ -58,7 +58,7 @@ function Metric({
 }) {
   return (
     <div className="group/metric">
-      <div className="text-text-muted uppercase tracking-wider text-[10px] flex items-center transition-colors group-hover/metric:text-text-secondary">
+      <div className="text-text-muted uppercase tracking-wider text-[12px] flex items-center transition-colors group-hover/metric:text-text-secondary">
         {label}
         {tooltip && <Tooltip text={tooltip} />}
       </div>
@@ -82,8 +82,8 @@ export default function MetricsPanel() {
         <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
           {t("simulationResults")}
         </h2>
-        <p className="text-xs text-text-muted leading-relaxed">{t("noResults")}</p>
-        <div className="border-t border-border-subtle pt-3 space-y-2 text-[10px] text-text-muted">
+        <p className="text-[13px] text-text-muted leading-relaxed">{t("noResults")}</p>
+        <div className="border-t border-border-subtle pt-3 space-y-2 text-[12px] text-text-muted">
           <div className="font-semibold uppercase tracking-wider mb-1">
             {lang === "en" ? "What you'll see here" : "Что вы увидите здесь"}
           </div>
@@ -122,7 +122,7 @@ export default function MetricsPanel() {
         </h2>
         {/* severity badge */}
         <div
-          className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] font-bold mb-3 border value-pop"
+          className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[12px] font-bold mb-3 border value-pop"
           style={{
             color: csi.color,
             borderColor: csi.color + "55",
@@ -137,7 +137,7 @@ export default function MetricsPanel() {
           {lang === "en" ? `${csi.label} disruption` : `${csi.label === "Minimal" ? "Минимальное" : csi.label === "Moderate" ? "Умеренное" : csi.label === "Severe" ? "Серьёзное" : "Критическое"} нарушение`}
         </div>
 
-        <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-xs">
+        <div className="grid grid-cols-2 gap-x-4 gap-y-2.5 text-[13px]">
           <Metric
             label={t("peakCSI")}
             value={summary.peak_csi}
@@ -188,14 +188,14 @@ export default function MetricsPanel() {
         <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary mb-1">
           {t("countryRisk")}
         </h2>
-        <p className="text-[10px] text-text-muted mb-3 leading-relaxed">
+        <p className="text-[12px] text-text-muted mb-3 leading-relaxed">
           {lang === "en"
             ? "Peak shock intensity weighted by GDP and network centrality."
             : "Пиковая интенсивность шока, взвешенная по ВВП и сетевой центральности."}
         </p>
         <div className="space-y-1.5">
           {summary.country_risk.slice(0, 9).map((r, i) => (
-            <div key={r.iso3} className="group/row flex items-center gap-2 text-xs">
+            <div key={r.iso3} className="group/row flex items-center gap-2 text-[13px]">
               <span className="num w-10 text-text-primary font-semibold transition-transform duration-200 group-hover/row:translate-x-0.5">
                 {r.iso3}
               </span>
@@ -218,7 +218,7 @@ export default function MetricsPanel() {
               </span>
             </div>
           ))}
-          <div className="flex justify-between text-[10px] text-text-muted pt-1 border-t border-border-subtle/50">
+          <div className="flex justify-between text-[12px] text-text-muted pt-1 border-t border-border-subtle/50">
             <span>{lang === "en" ? "← risk score" : "← оценка риска"}</span>
             <span>{lang === "en" ? "recovery →" : "восстановление →"}</span>
           </div>
@@ -230,14 +230,14 @@ export default function MetricsPanel() {
         <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary mb-1">
           {t("sectorFragility")}
         </h2>
-        <p className="text-[10px] text-text-muted mb-3 leading-relaxed">
+        <p className="text-[12px] text-text-muted mb-3 leading-relaxed">
           {lang === "en"
             ? "Which industries are structurally most exposed to cascade shocks."
             : "Какие отрасли структурно наиболее уязвимы к каскадным шокам."}
         </p>
         <div className="space-y-1.5">
           {summary.sector_fragility.slice(0, 6).map((f, i) => (
-            <div key={f.industry} className="group/row flex items-center gap-2 text-xs">
+            <div key={f.industry} className="group/row flex items-center gap-2 text-[13px]">
               <span className="w-28 text-text-primary capitalize shrink-0 transition-transform duration-200 group-hover/row:translate-x-0.5">
                 {f.industry.replace("_", " ")}
               </span>
@@ -259,7 +259,7 @@ export default function MetricsPanel() {
       </div>
 
       {/* trust footer — live validation badge in top-right shows current LOO-CV stats */}
-      <div className="text-[10px] text-text-muted text-center leading-relaxed px-1">
+      <div className="text-[12px] text-text-muted text-center leading-relaxed px-1">
         {lang === "en"
           ? "Validation: see live badge (top-right) · methodology: AUDIT.md"
           : "Валидация: см. live-значок справа сверху · методика: AUDIT.md"}

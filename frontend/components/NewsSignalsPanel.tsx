@@ -92,13 +92,13 @@ export default function NewsSignalsPanel() {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
             {t("newsTitle")}
           </h2>
-          <p className="text-[10px] text-text-muted leading-relaxed mt-0.5">
+          <p className="text-[12px] text-text-muted leading-relaxed mt-0.5">
             {t("newsSubtitle")}
           </p>
           {mode && (
             <div className="mt-1">
               <span
-                className={`text-[9px] px-1.5 py-0.5 rounded-full border font-semibold ${
+                className={`text-[12px] px-1.5 py-0.5 rounded-full border font-semibold ${
                   mode === "live"
                     ? "text-accent-cyan border-accent-cyan/40 bg-accent-cyan/10"
                     : "text-sev-4 border-sev-4/40 bg-sev-4/10"
@@ -107,7 +107,7 @@ export default function NewsSignalsPanel() {
                 {mode === "live" ? t("newsLiveMode") : t("newsStubMode")}
               </span>
               {mode === "stub" && (
-                <p className="text-[9px] text-text-muted leading-relaxed mt-1">
+                <p className="text-[12px] text-text-muted leading-relaxed mt-1">
                   {lang === "en"
                     ? "Showing demo headlines. Set NEWSAPI_KEY (or GNEWS_KEY) in the backend environment for live news."
                     : "Показаны демо-заголовки. Задайте NEWSAPI_KEY (или GNEWS_KEY) в окружении backend для реальных новостей."}
@@ -119,7 +119,7 @@ export default function NewsSignalsPanel() {
         <button
           onClick={refresh}
           disabled={loading}
-          className="text-[10px] px-2 py-1 rounded border border-border-strong text-text-secondary hover:text-text-primary hover:border-accent-cyan/50 transition disabled:opacity-40 shrink-0"
+          className="text-[12px] px-2 py-1 rounded border border-border-strong text-text-secondary hover:text-text-primary hover:border-accent-cyan/50 transition disabled:opacity-40 shrink-0"
         >
           {loading ? t("newsLoading") : t("newsRefresh")}
         </button>
@@ -127,7 +127,7 @@ export default function NewsSignalsPanel() {
 
       {/* Overlay status strip */}
       <div className="rounded border border-border-subtle bg-bg-base/30 px-3 py-2 space-y-1.5">
-        <div className="flex items-center justify-between gap-2 text-[10px]">
+        <div className="flex items-center justify-between gap-2 text-[12px]">
           <span className="uppercase tracking-widest text-text-muted font-bold">
             {t("newsOverlayHeader")}
           </span>
@@ -149,7 +149,7 @@ export default function NewsSignalsPanel() {
           </div>
         </div>
         {overlay?.active ? (
-          <div className="flex items-center gap-2 text-[10px] text-accent-violet">
+          <div className="flex items-center gap-2 text-[12px] text-accent-violet">
             <span className="w-1.5 h-1.5 rounded-full bg-accent-violet animate-pulse" />
             <span className="num font-semibold">{overlay.n_nodes_affected}</span>
             <span className="text-text-muted">{t("newsAffectedNodes")}</span>
@@ -160,50 +160,50 @@ export default function NewsSignalsPanel() {
             )}
           </div>
         ) : (
-          <p className="text-[10px] text-text-muted leading-relaxed">
+          <p className="text-[12px] text-text-muted leading-relaxed">
             {t("newsOverlayNone")}
           </p>
         )}
       </div>
 
       {error && (
-        <div className="text-xs text-sev-5 bg-sev-5/10 border border-sev-5/30 rounded px-3 py-2">
+        <div className="text-[13px] text-sev-5 bg-sev-5/10 border border-sev-5/30 rounded px-3 py-2">
           {error}
         </div>
       )}
 
       {/* Event list */}
       {events.length === 0 && !loading ? (
-        <p className="text-xs text-text-muted leading-relaxed">{t("newsNoEvents")}</p>
+        <p className="text-[13px] text-text-muted leading-relaxed">{t("newsNoEvents")}</p>
       ) : (
         <div className="space-y-2 max-h-[440px] overflow-y-auto pr-1">
           {events.map((ev, i) => (
             <div key={i} className="rounded border border-border-subtle bg-bg-base/30 p-2.5 space-y-1.5">
               <div className="flex items-start justify-between gap-2">
-                <div className="text-xs text-text-primary font-medium leading-snug min-w-0">
+                <div className="text-[13px] text-text-primary font-medium leading-snug min-w-0">
                   {ev.headline.title}
                 </div>
-                <span className={`text-[9px] px-1.5 py-0.5 rounded-full border font-semibold shrink-0 ${EVENT_STYLE[ev.event_type] ?? EVENT_STYLE.unknown}`}>
+                <span className={`text-[12px] px-1.5 py-0.5 rounded-full border font-semibold shrink-0 ${EVENT_STYLE[ev.event_type] ?? EVENT_STYLE.unknown}`}>
                   {eventLabel(ev.event_type)}
                 </span>
               </div>
-              <div className="text-[10px] text-text-muted">
+              <div className="text-[12px] text-text-muted">
                 {ev.headline.source}
               </div>
               {ev.matched_nodes.length > 0 && (
                 <div className="flex items-center gap-1.5 flex-wrap pt-1">
-                  <span className="text-[9px] uppercase tracking-widest text-text-muted font-bold">
+                  <span className="text-[12px] uppercase tracking-widest text-text-muted font-bold">
                     {t("newsMatchedNodes")}:
                   </span>
                   {ev.matched_nodes.slice(0, 6).map((n) => (
-                    <span key={n} className="text-[9px] px-1.5 py-0.5 rounded bg-bg-base/60 text-text-secondary border border-border-subtle/50 num">
+                    <span key={n} className="text-[12px] px-1.5 py-0.5 rounded bg-bg-base/60 text-text-secondary border border-border-subtle/50 num">
                       {n}
                     </span>
                   ))}
                 </div>
               )}
               {ev.deltas.length > 0 && (
-                <div className="pt-1 space-y-0.5 text-[9px]">
+                <div className="pt-1 space-y-0.5 text-[12px]">
                   {ev.deltas.slice(0, 3).map((d, j) => (
                     <div key={j} className="flex items-center gap-2 text-text-muted">
                       <span className="num">{d.node_id}</span>

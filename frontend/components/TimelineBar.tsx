@@ -62,7 +62,7 @@ export default function TimelineBar() {
 
   if (frames.length === 0) {
     return (
-      <div className="panel p-4 text-xs text-text-muted">
+      <div className="panel p-4 text-[13px] text-text-muted">
         Run a scenario to view the propagation timeline.
       </div>
     );
@@ -79,7 +79,7 @@ export default function TimelineBar() {
         <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
           Cascade timeline
         </h2>
-        <span className="num text-xs text-text-secondary">
+        <span className="num text-[13px] text-text-secondary">
           Week {currentWeek} / {maxWeek}
         </span>
       </div>
@@ -140,7 +140,7 @@ export default function TimelineBar() {
           }}
           disabled={running}
           className={clsx(
-            "px-3.5 py-1.5 rounded-full text-xs font-semibold border inline-flex items-center gap-1.5 transition-all duration-200 active:scale-95",
+            "px-3.5 py-1.5 rounded-full text-[13px] font-semibold border inline-flex items-center gap-1.5 transition-all duration-200 active:scale-95",
             autoPlay
               ? "bg-accent-gold/15 text-accent-gold border-accent-gold/45 shadow-[0_0_18px_-6px_rgba(255,195,77,0.6)]"
               : "bg-accent-cyan/12 text-accent-cyan border-accent-cyan/45 hover:bg-accent-cyan/20 hover:shadow-[0_0_18px_-6px_rgba(77,208,225,0.7)] hover:-translate-y-px",
@@ -166,7 +166,7 @@ export default function TimelineBar() {
               key={s}
               onClick={() => setSpeed(s)}
               className={clsx(
-                "px-2 py-0.5 rounded-full text-[11px] num transition-all duration-200",
+                "px-2 py-0.5 rounded-full text-[12px] num transition-all duration-200",
                 speed === s
                   ? "bg-gradient-to-r from-accent-cyan/25 to-accent-violet/25 text-text-primary shadow-[0_0_10px_-3px_rgba(124,108,251,0.7)]"
                   : "text-text-muted hover:text-text-secondary",
@@ -177,38 +177,38 @@ export default function TimelineBar() {
           ))}
         </div>
 
-        <span className="ml-auto text-text-muted text-[10px] uppercase tracking-wider">speed</span>
+        <span className="ml-auto text-text-muted text-[12px] uppercase tracking-wider">speed</span>
       </div>
 
       {/* ── live metrics row ── */}
-      <div className="grid grid-cols-4 gap-3 pt-1 text-xs">
+      <div className="grid grid-cols-4 gap-3 pt-1 text-[13px]">
         <div>
-          <div className="text-text-muted uppercase tracking-wider text-[10px]">CSI</div>
+          <div className="text-text-muted uppercase tracking-wider text-[12px]">CSI</div>
           <div className="num text-text-primary">{curFrame?.csi.toFixed(3) ?? "—"}</div>
         </div>
         <div>
-          <div className="text-text-muted uppercase tracking-wider text-[10px]">ECV</div>
+          <div className="text-text-muted uppercase tracking-wider text-[12px]">ECV</div>
           <div className="num text-text-primary">{curFrame?.ecv.toFixed(3) ?? "—"}</div>
         </div>
         <div>
-          <div className="text-text-muted uppercase tracking-wider text-[10px]">ECV-geo</div>
+          <div className="text-text-muted uppercase tracking-wider text-[12px]">ECV-geo</div>
           <div className="num text-text-primary">{curFrame?.ecv_geo.toFixed(2) ?? "—"}</div>
         </div>
         <div>
-          <div className="text-text-muted uppercase tracking-wider text-[10px]">Affected</div>
+          <div className="text-text-muted uppercase tracking-wider text-[12px]">Affected</div>
           <div className="num text-text-primary">{curFrame?.affected_count ?? 0}</div>
         </div>
       </div>
 
       {/* ── overlay selector ── */}
       <div className="hairline pt-2 flex items-center gap-2 flex-wrap">
-        <span className="text-[10px] text-text-muted uppercase tracking-wider mr-1">Overlay</span>
+        <span className="text-[12px] text-text-muted uppercase tracking-wider mr-1">Overlay</span>
         {OVERLAY_OPTIONS.map((o) => (
           <button
             key={o.value}
             onClick={() => setOverlay(o.value)}
             className={clsx(
-              "px-2.5 py-0.5 rounded-full text-[11px] border transition-all duration-200 active:scale-95",
+              "px-2.5 py-0.5 rounded-full text-[12px] border transition-all duration-200 active:scale-95",
               overlayMode === o.value
                 ? "bg-gradient-to-r from-accent-violet/25 to-accent-cyan/15 border-accent-violet/55 text-text-primary shadow-[0_0_14px_-5px_rgba(124,108,251,0.8)]"
                 : "border-border-subtle text-text-muted hover:text-text-secondary hover:border-border-strong hover:-translate-y-px",

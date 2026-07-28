@@ -13,6 +13,7 @@ import NarrativePanel from "@/components/NarrativePanel";
 import NewsSignalsPanel from "@/components/NewsSignalsPanel";
 import OnboardingGuide from "@/components/OnboardingGuide";
 import PropagationMap from "@/components/PropagationMap";
+import ReadingGuide from "@/components/ReadingGuide";
 import ScenarioBuilder from "@/components/ScenarioBuilder";
 import ScenarioControls from "@/components/ScenarioControls";
 import StatusRibbon from "@/components/StatusRibbon";
@@ -50,6 +51,7 @@ export default function Home() {
 
       <ConnectionBanner />
       <OnboardingGuide />
+      <ReadingGuide />
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* ── left column (scenario input — first on mobile too) ── */}
@@ -82,7 +84,7 @@ export default function Home() {
       {/* ── full-width Claude crisis radar ── */}
       <CrisisRadarPanel />
 
-      <footer className="pt-6 border-t border-border-subtle text-xs text-text-muted leading-relaxed space-y-2">
+      <footer className="pt-6 border-t border-border-subtle text-[13px] text-text-muted leading-relaxed space-y-2">
         <div>
           {lang === "en"
             ? <>Flagship scenario: Taiwan semiconductor exports fall 70–80%. Watch the cascade ripple through automotive, electronics, and consumer goods across 12 economies. Two novel metrics: <span className="text-text-secondary">Cascade Severity Index (CSI)</span> and <span className="text-text-secondary">Economic Contagion Velocity (ECV)</span>.</>
@@ -90,10 +92,10 @@ export default function Home() {
           }
         </div>
         <div className="flex items-center gap-4 flex-wrap">
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">
+          <span className="text-[12px] px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">
             {lang === "en" ? "Live LOO cross-validation · top-right badge" : "Live кросс-валидация · значок справа сверху"}
           </span>
-          <span className="text-[10px] text-text-muted">
+          <span className="text-[12px] text-text-muted">
             {lang === "en"
               ? "Data: UN Comtrade 2019 · World Bank LPI 2018 · OECD STAN · IMF WEO 2020"
               : "Данные: UN Comtrade 2019 · World Bank LPI 2018 · OECD STAN · IMF WEO 2020"}
@@ -113,9 +115,9 @@ function ScenarioInfo() {
   if (!scenario) return null;
 
   return (
-    <div className="panel p-4 text-xs space-y-2">
+    <div className="panel p-4 text-[13px] space-y-2">
       <div>
-        <div className="text-text-muted uppercase tracking-wider text-[10px]">
+        <div className="text-text-muted uppercase tracking-wider text-[12px]">
           {lang === "en" ? "Selected scenario" : "Выбранный сценарий"}
         </div>
         <div className="text-text-primary font-semibold">{scenario.name}</div>
@@ -124,7 +126,7 @@ function ScenarioInfo() {
         <p className="text-text-secondary leading-relaxed">{scenario.description}</p>
       )}
       <div className="hairline pt-2 space-y-1">
-        <div className="text-text-muted uppercase tracking-wider text-[10px]">
+        <div className="text-text-muted uppercase tracking-wider text-[12px]">
           {lang === "en" ? `Shocks (${scenario.shocks.length})` : `Шоки (${scenario.shocks.length})`}
         </div>
         {scenario.shocks.map((sh, i) => (
