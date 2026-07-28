@@ -1,5 +1,22 @@
 {
+  "timestamp": "2026-07-28T18:19:07.744927+00:00",
+  "n_folds": 24,
+  "de_settings": {
+    "maxiter": 12,
+    "popsize_per_dim": 4,
+    "seed": 42
+  },
+  "config_overrides": {},
   "graph_version": "v3",
+  "graph_nodes": 405,
+  "runtime_seconds": 6142.4,
+  "out_of_sample_score": {
+    "mae": 0.0281,
+    "rmse": 0.0499,
+    "r_squared": -1.1495,
+    "pearson": 0.6568,
+    "spearman": 0.5654
+  },
   "folds": [
     {
       "slug": "covid-semiconductor-2020-2021",
