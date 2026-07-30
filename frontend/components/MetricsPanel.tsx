@@ -3,6 +3,7 @@
 import { useState } from "react";
 import CountUp from "@/components/CountUp";
 import { severityColor } from "@/lib/colors";
+import { countryName } from "@/lib/names";
 import { useSimStore } from "@/lib/store";
 import { useUI } from "@/lib/ui-context";
 
@@ -164,11 +165,11 @@ export default function MetricsPanel() {
           />
           <Metric
             label={t("topInflation")}
-            value={`${summary.max_inflation_country[0]}  ${fmtPct(summary.max_inflation_country[1])}`}
+            value={`${countryName(summary.max_inflation_country[0], lang)}  ${fmtPct(summary.max_inflation_country[1])}`}
           />
           <Metric
             label={t("topGDPImpact")}
-            value={`${summary.max_gdp_impact_country[0]}  ${fmtPct(summary.max_gdp_impact_country[1])}`}
+            value={`${countryName(summary.max_gdp_impact_country[0], lang)}  ${fmtPct(summary.max_gdp_impact_country[1])}`}
           />
           <Metric
             label={t("countriesAffected")}
@@ -196,8 +197,11 @@ export default function MetricsPanel() {
         <div className="space-y-1.5">
           {summary.country_risk.slice(0, 9).map((r, i) => (
             <div key={r.iso3} className="group/row flex items-center gap-2 text-[13px]">
-              <span className="num w-10 text-text-primary font-semibold transition-transform duration-200 group-hover/row:translate-x-0.5">
-                {r.iso3}
+              <span
+                title={r.iso3}
+                className="w-24 shrink-0 truncate text-text-primary font-semibold transition-transform duration-200 group-hover/row:translate-x-0.5"
+              >
+                {countryName(r.iso3, lang)}
               </span>
               <div className="bar-track flex-1 h-2">
                 <div
@@ -252,7 +256,7 @@ export default function MetricsPanel() {
                   } as React.CSSProperties}
                 />
               </div>
-              <span className="num w-10 text-right text-text-muted">{f.most_exposed_country}</span>
+              <span title={f.most_exposed_country} className="w-20 shrink-0 truncate text-right text-text-muted">{countryName(f.most_exposed_country, lang)}</span>
             </div>
           ))}
         </div>

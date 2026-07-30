@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 import { api, type NewsEvent, type NewsOverlayState } from "@/lib/api";
+import { nodeName } from "@/lib/names";
 import { useUI } from "@/lib/ui-context";
 
 const EVENT_STYLE: Record<string, string> = {
@@ -206,7 +207,7 @@ export default function NewsSignalsPanel() {
                 <div className="pt-1 space-y-0.5 text-[12px]">
                   {ev.deltas.slice(0, 3).map((d, j) => (
                     <div key={j} className="flex items-center gap-2 text-text-muted">
-                      <span className="num">{d.node_id}</span>
+                      <span title={d.node_id}>{nodeName(d.node_id, lang)}</span>
                       <span className="text-sev-4">vuln +{d.vulnerability_delta.toFixed(2)}</span>
                       <span className="text-accent-cyan">D_eff ×{d.d_eff_multiplier.toFixed(2)}</span>
                       <span className="ml-auto">

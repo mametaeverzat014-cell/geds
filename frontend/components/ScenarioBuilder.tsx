@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { api } from "@/lib/api";
+import { nodeName } from "@/lib/names";
 import { useSimStore } from "@/lib/store";
+import { useUI } from "@/lib/ui-context";
 import type { StreamMessage } from "@/lib/types";
 
 interface ShockRow {
@@ -14,19 +16,10 @@ interface ShockRow {
 }
 
 const PRESET_NODES = [
-  { id: "TWN:semiconductors",  label: "Taiwan — Semiconductors" },
-  { id: "TWN:electronics",     label: "Taiwan — Electronics" },
-  { id: "CHN:electronics",     label: "China — Electronics" },
-  { id: "KOR:semiconductors",  label: "South Korea — Semiconductors" },
-  { id: "DEU:automotive",      label: "Germany — Automotive" },
-  { id: "USA:semiconductors",  label: "USA — Semiconductors" },
-  { id: "USA:electronics",     label: "USA — Electronics" },
-  { id: "JPN:automotive",      label: "Japan — Automotive" },
-  { id: "JPN:electronics",     label: "Japan — Electronics" },
-  { id: "CP:TaiwanStrait",     label: "Chokepoint — Taiwan Strait" },
-  { id: "CP:Malacca",          label: "Chokepoint — Strait of Malacca" },
-  { id: "CP:Suez",             label: "Chokepoint — Suez Canal" },
-  { id: "CP:Hormuz",           label: "Chokepoint — Strait of Hormuz" },
+  "TWN:semiconductors", "TWN:electronics", "CHN:electronics",
+  "KOR:semiconductors", "DEU:automotive", "USA:semiconductors",
+  "USA:electronics", "JPN:automotive", "JPN:electronics",
+  "CP:TaiwanStrait", "CP:Malacca", "CP:Suez", "CP:Hormuz",
 ];
 
 const EMPTY_SHOCK: ShockRow = {
@@ -38,6 +31,7 @@ const EMPTY_SHOCK: ShockRow = {
 };
 
 export default function ScenarioBuilder() {
+  const { lang } = useUI();
   const [open, setOpen] = useState(false);
   const [scenarioName, setScenarioName] = useState("Custom scenario");
   const [horizonWeeks, setHorizonWeeks] = useState(52);
@@ -154,9 +148,9 @@ export default function ScenarioBuilder() {
                   onChange={(e) => updateShock(idx, "node_id", e.target.value)}
                   className="w-full bg-bg-elevated border border-border-subtle rounded px-2 py-1 text-[13px] text-text-primary focus:outline-none focus:border-accent-cyan"
                 >
-                  {PRESET_NODES.map((n) => (
-                    <option key={n.id} value={n.id}>
-                      {n.label}
+                  {PRESET_NODES.map((id) => (
+                    <option key={id} value={id}>
+                      {nodeName(id, lang)}
                     </option>
                   ))}
                 </select>

@@ -7,6 +7,7 @@ import dynamic from "next/dynamic";
 import ConnectionBanner from "@/components/ConnectionBanner";
 import HeroNetwork from "@/components/HeroNetwork";
 import FAQPanel from "@/components/FAQPanel";
+import ForecastNarrative from "@/components/ForecastNarrative";
 import MetricsPanel from "@/components/MetricsPanel";
 import ModelComparisonPanel from "@/components/ModelComparisonPanel";
 import NarrativePanel from "@/components/NarrativePanel";
@@ -24,6 +25,7 @@ const panelFallback = () => <div className="panel h-24 shimmer" aria-hidden="tru
 const PolicyAdvisorPanel = dynamic(() => import("@/components/PolicyAdvisorPanel"), { loading: panelFallback });
 const CrisisRadarPanel = dynamic(() => import("@/components/CrisisRadarPanel"), { loading: panelFallback });
 import { api } from "@/lib/api";
+import { nodeName } from "@/lib/names";
 import { useSimStore } from "@/lib/store";
 import { useUI } from "@/lib/ui-context";
 
@@ -73,6 +75,7 @@ export default function Home() {
         {/* ── right column ── */}
         <div className="lg:col-span-3 space-y-3 fade-up fade-up-3">
           <MetricsPanel />
+          <ForecastNarrative />
           <ModelComparisonPanel />
           <NarrativePanel />
         </div>
@@ -131,7 +134,7 @@ function ScenarioInfo() {
         </div>
         {scenario.shocks.map((sh, i) => (
           <div key={i} className="flex justify-between text-text-secondary num">
-            <span className="truncate mr-2">{sh.target_node_id}</span>
+            <span className="truncate mr-2" title={sh.target_node_id}>{nodeName(sh.target_node_id, lang)}</span>
             <span>
               {(sh.magnitude * 100).toFixed(0)}% · {sh.duration_weeks}{lang === "en" ? "w" : "н"}
             </span>
