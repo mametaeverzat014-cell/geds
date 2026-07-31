@@ -1,0 +1,227 @@
+{
+  "schema": "geds.emdat_coverage.v1",
+  "timestamp": "2026-07-31T22:44:26.641267+00:00",
+  "source": "EM-DAT public (CRED / UCLouvain), custom request 2026-07-31",
+  "emdat_rows_total": 19651,
+  "emdat_rows_in_graph_countries_since_1995": 5203,
+  "benchmark_size": 27,
+  "benchmark_disaster_origin_events": 10,
+  "coverage_by_damage_tier": {
+    "ge_1bn": {
+      "damage_floor_usd_bn": 1.0,
+      "n_disasters": 555,
+      "n_matched_to_our_events": 49,
+      "coverage": 0.0883
+    },
+    "ge_5bn": {
+      "damage_floor_usd_bn": 5.0,
+      "n_disasters": 157,
+      "n_matched_to_our_events": 16,
+      "coverage": 0.1019
+    },
+    "ge_10bn": {
+      "damage_floor_usd_bn": 10.0,
+      "n_disasters": 78,
+      "n_matched_to_our_events": 15,
+      "coverage": 0.1923
+    },
+    "ge_50bn": {
+      "damage_floor_usd_bn": 50.0,
+      "n_disasters": 13,
+      "n_matched_to_our_events": 7,
+      "coverage": 0.5385
+    }
+  },
+  "largest_25_disasters": [
+    {
+      "year": 2011,
+      "iso3": "JPN",
+      "type": "Earthquake",
+      "damage_usd_bn": 300.6,
+      "in_benchmark": "japan-triple-disaster-2011"
+    },
+    {
+      "year": 1995,
+      "iso3": "JPN",
+      "type": "Earthquake",
+      "damage_usd_bn": 211.3,
+      "in_benchmark": "kobe-earthquake-1995 (logged, not wired)"
+    },
+    {
+      "year": 2005,
+      "iso3": "USA",
+      "type": "Storm",
+      "damage_usd_bn": 206.1,
+      "in_benchmark": "hurricane-katrina-2005 (logged, not wired)"
+    },
+    {
+      "year": 2008,
+      "iso3": "CHN",
+      "type": "Earthquake",
+      "damage_usd_bn": 127.1,
+      "in_benchmark": null
+    },
+    {
+      "year": 2017,
+      "iso3": "USA",
+      "type": "Storm",
+      "damage_usd_bn": 124.8,
+      "in_benchmark": "hurricane-harvey-2017"
+    },
+    {
+      "year": 2022,
+      "iso3": "USA",
+      "type": "Storm",
+      "damage_usd_bn": 110.0,
+      "in_benchmark": null
+    },
+    {
+      "year": 2024,
+      "iso3": "USA",
+      "type": "Storm",
+      "damage_usd_bn": 82.1,
+      "in_benchmark": null
+    },
+    {
+      "year": 2021,
+      "iso3": "USA",
+      "type": "Storm",
+      "damage_usd_bn": 77.2,
+      "in_benchmark": "texas-winter-storm-2021"
+    },
+    {
+      "year": 2017,
+      "iso3": "USA",
+      "type": "Storm",
+      "damage_usd_bn": 74.9,
+      "in_benchmark": "hurricane-harvey-2017"
+    },
+    {
+      "year": 2012,
+      "iso3": "USA",
+      "type": "Storm",
+      "damage_usd_bn": 70.1,
+      "in_benchmark": null
+    },
+    {
+      "year": 1998,
+      "iso3": "CHN",
+      "type": "Flood",
+      "damage_usd_bn": 59.3,
+      "in_benchmark": null
+    },
+    {
+      "year": 2011,
+      "iso3": "THA",
+      "type": "Flood",
+      "damage_usd_bn": 57.2,
+      "in_benchmark": "thailand-floods-2011"
+    },
+    {
+      "year": 2025,
+      "iso3": "USA",
+      "type": "Wildfire",
+      "damage_usd_bn": 53.0,
+      "in_benchmark": null
+    },
+    {
+      "year": 2004,
+      "iso3": "JPN",
+      "type": "Earthquake",
+      "damage_usd_bn": 47.7,
+      "in_benchmark": null
+    },
+    {
+      "year": 2021,
+      "iso3": "DEU",
+      "type": "Flood",
+      "damage_usd_bn": 47.5,
+      "in_benchmark": "germany-floods-2021 (logged, not wired)"
+    },
+    {
+      "year": 2008,
+      "iso3": "USA",
+      "type": "Storm",
+      "damage_usd_bn": 44.9,
+      "in_benchmark": null
+    },
+    {
+      "year": 2024,
+      "iso3": "USA",
+      "type": "Storm",
+      "damage_usd_bn": 39.0,
+      "in_benchmark": null
+    },
+    {
+      "year": 2021,
+      "iso3": "USA",
+      "type": "Storm",
+      "damage_usd_bn": 35.6,
+      "in_benchmark": "texas-winter-storm-2021"
+    },
+    {
+      "year": 2008,
+      "iso3": "CHN",
+      "type": "Extreme temperature",
+      "damage_usd_bn": 31.6,
+      "in_benchmark": null
+    },
+    {
+      "year": 2004,
+      "iso3": "USA",
+      "type": "Storm",
+      "damage_usd_bn": 30.7,
+      "in_benchmark": null
+    },
+    {
+      "year": 2010,
+      "iso3": "USA",
+      "type": "Explosion (Industrial)",
+      "damage_usd_bn": 29.5,
+      "in_benchmark": null
+    },
+    {
+      "year": 2016,
+      "iso3": "CHN",
+      "type": "Flood",
+      "damage_usd_bn": 29.5,
+      "in_benchmark": null
+    },
+    {
+      "year": 2012,
+      "iso3": "USA",
+      "type": "Drought",
+      "damage_usd_bn": 28.0,
+      "in_benchmark": null
+    },
+    {
+      "year": 2004,
+      "iso3": "USA",
+      "type": "Storm",
+      "damage_usd_bn": 27.3,
+      "in_benchmark": null
+    },
+    {
+      "year": 1999,
+      "iso3": "TWN",
+      "type": "Earthquake",
+      "damage_usd_bn": 27.3,
+      "in_benchmark": "taiwan-chichi-earthquake-1999"
+    }
+  ],
+  "population_type_mix_ge_1bn": {
+    "Storm": 328,
+    "Flood": 127,
+    "Drought": 35,
+    "Earthquake": 32,
+    "Wildfire": 21,
+    "Extreme temperature": 7,
+    "Mass movement (wet)": 3,
+    "Explosion (Industrial)": 2
+  },
+  "interpretation": {
+    "what_this_measures": "the share of the largest EM-DAT disasters in our 12 graph countries that appear in the benchmark (or in the logged not-wired registry)",
+    "what_this_cannot_do": "EM-DAT records damage in USD, not the sector output-loss percentage the benchmark calibrates against, so it cannot supply new targets",
+    "known_bias": "coverage falls as the damage floor drops: the benchmark deliberately favours events with a published sector output figure, which correlates with size and with manufacturing (rather than residential) exposure"
+  }
+}
