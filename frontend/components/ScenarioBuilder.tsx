@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 import { api } from "@/lib/api";
+import { nodeName } from "@/lib/names";
 import { useSimStore } from "@/lib/store";
+import { useUI } from "@/lib/ui-context";
 import type { StreamMessage } from "@/lib/types";
 
 interface ShockRow {
@@ -14,19 +16,10 @@ interface ShockRow {
 }
 
 const PRESET_NODES = [
-  { id: "TWN:semiconductors",  label: "Taiwan — Semiconductors" },
-  { id: "TWN:electronics",     label: "Taiwan — Electronics" },
-  { id: "CHN:electronics",     label: "China — Electronics" },
-  { id: "KOR:semiconductors",  label: "South Korea — Semiconductors" },
-  { id: "DEU:automotive",      label: "Germany — Automotive" },
-  { id: "USA:semiconductors",  label: "USA — Semiconductors" },
-  { id: "USA:electronics",     label: "USA — Electronics" },
-  { id: "JPN:automotive",      label: "Japan — Automotive" },
-  { id: "JPN:electronics",     label: "Japan — Electronics" },
-  { id: "CP:TaiwanStrait",     label: "Chokepoint — Taiwan Strait" },
-  { id: "CP:Malacca",          label: "Chokepoint — Strait of Malacca" },
-  { id: "CP:Suez",             label: "Chokepoint — Suez Canal" },
-  { id: "CP:Hormuz",           label: "Chokepoint — Strait of Hormuz" },
+  "TWN:semiconductors", "TWN:electronics", "CHN:electronics",
+  "KOR:semiconductors", "DEU:automotive", "USA:semiconductors",
+  "USA:electronics", "JPN:automotive", "JPN:electronics",
+  "CP:TaiwanStrait", "CP:Malacca", "CP:Suez", "CP:Hormuz",
 ];
 
 const EMPTY_SHOCK: ShockRow = {
@@ -38,6 +31,7 @@ const EMPTY_SHOCK: ShockRow = {
 };
 
 export default function ScenarioBuilder() {
+  const { lang } = useUI();
   const [open, setOpen] = useState(false);
   const [scenarioName, setScenarioName] = useState("Custom scenario");
   const [horizonWeeks, setHorizonWeeks] = useState(52);
@@ -110,17 +104,17 @@ export default function ScenarioBuilder() {
           {/* name + horizon */}
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="block text-[10px] text-text-muted uppercase tracking-wider mb-1">
+              <label className="block text-[12px] text-text-muted uppercase tracking-wider mb-1">
                 Name
               </label>
               <input
                 value={scenarioName}
                 onChange={(e) => setScenarioName(e.target.value)}
-                className="w-full bg-bg-base/60 border border-border-subtle rounded px-2 py-1 text-xs text-text-primary focus:outline-none focus:border-accent-cyan"
+                className="w-full bg-bg-base/60 border border-border-subtle rounded px-2 py-1 text-[13px] text-text-primary focus:outline-none focus:border-accent-cyan"
               />
             </div>
             <div>
-              <label className="block text-[10px] text-text-muted uppercase tracking-wider mb-1">
+              <label className="block text-[12px] text-text-muted uppercase tracking-wider mb-1">
                 Horizon (weeks)
               </label>
               <input
@@ -129,7 +123,7 @@ export default function ScenarioBuilder() {
                 max={520}
                 value={horizonWeeks}
                 onChange={(e) => setHorizonWeeks(Number(e.target.value))}
-                className="w-full bg-bg-base/60 border border-border-subtle rounded px-2 py-1 text-xs text-text-primary focus:outline-none focus:border-accent-cyan num"
+                className="w-full bg-bg-base/60 border border-border-subtle rounded px-2 py-1 text-[13px] text-text-primary focus:outline-none focus:border-accent-cyan num"
               />
             </div>
           </div>
@@ -137,10 +131,10 @@ export default function ScenarioBuilder() {
           {/* shock rows */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-[10px] text-text-muted uppercase tracking-wider">Shocks</span>
+              <span className="text-[12px] text-text-muted uppercase tracking-wider">Shocks</span>
               <button
                 onClick={addShock}
-                className="text-xs text-accent-cyan hover:text-accent-cyan/70 transition"
+                className="text-[13px] text-accent-cyan hover:text-accent-cyan/70 transition"
               >
                 + Add shock
               </button>
@@ -152,11 +146,11 @@ export default function ScenarioBuilder() {
                 <select
                   value={shock.node_id}
                   onChange={(e) => updateShock(idx, "node_id", e.target.value)}
-                  className="w-full bg-bg-elevated border border-border-subtle rounded px-2 py-1 text-xs text-text-primary focus:outline-none focus:border-accent-cyan"
+                  className="w-full bg-bg-elevated border border-border-subtle rounded px-2 py-1 text-[13px] text-text-primary focus:outline-none focus:border-accent-cyan"
                 >
-                  {PRESET_NODES.map((n) => (
-                    <option key={n.id} value={n.id}>
-                      {n.label}
+                  {PRESET_NODES.map((id) => (
+                    <option key={id} value={id}>
+                      {nodeName(id, lang)}
                     </option>
                   ))}
                 </select>
@@ -164,7 +158,7 @@ export default function ScenarioBuilder() {
                 <div className="grid grid-cols-4 gap-2">
                   {/* magnitude */}
                   <div>
-                    <label className="block text-[9px] text-text-muted uppercase tracking-wider mb-0.5">
+                    <label className="block text-[12px] text-text-muted uppercase tracking-wider mb-0.5">
                       Mag. {(shock.magnitude * 100).toFixed(0)}%
                     </label>
                     <input
@@ -180,7 +174,7 @@ export default function ScenarioBuilder() {
 
                   {/* start */}
                   <div>
-                    <label className="block text-[9px] text-text-muted uppercase tracking-wider mb-0.5">
+                    <label className="block text-[12px] text-text-muted uppercase tracking-wider mb-0.5">
                       Start w
                     </label>
                     <input
@@ -189,13 +183,13 @@ export default function ScenarioBuilder() {
                       max={horizonWeeks - 1}
                       value={shock.start_week}
                       onChange={(e) => updateShock(idx, "start_week", Number(e.target.value))}
-                      className="w-full bg-bg-base border border-border-subtle rounded px-1.5 py-0.5 text-xs num text-text-primary focus:outline-none"
+                      className="w-full bg-bg-base border border-border-subtle rounded px-1.5 py-0.5 text-[13px] num text-text-primary focus:outline-none"
                     />
                   </div>
 
                   {/* duration */}
                   <div>
-                    <label className="block text-[9px] text-text-muted uppercase tracking-wider mb-0.5">
+                    <label className="block text-[12px] text-text-muted uppercase tracking-wider mb-0.5">
                       Dur. w
                     </label>
                     <input
@@ -204,13 +198,13 @@ export default function ScenarioBuilder() {
                       max={horizonWeeks}
                       value={shock.duration_weeks}
                       onChange={(e) => updateShock(idx, "duration_weeks", Number(e.target.value))}
-                      className="w-full bg-bg-base border border-border-subtle rounded px-1.5 py-0.5 text-xs num text-text-primary focus:outline-none"
+                      className="w-full bg-bg-base border border-border-subtle rounded px-1.5 py-0.5 text-[13px] num text-text-primary focus:outline-none"
                     />
                   </div>
 
                   {/* decay */}
                   <div>
-                    <label className="block text-[9px] text-text-muted uppercase tracking-wider mb-0.5">
+                    <label className="block text-[12px] text-text-muted uppercase tracking-wider mb-0.5">
                       Decay
                     </label>
                     <select
@@ -218,7 +212,7 @@ export default function ScenarioBuilder() {
                       onChange={(e) =>
                         updateShock(idx, "decay", e.target.value as "step" | "linear" | "exp")
                       }
-                      className="w-full bg-bg-base border border-border-subtle rounded px-1 py-0.5 text-xs text-text-primary focus:outline-none"
+                      className="w-full bg-bg-base border border-border-subtle rounded px-1 py-0.5 text-[13px] text-text-primary focus:outline-none"
                     >
                       <option value="step">Step</option>
                       <option value="linear">Linear</option>
@@ -230,7 +224,7 @@ export default function ScenarioBuilder() {
                 {shocks.length > 1 && (
                   <button
                     onClick={() => removeShock(idx)}
-                    className="text-[10px] text-text-muted hover:text-sev-5 transition"
+                    className="text-[12px] text-text-muted hover:text-sev-5 transition"
                   >
                     Remove
                   </button>

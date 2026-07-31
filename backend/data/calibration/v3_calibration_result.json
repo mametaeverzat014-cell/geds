@@ -1,0 +1,134 @@
+{
+  "schema": "geds.v3calib.v1",
+  "timestamp": "2026-07-28T18:21:15.238381+00:00",
+  "seed": 20260718,
+  "status": "COMPLETE \u2014 all 24 LOO folds",
+  "n_events": 24,
+  "event_slugs": [
+    "covid-semiconductor-2020-2021",
+    "auto-chip-shortage-2021",
+    "japan-triple-disaster-2011",
+    "us-china-tariffs-2019",
+    "texas-winter-storm-2021",
+    "eu-energy-crisis-2021",
+    "malaysia-semiconductor-2021",
+    "thailand-floods-2011",
+    "kumamoto-earthquake-2016",
+    "renesas-naka-fire-2021",
+    "japan-korea-export-controls-2019",
+    "vietnam-covid-lockdown-2021",
+    "shanghai-lockdown-2022",
+    "ukraine-war-harness-2022",
+    "china-power-crunch-2021",
+    "yantian-port-closure-2021",
+    "us-west-coast-ports-2021",
+    "taiwan-drought-2021",
+    "india-covid-wave-2021",
+    "taiwan-chichi-earthquake-1999",
+    "hurricane-harvey-2017",
+    "us-west-coast-ports-2015",
+    "korea-trucker-strikes-2022",
+    "gfc-auto-collapse-2008-2009"
+  ],
+  "excluded": "chokepoint-only events (no v3 node)",
+  "loo_scale_k": {
+    "mean": 0.2578
+  },
+  "scores": {
+    "v3_1param_LOO_scale": {
+      "free_parameters": 1,
+      "mae": 0.01331,
+      "rmse": 0.02214,
+      "spearman": 0.7876
+    },
+    "v3_5param_LOO_DE": {
+      "free_parameters": 5,
+      "mae": 0.02808,
+      "rmse": 0.04986,
+      "spearman": 0.5654
+    },
+    "v2_5param_calibrated": {
+      "free_parameters": 5,
+      "mae": 0.02655,
+      "rmse": 0.04914,
+      "spearman": 0.444
+    },
+    "Leontief_0param": {
+      "free_parameters": 0,
+      "mae": 0.01825,
+      "rmse": 0.03315,
+      "spearman": 0.3314
+    },
+    "LinearDiffusion_0param": {
+      "free_parameters": 0,
+      "mae": 0.01854,
+      "rmse": 0.03349,
+      "spearman": 0.7068
+    },
+    "Naive_0param": {
+      "free_parameters": 0,
+      "mae": 0.0227,
+      "rmse": 0.03401,
+      "spearman": null
+    }
+  },
+  "pairwise_vs_v3_1param": {
+    "v3_1param__vs__v3_5param_LOO_DE": {
+      "point": -0.01477,
+      "p2_5": -0.02916,
+      "p97_5": -0.00305,
+      "p_perm": 0.03655,
+      "significant_at_05": true
+    },
+    "v3_1param__vs__v2_5param_calibrated": {
+      "point": -0.01323,
+      "p2_5": -0.03157,
+      "p97_5": 0.00166,
+      "p_perm": 0.16634,
+      "significant_at_05": false
+    },
+    "v3_1param__vs__Leontief_0param": {
+      "point": -0.00494,
+      "p2_5": -0.01469,
+      "p97_5": 0.00466,
+      "p_perm": 0.34383,
+      "significant_at_05": false
+    },
+    "v3_1param__vs__LinearDiffusion_0param": {
+      "point": -0.00523,
+      "p2_5": -0.01865,
+      "p97_5": 0.00579,
+      "p_perm": 0.50017,
+      "significant_at_05": false
+    },
+    "v3_1param__vs__Naive_0param": {
+      "point": -0.00939,
+      "p2_5": -0.01781,
+      "p97_5": 0.00013,
+      "p_perm": 0.0571,
+      "significant_at_05": false
+    }
+  },
+  "structural_walls": {
+    "taiwan-chichi-earthquake-1999": {
+      "observed": 0.005,
+      "v2_pred": 0.1934,
+      "v3_pred": 0.0189,
+      "v2_abs_err": 0.1884,
+      "v3_abs_err": 0.0139
+    },
+    "gfc-auto-collapse-2008-2009": {
+      "observed": 0.13,
+      "v2_pred": 0.0509,
+      "v3_pred": 0.1575,
+      "v2_abs_err": 0.0791,
+      "v3_abs_err": 0.0275
+    }
+  },
+  "headline": "One leave-one-out-fitted scale parameter on the dense ICIO graph significantly beats five per-fold DE-calibrated parameters out-of-sample (MAE 0.0133 vs 0.0281, p=0.037) and leads every metric; the dense graph also largely closes the two documented structural failures (Chi-Chi 13.6x, GFC 2.9x lower error).",
+  "caveats": [
+    "advantages over the zero-parameter baselines are NOT significant (p=0.06-0.50)",
+    "24 events (chokepoints excluded), so this is not directly comparable to the N=27 headline",
+    "the scale is fitted leave-one-out, but the model class was chosen after seeing v3 behaviour"
+  ]
+}

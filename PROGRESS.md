@@ -977,3 +977,138 @@ The inline baseline-comparison and LOO-band panels still compute on the v2 engin
 graph even when v3 is selected for the main run — they're about the calibrated
 reference, so this is defensible, but it's a mild inconsistency to revisit if v3
 ever gets its own calibration.
+
+## Batch 18 — Significance layer + ISEF strategy: which leaderboard differences are real?
+
+**Status: DONE (2026-07-18) — incl. the 27-fold LOO-DE refresh**
+
+The first technical question about a 27-event benchmark is "is any of that
+significant?" — it now has a precomputed, deterministic answer.
+
+### New: `app/core/significance.py` + `scripts/significance_analysis.py`
+Event-level bootstrap CIs (10k resamples) for every model's MAE/RMSE/Spearman,
+PAIRED bootstrap deltas (shared resample indices) and sign-flip permutation
+p-values (20k) for all 6 model pairs, plus bootstrap CIs for the Track B
+cascade-shape Spearman dims. Seed 20260718; byte-identical across runs.
+Output: `data/calibration/significance.json`. 7 new tests (112 total green).
+
+### Findings (the honest headline set)
+- **Magnitude: parity.** No pairwise MAE difference is significant — GEDS vs
+  Leontief p=0.43; even Leontief vs naive-mean only p=0.09. At N=27,
+  single-number validation cannot rank these four models. This is a *finding*,
+  not a failure: it is the argument for multi-axis validation.
+- **Shape: separation.** Recovery-duration ranking (the axis only GEDS can
+  even attempt): Spearman 0.88, 95% CI [0.56, 0.99], n=11 — significant.
+  Severity ranking: 0.46 [0.08, 0.74] — significant. weeks_to_peak: 0.07
+  [-0.43, +0.53] — chance level, reported as a limitation.
+- Naive persistence carries no rank metrics (constant predictor → spearman
+  None), consistent with the benchmark's has_ranking convention.
+
+### New: `docs/ISEF_STRATEGY.md`
+The competition plan built on these numbers: thesis inversion ("the harness +
+benchmark + honest finding IS the contribution"), claim→artifact map, judge
+attack-surface table with prepared answers (N-power, leak-quarantine story,
+AI-disclosure, why-model-loses reframe), prioritized work plan, category
+recommendation, 240-word abstract draft. Numbers regenerate from
+significance.json — never hand-edited.
+
+### 27-fold LOO-DE verdict (81 min, same protocol as Batch 7/9b/9d)
+
+| | MAE | RMSE | Pearson | Spearman | R² |
+|---|---|---|---|---|---|
+| LOO-DE, N=26 (2026-06-11, canonical until now) | **0.0170** | **0.0395** | +0.166 | 0.525 | −1.525 |
+| **LOO-DE, N=27 (+GFC, this refresh)** | 0.0188 | 0.0413 | **+0.292** | **0.581** | **−0.624** |
+
+Adding the demand-side GFC outlier moves the two families of metrics in
+opposite directions, and both movements are informative: pooled error worsens
+because the GFC fold is under-predicted (0.051 vs 0.130 — a credit-freeze
+demand collapse is structurally unlike the supply cascades the engine
+models), while every rank metric improves (a genuinely large event gives the
+ranking something real to rank, and the engine ranks it 2nd). Chi-Chi remains
+the worst fold (0.191 vs 0.005) — the Batch 8/9b/9d wall, unchanged.
+
+Paired significance of the tuned story (same machinery as significance.json,
+seed 20260718): LOO-GEDS vs Leontief ΔMAE +0.0020, 95% CI [−0.0087, +0.0164],
+p_perm=0.87; vs linear diffusion ΔMAE +0.0020, p=0.56. **Magnitude parity
+holds out-of-sample too** — the recalibrated engine is statistically
+indistinguishable from the zero-parameter baselines on error, which completes
+the Batch-18 narrative: the separation between models lives on the trajectory
+axes, not the point-magnitude axis, tuned or untuned.
+
+## Batch 19 — weeks_to_peak: from chance level to significant, the honest way
+
+**Status: DONE (2026-07-23) — forensics → statistic bug fix → pre-registered ramp experiment → ADOPTED**
+
+Batch 18 flagged the one chance-level validation axis: weeks_to_peak Spearman
+0.07, 95% CI [-0.43, +0.53]. This batch closes it with a full causal arc.
+
+### Forensics (why it was at chance)
+The engine predicted peak week 0 for 12 of 15 scored events — the entire
+predicted support was {0, 11, 22} against an observed 1–52. Trajectory dumps
+showed the two nonzero values are argmax picks on near-flat plateau creep
+(JPN:auto 0.088→0.096; DEU:auto 0.012→0.013), not real late dynamics. Root
+cause located in code, two layers deep:
+1. `ShockSpec.factor()` had no rising shape — step is flat and linear/exp
+   DECAY from t=0, so every curve peaks at onset;
+2. the ratchet update `state = max(external, state + impact − recovery)`
+   renders any declining forcing as a rectangular pulse at the shocked node
+   (declining external unbinds after week 0). The engine structurally could
+   not represent an event whose stress accumulates.
+
+### Found on the way: a real statistics bug (now fixed)
+`cascade_validation._spearman` ranked via double-argsort, which assigns
+DISTINCT ranks to tied values in iteration order. With 12/15 predictions tied
+at 0.0 it manufactured +0.61 "correlation" out of event ordering. Fixed to
+delegate to the tie-corrected `metrics.spearman_rho` (average ranks) — the
+same statistic the benchmark and significance layers already use. Correction
+note for the record: the Batch 13 published shape Spearmans (magnitude +0.80,
+weeks_to_peak +0.60, recovery +0.85) were computed with the biased ranking;
+the tie-corrected values on today's data are +0.60 / +0.07 / +0.88.
+
+### Pre-registered experiment (scripts/ramp_experiment.py)
+New `decay_curve="ramp"` (rises 1/D … 1.0 across the window — the ratchet
+renders rising forcing faithfully, so no engine change needed). Treatment set
+selected by real-world MECHANISM, declared before running: WC ports 2021
+(congestion), Panama drought 2023 (progressive draft limits), GFC 2008-09
+(demand collapse over quarters), EU energy 2021 (price escalation). Sharp-
+onset events (quakes, fires, lockdowns, Suez blockage, Red Sea attack onset)
+keep front-loaded curves. Gate, registered in the script docstring before the
+corrected run: G1 weeks_to_peak Spearman ≥ 0.40; G2 magnitude/recovery drop
+≤ 0.05; G3 benchmark GEDS MAE worsens ≤ 0.001; G4 untouched events
+bit-identical. Result: **0.0683 → 0.6913**, drops 0.0/0.0, ΔMAE +0.0001,
+no side effects — ADOPT on all four gates. Artifact:
+`data/calibration/ramp_experiment.json`.
+
+### After adoption (significance.json regenerated, 10k/20k, seed 20260718)
+| Track B dim | before | after |
+|---|---|---|
+| weeks_to_peak (n=15) | +0.07 [−0.43, +0.53] — chance | **+0.69 [+0.20, +0.87] — significant** |
+| recovery_weeks (n=11) | +0.88 [+0.56, +0.99] | unchanged |
+| magnitude (n=5) | +0.60 [−1, +1] (n too small to claim) | unchanged |
+
+Track A magnitude parity is intact (all 6 pairwise deltas n.s., p ≥ 0.09) —
+the ramp costs +0.0001 benchmark MAE, no winner flips; goldens updated in the
+same commit (GEDS 0.0242/spearman 0.4511; LinDiff 0.0171/0.0317/0.7181 —
+only the two forcing-integrating models move). Also fixed on the way: the
+LOO-band test still pinned n_folds=26 from before the Batch-18 LOO refresh.
+117 tests green (ex-portwatch).
+
+### LOO-DE re-run on the ramp specs (27 folds, 100 min — completes the batch)
+Out-of-sample: MAE 0.0192 / RMSE 0.0422 / Pearson 0.253 / Spearman 0.556 /
+R² −0.697, vs 0.0188 / 0.0413 / 0.292 / 0.581 / −0.624 on pre-ramp specs —
+every pooled Track A metric marginally worse, honestly recorded (the
+pre-registered gate covered the default-param benchmark, not LOO-DE). Paired
+vs Leontief: ΔMAE +0.0024, 95% CI [−0.0073, +0.0167], p_perm=0.89 —
+magnitude parity is intact out-of-sample. Fold-level, the ramp does exactly
+what it claims at the specs it touched: WC-ports fold 0.0100 → 0.0079
+(observed 0.0080, near-exact), while GFC (0.0509 vs 0.1300) and Chi-Chi
+(0.1934 vs 0.0050) remain the two structural walls. Net Batch-19 trade,
+stated plainly: a chance-level validation axis became significant
+(weeks_to_peak 0.07 → 0.69 [0.20, 0.87]) for ≈ +0.0004 out-of-sample MAE,
+none of it statistically distinguishable from zero.
+
+The ISEF read: the weakest validation axis now carries the strongest
+methodology story — failure quantified with CIs, cause localized to two code
+mechanisms, a statistics bug fixed en route, the fix gated by a pre-registered
+experiment that the Batch-8/9b/9d precedents show this project is willing to
+FAIL, and the CI flipping positive only after all of that.

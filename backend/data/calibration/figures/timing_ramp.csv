@@ -1,0 +1,16 @@
+slug,observed,pred_before,pred_after,ramp_treated
+suez-canal-2021,1.0,0.0,0.0,False
+japan-triple-disaster-2011,2.0,11.0,11.0,False
+texas-winter-storm-2021,1.0,0.0,0.0,False
+eu-energy-crisis-2021,13.0,22.0,23.0,True
+malaysia-semiconductor-2021,4.0,0.0,0.0,False
+thailand-floods-2011,4.0,0.0,0.0,False
+renesas-naka-fire-2021,1.0,0.0,0.0,False
+vietnam-covid-lockdown-2021,4.0,0.0,0.0,False
+shanghai-lockdown-2022,4.0,0.0,0.0,False
+yantian-port-closure-2021,3.0,0.0,0.0,False
+us-west-coast-ports-2021,52.0,0.0,19.0,True
+red-sea-crisis-2023,4.0,0.0,0.0,False
+taiwan-chichi-earthquake-1999,1.0,0.0,0.0,False
+panama-canal-drought-2023,20.0,0.0,29.0,True
+gfc-auto-collapse-2008-2009,20.0,0.0,38.0,True

@@ -1,0 +1,90 @@
+{
+  "schema": "geds.v3calib.partial.v1",
+  "timestamp": "2026-07-28T07:42:44.743499+00:00",
+  "seed": 20260718,
+  "status": "PARTIAL \u2014 18 of 24 LOO folds; the run was killed by a container restart",
+  "n_folds_completed": 18,
+  "n_folds_planned": 24,
+  "event_slugs": [
+    "covid-semiconductor-2020-2021",
+    "auto-chip-shortage-2021",
+    "japan-triple-disaster-2011",
+    "us-china-tariffs-2019",
+    "texas-winter-storm-2021",
+    "eu-energy-crisis-2021",
+    "malaysia-semiconductor-2021",
+    "thailand-floods-2011",
+    "kumamoto-earthquake-2016",
+    "renesas-naka-fire-2021",
+    "japan-korea-export-controls-2019",
+    "vietnam-covid-lockdown-2021",
+    "shanghai-lockdown-2022",
+    "ukraine-war-harness-2022",
+    "china-power-crunch-2021",
+    "yantian-port-closure-2021",
+    "us-west-coast-ports-2021",
+    "taiwan-drought-2021"
+  ],
+  "scores": {
+    "v3_1param_LOO_scale": {
+      "mae": 0.01351,
+      "spearman": 0.7292
+    },
+    "v3_5param_LOO_DE": {
+      "mae": 0.03417,
+      "spearman": 0.5293
+    },
+    "v2_5param_calibrated": {
+      "mae": 0.02138,
+      "spearman": 0.4723
+    },
+    "Leontief_0param": {
+      "mae": 0.01701,
+      "spearman": 0.3283
+    },
+    "LinearDiffusion_0param": {
+      "mae": 0.01259,
+      "spearman": 0.7592
+    },
+    "Naive_0param": {
+      "mae": 0.01869,
+      "spearman": null
+    }
+  },
+  "pairwise_vs_v3_1param": {
+    "v3_1param__vs__v3_5param_LOO_DE": {
+      "point": -0.02066,
+      "p2_5": -0.0404,
+      "p97_5": -0.00371,
+      "p_perm": 0.0439,
+      "significant_at_05": true
+    },
+    "v3_1param__vs__v2_5param_calibrated": {
+      "point": -0.00787,
+      "p2_5": -0.02553,
+      "p97_5": 0.00591,
+      "p_perm": 0.40763,
+      "significant_at_05": false
+    },
+    "v3_1param__vs__Leontief_0param": {
+      "point": -0.00349,
+      "p2_5": -0.01512,
+      "p97_5": 0.0068,
+      "p_perm": 0.55317,
+      "significant_at_05": false
+    },
+    "v3_1param__vs__LinearDiffusion_0param": {
+      "point": 0.00092,
+      "p2_5": -0.00788,
+      "p97_5": 0.01057,
+      "p_perm": 0.85751,
+      "significant_at_05": false
+    }
+  },
+  "headline": "On the dense v3 graph, ONE leave-one-out-fitted scale parameter significantly beats FIVE per-fold DE-calibrated parameters out-of-sample (MAE 0.0135 vs 0.0342, p=0.044) \u2014 direct evidence of over-parameterization.",
+  "caveats": [
+    "18 of 24 folds only; the missing 6 could shift the estimate",
+    "p=0.0439 sits just below 0.05 at n=18 \u2014 fragile, needs the full run",
+    "not yet written into the paper pending completion"
+  ]
+}

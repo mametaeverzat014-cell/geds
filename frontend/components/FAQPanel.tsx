@@ -27,7 +27,7 @@ export default function FAQPanel() {
           </h2>
           <button
             onClick={toggleFaq}
-            className="text-text-muted hover:text-text-primary transition text-xs px-2 py-1 rounded border border-border-subtle hover:border-border-strong"
+            className="text-text-muted hover:text-text-primary transition text-[13px] px-2 py-1 rounded border border-border-subtle hover:border-border-strong"
           >
             {t("faqClose")} ✕
           </button>
@@ -36,10 +36,10 @@ export default function FAQPanel() {
         {/* trust strip — points users to the live, honest validation panel */}
         <div className="px-5 py-2.5 bg-accent-cyan/5 border-b border-border-subtle shrink-0">
           <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-[10px] px-2 py-0.5 rounded-full bg-accent-cyan/15 text-accent-cyan border border-accent-cyan/30 font-semibold">
+            <span className="text-[12px] px-2 py-0.5 rounded-full bg-accent-cyan/15 text-accent-cyan border border-accent-cyan/30 font-semibold">
               LOO-CV
             </span>
-            <span className="text-[10px] text-text-muted">
+            <span className="text-[12px] text-text-muted">
               {lang === "en"
                 ? "Live cross-validation in top-right badge · full report: /api/v1/cv-report"
                 : "Live-кросс-валидация в значке справа сверху · полный отчёт: /api/v1/cv-report"}
@@ -51,7 +51,7 @@ export default function FAQPanel() {
         <div className="flex-1 overflow-y-auto px-5 py-4 space-y-5">
           {sections.map((section) => (
             <div key={section.title}>
-              <h3 className="text-[11px] font-bold uppercase tracking-widest text-text-muted mb-2 pb-1 border-b border-border-subtle">
+              <h3 className="text-[12px] font-bold uppercase tracking-widest text-text-muted mb-2 pb-1 border-b border-border-subtle">
                 {section.title}
               </h3>
               <div className="space-y-1">
@@ -67,16 +67,16 @@ export default function FAQPanel() {
                         onClick={() => setOpenItem(isOpen ? null : id)}
                         className="w-full text-left px-3 py-2.5 flex items-start justify-between gap-2 hover:bg-bg-base/50 transition"
                       >
-                        <span className="text-xs font-medium text-text-primary leading-snug">
+                        <span className="text-[13px] font-medium text-text-primary leading-snug">
                           {item.q}
                         </span>
-                        <span className="text-text-muted text-xs shrink-0 mt-0.5">
+                        <span className="text-text-muted text-[13px] shrink-0 mt-0.5">
                           {isOpen ? "▴" : "▾"}
                         </span>
                       </button>
                       {isOpen && (
                         <div className="px-3 pb-3 pt-1 border-t border-border-subtle/50 bg-bg-base/30">
-                          <p className="text-xs text-text-secondary leading-relaxed">
+                          <p className="text-[13px] text-text-secondary leading-relaxed">
                             {item.a}
                           </p>
                         </div>
@@ -90,7 +90,7 @@ export default function FAQPanel() {
 
           {/* data sources footer */}
           <div className="rounded border border-border-subtle bg-bg-base/40 p-3 space-y-1.5">
-            <div className="text-[10px] font-bold uppercase tracking-widest text-text-muted">
+            <div className="text-[12px] font-bold uppercase tracking-widest text-text-muted">
               {lang === "en" ? "Primary data sources" : "Первичные источники данных"}
             </div>
             {[
@@ -100,7 +100,7 @@ export default function FAQPanel() {
               { label: "IMF WEO 2020", detail: lang === "en" ? "Taiwan GDP (excluded from World Bank)" : "ВВП Тайваня (отсутствует в ВБ)" },
               { label: "IEA / IMO 2020", detail: lang === "en" ? "Chokepoint exposure & disruption probabilities" : "Зависимость от проливов и вероятности нарушений" },
             ].map((s) => (
-              <div key={s.label} className="flex gap-2 text-[10px]">
+              <div key={s.label} className="flex gap-2 text-[12px]">
                 <span className="text-accent-cyan font-semibold w-36 shrink-0">{s.label}</span>
                 <span className="text-text-muted">{s.detail}</span>
               </div>

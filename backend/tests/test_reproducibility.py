@@ -32,11 +32,18 @@ from app.core.benchmark import (
 # deliberately: any future improvement must show up as an explicit, reviewed
 # change to these numbers.
 GOLDEN = {
-    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0241, "rmse": 0.0464, "spearman": 0.4608},
+    "SEIRS-Bullwhip-Hysteresis (GEDS)": {"mae": 0.0242, "rmse": 0.0464, "spearman": 0.4511},
     "Leontief (input-output equilibrium)": {"mae": 0.0168, "rmse": 0.0313},
-    "Linear Diffusion (network)": {"mae": 0.0168, "rmse": 0.0315, "spearman": 0.7248},
+    "Linear Diffusion (network)": {"mae": 0.0171, "rmse": 0.0317, "spearman": 0.7181},
     "Naive Persistence (predict mean)": {"mae": 0.0208, "rmse": 0.0324},
 }
+# 2026-07-23 Batch 19 — ramp forcing adopted for the 4 slow-accumulation
+# events (WC ports 2021, Panama drought, GFC, EU energy) after the
+# pre-registered gate passed (weeks_to_peak Spearman 0.0683 -> 0.6913 at the
+# shocked node, other dims untouched, benchmark cost +0.0001 MAE). Only GEDS
+# and Linear Diffusion move (both integrate forcing over time); Leontief
+# (equilibrium, magnitude-only) and Naive are unchanged; no winner flips.
+# Artifact: data/calibration/ramp_experiment.json.
 # 2026-06-17: N=26 -> 27 — added gfc-auto-collapse-2008-2009 (Global Financial
 # Crisis automotive collapse), the largest-magnitude event in the set (OICA
 # -13.1% YoY global production, USA SAAR trough -47.3%, 104-week horizon, the

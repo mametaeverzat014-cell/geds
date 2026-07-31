@@ -46,19 +46,21 @@ export default function StatusRibbon() {
   }
 
   return (
-    <div className="space-y-3 border-b border-border-subtle pb-5 mb-2">
-      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+    <div className="space-y-2.5 sm:space-y-3 border-b border-border-subtle pb-3 sm:pb-5 mb-2">
+      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2.5 sm:gap-4">
         {/* left: title + tagline */}
         <div className="min-w-0">
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight flex items-baseline gap-3 flex-wrap">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold tracking-tight flex items-baseline gap-2 sm:gap-3 flex-wrap">
             <span className="title-gradient drop-shadow-[0_0_24px_rgba(77,208,225,0.25)]">
               {t("appTitle")}
             </span>
-            <span className="text-text-secondary font-semibold text-xs md:text-sm uppercase tracking-[0.25em]">
+            {/* tight tracking on phones: 0.25em wrapped the subtitle onto two lines */}
+            <span className="text-text-secondary font-semibold text-[12px] md:text-sm uppercase tracking-[0.1em] md:tracking-[0.25em]">
               {t("appSubtitle")}
             </span>
           </h1>
-          <p className="text-xs md:text-[13px] text-text-secondary/80 mt-2 max-w-2xl leading-relaxed">
+          {/* marketing tagline is redundant on phones — the guide below says the same */}
+          <p className="hidden sm:block text-[13px] text-text-secondary/80 mt-2 max-w-2xl leading-relaxed">
             {t("appTagline")}
           </p>
         </div>
@@ -79,8 +81,8 @@ export default function StatusRibbon() {
           </div>
 
           {/* graph/simulation status */}
-          <div className="text-right text-xs text-text-secondary num space-y-0.5">
-            <div className="flex items-center justify-end gap-1.5">
+          <div className="text-left sm:text-right text-[13px] text-text-secondary num space-y-0.5">
+            <div className="flex items-center justify-start sm:justify-end gap-1.5">
               <span
                 title={
                   backendStatus === "online"
@@ -117,11 +119,11 @@ export default function StatusRibbon() {
 
       {/* data provenance strip */}
       <div className="flex items-center gap-3 flex-wrap">
-        <span className="text-[10px] text-text-muted">{t("dataStamp")}</span>
-        <span className="text-text-muted/40 text-[10px]">·</span>
+        <span className="text-[12px] text-text-muted">{t("dataStamp")}</span>
+        <span className="text-text-muted/40 text-[12px]">·</span>
         <span
           title={cv ? `Live LOO cross-validation, computed ${new Date(cv.timestamp).toLocaleString()}` : ""}
-          className={`text-[10px] px-2 py-0.5 rounded-full border font-semibold ${badgeColor}`}
+          className={`text-[12px] px-2 py-0.5 rounded-full border font-semibold ${badgeColor}`}
         >
           {badgeText}
         </span>
@@ -131,7 +133,7 @@ export default function StatusRibbon() {
             target="_blank"
             rel="noopener noreferrer"
             title={`Last UN Comtrade refresh: ${new Date(refresh.last_refresh_utc).toLocaleString()}`}
-            className="text-[10px] px-2 py-0.5 rounded-full bg-accent-violet/10 text-accent-violet border border-accent-violet/30 hover:border-accent-violet/60 transition"
+            className="text-[12px] px-2 py-0.5 rounded-full bg-accent-violet/10 text-accent-violet border border-accent-violet/30 hover:border-accent-violet/60 transition"
           >
             {lang === "en"
               ? `Data refreshed ${formatAge(refresh.age_hours)} ago`

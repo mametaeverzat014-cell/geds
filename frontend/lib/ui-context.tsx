@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 
 export type Lang = "en" | "ru";
 
@@ -37,7 +37,7 @@ export const T = {
     summary: "Summary",
     peakCSI: "Peak CSI",
     peakCSIDesc:
-      "Cascade Severity Index — GDP-weighted average shock across all 40 nodes. 0 = no disruption, 1 = total collapse.",
+      "Cascade Severity Index — network-average shock, each node weighted by its centrality, supplier dependence, fragility and recovery speed. 0 = no disruption, 1 = total collapse.",
     peakECV: "Peak ECV",
     peakECVDesc:
       "Economic Contagion Velocity — how fast the shock is spreading (new disrupted GDP-units per week).",
@@ -97,7 +97,7 @@ export const T = {
     footerLine1:
       "Flagship scenario: Taiwan semiconductor exports fall 70–80%. Watch the cascade ripple through automotive, electronics, and consumer goods across 12 economies in real time.",
     footerLine2:
-      "Two novel metrics: Cascade Severity Index (CSI) — GDP-weighted network shock — and Economic Contagion Velocity (ECV) — weekly spread rate. Validated against 8 historical events including COVID semiconductor shortage (2020–21), Suez Canal blockage (2021), Japan triple disaster (2011), and US–China tariff war (2019).",
+      "Two novel metrics: Cascade Severity Index (CSI) — network-average shock weighted by each node's centrality and fragility — and Economic Contagion Velocity (ECV) — the weekly rate at which new nodes enter disruption. Validated against 27 primary-sourced historical events (1999–2023), including the COVID semiconductor shortage (2020–21), the Suez Canal blockage (2021), Japan's triple disaster (2011), and the 2008–09 financial crisis.",
     footerLine3:
       "Use the overlay selector in the timeline to switch between shock intensity, inflation pressure, output loss, and unemployment risk. Click Analyse after any simulation for prioritized policy recommendations.",
 
@@ -183,7 +183,7 @@ export const T = {
     summary: "Итоги",
     peakCSI: "Пик CSI",
     peakCSIDesc:
-      "Индекс серьёзности каскада — взвешенный по ВВП средний шок по всем 40 узлам. 0 = нет нарушений, 1 = полный коллапс.",
+      "Индекс серьёзности каскада — средний по сети шок, где каждый узел взвешен своей важностью в сети, зависимостью от поставщиков, хрупкостью и скоростью восстановления. 0 = нет нарушений, 1 = полный коллапс.",
     peakECV: "Пик ECV",
     peakECVDesc:
       "Скорость экономического заражения — как быстро распространяется шок (новые нарушенные единицы ВВП в неделю).",
@@ -239,7 +239,7 @@ export const T = {
     footerLine1:
       "Флагманский сценарий: экспорт полупроводников из Тайваня падает на 70–80%. Наблюдайте в реальном времени, как каскад распространяется через автомобильную, электронную промышленность и потребительские товары 12 стран.",
     footerLine2:
-      "Два новых показателя: Индекс серьёзности каскада (CSI) — взвешенный по ВВП сетевой шок — и Скорость экономического заражения (ECV). Проверено на 8 исторических событиях: дефицит чипов COVID (2020–21), Суэц (2021), тройная катастрофа в Японии (2011), торговая война США–Китай (2019).",
+      "Два новых показателя: Индекс серьёзности каскада (CSI) — средний по сети шок, взвешенный важностью и хрупкостью каждого узла — и Скорость экономического заражения (ECV) — доля новых узлов, входящих в нарушение за неделю. Проверено на 27 исторических событиях с первичными источниками (1999–2023): дефицит чипов COVID (2020–21), Суэц (2021), тройная катастрофа в Японии (2011), финансовый кризис 2008–09.",
     footerLine3:
       "Используйте переключатель наложения на шкале времени для просмотра шока, инфляции, потерь выпуска и безработицы. Нажмите «Анализировать» после симуляции для получения приоритетных рекомендаций.",
 
@@ -328,15 +328,15 @@ export const FAQ: Record<Lang, FAQSection[]> = {
       items: [
         {
           q: "What is a 'cascade'?",
-          a: "When Taiwan's chip supply drops, chip-importing countries get hit first. Their automotive and electronics sectors slow down. This hits parts suppliers, which hits workers' spending, which hits consumer goods. Each round of impact is one 'wave' of the cascade. GEDS models up to 52 weeks of these waves across 40 nodes in 12 countries.",
+          a: "When Taiwan's chip supply drops, chip-importing countries get hit first. Their automotive and electronics sectors slow down. This hits parts suppliers, which hits workers' spending, which hits consumer goods. Each round of impact is one 'wave' of the cascade. GEDS models these waves across 41 nodes in 12 countries, with horizons up to 104 weeks.",
         },
         {
           q: "What is the Cascade Severity Index (CSI)?",
-          a: "CSI is a single number from 0 to 1 measuring how severely the entire network is disrupted. It is the GDP-weighted average shock across all 40 country-industry nodes. CSI = 0 means no disruption; CSI = 1 would mean total economic collapse. In real historical events, peak CSI ranges from ~0.05 (Suez 2021) to ~0.35 (COVID semiconductor shortage).",
+          a: "CSI is a single number from 0 to 1 measuring how severely the entire network is disrupted. It is a network average where each node's contribution is weighted by its centrality in the network, its supplier dependence, its fragility and its recovery speed. CSI = 0 means no disruption; CSI = 1 would mean total economic collapse. In real historical events, peak CSI ranges from ~0.05 (Suez 2021) to ~0.35 (COVID semiconductor shortage).",
         },
         {
           q: "What is Economic Contagion Velocity (ECV)?",
-          a: "ECV measures the speed of spreading — specifically, how many additional GDP-weighted 'units' are entering significant disruption each week. High ECV early in a scenario means the shock is accelerating. Falling ECV means the cascade is slowing. ECV is the key metric for timing policy interventions: act before ECV peaks.",
+          a: "ECV measures the speed of spreading — specifically, what share of the network's nodes newly enter significant disruption each week (a second variant measures how far from the origin the front has travelled). High ECV early in a scenario means the shock is accelerating. Falling ECV means the cascade is slowing. ECV is the key metric for timing policy interventions: act before ECV peaks.",
         },
         {
           q: "What is a 'dependency weight'?",
@@ -411,15 +411,15 @@ export const FAQ: Record<Lang, FAQSection[]> = {
       items: [
         {
           q: "Что такое «каскад»?",
-          a: "Когда поставки тайваньских чипов падают, страны-импортёры страдают первыми. Их автозаводы и сборщики электроники замедляются. Это бьёт по поставщикам деталей, затем по потребительским расходам работников. Каждый круг последствий — одна «волна» каскада. GEDS моделирует до 52 недель таких волн по 40 узлам в 12 странах.",
+          a: "Когда поставки тайваньских чипов падают, страны-импортёры страдают первыми. Их автозаводы и сборщики электроники замедляются. Это бьёт по поставщикам деталей, затем по потребительским расходам работников. Каждый круг последствий — одна «волна» каскада. GEDS моделирует такие волны по 41 узлу в 12 странах, с горизонтом до 104 недель.",
         },
         {
           q: "Что такое Индекс серьёзности каскада (CSI)?",
-          a: "CSI — число от 0 до 1, показывающее, насколько серьёзно вся сеть нарушена в данный момент. Это взвешенный по ВВП средний шок по 40 узлам. CSI = 0 — нет нарушений; CSI = 1 — полный экономический коллапс. На реальных событиях пик CSI: 0,05 (Суэц 2021) — 0,35 (дефицит чипов COVID).",
+          a: "CSI — число от 0 до 1, показывающее, насколько серьёзно вся сеть нарушена в данный момент. Это средний по сети шок, где вклад каждого узла взвешен его важностью в сети (центральность), зависимостью от поставщиков, хрупкостью и скоростью восстановления. CSI = 0 — нет нарушений; CSI = 1 — полный экономический коллапс. На реальных событиях пик CSI: 0,05 (Суэц 2021) — 0,35 (дефицит чипов COVID).",
         },
         {
           q: "Что такое Скорость экономического заражения (ECV)?",
-          a: "ECV измеряет скорость распространения — сколько новых единиц ВВП входит в значительное нарушение каждую неделю. Высокий ECV в начале — шок ускоряется; падающий ECV — каскад замедляется. ECV — ключевой показатель для выбора момента вмешательства: действуйте до пика ECV.",
+          a: "ECV измеряет скорость распространения — какая доля узлов сети впервые входит в значительное нарушение за неделю (второй вариант измеряет, как далеко от очага ушла волна). Высокий ECV в начале — шок ускоряется; падающий ECV — каскад замедляется. ECV — ключевой показатель для выбора момента вмешательства: действуйте до пика ECV.",
         },
         {
           q: "Что такое «вес зависимости»?",
@@ -486,10 +486,35 @@ const UIContext = createContext<UIContextType>({
   toggleFaq: () => {},
 });
 
+const LANG_KEY = "geds.lang";
+
 export function UIProvider({ children }: { children: ReactNode }) {
+  // Language must survive navigation: /validation is reached through a plain
+  // <a href>, i.e. a full document load, so in-memory state alone reset every
+  // visitor back to English and made the Russian validation copy unreachable.
   const [lang, setLang] = useState<Lang>("en");
   const [faqOpen, setFaqOpen] = useState(false);
-  const toggleLang = () => setLang((l) => (l === "en" ? "ru" : "en"));
+
+  // Read after mount, not during render, so server and client markup match.
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(LANG_KEY);
+      if (saved === "en" || saved === "ru") setLang(saved);
+    } catch {
+      /* storage blocked (private mode) — fall back to the default language */
+    }
+  }, []);
+
+  const toggleLang = () =>
+    setLang((l) => {
+      const next: Lang = l === "en" ? "ru" : "en";
+      try {
+        window.localStorage.setItem(LANG_KEY, next);
+      } catch {
+        /* non-fatal: the toggle still works for this page view */
+      }
+      return next;
+    });
   const toggleFaq = () => setFaqOpen((o) => !o);
   const t = (key: TKey) => (T[lang] as Record<string, string>)[key] ?? (T.en as Record<string, string>)[key] ?? key;
   return (

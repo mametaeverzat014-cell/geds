@@ -1,0 +1,386 @@
+{
+  "timestamp": "2026-07-23T17:35:31.889177+00:00",
+  "experiment": "ramp forcing for slow-accumulation events",
+  "treatment": {
+    "us-west-coast-ports-2021": "congestion accumulation",
+    "panama-canal-drought-2023": "hydrological drought, progressive draft limits",
+    "gfc-auto-collapse-2008-2009": "demand collapse over ~2 quarters",
+    "eu-energy-crisis-2021": "energy-price escalation over months"
+  },
+  "gate": {
+    "G1_weeks_to_peak_spearman_min": 0.4,
+    "G2_other_dims_max_drop": 0.05,
+    "G3_benchmark_mae_max_worsening": 0.001
+  },
+  "gate_results": {
+    "G1": true,
+    "G2": true,
+    "G2_drops": {
+      "magnitude": 0.0,
+      "recovery_weeks": 0.0
+    },
+    "G3": true,
+    "G3_mae_delta": 0.0001,
+    "G4": true,
+    "G4_untouched_diffs": {}
+  },
+  "verdict": "ADOPT",
+  "baseline": {
+    "cascade": {
+      "spearman_by_dim": {
+        "magnitude": 0.6,
+        "weeks_to_peak": 0.0683,
+        "recovery_weeks": 0.8828
+      },
+      "mae_by_dim": {
+        "magnitude": 0.4152,
+        "weeks_to_peak": 9.1333,
+        "recovery_weeks": 8.6364
+      },
+      "n_by_dim": {
+        "magnitude": 5,
+        "weeks_to_peak": 15,
+        "recovery_weeks": 11
+      },
+      "per_event": {
+        "covid-semiconductor-2020-2021": {},
+        "suez-canal-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 1.0
+          },
+          "recovery_weeks": {
+            "pred": 16.0,
+            "obs": 3.0
+          }
+        },
+        "auto-chip-shortage-2021": {},
+        "japan-triple-disaster-2011": {
+          "magnitude": {
+            "pred": 0.0958,
+            "obs": 0.601
+          },
+          "weeks_to_peak": {
+            "pred": 11.0,
+            "obs": 2.0
+          },
+          "recovery_weeks": {
+            "pred": 24.0,
+            "obs": 25.0
+          }
+        },
+        "us-china-tariffs-2019": {},
+        "texas-winter-storm-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 1.0
+          },
+          "recovery_weeks": {
+            "pred": 15.0,
+            "obs": 6.0
+          }
+        },
+        "eu-energy-crisis-2021": {
+          "magnitude": {
+            "pred": 0.0129,
+            "obs": 0.38
+          },
+          "weeks_to_peak": {
+            "pred": 22.0,
+            "obs": 13.0
+          }
+        },
+        "malaysia-semiconductor-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 4.0
+          }
+        },
+        "thailand-floods-2011": {
+          "magnitude": {
+            "pred": 0.3023,
+            "obs": 0.875
+          },
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 4.0
+          },
+          "recovery_weeks": {
+            "pred": 28.0,
+            "obs": 26.0
+          }
+        },
+        "renesas-naka-fire-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 1.0
+          },
+          "recovery_weeks": {
+            "pred": 26.0,
+            "obs": 14.0
+          }
+        },
+        "vietnam-covid-lockdown-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 4.0
+          },
+          "recovery_weeks": {
+            "pred": 24.0,
+            "obs": 16.0
+          }
+        },
+        "shanghai-lockdown-2022": {
+          "magnitude": {
+            "pred": 0.1737,
+            "obs": 0.461
+          },
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 4.0
+          },
+          "recovery_weeks": {
+            "pred": 24.0,
+            "obs": 12.0
+          }
+        },
+        "yantian-port-closure-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 3.0
+          },
+          "recovery_weeks": {
+            "pred": 0.0,
+            "obs": 8.0
+          }
+        },
+        "us-west-coast-ports-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 52.0
+          }
+        },
+        "red-sea-crisis-2023": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 4.0
+          }
+        },
+        "taiwan-chichi-earthquake-1999": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 1.0
+          },
+          "recovery_weeks": {
+            "pred": 12.0,
+            "obs": 3.0
+          }
+        },
+        "panama-canal-drought-2023": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 20.0
+          },
+          "recovery_weeks": {
+            "pred": 34.0,
+            "obs": 40.0
+          }
+        },
+        "gfc-auto-collapse-2008-2009": {
+          "magnitude": {
+            "pred": 0.1293,
+            "obs": 0.473
+          },
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 20.0
+          },
+          "recovery_weeks": {
+            "pred": 63.0,
+            "obs": 78.0
+          }
+        }
+      }
+    },
+    "geds_benchmark_mae": 0.0241
+  },
+  "ramp": {
+    "cascade": {
+      "spearman_by_dim": {
+        "magnitude": 0.6,
+        "weeks_to_peak": 0.6913,
+        "recovery_weeks": 0.8828
+      },
+      "mae_by_dim": {
+        "magnitude": 0.4153,
+        "weeks_to_peak": 7.0667,
+        "recovery_weeks": 8.5455
+      },
+      "n_by_dim": {
+        "magnitude": 5,
+        "weeks_to_peak": 15,
+        "recovery_weeks": 11
+      },
+      "per_event": {
+        "covid-semiconductor-2020-2021": {},
+        "suez-canal-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 1.0
+          },
+          "recovery_weeks": {
+            "pred": 16.0,
+            "obs": 3.0
+          }
+        },
+        "auto-chip-shortage-2021": {},
+        "japan-triple-disaster-2011": {
+          "magnitude": {
+            "pred": 0.0958,
+            "obs": 0.601
+          },
+          "weeks_to_peak": {
+            "pred": 11.0,
+            "obs": 2.0
+          },
+          "recovery_weeks": {
+            "pred": 24.0,
+            "obs": 25.0
+          }
+        },
+        "us-china-tariffs-2019": {},
+        "texas-winter-storm-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 1.0
+          },
+          "recovery_weeks": {
+            "pred": 15.0,
+            "obs": 6.0
+          }
+        },
+        "eu-energy-crisis-2021": {
+          "magnitude": {
+            "pred": 0.0122,
+            "obs": 0.38
+          },
+          "weeks_to_peak": {
+            "pred": 23.0,
+            "obs": 13.0
+          }
+        },
+        "malaysia-semiconductor-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 4.0
+          }
+        },
+        "thailand-floods-2011": {
+          "magnitude": {
+            "pred": 0.3023,
+            "obs": 0.875
+          },
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 4.0
+          },
+          "recovery_weeks": {
+            "pred": 28.0,
+            "obs": 26.0
+          }
+        },
+        "renesas-naka-fire-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 1.0
+          },
+          "recovery_weeks": {
+            "pred": 26.0,
+            "obs": 14.0
+          }
+        },
+        "vietnam-covid-lockdown-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 4.0
+          },
+          "recovery_weeks": {
+            "pred": 24.0,
+            "obs": 16.0
+          }
+        },
+        "shanghai-lockdown-2022": {
+          "magnitude": {
+            "pred": 0.1737,
+            "obs": 0.461
+          },
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 4.0
+          },
+          "recovery_weeks": {
+            "pred": 24.0,
+            "obs": 12.0
+          }
+        },
+        "yantian-port-closure-2021": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 3.0
+          },
+          "recovery_weeks": {
+            "pred": 0.0,
+            "obs": 8.0
+          }
+        },
+        "us-west-coast-ports-2021": {
+          "weeks_to_peak": {
+            "pred": 19.0,
+            "obs": 52.0
+          }
+        },
+        "red-sea-crisis-2023": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 4.0
+          }
+        },
+        "taiwan-chichi-earthquake-1999": {
+          "weeks_to_peak": {
+            "pred": 0.0,
+            "obs": 1.0
+          },
+          "recovery_weeks": {
+            "pred": 12.0,
+            "obs": 3.0
+          }
+        },
+        "panama-canal-drought-2023": {
+          "weeks_to_peak": {
+            "pred": 29.0,
+            "obs": 20.0
+          },
+          "recovery_weeks": {
+            "pred": 34.0,
+            "obs": 40.0
+          }
+        },
+        "gfc-auto-collapse-2008-2009": {
+          "magnitude": {
+            "pred": 0.1293,
+            "obs": 0.473
+          },
+          "weeks_to_peak": {
+            "pred": 38.0,
+            "obs": 20.0
+          },
+          "recovery_weeks": {
+            "pred": 64.0,
+            "obs": 78.0
+          }
+        }
+      }
+    },
+    "geds_benchmark_mae": 0.0242
+  }
+}

@@ -123,7 +123,7 @@ export default function OnboardingGuide() {
     return (
       <button
         onClick={() => setOpenPersist(true)}
-        className="w-full flex items-center gap-2 rounded-md border border-border-subtle bg-bg-base/40 px-4 py-2 text-xs text-text-secondary hover:text-text-primary hover:border-accent-cyan/40 transition"
+        className="w-full flex items-center gap-2 rounded-md border border-border-subtle bg-bg-base/40 px-4 py-2 text-[13px] text-text-secondary hover:text-text-primary hover:border-accent-cyan/40 transition"
       >
         <span className="text-accent-cyan">▸</span>
         <span className="font-medium">{c.reopen}</span>
@@ -138,29 +138,29 @@ export default function OnboardingGuide() {
     >
       <div className="flex items-start justify-between gap-4">
         <div>
-          <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-cyan">
+          <div className="text-[12px] font-bold uppercase tracking-[0.2em] text-accent-cyan">
             {c.badge}
           </div>
           <h2 className="text-base font-bold text-text-primary mt-0.5">{c.title}</h2>
         </div>
         <button
           onClick={() => setOpenPersist(false)}
-          className="shrink-0 rounded px-2 py-1 text-[11px] text-text-muted hover:text-text-primary border border-border-subtle hover:border-border-strong transition"
+          className="shrink-0 rounded px-2 py-1 text-[12px] text-text-muted hover:text-text-primary border border-border-subtle hover:border-border-strong transition"
         >
           {c.hide} ×
         </button>
       </div>
 
-      <p className="text-xs text-text-secondary leading-relaxed max-w-4xl">{c.whatBody}</p>
+      <p className="text-[13px] text-text-secondary leading-relaxed max-w-4xl">{c.whatBody}</p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
         {/* steps */}
         <div className="md:col-span-1 space-y-2">
-          <div className="text-[10px] font-bold uppercase tracking-widest text-text-muted">
+          <div className="text-[12px] font-bold uppercase tracking-widest text-text-muted">
             {c.stepsTitle}
           </div>
           {c.steps.map((s) => (
-            <div key={s.k} className="text-xs leading-relaxed">
+            <div key={s.k} className="text-[13px] leading-relaxed">
               <span className="text-accent-cyan font-semibold">{s.k}</span>
               <span className="text-text-secondary"> — {s.v}</span>
             </div>
@@ -169,12 +169,12 @@ export default function OnboardingGuide() {
 
         {/* panel legend */}
         <div className="md:col-span-2 space-y-1.5">
-          <div className="text-[10px] font-bold uppercase tracking-widest text-text-muted">
+          <div className="text-[12px] font-bold uppercase tracking-widest text-text-muted">
             {c.panelsTitle}
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5">
             {c.panels.map((p) => (
-              <div key={p.name} className="text-xs leading-snug">
+              <div key={p.name} className="text-[13px] leading-snug">
                 <span className="text-text-primary font-semibold">{p.name}</span>
                 <span className="text-text-muted"> — {p.desc}</span>
               </div>
@@ -184,20 +184,20 @@ export default function OnboardingGuide() {
       </div>
 
       <div className="hairline pt-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-        <p className="text-xs text-text-secondary leading-relaxed flex-1">
+        <p className="text-[13px] text-text-secondary leading-relaxed flex-1">
           <span className="font-semibold text-text-primary">{c.trustTitle}</span>{" "}
           {c.trustBody}
         </p>
         <div className="flex items-center gap-2 shrink-0">
           <button
             onClick={toggleFaq}
-            className="text-xs px-3 py-1 rounded border border-border-strong text-text-secondary hover:text-text-primary hover:border-accent-cyan/50 transition font-medium"
+            className="text-[13px] px-3 py-1 rounded border border-border-strong text-text-secondary hover:text-text-primary hover:border-accent-cyan/50 transition font-medium"
           >
             {c.openFaq}
           </button>
           <a
             href="/validation"
-            className="text-xs px-3 py-1 rounded border border-accent-cyan/40 text-accent-cyan hover:bg-accent-cyan/10 transition font-medium"
+            className="text-[13px] px-3 py-1 rounded border border-accent-cyan/40 text-accent-cyan hover:bg-accent-cyan/10 transition font-medium"
           >
             {c.openValidation}
           </a>

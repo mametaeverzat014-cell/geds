@@ -1,0 +1,244 @@
+{
+  "timestamp": "2026-07-28T18:19:07.744927+00:00",
+  "n_folds": 24,
+  "de_settings": {
+    "maxiter": 12,
+    "popsize_per_dim": 4,
+    "seed": 42
+  },
+  "config_overrides": {},
+  "graph_version": "v3",
+  "graph_nodes": 405,
+  "runtime_seconds": 6142.4,
+  "out_of_sample_score": {
+    "mae": 0.0281,
+    "rmse": 0.0499,
+    "r_squared": -1.1495,
+    "pearson": 0.6568,
+    "spearman": 0.5654
+  },
+  "folds": [
+    {
+      "slug": "covid-semiconductor-2020-2021",
+      "loss_predicted": 0.135,
+      "loss_observed": 0.115,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "auto-chip-shortage-2021",
+      "loss_predicted": 0.1427,
+      "loss_observed": 0.077,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "japan-triple-disaster-2011",
+      "loss_predicted": 0.0163,
+      "loss_observed": 0.039,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "us-china-tariffs-2019",
+      "loss_predicted": 0.1252,
+      "loss_observed": 0.02,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "texas-winter-storm-2021",
+      "loss_predicted": 0.0048,
+      "loss_observed": 0.005,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "eu-energy-crisis-2021",
+      "loss_predicted": 0.0052,
+      "loss_observed": 0.015,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "malaysia-semiconductor-2021",
+      "loss_predicted": 0.003,
+      "loss_observed": 0.012,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "thailand-floods-2011",
+      "loss_predicted": 0.0091,
+      "loss_observed": 0.025,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "kumamoto-earthquake-2016",
+      "loss_predicted": 0.0365,
+      "loss_observed": 0.006,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "renesas-naka-fire-2021",
+      "loss_predicted": 0.0353,
+      "loss_observed": 0.016,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "japan-korea-export-controls-2019",
+      "loss_predicted": 0.0096,
+      "loss_observed": 0.002,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "vietnam-covid-lockdown-2021",
+      "loss_predicted": 0.0072,
+      "loss_observed": 0.012,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "shanghai-lockdown-2022",
+      "loss_predicted": 0.1948,
+      "loss_observed": 0.018,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "ukraine-war-harness-2022",
+      "loss_predicted": 0.0058,
+      "loss_observed": 0.012,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "china-power-crunch-2021",
+      "loss_predicted": 0.0972,
+      "loss_observed": 0.005,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "yantian-port-closure-2021",
+      "loss_predicted": 0.0051,
+      "loss_observed": 0.006,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "us-west-coast-ports-2021",
+      "loss_predicted": 0.0343,
+      "loss_observed": 0.008,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "taiwan-drought-2021",
+      "loss_predicted": 0.0,
+      "loss_observed": 0.002,
+      "fold_params": {},
+      "fold_train_loss": null,
+      "_note": "recovered from the killed run's stdout log; fold_params not captured"
+    },
+    {
+      "slug": "india-covid-wave-2021",
+      "loss_predicted": 0.0089,
+      "loss_observed": 0.004,
+      "fold_params": {
+        "amplification_mu": 0.3865,
+        "bullwhip_factor": 1.9512,
+        "recovery_rate": 0.2362,
+        "inventory_scale": 1.6523,
+        "distress_base": 0.5137
+      },
+      "fold_train_loss": 17.159
+    },
+    {
+      "slug": "taiwan-chichi-earthquake-1999",
+      "loss_predicted": 0.0189,
+      "loss_observed": 0.005,
+      "fold_params": {
+        "amplification_mu": 0.3865,
+        "bullwhip_factor": 1.9512,
+        "recovery_rate": 0.2362,
+        "inventory_scale": 1.6523,
+        "distress_base": 0.5137
+      },
+      "fold_train_loss": 17.227
+    },
+    {
+      "slug": "hurricane-harvey-2017",
+      "loss_predicted": 0.0024,
+      "loss_observed": 0.002,
+      "fold_params": {
+        "amplification_mu": 0.3865,
+        "bullwhip_factor": 1.9512,
+        "recovery_rate": 0.2362,
+        "inventory_scale": 1.6523,
+        "distress_base": 0.5137
+      },
+      "fold_train_loss": 17.22
+    },
+    {
+      "slug": "us-west-coast-ports-2015",
+      "loss_predicted": 0.0014,
+      "loss_observed": 0.007,
+      "fold_params": {
+        "amplification_mu": 0.3865,
+        "bullwhip_factor": 1.9512,
+        "recovery_rate": 0.2362,
+        "inventory_scale": 1.6523,
+        "distress_base": 0.5137
+      },
+      "fold_train_loss": 16.881
+    },
+    {
+      "slug": "korea-trucker-strikes-2022",
+      "loss_predicted": 0.0086,
+      "loss_observed": 0.002,
+      "fold_params": {
+        "amplification_mu": 0.3865,
+        "bullwhip_factor": 1.9512,
+        "recovery_rate": 0.2362,
+        "inventory_scale": 1.6523,
+        "distress_base": 0.5137
+      },
+      "fold_train_loss": 17.245
+    },
+    {
+      "slug": "gfc-auto-collapse-2008-2009",
+      "loss_predicted": 0.1575,
+      "loss_observed": 0.13,
+      "fold_params": {
+        "amplification_mu": 0.3991,
+        "bullwhip_factor": 1.736,
+        "recovery_rate": 0.2402,
+        "inventory_scale": 1.1087,
+        "distress_base": 0.6278
+      },
+      "fold_train_loss": 11.635
+    }
+  ]
+}

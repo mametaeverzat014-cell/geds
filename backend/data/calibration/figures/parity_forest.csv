@@ -1,0 +1,7 @@
+pair,delta_mae,ci_lo,ci_hi,p_perm_two_sided
+GEDS − Leontief,0.00742,-0.00306,0.02181,0.42048
+GEDS − LinearDiffusion,0.00708,-0.00183,0.01823,0.20994
+GEDS − NaivePersistence,0.00343,-0.00847,0.01908,0.58207
+Leontief − LinearDiffusion,-0.00034,-0.01195,0.01106,0.96595
+Leontief − NaivePersistence,-0.00399,-0.00831,0.00049,0.09025
+LinearDiffusion − NaivePersistence,-0.00365,-0.01432,0.00902,0.57527

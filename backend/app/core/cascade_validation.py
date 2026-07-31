@@ -34,6 +34,7 @@ from ..data.expanded_graph import to_v3_node as _to_v3_node
 from ..data.seed import load_graph
 from .backtest import _scenario_from_event
 from .graph import compile_graph
+from .metrics import spearman_rho
 from .propagation import PropagationEngine
 from .types import EngineConfig
 
@@ -71,15 +72,19 @@ class CascadeReport:
 
 
 def _spearman(pred: list[float], obs: list[float]) -> float:
-    """Rank correlation (Pearson on ranks). 0.0 when n < 2."""
+    """Tie-corrected Spearman (average ranks); 0.0 when n < 2 or degenerate.
+
+    Batch 19 fix: the previous double-argsort ranking assigned DISTINCT ranks
+    to tied values in iteration order. With heavy ties (12 of 15 weeks_to_peak
+    predictions were exactly 0.0) that manufactured spurious correlation from
+    event ordering (+0.61 where the tie-corrected value is +0.07). Delegates
+    to metrics.spearman_rho so every published Spearman in the repo is the
+    same tie-corrected statistic.
+    """
     if len(pred) < 2:
         return 0.0
-    pr = np.argsort(np.argsort(pred)).astype(float)
-    orr = np.argsort(np.argsort(obs)).astype(float)
-    pm, om = pr.mean(), orr.mean()
-    dp, do = pr - pm, orr - om
-    denom = float(np.sqrt((dp @ dp) * (do @ do)))
-    return float(dp @ do) / denom if denom > 0 else 0.0
+    rho = spearman_rho(np.asarray(pred, dtype=float), np.asarray(obs, dtype=float))
+    return 0.0 if np.isnan(rho) else float(rho)
 
 
 def _node_shape(sim, node_idx: int) -> tuple[float, int, float]:

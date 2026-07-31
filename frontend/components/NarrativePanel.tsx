@@ -49,8 +49,8 @@ export default function NarrativePanel() {
         <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary mb-1">
           {t("narrativeTitle")}
         </h2>
-        <p className="text-[10px] text-text-muted mb-3 leading-relaxed">{t("narrativeSubtitle")}</p>
-        <p className="text-xs text-text-muted leading-relaxed">{t("narrativeRunFirst")}</p>
+        <p className="text-[12px] text-text-muted mb-3 leading-relaxed">{t("narrativeSubtitle")}</p>
+        <p className="text-[13px] text-text-muted leading-relaxed">{t("narrativeRunFirst")}</p>
       </div>
     );
   }
@@ -69,21 +69,21 @@ export default function NarrativePanel() {
           <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
             {t("narrativeTitle")}
           </h2>
-          <p className="text-[10px] text-text-muted leading-relaxed mt-0.5">
+          <p className="text-[12px] text-text-muted leading-relaxed mt-0.5">
             {t("narrativeSubtitle")}
           </p>
         </div>
         <button
           onClick={() => fetchNarrative(true)}
           disabled={loading}
-          className="text-[10px] px-2 py-1 rounded border border-border-strong text-text-secondary hover:text-text-primary hover:border-accent-violet/50 transition disabled:opacity-40"
+          className="text-[12px] px-2 py-1 rounded border border-border-strong text-text-secondary hover:text-text-primary hover:border-accent-violet/50 transition disabled:opacity-40"
         >
           {loading ? t("narrativeLoading") : t("narrativeRefresh")}
         </button>
       </div>
 
       {/* badges */}
-      <div className="flex items-center gap-2 flex-wrap text-[10px]">
+      <div className="flex items-center gap-2 flex-wrap text-[12px]">
         {data && (
           <span className={`px-2 py-0.5 rounded-full border font-semibold ${confStyle}`}>
             {t("narrativeConfidence")}: {t(confKey)}
@@ -112,20 +112,20 @@ export default function NarrativePanel() {
       </div>
 
       {error && (
-        <div className="text-xs text-sev-5 bg-sev-5/10 border border-sev-5/30 rounded px-3 py-2">
+        <div className="text-[13px] text-sev-5 bg-sev-5/10 border border-sev-5/30 rounded px-3 py-2">
           {t("narrativeError")}: {error}
         </div>
       )}
 
       {loading && !data && (
-        <div className="flex items-center gap-2 text-xs text-text-muted">
+        <div className="flex items-center gap-2 text-[13px] text-text-muted">
           <span className="w-2 h-2 rounded-full bg-accent-cyan animate-pulse" />
           {t("narrativeLoading")}
         </div>
       )}
 
       {data && (
-        <div className="space-y-3 text-xs leading-relaxed">
+        <div className="space-y-3 text-[13px] leading-relaxed">
           {/* Executive summary */}
           <Section title={t("narrativeExecutiveSummary")} accent="cyan">
             <p className="text-text-primary">{data.executive_summary}</p>
@@ -174,7 +174,7 @@ export default function NarrativePanel() {
                     className="rounded border border-border-subtle bg-bg-base/40 p-2.5 space-y-1"
                   >
                     <div className="text-text-primary font-medium">{p.action}</div>
-                    <div className="flex items-center gap-3 text-[10px] text-text-muted">
+                    <div className="flex items-center gap-3 text-[12px] text-text-muted">
                       <span>
                         <span className="uppercase tracking-wider">{t("narrativeTarget")}:</span>{" "}
                         <span className="text-text-secondary">{p.target}</span>
@@ -211,7 +211,7 @@ function Section({
   };
   return (
     <div className={`border-l-2 pl-3 ${accentMap[accent]}`}>
-      <div className="text-[10px] uppercase tracking-widest text-text-muted font-bold mb-1">
+      <div className="text-[12px] uppercase tracking-widest text-text-muted font-bold mb-1">
         {title}
       </div>
       {children}

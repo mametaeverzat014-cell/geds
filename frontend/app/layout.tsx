@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "GEDS — Global Economic Dependency Simulator",
     description:
-      "Watch one shock — a chip-fab shutdown, a blocked strait, a trade war — ripple through the world's supply-chain network, week by week. Honest, reproducible validation against 21 historical crises.",
+      "Watch one shock — a chip-fab shutdown, a blocked strait, a trade war — ripple through the world's supply-chain network, week by week. Honest, reproducible validation against 27 primary-sourced historical crises.",
     url: "https://geds1.vercel.app",
     siteName: "GEDS",
     type: "website",
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: "GEDS — Global Economic Dependency Simulator",
     description:
-      "Network simulation of cascading economic disruptions, validated against 21 historical crises.",
+      "Network simulation of cascading economic disruptions, validated against 27 primary-sourced historical crises.",
   },
 };
 
