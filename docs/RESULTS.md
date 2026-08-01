@@ -3,7 +3,7 @@
 > GENERATED FILE — regenerate with `python -m scripts.results_onepager`;
 > never hand-edit. Sources: live engine runs plus `significance.json`
 > (seed 20260718, 10000 bootstrap / 20000 perms,
-> generated 2026-07-23), `loo_de_result.json`
+> generated 2026-08-01), `loo_de_result.json`
 > (27 folds, 2026-07-23), `ramp_experiment.json`
 > (2026-07-23). Benchmark config is the pinned deterministic
 > config (`BENCHMARK_CONFIG`, stochastic_sigma=0, seed=0).
@@ -36,7 +36,7 @@
 
 | Dimension | n | Spearman [95% CI] | MAE |
 |---|---|---|---|
-| peak magnitude | 5 | 0.60 [-1.00, 1.00] | 0.42 |
+| peak magnitude | 5 | 0.60 [-1.00, 1.00] | 0.43 |
 | weeks to peak | 15 | 0.69 [0.20, 0.87] | 7.07 |
 | recovery weeks | 11 | 0.88 [0.56, 0.99] | 8.55 |
 
