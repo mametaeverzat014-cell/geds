@@ -1,0 +1,269 @@
+{
+  "schema": "geds.g17_episodes.v1",
+  "timestamp": "2026-08-01T04:03:04.069466+00:00",
+  "source": "Federal Reserve G.17 Industrial Production, seasonally adjusted, downloaded 2026-07 via the Fed Data Download Program",
+  "coverage": {
+    "first": "1967-01",
+    "last": "2026-06",
+    "months": 714
+  },
+  "method": {
+    "measure": "year-over-year change of the seasonally-adjusted index",
+    "drop_threshold": 0.08,
+    "min_consecutive_months": 2,
+    "magnitude_reported": "deepest YoY drop within the episode"
+  },
+  "episodes_by_node": {
+    "USA:automotive": [
+      {
+        "start": "2020-03",
+        "end": "2020-06",
+        "duration_months": 4,
+        "trough_month": "2020-04",
+        "peak_yoy_drop": 0.7961,
+        "mean_yoy_drop": 0.4658,
+        "series": "IP.G3361T3.S",
+        "series_label": "Motor vehicles and parts (NAICS 3361-3)"
+      },
+      {
+        "start": "2008-03",
+        "end": "2009-09",
+        "duration_months": 19,
+        "trough_month": "2009-01",
+        "peak_yoy_drop": 0.5175,
+        "mean_yoy_drop": 0.2835,
+        "series": "IP.G3361T3.S",
+        "series_label": "Motor vehicles and parts (NAICS 3361-3)"
+      },
+      {
+        "start": "1979-07",
+        "end": "1981-02",
+        "duration_months": 20,
+        "trough_month": "1980-05",
+        "peak_yoy_drop": 0.392,
+        "mean_yoy_drop": 0.2245,
+        "series": "IP.G3361T3.S",
+        "series_label": "Motor vehicles and parts (NAICS 3361-3)"
+      },
+      {
+        "start": "1989-10",
+        "end": "1990-02",
+        "duration_months": 5,
+        "trough_month": "1990-01",
+        "peak_yoy_drop": 0.2862,
+        "mean_yoy_drop": 0.1498,
+        "series": "IP.G3361T3.S",
+        "series_label": "Motor vehicles and parts (NAICS 3361-3)"
+      },
+      {
+        "start": "1974-09",
+        "end": "1975-10",
+        "duration_months": 14,
+        "trough_month": "1975-02",
+        "peak_yoy_drop": 0.2669,
+        "mean_yoy_drop": 0.1618,
+        "series": "IP.G3361T3.S",
+        "series_label": "Motor vehicles and parts (NAICS 3361-3)"
+      },
+      {
+        "start": "1981-10",
+        "end": "1982-06",
+        "duration_months": 9,
+        "trough_month": "1982-01",
+        "peak_yoy_drop": 0.2176,
+        "mean_yoy_drop": 0.1512,
+        "series": "IP.G3361T3.S",
+        "series_label": "Motor vehicles and parts (NAICS 3361-3)"
+      },
+      {
+        "start": "1991-02",
+        "end": "1991-06",
+        "duration_months": 5,
+        "trough_month": "1991-03",
+        "peak_yoy_drop": 0.2147,
+        "mean_yoy_drop": 0.1623,
+        "series": "IP.G3361T3.S",
+        "series_label": "Motor vehicles and parts (NAICS 3361-3)"
+      },
+      {
+        "start": "2000-10",
+        "end": "2001-06",
+        "duration_months": 9,
+        "trough_month": "2001-01",
+        "peak_yoy_drop": 0.2014,
+        "mean_yoy_drop": 0.1327,
+        "series": "IP.G3361T3.S",
+        "series_label": "Motor vehicles and parts (NAICS 3361-3)"
+      },
+      {
+        "start": "1990-11",
+        "end": "1990-12",
+        "duration_months": 2,
+        "trough_month": "1990-12",
+        "peak_yoy_drop": 0.1759,
+        "mean_yoy_drop": 0.1544,
+        "series": "IP.G3361T3.S",
+        "series_label": "Motor vehicles and parts (NAICS 3361-3)"
+      },
+      {
+        "start": "1974-01",
+        "end": "1974-07",
+        "duration_months": 7,
+        "trough_month": "1974-02",
+        "peak_yoy_drop": 0.1707,
+        "mean_yoy_drop": 0.1468,
+        "series": "IP.G3361T3.S",
+        "series_label": "Motor vehicles and parts (NAICS 3361-3)"
+      },
+      {
+        "start": "2021-07",
+        "end": "2021-09",
+        "duration_months": 3,
+        "trough_month": "2021-09",
+        "peak_yoy_drop": 0.1632,
+        "mean_yoy_drop": 0.1429,
+        "series": "IP.G3361T3.S",
+        "series_label": "Motor vehicles and parts (NAICS 3361-3)"
+      },
+      {
+        "start": "2001-09",
+        "end": "2001-10",
+        "duration_months": 2,
+        "trough_month": "2001-10",
+        "peak_yoy_drop": 0.0839,
+        "mean_yoy_drop": 0.0825,
+        "series": "IP.G3361T3.S",
+        "series_label": "Motor vehicles and parts (NAICS 3361-3)"
+      }
+    ],
+    "USA:semiconductors": [
+      {
+        "start": "1974-11",
+        "end": "1975-10",
+        "duration_months": 12,
+        "trough_month": "1975-04",
+        "peak_yoy_drop": 0.3002,
+        "mean_yoy_drop": 0.2173,
+        "series": "IP.G3344.S",
+        "series_label": "Semiconductor and other electronic component (NAICS 3344)"
+      },
+      {
+        "start": "2008-11",
+        "end": "2009-08",
+        "duration_months": 10,
+        "trough_month": "2009-02",
+        "peak_yoy_drop": 0.2626,
+        "mean_yoy_drop": 0.2085,
+        "series": "IP.G3344.S",
+        "series_label": "Semiconductor and other electronic component (NAICS 3344)"
+      },
+      {
+        "start": "1985-09",
+        "end": "1986-01",
+        "duration_months": 5,
+        "trough_month": "1985-11",
+        "peak_yoy_drop": 0.1029,
+        "mean_yoy_drop": 0.0935,
+        "series": "IP.G3344.S",
+        "series_label": "Semiconductor and other electronic component (NAICS 3344)"
+      }
+    ],
+    "USA:electronics": [
+      {
+        "start": "2009-04",
+        "end": "2011-07",
+        "duration_months": 28,
+        "trough_month": "2011-02",
+        "peak_yoy_drop": 0.2534,
+        "mean_yoy_drop": 0.16,
+        "series": "IP.G3341.S",
+        "series_label": "Computer and peripheral equipment (NAICS 3341)"
+      },
+      {
+        "start": "2020-04",
+        "end": "2020-09",
+        "duration_months": 6,
+        "trough_month": "2020-05",
+        "peak_yoy_drop": 0.2098,
+        "mean_yoy_drop": 0.1687,
+        "series": "IP.G3341.S",
+        "series_label": "Computer and peripheral equipment (NAICS 3341)"
+      },
+      {
+        "start": "2017-02",
+        "end": "2017-12",
+        "duration_months": 11,
+        "trough_month": "2017-08",
+        "peak_yoy_drop": 0.2074,
+        "mean_yoy_drop": 0.1542,
+        "series": "IP.G3341.S",
+        "series_label": "Computer and peripheral equipment (NAICS 3341)"
+      },
+      {
+        "start": "2008-12",
+        "end": "2009-09",
+        "duration_months": 10,
+        "trough_month": "2009-03",
+        "peak_yoy_drop": 0.1835,
+        "mean_yoy_drop": 0.157,
+        "series": "IP.HITEK2.S",
+        "series_label": "Computers, communications eq. and semiconductors"
+      },
+      {
+        "start": "1975-02",
+        "end": "1975-07",
+        "duration_months": 6,
+        "trough_month": "1975-06",
+        "peak_yoy_drop": 0.1403,
+        "mean_yoy_drop": 0.1147,
+        "series": "IP.HITEK2.S",
+        "series_label": "Computers, communications eq. and semiconductors"
+      },
+      {
+        "start": "1970-10",
+        "end": "1971-06",
+        "duration_months": 9,
+        "trough_month": "1971-04",
+        "peak_yoy_drop": 0.1279,
+        "mean_yoy_drop": 0.1103,
+        "series": "IP.HITEK2.S",
+        "series_label": "Computers, communications eq. and semiconductors"
+      },
+      {
+        "start": "1975-07",
+        "end": "1975-08",
+        "duration_months": 2,
+        "trough_month": "1975-08",
+        "peak_yoy_drop": 0.0965,
+        "mean_yoy_drop": 0.0928,
+        "series": "IP.G3341.S",
+        "series_label": "Computer and peripheral equipment (NAICS 3341)"
+      },
+      {
+        "start": "2001-11",
+        "end": "2002-01",
+        "duration_months": 3,
+        "trough_month": "2002-01",
+        "peak_yoy_drop": 0.0925,
+        "mean_yoy_drop": 0.0864,
+        "series": "IP.HITEK2.S",
+        "series_label": "Computers, communications eq. and semiconductors"
+      },
+      {
+        "start": "1975-09",
+        "end": "1975-10",
+        "duration_months": 2,
+        "trough_month": "1975-09",
+        "peak_yoy_drop": 0.0904,
+        "mean_yoy_drop": 0.0852,
+        "series": "IP.HITEK2.S",
+        "series_label": "Computers, communications eq. and semiconductors"
+      }
+    ]
+  },
+  "caveats": [
+    "the detector finds dips, not causes; attribution needs judgement and an external event record (see scripts/emdat_coverage.py)",
+    "YoY differencing means a long slump shows as one episode, and the recovery year can mechanically produce a mirror-image rebound",
+    "US nodes only \u2014 G.17 is a US release; JPN/DEU/CHN nodes need their own national statistics (JAMA, VDA, NBS)"
+  ]
+}
