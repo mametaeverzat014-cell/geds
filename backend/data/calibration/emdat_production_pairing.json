@@ -1,0 +1,55 @@
+{
+  "schema": "geds.emdat_x_production.v1",
+  "timestamp": "2026-08-01T04:19:05.503440+00:00",
+  "question": "Can EM-DAT disaster dates be paired with national industrial-production series to manufacture new calibration events with measured output-loss targets?",
+  "method": "for every US disaster with >= $5bn adjusted damage since 1972, read the YoY change of the seasonally-adjusted motor-vehicle production index in the disaster month",
+  "n_disasters_tested": 76,
+  "n_with_auto_drop_ge_8pct": 7,
+  "hit_rate": 0.092,
+  "hits": [
+    {
+      "date": "2021-02",
+      "type": "Storm",
+      "damage_bn": 35.6,
+      "auto_yoy": -0.1395
+    },
+    {
+      "date": "2024-07",
+      "type": "Storm",
+      "damage_bn": 7.4,
+      "auto_yoy": -0.1296
+    },
+    {
+      "date": "2021-08",
+      "type": "Storm",
+      "damage_bn": 77.2,
+      "auto_yoy": -0.1244
+    },
+    {
+      "date": "2001-06",
+      "type": "Storm",
+      "damage_bn": 10.9,
+      "auto_yoy": -0.0916
+    },
+    {
+      "date": "2008-09",
+      "type": "Storm",
+      "damage_bn": 10.5,
+      "auto_yoy": -0.2227
+    },
+    {
+      "date": "2008-09",
+      "type": "Storm",
+      "damage_bn": 44.9,
+      "auto_yoy": -0.2227
+    },
+    {
+      "date": "2008-06",
+      "type": "Flood",
+      "damage_bn": 15.0,
+      "auto_yoy": -0.185
+    }
+  ],
+  "verdict": "NEGATIVE \u2014 the pairing does not manufacture events. Large regional disasters, including $200bn hurricanes, do not measurably move national industry indices: the national aggregate dilutes a regional shock, and hurricane damage is largely residential and infrastructural rather than manufacturing capacity. The few apparent hits are contaminated by concurrent macro events (Ida 2021 coincides with the chip shortage, Ike 2008 with the financial crisis) or are already in the benchmark (Texas winter storm 2021).",
+  "implication": "Growing N through disaster records paired with national production statistics is not viable. The remaining routes are chokepoint throughput data (measurable, supply-side, frequent) and expanding the graph so that events in economies outside the current 12 become mappable."
+}
