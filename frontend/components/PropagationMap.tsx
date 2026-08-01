@@ -1,6 +1,5 @@
 "use client";
 
-import * as d3 from "d3";
 import { geoEquirectangular, geoPath } from "d3-geo";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { feature } from "topojson-client";
