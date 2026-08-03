@@ -1,0 +1,242 @@
+{
+  "schema": "geds.portwatch_episodes.v1",
+  "timestamp": "2026-08-01T04:28:52.228222+00:00",
+  "source": "IMF PortWatch, Daily Chokepoint Transit Calls and Trade Volume Estimates (28 chokepoints), downloaded 2026-07",
+  "coverage": {
+    "first": "2019-01-01",
+    "last": "2026-07-26",
+    "chokepoints_in_file": 28
+  },
+  "method": {
+    "unit": "weekly total transits",
+    "baseline": "trailing 26-week median, offset 4 weeks",
+    "deficit_threshold": 0.15,
+    "min_consecutive_weeks": 2,
+    "magnitude_reported": "deepest weekly deficit in the episode"
+  },
+  "n_episodes": 19,
+  "episodes_by_node": {
+    "CP:Suez": [
+      {
+        "start": "2023-12-31",
+        "end": "2024-05-05",
+        "duration_weeks": 19,
+        "peak_week": "2024-03-31",
+        "peak_deficit": 0.4831,
+        "mean_deficit": 0.3947,
+        "baseline_transits_per_week": 518.5,
+        "likely_seasonal": false,
+        "chokepoint": "Suez Canal"
+      },
+      {
+        "start": "2020-06-14",
+        "end": "2020-06-28",
+        "duration_weeks": 3,
+        "peak_week": "2020-06-14",
+        "peak_deficit": 0.1916,
+        "mean_deficit": 0.1795,
+        "baseline_transits_per_week": 381.0,
+        "likely_seasonal": false,
+        "chokepoint": "Suez Canal"
+      }
+    ],
+    "CP:Panama": [
+      {
+        "start": "2023-11-12",
+        "end": "2024-03-10",
+        "duration_weeks": 18,
+        "peak_week": "2024-01-28",
+        "peak_deficit": 0.3995,
+        "mean_deficit": 0.2851,
+        "baseline_transits_per_week": 211.5,
+        "likely_seasonal": false,
+        "chokepoint": "Panama Canal"
+      },
+      {
+        "start": "2020-05-17",
+        "end": "2020-05-31",
+        "duration_weeks": 3,
+        "peak_week": "2020-05-24",
+        "peak_deficit": 0.245,
+        "mean_deficit": 0.2115,
+        "baseline_transits_per_week": 226.5,
+        "likely_seasonal": false,
+        "chokepoint": "Panama Canal"
+      }
+    ],
+    "CP:Hormuz": [
+      {
+        "start": "2026-03-08",
+        "end": "2026-06-21",
+        "duration_weeks": 16,
+        "peak_week": "2026-03-15",
+        "peak_deficit": 0.9741,
+        "mean_deficit": 0.8984,
+        "baseline_transits_per_week": 540.0,
+        "likely_seasonal": true,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2020-11-15",
+        "end": "2021-01-17",
+        "duration_weeks": 10,
+        "peak_week": "2020-12-20",
+        "peak_deficit": 0.4554,
+        "mean_deficit": 0.3191,
+        "baseline_transits_per_week": 666.5,
+        "likely_seasonal": true,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2025-10-12",
+        "end": "2025-10-19",
+        "duration_weeks": 2,
+        "peak_week": "2025-10-12",
+        "peak_deficit": 0.434,
+        "mean_deficit": 0.327,
+        "baseline_transits_per_week": 715.5,
+        "likely_seasonal": false,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2024-10-27",
+        "end": "2025-01-05",
+        "duration_weeks": 11,
+        "peak_week": "2024-12-08",
+        "peak_deficit": 0.4322,
+        "mean_deficit": 0.2764,
+        "baseline_transits_per_week": 708.0,
+        "likely_seasonal": true,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2019-11-03",
+        "end": "2019-12-29",
+        "duration_weeks": 9,
+        "peak_week": "2019-11-24",
+        "peak_deficit": 0.4171,
+        "mean_deficit": 0.3071,
+        "baseline_transits_per_week": 585.0,
+        "likely_seasonal": false,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2025-11-09",
+        "end": "2026-01-04",
+        "duration_weeks": 9,
+        "peak_week": "2025-12-21",
+        "peak_deficit": 0.3956,
+        "mean_deficit": 0.3151,
+        "baseline_transits_per_week": 653.5,
+        "likely_seasonal": true,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2023-11-26",
+        "end": "2023-12-31",
+        "duration_weeks": 6,
+        "peak_week": "2023-11-26",
+        "peak_deficit": 0.3192,
+        "mean_deficit": 0.2532,
+        "baseline_transits_per_week": 733.0,
+        "likely_seasonal": false,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2022-11-13",
+        "end": "2022-11-27",
+        "duration_weeks": 3,
+        "peak_week": "2022-11-27",
+        "peak_deficit": 0.3142,
+        "mean_deficit": 0.2429,
+        "baseline_transits_per_week": 765.5,
+        "likely_seasonal": false,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2024-08-18",
+        "end": "2024-08-25",
+        "duration_weeks": 2,
+        "peak_week": "2024-08-18",
+        "peak_deficit": 0.3077,
+        "mean_deficit": 0.2391,
+        "baseline_transits_per_week": 780.0,
+        "likely_seasonal": false,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2022-12-25",
+        "end": "2023-01-01",
+        "duration_weeks": 2,
+        "peak_week": "2023-01-01",
+        "peak_deficit": 0.2825,
+        "mean_deficit": 0.2536,
+        "baseline_transits_per_week": 727.5,
+        "likely_seasonal": false,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2026-01-18",
+        "end": "2026-01-25",
+        "duration_weeks": 2,
+        "peak_week": "2026-01-18",
+        "peak_deficit": 0.24,
+        "mean_deficit": 0.2199,
+        "baseline_transits_per_week": 614.5,
+        "likely_seasonal": false,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2024-09-29",
+        "end": "2024-10-13",
+        "duration_weeks": 3,
+        "peak_week": "2024-09-29",
+        "peak_deficit": 0.2218,
+        "mean_deficit": 0.1958,
+        "baseline_transits_per_week": 780.0,
+        "likely_seasonal": false,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2020-01-12",
+        "end": "2020-01-19",
+        "duration_weeks": 2,
+        "peak_week": "2020-01-19",
+        "peak_deficit": 0.1971,
+        "mean_deficit": 0.1778,
+        "baseline_transits_per_week": 560.5,
+        "likely_seasonal": false,
+        "chokepoint": "Strait of Hormuz"
+      },
+      {
+        "start": "2019-10-06",
+        "end": "2019-10-13",
+        "duration_weeks": 2,
+        "peak_week": "2019-10-13",
+        "peak_deficit": 0.1692,
+        "mean_deficit": 0.1628,
+        "baseline_transits_per_week": 585.0,
+        "likely_seasonal": false,
+        "chokepoint": "Strait of Hormuz"
+      }
+    ],
+    "CP:TaiwanStrait": [
+      {
+        "start": "2020-01-19",
+        "end": "2020-02-23",
+        "duration_weeks": 6,
+        "peak_week": "2020-02-09",
+        "peak_deficit": 0.3037,
+        "mean_deficit": 0.2256,
+        "baseline_transits_per_week": 1809.5,
+        "likely_seasonal": false,
+        "chokepoint": "Taiwan Strait"
+      }
+    ]
+  },
+  "caveats": [
+    "the detector finds throughput drops, not their causes; attribution still needs an external record",
+    "PortWatch revised the Hormuz boundary in March 2026, so apparent level shifts there may be methodological rather than real",
+    "seasonal patterns (Lunar New Year, monsoon) can trip the threshold; candidates need a plausibility check before entering the benchmark"
+  ]
+}
