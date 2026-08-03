@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { api, type BaselineCompare, type ForecastBand } from "@/lib/api";
 import { useSimStore } from "@/lib/store";
+import { useUI } from "@/lib/ui-context";
 
 /**
  * After a run completes, shows two honesty panels for the SAME scenario:
@@ -13,6 +14,8 @@ import { useSimStore } from "@/lib/store";
  *      point estimate.
  */
 export default function ModelComparisonPanel() {
+  const { lang } = useUI();
+  const ru = lang === "ru";
   const scenarioId = useSimStore((s) => s.selectedScenarioId);
   const summary = useSimStore((s) => s.summary);
   const running = useSimStore((s) => s.running);
@@ -48,10 +51,16 @@ export default function ModelComparisonPanel() {
     <div className="panel p-4 space-y-3">
       <div className="flex items-baseline justify-between">
         <h2 className="text-sm font-semibold uppercase tracking-wider text-text-secondary">
-          Model vs baseline
+          {ru ? "Проверка на честность" : "Model vs baseline"}
         </h2>
-        {loading && <span className="text-[12px] text-text-muted num">computing…</span>}
+        {loading && <span className="text-[12px] text-text-muted num">{ru ? "считаю…" : "computing…"}</span>}
       </div>
+
+      <p className="text-[12px] text-text-muted leading-relaxed">
+        {ru
+          ? "Тот же сценарий, посчитанный тремя моделями. GEDS имеет 5 настраиваемых параметров, две другие — ни одного. Если модель с параметрами не обгоняет модель без них, это честнее показать, чем спрятать."
+          : "The same scenario computed by three models. GEDS has 5 tunable parameters, the other two have none. If the tuned model does not beat the untuned ones, that is worth showing rather than hiding."}
+      </p>
 
       {/* ── SEIRS vs zero-parameter baselines ── */}
       {cmp ? (
@@ -64,11 +73,11 @@ export default function ModelComparisonPanel() {
                   <span className={isEngine ? "text-text-primary font-medium" : "text-text-secondary"}>
                     {m.model}
                     <span className="ml-1.5 text-[12px] uppercase tracking-wider text-text-muted">
-                      {m.parameters === 0 ? "0-param" : `${m.parameters}-param`}
+                      {m.parameters === 0 ? (ru ? "без настроек" : "0-param") : (ru ? `${m.parameters} параметра` : `${m.parameters}-param`)}
                     </span>
                   </span>
                   <span className="num text-text-secondary">
-                    {(m.industry_loss * 100).toFixed(1)}% · {m.recovery_weeks.toFixed(0)}w
+                    {(m.industry_loss * 100).toFixed(1)}% · {m.recovery_weeks.toFixed(0)}{ru ? " нед." : "w"}
                   </span>
                 </div>
                 <div className="h-1.5 rounded-full bg-bg-base/60 overflow-hidden">
@@ -86,28 +95,52 @@ export default function ModelComparisonPanel() {
             );
           })}
           <p className="text-[12px] text-text-muted leading-snug pt-0.5">
-            Peak {cmp.industry} loss · recovery weeks. Linear diffusion is the honest
-            zero-free-parameter reference — when SEIRS doesn&apos;t beat it, that&apos;s worth seeing.
+            {ru
+              ? `Слева — насколько просядет отрасль в худший момент, справа — сколько недель до восстановления. Линейная диффузия здесь эталон: она вообще ничего не подгоняет.`
+              : `Peak loss on the left, weeks to recovery on the right. Linear diffusion is the zero-free-parameter reference.`}
           </p>
         </div>
       ) : (
-        !loading && <p className="text-[12px] text-text-muted">Baseline comparison unavailable.</p>
+        !loading && <p className="text-[12px] text-text-muted">{ru ? "Сравнение недоступно." : "Baseline comparison unavailable."}</p>
       )}
 
       {/* ── LOO forecast band ── */}
       {band?.available && band.median != null && (
         <div className="hairline pt-3 space-y-1.5">
-          <div className="flex items-baseline justify-between">
+          <div className="flex items-baseline justify-between gap-2">
             <span className="text-[12px] uppercase tracking-wider text-text-muted">
-              LOO forecast band · peak CSI
+              {ru ? "Насколько модель уверена" : "How confident the model is"}
             </span>
             <span className="num text-[13px] text-text-primary">{band.median.toFixed(3)}</span>
           </div>
           <ForecastBandBar band={band} />
-          <p className="text-[12px] text-text-muted leading-snug">
-            Median with 10–90% band across {band.n_folds} leave-one-out fold calibrations.
-            Relative width {((band.rel_width ?? 0) * 100).toFixed(0)}% — parametric uncertainty
-            only (structural uncertainty is larger).
+          <p className="text-[12px] text-text-muted leading-relaxed">
+            {ru ? (
+              <>
+                Настройки модели подобраны на исторических событиях — но какие именно,
+                зависит от того, какие события взять. Поэтому сценарий пересчитан{" "}
+                <b className="text-text-secondary">{band.n_folds} раз</b>, каждый раз с
+                настройками, полученными без одного из событий. Полоска показывает разброс
+                ответов: чем она короче, тем меньше результат зависит от случайного выбора
+                данных. Здесь разброс{" "}
+                <b className="text-text-secondary">{((band.rel_width ?? 0) * 100).toFixed(0)}%</b>{" "}
+                — то есть настройки почти не влияют на итог.
+              </>
+            ) : (
+              <>
+                The model&apos;s settings are fitted on historical events, and which settings
+                you get depends on which events you use. So the scenario was re-run{" "}
+                <b className="text-text-secondary">{band.n_folds} times</b>, each with settings
+                fitted while holding one event out. The bar shows the spread of answers — the
+                shorter it is, the less the result depends on that choice. Here the spread is{" "}
+                <b className="text-text-secondary">{((band.rel_width ?? 0) * 100).toFixed(0)}%</b>.
+              </>
+            )}
+          </p>
+          <p className="text-[12px] text-text-muted/80 leading-relaxed">
+            {ru
+              ? "Важная оговорка: это разброс только от настроек. Неопределённость самой структуры модели — какие связи в сети и какая физика каскада — больше, и здесь она не показана."
+              : "Important caveat: this is spread from the settings only. Structural uncertainty — which links exist and how the cascade physically works — is larger and is not shown here."}
           </p>
         </div>
       )}
