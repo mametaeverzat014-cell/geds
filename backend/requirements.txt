@@ -16,6 +16,8 @@ anthropic>=0.69      # Claude crisis-radar advisor (panel degrades to a stub wit
 # scientific rigor upgrade
 optuna>=3.6          # Bayesian calibration (point estimate / DE)
 emcee>=3.1           # affine-invariant MCMC posterior (core/mcmc.py → /api/v1/posterior); hard import at boot via routes.py
+SALib>=1.4           # Sobol variance-based sensitivity (scripts/sensitivity → sobol.json)
+scikit-learn>=1.4    # learned baselines probing the N=27 ceiling (scripts/ml_baseline.py)
 
 # news pipeline (optional; pipeline degrades gracefully without them)
 spacy>=3.7           # NER (also need: python -m spacy download en_core_web_sm)
