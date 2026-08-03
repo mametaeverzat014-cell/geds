@@ -1,0 +1,103 @@
+{
+  "schema": "geds.ml_baseline.v1",
+  "timestamp": "2026-08-03T19:12:09.911697+00:00",
+  "seed": 20260718,
+  "n_events": 27,
+  "n_features": 11,
+  "feature_names": [
+    "magnitude",
+    "duration_weeks",
+    "horizon_weeks",
+    "n_shocks",
+    "total_magnitude",
+    "decay_curve",
+    "is_chokepoint",
+    "node_gdp_share",
+    "node_centrality",
+    "node_out_degree",
+    "magnitude_x_duration"
+  ],
+  "evaluation": "leave-one-out; each event predicted by a model fitted on the other 26, with scaling fitted inside the fold",
+  "scores": {
+    "GradientBoosting": {
+      "mae": 0.01419,
+      "rmse": 0.02508,
+      "spearman": 0.6663
+    },
+    "RandomForest": {
+      "mae": 0.01671,
+      "rmse": 0.02619,
+      "spearman": 0.5044
+    },
+    "RidgeRegression": {
+      "mae": 0.01708,
+      "rmse": 0.02327,
+      "spearman": 0.6111
+    },
+    "GEDS": {
+      "mae": 0.02423,
+      "rmse": 0.04639,
+      "spearman": 0.4511
+    },
+    "Leontief": {
+      "mae": 0.01681,
+      "rmse": 0.03131,
+      "spearman": 0.3396
+    },
+    "LinearDiffusion": {
+      "mae": 0.01715,
+      "rmse": 0.03167,
+      "spearman": 0.7181
+    },
+    "NaivePersistence": {
+      "mae": 0.0208,
+      "rmse": 0.03241,
+      "spearman": null
+    }
+  },
+  "learners_vs_naive_mean": {
+    "GradientBoosting": {
+      "point": -0.00661,
+      "p2_5": -0.01255,
+      "p97_5": 0.00083,
+      "p_perm": 0.0656,
+      "beats_naive_significantly": false
+    },
+    "RandomForest": {
+      "point": -0.00409,
+      "p2_5": -0.01048,
+      "p97_5": 0.00345,
+      "p_perm": 0.28339,
+      "beats_naive_significantly": false
+    },
+    "RidgeRegression": {
+      "point": -0.00372,
+      "p2_5": -0.01466,
+      "p97_5": 0.00562,
+      "p_perm": 0.51952,
+      "beats_naive_significantly": false
+    }
+  },
+  "best_ml_by_mae": "GradientBoosting",
+  "leakage_check": {
+    "removed_features": "one-hot of observed.most_impacted_industry",
+    "why": "it encodes which industry the event ended up hitting hardest \u2014 outcome information a learner can mine, unlike the mechanistic baselines which only use it to select which aggregate to report",
+    "with_leaky_features": {
+      "gradient_boosting_mae": 0.0114,
+      "p_vs_naive": 0.0148,
+      "significant": true
+    },
+    "without": {
+      "gradient_boosting_mae": 0.0142,
+      "p_vs_naive": 0.0656,
+      "significant": false
+    },
+    "conclusion": "the apparent ML victory was carried by the leaky feature; the leakage-free learner still posts the best MAE of any model but does not separate from the naive mean"
+  },
+  "verdict": "no learner beats predicting the mean significantly",
+  "interpretation": {
+    "why_this_was_run": "to answer 'would ML have done better?' with a measured result rather than an assumption",
+    "reading": "these learners are a probe of the N=27 ceiling, not proposed predictors; if flexible function approximators also fail to separate from the mean, the limit is the data, consistent with the power analysis (MDE 0.018 vs observed gaps ~0.007)",
+    "caveat": "27 events and ~17 features is a regime where any learner is expected to struggle; that is the point being demonstrated, but it also means this is not evidence that ML cannot work on a larger benchmark"
+  }
+}
