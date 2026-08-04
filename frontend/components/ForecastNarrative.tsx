@@ -176,9 +176,11 @@ export default function ForecastNarrative() {
         <p className="text-[13px] text-text-secondary leading-relaxed">
           {ru ? (
             <>
-              К {story.last.week}-й неделе тяжесть падает с{" "}
+              К {story.last.week}-й неделе общая тяжесть по сети падает с{" "}
               <b className="text-text-primary">{story.peak.csi.toFixed(3)}</b> до{" "}
-              <b className="text-text-primary">{story.last.csi.toFixed(3)}</b>. Полное
+              <b className="text-text-primary">{story.last.csi.toFixed(3)}</b> — это шкала
+              от 0 (всё в порядке) до 1 (полный коллапс мировой сети), поэтому даже
+              крупный кризис даёт сотые доли. Полное
               восстановление сети — около{" "}
               <b className="text-text-primary">{summary.global_recovery_weeks.toFixed(0)} нед.</b>{" "}
               Наибольший рост цен ожидается в стране{" "}
@@ -189,9 +191,11 @@ export default function ForecastNarrative() {
             </>
           ) : (
             <>
-              By week {story.last.week} severity falls from{" "}
+              By week {story.last.week} network-wide severity falls from{" "}
               <b className="text-text-primary">{story.peak.csi.toFixed(3)}</b> to{" "}
-              <b className="text-text-primary">{story.last.csi.toFixed(3)}</b>. Full network
+              <b className="text-text-primary">{story.last.csi.toFixed(3)}</b> — on a scale
+              from 0 (nothing wrong) to 1 (total global collapse), so even a major crisis
+              lands in the hundredths. Full network
               recovery takes about{" "}
               <b className="text-text-primary">
                 {summary.global_recovery_weeks.toFixed(0)} weeks

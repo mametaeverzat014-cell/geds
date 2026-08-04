@@ -286,6 +286,22 @@ col(H2("6.10. The dense graph closes both structural walls"));
 col(P("The two systematic misses declared unsolved in §6.4 — and resistant to three pre-registered mechanism experiments — nearly vanish on the dense graph (out-of-sample, LOO-DE): Chi-Chi 1999 absolute error 0.188 → 0.014 (13.6×) and the 2008–09 crisis 0.079 → 0.028 (2.9×). This changes the diagnosis of both. Chi-Chi failed to heal, and the 2008–09 crisis was under-predicted, not because the engine lacked a mechanism but because a hand-built 41-node graph could not express the paths along which those shocks actually travelled. The three attempts to fix the dynamics (§5.3) failed precisely because they treated the wrong cause. **Both walls were network-coverage problems, not dynamics problems** — the strongest confirmation of this paper's central claim."));
 col(P("Honest caveats to §6.9–6.10: the event set here is 24 (chokepoint-only events have no v3 node), so these numbers are not directly comparable with the headline N=27; and the model class (a scale correction) was chosen after v3's behaviour was known — the scale itself is fitted leave-one-out, but the choice of that correction form was not pre-registered. The advantage over the zero-parameter baselines remains **non-significant** (p = 0.06–0.50), so the §6.1 parity headline stands."));
 
+col(H2("6.11. Would machine learning have done better?"));
+col(P("A natural objection to §6.1 is that all four models are mechanistic, and a flexible learner might find structure they miss. Tested directly: three learners on 11 event features knowable **before** the outcome (shock magnitude, duration, horizon, number of shocks, forcing shape, chokepoint flag, the shocked node's world-GDP share, centrality and out-degree, and magnitude x duration). Evaluation is leave-one-out — every event predicted by a model that never saw it (Table 8)."));
+full([CAP("Table 8. Learned versus mechanistic models: leave-one-out, 11 pre-outcome features."),
+  table([4238, 2000, 1800, 1600], [
+    ["Model", "MAE", "Spearman", "Type"],
+    ["Gradient boosting (LOO)", "0.0142", "+0.666", "learned"],
+    ["Random forest (LOO)", "0.0167", "+0.504", "learned"],
+    ["Leontief", "0.0168", "+0.340", "mechanistic"],
+    ["Ridge regression (LOO)", "0.0171", "+0.611", "learned"],
+    ["Linear diffusion", "0.0171", "+0.718", "mechanistic"],
+    ["Naive mean", "0.0208", "—", "trivial"],
+    ["GEDS", "0.0242", "+0.451", "mechanistic"]])]);
+col(P("Gradient boosting posts the **best MAE of any model in this paper**, yet against the naive mean it gives dMAE = −0.0066, 95% CI [−0.0126, +0.0008], p = 0.066 — **not significant**; the other two learners are further away (p = 0.28 and 0.52)."));
+col(P("**A methodological finding surfaced by this check.** The first feature set one-hot encoded observed.most_impacted_industry. The mechanistic baselines read that field too, but only to select which aggregate to report, whereas a learner can mine it as outcome information. With it, gradient boosting reached MAE 0.0114 and beat the naive mean **significantly** (p = 0.015); without it the significance disappears. The feature was removed and both versions are recorded in the artifact — the gap between them shows how easily leakage passes for discovery at N=27."));
+col(P("This agrees with §6.4: the ceiling is set by the **data, not the choice of model**. Caveat: 27 events and 11 features is a regime hostile to any learner, and this is not evidence that machine learning cannot work on a larger benchmark."));
+
 col(H1("7. Discussion"));
 col(P("Three results combine into one conclusion. (1) On the axis almost every paper reports — point magnitude — four fundamentally different models are statistically indistinguishable, and this is not an artifact of weak tuning: the parity survives per-fold recalibration and is quantitatively power-limited. (2) The axes that do separate the models are temporal and spatial: where only a full dynamic model can even compete, its results are significant (0.69 and 0.88). (3) The largest measured quality gain came not from dynamics but from network-structure data (recall 0.29 → 0.79, free in parameters)."));
 col(P("Practical takeaway: cascade models should be validated by “predict the pattern, not one number,” or leaderboards compare noise. Methodological takeaway: pre-registering gates turns negative results into publishable assets."));
