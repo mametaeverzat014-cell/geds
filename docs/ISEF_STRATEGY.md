@@ -18,7 +18,7 @@ file, the file is named.*
 | Statistical significance layer | `significance.json` (new, 2026-07-18) | Pre-empts the first technical attack at N=27 |
 | Out-of-sample protocol | `loo_de_result.json` (LOO with per-fold DE recalibration; refreshed at N=27, 2026-07-18) | Answers "you tuned on your test set" |
 | Data-integrity audit trail | `archive/leaked/README.md`, leak quarantine, `SCIENTIFIC_STATUS.md` | A self-caught, documented, quarantined leak is an integrity *credential*, not a liability — if told confidently |
-| ICIO graph expansion result | Batch 16: spatial recall 0.32 → 0.76 on the 405-node OECD ICIO graph | A clean, parameter-free, positive structural result |
+| ICIO graph expansion result | Batch 16: spatial recall 0.29 → 0.79 on the 405-node OECD ICIO graph | A clean, parameter-free, positive structural result |
 | Live interactive simulator | Next.js frontend + FastAPI engine, deployed | Booth demo; judges remember what they touched |
 
 **Liabilities** (know them, own them, never hide them):
@@ -67,7 +67,7 @@ The three headline results, with today's significance numbers:
    makes the claimed numbers believable.
 3. **Structure pays (the mechanism result).** Replacing the hand-authored
    12-country graph with the OECD ICIO 405-node graph lifts spatial recall
-   0.32 → 0.76 with no parameter tuning (Batch 16) — evidence that what the
+   0.29 → 0.79 with no parameter tuning (Batch 16) — evidence that what the
    model most lacks is network completeness, not better curve-fitting.
 
 Supporting integrity beats: self-caught data leak → quarantined + rebuilt
@@ -177,7 +177,7 @@ negative results, honestly quantified, ARE the contribution.
 > pre-registered fix (a ramp curve applied to slow-accumulation events by a
 > mechanism rule) lifted it to 0.69 (0.20–0.87) at a cost of +0.0001 MAE.
 > Replacing the hand-built 12-country graph with an
-> OECD ICIO 405-node graph raised spatial recall from 0.32 to 0.76 without
+> OECD ICIO 405-node graph raised spatial recall from 0.29 to 0.79 without
 > retuning, showing network completeness, not parameter fitting, is the
 > binding constraint. All results are seeded, golden-locked, and reproducible
 > from a public repository.

@@ -98,3 +98,74 @@ def test_run_significance_agrees_with_golden_benchmark():
     assert dims["recovery_weeks"]["n"] == 11
     # the naive model must not carry rank metrics
     assert payload["models"]["NaivePersistence"]["spearman"] is None
+
+
+# ─────────────────────────── Holm–Bonferroni ────────────────────────────────
+# holm_adjust became load-bearing in 2026-08: the model leaderboard, the
+# ablation table and the ML probe all decide significance from its output, so a
+# silent bug here would corrupt every published significance claim at once.
+
+
+def test_holm_matches_hand_computed_reference():
+    """Textbook step-down: sorted p_(i) scaled by (m - i), then made monotone."""
+    from app.core.significance import holm_adjust
+
+    # m=4, sorted raw p: 0.005, 0.011, 0.02, 0.30
+    #   0.005*4 = 0.020
+    #   0.011*3 = 0.033
+    #   0.020*2 = 0.040
+    #   0.300*1 = 0.300
+    out = holm_adjust({"a": 0.02, "b": 0.005, "c": 0.30, "d": 0.011})
+    assert out["b"] == pytest.approx(0.020)
+    assert out["d"] == pytest.approx(0.033)
+    assert out["a"] == pytest.approx(0.040)
+    assert out["c"] == pytest.approx(0.300)
+
+
+def test_holm_enforces_monotonicity():
+    """A later test may never receive a smaller adjusted p than an earlier one."""
+    from app.core.significance import holm_adjust
+
+    # Raw 0.04*3 = 0.12 but 0.03*2 = 0.06 < 0.12, so the step-down must carry
+    # the running maximum forward rather than report 0.06.
+    out = holm_adjust({"x": 0.04, "y": 0.03, "z": 0.02})
+    ordered = [out["z"], out["y"], out["x"]]
+    assert ordered == sorted(ordered), f"non-monotone Holm output: {ordered}"
+    assert out["y"] >= out["z"]
+    assert out["x"] >= out["y"]
+
+
+def test_holm_clips_at_one_and_is_identity_for_single_test():
+    from app.core.significance import holm_adjust
+
+    assert holm_adjust({"only": 0.031})["only"] == pytest.approx(0.031)
+    for v in holm_adjust({"a": 0.9, "b": 0.8, "c": 0.7}).values():
+        assert v <= 1.0
+
+
+def test_holm_never_reduces_a_p_value():
+    """Correction may only make a claim harder to sustain, never easier."""
+    from app.core.significance import holm_adjust
+
+    raw = {"a": 0.001, "b": 0.049, "c": 0.2, "d": 0.5, "e": 0.9}
+    adj = holm_adjust(raw)
+    for k, p in raw.items():
+        assert adj[k] >= p - 1e-12, f"{k}: Holm {adj[k]} < raw {p}"
+
+
+def test_published_leaderboard_has_no_significant_pair_after_holm():
+    """Regression lock on the paper's central negative claim.
+
+    If a future change makes some pair significant after correction, that is a
+    real finding and must be reviewed explicitly — not absorbed silently.
+    """
+    import json
+    from pathlib import Path
+
+    art = (Path(__file__).resolve().parents[1]
+           / "data" / "calibration" / "significance.json")
+    payload = json.loads(art.read_text(encoding="utf-8"))
+    assert payload["n_pairwise_significant_after_holm"] == 0
+    for key, entry in payload["pairwise"].items():
+        assert entry["significant_at_05_holm"] is False, key
+        assert entry["p_holm_mae_two_sided"] >= entry["p_perm_mae_two_sided"]

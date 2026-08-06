@@ -1,5 +1,24 @@
 # GEDS Benchmark V4 — Phase 1: Event Mapping & Audit Report
 
+> **SCOPE WARNING (added 2026-08 during repository audit).** This document
+> describes the **archived V4 benchmark line** (N=21/22/28 on a 1204-node
+> OECD+WIOD graph, targets named `target_gdp`), *not* the N=27 corpus in
+> `app/data/seed_data.HISTORICAL_EVENTS` that every published number in
+> `docs/PAPER.ru.md` and `docs/RESULTS.md` comes from.
+>
+> In particular, the target definition asserted below — `auto_production_loss_pct
+> = |published GDP %| / 100`, "a single-country national output-loss fraction" —
+> **does not describe the live corpus.** The live targets are global
+> industry-level output-loss fractions attributable to the event (e.g.
+> covid-semiconductor-2020-2021 = 0.115, a global vehicle-production loss, not a
+> national GDP figure). Reading this file as documentation of the current
+> benchmark will misidentify what the models are scored against.
+>
+> Kept unedited below because the adjudication of 90 expansion candidates is a
+> real, reusable negative result: it is the audit that established the corpus
+> could not be grown past ~22 from that candidate pool. Superseded as a
+> definition of the target; still valid as a record of that search.
+
 **Mission:** STRICT RESEARCH MISSION — GEDS BENCHMARK V4. Rules enforced verbatim: *never fabricate data; never create synthetic benchmark targets; preserve NULL when mapping is impossible; every benchmark event must have provenance; if confidence is low, mark UNMAPPABLE instead of guessing.*
 
 **Generated:** read-only audit of `event_expansion_candidates.csv` (90 candidates, via `v4_preaudit.json`) + `benchmark_event_matrix_v3.csv` (42 existing events).
