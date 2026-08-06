@@ -42,6 +42,9 @@ def main() -> int:
     sig = json.loads((CALIB / "significance.json").read_text())
     loo = json.loads((CALIB / "loo_de_result.json").read_text())
     ramp = json.loads((CALIB / "ramp_experiment.json").read_text())
+    abl = json.loads((CALIB / "ablation.json").read_text())
+    ident = json.loads((CALIB / "identifiability.json").read_text())
+    robust = json.loads((CALIB / "spatial_recall_robustness.json").read_text())
 
     bench = run_benchmark()
     cascade = run_cascade_validation()
@@ -86,33 +89,47 @@ def main() -> int:
         add(f"| {disp} | {_ci(m['mae'])} | {_ci(m['rmse'])} | "
             f"{_ci(m['spearman'], 2) if m['spearman'] else 'constant — no ranking'} |")
     add("")
-    add("**Pairwise differences (paired bootstrap + sign-flip permutation):**")
+    add("**Pairwise differences (paired bootstrap + sign-flip permutation, "
+        "Holm-corrected across all 6 pairs):**")
     add("")
-    add("| Pair (first − second) | ΔMAE [95% CI] | p (two-sided) | verdict |")
-    add("|---|---|---|---|")
+    add("| Pair (first − second) | ΔMAE [95% CI] | p raw | p Holm | verdict |")
+    add("|---|---|---|---|---|")
     for pair, d in sig["pairwise"].items():
         a, b = pair.split("__vs__")
         dm = d["delta_mae_a_minus_b"]
-        signif = (dm["p2_5"] is not None and (dm["p2_5"] > 0 or dm["p97_5"] < 0)
-                  and d["p_perm_mae_two_sided"] < 0.05)
         add(f"| {a} − {b} | {_ci(dm)} | {d['p_perm_mae_two_sided']:.2f} | "
-            f"{'SIGNIFICANT' if signif else 'n.s.'} |")
+            f"{d['p_holm_mae_two_sided']:.2f} | "
+            f"{'SIGNIFICANT' if d['significant_at_05_holm'] else 'n.s.'} |")
     add("")
-    add("**Reading:** no pairwise magnitude difference is significant at N="
-        f"{bench.n_events} — single-number validation cannot rank these models. "
-        "This motivates the trajectory axes below.")
+    add(f"**Reading:** {sig['n_pairwise_significant_after_holm']} of "
+        f"{len(sig['pairwise'])} pairwise magnitude differences are significant "
+        f"at N={bench.n_events}. The six pairs are published as one table and so "
+        "form one family of tests; the Holm-adjusted column is the operative "
+        "one. Single-number validation cannot rank these models — which is what "
+        "motivates the trajectory axes below.")
     add("")
 
     add("## 2. Trajectory shape (Track B, node-level; the axes only GEDS attempts)")
     add("")
-    add("| Dimension | n | Spearman [95% CI] | MAE |")
-    add("|---|---|---|---|")
+    add("| Dimension | n | Spearman [95% CI] | family-wise 98.3% CI | MAE | survives correction |")
+    add("|---|---|---|---|---|---|")
     for dim, pretty in (("magnitude", "peak magnitude"),
                         ("weeks_to_peak", "weeks to peak"),
                         ("recovery_weeks", "recovery weeks")):
         block = sig["cascade_shape_spearman"][dim]
-        add(f"| {pretty} | {block['n']} | {_ci(block, 2)} | "
-            f"{cascade.mae_by_dim[dim]:.2f} |")
+        fw = (f"[{block['fw_p_low']:.2f}, {block['fw_p_high']:.2f}]"
+              if "fw_p_low" in block else "—")
+        ok = "**yes**" if block.get("excludes_zero_familywise") else "no"
+        add(f"| {pretty} | {block['n']} | {_ci(block, 2)} | {fw} | "
+            f"{cascade.mae_by_dim[dim]:.2f} | {ok} |")
+    add("")
+    survivors = [d for d in ("magnitude", "weeks_to_peak", "recovery_weeks")
+                 if sig["cascade_shape_spearman"][d].get("excludes_zero_familywise")]
+    add(f"**Reading:** the three dimensions are one published family, so a 95% "
+        f"interval on each does not give 95% confidence in all three. "
+        f"{len(survivors)} of 3 excludes zero at the family-wise level: "
+        f"{', '.join(survivors) if survivors else 'none'}. "
+        "This is the strongest quantitative result in the project.")
     add("")
     b_wtp = ramp["baseline"]["cascade"]["spearman_by_dim"]["weeks_to_peak"]
     r_wtp = ramp["ramp"]["cascade"]["spearman_by_dim"]["weeks_to_peak"]
@@ -150,8 +167,74 @@ def main() -> int:
         f"Spearman {spatial.onset_spearman:.2f} (v2). Structure, not parameter "
         "tuning, is the binding constraint.")
     add("")
+    add("**Robustness — is this a threshold artifact?** v3 runs ~4× hot in "
+        "magnitude, so a fixed reach threshold could favour it mechanically. "
+        "Sweeping the threshold across two orders of magnitude "
+        "(`spatial_recall_robustness.json`):")
+    add("")
+    add("| reach threshold | v2 recall | v3 recall | v3 − v2 | v3 / v2 |")
+    add("|---|---|---|---|---|")
+    for r in robust["rows"]:
+        tag = (" *(published)*" if r["is_published_threshold"]
+               else " *(scale-corrected)*" if r["is_scale_corrected_threshold"]
+               else "")
+        ratio = f"{r['v3_over_v2']:.1f}×" if r["v3_over_v2"] else "—"
+        add(f"| {r['threshold']}{tag} | {r['v2_recall']:.3f} "
+            f"({r['v2_reached']}/{r['v2_nodes']}) | {r['v3_recall']:.3f} "
+            f"({r['v3_reached']}/{r['v3_nodes']}) | {r['v3_minus_v2']:+.3f} | {ratio} |")
+    add("")
+    add(f"v3 leads at every threshold tested, including the scale-corrected "
+        f"point {robust['scale_corrected_threshold']} "
+        f"(= published threshold ÷ k, k={robust['k_v3_scale']}). "
+        "The structural result is not a scale artifact.")
+    add("")
 
-    add("## 5. Figures")
+    add("## 5. Component ablation — and why the table is not a ranking")
+    add("")
+    add("| Variant | MAE | ΔMAE vs full [95% CI] | p Holm | significant |")
+    add("|---|---|---|---|---|")
+    for r in abl["rows"]:
+        if r["variant"] == "full":
+            add(f"| {r['variant']} | {r['mae_loss']:.4f} | — | — | — |")
+            continue
+        add(f"| {r['variant']} | {r['mae_loss']:.4f} | "
+            f"{r['mae_delta_vs_full']:+.4f} "
+            f"[{r['mae_delta_ci_low']:+.4f}, {r['mae_delta_ci_high']:+.4f}] | "
+            f"{r['p_holm_vs_full']:.2f} | "
+            f"{'SIGNIFICANT' if r['significant_vs_full'] else 'n.s.'} |")
+    add("")
+    add(f"**Reading:** {abl['verdict']}")
+    add("")
+    add("Negative ΔMAE means the variant had *lower* error than the full engine "
+        "— i.e. the component removed was costing accuracy. Point estimates put "
+        "the SEIRS state machine and the hysteresis floor in that category, but "
+        "no delta clears the correction, so the honest statement is that this "
+        "benchmark cannot resolve any component's contribution.")
+    add("")
+
+    add("## 6. Parameter identifiability")
+    add("")
+    add("| Parameter | global fit | prior box | pinned to bound | LOO range | range/median |")
+    add("|---|---|---|---|---|---|")
+    for nm, b in ident["boundary_pinning"].items():
+        d = ident["loo_dispersion"].get(nm, {})
+        rom = (f"{d['range_over_median']:.1f}×" if d.get("range_over_median")
+               else "—")
+        add(f"| `{nm}` | {b['point']:.4f} | "
+            f"[{b['prior_low']:g}, {b['prior_high']:g}] | "
+            f"{'**yes**' if b['pinned'] else 'no'} | "
+            f"[{d.get('min', float('nan')):.4g}, {d.get('max', float('nan')):.4g}] | {rom} |")
+    add("")
+    add(f"**Reading:** {ident['verdict']}")
+    add("")
+    add(f"The global fit falls outside the entire leave-one-out range for "
+        f"{ident['summary']['n_global_fits_outside_loo_range']} of "
+        f"{ident['n_parameters']} parameters, and only "
+        f"{ident['global_fit_converged_fraction']:.0%} of DE restarts converged "
+        "— both signatures of a flat or multimodal loss surface.")
+    add("")
+
+    add("## 7. Figures")
     add("")
     add("Regenerate with `python -m scripts.isef_figures` "
         "(PNG + numeric CSV pairs in `backend/data/calibration/figures/`):")
@@ -160,6 +243,34 @@ def main() -> int:
     add("- `pred_vs_obs` — §1 per-model scatter, N=27")
     add("- `timing_ramp` — §2 weeks_to_peak before/after the ramp")
     add("- `spatial_recall` — §4 per-event v2→v3 dumbbell")
+    add("")
+    add("## 8. What this benchmark can and cannot support")
+    add("")
+    add("Four independent lines of evidence converge on one ceiling:")
+    add("")
+    add(f"1. **Power** — every observed pairwise |ΔMAE| is below its minimum "
+        f"detectable effect; ~166 events would be needed to resolve the "
+        f"GEDS/Leontief gap (`power_analysis.json`).")
+    add(f"2. **Multiplicity** — "
+        f"{sig['n_pairwise_significant_after_holm']}/{len(sig['pairwise'])} "
+        f"model pairs and "
+        f"{abl['n_significant_after_holm']}/"
+        f"{len([r for r in abl['rows'] if r['variant'] != 'full'])} "
+        f"ablation deltas survive Holm correction.")
+    add(f"3. **Identifiability** — "
+        f"{ident['summary']['n_pinned_at_prior_bound']}/{ident['n_parameters']} "
+        f"parameters are pinned to their search-box bounds; one moves "
+        f"{ident['loo_dispersion']['amplification_mu']['range_over_median']:.0f}× "
+        f"its own median under leave-one-out.")
+    add("4. **Parsimony** — on the dense graph a single scale parameter "
+        "outperforms five tuned ones in point terms "
+        "(`v3_calibration_result.json`).")
+    add("")
+    add("What survives all of it: the **recovery-duration ordering** "
+        "(Track B, family-wise CI excludes zero) and the **structural graph "
+        "result** (§4, robust across the full threshold sweep). Those two are "
+        "the defensible contributions; the magnitude leaderboard is a measured "
+        "null.")
     add("")
 
     OUT.write_text("\n".join(L) + "\n", encoding="utf-8")

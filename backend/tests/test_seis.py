@@ -267,3 +267,56 @@ def test_rerouting_surcharge_scales_with_block_fraction(graph):
     expected = 1.0 + (cost_mult - 1.0) * 0.5
     for t in targets:
         assert out[0, t] == pytest.approx(expected)
+
+
+# ─────────────────── the seis_enabled flag must actually disable ──────────────
+# Regression lock for a bug found 2026-08: _init_state neutralized the three
+# state modifiers when seis_enabled=False, but update_seis() was called
+# unconditionally in the main loop and re-armed them on the first step. The flag
+# was therefore a no-op, and the `no_seis` row of the ablation table silently
+# reproduced the `full` row (MAE 0.0242 for both). The true ablation is 0.0166.
+# These tests fail loudly if the guard is ever removed again.
+
+
+def test_seis_enabled_false_changes_the_trajectory(graph):
+    """The flag must have an observable effect — not silently do nothing."""
+    from app.core.propagation import PropagationEngine
+    from app.core.types import EngineConfig, Scenario
+
+    sc = Scenario(
+        id="seis-flag", name="seis-flag", description="", horizon_weeks=26,
+        shocks=[{"target_node_id": graph.snapshot.nodes[0].id, "magnitude": 0.6,
+                 "duration_weeks": 8, "decay_curve": "step"}],
+    )
+    runs = {}
+    for flag in (True, False):
+        cfg = EngineConfig(seis_enabled=flag, stochastic_sigma=0.0, seed=0)
+        res = PropagationEngine(graph, cfg).run(sc)
+        runs[flag] = np.array([f.csi for f in res.frames])
+
+    assert not np.allclose(runs[True], runs[False]), (
+        "seis_enabled=False produced an identical trajectory to seis_enabled=True — "
+        "the state machine is not actually being disabled (update_seis must be "
+        "guarded by cfg.seis_enabled)"
+    )
+
+
+def test_seis_disabled_leaves_every_node_susceptible(graph):
+    """With the state machine off, no node may ever leave S, and no modifier may arm."""
+    from app.core.propagation import PropagationEngine
+    from app.core.seis import S_STATE
+    from app.core.types import EngineConfig, Scenario
+
+    sc = Scenario(
+        id="seis-off", name="seis-off", description="", horizon_weeks=26,
+        shocks=[{"target_node_id": graph.snapshot.nodes[0].id, "magnitude": 0.9,
+                 "duration_weeks": 12, "decay_curve": "step"}],
+    )
+    cfg = EngineConfig(seis_enabled=False, stochastic_sigma=0.0, seed=0)
+    engine = PropagationEngine(graph, cfg)
+    batch = engine.run_batch(sc, n_iterations=1)
+
+    assert (batch.state.seis.state == S_STATE).all(), "a node left S with SEIRS disabled"
+    np.testing.assert_allclose(batch.state.seis.outbound_mask, 1.0)
+    np.testing.assert_allclose(batch.state.seis.bullwhip_factor, 1.0)
+    np.testing.assert_allclose(batch.state.seis.output_floor, 0.0)

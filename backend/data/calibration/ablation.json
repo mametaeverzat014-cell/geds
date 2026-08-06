@@ -1,6 +1,9 @@
 {
-  "timestamp": "2026-07-26T07:55:41.712956+00:00",
+  "timestamp": "2026-08-06T17:53:12.121345+00:00",
   "n_events": 27,
+  "n_boot": 10000,
+  "n_perm": 20000,
+  "seed": 20260718,
   "rows": [
     {
       "variant": "full",
@@ -8,21 +11,31 @@
       "mae_loss": 0.0242,
       "rmse_loss": 0.0464,
       "pearson_loss": 0.1498,
-      "spearman_loss": 0.4383,
+      "spearman_loss": 0.4511,
       "pass_rate_50pct": 0.2963,
       "mae_delta_vs_full": 0.0,
-      "pearson_delta_vs_full": 0.0
+      "pearson_delta_vs_full": 0.0,
+      "mae_delta_ci_low": null,
+      "mae_delta_ci_high": null,
+      "p_perm_vs_full": null,
+      "p_holm_vs_full": null,
+      "significant_vs_full": null
     },
     {
       "variant": "no_seis",
       "description": "SEIS state machine disabled (raw shock propagation)",
-      "mae_loss": 0.0242,
-      "rmse_loss": 0.0464,
-      "pearson_loss": 0.1498,
-      "spearman_loss": 0.4383,
-      "pass_rate_50pct": 0.2963,
-      "mae_delta_vs_full": 0.0,
-      "pearson_delta_vs_full": 0.0
+      "mae_loss": 0.0166,
+      "rmse_loss": 0.0306,
+      "pearson_loss": 0.4361,
+      "spearman_loss": 0.4376,
+      "pass_rate_50pct": 0.3333,
+      "mae_delta_vs_full": -0.0076,
+      "pearson_delta_vs_full": 0.2863,
+      "mae_delta_ci_low": -0.02059,
+      "mae_delta_ci_high": 0.00183,
+      "p_perm_vs_full": 0.37453,
+      "p_holm_vs_full": 1.0,
+      "significant_vs_full": false
     },
     {
       "variant": "no_bullwhip",
@@ -30,10 +43,15 @@
       "mae_loss": 0.0266,
       "rmse_loss": 0.0485,
       "pearson_loss": 0.1913,
-      "spearman_loss": 0.4383,
+      "spearman_loss": 0.4511,
       "pass_rate_50pct": 0.2963,
       "mae_delta_vs_full": 0.0023,
-      "pearson_delta_vs_full": 0.0416
+      "pearson_delta_vs_full": 0.0416,
+      "mae_delta_ci_low": -0.00086,
+      "mae_delta_ci_high": 0.00789,
+      "p_perm_vs_full": 1.0,
+      "p_holm_vs_full": 1.0,
+      "significant_vs_full": false
     },
     {
       "variant": "no_adaptive_rerouting",
@@ -41,10 +59,15 @@
       "mae_loss": 0.0242,
       "rmse_loss": 0.0464,
       "pearson_loss": 0.1504,
-      "spearman_loss": 0.4383,
+      "spearman_loss": 0.4511,
       "pass_rate_50pct": 0.2963,
       "mae_delta_vs_full": -0.0,
-      "pearson_delta_vs_full": 0.0006
+      "pearson_delta_vs_full": 0.0006,
+      "mae_delta_ci_low": -0.00011,
+      "mae_delta_ci_high": 0.0001,
+      "p_perm_vs_full": 1.0,
+      "p_holm_vs_full": 1.0,
+      "significant_vs_full": false
     },
     {
       "variant": "no_r_state_floor",
@@ -52,10 +75,15 @@
       "mae_loss": 0.0169,
       "rmse_loss": 0.0311,
       "pearson_loss": 0.3966,
-      "spearman_loss": 0.4341,
+      "spearman_loss": 0.4376,
       "pass_rate_50pct": 0.2963,
       "mae_delta_vs_full": -0.0074,
-      "pearson_delta_vs_full": 0.2468
+      "pearson_delta_vs_full": 0.2468,
+      "mae_delta_ci_low": -0.02,
+      "mae_delta_ci_high": 0.00181,
+      "p_perm_vs_full": 0.37453,
+      "p_holm_vs_full": 1.0,
+      "significant_vs_full": false
     },
     {
       "variant": "with_per_node_recovery",
@@ -63,10 +91,15 @@
       "mae_loss": 0.0233,
       "rmse_loss": 0.0434,
       "pearson_loss": 0.1762,
-      "spearman_loss": 0.4316,
+      "spearman_loss": 0.4421,
       "pass_rate_50pct": 0.2963,
       "mae_delta_vs_full": -0.0009,
-      "pearson_delta_vs_full": 0.0264
+      "pearson_delta_vs_full": 0.0264,
+      "mae_delta_ci_low": -0.00289,
+      "mae_delta_ci_high": 7e-05,
+      "p_perm_vs_full": 0.55802,
+      "p_holm_vs_full": 1.0,
+      "significant_vs_full": false
     },
     {
       "variant": "naive_diffusion",
@@ -74,12 +107,20 @@
       "mae_loss": 0.0171,
       "rmse_loss": 0.0317,
       "pearson_loss": 0.5341,
-      "spearman_loss": 0.7283,
+      "spearman_loss": 0.7181,
       "pass_rate_50pct": 0.9259,
       "mae_delta_vs_full": -0.0071,
-      "pearson_delta_vs_full": 0.3843
+      "pearson_delta_vs_full": 0.3843,
+      "mae_delta_ci_low": -0.01823,
+      "mae_delta_ci_high": 0.00183,
+      "p_perm_vs_full": 0.20994,
+      "p_holm_vs_full": 1.0,
+      "significant_vs_full": false
     }
   ],
-  "best_variant": "no_r_state_floor",
-  "worst_variant": "no_bullwhip"
+  "lowest_mae_variant_pointwise": "no_seis",
+  "highest_mae_variant_pointwise": "no_bullwhip",
+  "n_significant_after_holm": 0,
+  "verdict": "NO ablation delta is distinguishable from zero after Holm correction: at N=27 this benchmark cannot tell any engine component apart from any other. The point-estimate ordering in this table is not a ranking of components; every delta is smaller than the benchmark's own minimum detectable effect (0.018 MAE at 80% power, power_analysis.json).",
+  "reading": "mae_delta_vs_full < 0 means that variant had LOWER error than the full engine, i.e. the ablated component was costing accuracy. Read `significant_vs_full` before reading any delta: a delta whose CI spans zero is noise, not evidence about the component."
 }

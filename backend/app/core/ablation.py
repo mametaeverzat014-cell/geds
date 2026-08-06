@@ -36,9 +36,17 @@ import numpy as np
 from .backtest import backtest_event
 from .baselines import linear_diffusion_predict
 from .graph import compile_graph
+from .metrics import spearman_rho
+from .significance import holm_adjust, paired_delta_bootstrap, sign_flip_p
 from .types import EngineConfig, Industry, ShockSpec
 from ..data.seed import load_graph
 from ..data.seed_data import HISTORICAL_EVENTS
+
+# Resampling settings for the per-variant significance test, matched to the
+# main significance layer so the two are directly comparable.
+ABLATION_N_BOOT = 10_000
+ABLATION_N_PERM = 20_000
+ABLATION_SEED = 20260718
 
 
 # ─────────────────────────── data classes ──────────────────────────────────
@@ -53,9 +61,18 @@ class AblationRow:
     pearson_loss: float
     spearman_loss: float
     pass_rate_50pct: float
-    # Delta vs full model (negative = worse than full)
+    # Delta vs full model (negative = LOWER error than full, i.e. the component
+    # its removal ablates was costing accuracy)
     mae_delta_vs_full: float
     pearson_delta_vs_full: float
+    # Uncertainty on that delta. Point deltas alone are not interpretable at
+    # N=27: the benchmark's minimum detectable effect is 0.018 MAE (see
+    # power_analysis.json) and every ablation delta here is smaller than that.
+    mae_delta_ci_low: float | None = None
+    mae_delta_ci_high: float | None = None
+    p_perm_vs_full: float | None = None
+    p_holm_vs_full: float | None = None
+    significant_vs_full: bool | None = None
 
 
 @dataclass
@@ -63,8 +80,14 @@ class AblationReport:
     timestamp: str
     n_events: int
     rows: list[AblationRow]
-    best_variant: str
-    worst_variant: str
+    # Lowest / highest MAE by point estimate. These are NOT claims that one
+    # variant beats another — see `verdict`, which reports whether any of the
+    # differences survive a paired test. Kept because the ordering is still
+    # descriptive, renamed so no reader mistakes them for a result.
+    lowest_mae_variant_pointwise: str
+    highest_mae_variant_pointwise: str
+    n_significant_after_holm: int
+    verdict: str
 
 
 # ─────────────────────────── variants ──────────────────────────────────────
@@ -146,9 +169,15 @@ def _pearson(a: np.ndarray, b: np.ndarray) -> float:
 
 
 def _spearman(a: np.ndarray, b: np.ndarray) -> float:
-    ra = np.argsort(np.argsort(a)).astype(np.float64)
-    rb = np.argsort(np.argsort(b)).astype(np.float64)
-    return _pearson(ra, rb)
+    """Tie-corrected Spearman, delegated to the one shared implementation.
+
+    Was a raw double-argsort, which assigns DISTINCT ranks to tied values in
+    array order. The observed vector is heavily tied (0.002 appears 4x, 0.005
+    4x, 0.012 3x of 27), so that manufactured rank information out of event
+    ordering. Same defect cascade_validation._spearman fixed in Batch 19; this
+    is the last copy of it in the repository.
+    """
+    return spearman_rho(np.asarray(a, dtype=float), np.asarray(b, dtype=float))
 
 
 def _row_from(name: str, desc: str, pred: np.ndarray, obs: np.ndarray,
@@ -183,27 +212,73 @@ def run_ablation_study() -> AblationReport:
     full_pr  = _pearson(full_eval["pred"], full_eval["obs"])
 
     rows: list[AblationRow] = []
+    preds: dict[str, np.ndarray] = {}
     for name, desc, cfg in variants:
         ev = _eval_engine(cfg, graph)
+        preds[name] = ev["pred"]
         rows.append(_row_from(name, desc, ev["pred"], ev["obs"], ev["pass50"],
                               full_mae, full_pr))
 
     # Add the linear-diffusion baseline as a final row.
     ev = _eval_linear_diffusion(graph)
+    preds["naive_diffusion"] = ev["pred"]
     rows.append(_row_from("naive_diffusion",
                           "Pure linear-diffusion baseline (no SEIRS, no bullwhip)",
                           ev["pred"], ev["obs"], ev["pass50"], full_mae, full_pr))
 
-    # Pick winner (lowest MAE) and loser (highest MAE).
-    best = min(rows, key=lambda r: r.mae_loss).variant
-    worst = max(rows, key=lambda r: r.mae_loss).variant
+    # ── is any ablation delta distinguishable from zero? ──
+    # Same machinery as the model leaderboard: paired bootstrap on the DIFFERENCE
+    # (shared resample indices) plus a sign-flip permutation test, then a
+    # Holm correction because this is one family of tests against a common
+    # reference. Without this the table is a ranking of noise.
+    obs = full_eval["obs"]
+    full_pred = preds["full"]
+    raw_p: dict[str, float] = {}
+    deltas: dict[str, dict] = {}
+    for r in rows:
+        if r.variant == "full":
+            continue
+        d = paired_delta_bootstrap(preds[r.variant], full_pred, obs,
+                                   ABLATION_N_BOOT, ABLATION_SEED)
+        deltas[r.variant] = d["delta_mae_a_minus_b"]
+        raw_p[r.variant] = sign_flip_p(
+            np.abs(preds[r.variant] - obs), np.abs(full_pred - obs),
+            ABLATION_N_PERM, ABLATION_SEED)
+
+    holm = holm_adjust(raw_p)
+    n_sig = 0
+    for r in rows:
+        if r.variant == "full":
+            continue
+        d = deltas[r.variant]
+        r.mae_delta_ci_low = d["p2_5"]
+        r.mae_delta_ci_high = d["p97_5"]
+        r.p_perm_vs_full = round(raw_p[r.variant], 5)
+        r.p_holm_vs_full = holm[r.variant]
+        excludes_zero = (d["p2_5"] is not None and d["p97_5"] is not None
+                         and (d["p97_5"] < 0 or d["p2_5"] > 0))
+        r.significant_vs_full = bool(excludes_zero and holm[r.variant] < 0.05)
+        n_sig += int(r.significant_vs_full)
+
+    verdict = (
+        f"{n_sig} of {len(raw_p)} ablation deltas are distinguishable from zero "
+        "after Holm correction"
+        if n_sig else
+        "NO ablation delta is distinguishable from zero after Holm correction: at "
+        "N=27 this benchmark cannot tell any engine component apart from any "
+        "other. The point-estimate ordering in this table is not a ranking of "
+        "components; every delta is smaller than the benchmark's own minimum "
+        "detectable effect (0.018 MAE at 80% power, power_analysis.json)."
+    )
 
     return AblationReport(
         timestamp=datetime.now(timezone.utc).isoformat(),
         n_events=len(HISTORICAL_EVENTS),
         rows=rows,
-        best_variant=best,
-        worst_variant=worst,
+        lowest_mae_variant_pointwise=min(rows, key=lambda r: r.mae_loss).variant,
+        highest_mae_variant_pointwise=max(rows, key=lambda r: r.mae_loss).variant,
+        n_significant_after_holm=n_sig,
+        verdict=verdict,
     )
 
 
@@ -217,9 +292,20 @@ def save_ablation(report: AblationReport, path: Path | None = None) -> Path:
     payload = {
         "timestamp": report.timestamp,
         "n_events": report.n_events,
+        "n_boot": ABLATION_N_BOOT,
+        "n_perm": ABLATION_N_PERM,
+        "seed": ABLATION_SEED,
         "rows": [asdict(r) for r in report.rows],
-        "best_variant": report.best_variant,
-        "worst_variant": report.worst_variant,
+        "lowest_mae_variant_pointwise": report.lowest_mae_variant_pointwise,
+        "highest_mae_variant_pointwise": report.highest_mae_variant_pointwise,
+        "n_significant_after_holm": report.n_significant_after_holm,
+        "verdict": report.verdict,
+        "reading": (
+            "mae_delta_vs_full < 0 means that variant had LOWER error than the "
+            "full engine, i.e. the ablated component was costing accuracy. Read "
+            "`significant_vs_full` before reading any delta: a delta whose CI "
+            "spans zero is noise, not evidence about the component."
+        ),
     }
     path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
     return path

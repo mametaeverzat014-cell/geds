@@ -28,6 +28,7 @@ Financial intelligence:
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass, field
 
 import numpy as np
@@ -160,7 +161,15 @@ class PropagationEngine:
 
     def __init__(self, graph: CompiledGraph, config: EngineConfig | None = None) -> None:
         self.g = graph
-        self.config = config or EngineConfig()
+        # Kept as None when not supplied so `run_batch` can tell "caller specified an
+        # engine config" from "fall back to whatever the scenario carries". Storing
+        # `config or EngineConfig()` here would make the two indistinguishable.
+        # Mappings are coerced: callers used to pass plain dicts and relied on
+        # Scenario's pydantic validation to convert them, which no longer happens
+        # now that an explicit engine config takes precedence over the scenario's.
+        if isinstance(config, Mapping):
+            config = EngineConfig(**config)
+        self.config = config
 
     # ─────────────────────── public API ──────────────────────────────────
 
@@ -198,7 +207,13 @@ class PropagationEngine:
             If False, the (I, T, N) tensors are not allocated — useful for MC
             where only aggregate stats are kept and we want to save memory.
         """
-        cfg = scenario.config or self.config
+        # An explicitly-supplied engine config wins. `Scenario.config` has a
+        # default_factory, so it is *never* falsy — the previous
+        # `scenario.config or self.config` made `self.config` unreachable and
+        # silently discarded any config passed to the constructor. Every analysis
+        # path threads the same object into both, so precedence is a no-op there;
+        # this only fixes callers that set the engine config alone.
+        cfg = self.config or scenario.config
         T = scenario.horizon_weeks
         I = max(1, n_iterations)
         N = self.g.n
@@ -284,11 +299,17 @@ class PropagationEngine:
             state.persistence = 0.85 * state.persistence + 0.15 * state.shock
 
             # 9. SEIRS transitions (uses inbound *before* bullwhip — pure exposure signal).
-            update_seis(
-                state.seis, inbound, state.shock, active_external,
-                bullwhip_factor=cfg.bullwhip_factor,
-                r_output_floor=cfg.r_output_floor,
-            )
+            #    Guarded by cfg.seis_enabled: _init_state neutralizes the three state
+            #    modifiers (outbound_mask=1, bullwhip=1, output_floor=0) when the flag is
+            #    off, but that only holds if the state machine never re-arms them. Before
+            #    2026-08 this call ran unconditionally, so seis_enabled=False was a no-op
+            #    and the `no_seis` ablation row silently duplicated `full`.
+            if cfg.seis_enabled:
+                update_seis(
+                    state.seis, inbound, state.shock, active_external,
+                    bullwhip_factor=cfg.bullwhip_factor,
+                    r_output_floor=cfg.r_output_floor,
+                )
 
             # 10. Derived per-node macro state (with R-state output floor).
             self._update_derived(state)

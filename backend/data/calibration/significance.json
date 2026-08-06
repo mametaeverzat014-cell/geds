@@ -1,6 +1,6 @@
 {
   "schema": "geds.significance.v1",
-  "timestamp": "2026-08-01T04:10:32.129494+00:00",
+  "timestamp": "2026-08-06T17:46:44.791545+00:00",
   "seed": 20260718,
   "n_boot": 10000,
   "n_perm": 20000,
@@ -170,7 +170,9 @@
         "p97_5": 0.35811,
         "n_finite_resamples": 10000
       },
-      "p_perm_mae_two_sided": 0.42048
+      "p_perm_mae_two_sided": 0.42048,
+      "p_holm_mae_two_sided": 1.0,
+      "significant_at_05_holm": false
     },
     "GEDS__vs__LinearDiffusion": {
       "delta_mae_a_minus_b": {
@@ -195,7 +197,9 @@
         "p97_5": -0.0392,
         "n_finite_resamples": 10000
       },
-      "p_perm_mae_two_sided": 0.20994
+      "p_perm_mae_two_sided": 0.20994,
+      "p_holm_mae_two_sided": 1.0,
+      "significant_at_05_holm": false
     },
     "GEDS__vs__NaivePersistence": {
       "delta_mae_a_minus_b": {
@@ -214,7 +218,9 @@
       },
       "frac_a_better_mae": 0.3482,
       "delta_spearman_a_minus_b": null,
-      "p_perm_mae_two_sided": 0.58207
+      "p_perm_mae_two_sided": 0.58207,
+      "p_holm_mae_two_sided": 1.0,
+      "significant_at_05_holm": false
     },
     "Leontief__vs__LinearDiffusion": {
       "delta_mae_a_minus_b": {
@@ -239,7 +245,9 @@
         "p97_5": -0.07082,
         "n_finite_resamples": 10000
       },
-      "p_perm_mae_two_sided": 0.96595
+      "p_perm_mae_two_sided": 0.96595,
+      "p_holm_mae_two_sided": 1.0,
+      "significant_at_05_holm": false
     },
     "Leontief__vs__NaivePersistence": {
       "delta_mae_a_minus_b": {
@@ -258,7 +266,9 @@
       },
       "frac_a_better_mae": 0.9597,
       "delta_spearman_a_minus_b": null,
-      "p_perm_mae_two_sided": 0.09025
+      "p_perm_mae_two_sided": 0.09025,
+      "p_holm_mae_two_sided": 0.54147,
+      "significant_at_05_holm": false
     },
     "LinearDiffusion__vs__NaivePersistence": {
       "delta_mae_a_minus_b": {
@@ -277,9 +287,12 @@
       },
       "frac_a_better_mae": 0.7384,
       "delta_spearman_a_minus_b": null,
-      "p_perm_mae_two_sided": 0.57527
+      "p_perm_mae_two_sided": 0.57527,
+      "p_holm_mae_two_sided": 1.0,
+      "significant_at_05_holm": false
     }
   },
+  "n_pairwise_significant_after_holm": 0,
   "cascade_shape_spearman": {
     "magnitude": {
       "point": 0.6,
@@ -287,7 +300,11 @@
       "p50": 0.66667,
       "p97_5": 1.0,
       "n_finite_resamples": 9986,
-      "n": 5
+      "n": 5,
+      "family_size": 3,
+      "fw_p_low": -1.0,
+      "fw_p_high": 1.0,
+      "excludes_zero_familywise": false
     },
     "weeks_to_peak": {
       "point": 0.69129,
@@ -295,7 +312,11 @@
       "p50": 0.71413,
       "p97_5": 0.86914,
       "n_finite_resamples": 9975,
-      "n": 15
+      "n": 15,
+      "family_size": 3,
+      "fw_p_low": 0.0,
+      "fw_p_high": 0.90386,
+      "excludes_zero_familywise": false
     },
     "recovery_weeks": {
       "point": 0.88278,
@@ -303,12 +324,16 @@
       "p50": 0.87615,
       "p97_5": 0.99065,
       "n_finite_resamples": 10000,
-      "n": 11
+      "n": 11,
+      "family_size": 3,
+      "fw_p_low": 0.39671,
+      "fw_p_high": 1.0,
+      "excludes_zero_familywise": true
     }
   },
   "interpretation": {
     "delta_sign": "delta_*_a_minus_b < 0 means the first-named model has the lower (better) error metric",
-    "significance_rule": "a pairwise difference is significant at alpha=0.05 if 0 lies outside the paired 95% CI AND p_perm_mae_two_sided < 0.05",
+    "significance_rule": "a pairwise difference is significant at alpha=0.05 if 0 lies outside the paired 95% CI AND p_holm_mae_two_sided < 0.05. The Holm-adjusted p is the operative one: all 6 pairs are published together and therefore form one family of tests. The raw p_perm_mae_two_sided is retained for transparency, not for deciding significance.",
     "caveat": "event-level bootstrap at N=27 (and n=5..15 for shape dims) has limited power; absence of significance is not evidence of equivalence"
   }
 }

@@ -237,17 +237,17 @@ full([CAP("Table 4. Cascade spatial reach: hand-built graph v2 vs. the ICIO grap
     ["v3, OECD ICIO 2019", "405", "0.79 (30/38)"]])]);
 full(figure("spatial_recall.png", "Figure 4. Cascade spatial reach per event: share of historically-hit nodes reached on the hand-built graph v2 (open) and the ICIO graph v3 (filled)."));
 col(H2("6.6. Component ablation: what of the complex model actually works"));
-col(P("The standard question of a multi-component model is which parts carry weight. A component ablation (N=27, each component disabled in turn — Table 5) gives an uncomfortable but honest answer. Two components — the SEIS state machine and adaptive rerouting — contribute exactly zero on this set; the only component whose removal *hurts* is the bullwhip effect (+0.0023). Removing the R-state floor improves in-sample error (−0.0074), but that removal already failed the pre-registered out-of-sample gate (§5.3) and is rejected. Conclusion: at N=27 the engine's complexity largely does not pay off on the magnitude axis — consistent with §6.1 and pointing to growing N and the trajectory axes rather than adding mechanisms."));
+col(P("The standard question of a multi-component model is which parts carry weight. A component ablation (N=27, each component disabled in turn — Table 5) answers it, and the headline of that answer is that the table is NOT a ranking of components. Not one of the six differences is distinguishable from zero: every 95% CI spans zero and every Holm-adjusted p equals 1.00. Each |ΔMAE| here (0.0076 at most) is smaller than the benchmark's own minimum detectable effect (0.018 at 80% power). At N=27 this benchmark cannot tell any engine component apart from any other. The point estimates do all point one way — the SEIRS state machine (−0.0076) and the hysteresis floor (−0.0074) cost accuracy, and the 0.0002 gap between them means essentially the entire cost of SEIRS is the R-state floor rather than the S/E/I transitions — but that cannot be claimed as a result: the signal is below the resolution of the set. Correction note: in the previous version the −SEIS row read 0.0242 with ΔMAE exactly 0.0000. That was a code defect (the seis_enabled flag did not take effect because update_seis was called unconditionally), not a property of the model. The true ablation is 0.0166; the §6.1 headline numbers are unaffected."));
 full([CAP("Table 5. Component ablation of the engine (N=27): each component's contribution to MAE."),
-  table([5638, 2000, 2000], [
-    ["Variant", "MAE", "ΔMAE vs. full"],
-    ["Full engine", "0.0242", "0"],
-    ["−SEIS (no state machine)", "0.0242", "0.0000"],
-    ["−adaptive rerouting", "0.0242", "0.0000"],
-    ["−bullwhip (β = 1)", "0.0266", "+0.0023"],
-    ["−R-state floor", "0.0169", "−0.0074"],
-    ["+per-node recovery", "0.0233", "−0.0009"],
-    ["pure linear diffusion", "0.0171", "−0.0071"]])]);
+  table([3600, 1400, 3400, 1200], [
+    ["Variant", "MAE", "ΔMAE vs. full [95% CI]", "p (Holm)"],
+    ["Full engine", "0.0242", "—", "—"],
+    ["−SEIS (no state machine)", "0.0166", "−0.0076 [−0.0206, +0.0018]", "1.00"],
+    ["−R-state floor", "0.0169", "−0.0074 [−0.0200, +0.0018]", "1.00"],
+    ["pure linear diffusion", "0.0171", "−0.0071 [−0.0182, +0.0018]", "1.00"],
+    ["+per-node recovery", "0.0233", "−0.0009 [−0.0029, +0.0001]", "1.00"],
+    ["−adaptive rerouting", "0.0242", "−0.0000 [−0.0001, +0.0001]", "1.00"],
+    ["−bullwhip (β = 1)", "0.0266", "+0.0023 [−0.0009, +0.0079]", "1.00"]])]);
 col(H2("6.7. Parameter sensitivity and identifiability"));
 col(P("A variance-based Sobol sensitivity analysis (1536 engine runs, output mean_industry_loss_MAE, N=27 — Table 6) asks whether the five parameters are identifiable. Two parameters carry the output variance — recovery_rate (ST 0.62) and inventory_scale (ST 0.59) — and their low first-order indices (S1 0.39 and 0.42) against high total effects signal strong interaction between them (ST sum ≈ 1.30 ≫ 1); two parameters are negligible and can be fixed, and one is minor. Thus three of five parameters are effectively non-identifiable individually, with the fitting freedom concentrated in a strongly-coupled (recovery_rate, inventory_scale) pair. This independently corroborates §6.6 (the model is over-complex relative to what the N=27 data can constrain) and explains why per-fold recalibration (§6.4) so easily masks structural edits. (MCMC at 350 steps did not converge, r̂=2.03; Bayesian intervals are left to a longer future run.)"));
 full([CAP("Table 6. Sobol sensitivity indices (N=27): total effect ST and first-order S1 for the five parameters."),
@@ -274,7 +274,7 @@ full([CAP("Table 7. The dense ICIO graph with one out-of-sample scale factor ver
 col(P("This is the first configuration to lead **every metric at once** — achieved with one parameter instead of five. **What we do not claim:** no advantage is significant — against Leontief ΔMAE −0.0049 (p = 0.34), against linear diffusion −0.0052 (p = 0.50), against the naive mean −0.0094 (p = 0.06), against v2 −0.0132 (p = 0.17). The §6.1 parity finding is therefore not overturned but confirmed once more, now on the best available configuration: even it does not separate from the baselines at this N — exactly what the §6.4 power analysis predicts."));
 col(P("The substantive meaning lies elsewhere. Replacing the hand-built graph with measured input–output structure buys more on magnitude than calibrating five dynamics parameters on the hand-built graph (0.0133 vs. 0.0266) — the magnitude-axis counterpart of the spatial result in §6.5. Both point the same way: **the information carried by network completeness and accuracy is not substitutable by parameter tuning.**"));
 col(H2("6.9. Full v3 calibration: five parameters are significantly WORSE than one"));
-col(P("The five-parameter LOO calibration on the dense graph (24 folds, per-fold differential evolution) was run and returns an unexpected result — Table 7. Pairwise, one parameter against five: ΔMAE = −0.0148, 95% CI [−0.0292, −0.0031], p = 0.037 — **significant**. This is the only statistically significant model difference anywhere in this work, and it concerns parsimony: on a 405-node graph with ~23 training events per fold, four extra degrees of freedom **measurably hurt** generalisation. It converges with §6.6 (two components contribute exactly zero) and §6.7 (three of five parameters non-identifiable) — three independent methods reaching the same over-parameterization verdict."));
+col(P("The five-parameter LOO calibration on the dense graph (24 folds, per-fold differential evolution) was run and returns an unexpected result — Table 7. Pairwise, one parameter against five: ΔMAE = −0.0148, 95% CI [−0.0292, −0.0031], raw p = 0.037. But this comparison belongs to a family of five tests against a common reference, and after Holm correction the adjusted p is 0.18: zero differences in that family are significant. A previous version of this work called this 'the only statistically significant model difference anywhere'; the correct statement is that on the magnitude axis this work contains no difference that survives correction for multiplicity. The point estimate nonetheless points the same way as everything else: on a 405-node graph with ~23 training events per fold, four extra degrees of freedom do not pay for themselves. It converges with §6.6 (no ablation is significant), §6.7 (three of five parameters pinned to their prior bounds, one varying 35-fold when a single event is dropped) and §6.1 (insufficient power) — four independent methods reaching the same over-parameterization verdict."));
 full([CAP("Table 7. Full out-of-sample comparison on the dense v3 graph (24 folds, leave-one-out)."),
   table([4238, 1600, 1800, 2000], [
     ["Configuration", "Params", "MAE", "Spearman"],
@@ -323,7 +323,7 @@ col(P("**The largest disruption in the record — and why it cannot be included.
 col(P("The event is **measured but not included**, for a methodologically instructive reason: it is **still running** at the data cutoff. No agency has published 2026 industry losses, so the observed target the benchmark calibrates against does not yet exist, and recovery duration is undefined for an unfinished event. The strongest event in the dataset is unusable precisely because it is too recent."));
 
 col(H1("9. Reproducibility"));
-col(P("The engine configuration is pinned (fixed seeds, stochasticity off); results are frozen by golden tests, and any numeric change is an explicit diff in the same commit. The statistical layer is deterministic (seed 20260718). The headline-numbers document and all figures are generated by scripts from artifacts; each figure ships with its numeric table. 157 automated tests. Exact commands are in Appendix B."));
+col(P("The engine configuration is pinned (fixed seeds, stochasticity off); results are frozen by golden tests, and any numeric change is an explicit diff in the same commit. The statistical layer is deterministic (seed 20260718). The headline-numbers document and all figures are generated by scripts from artifacts; each figure ships with its numeric table. 146 automated tests, all green. Exact commands are in Appendix B."));
 col(H1("10. Conclusion and Future Work"));
 col(P("The benchmark and three-axis validation give a way to tell cascade models apart in a statistically honest manner. Next: grow N via chokepoint events (IMF PortWatch transit data sidesteps the aggregate-dilution problem); calibrate magnitudes on the 405-node ICIO graph; a demand-side mechanism for 2008–09-type events; and releasing the benchmark as an open standard for third-party models."));
 col(new Paragraph({ spacing: { before: 100, after: 40 }, children: [new TextRun({ text: "Back matter", bold: true, font: FONT, size: 18, color: DARK })] }));
@@ -409,7 +409,9 @@ col(CODE([
   "          save_ablation(run_ablation_study())'   # ablation (6.6)",
   "python -c 'from app.core.sensitivity import run_sobol,save_sobol;",
   "          save_sobol(run_sobol())'   # Sobol (6.7)",
-  "python -m pytest --ignore=tests/test_portwatch.py   # 157 tests",
+  "python -m scripts.identifiability_audit       # identifiability audit (6.7)",
+  "python -m scripts.spatial_recall_robustness   # reach-threshold sweep (6.5)",
+  "python -m pytest                              # 146 tests, all green",
 ]));
 
 // ===================== ASSEMBLE =====================

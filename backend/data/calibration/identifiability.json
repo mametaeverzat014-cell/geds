@@ -1,0 +1,151 @@
+{
+  "schema": "geds.identifiability.v1",
+  "timestamp": "2026-08-06T17:47:40.023249+00:00",
+  "n_parameters": 5,
+  "n_events": 27,
+  "boundary_tolerance_frac": 0.01,
+  "dispersion_alarm_ratio": 1.0,
+  "sources": {
+    "global_fit": "data/calibration/de_result.json",
+    "loo_fit": "data/calibration/loo_de_result.json"
+  },
+  "global_fit_converged_fraction": 0.3333333333333333,
+  "boundary_pinning": {
+    "amplification_mu": {
+      "point": 7.922159,
+      "prior_low": 0.1,
+      "prior_high": 8.0,
+      "distance_to_nearest_bound_frac": 0.009853,
+      "pinned_at_lower_bound": false,
+      "pinned_at_upper_bound": true,
+      "pinned": true
+    },
+    "bullwhip_factor": {
+      "point": 1.999974,
+      "prior_low": 1.0,
+      "prior_high": 2.0,
+      "distance_to_nearest_bound_frac": 2.6e-05,
+      "pinned_at_lower_bound": false,
+      "pinned_at_upper_bound": true,
+      "pinned": true
+    },
+    "recovery_rate": {
+      "point": 0.01003,
+      "prior_low": 0.01,
+      "prior_high": 0.3,
+      "distance_to_nearest_bound_frac": 0.000104,
+      "pinned_at_lower_bound": true,
+      "pinned_at_upper_bound": false,
+      "pinned": true
+    },
+    "inventory_scale": {
+      "point": 1.954809,
+      "prior_low": 0.3,
+      "prior_high": 2.0,
+      "distance_to_nearest_bound_frac": 0.026583,
+      "pinned_at_lower_bound": false,
+      "pinned_at_upper_bound": false,
+      "pinned": false
+    },
+    "distress_base": {
+      "point": 0.378661,
+      "prior_low": 0.2,
+      "prior_high": 0.7,
+      "distance_to_nearest_bound_frac": 0.357322,
+      "pinned_at_lower_bound": false,
+      "pinned_at_upper_bound": false,
+      "pinned": false
+    }
+  },
+  "loo_dispersion": {
+    "amplification_mu": {
+      "n_folds": 27,
+      "min": 0.1706,
+      "max": 7.9791,
+      "median": 0.2238,
+      "loo_range": 7.8085,
+      "range_over_median": 34.8905,
+      "coef_of_variation": 2.577,
+      "unidentified": true
+    },
+    "bullwhip_factor": {
+      "n_folds": 27,
+      "min": 1.0615,
+      "max": 1.7039,
+      "median": 1.099,
+      "loo_range": 0.6424,
+      "range_over_median": 0.5845,
+      "coef_of_variation": 0.1126,
+      "unidentified": false
+    },
+    "recovery_rate": {
+      "n_folds": 27,
+      "min": 0.01,
+      "max": 0.0181,
+      "median": 0.0127,
+      "loo_range": 0.0081,
+      "range_over_median": 0.6378,
+      "coef_of_variation": 0.1141,
+      "unidentified": false
+    },
+    "inventory_scale": {
+      "n_folds": 27,
+      "min": 1.3212,
+      "max": 1.929,
+      "median": 1.836,
+      "loo_range": 0.6078,
+      "range_over_median": 0.331,
+      "coef_of_variation": 0.0567,
+      "unidentified": false
+    },
+    "distress_base": {
+      "n_folds": 27,
+      "min": 0.4346,
+      "max": 0.6971,
+      "median": 0.6141,
+      "loo_range": 0.2625,
+      "range_over_median": 0.4275,
+      "coef_of_variation": 0.0848,
+      "unidentified": false
+    }
+  },
+  "global_vs_loo_consistency": {
+    "amplification_mu": {
+      "global_fit": 7.922159,
+      "loo_min": 0.1706,
+      "loo_max": 7.9791,
+      "global_inside_loo_range": true
+    },
+    "bullwhip_factor": {
+      "global_fit": 1.999974,
+      "loo_min": 1.0615,
+      "loo_max": 1.7039,
+      "global_inside_loo_range": false
+    },
+    "recovery_rate": {
+      "global_fit": 0.01003,
+      "loo_min": 0.01,
+      "loo_max": 0.0181,
+      "global_inside_loo_range": true
+    },
+    "inventory_scale": {
+      "global_fit": 1.954809,
+      "loo_min": 1.3212,
+      "loo_max": 1.929,
+      "global_inside_loo_range": false
+    },
+    "distress_base": {
+      "global_fit": 0.378661,
+      "loo_min": 0.4346,
+      "loo_max": 0.6971,
+      "global_inside_loo_range": false
+    }
+  },
+  "summary": {
+    "n_pinned_at_prior_bound": 3,
+    "n_unidentified_by_loo_dispersion": 1,
+    "n_global_fits_outside_loo_range": 3
+  },
+  "verdict": "3/5 parameters are pinned to their search-box bounds and 1/5 move by more than their own median when a single event of 27 is removed. The five-parameter engine is NOT identified by this benchmark: the fitted values report the prior box and the resampling noise, not the data. Any claim that rests on a specific calibrated parameter value is unsupported.",
+  "reading": "This is a negative result about the BENCHMARK, not only about the engine. It is the same ceiling the power analysis reports (MDE 0.018 MAE vs observed gaps ~0.007), the ablation significance test reports (0 of 6 component deltas distinguishable from zero) and the v3 experiment reports (one scale parameter outperforms five tuned ones). Four independent routes, one conclusion."
+}
