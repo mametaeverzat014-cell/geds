@@ -4,6 +4,7 @@ import { useMemo } from "react";
 
 import { countryName, nodeName } from "@/lib/names";
 import { useSimStore } from "@/lib/store";
+import { buildTransmission } from "@/lib/transmission";
 import { useUI } from "@/lib/ui-context";
 
 /**
@@ -22,8 +23,21 @@ export default function ForecastNarrative() {
   const summary = useSimStore((s) => s.summary);
   const scenarios = useSimStore((s) => s.scenarios);
   const selectedId = useSimStore((s) => s.selectedScenarioId);
+  const graph = useSimStore((s) => s.graph);
   const { lang } = useUI();
   const ru = lang === "ru";
+
+  const scenarioNow = scenarios.find((s) => s.id === selectedId);
+  const originIds = useMemo(
+    () => (scenarioNow?.shocks ?? []).map((s) => s.target_node_id),
+    [scenarioNow],
+  );
+
+  // why each node was hit: the path the shock took through the dependency graph
+  const transmission = useMemo(
+    () => buildTransmission(graph, frames, originIds, REACHED),
+    [graph, frames, originIds],
+  );
 
   const story = useMemo(() => {
     if (!frames.length || !summary) return null;
@@ -68,7 +82,7 @@ export default function ForecastNarrative() {
 
   if (!story || !summary) return null;
 
-  const scenario = scenarios.find((s) => s.id === selectedId);
+  const scenario = scenarioNow;
   const shocks = scenario?.shocks ?? [];
   const wk = (n: number) => (ru ? `неделя ${n}` : `week ${n}`);
   const pct = (v: number) => `${(v * 100).toFixed(0)}%`;
@@ -144,34 +158,99 @@ export default function ForecastNarrative() {
         </p>
       </div>
 
-      {/* 3 — the worst of it */}
+      {/* 3 — why these places: the path the shock travelled */}
+      {transmission && (
+        <div className="rounded-lg border border-border-subtle bg-bg-base/40 p-3 space-y-2">
+          <div className="text-[12px] uppercase tracking-wider text-text-muted">
+            {ru ? "3 · Почему именно эти страны" : "3 · Why these places"}
+          </div>
+          <p className="text-[13px] text-text-muted leading-relaxed">
+            {ru
+              ? "Через какого поставщика удар дошёл до каждого узла — путь по графу зависимостей:"
+              : "Which supplier carried the shock to each node — the path through the dependency graph:"}
+          </p>
+          <div className="space-y-2">
+            {story.worst.slice(0, 4).map((n) => {
+              const chain = transmission.chainFor(n.id);
+              const link = transmission.parent.get(n.id);
+              if (chain.length < 2) return null;
+              return (
+                <div key={n.id} className="space-y-0.5">
+                  <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-[13px] leading-snug">
+                    {chain.map((id, i) => (
+                      <span key={id} className="flex items-center gap-1.5">
+                        {i > 0 && <span className="text-accent-cyan" aria-hidden="true">→</span>}
+                        <span
+                          className={
+                            i === chain.length - 1
+                              ? "text-text-primary font-semibold"
+                              : "text-text-secondary"
+                          }
+                          title={id}
+                        >
+                          {nodeName(id, lang)}
+                        </span>
+                      </span>
+                    ))}
+                  </div>
+                  {link && (
+                    <p className="text-[12px] text-text-muted leading-snug">
+                      {ru
+                        ? `${pct(link.share)} входных зависимостей этого узла приходится на поражённого поставщика; удар дошёл за ${link.lagWeeks} нед.`
+                        : `${pct(link.share)} of this node's input dependency runs through the disrupted supplier; it arrived ${link.lagWeeks} weeks later.`}
+                    </p>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* 4 — the worst of it, ranked (ordering is the validated claim, not the %) */}
       <div className="rounded-lg border border-border-subtle bg-bg-base/40 p-3 space-y-2">
         <div className="text-[12px] uppercase tracking-wider text-text-muted">
-          {ru ? "3 · Пик кризиса" : "3 · The worst of it"}
+          {ru ? "4 · Пик кризиса" : "4 · The worst of it"}
         </div>
         <p className="text-[13px] text-text-secondary leading-relaxed">
           {ru
-            ? `Тяжелее всего становится на ${story.peakWeek}-й неделе. Сильнее всех страдают:`
-            : `The peak arrives in week ${story.peakWeek}. Hardest hit:`}
+            ? `Тяжелее всего становится на ${story.peakWeek}-й неделе. Порядок по тяжести:`
+            : `The peak arrives in week ${story.peakWeek}. Ranked by severity:`}
         </p>
         <div className="space-y-1">
-          {story.worst.map((n) => (
+          {story.worst.map((n, i) => (
             <div key={n.id} className="flex items-center justify-between gap-2 text-[13px]">
-              <span className="truncate text-text-secondary" title={n.id}>
-                {nodeName(n.id, lang)}
+              <span className="flex min-w-0 items-center gap-2">
+                <span
+                  className="shrink-0 w-5 h-5 grid place-items-center rounded text-[11px] font-bold
+                             bg-accent-cyan/15 text-accent-cyan border border-accent-cyan/30"
+                  aria-hidden="true"
+                >
+                  {i + 1}
+                </span>
+                <span className="truncate text-text-secondary" title={n.id}>
+                  {nodeName(n.id, lang)}
+                </span>
               </span>
-              <span className="num shrink-0 text-text-primary font-semibold">
-                −{pct(n.output_loss)}
+              <span className="num shrink-0 text-text-muted" title={ru
+                ? "Точное значение — ориентир; надёжен порядок, а не число"
+                : "The figure is indicative; the ranking is what holds, not the number"}>
+                ≈ −{pct(n.output_loss)}
               </span>
             </div>
           ))}
         </div>
+        <p className="text-[12px] text-text-muted leading-snug">
+          {ru
+            ? "Номер слева — то, что модель предсказывает надёжно. Процент справа — ориентир: на точных значениях модель не точнее наивного среднего."
+            : "The number on the left is what the model predicts reliably. The percentage on the right is indicative: on exact values the model is no better than a naive mean."}
+        </p>
       </div>
 
       {/* 4 — aftermath */}
       <div className="rounded-lg border border-border-subtle bg-bg-base/40 p-3 space-y-1.5">
         <div className="text-[12px] uppercase tracking-wider text-text-muted">
-          {ru ? "4 · Чем заканчивается" : "4 · How it ends"}
+          {ru ? "5 · Чем заканчивается" : "5 · How it ends"}
         </div>
         <p className="text-[13px] text-text-secondary leading-relaxed">
           {ru ? (
