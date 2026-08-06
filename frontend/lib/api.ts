@@ -164,7 +164,37 @@ export interface CrisisRadarResult {
 
 // ─── API client ────────────────────────────────────────────────────────────
 
+/** One row of historical_events.csv, as served by /data/historical-events-csv. */
+export interface HistoricalEvent {
+  id: number;
+  slug: string;
+  name_ru: string;
+  name_en: string;
+  type: string;
+  start_date: string;
+  countries_iso3: string[];
+  industries_geds: string[];
+  shock_mechanism: string;
+  delta_output_pct: number | null;
+  recovery_weeks: number | null;
+  in_geds_graph: boolean;
+  target_node_geds: string | null;
+  shock_magnitude_geds: number | null;
+  duration_weeks_geds: number | null;
+  sources: string[];
+  notes: string;
+}
+
+export interface HistoricalEventsResponse {
+  n_total: number;
+  n_in_graph: number;
+  n_out_of_graph: number;
+  events: HistoricalEvent[];
+}
+
 export const api = {
+  historicalEvents: (): Promise<HistoricalEventsResponse> =>
+    getJson("/api/v1/data/historical-events-csv"),
   graph: (version: "v2" | "v3" = "v2"): Promise<GraphSnapshot> =>
     getJson(version === "v3" ? "/api/v1/graph?version=v3" : "/api/v1/graph"),
   scenarios: (): Promise<Scenario[]> => getJson("/api/v1/scenarios"),
