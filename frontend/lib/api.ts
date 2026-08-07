@@ -192,9 +192,30 @@ export interface HistoricalEventsResponse {
   events: HistoricalEvent[];
 }
 
+/** One scored event from /cascade-validation — what the model said vs what happened. */
+export interface CascadeEventResult {
+  slug: string;
+  name: string;
+  is_chokepoint: boolean;
+  predicted_recovery_weeks: number;
+  observed_recovery_weeks: number | null;
+  dims: { name: string; predicted: number; observed: number; abs_error: number }[];
+}
+
+export interface CascadeValidation {
+  shape: {
+    events: CascadeEventResult[];
+    mae_by_dim: Record<string, number>;
+    spearman_by_dim: Record<string, number>;
+    n_by_dim: Record<string, number>;
+  };
+}
+
 export const api = {
   historicalEvents: (): Promise<HistoricalEventsResponse> =>
     getJson("/api/v1/data/historical-events-csv"),
+  cascadeValidation: (): Promise<CascadeValidation> =>
+    getJson("/api/v1/cascade-validation"),
   graph: (version: "v2" | "v3" = "v2"): Promise<GraphSnapshot> =>
     getJson(version === "v3" ? "/api/v1/graph?version=v3" : "/api/v1/graph"),
   scenarios: (): Promise<Scenario[]> => getJson("/api/v1/scenarios"),

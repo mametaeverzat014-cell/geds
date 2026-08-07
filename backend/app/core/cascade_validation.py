@@ -50,6 +50,7 @@ class DimScore:
 @dataclass
 class CascadeEventResult:
     slug: str
+    name: str
     is_chokepoint: bool
     predicted_recovery_weeks: float
     observed_recovery_weeks: float | None
@@ -163,6 +164,9 @@ def run_cascade_validation(config: EngineConfig | None = None) -> CascadeReport:
 
         results.append(CascadeEventResult(
             slug=slug,
+            # human-readable label; the API is the only source the frontend has
+            # for these, since the cascade payload otherwise carries only slugs
+            name=str(ev.get("name") or slug),
             is_chokepoint=slug in chokepoint_slugs,
             predicted_recovery_weeks=round(recovery_week, 1),
             observed_recovery_weeks=(
