@@ -1,0 +1,250 @@
+{
+  "schema": "geds.clustering_icc.v2",
+  "timestamp": "2026-08-07T05:46:35.898876+00:00",
+  "graph_version": "v3",
+  "quantity": "onset-week residual (predicted minus observed), per event x node",
+  "reach_threshold": 0.01,
+  "source": "data/csv/cascade_spatial.csv",
+  "estimator": "one-way random-effects ANOVA, unequal cluster sizes (m0 correction)",
+  "sample_funnel": {
+    "rows_total": 66,
+    "rows_with_onset": 66,
+    "pairs_in_wired_events": 44,
+    "pairs_representable_in_graph": 38,
+    "pairs_reached_by_cascade": 30
+  },
+  "statistics": {
+    "estimable": true,
+    "n_clusters_with_multiple_observations": 9,
+    "degenerate_design": false,
+    "degenerate_reason": null,
+    "n_observations": 30,
+    "n_clusters": 11,
+    "mean_cluster_size": 2.727,
+    "m0_unequal_size_correction": 2.687,
+    "ms_between": 296.8367,
+    "ms_within": 161.9474,
+    "var_between_raw": 50.2069,
+    "var_between_clamped_at_zero": false,
+    "icc": 0.2367,
+    "design_effect": 1.4088,
+    "effective_n": 21.3
+  },
+  "observations": [
+    {
+      "event": "auto-chip-shortage-2021",
+      "node": "DEU:automotive",
+      "predicted_onset_week": 32.0,
+      "observed_onset_week": 8,
+      "residual_weeks": 24.0
+    },
+    {
+      "event": "auto-chip-shortage-2021",
+      "node": "JPN:automotive",
+      "predicted_onset_week": 30.0,
+      "observed_onset_week": 4,
+      "residual_weeks": 26.0
+    },
+    {
+      "event": "auto-chip-shortage-2021",
+      "node": "USA:automotive",
+      "predicted_onset_week": 21.0,
+      "observed_onset_week": 4,
+      "residual_weeks": 17.0
+    },
+    {
+      "event": "covid-semiconductor-2020-2021",
+      "node": "DEU:automotive",
+      "predicted_onset_week": 8.0,
+      "observed_onset_week": 8,
+      "residual_weeks": 0.0
+    },
+    {
+      "event": "covid-semiconductor-2020-2021",
+      "node": "JPN:automotive",
+      "predicted_onset_week": 10.0,
+      "observed_onset_week": 52,
+      "residual_weeks": -42.0
+    },
+    {
+      "event": "covid-semiconductor-2020-2021",
+      "node": "USA:automotive",
+      "predicted_onset_week": 7.0,
+      "observed_onset_week": 4,
+      "residual_weeks": 3.0
+    },
+    {
+      "event": "eu-energy-crisis-2021",
+      "node": "DEU:automotive",
+      "predicted_onset_week": 19.0,
+      "observed_onset_week": 4,
+      "residual_weeks": 15.0
+    },
+    {
+      "event": "eu-energy-crisis-2021",
+      "node": "ESP:automotive",
+      "predicted_onset_week": 17.0,
+      "observed_onset_week": 8,
+      "residual_weeks": 9.0
+    },
+    {
+      "event": "gfc-auto-collapse-2008-2009",
+      "node": "DEU:automotive",
+      "predicted_onset_week": 46.0,
+      "observed_onset_week": 8,
+      "residual_weeks": 38.0
+    },
+    {
+      "event": "gfc-auto-collapse-2008-2009",
+      "node": "JPN:automotive",
+      "predicted_onset_week": 41.0,
+      "observed_onset_week": 8,
+      "residual_weeks": 33.0
+    },
+    {
+      "event": "gfc-auto-collapse-2008-2009",
+      "node": "KOR:automotive",
+      "predicted_onset_week": 26.0,
+      "observed_onset_week": 10,
+      "residual_weeks": 16.0
+    },
+    {
+      "event": "gfc-auto-collapse-2008-2009",
+      "node": "MEX:automotive",
+      "predicted_onset_week": 7.0,
+      "observed_onset_week": 10,
+      "residual_weeks": -3.0
+    },
+    {
+      "event": "japan-triple-disaster-2011",
+      "node": "GBR:automotive",
+      "predicted_onset_week": 15.0,
+      "observed_onset_week": 5,
+      "residual_weeks": 10.0
+    },
+    {
+      "event": "japan-triple-disaster-2011",
+      "node": "JPN:electronics_c26",
+      "predicted_onset_week": 0.0,
+      "observed_onset_week": 1,
+      "residual_weeks": -1.0
+    },
+    {
+      "event": "japan-triple-disaster-2011",
+      "node": "KOR:automotive",
+      "predicted_onset_week": 14.0,
+      "observed_onset_week": 2,
+      "residual_weeks": 12.0
+    },
+    {
+      "event": "japan-triple-disaster-2011",
+      "node": "USA:automotive",
+      "predicted_onset_week": 17.0,
+      "observed_onset_week": 2,
+      "residual_weeks": 15.0
+    },
+    {
+      "event": "renesas-naka-fire-2021",
+      "node": "JPN:automotive",
+      "predicted_onset_week": 5.0,
+      "observed_onset_week": 4,
+      "residual_weeks": 1.0
+    },
+    {
+      "event": "renesas-naka-fire-2021",
+      "node": "KOR:automotive",
+      "predicted_onset_week": 17.0,
+      "observed_onset_week": 5,
+      "residual_weeks": 12.0
+    },
+    {
+      "event": "renesas-naka-fire-2021",
+      "node": "USA:automotive",
+      "predicted_onset_week": 25.0,
+      "observed_onset_week": 4,
+      "residual_weeks": 21.0
+    },
+    {
+      "event": "shanghai-lockdown-2022",
+      "node": "CHN:automotive",
+      "predicted_onset_week": 0.0,
+      "observed_onset_week": 1,
+      "residual_weeks": -1.0
+    },
+    {
+      "event": "shanghai-lockdown-2022",
+      "node": "DEU:automotive",
+      "predicted_onset_week": 10.0,
+      "observed_onset_week": 3,
+      "residual_weeks": 7.0
+    },
+    {
+      "event": "shanghai-lockdown-2022",
+      "node": "KOR:automotive",
+      "predicted_onset_week": 5.0,
+      "observed_onset_week": 3,
+      "residual_weeks": 2.0
+    },
+    {
+      "event": "shanghai-lockdown-2022",
+      "node": "TWN:electronics_c26",
+      "predicted_onset_week": 5.0,
+      "observed_onset_week": 3,
+      "residual_weeks": 2.0
+    },
+    {
+      "event": "texas-winter-storm-2021",
+      "node": "USA:automotive",
+      "predicted_onset_week": 10.0,
+      "observed_onset_week": 1,
+      "residual_weeks": 9.0
+    },
+    {
+      "event": "texas-winter-storm-2021",
+      "node": "USA:electronics_c26",
+      "predicted_onset_week": 0.0,
+      "observed_onset_week": 1,
+      "residual_weeks": -1.0
+    },
+    {
+      "event": "thailand-floods-2011",
+      "node": "THA:electronics_c26",
+      "predicted_onset_week": 0.0,
+      "observed_onset_week": 0,
+      "residual_weeks": 0.0
+    },
+    {
+      "event": "thailand-floods-2011",
+      "node": "USA:consumer_goods",
+      "predicted_onset_week": 26.0,
+      "observed_onset_week": 4,
+      "residual_weeks": 22.0
+    },
+    {
+      "event": "thailand-floods-2011",
+      "node": "USA:electronics_c26",
+      "predicted_onset_week": 21.0,
+      "observed_onset_week": 2,
+      "residual_weeks": 19.0
+    },
+    {
+      "event": "vietnam-covid-lockdown-2021",
+      "node": "USA:electronics_c26",
+      "predicted_onset_week": 18.0,
+      "observed_onset_week": 6,
+      "residual_weeks": 12.0
+    },
+    {
+      "event": "yantian-port-closure-2021",
+      "node": "CHN:shipping",
+      "predicted_onset_week": 0.0,
+      "observed_onset_week": 0,
+      "residual_weeks": 0.0
+    }
+  ],
+  "interpretation": {
+    "reading": "30 node-level observations across 11 events carry the independent information of about 21 independent observations (ICC 0.237, design effect 1.41).",
+    "verdict": "node-level scoring buys moderate power; within-event correlation absorbs a meaningful share of the extra rows",
+    "caveat": "This is the ICC of onset-week residuals, the dimension with the most node-level data. It does not license treating node rows as independent on the magnitude axis, where n is far smaller and the clustering may differ."
+  }
+}

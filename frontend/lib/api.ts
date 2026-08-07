@@ -164,7 +164,58 @@ export interface CrisisRadarResult {
 
 // ─── API client ────────────────────────────────────────────────────────────
 
+/** One row of historical_events.csv, as served by /data/historical-events-csv. */
+export interface HistoricalEvent {
+  id: number;
+  slug: string;
+  name_ru: string;
+  name_en: string;
+  type: string;
+  start_date: string;
+  countries_iso3: string[];
+  industries_geds: string[];
+  shock_mechanism: string;
+  delta_output_pct: number | null;
+  recovery_weeks: number | null;
+  in_geds_graph: boolean;
+  target_node_geds: string | null;
+  shock_magnitude_geds: number | null;
+  duration_weeks_geds: number | null;
+  sources: string[];
+  notes: string;
+}
+
+export interface HistoricalEventsResponse {
+  n_total: number;
+  n_in_graph: number;
+  n_out_of_graph: number;
+  events: HistoricalEvent[];
+}
+
+/** One scored event from /cascade-validation — what the model said vs what happened. */
+export interface CascadeEventResult {
+  slug: string;
+  name: string;
+  is_chokepoint: boolean;
+  predicted_recovery_weeks: number;
+  observed_recovery_weeks: number | null;
+  dims: { name: string; predicted: number; observed: number; abs_error: number }[];
+}
+
+export interface CascadeValidation {
+  shape: {
+    events: CascadeEventResult[];
+    mae_by_dim: Record<string, number>;
+    spearman_by_dim: Record<string, number>;
+    n_by_dim: Record<string, number>;
+  };
+}
+
 export const api = {
+  historicalEvents: (): Promise<HistoricalEventsResponse> =>
+    getJson("/api/v1/data/historical-events-csv"),
+  cascadeValidation: (): Promise<CascadeValidation> =>
+    getJson("/api/v1/cascade-validation"),
   graph: (version: "v2" | "v3" = "v2"): Promise<GraphSnapshot> =>
     getJson(version === "v3" ? "/api/v1/graph?version=v3" : "/api/v1/graph"),
   scenarios: (): Promise<Scenario[]> => getJson("/api/v1/scenarios"),

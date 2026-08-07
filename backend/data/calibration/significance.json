@@ -1,6 +1,6 @@
 {
   "schema": "geds.significance.v1",
-  "timestamp": "2026-08-06T17:46:44.791545+00:00",
+  "timestamp": "2026-08-07T05:58:39.624352+00:00",
   "seed": 20260718,
   "n_boot": 10000,
   "n_perm": 20000,
@@ -295,12 +295,12 @@
   "n_pairwise_significant_after_holm": 0,
   "cascade_shape_spearman": {
     "magnitude": {
-      "point": 0.6,
-      "p2_5": -1.0,
-      "p50": 0.66667,
+      "point": 0.71429,
+      "p2_5": -0.09091,
+      "p50": 0.74194,
       "p97_5": 1.0,
-      "n_finite_resamples": 9986,
-      "n": 5,
+      "n_finite_resamples": 9997,
+      "n": 6,
       "family_size": 3,
       "fw_p_low": -1.0,
       "fw_p_high": 1.0,

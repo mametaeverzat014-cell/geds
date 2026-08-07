@@ -93,7 +93,7 @@ def test_run_significance_agrees_with_golden_benchmark():
         assert 0.0 < pair["p_perm_mae_two_sided"] <= 1.0
     # shape dims join counts pinned by test_cascade_validation
     dims = payload["cascade_shape_spearman"]
-    assert dims["magnitude"]["n"] == 5
+    assert dims["magnitude"]["n"] == 6   # +ukraine-war-harness-2022 (see cascade_validation)
     assert dims["weeks_to_peak"]["n"] == 15
     assert dims["recovery_weeks"]["n"] == 11
     # the naive model must not carry rank metrics

@@ -8,6 +8,7 @@ import ConnectionBanner from "@/components/ConnectionBanner";
 import HeroNetwork from "@/components/HeroNetwork";
 import FAQPanel from "@/components/FAQPanel";
 import ForecastNarrative from "@/components/ForecastNarrative";
+import HistoricalAnalogue from "@/components/HistoricalAnalogue";
 import MetricsPanel from "@/components/MetricsPanel";
 import ModelComparisonPanel from "@/components/ModelComparisonPanel";
 import NarrativePanel from "@/components/NarrativePanel";
@@ -76,6 +77,7 @@ export default function Home() {
         <div className="lg:col-span-3 space-y-3 fade-up fade-up-3">
           <MetricsPanel />
           <ForecastNarrative />
+          <HistoricalAnalogue />
           <ModelComparisonPanel />
           <NarrativePanel />
         </div>

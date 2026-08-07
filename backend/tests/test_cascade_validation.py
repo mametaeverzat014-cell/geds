@@ -24,7 +24,11 @@ def test_runs_and_dimension_coverage():
             assert d.name in _DIMS
             assert d.abs_error >= 0.0
     # deterministic join counts against the current engine event set
-    assert rep.n_by_dim["magnitude"] == 5       # japan, eu, thailand, shanghai, gfc-auto (direct)
+    # 6 since 2026-08: japan, eu, thailand, shanghai, gfc-auto + ukraine-war-harness.
+    # The sixth was already available as a measured direct target but was being
+    # discarded because the event had no cascade_timing row — the harness used to
+    # require timing before it would score magnitude at all.
+    assert rep.n_by_dim["magnitude"] == 6
     assert rep.n_by_dim["weeks_to_peak"] == 15
     assert rep.n_by_dim["recovery_weeks"] == 11
 
