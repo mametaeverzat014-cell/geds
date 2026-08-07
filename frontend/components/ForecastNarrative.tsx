@@ -195,9 +195,16 @@ export default function ForecastNarrative() {
                   </div>
                   {link && (
                     <p className="text-[12px] text-text-muted leading-snug">
+                      {/* Two facts, deliberately joined by "and" rather than a
+                          causal clause. Putting the dependency share next to the
+                          lag invites the reading that the share explains the lag,
+                          and it does not: onset lag correlates with dependency
+                          share at only rho -0.45, about the same as it does with
+                          vulnerability (-0.53), centrality (-0.46) and inventory
+                          depth (-0.44). No single node property drives it. */}
                       {ru
-                        ? `${pct(link.share)} входных зависимостей этого узла приходится на поражённого поставщика; удар дошёл за ${link.lagWeeks} нед.`
-                        : `${pct(link.share)} of this node's input dependency runs through the disrupted supplier; it arrived ${link.lagWeeks} weeks later.`}
+                        ? `Зависимость от этого поставщика — ${pct(link.share)} входа, и удар дошёл на ${link.lagWeeks}-й нед. Срок задаёт не одна эта доля, а положение узла в сети целиком.`
+                        : `${pct(link.share)} of this node's input runs through that supplier, and the disruption arrived in week ${link.lagWeeks}. The timing is set by the node's whole position in the network, not by that share alone.`}
                     </p>
                   )}
                 </div>

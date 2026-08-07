@@ -24,6 +24,21 @@
  * that carried the shock", which is exactly the kind of ordering claim the
  * validation supports (recovery/onset ordering), rather than a magnitude claim,
  * which it does not.
+ *
+ * One thing this deliberately does NOT claim: that the dependency share explains
+ * the lag. It is tempting to read "51% dependency, arrived in week 1" as cause
+ * and effect, and it was written that way at first. Measured on a Taiwan
+ * semiconductor shock across all 16 reached nodes, onset lag correlates with
+ * dependency share at only rho -0.45 — statistically indistinguishable from its
+ * correlation with vulnerability (-0.53), centrality (-0.46) and inventory depth
+ * (-0.44). No single node property drives the timing; it falls out of the whole
+ * propagation step. Note especially that inventory depth points the WRONG way
+ * (deeper buffers correlate with EARLIER onset, because buffer depth is
+ * confounded with how directly a sector connects to semiconductors) — so the
+ * intuitive "automotive holds stock, electronics does not" story is false twice
+ * over: electronics carries 7 weeks of inventory in this graph and automotive
+ * only 5. The UI copy states the two facts side by side without joining them
+ * causally.
  */
 
 import type { Frame, GraphSnapshot } from "./types";
