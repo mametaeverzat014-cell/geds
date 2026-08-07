@@ -126,8 +126,13 @@ def run_cascade_validation(config: EngineConfig | None = None) -> CascadeReport:
     results: list[CascadeEventResult] = []
     for slug, ev in engine_events.items():
         tm = timing.get(slug)
-        if tm is None:
-            continue  # no timing research for this event
+        # An event qualifies if EITHER dimension has research. Requiring timing
+        # here used to silently discard magnitude observations for events that
+        # had a measured node-level target but no timing row — which suppressed
+        # the one axis that is starved for data (magnitude was scoring 5 of the
+        # 6 available targets for that reason alone).
+        if tm is None and slug not in magnitude:
+            continue
 
         # Read the directly-shocked NODE's trajectory (node-level), not the
         # GDP-weighted industry-global average — the standardized targets are
@@ -147,11 +152,11 @@ def run_cascade_validation(config: EngineConfig | None = None) -> CascadeReport:
             obs_mag = magnitude[slug].value_pct
             dims.append(DimScore("magnitude", round(peak_loss, 4), obs_mag,
                                  round(abs(peak_loss - obs_mag), 4)))
-        if tm.weeks_to_peak is not None:
+        if tm is not None and tm.weeks_to_peak is not None:
             dims.append(DimScore("weeks_to_peak", float(peak_week),
                                  float(tm.weeks_to_peak),
                                  abs(peak_week - tm.weeks_to_peak)))
-        if tm.recovery_weeks_to_90 is not None:
+        if tm is not None and tm.recovery_weeks_to_90 is not None:
             dims.append(DimScore("recovery_weeks", round(recovery_week, 1),
                                  float(tm.recovery_weeks_to_90),
                                  round(abs(recovery_week - tm.recovery_weeks_to_90), 1)))
@@ -161,7 +166,8 @@ def run_cascade_validation(config: EngineConfig | None = None) -> CascadeReport:
             is_chokepoint=slug in chokepoint_slugs,
             predicted_recovery_weeks=round(recovery_week, 1),
             observed_recovery_weeks=(
-                float(tm.recovery_weeks_to_90) if tm.recovery_weeks_to_90 is not None else None
+                float(tm.recovery_weeks_to_90)
+                if tm is not None and tm.recovery_weeks_to_90 is not None else None
             ),
             dims=dims,
         ))
