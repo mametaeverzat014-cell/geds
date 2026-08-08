@@ -97,6 +97,9 @@ export default function Home() {
           }
         </div>
         <div className="flex items-center gap-4 flex-wrap">
+          <a href="/demo" className="btn-pill text-[12px]">
+            {lang === "en" ? "Track record — what it predicted vs what happened →" : "Track record — что предсказала и что произошло →"}
+          </a>
           <span className="text-[12px] px-2 py-0.5 rounded-full bg-accent-cyan/10 text-accent-cyan border border-accent-cyan/20">
             {lang === "en" ? "Live LOO cross-validation · top-right badge" : "Live кросс-валидация · значок справа сверху"}
           </span>

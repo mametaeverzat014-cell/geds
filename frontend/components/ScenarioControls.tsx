@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useSimStore, type GraphVersion } from "@/lib/store";
 import { api } from "@/lib/api";
 import type { StreamMessage } from "@/lib/types";
@@ -72,6 +72,29 @@ export default function ScenarioControls() {
       }
     };
   };
+
+  // ── run the default scenario once, unprompted, as soon as we can ──
+  // Half this page renders nothing until a simulation has completed: the
+  // cascade map, the forecast narrative, the transmission chains and the
+  // historical analogue all bail out on an empty frame list. Someone opening
+  // the page cold — a visitor, or a judge handed the laptop — saw an empty
+  // shell and had no way to know a button press was required. Firing the
+  // flagship scenario on first load makes the page self-demonstrating.
+  //
+  // Guarded by a ref rather than state so it can never fire twice: the deps
+  // legitimately change several times during startup (backend probe resolves,
+  // then the graph arrives), and each of those must not start a second run.
+  const autoRanRef = useRef(false);
+  useEffect(() => {
+    if (autoRanRef.current) return;
+    if (backendStatus !== "online" || !graph || !selected || running) return;
+    if (useSimStore.getState().summary) return;   // a run already produced output
+    autoRanRef.current = true;
+    run();
+    // `run` is intentionally omitted: it is re-created every render, and the
+    // ref guard already makes this fire exactly once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [backendStatus, graph, selected, running]);
 
   return (
     <div className="panel p-4 space-y-3">
