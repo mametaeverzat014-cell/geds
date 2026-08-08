@@ -27,12 +27,20 @@ import { useUI } from "@/lib/ui-context";
  *     rank-order result presented alone reads as point accuracy, which this is
  *     not.
  *
- *  3. THE MISSES ARE EXPLAINED, NOT APOLOGISED FOR. The model cannot predict a
- *     three-week recovery: a node in the R state is floored at 30% output loss
- *     and heals at recovery_rate 0.07/week, so ~15 weeks is its structural
- *     minimum. That is why every short event is over-predicted. Naming the
- *     mechanism turns a row of failures into evidence that the instrument
- *     behaves predictably.
+ *  3. CENSORED VALUES ARE MARKED AS SUCH. Seven of the eleven "predictions" are
+ *     not predictions: the node never recovered inside its simulated window, so
+ *     `cascade_validation._node_shape` returns the window length — a hand-set
+ *     `horizon_weeks` field. Those rows are lower bounds, drawn and labelled as
+ *     lower bounds, excluded from the hit counter, and the horizon-only null
+ *     (Spearman 0.87 with no engine at all) is printed next to the engine's 0.88.
+ *     See scripts/recovery_censoring_audit.py.
+ *
+ * An earlier version of this file explained the short-event misses by the R-state
+ * output floor and asserted the model "cannot express a three-week recovery".
+ * Both were wrong: a 0.06 shock recovers in week 3, and recovery time is FLAT
+ * above a peak loss of ~0.2 (0.60 and 0.80 magnitude both give week 32), because
+ * the scoring threshold is proportional to peak. No mechanism is asserted here
+ * now that has not been measured.
  */
 
 type Phase = "idle" | "revealing" | "done";
@@ -71,6 +79,7 @@ export default function PredictionReveal() {
         predicted: e.predicted_recovery_weeks,
         observed: e.observed_recovery_weeks as number,
         error: e.predicted_recovery_weeks - (e.observed_recovery_weeks as number),
+        censored: e.recovery_censored,
       }))
       .sort((a, b) => a.observed - b.observed);
   }, [events]);
@@ -119,7 +128,10 @@ export default function PredictionReveal() {
   }
 
   const revealed = rows.slice(0, shown);
-  const hits = revealed.filter((r) => Math.abs(r.error) <= CLOSE_WEEKS).length;
+  // A censored value is a lower bound, so it cannot count as a hit no matter how
+  // close it lands — both of this panel's apparent best matches are censored rows.
+  const hits = revealed.filter((r) => !r.censored && Math.abs(r.error) <= CLOSE_WEEKS).length;
+  const nCensored = rows.filter((r) => r.censored).length;
 
   return (
     <section className="panel p-5 sm:p-7 space-y-5">
@@ -190,7 +202,9 @@ export default function PredictionReveal() {
 
               <div className="shrink-0 text-right tabular-nums">
                 <div className="num text-[15px] text-text-primary">
-                  <span className="text-accent-violet">{r.predicted.toFixed(0)}</span>
+                  <span className={r.censored ? "text-text-muted" : "text-accent-violet"}>
+                    {r.censored ? "≥" : ""}{r.predicted.toFixed(0)}
+                  </span>
                   <span className="text-text-muted mx-1">→</span>
                   <span className={isShown ? "text-accent-gold" : "text-transparent"}>
                     {isShown ? r.observed.toFixed(0) : "··"}
@@ -198,11 +212,14 @@ export default function PredictionReveal() {
                 </div>
                 <div
                   className={`num text-[12px] ${
-                    !isShown ? "text-transparent" : close ? "text-accent-cyan" : "text-red-400"
+                    !isShown ? "text-transparent"
+                      : r.censored ? "text-text-muted"
+                      : close ? "text-accent-cyan" : "text-red-400"
                   }`}
                 >
-                  {isShown ? (r.error > 0 ? "+" : "") + r.error.toFixed(0) : "·"}
-                  {isShown && (ru ? " нед." : " wks")}
+                  {!isShown ? "·"
+                    : r.censored ? (ru ? "нижняя граница" : "lower bound")
+                    : `${r.error > 0 ? "+" : ""}${r.error.toFixed(0)}${ru ? " нед." : " wks"}`}
                 </div>
               </div>
             </li>
@@ -229,11 +246,19 @@ export default function PredictionReveal() {
             n = {rows.length} · {ru ? "семейный 98,3% ДИ" : "family-wise 98.3% CI"} [0.40, 1.00] ·
             10 000 bootstrap · seed 20260718
           </p>
-          <div className="rounded-lg border border-border-subtle bg-bg-base/40 p-3">
+          <div className="rounded-lg border border-red-500/30 bg-red-500/[0.06] p-3 space-y-2">
+            <div className="text-[12px] uppercase tracking-wider text-red-400">
+              {ru ? "Что здесь не является предсказанием" : "What here is not a prediction"}
+            </div>
             <p className="text-[13px] text-text-secondary leading-relaxed">
               {ru
-                ? "Почему модель промахивается на быстрых событиях — и почему это не шум. Восстановление в ней устроено как пропорциональное затухание до 10% от пика, поэтому срок растёт вместе с глубиной удара. Замеряно: даже самый слабый шок, который модель вообще принимает (10% на одну неделю), восстанавливается 10 недель; удар в 60% — 32 недели. Восстановление за три недели она физически не способна выразить. Суэц восстановился за три. Это не случайная ошибка, а край возможностей механизма, и мы знаем, где он проходит."
-                : "Why the model misses on fast events — and why it is not noise. Recovery here is proportional decay to 10% of peak, so the time grows with the depth of the hit. Measured: even the weakest shock the model will accept (10% for one week) takes 10 weeks to clear, and a 60% shock takes 32. A three-week recovery is not something it can express at all. Suez recovered in three. That is not random error, it is the edge of the mechanism, and we know where that edge runs."}
+                ? `${nCensored} из ${rows.length} значений модели помечены знаком «≥». В этих случаях узел не восстановился внутри окна симуляции, и харнесс подставил длину окна — поле, заданное человеком вручную. Это нижние границы, а не предсказания, и в счётчик попаданий они не входят.`
+                : `${nCensored} of the ${rows.length} model values are marked "≥". In those cases the node never recovered inside the simulated window, so the harness substituted the window length — a field set by hand. Those are lower bounds, not predictions, and they are excluded from the hit counter.`}
+            </p>
+            <p className="text-[13px] text-text-secondary leading-relaxed">
+              {ru
+                ? "Прямое следствие: ранжирование событий по одному только этому полю, вообще без движка, даёт 0,87 против 0,88 у модели. На четырёх событиях, где модель действительно дошла до восстановления, ρ = 0,80 при n = 4 — это не подтверждает ничего. Ранговый результат по восстановлению в текущем виде нельзя приписывать модели."
+                : "The direct consequence: ranking the events by that field alone, with no engine at all, gives 0.87 against the model's 0.88. On the four events where the model genuinely reached recovery, rho = 0.80 at n = 4, which supports nothing. As it stands the recovery-ordering result cannot be attributed to the model."}
             </p>
           </div>
           <p className="text-[12px] text-text-muted leading-relaxed">

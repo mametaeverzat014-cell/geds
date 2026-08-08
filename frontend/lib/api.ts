@@ -199,6 +199,10 @@ export interface CascadeEventResult {
   is_chokepoint: boolean;
   predicted_recovery_weeks: number;
   observed_recovery_weeks: number | null;
+  /** simulated window length; a prediction equal to it is a lower bound */
+  horizon_weeks: number;
+  /** true when the node never recovered in-window — NOT a prediction */
+  recovery_censored: boolean;
   dims: { name: string; predicted: number; observed: number; abs_error: number }[];
 }
 
