@@ -40,7 +40,18 @@
 | weeks to peak | 15 | 0.69 [0.20, 0.87] | [0.00, 0.90] | 7.07 | no |
 | recovery weeks | 11 | 0.88 [0.56, 0.99] | [0.40, 1.00] | 8.55 | **yes** |
 
-**Reading:** the three dimensions are one published family, so a 95% interval on each does not give 95% confidence in all three. 1 of 3 excludes zero at the family-wise level: recovery_weeks. This is the strongest quantitative result in the project.
+**Reading:** the three dimensions are one published family, so a 95% interval on each does not give 95% confidence in all three. 1 of 3 excludes zero at the family-wise level: recovery_weeks.
+
+> **RETRACTED as evidence of model skill — see PAPER.ru.md 6.2.1.** 7 of 11 recovery "predictions" are right-censored: the node never recovered inside its simulated window, so the harness returns the window length — a hand-set `horizon_weeks` field chosen to cover each event, which therefore tracks the real duration.
+>
+> | quantity | Spearman vs observed |
+> |---|---|
+> | model prediction | 0.8828 |
+> | **hand-set horizon alone, no engine** | **0.8717** |
+> | model prediction vs horizon | 0.9601 |
+> | uncensored subset only | 0.8000 (n=4) |
+>
+> The engine adds +0.0110 over ranking by a number a human typed into the event file. The result is not refuted, it is **unidentified**: this setup cannot separate the engine's contribution from the horizon table's. Regenerate with `python -m scripts.recovery_censoring_audit`.
 
 **Batch-19 ramp result:** weeks_to_peak was at chance (0.07) because the engine had no rising forcing shape; the pre-registered `ramp` adoption moved it to 0.69 at a benchmark cost of +0.0001 MAE (gate: all 4 criteria passed; see `ramp_experiment.json`).
 
@@ -123,5 +134,5 @@ Four independent lines of evidence converge on one ceiling:
 3. **Identifiability** — 3/5 parameters are pinned to their search-box bounds; one moves 35× its own median under leave-one-out.
 4. **Parsimony** — on the dense graph a single scale parameter outperforms five tuned ones in point terms (`v3_calibration_result.json`).
 
-What survives all of it: the **recovery-duration ordering** (Track B, family-wise CI excludes zero) and the **structural graph result** (§4, robust across the full threshold sweep). Those two are the defensible contributions; the magnitude leaderboard is a measured null.
+What survives all of it: the **structural graph result** (§4, robust across the full threshold sweep, no fitted parameter). That is now the only positive quantitative result standing — the recovery-duration ordering was retracted once its censoring was measured (§2), and the magnitude leaderboard is a measured null.
 
