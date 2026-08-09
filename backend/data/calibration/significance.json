@@ -1,6 +1,6 @@
 {
   "schema": "geds.significance.v1",
-  "timestamp": "2026-08-07T05:58:39.624352+00:00",
+  "timestamp": "2026-08-09T09:20:48.429281+00:00",
   "seed": 20260718,
   "n_boot": 10000,
   "n_perm": 20000,
@@ -319,15 +319,15 @@
       "excludes_zero_familywise": false
     },
     "recovery_weeks": {
-      "point": 0.88278,
-      "p2_5": 0.55792,
-      "p50": 0.87615,
-      "p97_5": 0.99065,
+      "point": 0.71071,
+      "p2_5": 0.2153,
+      "p50": 0.68551,
+      "p97_5": 0.91654,
       "n_finite_resamples": 10000,
       "n": 11,
       "family_size": 3,
-      "fw_p_low": 0.39671,
-      "fw_p_high": 1.0,
+      "fw_p_low": 0.04385,
+      "fw_p_high": 0.96154,
       "excludes_zero_familywise": true
     }
   },

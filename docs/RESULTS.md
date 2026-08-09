@@ -3,7 +3,7 @@
 > GENERATED FILE — regenerate with `python -m scripts.results_onepager`;
 > never hand-edit. Sources: live engine runs plus `significance.json`
 > (seed 20260718, 10000 bootstrap / 20000 perms,
-> generated 2026-08-07), `loo_de_result.json`
+> generated 2026-08-09), `loo_de_result.json`
 > (27 folds, 2026-07-23), `ramp_experiment.json`
 > (2026-07-23). Benchmark config is the pinned deterministic
 > config (`BENCHMARK_CONFIG`, stochastic_sigma=0, seed=0).
@@ -38,20 +38,21 @@
 |---|---|---|---|---|---|
 | peak magnitude | 6 | 0.71 [-0.09, 1.00] | [-1.00, 1.00] | 0.40 | no |
 | weeks to peak | 15 | 0.69 [0.20, 0.87] | [0.00, 0.90] | 7.07 | no |
-| recovery weeks | 11 | 0.88 [0.56, 0.99] | [0.40, 1.00] | 8.55 | **yes** |
+| recovery weeks | 11 | 0.71 [0.22, 0.92] | [0.04, 0.96] | 15.27 | **yes** |
 
 **Reading:** the three dimensions are one published family, so a 95% interval on each does not give 95% confidence in all three. 1 of 3 excludes zero at the family-wise level: recovery_weeks.
 
-> **RETRACTED as evidence of model skill — see PAPER.ru.md 6.2.1.** 7 of 11 recovery "predictions" are right-censored: the node never recovered inside its simulated window, so the harness returns the window length — a hand-set `horizon_weeks` field chosen to cover each event, which therefore tracks the real duration.
+> **CORRECTED — see PAPER.ru.md 6.2.1.** The recovery figure published earlier (0.8828) was confounded by right-censoring: when a node never recovered inside its window the harness returned the window length, a hand-set `horizon_weeks` field chosen to cover each event and therefore tracking its real duration. 7 of 11 values were bounds rather than predictions.
 >
-> | quantity | Spearman vs observed |
-> |---|---|
-> | model prediction | 0.8828 |
-> | **hand-set horizon alone, no engine** | **0.8717** |
-> | model prediction vs horizon | 0.9601 |
-> | uncensored subset only | 0.8000 (n=4) |
+> Fixed in the harness, not adjusted for: every event now runs on ONE 260-week window, so the horizon is a constant with zero variance and cannot carry ordering information. Peak magnitude and weeks-to-peak were verified bit-identical under the longer window.
 >
-> The engine adds +0.0110 over ranking by a number a human typed into the event file. The result is not refuted, it is **unidentified**: this setup cannot separate the engine's contribution from the horizon table's. Regenerate with `python -m scripts.recovery_censoring_audit`.
+> | scoring setup | censored | Spearman vs observed |
+> |---|---|---|
+> | per-event hand-set horizons (as published) | 7/11 | 0.8828 |
+> | hand-set horizon alone, no engine | — | 0.8717 |
+> | **one fixed 260-week window** | **0/11** | **0.7107** |
+>
+> The result survives with the confound removed, but at 0.71 rather than 0.88 — that gap is the size of the artifact. Note the hand-set horizon still scores higher (0.87); that is not a baseline the engine failed to beat, it is outcome-contaminated (a human chose those windows knowing how long each event lasted) and its score measures the leak.
 
 **Batch-19 ramp result:** weeks_to_peak was at chance (0.07) because the engine had no rising forcing shape; the pre-registered `ramp` adoption moved it to 0.69 at a benchmark cost of +0.0001 MAE (gate: all 4 criteria passed; see `ramp_experiment.json`).
 
@@ -134,5 +135,5 @@ Four independent lines of evidence converge on one ceiling:
 3. **Identifiability** — 3/5 parameters are pinned to their search-box bounds; one moves 35× its own median under leave-one-out.
 4. **Parsimony** — on the dense graph a single scale parameter outperforms five tuned ones in point terms (`v3_calibration_result.json`).
 
-What survives all of it: the **structural graph result** (§4, robust across the full threshold sweep, no fitted parameter). That is now the only positive quantitative result standing — the recovery-duration ordering was retracted once its censoring was measured (§2), and the magnitude leaderboard is a measured null.
+What survives all of it: the **structural graph result** (§4, robust across the full threshold sweep, no fitted parameter) and the **recovery-duration ordering** at its corrected value of 0.71 (§2), which excludes zero family-wise after the censoring confound was removed in the harness. The magnitude leaderboard remains a measured null.
 

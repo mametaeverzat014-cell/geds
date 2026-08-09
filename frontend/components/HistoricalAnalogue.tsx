@@ -123,7 +123,7 @@ export default function HistoricalAnalogue() {
         {observedRecovery !== null && (
           <p className="text-[12px] text-text-secondary leading-relaxed pt-0.5">
             {ru
-              ? `Модель на этом сценарии даёт ${predictedRecovery.toFixed(0)} нед. до восстановления, история дала ${observedRecovery.toFixed(0)}. Сравнивать эти два числа надо осторожно: в бенчмарке 7 из 11 «предсказаний» восстановления — нижние границы окна симуляции, а не предсказания, и ранжирование по одной длине окна даёт почти тот же результат.`
+              ? `Модель на этом сценарии даёт ${predictedRecovery.toFixed(0)} нед. до восстановления, история дала ${observedRecovery.toFixed(0)}. Ранжирование сроков восстановления модель делает со Spearman 0,71 на фиксированном окне — раньше публиковалось 0,88, но то значение было смешано с длиной окна симуляции и исправлено.`
               : `On this scenario the model gives ${predictedRecovery.toFixed(0)} weeks to recovery; history gave ${observedRecovery.toFixed(0)}. Compare the two with care: in the benchmark 7 of 11 recovery "predictions" are lower bounds at the simulation window rather than predictions, and ranking by window length alone scores almost the same.`}
           </p>
         )}

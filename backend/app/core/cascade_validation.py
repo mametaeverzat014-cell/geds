@@ -112,6 +112,25 @@ def _node_shape(sim, node_idx: int) -> tuple[float, int, float]:
     return peak_loss, peak_week, recovery_week
 
 
+# Every event is simulated on ONE window, not on its own hand-set horizon.
+#
+# Scoring recovery against a per-event horizon was confounded: when a node never
+# recovered in-window `_node_shape` returned the window length, so 7 of 11
+# "predictions" were lower bounds equal to a field a human typed in — and since
+# horizons were chosen to cover each event, that field tracked the real duration.
+# Ranking by it alone scored 0.8717 against the engine's 0.8828
+# (scripts/recovery_censoring_audit.py).
+#
+# A single fixed window removes the confound by construction rather than
+# adjusting for it: the horizon becomes a constant, so it has zero variance and
+# cannot carry ordering information. Verified before adopting: peak magnitude and
+# weeks-to-peak are bit-identical under the longer window for every event (the
+# forcing depends on start_week/duration_weeks, never on the horizon), so only
+# the recovery dimension moves. 260 weeks is >3x the longest observed recovery
+# (78 weeks, the 2008 auto collapse) and leaves nothing censored.
+CASCADE_HORIZON_WEEKS = 260
+
+
 def run_cascade_validation(config: EngineConfig | None = None) -> CascadeReport:
     """Score the engine's cascade shape against standardized + timing research."""
     from ..data.seed_data import HISTORICAL_EVENTS
@@ -152,7 +171,7 @@ def run_cascade_validation(config: EngineConfig | None = None) -> CascadeReport:
         if node_idx is None:
             continue
 
-        sc = _scenario_from_event(ev, cfg)
+        sc = _scenario_from_event({**ev, "horizon_weeks": CASCADE_HORIZON_WEEKS}, cfg)
         sim = PropagationEngine(graph, cfg).run(sc)
         peak_loss, peak_week, recovery_week = _node_shape(sim, node_idx)
 
@@ -170,10 +189,10 @@ def run_cascade_validation(config: EngineConfig | None = None) -> CascadeReport:
                                  float(tm.recovery_weeks_to_90),
                                  round(abs(recovery_week - tm.recovery_weeks_to_90), 1)))
 
-        horizon = int(ev.get("horizon_weeks") or 0)
         results.append(CascadeEventResult(
-            horizon_weeks=horizon,
-            recovery_censored=bool(horizon and abs(recovery_week - horizon) < 1e-9),
+            horizon_weeks=CASCADE_HORIZON_WEEKS,
+            recovery_censored=bool(
+                abs(recovery_week - CASCADE_HORIZON_WEEKS) < 1e-9),
             slug=slug,
             # human-readable label; the API is the only source the frontend has
             # for these, since the cascade payload otherwise carries only slugs

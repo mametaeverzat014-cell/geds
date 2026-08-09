@@ -1,0 +1,129 @@
+{
+  "schema": "geds.fixed_horizon_recovery.v1",
+  "timestamp": "2026-08-09T09:17:12.451973+00:00",
+  "fixed_horizon_weeks": 260,
+  "n_events": 11,
+  "rows": [
+    {
+      "slug": "suez-canal-2021",
+      "name": "Suez Canal blockage (Mar 2021)",
+      "observed": 3.0,
+      "original_horizon": 16,
+      "predicted_original": 16.0,
+      "predicted_fixed_horizon": 22.0,
+      "was_censored_originally": true,
+      "still_censored_at_fixed": false
+    },
+    {
+      "slug": "taiwan-chichi-earthquake-1999",
+      "name": "Taiwan Chi-Chi earthquake \u2014 DRAM/foundry outage (Sep 1999)",
+      "observed": 3.0,
+      "original_horizon": 12,
+      "predicted_original": 12.0,
+      "predicted_fixed_horizon": 33.0,
+      "was_censored_originally": true,
+      "still_censored_at_fixed": false
+    },
+    {
+      "slug": "texas-winter-storm-2021",
+      "name": "Texas winter storm Uri \u2014 chip fab outages (Feb 2021)",
+      "observed": 6.0,
+      "original_horizon": 24,
+      "predicted_original": 15.0,
+      "predicted_fixed_horizon": 15.0,
+      "was_censored_originally": false,
+      "still_censored_at_fixed": false
+    },
+    {
+      "slug": "yantian-port-closure-2021",
+      "name": "Yantian port COVID closure (May\u2013Jun 2021)",
+      "observed": 8.0,
+      "original_horizon": 12,
+      "predicted_original": 0.0,
+      "predicted_fixed_horizon": 0.0,
+      "was_censored_originally": false,
+      "still_censored_at_fixed": false
+    },
+    {
+      "slug": "shanghai-lockdown-2022",
+      "name": "Shanghai zero-COVID lockdown (Apr\u2013May 2022)",
+      "observed": 12.0,
+      "original_horizon": 24,
+      "predicted_original": 24.0,
+      "predicted_fixed_horizon": 37.0,
+      "was_censored_originally": true,
+      "still_censored_at_fixed": false
+    },
+    {
+      "slug": "renesas-naka-fire-2021",
+      "name": "Renesas Naka fab fire \u2014 auto MCU supply (Mar 2021)",
+      "observed": 14.0,
+      "original_horizon": 26,
+      "predicted_original": 26.0,
+      "predicted_fixed_horizon": 26.0,
+      "was_censored_originally": true,
+      "still_censored_at_fixed": false
+    },
+    {
+      "slug": "vietnam-covid-lockdown-2021",
+      "name": "Vietnam COVID lockdowns \u2014 electronics & apparel (Jul\u2013Oct 2021)",
+      "observed": 16.0,
+      "original_horizon": 24,
+      "predicted_original": 24.0,
+      "predicted_fixed_horizon": 36.0,
+      "was_censored_originally": true,
+      "still_censored_at_fixed": false
+    },
+    {
+      "slug": "japan-triple-disaster-2011",
+      "name": "Japan earthquake / tsunami / Fukushima (Mar 2011)",
+      "observed": 25.0,
+      "original_horizon": 24,
+      "predicted_original": 24.0,
+      "predicted_fixed_horizon": 35.0,
+      "was_censored_originally": true,
+      "still_censored_at_fixed": false
+    },
+    {
+      "slug": "thailand-floods-2011",
+      "name": "Thailand floods \u2014 auto & HDD supply (Oct 2011 \u2013 Jan 2012)",
+      "observed": 26.0,
+      "original_horizon": 28,
+      "predicted_original": 28.0,
+      "predicted_fixed_horizon": 41.0,
+      "was_censored_originally": true,
+      "still_censored_at_fixed": false
+    },
+    {
+      "slug": "panama-canal-drought-2023",
+      "name": "Panama Canal drought restrictions (Nov 2023 \u2013 Aug 2024)",
+      "observed": 40.0,
+      "original_horizon": 40,
+      "predicted_original": 34.0,
+      "predicted_fixed_horizon": 34.0,
+      "was_censored_originally": false,
+      "still_censored_at_fixed": false
+    },
+    {
+      "slug": "gfc-auto-collapse-2008-2009",
+      "name": "Global Financial Crisis automotive collapse (2008\u201309)",
+      "observed": 78.0,
+      "original_horizon": 104,
+      "predicted_original": 64.0,
+      "predicted_fixed_horizon": 64.0,
+      "was_censored_originally": false,
+      "still_censored_at_fixed": false
+    }
+  ],
+  "censoring": {
+    "censored_under_original_horizons": 7,
+    "still_censored_at_fixed_horizon": 0
+  },
+  "spearman": {
+    "original_censored_predictions_vs_observed": 0.8828,
+    "hand_set_horizon_alone_vs_observed": 0.8717,
+    "fixed_horizon_predictions_vs_observed": 0.7107
+  },
+  "reading": "Under the original per-event horizons the reported correlation was 0.8828, but a hand-set field reproduced 0.8717 of it with no engine at all. On one fixed horizon the window is constant across events, so it carries no ordering information by construction, and the engine's own correlation is 0.7107.",
+  "verdict": "The recovery ordering SURVIVES a clean re-run: 0.7107 with the confound removed by construction. The original harness was confounded; the underlying claim holds."
+}

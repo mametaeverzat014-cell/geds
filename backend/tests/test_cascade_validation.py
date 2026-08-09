@@ -117,37 +117,40 @@ def test_censored_recoveries_are_flagged():
         )
 
 
-def test_the_censoring_problem_is_still_the_size_we_documented():
-    """Regression lock on the finding itself.
+def test_recovery_is_scored_on_a_fixed_horizon_with_nothing_censored():
+    """The censoring confound is removed by construction, and stays removed.
 
-    If a future change uncensors these events — e.g. by running every event on
-    one long fixed horizon — this test fails, and that is the point: the paper's
-    recovery claim has to be rewritten when it does, not silently improved.
+    History: recovery used to be scored on each event's own hand-set
+    `horizon_weeks`, and `_node_shape` substitutes the window length when a node
+    never recovers in-window. That made 7 of 11 "predictions" lower bounds equal
+    to a field a human typed in, and since horizons were chosen to cover each
+    event, ranking by that field ALONE scored 0.8717 against the engine's 0.8828
+    (scripts/recovery_censoring_audit.py). The fix was to simulate every event on
+    one fixed window, which makes the horizon a constant with zero variance.
+
+    The earlier version of this test locked the SIZE of the problem so that
+    removing it would fail the suite rather than silently improve the number.
+    It did exactly that, and this is the rewritten lock on the fixed state.
     """
     import numpy as np
 
-    from app.core.cascade_validation import run_cascade_validation
+    from app.core.cascade_validation import (
+        CASCADE_HORIZON_WEEKS,
+        run_cascade_validation,
+    )
     from app.core.metrics import spearman_rho
-    from app.data.seed_data import HISTORICAL_EVENTS
 
-    horizons = {e["slug"]: float(e["horizon_weeks"]) for e in HISTORICAL_EVENTS}
     rep = run_cascade_validation()
     scored = [e for e in rep.events if e.observed_recovery_weeks is not None]
 
     assert len(scored) == 11
-    assert sum(e.recovery_censored for e in scored) == 7
+    # nothing may be censored: 260 weeks is >3x the longest observed recovery
+    assert sum(e.recovery_censored for e in scored) == 0
+    # and every event must have been run on the SAME window, or the confound is back
+    assert {e.horizon_weeks for e in scored} == {CASCADE_HORIZON_WEEKS}
 
     pred = np.array([e.predicted_recovery_weeks for e in scored])
     obs = np.array([e.observed_recovery_weeks for e in scored])
-    hor = np.array([horizons[e.slug] for e in scored])
-
-    rho_model = spearman_rho(pred, obs)
-    rho_horizon = spearman_rho(hor, obs)
-
-    assert rho_model == pytest.approx(0.8828, abs=5e-4)
-    # the null the headline must beat, and currently does not meaningfully
-    assert rho_horizon == pytest.approx(0.8717, abs=5e-4)
-    assert rho_model - rho_horizon < 0.02, (
-        "the engine still adds almost nothing over ranking by the hand-set "
-        "horizon; the recovery result cannot be claimed as model skill"
-    )
+    # the clean value; materially below the 0.8828 that the confounded harness
+    # reported, and that gap is the size of the artifact that was removed
+    assert spearman_rho(pred, obs) == pytest.approx(0.7107, abs=5e-4)

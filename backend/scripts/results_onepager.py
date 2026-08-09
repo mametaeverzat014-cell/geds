@@ -46,6 +46,7 @@ def main() -> int:
     ident = json.loads((CALIB / "identifiability.json").read_text())
     robust = json.loads((CALIB / "spatial_recall_robustness.json").read_text())
     censor = json.loads((CALIB / "recovery_censoring.json").read_text())
+    fixedh = json.loads((CALIB / "fixed_horizon_recovery.json").read_text())
 
     bench = run_benchmark()
     cascade = run_cascade_validation()
@@ -131,25 +132,36 @@ def main() -> int:
         f"{len(survivors)} of 3 excludes zero at the family-wise level: "
         f"{', '.join(survivors) if survivors else 'none'}.")
     add("")
-    cs = censor["spearman"]
-    add("> **RETRACTED as evidence of model skill — see PAPER.ru.md 6.2.1.** "
-        f"{censor['n_censored_at_horizon']} of {censor['n_events_scored']} recovery "
-        "\"predictions\" are right-censored: the node never recovered inside its "
-        "simulated window, so the harness returns the window length — a hand-set "
-        "`horizon_weeks` field chosen to cover each event, which therefore tracks the "
-        "real duration.")
+    fs = fixedh["spearman"]
+    add("> **CORRECTED — see PAPER.ru.md 6.2.1.** The recovery figure published "
+        "earlier (0.8828) was confounded by right-censoring: when a node never "
+        "recovered inside its window the harness returned the window length, a "
+        "hand-set `horizon_weeks` field chosen to cover each event and therefore "
+        f"tracking its real duration. "
+        f"{fixedh['censoring']['censored_under_original_horizons']} of "
+        f"{fixedh['n_events']} values were bounds rather than predictions.")
     add(">")
-    add(f"> | quantity | Spearman vs observed |")
-    add(f"> |---|---|")
-    add(f"> | model prediction | {cs['model_prediction_vs_observed']:.4f} |")
-    add(f"> | **hand-set horizon alone, no engine** | **{cs['hand_set_horizon_vs_observed']:.4f}** |")
-    add(f"> | model prediction vs horizon | {cs['model_prediction_vs_horizon']:.4f} |")
-    add(f"> | uncensored subset only | {cs['uncensored_subset_only']:.4f} (n={cs['n_uncensored']}) |")
+    add("> Fixed in the harness, not adjusted for: every event now runs on ONE "
+        f"{fixedh['fixed_horizon_weeks']}-week window, so the horizon is a constant "
+        "with zero variance and cannot carry ordering information. Peak magnitude "
+        "and weeks-to-peak were verified bit-identical under the longer window.")
     add(">")
-    add(f"> The engine adds {censor['model_advantage_over_horizon_null']:+.4f} over ranking "
-        "by a number a human typed into the event file. The result is not refuted, it is "
-        "**unidentified**: this setup cannot separate the engine's contribution from the "
-        "horizon table's. Regenerate with `python -m scripts.recovery_censoring_audit`.")
+    add("> | scoring setup | censored | Spearman vs observed |")
+    add("> |---|---|---|")
+    add(f"> | per-event hand-set horizons (as published) | "
+        f"{fixedh['censoring']['censored_under_original_horizons']}/{fixedh['n_events']} | "
+        f"{fs['original_censored_predictions_vs_observed']:.4f} |")
+    add(f"> | hand-set horizon alone, no engine | — | "
+        f"{fs['hand_set_horizon_alone_vs_observed']:.4f} |")
+    add(f"> | **one fixed {fixedh['fixed_horizon_weeks']}-week window** | "
+        f"**{fixedh['censoring']['still_censored_at_fixed_horizon']}/{fixedh['n_events']}** | "
+        f"**{fs['fixed_horizon_predictions_vs_observed']:.4f}** |")
+    add(">")
+    add("> The result survives with the confound removed, but at 0.71 rather than "
+        "0.88 — that gap is the size of the artifact. Note the hand-set horizon "
+        "still scores higher (0.87); that is not a baseline the engine failed to "
+        "beat, it is outcome-contaminated (a human chose those windows knowing how "
+        "long each event lasted) and its score measures the leak.")
     add("")
     b_wtp = ramp["baseline"]["cascade"]["spearman_by_dim"]["weeks_to_peak"]
     r_wtp = ramp["ramp"]["cascade"]["spearman_by_dim"]["weeks_to_peak"]
@@ -287,10 +299,10 @@ def main() -> int:
         "(`v3_calibration_result.json`).")
     add("")
     add("What survives all of it: the **structural graph result** (§4, robust "
-        "across the full threshold sweep, no fitted parameter). That is now the "
-        "only positive quantitative result standing — the recovery-duration "
-        "ordering was retracted once its censoring was measured (§2), and the "
-        "magnitude leaderboard is a measured null.")
+        "across the full threshold sweep, no fitted parameter) and the "
+        "**recovery-duration ordering** at its corrected value of 0.71 (§2), "
+        "which excludes zero family-wise after the censoring confound was removed "
+        "in the harness. The magnitude leaderboard remains a measured null.")
     add("")
 
     OUT.write_text("\n".join(L) + "\n", encoding="utf-8")

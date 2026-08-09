@@ -22,18 +22,21 @@ import { useUI } from "@/lib/ui-context";
  *     close matches last, which is the opposite of cherry-picking: the audience
  *     sees the model fail four times before it sees it succeed.
  *
- *  2. THE ERROR NEVER LEAVES THE SCREEN. The rank correlation (0.88) and the
- *     mean absolute error (8.5 weeks) render at the same size and weight. A
- *     rank-order result presented alone reads as point accuracy, which this is
- *     not.
+ *  2. THE ERROR NEVER LEAVES THE SCREEN. The rank correlation and the mean
+ *     absolute error render at the same size and weight. A rank-order result
+ *     presented alone reads as point accuracy, which this is not — and the MAE
+ *     is computed live from the rows, so it cannot fall out of step with them.
  *
- *  3. CENSORED VALUES ARE MARKED AS SUCH. Seven of the eleven "predictions" are
- *     not predictions: the node never recovered inside its simulated window, so
- *     `cascade_validation._node_shape` returns the window length — a hand-set
- *     `horizon_weeks` field. Those rows are lower bounds, drawn and labelled as
- *     lower bounds, excluded from the hit counter, and the horizon-only null
- *     (Spearman 0.87 with no engine at all) is printed next to the engine's 0.88.
- *     See scripts/recovery_censoring_audit.py.
+ *  3. NOTHING HERE IS CENSORED, AND THAT WAS NOT ALWAYS TRUE. The harness used
+ *     to score recovery on each event's own hand-set horizon, and `_node_shape`
+ *     substitutes the window length when a node never recovers in-window — so 7
+ *     of 11 "predictions" were bounds equal to a field a human typed in, and
+ *     ranking by that field alone scored 0.8717 against the engine's 0.8828.
+ *     Every event now runs on ONE fixed 260-week window, which makes the horizon
+ *     a constant that cannot carry ordering information. Clean value: 0.7107.
+ *     The `censored` flag is still read and rendered, because the guarantee is
+ *     enforced by the data rather than assumed. See
+ *     scripts/fixed_horizon_recovery.py.
  *
  * An earlier version of this file explained the short-event misses by the R-state
  * output floor and asserted the model "cannot express a three-week recovery".
@@ -232,7 +235,7 @@ export default function PredictionReveal() {
         <div className="space-y-3 pt-1">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <Headline
-              value="0.88"
+              value="0.71"
               caption={ru ? "ранговая корреляция порядка" : "rank correlation of the ordering"}
               tone="cyan"
             />
@@ -243,22 +246,22 @@ export default function PredictionReveal() {
             />
           </div>
           <p className="text-[12px] text-text-muted leading-relaxed">
-            n = {rows.length} · {ru ? "семейный 98,3% ДИ" : "family-wise 98.3% CI"} [0.40, 1.00] ·
-            10 000 bootstrap · seed 20260718
+            n = {rows.length} · {ru ? "семейный 98,3% ДИ" : "family-wise 98.3% CI"} [0.05, 0.95] ·
+            {ru ? "фиксированное окно 260 нед." : "fixed 260-week window"} · 10 000 bootstrap · seed 20260718
           </p>
-          <div className="rounded-lg border border-red-500/30 bg-red-500/[0.06] p-3 space-y-2">
-            <div className="text-[12px] uppercase tracking-wider text-red-400">
-              {ru ? "Что здесь не является предсказанием" : "What here is not a prediction"}
+          <div className="rounded-lg border border-accent-gold/30 bg-accent-gold/[0.06] p-3 space-y-2">
+            <div className="text-[12px] uppercase tracking-wider text-accent-gold">
+              {ru ? "Число, которое пришлось исправить" : "A number we had to correct"}
             </div>
             <p className="text-[13px] text-text-secondary leading-relaxed">
               {ru
-                ? `${nCensored} из ${rows.length} значений модели помечены знаком «≥». В этих случаях узел не восстановился внутри окна симуляции, и харнесс подставил длину окна — поле, заданное человеком вручную. Это нижние границы, а не предсказания, и в счётчик попаданий они не входят.`
-                : `${nCensored} of the ${rows.length} model values are marked "≥". In those cases the node never recovered inside the simulated window, so the harness substituted the window length — a field set by hand. Those are lower bounds, not predictions, and they are excluded from the hit counter.`}
+                ? "Раньше здесь стояло 0,88. Оказалось, что окно симуляции задавалось под каждое событие вручную, а когда узел не успевал восстановиться внутри него, засчитывалась длина окна. Так 7 из 11 «предсказаний» были не предсказаниями, а границами — и ранжирование по одному этому полю, без движка вообще, давало 0,87."
+                : "This used to read 0.88. The simulation window was set by hand per event, and when a node failed to recover inside it the window length was scored instead — so 7 of 11 \"predictions\" were bounds, not predictions, and ranking by that field alone, with no engine at all, scored 0.87."}
             </p>
             <p className="text-[13px] text-text-secondary leading-relaxed">
               {ru
-                ? "Прямое следствие: ранжирование событий по одному только этому полю, вообще без движка, даёт 0,87 против 0,88 у модели. На четырёх событиях, где модель действительно дошла до восстановления, ρ = 0,80 при n = 4 — это не подтверждает ничего. Ранговый результат по восстановлению в текущем виде нельзя приписывать модели."
-                : "The direct consequence: ranking the events by that field alone, with no engine at all, gives 0.87 against the model's 0.88. On the four events where the model genuinely reached recovery, rho = 0.80 at n = 4, which supports nothing. As it stands the recovery-ordering result cannot be attributed to the model."}
+                ? `Исправлено в постановке, а не поправкой: все события идут на одном окне в 260 недель, поэтому горизонт стал константой и не может нести информации о порядке. Цензурированных значений сейчас ${nCensored}. Чистое значение — 0,71 вместо 0,88, и эта разница есть величина снятого артефакта.`
+                : `Fixed in the setup rather than adjusted for: every event now runs on one 260-week window, so the horizon is a constant and cannot carry ordering information. Censored values now: ${nCensored}. The clean figure is 0.71 rather than 0.88, and that gap is the size of the artifact.`}
             </p>
           </div>
           <p className="text-[12px] text-text-muted leading-relaxed">

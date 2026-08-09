@@ -1,24 +1,24 @@
 {
   "schema": "geds.recovery_censoring.v1",
-  "timestamp": "2026-08-08T19:17:07.063796+00:00",
+  "timestamp": "2026-08-09T09:21:40.941043+00:00",
   "n_events_scored": 11,
-  "n_censored_at_horizon": 7,
+  "n_censored_at_horizon": 1,
   "rows": [
     {
       "slug": "suez-canal-2021",
       "name": "Suez Canal blockage (Mar 2021)",
-      "predicted": 16.0,
+      "predicted": 22.0,
       "observed": 3.0,
       "horizon_weeks": 16,
-      "censored_at_horizon": true
+      "censored_at_horizon": false
     },
     {
       "slug": "taiwan-chichi-earthquake-1999",
       "name": "Taiwan Chi-Chi earthquake \u2014 DRAM/foundry outage (Sep 1999)",
-      "predicted": 12.0,
+      "predicted": 33.0,
       "observed": 3.0,
       "horizon_weeks": 12,
-      "censored_at_horizon": true
+      "censored_at_horizon": false
     },
     {
       "slug": "texas-winter-storm-2021",
@@ -39,10 +39,10 @@
     {
       "slug": "shanghai-lockdown-2022",
       "name": "Shanghai zero-COVID lockdown (Apr\u2013May 2022)",
-      "predicted": 24.0,
+      "predicted": 37.0,
       "observed": 12.0,
       "horizon_weeks": 24,
-      "censored_at_horizon": true
+      "censored_at_horizon": false
     },
     {
       "slug": "renesas-naka-fire-2021",
@@ -55,26 +55,26 @@
     {
       "slug": "vietnam-covid-lockdown-2021",
       "name": "Vietnam COVID lockdowns \u2014 electronics & apparel (Jul\u2013Oct 2021)",
-      "predicted": 24.0,
+      "predicted": 36.0,
       "observed": 16.0,
       "horizon_weeks": 24,
-      "censored_at_horizon": true
+      "censored_at_horizon": false
     },
     {
       "slug": "japan-triple-disaster-2011",
       "name": "Japan earthquake / tsunami / Fukushima (Mar 2011)",
-      "predicted": 24.0,
+      "predicted": 35.0,
       "observed": 25.0,
       "horizon_weeks": 24,
-      "censored_at_horizon": true
+      "censored_at_horizon": false
     },
     {
       "slug": "thailand-floods-2011",
       "name": "Thailand floods \u2014 auto & HDD supply (Oct 2011 \u2013 Jan 2012)",
-      "predicted": 28.0,
+      "predicted": 41.0,
       "observed": 26.0,
       "horizon_weeks": 28,
-      "censored_at_horizon": true
+      "censored_at_horizon": false
     },
     {
       "slug": "panama-canal-drought-2023",
@@ -94,13 +94,13 @@
     }
   ],
   "spearman": {
-    "model_prediction_vs_observed": 0.8828,
+    "model_prediction_vs_observed": 0.7107,
     "hand_set_horizon_vs_observed": 0.8717,
-    "model_prediction_vs_horizon": 0.9601,
-    "uncensored_subset_only": 0.8,
-    "n_uncensored": 4
+    "model_prediction_vs_horizon": 0.6342,
+    "uncensored_subset_only": 0.7173,
+    "n_uncensored": 10
   },
-  "model_advantage_over_horizon_null": 0.011,
-  "verdict": "7 of 11 reported 'predictions' are right-censored: the node never recovered inside its window, so the harness substituted the window length, which is a hand-set field. Ranking the events by that field alone \u2014 with no engine at all \u2014 reproduces the headline to 0.8717 against the engine's 0.8828. The engine adds +0.0110. On the 4 events where it genuinely reached recovery in-window, Spearman is 0.8000 at n=4, which supports nothing. The recovery-ordering result CANNOT be claimed as evidence of model skill in its present form.",
-  "what_would_fix_it": "Re-run every event on one long fixed horizon so no prediction is censored, then re-score. Until then the honest statements are (a) the horizon-only null, and (b) the uncensored-subset correlation with its n."
+  "model_advantage_over_horizon_null": -0.161,
+  "verdict": "CONFOUND REMOVED. The harness runs every event on one fixed window, so the horizon is a constant and cannot carry ordering information. The engine's clean correlation is 0.7107, against the 0.8828 the confounded harness reported \u2014 the +0.1721 gap is the size of the artifact that was removed. The old hand-set horizon field still scores 0.8717, which is HIGHER, but that field was chosen by someone who knew each event's duration: it is outcome-contaminated, not a baseline the engine must beat, and its score measures the leak rather than any skill.",
+  "how_it_was_fixed": "cascade_validation.CASCADE_HORIZON_WEEKS = 260 \u2014 one window for every event, >3x the longest observed recovery. Verified before adopting that peak magnitude and weeks-to-peak are bit-identical under the longer window, so only the recovery dimension moved. Locked by tests/test_cascade_validation.py::test_recovery_is_scored_on_a_fixed_horizon_with_nothing_censored."
 }
