@@ -45,6 +45,7 @@ def main() -> int:
     abl = json.loads((CALIB / "ablation.json").read_text())
     ident = json.loads((CALIB / "identifiability.json").read_text())
     robust = json.loads((CALIB / "spatial_recall_robustness.json").read_text())
+    censor = json.loads((CALIB / "recovery_censoring.json").read_text())
 
     bench = run_benchmark()
     cascade = run_cascade_validation()
@@ -128,8 +129,27 @@ def main() -> int:
     add(f"**Reading:** the three dimensions are one published family, so a 95% "
         f"interval on each does not give 95% confidence in all three. "
         f"{len(survivors)} of 3 excludes zero at the family-wise level: "
-        f"{', '.join(survivors) if survivors else 'none'}. "
-        "This is the strongest quantitative result in the project.")
+        f"{', '.join(survivors) if survivors else 'none'}.")
+    add("")
+    cs = censor["spearman"]
+    add("> **RETRACTED as evidence of model skill — see PAPER.ru.md 6.2.1.** "
+        f"{censor['n_censored_at_horizon']} of {censor['n_events_scored']} recovery "
+        "\"predictions\" are right-censored: the node never recovered inside its "
+        "simulated window, so the harness returns the window length — a hand-set "
+        "`horizon_weeks` field chosen to cover each event, which therefore tracks the "
+        "real duration.")
+    add(">")
+    add(f"> | quantity | Spearman vs observed |")
+    add(f"> |---|---|")
+    add(f"> | model prediction | {cs['model_prediction_vs_observed']:.4f} |")
+    add(f"> | **hand-set horizon alone, no engine** | **{cs['hand_set_horizon_vs_observed']:.4f}** |")
+    add(f"> | model prediction vs horizon | {cs['model_prediction_vs_horizon']:.4f} |")
+    add(f"> | uncensored subset only | {cs['uncensored_subset_only']:.4f} (n={cs['n_uncensored']}) |")
+    add(">")
+    add(f"> The engine adds {censor['model_advantage_over_horizon_null']:+.4f} over ranking "
+        "by a number a human typed into the event file. The result is not refuted, it is "
+        "**unidentified**: this setup cannot separate the engine's contribution from the "
+        "horizon table's. Regenerate with `python -m scripts.recovery_censoring_audit`.")
     add("")
     b_wtp = ramp["baseline"]["cascade"]["spearman_by_dim"]["weeks_to_peak"]
     r_wtp = ramp["ramp"]["cascade"]["spearman_by_dim"]["weeks_to_peak"]
@@ -266,11 +286,11 @@ def main() -> int:
         "outperforms five tuned ones in point terms "
         "(`v3_calibration_result.json`).")
     add("")
-    add("What survives all of it: the **recovery-duration ordering** "
-        "(Track B, family-wise CI excludes zero) and the **structural graph "
-        "result** (§4, robust across the full threshold sweep). Those two are "
-        "the defensible contributions; the magnitude leaderboard is a measured "
-        "null.")
+    add("What survives all of it: the **structural graph result** (§4, robust "
+        "across the full threshold sweep, no fitted parameter). That is now the "
+        "only positive quantitative result standing — the recovery-duration "
+        "ordering was retracted once its censoring was measured (§2), and the "
+        "magnitude leaderboard is a measured null.")
     add("")
 
     OUT.write_text("\n".join(L) + "\n", encoding="utf-8")
