@@ -54,6 +54,14 @@ class CascadeEventResult:
     is_chokepoint: bool
     predicted_recovery_weeks: float
     observed_recovery_weeks: float | None
+    # `_node_shape` returns the window length when the node never recovers
+    # in-window, so a prediction equal to the horizon is a LOWER BOUND, not a
+    # prediction. Consumers must be able to tell the two apart: ranking the
+    # events by horizon alone reproduces the headline Spearman to within 0.011
+    # (scripts/recovery_censoring_audit.py), so presenting censored values as
+    # predictions overstates the result badly.
+    horizon_weeks: int
+    recovery_censored: bool
     dims: list[DimScore]
 
 
@@ -162,7 +170,10 @@ def run_cascade_validation(config: EngineConfig | None = None) -> CascadeReport:
                                  float(tm.recovery_weeks_to_90),
                                  round(abs(recovery_week - tm.recovery_weeks_to_90), 1)))
 
+        horizon = int(ev.get("horizon_weeks") or 0)
         results.append(CascadeEventResult(
+            horizon_weeks=horizon,
+            recovery_censored=bool(horizon and abs(recovery_week - horizon) < 1e-9),
             slug=slug,
             # human-readable label; the API is the only source the frontend has
             # for these, since the cascade payload otherwise carries only slugs

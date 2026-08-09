@@ -1,0 +1,106 @@
+{
+  "schema": "geds.recovery_censoring.v1",
+  "timestamp": "2026-08-08T19:17:07.063796+00:00",
+  "n_events_scored": 11,
+  "n_censored_at_horizon": 7,
+  "rows": [
+    {
+      "slug": "suez-canal-2021",
+      "name": "Suez Canal blockage (Mar 2021)",
+      "predicted": 16.0,
+      "observed": 3.0,
+      "horizon_weeks": 16,
+      "censored_at_horizon": true
+    },
+    {
+      "slug": "taiwan-chichi-earthquake-1999",
+      "name": "Taiwan Chi-Chi earthquake \u2014 DRAM/foundry outage (Sep 1999)",
+      "predicted": 12.0,
+      "observed": 3.0,
+      "horizon_weeks": 12,
+      "censored_at_horizon": true
+    },
+    {
+      "slug": "texas-winter-storm-2021",
+      "name": "Texas winter storm Uri \u2014 chip fab outages (Feb 2021)",
+      "predicted": 15.0,
+      "observed": 6.0,
+      "horizon_weeks": 24,
+      "censored_at_horizon": false
+    },
+    {
+      "slug": "yantian-port-closure-2021",
+      "name": "Yantian port COVID closure (May\u2013Jun 2021)",
+      "predicted": 0.0,
+      "observed": 8.0,
+      "horizon_weeks": 12,
+      "censored_at_horizon": false
+    },
+    {
+      "slug": "shanghai-lockdown-2022",
+      "name": "Shanghai zero-COVID lockdown (Apr\u2013May 2022)",
+      "predicted": 24.0,
+      "observed": 12.0,
+      "horizon_weeks": 24,
+      "censored_at_horizon": true
+    },
+    {
+      "slug": "renesas-naka-fire-2021",
+      "name": "Renesas Naka fab fire \u2014 auto MCU supply (Mar 2021)",
+      "predicted": 26.0,
+      "observed": 14.0,
+      "horizon_weeks": 26,
+      "censored_at_horizon": true
+    },
+    {
+      "slug": "vietnam-covid-lockdown-2021",
+      "name": "Vietnam COVID lockdowns \u2014 electronics & apparel (Jul\u2013Oct 2021)",
+      "predicted": 24.0,
+      "observed": 16.0,
+      "horizon_weeks": 24,
+      "censored_at_horizon": true
+    },
+    {
+      "slug": "japan-triple-disaster-2011",
+      "name": "Japan earthquake / tsunami / Fukushima (Mar 2011)",
+      "predicted": 24.0,
+      "observed": 25.0,
+      "horizon_weeks": 24,
+      "censored_at_horizon": true
+    },
+    {
+      "slug": "thailand-floods-2011",
+      "name": "Thailand floods \u2014 auto & HDD supply (Oct 2011 \u2013 Jan 2012)",
+      "predicted": 28.0,
+      "observed": 26.0,
+      "horizon_weeks": 28,
+      "censored_at_horizon": true
+    },
+    {
+      "slug": "panama-canal-drought-2023",
+      "name": "Panama Canal drought restrictions (Nov 2023 \u2013 Aug 2024)",
+      "predicted": 34.0,
+      "observed": 40.0,
+      "horizon_weeks": 40,
+      "censored_at_horizon": false
+    },
+    {
+      "slug": "gfc-auto-collapse-2008-2009",
+      "name": "Global Financial Crisis automotive collapse (2008\u201309)",
+      "predicted": 64.0,
+      "observed": 78.0,
+      "horizon_weeks": 104,
+      "censored_at_horizon": false
+    }
+  ],
+  "spearman": {
+    "model_prediction_vs_observed": 0.8828,
+    "hand_set_horizon_vs_observed": 0.8717,
+    "model_prediction_vs_horizon": 0.9601,
+    "uncensored_subset_only": 0.8,
+    "n_uncensored": 4
+  },
+  "model_advantage_over_horizon_null": 0.011,
+  "verdict": "7 of 11 reported 'predictions' are right-censored: the node never recovered inside its window, so the harness substituted the window length, which is a hand-set field. Ranking the events by that field alone \u2014 with no engine at all \u2014 reproduces the headline to 0.8717 against the engine's 0.8828. The engine adds +0.0110. On the 4 events where it genuinely reached recovery in-window, Spearman is 0.8000 at n=4, which supports nothing. The recovery-ordering result CANNOT be claimed as evidence of model skill in its present form.",
+  "what_would_fix_it": "Re-run every event on one long fixed horizon so no prediction is censored, then re-score. Until then the honest statements are (a) the horizon-only null, and (b) the uncensored-subset correlation with its n."
+}
