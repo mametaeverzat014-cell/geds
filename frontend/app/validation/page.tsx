@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 
 import ConnectionBanner from "@/components/ConnectionBanner";
+import SiteNav from "@/components/SiteNav";
+import StructuralExperiment from "@/components/StructuralExperiment";
 import { api, API_BASE, type CVReport } from "@/lib/api";
 import { useUI } from "@/lib/ui-context";
 
@@ -895,6 +897,8 @@ export default function ValidationPage() {
           </table>
         ) : <div className="text-[13px] text-text-muted">{tr("Loading…", "Загрузка…")}</div>}
       </div>
+
+      <StructuralExperiment />
 
       <footer className="text-[12px] text-text-muted pt-3 border-t border-border-subtle">
         {tr(

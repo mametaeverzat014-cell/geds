@@ -2,6 +2,7 @@
 
 import ConnectionBanner from "@/components/ConnectionBanner";
 import PredictionReveal from "@/components/PredictionReveal";
+import SiteNav from "@/components/SiteNav";
 import { useUI } from "@/lib/ui-context";
 
 /**
@@ -15,26 +16,24 @@ import { useUI } from "@/lib/ui-context";
  * anything.
  */
 export default function DemoPage() {
-  const { lang, toggleLang, t } = useUI();
+  const { lang } = useUI();
   const ru = lang === "ru";
   const tr = (en: string, r: string) => (ru ? r : en);
 
   return (
     <main className="max-w-[1100px] mx-auto px-5 sm:px-6 py-6 space-y-5">
-      <div className="border-b border-border-subtle pb-3">
-        <div className="flex items-start justify-between gap-3">
-          <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight min-w-0">
-            <a href="/" className="title-gradient hover:opacity-80 transition">GEDS</a>
-            <span className="text-text-secondary font-semibold text-[12px] sm:text-sm uppercase tracking-[0.12em] sm:tracking-[0.2em] ml-2 sm:ml-3">
-              {tr("Track record", "Track record")}
-            </span>
-          </h1>
-          <div className="flex items-center gap-2 shrink-0">
-            <a href="/" className="btn-pill">{tr("← Simulator", "← Симулятор")}</a>
-            <a href="/validation" className="btn-pill">{tr("Validation →", "Валидация →")}</a>
-            <button onClick={toggleLang} className="btn-pill">{t("langBtn")}</button>
-          </div>
-        </div>
+      <SiteNav />
+
+      <div className="space-y-1">
+        <h1 className="text-xl sm:text-2xl font-extrabold tracking-tight text-text-primary">
+          {tr("Track record", "Track record")}
+        </h1>
+        <p className="text-[13px] text-text-secondary max-w-2xl leading-relaxed">
+          {tr(
+            "What the model said for eleven real disruptions, then what actually happened.",
+            "Что модель сказала по одиннадцати реальным нарушениям — и что произошло на самом деле.",
+          )}
+        </p>
       </div>
 
       <ConnectionBanner />

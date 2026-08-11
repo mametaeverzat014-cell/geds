@@ -4,11 +4,14 @@ import { useEffect } from "react";
 
 import dynamic from "next/dynamic";
 
+import CascadeCounters from "@/components/CascadeCounters";
+import CascadeSpine from "@/components/CascadeSpine";
 import ConnectionBanner from "@/components/ConnectionBanner";
 import HeroNetwork from "@/components/HeroNetwork";
 import FAQPanel from "@/components/FAQPanel";
 import ForecastNarrative from "@/components/ForecastNarrative";
 import HistoricalAnalogue from "@/components/HistoricalAnalogue";
+import NodeInspectorHost from "@/components/NodeInspectorHost";
 import MetricsPanel from "@/components/MetricsPanel";
 import ModelComparisonPanel from "@/components/ModelComparisonPanel";
 import NarrativePanel from "@/components/NarrativePanel";
@@ -16,6 +19,7 @@ import NewsSignalsPanel from "@/components/NewsSignalsPanel";
 import OnboardingGuide from "@/components/OnboardingGuide";
 import PropagationMap from "@/components/PropagationMap";
 import ReadingGuide from "@/components/ReadingGuide";
+import SiteNav from "@/components/SiteNav";
 import ScenarioBuilder from "@/components/ScenarioBuilder";
 import ScenarioControls from "@/components/ScenarioControls";
 import StatusRibbon from "@/components/StatusRibbon";
@@ -44,10 +48,28 @@ export default function Home() {
     <main className="max-w-[1600px] mx-auto px-6 pb-6 space-y-4">
       <FAQPanel />
 
-      {/* ── hero header with ambient network backdrop ── */}
-      <header className="relative -mx-6 px-6 pt-6 mb-2">
+      {/* ── hero: the four-beat spine over the ambient network ── */}
+      <header className="relative -mx-6 px-6 pt-4 mb-2">
         <HeroNetwork />
-        <div className="relative z-10">
+        <div className="relative z-10 space-y-4">
+          <SiteNav />
+          <div className="space-y-2 pt-1">
+            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight leading-[1.05]">
+              <span className="title-gradient">
+                {lang === "en" ? "Global Economic" : "Глобальный симулятор"}
+              </span>
+              <br />
+              <span className="text-text-primary">
+                {lang === "en" ? "Dependency Simulator" : "экономических зависимостей"}
+              </span>
+            </h1>
+            <p className="text-[14px] sm:text-[15px] text-text-secondary max-w-2xl leading-relaxed">
+              {lang === "en"
+                ? "What happens when one node of the global economy breaks?"
+                : "Что происходит, когда ломается один узел мировой экономики?"}
+            </p>
+          </div>
+          <CascadeSpine />
           <StatusRibbon />
         </div>
       </header>
@@ -71,6 +93,7 @@ export default function Home() {
             <PropagationMap />
           </div>
           <TimelineBar />
+          <CascadeCounters />
         </div>
 
         {/* ── right column ── */}
@@ -88,6 +111,9 @@ export default function Home() {
 
       {/* ── full-width Claude crisis radar ── */}
       <CrisisRadarPanel />
+
+      {/* click any node on the map to open this */}
+      <NodeInspectorHost />
 
       <footer className="pt-6 border-t border-border-subtle text-[13px] text-text-muted leading-relaxed space-y-2">
         <div>

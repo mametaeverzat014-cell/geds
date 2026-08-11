@@ -519,3 +519,9 @@ input[type="range"].scrubber:active::-webkit-slider-thumb { transform: scale(1.1
   .panel::after { display: none; }
   * { transition-duration: 1ms !important; }
 }
+
+
+/* Horizontal nav strips scroll on narrow screens; the scrollbar itself is
+   visual noise there and steals ~15px of a 375px viewport. */
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+.no-scrollbar::-webkit-scrollbar { display: none; }

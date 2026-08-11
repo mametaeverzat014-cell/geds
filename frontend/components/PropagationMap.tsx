@@ -47,6 +47,7 @@ export default function PropagationMap() {
   const frames = useSimStore((s) => s.frames);
   const currentWeek = useSimStore((s) => s.currentWeek);
   const overlayMode = useSimStore((s) => s.overlayMode);
+  const inspectNode = useSimStore((s) => s.inspectNode);
   const [land, setLand] = useState<GeoJSON.FeatureCollection | null>(null);
 
   // Load world TopoJSON once
@@ -236,12 +237,30 @@ export default function PropagationMap() {
           const r = 3 + Math.log10(1 + n.gdp_usd / 1e10) * 0.8;
           const color = severityColor(value);
           return (
-            <g key={n.id} transform={`translate(${p[0]}, ${p[1]})`}>
+            <g
+              key={n.id}
+              transform={`translate(${p[0]}, ${p[1]})`}
+              onClick={() => inspectNode(n.id)}
+              onKeyDown={(e) => {
+                // keyboard parity: the inspector must not be mouse-only
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  inspectNode(n.id);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label={n.name}
+              style={{ cursor: "pointer", outline: "none" }}
+            >
               <title>
                 {nf
                   ? `${n.name}\nshock: ${(nf.shock * 100).toFixed(0)}% · output loss: ${(nf.output_loss * 100).toFixed(0)}%\ninflation: ${(nf.inflation_pressure * 100).toFixed(1)}% · unemployment risk: ${(nf.unemployment_risk * 100).toFixed(0)}%`
                   : n.name}
               </title>
+              {/* Generous invisible hit area — the painted dot is ~3px, far below
+                  the 24px minimum a finger can reliably hit on a phone. */}
+              <circle r={Math.max(r + 10, 14)} fill="transparent" />
               {value > 0.15 && (
                 <circle
                   r={r + 4 + 10 * value}

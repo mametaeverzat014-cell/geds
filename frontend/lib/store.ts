@@ -42,6 +42,11 @@ interface SimState {
   advisor: AdvisorResult | null;
   advisorLoading: boolean;
 
+  // node inspection — which node the "why did this break?" panel is showing.
+  // Lives in the store rather than in the map so any surface (map, counters,
+  // narrative) can open the inspector without prop-drilling through the tree.
+  inspectedNodeId: string | null;
+
   // actions
   setGraph: (g: GraphSnapshot) => void;
   setGraphVersion: (v: GraphVersion) => void;
@@ -59,6 +64,7 @@ interface SimState {
   setAdvisor: (a: AdvisorResult | null) => void;
   setAdvisorLoading: (v: boolean) => void;
   setBackendStatus: (s: BackendStatus) => void;
+  inspectNode: (id: string | null) => void;
 }
 
 export const useSimStore = create<SimState>((set) => ({
@@ -68,6 +74,8 @@ export const useSimStore = create<SimState>((set) => ({
   selectedScenarioId: "taiwan-semi-75",
   customMagnitude: 0.75,
   customDuration: 20,
+
+  inspectedNodeId: null,
 
   running: false,
   startedAt: null,
@@ -87,6 +95,7 @@ export const useSimStore = create<SimState>((set) => ({
   backendStatus: "checking",
 
   setGraph: (g) => set({ graph: g }),
+  inspectNode: (id) => set({ inspectedNodeId: id }),
   setGraphVersion: (v) => set({ graphVersion: v, frames: [], currentWeek: 0, summary: null }),
   setScenarios: (s) => set({ scenarios: s }),
   setSelectedScenario: (id) => set({ selectedScenarioId: id }),
@@ -97,6 +106,7 @@ export const useSimStore = create<SimState>((set) => ({
       startedAt: Date.now(),
       frames: [],
       currentWeek: 0,
+      inspectedNodeId: null,
       summary: null,
       error: null,
       autoPlay: false,
