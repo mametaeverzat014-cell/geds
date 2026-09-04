@@ -14,6 +14,7 @@ import logging
 import os
 import re
 import sys
+import threading
 import time
 from contextlib import asynccontextmanager
 from datetime import datetime, timezone
@@ -116,6 +117,44 @@ async def lifespan(app: FastAPI):
     boot_ms = int((time.perf_counter() - t0) * 1000)
     app.state.boot_ms = boot_ms
     log.info("boot_complete elapsed_ms=%d env_ok=%s", boot_ms, env_report["ok"])
+
+    # ── warm the memoized validation artifacts, off the critical path ────────
+    #
+    # /ablation alone is ~15 s and /cascade-validation ~5 s on a fast machine;
+    # the free-tier instance is slower. They are memoized per process, so the
+    # cost lands entirely on whoever arrives first — and on a host that sleeps
+    # after 15 min of inactivity, "whoever arrives first" is essentially every
+    # visitor who matters.
+    #
+    # A daemon thread, started AFTER boot completes: /healthz answers
+    # immediately, the home page is served while this runs, and by the time
+    # anyone has read enough to click through to the validation page the work is
+    # usually done. If it is not, they wait exactly as long as they would have.
+    # Failures are logged and swallowed — a warm-up that breaks must never take
+    # the service down with it.
+    def _warm() -> None:
+        from .api.routes import (
+            _ablation_payload,
+            _benchmark_payload,
+            _cascade_validation_payload,
+            _cv_report_payload,
+        )
+        for name, fn in (
+            ("cv_report", _cv_report_payload),
+            ("cascade_validation", _cascade_validation_payload),
+            ("benchmark", _benchmark_payload),
+            ("ablation", _ablation_payload),
+        ):
+            w0 = time.perf_counter()
+            try:
+                fn()
+                log.info("warm_cache artifact=%s ok=True ms=%d",
+                         name, int((time.perf_counter() - w0) * 1000))
+            except Exception as e:  # noqa: BLE001 — warm-up must not be fatal
+                log.warning("warm_cache artifact=%s ok=False error=%s", name, e)
+
+    app.state.warm_thread = threading.Thread(target=_warm, name="geds-warm", daemon=True)
+    app.state.warm_thread.start()
 
     yield
 

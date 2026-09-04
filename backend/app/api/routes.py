@@ -507,13 +507,22 @@ def posterior() -> dict:
     return asdict(result)
 
 
-@router.get("/cv-report", tags=["validation"])
-def cv_report() -> dict:
-    """Leave-one-event-out cross-validation report with bootstrap CIs."""
+@lru_cache(maxsize=1)
+def _cv_report_payload() -> dict:
+    """Memoized for the same reason as the ablation: deterministic, and fetched
+    on EVERY page rather than just the validation one — the status ribbon reads
+    it too. Cheap individually, but it is the single most-requested computation
+    on the site."""
     from dataclasses import asdict
     cv = loo_cross_validate_fast()
     save_cv(cv)
     return asdict(cv)
+
+
+@router.get("/cv-report", tags=["validation"])
+def cv_report() -> dict:
+    """Leave-one-event-out cross-validation report with bootstrap CIs."""
+    return _cv_report_payload()
 
 
 @router.get("/research-metrics", tags=["validation"])
@@ -616,9 +625,21 @@ def crisis_radar(payload: CrisisRadarRequest, req: Request) -> dict:
     }
 
 
-@router.get("/ablation", tags=["validation"])
-def ablation() -> dict:
-    """Component-wise ablation study.  Which engine pieces earn their complexity?"""
+@lru_cache(maxsize=1)
+def _ablation_payload() -> dict:
+    """Compute the ablation study once per process.
+
+    It re-runs the whole validation corpus for every variant, plus a paired
+    bootstrap and a permutation test per row: 15.7 s measured here, and this box
+    is faster than the free-tier instance the site is deployed on. Uncached, the
+    validation page paid that on EVERY load — the page fetches this alongside
+    eleven other endpoints, and the total was ~25 s of CPU per visitor, on an
+    instance that is already the slowest thing about the project.
+
+    Deterministic for the default engine config (fixed seeds, stochasticity off),
+    so one computation per process is the correct number. A new commit gets a new
+    process, which is the same contract the shipped snapshot runs on.
+    """
     from dataclasses import asdict
     report = run_ablation_study()
     save_ablation(report)
@@ -636,6 +657,12 @@ def ablation() -> dict:
         "verdict": report.verdict,
         "rows": [asdict(r) for r in report.rows],
     }
+
+
+@router.get("/ablation", tags=["validation"])
+def ablation() -> dict:
+    """Component-wise ablation study.  Which engine pieces earn their complexity?"""
+    return _ablation_payload()
 
 
 @router.get("/loo-de-report", tags=["validation"])
@@ -698,9 +725,10 @@ def icio_c26_split() -> dict:
         "icio_c26_split.json", "python -m scripts.icio_c26_split")
 
 
-@router.get("/benchmark", tags=["validation"])
-def benchmark() -> dict:
-    """Unified model leaderboard: SEIRS vs Leontief vs Diffusion vs naive."""
+@lru_cache(maxsize=1)
+def _benchmark_payload() -> dict:
+    """Deterministic leaderboard; memoized alongside the other validation
+    artifacts so the page costs one computation per process, not one per visit."""
     from dataclasses import asdict
     report = run_benchmark()
     save_benchmark(report)
@@ -713,6 +741,12 @@ def benchmark() -> dict:
         "winner_by_pearson": report.winner_by_pearson,
         "models": [asdict(m) for m in report.models],
     }
+
+
+@router.get("/benchmark", tags=["validation"])
+def benchmark() -> dict:
+    """Unified model leaderboard: SEIRS vs Leontief vs Diffusion vs naive."""
+    return _benchmark_payload()
 
 
 @lru_cache(maxsize=1)
