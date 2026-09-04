@@ -625,8 +625,15 @@ def ablation() -> dict:
     return {
         "timestamp": report.timestamp,
         "n_events": report.n_events,
-        "best_variant": report.best_variant,
-        "worst_variant": report.worst_variant,
+        # Renamed from best/worst_variant: at N=27 no pairwise difference here
+        # survives a paired permutation test with Holm correction, so calling one
+        # variant "best" asserted a result the data does not support. These are
+        # point-estimate orderings and are named as such; `verdict` and
+        # `n_significant_after_holm` carry what is actually established.
+        "lowest_mae_variant_pointwise": report.lowest_mae_variant_pointwise,
+        "highest_mae_variant_pointwise": report.highest_mae_variant_pointwise,
+        "n_significant_after_holm": report.n_significant_after_holm,
+        "verdict": report.verdict,
         "rows": [asdict(r) for r in report.rows],
     }
 
