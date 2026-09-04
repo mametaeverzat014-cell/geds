@@ -18,6 +18,9 @@ relax the assertion.
 from __future__ import annotations
 
 import json
+import re
+import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -72,19 +75,51 @@ def test_no_surface_claims_a_significant_magnitude_difference(path: Path):
             "0 of 6 pairs and 0 of 5 v3 comparisons survive Holm correction")
 
 
-@pytest.mark.parametrize("path", ALL_PAPER_SURFACES)
-def test_no_surface_reports_a_stale_test_count(path: Path):
-    """Match the test-count PHRASING, not the bare digits.
+def _collected_test_count() -> int:
+    """How many tests this suite actually has, asked of pytest itself.
 
-    '157' also occurs legitimately as a data value (event counts by damage
-    band in the selection-bias table), so a substring check on the number
-    alone produces false positives.
+    A subprocess rather than an in-process hook: collecting from inside a running
+    session is fragile, and this costs about a second once.
     """
+    out = subprocess.run(
+        # NOT -q: the quiet format prints per-file counts and no total.
+        [sys.executable, "-m", "pytest", "--collect-only", "-p", "no:cacheprovider"],
+        cwd=Path(__file__).resolve().parents[1],
+        capture_output=True, text=True,
+    ).stdout
+    m = re.search(r"(\d+) tests? collected", out)
+    assert m, f"could not read a test count out of pytest's own output:\n{out[-400:]}"
+    return int(m.group(1))
+
+
+@pytest.mark.parametrize("path", ALL_PAPER_SURFACES)
+def test_every_surface_reports_the_REAL_test_count(path: Path):
+    """The published test count must equal the count, not merely avoid one wrong value.
+
+    This used to be a blocklist of a single stale number ("157"), which is a
+    check that passes for every wrong answer except one. It did exactly that: the
+    paper and both MDPI builders sat at 149 while the suite had grown past it,
+    and nothing failed. A claim about the repository should be verified against
+    the repository.
+    """
+    real = _collected_test_count()
     body = _text(path)
-    for stale in ("157 автотест", "157 тест", "157 automated test", "157 test"):
-        assert stale not in body, (
-            f"{path.name} reports a test count of 157; that number was never "
-            "correct — run `python -m pytest` and use the real total")
+    # Only the four phrasings that actually assert a suite total. A looser
+    # pattern picks up sentences like "5 permutation tests", which are data, not
+    # a claim about this repository.
+    claims = re.findall(
+        r"(\d+)\s*(?:автотест\w*"
+        r"|automated tests?"
+        r"|тест\w*,\s*все зелёные"
+        r"|tests?,\s*all green)",
+        body,
+    )
+    assert claims, f"{path.name} states no test count at all — did the phrasing change?"
+    for claimed in claims:
+        assert int(claimed) == real, (
+            f"{path.name} claims {claimed} tests; `python -m pytest` collects {real}. "
+            "Update the surface — or, if the suite shrank, say why in the commit."
+        )
 
 
 def test_ablation_artifact_agrees_with_its_published_claim():
