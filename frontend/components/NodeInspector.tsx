@@ -25,6 +25,30 @@ const REACH = 0.01;
 const RECOVERY_FRACTION = 0.1;
 const TOP_SUPPLIERS = 3;
 
+/**
+ * Onset-driver correlations, transcribed from
+ * backend/data/calibration/onset_drivers.json.
+ *
+ * Pinned by backend/tests/test_onset_drivers.py, which reads both this file and
+ * the artifact and fails if they disagree. The previous version of these numbers
+ * lived only in a source comment, had no artifact behind it, and turned out to
+ * have the WRONG SIGN on dependency share: it displayed -0.45 where measurement
+ * gives +0.20.
+ */
+const ONSET = {
+  n: 18,
+  neverReached: 21,
+  horizon: 52,
+  minHolm: "0.138",
+  collinear: "-0.68",
+  drivers: [
+    { en: "vulnerability", ru: "уязвимость", rho: "-0.66", lo: "-0.84", hi: "-0.34" },
+    { en: "inventory depth", ru: "глубина запасов", rho: "-0.46", lo: "-0.81", hi: "+0.01" },
+    { en: "centrality", ru: "центральность", rho: "-0.28", lo: "-0.69", hi: "+0.22" },
+    { en: "dependency share", ru: "доля зависимости", rho: "+0.20", lo: "-0.30", hi: "+0.66" },
+  ],
+} as const;
+
 interface Point {
   week: number;
   loss: number;
@@ -576,26 +600,40 @@ export default function NodeInspector({ nodeId, onClose }: NodeInspectorProps) {
             </h3>
             <p className="text-[12px] text-text-secondary leading-relaxed">
               {ru
-                ? "Время прихода шока не объясняется ни одним отдельным свойством узла. Измеренные корреляции задержки прихода с кандидатами-предикторами близки по величине:"
-                : "Onset timing is not explained by any single node property. Measured correlations of onset lag against candidate drivers are all similar in size:"}
+                ? `Ни одно свойство узла по отдельности не объясняет время прихода. Корреляции Спирмена недели прихода с кандидатами, n=${ONSET.n} узлов:`
+                : `No single node property explains when the shock arrives. Spearman correlations of onset week against each candidate, n=${ONSET.n} nodes:`}
             </p>
-            <div className="grid grid-cols-2 gap-x-3 gap-y-1 my-2">
-              {[
-                { en: "dependency share", ru: "доля зависимости", v: "-0.45" },
-                { en: "vulnerability", ru: "уязвимость", v: "-0.53" },
-                { en: "centrality", ru: "центральность", v: "-0.46" },
-                { en: "inventory depth", ru: "глубина запасов", v: "-0.44" },
-              ].map((d) => (
+            <div className="space-y-1 my-2">
+              {ONSET.drivers.map((d) => (
                 <div key={d.en} className="flex items-baseline justify-between gap-2 min-w-0">
                   <span className="text-[11px] text-text-muted truncate">{ru ? d.ru : d.en}</span>
-                  <span className="num text-[12px] text-text-primary shrink-0">{d.v}</span>
+                  <span className="num text-[12px] shrink-0 tabular-nums">
+                    <span className="text-text-primary">{d.rho}</span>
+                    <span className="text-text-muted"> [{d.lo}, {d.hi}]</span>
+                  </span>
                 </div>
               ))}
             </div>
+            {/* Two things stood here before and both were wrong.
+                The numbers came from a source comment with no artifact behind
+                them, and measuring the same quantity puts dependency share at
+                +0.20 — the opposite sign to the -0.45 that was displayed. The
+                closing line ("the timing falls out of the whole propagation
+                step") turned a negative finding into a mechanism claim, which
+                this same panel disclaims two hundred lines up. Four
+                similarly-sized coefficients are equally consistent with the
+                candidates being collinear or with an unmeasured fifth driver.
+                scripts/onset_drivers.py measures it properly now: paired
+                bootstrap on the same nodes, Holm across all six pairs. */}
             <p className="text-[12px] text-text-secondary leading-relaxed">
               {ru
-                ? "Время возникает из шага распространения целиком, а не из какого-то одного атрибута."
-                : "The timing falls out of the whole propagation step rather than any one attribute."}
+                ? `Ни одна пара кандидатов не различима после поправки Холма (наименьшее p=${ONSET.minHolm}), поэтому утверждать «уязвимость важнее» здесь нельзя. Доля зависимости и уязвимость к тому же коллинеарны (ρ=${ONSET.collinear}) — на таком n их не разделить.`
+                : `No pair of these is distinguishable after Holm correction (smallest p=${ONSET.minHolm}), so "vulnerability matters most" is not a claim this supports. Dependency share and vulnerability are also collinear (rho ${ONSET.collinear}), which at this n cannot be untangled.`}
+            </p>
+            <p className="text-[11px] text-text-muted leading-relaxed mt-1.5">
+              {ru
+                ? `Один прогон флагманского сценария на графе v2. Из 41 узла оценены ${ONSET.n}: ${ONSET.neverReached} ни разу не достигнуты за ${ONSET.horizon} нед. и исключены, а не подставлены горизонтом; ещё 2 — точки шока. Воспроизводится: python -m scripts.onset_drivers`
+                : `One flagship run on the v2 graph. ${ONSET.n} of 41 nodes scored: ${ONSET.neverReached} are never reached inside ${ONSET.horizon} weeks and are excluded rather than imputed at the horizon, and 2 are shock origins. Reproduce: python -m scripts.onset_drivers`}
             </p>
           </section>
         </div>

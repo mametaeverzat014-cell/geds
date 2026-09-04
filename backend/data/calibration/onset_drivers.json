@@ -1,0 +1,117 @@
+{
+  "collinearity_spearman": {
+    "centrality__inventory_depth": -0.0658,
+    "dependency_share__centrality": 0.4089,
+    "dependency_share__inventory_depth": -0.1508,
+    "dependency_share__vulnerability": -0.6795,
+    "vulnerability__centrality": -0.0963,
+    "vulnerability__inventory_depth": 0.1193
+  },
+  "correlations": {
+    "centrality": {
+      "ci95_hi": 0.2169,
+      "ci95_lo": -0.6904,
+      "constant_across_scored_nodes": false,
+      "n": 18,
+      "n_boot_used": 4000,
+      "rho": -0.2826
+    },
+    "dependency_share": {
+      "ci95_hi": 0.6594,
+      "ci95_lo": -0.2984,
+      "constant_across_scored_nodes": false,
+      "n": 18,
+      "n_boot_used": 4000,
+      "rho": 0.2023
+    },
+    "inventory_depth": {
+      "ci95_hi": 0.0116,
+      "ci95_lo": -0.8132,
+      "constant_across_scored_nodes": false,
+      "n": 18,
+      "n_boot_used": 4000,
+      "rho": -0.4559
+    },
+    "vulnerability": {
+      "ci95_hi": -0.3449,
+      "ci95_lo": -0.8441,
+      "constant_across_scored_nodes": false,
+      "n": 18,
+      "n_boot_used": 4000,
+      "rho": -0.6642
+    }
+  },
+  "funnel": {
+    "never_reached_excluded": 21,
+    "nodes_in_graph": 41,
+    "nodes_scored": 18,
+    "onset_week_zero_excluded": 0,
+    "shock_origins_excluded": 2
+  },
+  "graph_version": "v2",
+  "horizon_weeks": 52,
+  "n_boot": 4000,
+  "n_pairs_significant_after_holm": 0,
+  "not_established": "The candidates are correlated with each other (see collinearity_spearman); no partial or multivariate analysis was run, so this does not identify which property, if any, drives onset timing. One scenario on one graph is measured here.",
+  "onset_week_range": [
+    1,
+    14
+  ],
+  "pairwise_paired_bootstrap": {
+    "centrality__inventory_depth": {
+      "ci95_hi": 0.8508,
+      "ci95_lo": -0.5083,
+      "delta_rho": 0.1733,
+      "p_boot": 0.5955,
+      "p_holm": 0.961,
+      "significant": false
+    },
+    "dependency_share__centrality": {
+      "ci95_hi": 1.057,
+      "ci95_lo": -0.0393,
+      "delta_rho": 0.4849,
+      "p_boot": 0.0705,
+      "p_holm": 0.3075,
+      "significant": false
+    },
+    "dependency_share__inventory_depth": {
+      "ci95_hi": 1.2544,
+      "ci95_lo": -0.0325,
+      "delta_rho": 0.6582,
+      "p_boot": 0.0615,
+      "p_holm": 0.3075,
+      "significant": false
+    },
+    "dependency_share__vulnerability": {
+      "ci95_hi": 1.4505,
+      "ci95_lo": 0.1272,
+      "delta_rho": 0.8665,
+      "p_boot": 0.023,
+      "p_holm": 0.138,
+      "significant": false
+    },
+    "vulnerability__centrality": {
+      "ci95_hi": 0.1802,
+      "ci95_lo": -0.9844,
+      "delta_rho": -0.3816,
+      "p_boot": 0.2195,
+      "p_holm": 0.6585,
+      "significant": false
+    },
+    "vulnerability__inventory_depth": {
+      "ci95_hi": 0.2992,
+      "ci95_lo": -0.7158,
+      "delta_rho": -0.2083,
+      "p_boot": 0.4805,
+      "p_holm": 0.961,
+      "significant": false
+    }
+  },
+  "quantity": "Spearman rho of onset week against each candidate driver",
+  "reach_threshold": 0.01,
+  "reproduce_command": "python -m scripts.onset_drivers",
+  "sampling_unit": "node",
+  "scenario": "taiwan-semi-75",
+  "seed": 20260814,
+  "verdict": "No pair of candidates is distinguishable after Holm correction: at n=18 this run cannot separate them."
+}

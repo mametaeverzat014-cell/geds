@@ -198,13 +198,19 @@ export default function ForecastNarrative() {
                       {/* Two facts, deliberately joined by "and" rather than a
                           causal clause. Putting the dependency share next to the
                           lag invites the reading that the share explains the lag,
-                          and it does not: onset lag correlates with dependency
-                          share at only rho -0.45, about the same as it does with
-                          vulnerability (-0.53), centrality (-0.46) and inventory
-                          depth (-0.44). No single node property drives it. */}
+                          and measurement says it does not: across the 18 nodes
+                          the flagship run reaches, onset week correlates with
+                          dependency share at rho +0.20, CI [-0.30, +0.66] — the
+                          interval spans zero, and the sign is the OPPOSITE of the
+                          -0.45 the old comment here asserted with no artifact
+                          behind it. See backend/scripts/onset_drivers.py.
+                          The closing clause is gone too: "the timing is set by
+                          the node's whole position in the network" was a
+                          mechanism claim, and no pair of candidate drivers is
+                          even distinguishable after Holm correction. */}
                       {ru
-                        ? `Зависимость от этого поставщика — ${pct(link.share)} входа, и удар дошёл на ${link.lagWeeks}-й нед. Срок задаёт не одна эта доля, а положение узла в сети целиком.`
-                        : `${pct(link.share)} of this node's input runs through that supplier, and the disruption arrived in week ${link.lagWeeks}. The timing is set by the node's whole position in the network, not by that share alone.`}
+                        ? `Зависимость от этого поставщика — ${pct(link.share)} входа, и удар дошёл на ${link.lagWeeks}-й нед. Это два факта об одном прогоне, а не объяснение: доля зависимости и неделя прихода связаны слабо (ρ=+0,20, ДИ [−0,30; +0,66]).`
+                        : `${pct(link.share)} of this node's input runs through that supplier, and the disruption arrived in week ${link.lagWeeks}. Those are two facts about one run, not an explanation: dependency share and onset week are barely related (rho +0.20, CI [-0.30, +0.66]).`}
                     </p>
                   )}
                 </div>
