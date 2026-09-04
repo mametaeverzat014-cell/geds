@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import ConnectionBanner from "@/components/ConnectionBanner";
 import SiteNav from "@/components/SiteNav";
 import StructuralExperiment from "@/components/StructuralExperiment";
-import { api, API_BASE, type CVReport } from "@/lib/api";
+import { api, getRaw, type CVReport } from "@/lib/api";
 import { useUI } from "@/lib/ui-context";
 
 interface Posterior {
@@ -64,8 +64,12 @@ interface CalibrationReport {
 interface AblationReport {
   timestamp: string;
   n_events: number;
-  best_variant: string;
-  worst_variant: string;
+  /** Point-estimate ordering only — NOT a claim that one variant beats another.
+   *  `verdict` / `n_significant_after_holm` carry what is actually established. */
+  lowest_mae_variant_pointwise: string;
+  highest_mae_variant_pointwise: string;
+  n_significant_after_holm: number;
+  verdict: string;
   rows: Array<{
     variant: string;
     description: string;
@@ -76,6 +80,11 @@ interface AblationReport {
     pass_rate_50pct: number;
     mae_delta_vs_full: number;
     pearson_delta_vs_full: number;
+    mae_delta_ci_low: number | null;
+    mae_delta_ci_high: number | null;
+    p_perm_vs_full: number | null;
+    p_holm_vs_full: number | null;
+    significant_vs_full: boolean | null;
   }>;
 }
 
@@ -217,17 +226,17 @@ export default function ValidationPage() {
   useEffect(() => {
     Promise.allSettled([
       api.cvReport().then(setCv),
-      fetch(`${API_BASE}/api/v1/posterior`).then(r => r.ok ? r.json() : null).then(setPosterior),
-      fetch(`${API_BASE}/api/v1/research-metrics`).then(r => r.ok ? r.json() : null).then(setResearch),
-      fetch(`${API_BASE}/api/v1/calibration-report`).then(r => r.ok ? r.json() : null).then(setCalibration),
-      fetch(`${API_BASE}/api/v1/ablation`).then(r => r.ok ? r.json() : null).then(setAblation),
-      fetch(`${API_BASE}/api/v1/benchmark`).then(r => r.ok ? r.json() : null).then(setBench),
-      fetch(`${API_BASE}/api/v1/loo-de-report`).then(r => r.ok ? r.json() : null).then(setLooDe),
-      fetch(`${API_BASE}/api/v1/portwatch-validation`).then(r => r.ok ? r.json() : null).then(setPortwatch),
-      fetch(`${API_BASE}/api/v1/gscpi-validation`).then(r => r.ok ? r.json() : null).then(setGscpi),
-      fetch(`${API_BASE}/api/v1/icio-edge-check`).then(r => r.ok ? r.json() : null).then(setIcio),
-      fetch(`${API_BASE}/api/v1/icio-c26-split`).then(r => r.ok ? r.json() : null).then(setC26),
-      fetch(`${API_BASE}/api/v1/cascade-validation`).then(r => r.ok ? r.json() : null).then(setCascade),
+      getRaw<any>("/api/v1/posterior").catch(() => null).then(setPosterior),
+      getRaw<any>("/api/v1/research-metrics").catch(() => null).then(setResearch),
+      getRaw<any>("/api/v1/calibration-report").catch(() => null).then(setCalibration),
+      getRaw<any>("/api/v1/ablation").catch(() => null).then(setAblation),
+      getRaw<any>("/api/v1/benchmark").catch(() => null).then(setBench),
+      getRaw<any>("/api/v1/loo-de-report").catch(() => null).then(setLooDe),
+      getRaw<any>("/api/v1/portwatch-validation").catch(() => null).then(setPortwatch),
+      getRaw<any>("/api/v1/gscpi-validation").catch(() => null).then(setGscpi),
+      getRaw<any>("/api/v1/icio-edge-check").catch(() => null).then(setIcio),
+      getRaw<any>("/api/v1/icio-c26-split").catch(() => null).then(setC26),
+      getRaw<any>("/api/v1/cascade-validation").catch(() => null).then(setCascade),
     ]).catch((e) => setError(String(e)));
   }, []);
 
@@ -859,42 +868,66 @@ export default function ValidationPage() {
         </h2>
         <p className="text-[13px] text-text-secondary leading-relaxed max-w-4xl">
           {tr(
-            "Each row switches off one engine component and re-runs the validation. The Δ columns compare that crippled model to the full one: a red +Δ MAE (or a negative Δ Pearson) means removing the component made predictions worse — so it is doing real work and earns its place. A component you can delete with no penalty is dead weight that should be cut. This is how you tell which parts of the model actually justify their complexity, rather than just assuming every piece helps.",
-            "Каждая строка отключает один компонент движка и заново прогоняет валидацию. Столбцы Δ сравнивают такую «урезанную» модель с полной: красная +Δ MAE (или отрицательная Δ Pearson) означает, что удаление компонента ухудшило прогнозы — значит, он делает реальную работу и оправдан. Компонент, который можно удалить без потерь, — балласт, и его следует убрать. Так определяют, какие части модели действительно оправдывают свою сложность, а не просто предполагают, что полезен каждый элемент.",
+            "Each row switches off one engine component and re-runs the validation on the same events. Δ MAE is the crippled model's error minus the full model's — but a point delta on its own is not a result, so each is shown with a paired bootstrap interval and a permutation p-value corrected for testing every variant at once (Holm step-down). Read the interval, not the sign: a Δ whose interval spans zero is a difference this benchmark cannot resolve.",
+            "Каждая строка отключает один компонент движка и заново прогоняет валидацию на тех же событиях. Δ MAE — ошибка урезанной модели минус ошибка полной, но точечная дельта сама по себе не результат: рядом приведены парный бутстрэп-интервал и перестановочное p-значение с поправкой на множественность (Holm step-down). Смотреть надо на интервал, а не на знак: Δ, чей интервал накрывает ноль, — различие, которое этот бенчмарк не разрешает.",
           )}
         </p>
         {ablation ? (
-          <table className="text-[13px] w-full">
-            <thead>
-              <tr className="text-text-muted uppercase text-[12px] tracking-widest">
-                <th className="text-left py-1">variant</th>
-                <th className="text-right py-1">MAE</th>
-                <th className="text-right py-1">Pearson</th>
-                <th className="text-right py-1">Δ MAE</th>
-                <th className="text-right py-1">Δ Pearson</th>
-                <th className="text-right py-1">pass50</th>
-              </tr>
-            </thead>
-            <tbody>
-              {ablation.rows.map((r) => (
-                <tr key={r.variant} className="border-t border-border-subtle/30">
-                  <td className="py-1 text-[12px] text-text-primary">
-                    {r.variant === "full" && "★ "}{r.variant}
-                    <span className="text-text-muted ml-2 text-[12px]">{r.description}</span>
-                  </td>
-                  <td className="py-1 num text-right">{r.mae_loss.toFixed(4)}</td>
-                  <td className="py-1 num text-right">{r.pearson_loss >= 0 ? "+" : ""}{r.pearson_loss.toFixed(3)}</td>
-                  <td className={`py-1 num text-right ${r.mae_delta_vs_full > 0 ? "text-sev-5" : r.mae_delta_vs_full < 0 ? "text-accent-cyan" : "text-text-muted"}`}>
-                    {r.mae_delta_vs_full >= 0 ? "+" : ""}{r.mae_delta_vs_full.toFixed(4)}
-                  </td>
-                  <td className={`py-1 num text-right ${r.pearson_delta_vs_full < 0 ? "text-sev-5" : r.pearson_delta_vs_full > 0 ? "text-accent-cyan" : "text-text-muted"}`}>
-                    {r.pearson_delta_vs_full >= 0 ? "+" : ""}{r.pearson_delta_vs_full.toFixed(3)}
-                  </td>
-                  <td className="py-1 num text-right">{(r.pass_rate_50pct * 100).toFixed(0)}%</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+          <>
+            <div className={`rounded-md border px-3 py-2 text-[13px] leading-relaxed ${
+              ablation.n_significant_after_holm > 0
+                ? "border-accent-cyan/30 bg-accent-cyan/5 text-text-secondary"
+                : "border-sev-4/30 bg-sev-4/5 text-text-secondary"
+            }`}>
+              <span className="font-semibold text-text-primary">{tr("Verdict", "Вердикт")}:</span>{" "}
+              {ablation.verdict}
+            </div>
+            <div className="overflow-x-auto">
+              <table className="text-[13px] w-full min-w-[760px]">
+                <thead>
+                  <tr className="text-text-muted uppercase text-[12px] tracking-widest">
+                    <th className="text-left py-1">variant</th>
+                    <th className="text-right py-1">MAE</th>
+                    <th className="text-right py-1">Pearson</th>
+                    <th className="text-right py-1">Δ MAE</th>
+                    <th className="text-right py-1 whitespace-nowrap">95% CI (Δ MAE)</th>
+                    <th className="text-right py-1 whitespace-nowrap">p (Holm)</th>
+                    <th className="text-right py-1">pass50</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {ablation.rows.map((r) => {
+                    // Colour encodes RESOLVED vs UNRESOLVED, not the sign of the
+                    // point estimate. Painting an unresolvable +Δ red told the
+                    // reader a component was proven necessary when it was not.
+                    const resolved = r.significant_vs_full === true;
+                    return (
+                      <tr key={r.variant} className="border-t border-border-subtle/30">
+                        <td className="py-1 text-[12px] text-text-primary">
+                          {r.variant === "full" && "★ "}{r.variant}
+                          <span className="text-text-muted ml-2 text-[12px]">{r.description}</span>
+                        </td>
+                        <td className="py-1 num text-right">{r.mae_loss.toFixed(4)}</td>
+                        <td className="py-1 num text-right">{r.pearson_loss >= 0 ? "+" : ""}{r.pearson_loss.toFixed(3)}</td>
+                        <td className={`py-1 num text-right ${resolved ? (r.mae_delta_vs_full > 0 ? "text-sev-5" : "text-accent-cyan") : "text-text-secondary"}`}>
+                          {r.mae_delta_vs_full >= 0 ? "+" : ""}{r.mae_delta_vs_full.toFixed(4)}
+                        </td>
+                        <td className="py-1 num text-right text-text-muted whitespace-nowrap">
+                          {r.mae_delta_ci_low != null && r.mae_delta_ci_high != null
+                            ? `[${r.mae_delta_ci_low >= 0 ? "+" : ""}${r.mae_delta_ci_low.toFixed(4)}, ${r.mae_delta_ci_high >= 0 ? "+" : ""}${r.mae_delta_ci_high.toFixed(4)}]`
+                            : "—"}
+                        </td>
+                        <td className={`py-1 num text-right ${resolved ? "text-accent-cyan" : "text-text-muted"}`}>
+                          {r.p_holm_vs_full != null ? r.p_holm_vs_full.toFixed(3) : "—"}
+                        </td>
+                        <td className="py-1 num text-right">{(r.pass_rate_50pct * 100).toFixed(0)}%</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          </>
         ) : <div className="text-[13px] text-text-muted">{tr("Loading…", "Загрузка…")}</div>}
       </div>
 

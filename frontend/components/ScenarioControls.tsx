@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { useEffect, useRef } from "react";
 import { useSimStore, type GraphVersion } from "@/lib/store";
 import { api } from "@/lib/api";
-import type { StreamMessage } from "@/lib/types";
+import type { SimulationResult, StreamMessage } from "@/lib/types";
 
 // `v2only` presets shock a chokepoint node, which the ICIO v3 graph has no
 // equivalent for — they're disabled when the 81-economy graph is selected.
@@ -16,6 +16,9 @@ const PRESETS = [
   { id: "historical-covid-semi", label: "COVID Semi (replay)" },
   { id: "hypothetical-hormuz", label: "Hormuz Closure", v2only: true },
 ];
+
+/** Wall-clock budget for a snapshot replay, so any horizon reads at one speed. */
+const REPLAY_MS = 2200;
 
 const GRAPHS: { id: GraphVersion; label: string; nodes: string }[] = [
   { id: "v2", label: "12-country", nodes: "41 nodes · calibrated" },
@@ -39,8 +42,11 @@ export default function ScenarioControls() {
   // Load the snapshot for the active graph so the map + node list reflect it.
   // Re-runs whenever graphVersion changes OR when the backend comes back online
   // (backend may have been sleeping when the page first loaded).
+  //
+  // Deliberately NOT gated on backendStatus any more: `api.graph` falls back to
+  // the shipped snapshot, so an offline first load still gets a real graph and
+  // the page can draw itself while the server wakes.
   useEffect(() => {
-    if (backendStatus === "offline") return;
     api.graph(graphVersion).then(setGraph).catch(() => {});
   }, [graphVersion, backendStatus, setGraph]);
 
@@ -53,8 +59,66 @@ export default function ScenarioControls() {
     }
   };
 
-  const run = () => {
+  // Cancels an in-flight snapshot replay. Held in a ref so a second run, or an
+  // unmount, can stop the first one mid-cascade instead of interleaving frames.
+  const replayCancel = useRef<(() => void) | null>(null);
+  useEffect(() => () => replayCancel.current?.(), []);
+
+  /**
+   * Play a completed SimulationResult out frame by frame.
+   *
+   * The websocket streams frames as the engine produces them, and watching the
+   * cascade arrive is the whole point of the map. Dumping a finished run into
+   * the store in one go would show the same data and destroy the only thing that
+   * makes it legible. So the fallback keeps the cadence, paced to a fixed
+   * wall-clock budget so a 52-week run and a 260-week one read at the same speed.
+   */
+  const replay = (result: SimulationResult) => {
+    replayCancel.current?.();
     beginRun();
+    const total = result.frames.length;
+    if (total === 0) { failRun("Snapshot contained no frames"); return; }
+    const step = Math.min(40, Math.max(8, Math.round(REPLAY_MS / total)));
+    const batch = Math.max(1, Math.ceil(total / (REPLAY_MS / step)));
+
+    let i = 0;
+    const id = setInterval(() => {
+      for (let k = 0; k < batch && i < total; k++, i++) pushFrame(result.frames[i]);
+      if (i >= total) {
+        clearInterval(id);
+        replayCancel.current = null;
+        completeRun(result.summary);
+      }
+    }, step);
+    replayCancel.current = () => { clearInterval(id); replayCancel.current = null; };
+  };
+
+  const run = () => {
+    replayCancel.current?.();
+    beginRun();
+
+    // One flag for both failure paths: a socket that never opens fires onerror
+    // AND onclose, and a socket that dies mid-stream fires onclose after frames
+    // have already landed. Without this the fallback could start twice.
+    let settled = false;
+    const fallback = (reason: string) => {
+      if (settled) return;
+      settled = true;
+      // Only the flagship on the v2 graph is baked, and POST /simulate has no
+      // graph_version parameter — it is v2 either way. Replaying a v2 cascade
+      // onto the 405-node ICIO graph would paint the wrong node ids, so v3 fails
+      // loudly instead of showing something that merely looks right.
+      if (graphVersion !== "v2") { failRun(reason); return; }
+      api.simulate({ scenario_id: selected }).then(replay).catch(() => failRun(reason));
+    };
+
+    // Already known to be asleep: don't open a socket that will hang for the
+    // browser's full connect timeout before failing. Go straight to the snapshot.
+    if (useSimStore.getState().backendStatus === "offline") {
+      fallback("Backend asleep");
+      return;
+    }
+
     const ws = new WebSocket(api.wsStreamUrl());
     ws.onopen = () => {
       ws.send(JSON.stringify({ scenario_id: selected, graph_version: graphVersion }));
@@ -62,13 +126,13 @@ export default function ScenarioControls() {
     ws.onmessage = (ev) => {
       const msg: StreamMessage = JSON.parse(ev.data);
       if (msg.event === "frame") pushFrame(msg.frame);
-      else if (msg.event === "complete") completeRun(msg.summary);
-      else if (msg.event === "error") failRun(msg.message);
+      else if (msg.event === "complete") { settled = true; completeRun(msg.summary); }
+      else if (msg.event === "error") { settled = true; failRun(msg.message); }
     };
-    ws.onerror = () => failRun("WebSocket error");
+    ws.onerror = () => fallback("WebSocket error");
     ws.onclose = (ev) => {
       if (!ev.wasClean && !useSimStore.getState().summary) {
-        failRun("Connection closed before completion");
+        fallback("Connection closed before completion");
       }
     };
   };
@@ -87,7 +151,10 @@ export default function ScenarioControls() {
   const autoRanRef = useRef(false);
   useEffect(() => {
     if (autoRanRef.current) return;
-    if (backendStatus !== "online" || !graph || !selected || running) return;
+    // "checking" is the only state that blocks. "offline" no longer does: the
+    // snapshot can drive a full cascade, and a cold visitor waiting 30 s for the
+    // first pixel is the exact failure this is here to prevent.
+    if (backendStatus === "checking" || !graph || !selected || running) return;
     if (useSimStore.getState().summary) return;   // a run already produced output
     autoRanRef.current = true;
     run();

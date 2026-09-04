@@ -1,0 +1,1 @@
+{"industry":"semiconductors","models":[{"industry_loss":0.0477,"model":"SEIRS (GEDS)","parameters":5,"recovery_weeks":22.0},{"industry_loss":0.0409,"model":"Linear diffusion","parameters":0,"recovery_weeks":3.0},{"industry_loss":0.0477,"model":"Leontief","parameters":0,"recovery_weeks":7.0}]}

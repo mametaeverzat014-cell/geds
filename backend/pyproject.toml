@@ -42,6 +42,11 @@ ignore = ["E501"]
 testpaths = ["tests"]
 addopts = "-ra -q --strict-markers"
 asyncio_mode = "auto"
+markers = [
+    # Minutes, not seconds — regenerates every validation artifact from scratch.
+    # Skip locally with `-m 'not slow'`; CI runs the suite in full.
+    "slow: recomputes heavy artifacts (ablation, cascade validation, full sims)",
+]
 
 [build-system]
 requires = ["setuptools>=61"]

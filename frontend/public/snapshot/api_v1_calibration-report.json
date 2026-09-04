@@ -1,0 +1,1 @@
+{"mae_after":0.0212,"mae_before":0.0242,"method":"isotonic-LOO","n_samples":27,"pass_rate_25pct_after":0.8148,"pass_rate_25pct_before":0.8148,"pearson_after":0.2303,"pearson_before":0.1498,"rmse_after":0.0343,"rmse_before":0.0464,"spearman_after":0.2125,"spearman_before":0.4383}
