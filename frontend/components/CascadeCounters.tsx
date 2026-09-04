@@ -105,8 +105,14 @@ export default function CascadeCounters() {
       const f = frames[i];
       let added = 0;
 
+      // Nodes over the reach threshold in THIS frame — the instantaneous count,
+      // as distinct from `seen`, which never shrinks.
+      let inst = 0;
+
       for (const n of f.nodes) {
-        if (n.output_loss < REACHED || seen.has(n.id)) continue;
+        if (n.output_loss < REACHED) continue;
+        inst += 1;
+        if (seen.has(n.id)) continue;
         seen.add(n.id);
         added += 1;
         if (firstSpreadWeek === null && !originIds.has(n.id)) firstSpreadWeek = f.week;
@@ -118,7 +124,15 @@ export default function CascadeCounters() {
       newly[i] = added;
       countries[i] = seenCountries.size;
 
-      const share = total > 0 ? f.affected_count / total : 0;
+      // Counted here rather than read from `f.affected_count`, which the engine
+      // defines as `shock > 0.10` (propagation.py AFFECTED_THRESHOLD) — a
+      // different criterion from this panel's `output_loss >= 0.01`, selecting a
+      // materially different set. On the flagship run its peak is 16/41 where
+      // this panel's own rule gives 20/41, so the share printed here contradicted
+      // both the counter beside it and the provenance note below it, which states
+      // that every figure in this panel comes from the published reach threshold.
+      // Now it does.
+      const share = total > 0 ? inst / total : 0;
       if (share > runningPeakShare) runningPeakShare = share;
       peakShare[i] = runningPeakShare;
 

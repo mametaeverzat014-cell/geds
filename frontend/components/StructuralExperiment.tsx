@@ -168,16 +168,50 @@ function buildNet(seed: number, n: number, edgeCount: number): Net {
   return { nodes, edges };
 }
 
+// ── which dots carry the measurement ─────────────────────────────────────────
+//
+// The recall denominators are NOT the graph. v2 is scored against 35
+// historically hit nodes and v3 against 38; the graphs hold 41 and 405. The
+// earlier figure lit `recall x totalNodes` dots and captioned the dim ones as
+// "hit nodes the graph never reaches" — which made v3 look like it missed 85
+// nodes when the artifact says 8, a tenfold overstatement of the failure, in the
+// figure this file calls the project's strongest positive result.
+//
+// So the measurement moved out of the lit fraction and into a ring overlay.
+// `of` nodes are ringed, spread evenly along the distance ordering, and the wave
+// is cut off exactly where the `hit`-th ringed node sits. A dark ring is then one
+// missed hit node and nothing else, and the counts on screen are 25 and 8 — the
+// artifact's numbers, arrived at by construction rather than by assertion.
+function observedIndices(n: number, of: number): number[] {
+  if (of <= 0 || n <= 0) return [];
+  if (of >= n) return Array.from({ length: n }, (_, i) => i);
+  const out: number[] = [];
+  for (let k = 0; k < of; k++) {
+    const idx = Math.round((k * (n - 1)) / (of - 1));
+    if (out.length === 0 || idx > out[out.length - 1]) out.push(idx);
+  }
+  return out;
+}
+
+/** Wave cutoff that reaches exactly `hit` of the ringed nodes and no more. */
+function litCountFor(observed: number[], hit: number): number {
+  if (hit <= 0) return 0;
+  return observed[Math.min(hit, observed.length) - 1] + 1;
+}
+
 // ── schematic ────────────────────────────────────────────────────────────────
 
 function Schematic({
   net,
   litCount,
+  observed,
   variant,
   label,
 }: {
   net: Net;
   litCount: number;
+  /** Indices of the historically-hit nodes — the recall denominator, ringed. */
+  observed: Set<number>;
   variant: "a" | "b";
   label: string;
 }) {
@@ -212,15 +246,30 @@ function Schematic({
         })}
         {net.nodes.map((p, i) => {
           const on = i < litCount;
+          const obs = observed.has(i);
           return (
-            <circle
-              key={i}
-              cx={p.x}
-              cy={p.y}
-              r={nr}
-              className={on ? `se-n-${variant}` : "se-n-off"}
-              style={on ? { animationDelay: `${Math.round(p.d * SWEEP_MS)}ms` } : undefined}
-            />
+            <g key={i}>
+              <circle
+                cx={p.x}
+                cy={p.y}
+                r={nr}
+                className={on ? `se-n-${variant}` : "se-n-off"}
+                style={on ? { animationDelay: `${Math.round(p.d * SWEEP_MS)}ms` } : undefined}
+              />
+              {obs && (
+                <circle
+                  cx={p.x}
+                  cy={p.y}
+                  r={nr * 2.4}
+                  fill="none"
+                  strokeWidth={variant === "a" ? 0.42 : 0.24}
+                  // A ring the wave never reaches is a miss, drawn in the failure
+                  // colour rather than left to blend into the background.
+                  className={on ? `se-o-${variant}` : "se-o-miss"}
+                  style={on ? { animationDelay: `${Math.round(p.d * SWEEP_MS)}ms` } : undefined}
+                />
+              )}
+            </g>
           );
         })}
         <circle
@@ -251,8 +300,15 @@ export default function StructuralExperiment() {
   const netA = useMemo(() => buildNet(SEED_A, V2_NODES, V2_EDGES), []);
   const netB = useMemo(() => buildNet(SEED_B, V3_NODES, V3_EDGES), []);
 
-  const litA = Math.round(row.v2 * V2_NODES);
-  const litB = Math.round(row.v3 * V3_NODES);
+  // Ring positions are fixed per panel — the denominator (35 / 38) does not move
+  // with the threshold; only how many of them the wave reaches does.
+  const obsA = useMemo(() => observedIndices(V2_NODES, SWEEP[0].v2Of), []);
+  const obsB = useMemo(() => observedIndices(V3_NODES, SWEEP[0].v3Of), []);
+  const obsSetA = useMemo(() => new Set(obsA), [obsA]);
+  const obsSetB = useMemo(() => new Set(obsB), [obsB]);
+
+  const litA = litCountFor(obsA, row.v2Hit);
+  const litB = litCountFor(obsB, row.v3Hit);
   const delta = (row.v3 - row.v2).toFixed(3);
 
   const panels = [
@@ -263,15 +319,19 @@ export default function StructuralExperiment() {
       version: "v2",
       nodes: V2_NODES,
       edges: V3_EDGES && V2_EDGES,
+      // NOT "12 x 6 + 5" — that reads as arithmetic and comes to 77. The graph
+      // holds 36 of the 72 possible country-industry pairs; the pairs that carry
+      // no trade in the data were never created.
       composition: tr(
-        "12 countries × 6 industries + 5 chokepoints",
-        "12 стран × 6 отраслей + 5 узких мест",
+        "36 country–industry nodes over 12 countries and 6 industries, + 5 chokepoints",
+        "36 узлов страна-отрасль по 12 странам и 6 отраслям + 5 узких мест",
       ),
       source: tr("Hand-authored map", "Карта, собранная вручную"),
       recall: row.v2,
       hit: row.v2Hit,
       of: row.v2Of,
       lit: litA,
+      obs: obsSetA,
       net: netA,
       color: "#7C6CFB",
     },
@@ -282,12 +342,14 @@ export default function StructuralExperiment() {
       version: "v3",
       nodes: V3_NODES,
       edges: V3_EDGES,
+      // This one does multiply out: 81 x 5 = 405 = V3_NODES, every pair present.
       composition: tr("81 economies × 5 sectors", "81 экономика × 5 секторов"),
       source: tr("Straight from OECD ICIO 2019", "Напрямую из OECD ICIO 2019"),
       recall: row.v3,
       hit: row.v3Hit,
       of: row.v3Of,
       lit: litB,
+      obs: obsSetB,
       net: netB,
       color: "#4DD0E1",
     },
@@ -308,6 +370,23 @@ export default function StructuralExperiment() {
                   animation: se-ea ${CYCLE_MS}ms linear infinite both; }
         .se-e-b { stroke: #4DD0E1; opacity: .30;
                   animation: se-eb ${CYCLE_MS}ms linear infinite both; }
+
+        /* ground-truth rings: the recall denominator, drawn over the dots */
+        .se-o-miss { stroke: #FF5C5C; opacity: .85; }
+        .se-o-a    { stroke: #7C6CFB; opacity: .9;
+                     animation: se-oa ${CYCLE_MS}ms linear infinite both; }
+        .se-o-b    { stroke: #4DD0E1; opacity: .9;
+                     animation: se-ob ${CYCLE_MS}ms linear infinite both; }
+        @keyframes se-oa {
+          0%, 100% { stroke: #FF5C5C; opacity: .85; }
+          6%, 80%  { stroke: #7C6CFB; opacity: .9; }
+          93%      { stroke: #FF5C5C; opacity: .85; }
+        }
+        @keyframes se-ob {
+          0%, 100% { stroke: #FF5C5C; opacity: .85; }
+          6%, 80%  { stroke: #4DD0E1; opacity: .9; }
+          93%      { stroke: #FF5C5C; opacity: .85; }
+        }
 
         @keyframes se-na {
           0%, 100% { fill: #2A3140; opacity: .40; }
@@ -348,7 +427,7 @@ export default function StructuralExperiment() {
         /* Base styles above ARE the fully-propagated end state, so switching
            the animation off leaves the finished picture rather than a blank. */
         @media (prefers-reduced-motion: reduce) {
-          .se-n-a, .se-n-b, .se-e-a, .se-e-b, .se-ring {
+          .se-n-a, .se-n-b, .se-e-a, .se-e-b, .se-o-a, .se-o-b, .se-ring {
             animation: none !important;
           }
           .se-ring { opacity: 0; }
@@ -423,10 +502,11 @@ export default function StructuralExperiment() {
               <Schematic
                 net={p.net}
                 litCount={p.lit}
+                observed={p.obs}
                 variant={p.key}
                 label={tr(
-                  `${p.version} schematic: ${p.nodes} nodes, ${p.edges} edges. A propagation wave leaves one origin and reaches ${p.hit} of ${p.of} historically hit nodes at threshold ${row.label}.`,
-                  `Схема ${p.version}: ${p.nodes} узлов, ${p.edges} связей. Волна расходится из одной точки и достигает ${p.hit} из ${p.of} исторически задетых узлов при пороге ${row.label}.`,
+                  `${p.version} schematic: ${p.nodes} nodes, ${p.edges} edges. ${p.of} nodes are ringed — the historically hit ones recall is scored against. The wave leaves one origin and reaches ${p.hit} of them at threshold ${row.label}; ${p.of - p.hit} rings stay dark.`,
+                  `Схема ${p.version}: ${p.nodes} узлов, ${p.edges} связей. Обведено ${p.of} узлов — это исторически задетые узлы, по которым считается полнота. Волна расходится из одной точки и достигает ${p.hit} из них при пороге ${row.label}; ${p.of - p.hit} колец остаются тёмными.`,
                 )}
               />
             </div>
@@ -460,8 +540,8 @@ export default function StructuralExperiment() {
           {tr("Reading the schematics.", "Как читать схемы.")}
         </span>{" "}
         {tr(
-          "Each picture is a deterministic scatter carrying the true node and edge counts — it is a diagram, not a map of the real graph. The gold dot is one shock origin; both waves expand from it on the same clock. The share of dots that light up is the recall shown beneath: dots left dim stand for hit nodes the graph never reaches.",
-          "Каждая картинка — детерминированная раскладка с настоящим числом узлов и связей: это диаграмма, а не карта реального графа. Золотая точка — одна точка шока; обе волны расходятся из неё по одним часам. Доля загорающихся точек равна полноте, указанной ниже: тусклые точки — задетые узлы, до которых граф не дотягивается.",
+          `Each picture is a deterministic scatter carrying the true node and edge counts — it is a diagram, not a map of the real graph. The gold dot is one shock origin; both waves expand from it on the same clock. The measurement is in the RINGS, not in the lit fraction: ${SWEEP[0].v2Of} nodes are ringed in A and ${SWEEP[0].v3Of} in B, those being the historically hit nodes recall is scored against, and the wave stops exactly where the last reached one sits. A ring left dark is one missed hit node — ${row.v2Of - row.v2Hit} of them in A and ${row.v3Of - row.v3Hit} in B at this threshold. Unringed dots are the rest of the graph, where there is no historical observation to check against, so their lighting carries no claim.`,
+          `Каждая картинка — детерминированная раскладка с настоящим числом узлов и связей: это диаграмма, а не карта реального графа. Золотая точка — одна точка шока; обе волны расходятся из неё по одним часам. Измерение — в КОЛЬЦАХ, а не в доле светящихся точек: в A обведено ${SWEEP[0].v2Of} узлов, в B — ${SWEEP[0].v3Of}; это исторически задетые узлы, по которым считается полнота, и волна обрывается ровно там, где лежит последний достигнутый. Тёмное кольцо — один пропущенный задетый узел: при этом пороге их ${row.v2Of - row.v2Hit} в A и ${row.v3Of - row.v3Hit} в B. Необведённые точки — остальной граф, где нет исторического наблюдения для сверки, поэтому их подсветка ничего не утверждает.`,
         )}
       </p>
 

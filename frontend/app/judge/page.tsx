@@ -638,8 +638,8 @@ export default function JudgePage() {
               tone="plain"
               title={tr("The only thing that changed", "Единственное, что изменилось")}
               body={tr(
-                "v2: 41 nodes (12 countries × 6 industries, plus 5 chokepoints) and 74 edges, hand-authored. v3: 405 nodes and 1,964 edges, straight from OECD ICIO 2019. Same engine, same shocks, same parameters.",
-                "v2: 41 узел (12 стран × 6 отраслей плюс 5 узких мест) и 74 ребра, собрано вручную. v3: 405 узлов и 1 964 ребра, напрямую из OECD ICIO 2019. Тот же движок, те же шоки, те же параметры.",
+                "v2: 41 nodes — 36 country–industry pairs spanning 12 countries and 6 industries, plus 5 chokepoints — and 74 edges, hand-authored. Only 36 of the 72 possible pairs exist; the rest carry no trade to model. v3: 405 nodes (81 economies × 5 sectors, every pair present) and 1,964 edges, straight from OECD ICIO 2019. Same engine, same shocks, same parameters.",
+                "v2: 41 узел — 36 пар страна-отрасль по 12 странам и 6 отраслям плюс 5 узких мест — и 74 ребра, собрано вручную. Из 72 возможных пар существуют лишь 36: у остальных нет торговли, которую можно моделировать. v3: 405 узлов (81 экономика × 5 секторов, все пары присутствуют) и 1 964 ребра, напрямую из OECD ICIO 2019. Тот же движок, те же шоки, те же параметры.",
               )}
             />
             <Note
